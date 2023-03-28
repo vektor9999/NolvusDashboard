@@ -123,10 +123,10 @@ namespace Vcc.Nolvus.Package.Services
                 Lines.Add("*Creation Club: ccbgssse002-exoticarrows");
                 Lines.Add("*Creation Club: ccasvsse001-almsivi");
                 Lines.Add("*Creation Club: ccafdsse001-dwesanctuary");
-                Lines.Add("*Creation Club: ccQDRSSE001-SurvivalMode");
-                Lines.Add("*Creation Club: ccBGSSSE037-Curios");
-                Lines.Add("*Creation Club: ccBGSSSE025-AdvDSGS");
-                Lines.Add("*Creation Club: ccBGSSSE001-Fish");
+                Lines.Add("*Creation Club: ccqdrsse001-SurvivalMode");
+                Lines.Add("*Creation Club: ccbgsse037-Curios");
+                Lines.Add("*Creation Club: ccbgsse025-AdvDSGS");
+                Lines.Add("*Creation Club: ccbgsse001-Fish");
                 Lines.Add("*DLC: HearthFires");
                 Lines.Add("*DLC: Dragonborn");
                 Lines.Add("*DLC: Dawnguard");
@@ -147,7 +147,7 @@ namespace Vcc.Nolvus.Package.Services
                 Lines.Add("HearthFires.esm");
                 Lines.Add("Dragonborn.esm");
                 Lines.Add("ccasvsse001-almsivi.esm");
-                Lines.Add("ccBGSSSE001-Fish.esm");
+                Lines.Add("ccbgssse001-Fish.esm");
                 Lines.Add("ccbgssse002-exoticarrows.esl");
                 Lines.Add("ccbgssse003-zombies.esl");
                 Lines.Add("ccbgssse004-ruinsedge.esl");
@@ -162,7 +162,7 @@ namespace Vcc.Nolvus.Package.Services
                 Lines.Add("ccbgssse020-graycowl.esl");
                 Lines.Add("ccbgssse021-lordsmail.esl");
                 Lines.Add("ccmtysse001-knightsofthenine.esl");
-                Lines.Add("ccQDRSSE001-SurvivalMode.esl");
+                Lines.Add("ccqrdsse001-SurvivalMode.esl");
                 Lines.Add("cctwbsse001-puzzledungeon.esm");
                 Lines.Add("cceejsse001-hstead.esm");
                 Lines.Add("ccqdrsse002-firewood.esl");
@@ -172,7 +172,7 @@ namespace Vcc.Nolvus.Package.Services
                 Lines.Add("cceejsse002-tower.esl");
                 Lines.Add("ccedhsse001-norjewel.esl");
                 Lines.Add("ccvsvsse002-pets.esl");
-                Lines.Add("ccBGSSSE037-Curios.esl");
+                Lines.Add("ccbgssse037-Curios.esl");
                 Lines.Add("ccbgssse034-mntuni.esl");
                 Lines.Add("ccbgssse045-hasedoki.esl");
                 Lines.Add("ccbgssse008-wraithguard.esl");
@@ -210,7 +210,7 @@ namespace Vcc.Nolvus.Package.Services
                 Lines.Add("ccbgssse069-contest.esl");
                 Lines.Add("ccvsvsse003-necroarts.esl");
                 Lines.Add("ccvsvsse004-beafarmer.esl");
-                Lines.Add("ccBGSSSE025-AdvDSGS.esm");
+                Lines.Add("ccbgssse025-AdvDSGS.esm");
                 Lines.Add("ccffbsse002-crossbowpack.esl");
                 Lines.Add("ccbgssse013-dawnfang.esl");
                 Lines.Add("ccrmssse001-necrohouse.esl");
