@@ -1,0 +1,1 @@
+﻿document.getElementsByClassName('replaced-login-link')[0].click();

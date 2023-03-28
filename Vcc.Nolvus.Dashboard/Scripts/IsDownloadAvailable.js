@@ -1,0 +1,1 @@
+﻿(function () { let val = 0; if (document.getElementById('slowDownloadButton') != null) { val = 1 }; return val; })();

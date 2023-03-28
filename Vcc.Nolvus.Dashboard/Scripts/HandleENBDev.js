@@ -1,0 +1,1 @@
+﻿(function(){var elements = document.getElementsByTagName('a');for(let i=0;i<elements.length;i++){let link=elements[i].getAttribute('href'); if(link != null && link.includes('{0}')){elements[i].click();break;;}}})();

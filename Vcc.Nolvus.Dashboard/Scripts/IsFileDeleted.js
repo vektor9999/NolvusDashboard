@@ -1,0 +1,1 @@
+﻿(function () { let val = 0; if (document.getElementsByClassName('info-content') && document.getElementsByClassName('info-content')[0].innerHTML.indexOf('This file has been removed') !== -1) { val = 1 }; return val; })();

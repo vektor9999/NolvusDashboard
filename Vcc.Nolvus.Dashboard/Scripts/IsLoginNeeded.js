@@ -1,0 +1,1 @@
+﻿(function () { let val = 0; if (document.getElementsByClassName('replaced-login-link')[0] != null) { val = 1 }; return val; })();
