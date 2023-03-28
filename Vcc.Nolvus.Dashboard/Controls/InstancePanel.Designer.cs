@@ -120,7 +120,7 @@
             // PicInstanceImage
             // 
             this.PicInstanceImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PicInstanceImage.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.Nolvus_V4;
+            this.PicInstanceImage.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.Nolvus_V5;
             this.PicInstanceImage.Location = new System.Drawing.Point(46, 20);
             this.PicInstanceImage.Name = "PicInstanceImage";
             this.PicInstanceImage.Size = new System.Drawing.Size(206, 128);
