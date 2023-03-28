@@ -892,6 +892,14 @@
     <Content Include="bin\Data\ModMetaData.xml" />
     <Content Include="bin\INIFileParser.dll" />
     <Content Include="bin\INIFileParser.xml" />
+    <Content Include="Scripts\HandleENBDev.js" />
+    <Content Include="Scripts\IsDownloadAvailable.js" />
+    <Content Include="Scripts\IsFileDeleted.js" />
+    <Content Include="Scripts\IsLoginNeeded.js" />
+    <Content Include="Scripts\IsModNotFound.js" />
+    <Content Include="Scripts\NexusManualDownload.js" />
+    <Content Include="Scripts\NexusManualDownloadInit.js" />
+    <Content Include="Scripts\RedirectToLogin.js" />
     <None Include="Resources\Selector Left1.png" />
     <None Include="Resources\Loading_NoBG.gif" />
     <None Include="Resources\mod-def-22.png" />
