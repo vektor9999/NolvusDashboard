@@ -1,0 +1,1044 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\CefSharp.Common.111.2.20\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.111.2.20\build\CefSharp.Common.props')" />
+  <Import Project="..\packages\cef.redist.x86.111.2.2\build\cef.redist.x86.props" Condition="Exists('..\packages\cef.redist.x86.111.2.2\build\cef.redist.x86.props')" />
+  <Import Project="..\packages\cef.redist.x64.111.2.2\build\cef.redist.x64.props" Condition="Exists('..\packages\cef.redist.x64.111.2.2\build\cef.redist.x64.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ADE0EAA8-EDD1-463B-AAEC-3E410810BE08}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vcc.Nolvus.Dashboard</RootNamespace>
+    <AssemblyName>NolvusDashBoard</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <CefSharpAnyCpuSupport>true</CefSharpAnyCpuSupport>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>nolvus-ico.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <CodeAnalysisRuleSet />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <CodeAnalysisRuleSet />
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CefSharp, Version=111.2.20.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CefSharp.Common.111.2.20\lib\net452\CefSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CefSharp.Core, Version=111.2.20.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <HintPath>..\packages\CefSharp.Common.111.2.20\lib\net452\CefSharp.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CefSharp.WinForms, Version=111.2.20.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <HintPath>..\packages\CefSharp.WinForms.111.2.20\lib\net462\CefSharp.WinForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NolvusTheme">
+      <HintPath>..\Assemblies\NolvusTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Core.WinForms, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.Data.WinForms, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.DataSource.WinForms, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.Grid.Base, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.Grid.Windows, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.GridCommon.WinForms, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.Licensing, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.Office2016Theme.WinForms, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.Office2019Theme.WinForms, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.SfDataGrid.WinForms, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.SfInput.WinForms, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.SfListView.WinForms, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.Shared.Base, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.Shared.Windows, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.SpellChecker.Base, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.Tools.Base, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.Tools.Windows, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.AppContext.4.3.0\lib\net46\System.AppContext.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.3.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.Tracing, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Extensions.4.3.0\lib\net462\System.Runtime.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.4.3.0\lib\net462\System.Runtime.InteropServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Vcc.Nolvus.Api.Installer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assemblies\Vcc.Nolvus.Api.Installer.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcc.Nolvus.Browser">
+      <HintPath>..\Assemblies\Vcc.Nolvus.Browser.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcc.Nolvus.Components, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assemblies\Vcc.Nolvus.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcc.Nolvus.Core">
+      <HintPath>..\Assemblies\Vcc.Nolvus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcc.Nolvus.Instance">
+      <HintPath>..\Assemblies\Vcc.Nolvus.Instance.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcc.Nolvus.NexusApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assemblies\Vcc.Nolvus.NexusApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcc.Nolvus.Package">
+      <HintPath>..\Assemblies\Vcc.Nolvus.Package.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcc.Nolvus.Services">
+      <HintPath>..\Assemblies\Vcc.Nolvus.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcc.Nolvus.StockGame, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assemblies\Vcc.Nolvus.StockGame.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\InstancePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\InstancePanel.Designer.cs">
+      <DependentUpon>InstancePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InstancesPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\InstancesPanel.Designer.cs">
+      <DependentUpon>InstancesPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\GridModObject.cs" />
+    <Compile Include="Core\LgCode.cs" />
+    <Compile Include="Core\SettingsCache.cs" />
+    <Compile Include="Forms\NolvusMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NolvusMessageBox.Designer.cs">
+      <DependentUpon>NolvusMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\DeleteFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\DeleteFrame.Designer.cs">
+      <DependentUpon>DeleteFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ErrorFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ErrorFrame.Designer.cs">
+      <DependentUpon>ErrorFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Installer\ChangeLogFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Installer\ChangeLogFrame.Designer.cs">
+      <DependentUpon>ChangeLogFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Installer\FinishFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Installer\FinishFrame.Designer.cs">
+      <DependentUpon>FinishFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Installer\InstallFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Installer\InstallFrame.Designer.cs">
+      <DependentUpon>InstallFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Installer\CDNFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Installer\CDNFrame.Designer.cs">
+      <DependentUpon>CDNFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Installer\ENBFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Installer\ENBFrame.Designer.cs">
+      <DependentUpon>ENBFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Installer\LoadOrderFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Installer\LoadOrderFrame.Designer.cs">
+      <DependentUpon>LoadOrderFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Installer\StockGameFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Installer\StockGameFrame.Designer.cs">
+      <DependentUpon>StockGameFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Installer\SummaryFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Installer\SummaryFrame.Designer.cs">
+      <DependentUpon>SummaryFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Installer\OptionsFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Installer\OptionsFrame.Designer.cs">
+      <DependentUpon>OptionsFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Installer\PathFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Installer\PathFrame.Designer.cs">
+      <DependentUpon>PathFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Installer\PerformanceFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Installer\PerformanceFrame.Designer.cs">
+      <DependentUpon>PerformanceFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Installer\SelectInstanceFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Installer\SelectInstanceFrame.Designer.cs">
+      <DependentUpon>SelectInstanceFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Instance\InstanceSettingsFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Instance\InstanceSettingsFrame.Designer.cs">
+      <DependentUpon>InstanceSettingsFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Instance\InstancesFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Instance\InstancesFrame.Designer.cs">
+      <DependentUpon>InstancesFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Instance\InstanceDetailFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Instance\InstanceDetailFrame.Designer.cs">
+      <DependentUpon>InstanceDetailFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\PackageFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\PackageFrame.Designer.cs">
+      <DependentUpon>PackageFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ResumeFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ResumeFrame.Designer.cs">
+      <DependentUpon>ResumeFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Settings\GameFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Settings\GameFrame.Designer.cs">
+      <DependentUpon>GameFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Settings\NexusFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Settings\NexusFrame.Designer.cs">
+      <DependentUpon>NexusFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Settings\NolvusFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Settings\NolvusFrame.Designer.cs">
+      <DependentUpon>NolvusFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\StartFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\StartFrame.Designer.cs">
+      <DependentUpon>StartFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DashboardWindow.Designer.cs">
+      <DependentUpon>DashboardWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InstanceViewFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InstanceViewFrame.Designer.cs">
+      <DependentUpon>InstanceViewFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\InstancePanel.resx">
+      <DependentUpon>InstancePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\InstancesPanel.resx">
+      <DependentUpon>InstancesPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NolvusMessageBox.resx">
+      <DependentUpon>NolvusMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\DeleteFrame.resx">
+      <DependentUpon>DeleteFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ErrorFrame.resx">
+      <DependentUpon>ErrorFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Installer\ChangeLogFrame.resx">
+      <DependentUpon>ChangeLogFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Installer\FinishFrame.resx">
+      <DependentUpon>FinishFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Installer\InstallFrame.resx">
+      <DependentUpon>InstallFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Installer\CDNFrame.resx">
+      <DependentUpon>CDNFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Installer\ENBFrame.resx">
+      <DependentUpon>ENBFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Installer\LoadOrderFrame.resx">
+      <DependentUpon>LoadOrderFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Installer\StockGameFrame.resx">
+      <DependentUpon>StockGameFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Installer\SummaryFrame.resx">
+      <DependentUpon>SummaryFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Installer\OptionsFrame.resx">
+      <DependentUpon>OptionsFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Installer\PathFrame.resx">
+      <DependentUpon>PathFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Installer\PerformanceFrame.resx">
+      <DependentUpon>PerformanceFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Installer\SelectInstanceFrame.resx">
+      <DependentUpon>SelectInstanceFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Instance\InstanceSettingsFrame.resx">
+      <DependentUpon>InstanceSettingsFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Instance\InstancesFrame.resx">
+      <DependentUpon>InstancesFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Instance\InstanceDetailFrame.resx">
+      <DependentUpon>InstanceDetailFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\PackageFrame.resx">
+      <DependentUpon>PackageFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ResumeFrame.resx">
+      <DependentUpon>ResumeFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Settings\GameFrame.resx">
+      <DependentUpon>GameFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Settings\NexusFrame.resx">
+      <DependentUpon>NexusFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Settings\NolvusFrame.resx">
+      <DependentUpon>NolvusFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\StartFrame.resx">
+      <DependentUpon>StartFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DashboardWindow.resx">
+      <DependentUpon>DashboardWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InstanceViewFrame.resx">
+      <DependentUpon>InstanceViewFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="bin\Cache\000003.log" />
+    <None Include="bin\Cache\Cache\data_0" />
+    <None Include="bin\Cache\Cache\data_1" />
+    <None Include="bin\Cache\Cache\data_2" />
+    <None Include="bin\Cache\Cache\data_3" />
+    <None Include="bin\Cache\Cache\f_000002" />
+    <None Include="bin\Cache\Cache\f_000003" />
+    <None Include="bin\Cache\Cache\f_000004" />
+    <None Include="bin\Cache\Cache\f_000005" />
+    <None Include="bin\Cache\Cache\f_000006" />
+    <None Include="bin\Cache\Cache\f_000007" />
+    <None Include="bin\Cache\Cache\f_000008" />
+    <None Include="bin\Cache\Cache\f_000009" />
+    <None Include="bin\Cache\Cache\f_00000a" />
+    <None Include="bin\Cache\Cache\f_00000b" />
+    <None Include="bin\Cache\Cache\f_00000c" />
+    <None Include="bin\Cache\Cache\f_00000d" />
+    <None Include="bin\Cache\Cache\f_00000e" />
+    <None Include="bin\Cache\Cache\f_00000f" />
+    <None Include="bin\Cache\Cache\f_000010" />
+    <None Include="bin\Cache\Cache\f_000011" />
+    <None Include="bin\Cache\Cache\f_000012" />
+    <None Include="bin\Cache\Cache\f_000013" />
+    <None Include="bin\Cache\Cache\f_000014" />
+    <None Include="bin\Cache\Cache\f_000015" />
+    <None Include="bin\Cache\Cache\f_000016" />
+    <None Include="bin\Cache\Cache\f_000017" />
+    <None Include="bin\Cache\Cache\f_000018" />
+    <None Include="bin\Cache\Cache\f_000019" />
+    <None Include="bin\Cache\Cache\f_00001a" />
+    <None Include="bin\Cache\Cache\f_00001b" />
+    <None Include="bin\Cache\Cache\f_00001c" />
+    <None Include="bin\Cache\Cache\f_00001d" />
+    <None Include="bin\Cache\Cache\f_00001e" />
+    <None Include="bin\Cache\Cache\f_00001f" />
+    <None Include="bin\Cache\Cache\f_000020" />
+    <None Include="bin\Cache\Cache\f_000021" />
+    <None Include="bin\Cache\Cache\f_000022" />
+    <None Include="bin\Cache\Cache\f_000023" />
+    <None Include="bin\Cache\Cache\f_000024" />
+    <None Include="bin\Cache\Cache\f_000025" />
+    <None Include="bin\Cache\Cache\f_000026" />
+    <None Include="bin\Cache\Cache\f_000027" />
+    <None Include="bin\Cache\Cache\f_000028" />
+    <None Include="bin\Cache\Cache\f_000029" />
+    <None Include="bin\Cache\Cache\f_00002a" />
+    <None Include="bin\Cache\Cache\f_00002b" />
+    <None Include="bin\Cache\Cache\f_00002c" />
+    <None Include="bin\Cache\Cache\f_00002d" />
+    <None Include="bin\Cache\Cache\f_00002e" />
+    <None Include="bin\Cache\Cache\f_00002f" />
+    <None Include="bin\Cache\Cache\f_000030" />
+    <None Include="bin\Cache\Cache\f_000031" />
+    <None Include="bin\Cache\Cache\f_000032" />
+    <None Include="bin\Cache\Cache\f_000033" />
+    <None Include="bin\Cache\Cache\f_000035" />
+    <None Include="bin\Cache\Cache\f_000036" />
+    <None Include="bin\Cache\Cache\f_000037" />
+    <None Include="bin\Cache\Cache\f_000038" />
+    <None Include="bin\Cache\Cache\f_00003c" />
+    <None Include="bin\Cache\Cache\f_00003e" />
+    <None Include="bin\Cache\Cache\f_000040" />
+    <None Include="bin\Cache\Cache\f_000041" />
+    <None Include="bin\Cache\Cache\f_000043" />
+    <None Include="bin\Cache\Cache\f_000044" />
+    <None Include="bin\Cache\Cache\f_000045" />
+    <None Include="bin\Cache\Cache\f_00004b" />
+    <None Include="bin\Cache\Cache\f_00004d" />
+    <None Include="bin\Cache\Cache\f_00004e" />
+    <None Include="bin\Cache\Cache\f_00004f" />
+    <None Include="bin\Cache\Cache\f_000050" />
+    <None Include="bin\Cache\Cache\f_000052" />
+    <None Include="bin\Cache\Cache\f_000053" />
+    <None Include="bin\Cache\Cache\f_000055" />
+    <None Include="bin\Cache\Cache\f_000057" />
+    <None Include="bin\Cache\Cache\f_000058" />
+    <None Include="bin\Cache\Cache\f_00005b" />
+    <None Include="bin\Cache\Cache\f_00005c" />
+    <None Include="bin\Cache\Cache\f_00005e" />
+    <None Include="bin\Cache\Cache\f_000061" />
+    <None Include="bin\Cache\Cache\f_000062" />
+    <None Include="bin\Cache\Cache\f_000067" />
+    <None Include="bin\Cache\Cache\f_000068" />
+    <None Include="bin\Cache\Cache\f_000069" />
+    <None Include="bin\Cache\Cache\f_00006d" />
+    <None Include="bin\Cache\Cache\f_00006e" />
+    <None Include="bin\Cache\Cache\f_00006f" />
+    <None Include="bin\Cache\Cache\f_000070" />
+    <None Include="bin\Cache\Cache\f_000073" />
+    <None Include="bin\Cache\Cache\f_000077" />
+    <None Include="bin\Cache\Cache\f_00007e" />
+    <None Include="bin\Cache\Cache\f_000080" />
+    <None Include="bin\Cache\Cache\f_000081" />
+    <None Include="bin\Cache\Cache\f_000082" />
+    <None Include="bin\Cache\Cache\f_000083" />
+    <None Include="bin\Cache\Cache\f_000084" />
+    <None Include="bin\Cache\Cache\f_000085" />
+    <None Include="bin\Cache\Cache\f_000087" />
+    <None Include="bin\Cache\Cache\f_00008b" />
+    <None Include="bin\Cache\Cache\f_00008f" />
+    <None Include="bin\Cache\Cache\f_000090" />
+    <None Include="bin\Cache\Cache\f_000093" />
+    <None Include="bin\Cache\Cache\f_000095" />
+    <None Include="bin\Cache\Cache\f_000097" />
+    <None Include="bin\Cache\Cache\f_00009b" />
+    <None Include="bin\Cache\Cache\f_00009e" />
+    <None Include="bin\Cache\Cache\f_0000a0" />
+    <None Include="bin\Cache\Cache\f_0000a1" />
+    <None Include="bin\Cache\Cache\f_0000a2" />
+    <None Include="bin\Cache\Cache\f_0000a3" />
+    <None Include="bin\Cache\Cache\f_0000a4" />
+    <None Include="bin\Cache\Cache\index" />
+    <None Include="bin\Cache\Code Cache\js\00d8869c615168b2_0" />
+    <None Include="bin\Cache\Code Cache\js\02a3e46b7aba3b4e_0" />
+    <None Include="bin\Cache\Code Cache\js\034c97a1c27c7754_0" />
+    <None Include="bin\Cache\Code Cache\js\06fc2100066beb1b_0" />
+    <None Include="bin\Cache\Code Cache\js\08de3101cade0244_0" />
+    <None Include="bin\Cache\Code Cache\js\0b3b963f628e4d3a_0" />
+    <None Include="bin\Cache\Code Cache\js\0ee4fe8bae242ab9_0" />
+    <None Include="bin\Cache\Code Cache\js\11967d31441144b8_0" />
+    <None Include="bin\Cache\Code Cache\js\18f36bc5c5e19dbb_0" />
+    <None Include="bin\Cache\Code Cache\js\197d7b95dbe61bed_0" />
+    <None Include="bin\Cache\Code Cache\js\1cc7e05c8d638e95_0" />
+    <None Include="bin\Cache\Code Cache\js\1d134f44314122d4_0" />
+    <None Include="bin\Cache\Code Cache\js\1fdf52fe0d83cab9_0" />
+    <None Include="bin\Cache\Code Cache\js\2248326a293d171a_0" />
+    <None Include="bin\Cache\Code Cache\js\264635245dc0c38a_0" />
+    <None Include="bin\Cache\Code Cache\js\26d326cbb8e30940_0" />
+    <None Include="bin\Cache\Code Cache\js\26fa7d88eb7155d8_0" />
+    <None Include="bin\Cache\Code Cache\js\2ad47ffa773a6080_0" />
+    <None Include="bin\Cache\Code Cache\js\2e6838c66d9bbd9f_0" />
+    <None Include="bin\Cache\Code Cache\js\3641a5615bb73718_0" />
+    <None Include="bin\Cache\Code Cache\js\3e8fb41cd205a4c7_0" />
+    <None Include="bin\Cache\Code Cache\js\3fa3e7bf87933120_0" />
+    <None Include="bin\Cache\Code Cache\js\461241a75a2438fb_0" />
+    <None Include="bin\Cache\Code Cache\js\46fff3f5ec1da6fa_0" />
+    <None Include="bin\Cache\Code Cache\js\49fb7cb84008741f_0" />
+    <None Include="bin\Cache\Code Cache\js\4bbda62b56e54013_0" />
+    <None Include="bin\Cache\Code Cache\js\4c325007f9d0d9d8_0" />
+    <None Include="bin\Cache\Code Cache\js\4fc7b93f41885217_0" />
+    <None Include="bin\Cache\Code Cache\js\53fd6ebbe04ab80a_0" />
+    <None Include="bin\Cache\Code Cache\js\57b4f594144430b7_0" />
+    <None Include="bin\Cache\Code Cache\js\5a545f79491ba258_0" />
+    <None Include="bin\Cache\Code Cache\js\5aa63ac89f33ace5_0" />
+    <None Include="bin\Cache\Code Cache\js\5bfdfe1f94413a47_0" />
+    <None Include="bin\Cache\Code Cache\js\629a240afc6ae65a_0" />
+    <None Include="bin\Cache\Code Cache\js\6728650b3c859071_0" />
+    <None Include="bin\Cache\Code Cache\js\6c8c218053d859b4_0" />
+    <None Include="bin\Cache\Code Cache\js\6f8924ac8e8f29a5_0" />
+    <None Include="bin\Cache\Code Cache\js\6fed57509a00367e_0" />
+    <None Include="bin\Cache\Code Cache\js\7100217fc0c04855_0" />
+    <None Include="bin\Cache\Code Cache\js\78928f3e4504d49e_0" />
+    <None Include="bin\Cache\Code Cache\js\7c1581f3e55c70fc_0" />
+    <None Include="bin\Cache\Code Cache\js\7e35e2a357995889_0" />
+    <None Include="bin\Cache\Code Cache\js\803a9872afe5bf7b_0" />
+    <None Include="bin\Cache\Code Cache\js\920e2ace4e21119d_0" />
+    <None Include="bin\Cache\Code Cache\js\94757746140db68b_0" />
+    <None Include="bin\Cache\Code Cache\js\9aec47a856328e78_0" />
+    <None Include="bin\Cache\Code Cache\js\9cacc122ba341428_0" />
+    <None Include="bin\Cache\Code Cache\js\a06c8159a12ae332_0" />
+    <None Include="bin\Cache\Code Cache\js\a1105c907f8d71ce_0" />
+    <None Include="bin\Cache\Code Cache\js\a66a759472f32dd5_0" />
+    <None Include="bin\Cache\Code Cache\js\a985a914462ef44b_0" />
+    <None Include="bin\Cache\Code Cache\js\ae06c40b886c202f_0" />
+    <None Include="bin\Cache\Code Cache\js\b6f19401d35804d9_0" />
+    <None Include="bin\Cache\Code Cache\js\b7656b949ef38ffa_0" />
+    <None Include="bin\Cache\Code Cache\js\b984a87c818a26ec_0" />
+    <None Include="bin\Cache\Code Cache\js\bd0375180d218b3f_0" />
+    <None Include="bin\Cache\Code Cache\js\c272750a180fbba8_0" />
+    <None Include="bin\Cache\Code Cache\js\cc824cb3d4afd6e6_0" />
+    <None Include="bin\Cache\Code Cache\js\cef9ac699a7a1b6a_0" />
+    <None Include="bin\Cache\Code Cache\js\d0bd978abec8787e_0" />
+    <None Include="bin\Cache\Code Cache\js\d4a133da3be0116a_0" />
+    <None Include="bin\Cache\Code Cache\js\deba448fc9421203_0" />
+    <None Include="bin\Cache\Code Cache\js\e025269ea3b4d2a8_0" />
+    <None Include="bin\Cache\Code Cache\js\e87389ba59d1e25a_0" />
+    <None Include="bin\Cache\Code Cache\js\e88059a3003b61ba_0" />
+    <None Include="bin\Cache\Code Cache\js\ef1bb44a6b906836_0" />
+    <None Include="bin\Cache\Code Cache\js\f1652e949177e007_0" />
+    <None Include="bin\Cache\Code Cache\js\f2ea664513b2f0d6_0" />
+    <None Include="bin\Cache\Code Cache\js\f5a515fe59eb0641_0" />
+    <None Include="bin\Cache\Code Cache\js\fb0ca70a1f6e7ae0_0" />
+    <None Include="bin\Cache\Code Cache\js\ff59babc5c082c8e_0" />
+    <None Include="bin\Cache\Code Cache\js\index" />
+    <None Include="bin\Cache\Code Cache\js\index-dir\the-real-index" />
+    <None Include="bin\Cache\Code Cache\wasm\index" />
+    <None Include="bin\Cache\Code Cache\wasm\index-dir\the-real-index" />
+    <None Include="bin\Cache\Cookies" />
+    <None Include="bin\Cache\Cookies-journal" />
+    <None Include="bin\Cache\CURRENT" />
+    <None Include="bin\Cache\GPUCache\data_0" />
+    <None Include="bin\Cache\GPUCache\data_1" />
+    <None Include="bin\Cache\GPUCache\data_2" />
+    <None Include="bin\Cache\GPUCache\data_3" />
+    <None Include="bin\Cache\GPUCache\index" />
+    <None Include="bin\Cache\Local Storage\leveldb\000003.log" />
+    <None Include="bin\Cache\Local Storage\leveldb\CURRENT" />
+    <None Include="bin\Cache\Local Storage\leveldb\LOCK" />
+    <None Include="bin\Cache\Local Storage\leveldb\LOG" />
+    <None Include="bin\Cache\Local Storage\leveldb\LOG.old" />
+    <None Include="bin\Cache\Local Storage\leveldb\MANIFEST-000001" />
+    <None Include="bin\Cache\LocalPrefs.json" />
+    <None Include="bin\Cache\LOCK" />
+    <None Include="bin\Cache\LOG" />
+    <None Include="bin\Cache\LOG.old" />
+    <None Include="bin\Cache\MANIFEST-000001" />
+    <None Include="bin\Cache\Network Persistent State" />
+    <None Include="bin\Cache\Reporting and NEL" />
+    <None Include="bin\Cache\Reporting and NEL-journal" />
+    <None Include="bin\Cache\Session Storage\000003.log" />
+    <None Include="bin\Cache\Session Storage\CURRENT" />
+    <None Include="bin\Cache\Session Storage\LOCK" />
+    <None Include="bin\Cache\Session Storage\LOG" />
+    <None Include="bin\Cache\Session Storage\LOG.old" />
+    <None Include="bin\Cache\Session Storage\MANIFEST-000001" />
+    <None Include="bin\Cache\TransportSecurity" />
+    <None Include="bin\Cache\Visited Links" />
+    <None Include="bin\debug.log" />
+    <None Include="bin\Nolvus.Dashboard.ini" />
+    <None Include="bin\Vcc.Nolvus.Dashboard.exe.config" />
+    <None Include="bin\Vcc.Nolvus.Dashboard.vshost.exe.config" />
+    <None Include="bin\Vcc.Nolvus.Dashboard.vshost.exe.manifest" />
+    <None Include="bin\x64\cef.pak" />
+    <None Include="bin\x64\cef_100_percent.pak" />
+    <None Include="bin\x64\cef_200_percent.pak" />
+    <None Include="bin\x64\cef_extensions.pak" />
+    <None Include="bin\x64\devtools_resources.pak" />
+    <None Include="bin\x64\icudtl.dat" />
+    <None Include="bin\x64\locales\am.pak" />
+    <None Include="bin\x64\locales\ar.pak" />
+    <None Include="bin\x64\locales\bg.pak" />
+    <None Include="bin\x64\locales\bn.pak" />
+    <None Include="bin\x64\locales\ca.pak" />
+    <None Include="bin\x64\locales\cs.pak" />
+    <None Include="bin\x64\locales\da.pak" />
+    <None Include="bin\x64\locales\de.pak" />
+    <None Include="bin\x64\locales\el.pak" />
+    <None Include="bin\x64\locales\en-GB.pak" />
+    <None Include="bin\x64\locales\en-US.pak" />
+    <None Include="bin\x64\locales\es-419.pak" />
+    <None Include="bin\x64\locales\es.pak" />
+    <None Include="bin\x64\locales\et.pak" />
+    <None Include="bin\x64\locales\fa.pak" />
+    <None Include="bin\x64\locales\fi.pak" />
+    <None Include="bin\x64\locales\fil.pak" />
+    <None Include="bin\x64\locales\fr.pak" />
+    <None Include="bin\x64\locales\gu.pak" />
+    <None Include="bin\x64\locales\he.pak" />
+    <None Include="bin\x64\locales\hi.pak" />
+    <None Include="bin\x64\locales\hr.pak" />
+    <None Include="bin\x64\locales\hu.pak" />
+    <None Include="bin\x64\locales\id.pak" />
+    <None Include="bin\x64\locales\it.pak" />
+    <None Include="bin\x64\locales\ja.pak" />
+    <None Include="bin\x64\locales\kn.pak" />
+    <None Include="bin\x64\locales\ko.pak" />
+    <None Include="bin\x64\locales\lt.pak" />
+    <None Include="bin\x64\locales\lv.pak" />
+    <None Include="bin\x64\locales\ml.pak" />
+    <None Include="bin\x64\locales\mr.pak" />
+    <None Include="bin\x64\locales\ms.pak" />
+    <None Include="bin\x64\locales\nb.pak" />
+    <None Include="bin\x64\locales\nl.pak" />
+    <None Include="bin\x64\locales\pl.pak" />
+    <None Include="bin\x64\locales\pt-BR.pak" />
+    <None Include="bin\x64\locales\pt-PT.pak" />
+    <None Include="bin\x64\locales\ro.pak" />
+    <None Include="bin\x64\locales\ru.pak" />
+    <None Include="bin\x64\locales\sk.pak" />
+    <None Include="bin\x64\locales\sl.pak" />
+    <None Include="bin\x64\locales\sr.pak" />
+    <None Include="bin\x64\locales\sv.pak" />
+    <None Include="bin\x64\locales\sw.pak" />
+    <None Include="bin\x64\locales\ta.pak" />
+    <None Include="bin\x64\locales\te.pak" />
+    <None Include="bin\x64\locales\th.pak" />
+    <None Include="bin\x64\locales\tr.pak" />
+    <None Include="bin\x64\locales\uk.pak" />
+    <None Include="bin\x64\locales\vi.pak" />
+    <None Include="bin\x64\locales\zh-CN.pak" />
+    <None Include="bin\x64\locales\zh-TW.pak" />
+    <None Include="bin\x64\snapshot_blob.bin" />
+    <None Include="bin\x64\v8_context_snapshot.bin" />
+    <None Include="bin\x86\cef.pak" />
+    <None Include="bin\x86\cef_100_percent.pak" />
+    <None Include="bin\x86\cef_200_percent.pak" />
+    <None Include="bin\x86\cef_extensions.pak" />
+    <None Include="bin\x86\devtools_resources.pak" />
+    <None Include="bin\x86\icudtl.dat" />
+    <None Include="bin\x86\locales\am.pak" />
+    <None Include="bin\x86\locales\ar.pak" />
+    <None Include="bin\x86\locales\bg.pak" />
+    <None Include="bin\x86\locales\bn.pak" />
+    <None Include="bin\x86\locales\ca.pak" />
+    <None Include="bin\x86\locales\cs.pak" />
+    <None Include="bin\x86\locales\da.pak" />
+    <None Include="bin\x86\locales\de.pak" />
+    <None Include="bin\x86\locales\el.pak" />
+    <None Include="bin\x86\locales\en-GB.pak" />
+    <None Include="bin\x86\locales\en-US.pak" />
+    <None Include="bin\x86\locales\es-419.pak" />
+    <None Include="bin\x86\locales\es.pak" />
+    <None Include="bin\x86\locales\et.pak" />
+    <None Include="bin\x86\locales\fa.pak" />
+    <None Include="bin\x86\locales\fi.pak" />
+    <None Include="bin\x86\locales\fil.pak" />
+    <None Include="bin\x86\locales\fr.pak" />
+    <None Include="bin\x86\locales\gu.pak" />
+    <None Include="bin\x86\locales\he.pak" />
+    <None Include="bin\x86\locales\hi.pak" />
+    <None Include="bin\x86\locales\hr.pak" />
+    <None Include="bin\x86\locales\hu.pak" />
+    <None Include="bin\x86\locales\id.pak" />
+    <None Include="bin\x86\locales\it.pak" />
+    <None Include="bin\x86\locales\ja.pak" />
+    <None Include="bin\x86\locales\kn.pak" />
+    <None Include="bin\x86\locales\ko.pak" />
+    <None Include="bin\x86\locales\lt.pak" />
+    <None Include="bin\x86\locales\lv.pak" />
+    <None Include="bin\x86\locales\ml.pak" />
+    <None Include="bin\x86\locales\mr.pak" />
+    <None Include="bin\x86\locales\ms.pak" />
+    <None Include="bin\x86\locales\nb.pak" />
+    <None Include="bin\x86\locales\nl.pak" />
+    <None Include="bin\x86\locales\pl.pak" />
+    <None Include="bin\x86\locales\pt-BR.pak" />
+    <None Include="bin\x86\locales\pt-PT.pak" />
+    <None Include="bin\x86\locales\ro.pak" />
+    <None Include="bin\x86\locales\ru.pak" />
+    <None Include="bin\x86\locales\sk.pak" />
+    <None Include="bin\x86\locales\sl.pak" />
+    <None Include="bin\x86\locales\sr.pak" />
+    <None Include="bin\x86\locales\sv.pak" />
+    <None Include="bin\x86\locales\sw.pak" />
+    <None Include="bin\x86\locales\ta.pak" />
+    <None Include="bin\x86\locales\te.pak" />
+    <None Include="bin\x86\locales\th.pak" />
+    <None Include="bin\x86\locales\tr.pak" />
+    <None Include="bin\x86\locales\uk.pak" />
+    <None Include="bin\x86\locales\vi.pak" />
+    <None Include="bin\x86\locales\zh-CN.pak" />
+    <None Include="bin\x86\locales\zh-TW.pak" />
+    <None Include="bin\x86\snapshot_blob.bin" />
+    <None Include="bin\x86\v8_context_snapshot.bin" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background-nolvus.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nolvus-ico.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Data\ModMetaData.xml" />
+    <Content Include="bin\INIFileParser.dll" />
+    <Content Include="bin\INIFileParser.xml" />
+    <None Include="Resources\Selector Left1.png" />
+    <None Include="Resources\Loading_NoBG.gif" />
+    <None Include="Resources\mod-def-22.png" />
+    <None Include="Resources\mod-def-2.png" />
+    <None Include="Resources\Info Card- Sections.png" />
+    <None Include="Resources\Journal Basic1.png" />
+    <None Include="Resources\Vertical R.png" />
+    <None Include="Resources\Quest Journal Card1.png" />
+    <None Include="Resources\Quest Journal Card.png" />
+    <None Include="Resources\Journal Main Quest.png" />
+    <None Include="Resources\Journal Basic.png" />
+    <None Include="Resources\Message Card Divider.png" />
+    <None Include="Resources\Selector Right.png" />
+    <None Include="Resources\Selector Left.png" />
+    <None Include="bin\NolvusLauncher.exe" />
+    <Content Include="bin\NolvusTheme.dll" />
+    <Content Include="bin\Scripts\AFKDownload.js" />
+    <Content Include="bin\Scripts\HandleAFK.js" />
+    <Content Include="bin\Scripts\HandleENBDev.js" />
+    <Content Include="bin\Scripts\HandleLoverslab.js" />
+    <Content Include="bin\Scripts\HandleVector.js" />
+    <Content Include="bin\Scripts\IsDownloadAvailable.js" />
+    <Content Include="bin\Scripts\IsFileDeleted.js" />
+    <Content Include="bin\Scripts\IsLoginNeeded.js" />
+    <Content Include="bin\Scripts\IsModNotFound.js" />
+    <Content Include="bin\Scripts\LoverslabDownload.js" />
+    <Content Include="bin\Scripts\VectorDownloadInit.js" />
+    <Content Include="bin\Scripts\LoverslabDownloadInit.js" />
+    <Content Include="bin\Scripts\NexusManualDownload.js" />
+    <Content Include="bin\Scripts\NexusManualDownloadInit.js" />
+    <Content Include="bin\Scripts\RedirectToLogin.js" />
+    <Content Include="bin\Scripts\VectorDownload.js" />
+    <Content Include="bin\Scripts\VectorLogin.js" />
+    <Content Include="bin\Syncfusion.Core.WinForms.dll" />
+    <Content Include="bin\Syncfusion.Core.WinForms.xml" />
+    <Content Include="bin\Syncfusion.Grid.Base.dll" />
+    <Content Include="bin\Syncfusion.Grid.Base.xml" />
+    <Content Include="bin\Syncfusion.Grid.Windows.dll" />
+    <Content Include="bin\Syncfusion.Grid.Windows.xml" />
+    <Content Include="bin\Syncfusion.Grid.Windows.XmlSerializers.dll" />
+    <Content Include="bin\Syncfusion.Licensing.dll" />
+    <Content Include="bin\Syncfusion.Office2016Theme.WinForms.dll" />
+    <Content Include="bin\Syncfusion.Office2016Theme.WinForms.xml" />
+    <Content Include="bin\Syncfusion.Office2019Theme.WinForms.dll" />
+    <Content Include="bin\Syncfusion.Office2019Theme.WinForms.xml" />
+    <Content Include="bin\Syncfusion.Shared.Base.dll" />
+    <Content Include="bin\Syncfusion.Shared.Base.xml" />
+    <Content Include="bin\Syncfusion.Shared.Windows.dll" />
+    <Content Include="bin\Syncfusion.Shared.Windows.xml" />
+    <Content Include="bin\Syncfusion.SpellChecker.Base.dll" />
+    <Content Include="bin\Syncfusion.SpellChecker.Base.xml" />
+    <Content Include="bin\Syncfusion.Tools.Base.dll" />
+    <Content Include="bin\Syncfusion.Tools.Base.xml" />
+    <Content Include="bin\Syncfusion.Tools.Windows.dll" />
+    <Content Include="bin\Syncfusion.Tools.Windows.xml" />
+    <Content Include="bin\Vcc.Nolvus.Dashboard.exe" />
+    <Content Include="bin\Vcc.Nolvus.Dashboard.pdb" />
+    <Content Include="bin\Vcc.Nolvus.Dashboard.vshost.exe" />
+    <Content Include="bin\x64\CefSharp.BrowserSubprocess.Core.dll" />
+    <Content Include="bin\x64\CefSharp.BrowserSubprocess.Core.pdb" />
+    <Content Include="bin\x64\CefSharp.BrowserSubprocess.exe" />
+    <Content Include="bin\x64\CefSharp.BrowserSubprocess.pdb" />
+    <Content Include="bin\x64\CefSharp.Core.dll" />
+    <Content Include="bin\x64\CefSharp.Core.pdb" />
+    <Content Include="bin\x64\CefSharp.Core.xml" />
+    <Content Include="bin\x64\CefSharp.dll" />
+    <Content Include="bin\x64\CefSharp.pdb" />
+    <Content Include="bin\x64\CefSharp.WinForms.dll" />
+    <Content Include="bin\x64\CefSharp.WinForms.pdb" />
+    <Content Include="bin\x64\CefSharp.WinForms.XML" />
+    <Content Include="bin\x64\CefSharp.XML" />
+    <Content Include="bin\x64\chrome_elf.dll" />
+    <Content Include="bin\x64\d3dcompiler_47.dll" />
+    <Content Include="bin\x64\libcef.dll" />
+    <Content Include="bin\x64\libEGL.dll" />
+    <Content Include="bin\x64\libGLESv2.dll" />
+    <Content Include="bin\x64\README.txt" />
+    <Content Include="bin\x64\swiftshader\libEGL.dll" />
+    <Content Include="bin\x64\swiftshader\libGLESv2.dll" />
+    <Content Include="bin\x86\CefSharp.BrowserSubprocess.Core.dll" />
+    <Content Include="bin\x86\CefSharp.BrowserSubprocess.Core.pdb" />
+    <Content Include="bin\x86\CefSharp.BrowserSubprocess.exe" />
+    <Content Include="bin\x86\CefSharp.BrowserSubprocess.pdb" />
+    <Content Include="bin\x86\CefSharp.Core.dll" />
+    <Content Include="bin\x86\CefSharp.Core.pdb" />
+    <Content Include="bin\x86\CefSharp.Core.xml" />
+    <Content Include="bin\x86\CefSharp.dll" />
+    <Content Include="bin\x86\CefSharp.pdb" />
+    <Content Include="bin\x86\CefSharp.WinForms.dll" />
+    <Content Include="bin\x86\CefSharp.WinForms.pdb" />
+    <Content Include="bin\x86\CefSharp.WinForms.XML" />
+    <Content Include="bin\x86\CefSharp.XML" />
+    <Content Include="bin\x86\chrome_elf.dll" />
+    <Content Include="bin\x86\d3dcompiler_47.dll" />
+    <Content Include="bin\x86\libcef.dll" />
+    <Content Include="bin\x86\libEGL.dll" />
+    <Content Include="bin\x86\libGLESv2.dll" />
+    <Content Include="bin\x86\README.txt" />
+    <Content Include="bin\x86\swiftshader\libEGL.dll" />
+    <Content Include="bin\x86\swiftshader\libGLESv2.dll" />
+    <Content Include="nolvus-ico.ico" />
+    <None Include="Resources\NATL-1.jpg" />
+    <None Include="Resources\Tundra-Lush.png" />
+    <None Include="Resources\Fall-LessLush.png" />
+    <None Include="Resources\Fall-Lush.png" />
+    <None Include="Resources\Tundra-LessLush.png" />
+    <None Include="Resources\Nolvus_V4.jpg" />
+    <None Include="Resources\Question.png" />
+    <None Include="Resources\Nolvus_V4R.jpg" />
+    <None Include="Resources\Nolvus_V5.png" />
+    <None Include="Resources\Warning-Message.png" />
+    <None Include="Resources\pic_2.jpg" />
+    <None Include="Resources\pic_5.jpg" />
+    <None Include="Resources\Lite_1.png" />
+    <None Include="Resources\Wrong-WF.png" />
+    <None Include="Resources\Info.png" />
+    <None Include="Resources\compass_l_250.png" />
+    <None Include="Resources\InstanceBoard.png" />
+    <None Include="Resources\paterons.png" />
+    <None Include="Resources\patreon.png" />
+    <None Include="Resources\patreon_2.png" />
+    <None Include="Resources\Patreon_3.png" />
+    <None Include="Resources\cog-loader-alpha.gif" />
+    <None Include="Resources\nolvus-start.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Cache\blob_storage\6d7170ad-c8b3-43b5-a89e-431815a75c72\" />
+    <Folder Include="bin\x64\Debug\" />
+    <Folder Include="bin\x86\Debug\" />
+    <Folder Include="bin\x86\Release\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\cef.redist.x64.111.2.2\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.111.2.2\build\cef.redist.x64.props'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x86.111.2.2\build\cef.redist.x86.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.111.2.2\build\cef.redist.x86.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.111.2.20\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.111.2.20\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.111.2.20\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.111.2.20\build\CefSharp.Common.targets'))" />
+  </Target>
+  <Import Project="..\packages\CefSharp.Common.111.2.20\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.111.2.20\build\CefSharp.Common.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

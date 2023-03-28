@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4BF2D989-724C-421E-8EDB-922B6BB66376}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vcc.Nolvus.Package</RootNamespace>
+    <AssemblyName>Vcc.Nolvus.Package</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Vcc.Nolvus.Api.Installer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assemblies\Vcc.Nolvus.Api.Installer.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcc.Nolvus.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assemblies\Vcc.Nolvus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcc.Nolvus.NexusApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assemblies\Vcc.Nolvus.NexusApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcc.Nolvus.StockGame, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assemblies\Vcc.Nolvus.StockGame.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Mods\BSArch.cs" />
+    <Compile Include="Mods\BsaUnPacking.cs" />
+    <Compile Include="Mods\Category.cs" />
+    <Compile Include="Conditions\CompareCondition.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Rules\CopyRule.cs" />
+    <Compile Include="Rules\CreateFile.cs" />
+    <Compile Include="Rules\CreateRule.cs" />
+    <Compile Include="Rules\DeleteRule.cs" />
+    <Compile Include="Rules\DirectoryCopy.cs" />
+    <Compile Include="Mods\ENB.cs" />
+    <Compile Include="Conditions\EnvironmentCompare.cs" />
+    <Compile Include="Conditions\EnvironmentCondition.cs" />
+    <Compile Include="Rules\EnvironmentSettingsRule.cs" />
+    <Compile Include="Mods\Esp.cs" />
+    <Compile Include="Rules\FileCopy.cs" />
+    <Compile Include="Conditions\FileExistsCondition.cs" />
+    <Compile Include="Conditions\FileSizeCondition.cs" />
+    <Compile Include="Rules\HideRule.cs" />
+    <Compile Include="Mods\InstallableElement.cs" />
+    <Compile Include="Conditions\InstallCondition.cs" />
+    <Compile Include="Mods\Mod.cs" />
+    <Compile Include="Files\ModFile.cs" />
+    <Compile Include="Mods\ModOrganizer.cs" />
+    <Compile Include="Mods\MOElement.cs" />
+    <Compile Include="Mods\NexusMod.cs" />
+    <Compile Include="Files\NexusModFile.cs" />
+    <Compile Include="Mods\NexusSoftware.cs" />
+    <Compile Include="Rules\OptionalEsp.cs" />
+    <Compile Include="Services\PackageService.cs" />
+    <Compile Include="Patchers\Patcher.cs" />
+    <Compile Include="Patchers\PatchFile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules\RenameRule.cs" />
+    <Compile Include="Mods\Reshade.cs" />
+    <Compile Include="Rules\Rule.cs" />
+    <Compile Include="Conditions\RuleCondition.cs" />
+    <Compile Include="Rules\SettingsRule.cs" />
+    <Compile Include="Mods\Software.cs" />
+    <Compile Include="Mods\xEdit.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NolvusLauncher.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Loading_NoBG.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mod-def-22.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
