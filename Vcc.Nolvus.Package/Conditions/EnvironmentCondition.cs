@@ -54,8 +54,7 @@ namespace Vcc.Nolvus.Package.Conditions
                     Valid = Value == this.ValueToCompare;
 
                     if (Log)
-                    {
-                        //System.IO.File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "\\Log.txt", Environment.NewLine + "Condition : " + this.DataToCompare + "=" + this.ValueToCompare + "(==>" + Value + ")");
+                    {                        
                     }
                     
                     break;
@@ -63,8 +62,7 @@ namespace Vcc.Nolvus.Package.Conditions
                     Valid = Value != this.ValueToCompare;
 
                     if (Log)
-                    {
-                        //System.IO.File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "\\Log.txt", Environment.NewLine + "Condition : " + this.DataToCompare + "!=" + this.ValueToCompare + "(==>" + Value + ")");
+                    {                        
                     }
 
                     break;
