@@ -89,8 +89,8 @@ namespace Vcc.Nolvus.NexusApi
 				};
 			}
 
-            //httpClient.DefaultRequestHeaders.Add("Application-Name", "Nolvus Dashboard");
-            //httpClient.DefaultRequestHeaders.Add("Application-Version", "3.0.0");
+            httpClient.DefaultRequestHeaders.Add("Application-Name", "Nolvus Dashboard");
+            httpClient.DefaultRequestHeaders.Add("Application-Version", "3.0.0");
 
             return this.InitializeAsync(httpClient, options);
 		}
