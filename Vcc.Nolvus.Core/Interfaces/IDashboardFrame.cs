@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 namespace Vcc.Nolvus.Core.Interfaces
 {
     public interface IDashboardFrame
-    {
-        //Task<T> CreateAsync<T>() where T : IDashboardFrame;
-        //Task<T> InitializeAsync<T>() where T : IDashboardFrame;        
+    {        
     }
 }
