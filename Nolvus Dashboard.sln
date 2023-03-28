@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcc.Nolvus.Components", "Vc
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcc.Nolvus.Updater", "Vcc.Nolvus.Updater\Vcc.Nolvus.Updater.csproj", "{F2217D45-10B2-4EC3-8878-1E1541914CDC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{381E413C-AF71-4A5E-8E62-EB81381FBF66} = {381E413C-AF71-4A5E-8E62-EB81381FBF66}
+		{C0C909F1-C446-43E7-A2D3-7016A7B6E8D5} = {C0C909F1-C446-43E7-A2D3-7016A7B6E8D5}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcc.Nolvus.NexusApi", "Vcc.Nolvus.NexusApi\Vcc.Nolvus.NexusApi.csproj", "{20FE1A06-C4D4-4C4F-9CA8-281AC604E334}"
 EndProject
