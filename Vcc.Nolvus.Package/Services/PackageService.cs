@@ -436,8 +436,7 @@ namespace Vcc.Nolvus.Package.Services
 
         public List<InstallableElement> GetModsToInstall()
         {
-            return this.Elements.Where(x => x.IsInstallable(false) && (x is Mod || x is Software)).ToList();
-            //return this.Elements.Where(x => x.IsInstallable(false) && (x is Mod || x is Software)).ToList().OrderBy(x => x.Files.Sum(y => y.Size)).ToList();
+            return this.Elements.Where(x => x.IsInstallable(false) && (x is Mod || x is Software)).ToList();            
         }
 
         public List<InstallableElement> GetCategoriesToInstall()
