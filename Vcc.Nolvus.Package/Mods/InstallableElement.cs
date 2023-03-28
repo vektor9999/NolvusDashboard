@@ -89,9 +89,7 @@ namespace Vcc.Nolvus.Package.Mods
         }
 
         public InstallableElement()
-        {
-            //Progress = new ModProgress();
-            //Progress.Status = "Initializing...";                                           
+        {                                                     
         }
 
         #region Methods
@@ -155,9 +153,7 @@ namespace Vcc.Nolvus.Package.Mods
         }
 
         private void Notify(ModInstallProgressEvent Event)
-        {
-            //OnProgressChanged(this, Event);
-
+        {            
             Progress.Action = Event.Status.ToString();
 
             switch (Event.Status)
