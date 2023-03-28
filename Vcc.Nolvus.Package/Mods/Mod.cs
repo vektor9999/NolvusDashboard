@@ -181,20 +181,10 @@ namespace Vcc.Nolvus.Package.Mods
             foreach (var Condition in InstallConditions)
             {
                 if (!Condition.IsValid(Log))
-                {
-                    if (Log)
-                    {
-                        //System.IO.File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "\\Log.txt", Environment.NewLine + "Mod : " + this.Name + " will not be installed (install condition returns false)");
-                    }
-
+                {                    
                     return false;
                 }
-            }
-
-            if (InstallConditions.Count > 0 && Log)
-            {
-                //System.IO.File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "\\Log.txt", Environment.NewLine + "Mod : " + this.Name + " will be installed (install condition returns true)");
-            }
+            }            
 
             return true;
         }
