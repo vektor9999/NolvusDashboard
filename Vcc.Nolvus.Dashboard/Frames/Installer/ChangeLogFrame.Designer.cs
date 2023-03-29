@@ -45,7 +45,7 @@
             this.Content.Controls.Add(this.LoadingBox);
             this.Content.Location = new System.Drawing.Point(3, 3);
             this.Content.Name = "Content";
-            this.Content.Size = new System.Drawing.Size(804, 348);
+            this.Content.Size = new System.Drawing.Size(804, 358);
             this.Content.TabIndex = 17;
             // 
             // LoadingBox
@@ -56,7 +56,7 @@
             this.LoadingBox.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.cog_loader_alpha;
             this.LoadingBox.Location = new System.Drawing.Point(-1, -1);
             this.LoadingBox.Name = "LoadingBox";
-            this.LoadingBox.Size = new System.Drawing.Size(804, 348);
+            this.LoadingBox.Size = new System.Drawing.Size(804, 358);
             this.LoadingBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.LoadingBox.TabIndex = 1;
             this.LoadingBox.TabStop = false;
@@ -68,7 +68,7 @@
             this.BtnPrevious.BorderColor = System.Drawing.Color.White;
             this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPrevious.ForeColor = System.Drawing.Color.White;
-            this.BtnPrevious.Location = new System.Drawing.Point(625, 357);
+            this.BtnPrevious.Location = new System.Drawing.Point(625, 367);
             this.BtnPrevious.Name = "BtnPrevious";
             this.BtnPrevious.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnPrevious.Size = new System.Drawing.Size(88, 40);
@@ -84,7 +84,7 @@
             this.BtnContinue.BorderColor = System.Drawing.Color.White;
             this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnContinue.ForeColor = System.Drawing.Color.White;
-            this.BtnContinue.Location = new System.Drawing.Point(719, 357);
+            this.BtnContinue.Location = new System.Drawing.Point(719, 367);
             this.BtnContinue.Name = "BtnContinue";
             this.BtnContinue.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnContinue.Size = new System.Drawing.Size(88, 40);
@@ -102,7 +102,7 @@
             this.Controls.Add(this.BtnContinue);
             this.Controls.Add(this.Content);
             this.Name = "ChangeLogFrame";
-            this.Size = new System.Drawing.Size(810, 409);
+            this.Size = new System.Drawing.Size(810, 419);
             this.Content.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LoadingBox)).EndInit();
             this.ResumeLayout(false);

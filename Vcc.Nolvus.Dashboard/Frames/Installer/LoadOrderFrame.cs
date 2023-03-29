@@ -128,35 +128,42 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
         protected override async Task OnLoadedAsync()
         {
-            INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
-
-            ServiceSingleton.Dashboard.AdditionalInfo(string.Empty);
-            ServiceSingleton.Dashboard.Info("Applying install and load order");            
-
-            if (Instance.Status.InstallStatus == InstanceInstallStatus.Updating)
+            try
             {
-                await ServiceSingleton.Packages.Load(await ApiManager.Service.Installer.GetPackage(Instance.Id, ServiceSingleton.Packages.LoadedVersion), (s, p) =>
+                INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
+
+                ServiceSingleton.Dashboard.AdditionalInfo(string.Empty);
+                ServiceSingleton.Dashboard.Info("Applying install and load order");
+
+                if (Instance.Status.InstallStatus == InstanceInstallStatus.Updating)
                 {
-                    ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
-                    ServiceSingleton.Dashboard.Progress(p);
-                });
+                    await ServiceSingleton.Packages.Load(await ApiManager.Service.Installer.GetPackage(Instance.Id, ServiceSingleton.Packages.LoadedVersion), (s, p) =>
+                    {
+                        ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
+                        ServiceSingleton.Dashboard.Progress(p);
+                    });
+                }
+
+                await ApplyInstallOrder();
+                await ApplyLoadOrder();
+
+                ServiceSingleton.Dashboard.NoStatus();
+                ServiceSingleton.Dashboard.ProgressCompleted();
+                ServiceSingleton.Instances.FinalizeInstance();
+
+                if (!Parameters.IsEmpty && Parameters["Mode"].ToString() == "Install")
+                {
+                    ServiceSingleton.Dashboard.LoadFrame<FinishFrame>();
+                }
+                else
+                {
+                    ServiceSingleton.Dashboard.LoadFrame<InstancesFrame>();
+                }
             }
-
-            await ApplyInstallOrder();
-            await ApplyLoadOrder();
-
-            ServiceSingleton.Dashboard.NoStatus();
-            ServiceSingleton.Dashboard.ProgressCompleted();
-            ServiceSingleton.Instances.FinalizeInstance();
-
-            if (!Parameters.IsEmpty && Parameters["Mode"].ToString() == "Install")
-            {                
-                ServiceSingleton.Dashboard.LoadFrame<FinishFrame>();
-            }
-            else
+            catch(Exception ex)
             {
-                ServiceSingleton.Dashboard.LoadFrame<InstancesFrame>();
-            }                                                              
+                await ServiceSingleton.Dashboard.Error("Error during load order setup", ex.Message, ex.StackTrace);
+            }                                                           
         }                      
     }
 }
