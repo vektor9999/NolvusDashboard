@@ -104,7 +104,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 var Instance = ServiceSingleton.Instances.WorkingInstance;
                 
                 ServiceSingleton.Dashboard.Title("Nolvus Dashboard - [Instance Auto Installer]");
-                ServiceSingleton.Dashboard.Status("Installing " + Instance.Name + " (v " + Instance.Version + ")");
+                ServiceSingleton.Dashboard.Status("Installing " + Instance.Name + " (v " + ServiceSingleton.Packages.LoadedVersion + ")");
                 ServiceSingleton.Dashboard.Info("Installing mods...");
 
                 ServiceSingleton.Files.RemoveDirectory(ServiceSingleton.Folders.NexusCacheDirectory, false);
@@ -123,8 +123,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                     {
                         return Invoke((Func<IBrowserInstance>)(() => { return new BrowserWindow(); })) as IBrowserInstance;
                     }
-                });
-
+                });                
 
                 await ServiceSingleton.Dashboard.LoadFrameAsync<LoadOrderFrame>(new FrameParameters(new FrameParameter() { Key = "Mode", Value = "Install" }));
             }
