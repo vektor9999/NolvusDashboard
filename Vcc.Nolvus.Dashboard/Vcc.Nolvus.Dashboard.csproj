@@ -437,12 +437,6 @@
     <Compile Include="DashboardWindow.Designer.cs">
       <DependentUpon>DashboardWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="InstanceViewFrame.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="InstanceViewFrame.Designer.cs">
-      <DependentUpon>InstanceViewFrame.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\InstancePanel.resx">
@@ -526,9 +520,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DashboardWindow.resx">
       <DependentUpon>DashboardWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InstanceViewFrame.resx">
-      <DependentUpon>InstanceViewFrame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
