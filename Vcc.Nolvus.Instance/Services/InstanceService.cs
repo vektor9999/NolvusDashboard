@@ -191,18 +191,14 @@ namespace Vcc.Nolvus.Instance.Services
                     XmlNode StatusNode = InstanceNode.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Status").FirstOrDefault();
 
                     if (StatusNode != null)
-                    {                       
-                        InstanceInstallStatus InstanceInstallStatus;
-
+                    {                                               
                         if (StatusNode["InstallState"].InnerText.Trim() == "Finished")
                         {
                             Instance.Status.InstallStatus = InstanceInstallStatus.Installed;
                         }
                         else
-                        {
-                            Enum.TryParse(StatusNode["InstallState"].InnerText.Trim(), out InstanceInstallStatus);
-
-                            Instance.Status.InstallStatus = InstanceInstallStatus;
+                        {                            
+                            Instance.Status.InstallStatus = InstanceInstallStatus.Installing;
                         }                        
                     }
 

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
@@ -22,8 +23,7 @@ namespace Vcc.Nolvus.Updater
             public static readonly Guid Downloads = new Guid("374DE290-123F-4565-9164-39C4925E467B");
         }
 
-        private bool _Error = false;
-        private bool _FreshInstall = false;
+        private bool _Error = false;        
 
         MessageBar MessageBar;
 
@@ -33,8 +33,8 @@ namespace Vcc.Nolvus.Updater
         private void InitApi()
         {
             try
-            {               
-                ApiManager.Init("https://www.nolvus.net/rest/", "v1", string.Empty, string.Empty);                
+            {
+                ApiManager.Init("https://www.nolvus.net/rest/", "v1", string.Empty, string.Empty);
             }
             catch (Exception e)
             {
@@ -74,7 +74,7 @@ namespace Vcc.Nolvus.Updater
         {
             string Version = FileVersionInfo.GetVersionInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NolvusDashBoard.exe")).ProductVersion;
 
-            return Version.Substring(0, Version.LastIndexOf('.'));                      
+            return Version.Substring(0, Version.LastIndexOf('.'));
         }
 
         private bool IsNewerVersion(string v1, string v2)
@@ -112,10 +112,10 @@ namespace Vcc.Nolvus.Updater
                 }
             }
         }
-        
+
         async Task<string> CheckForInstallerVersion()
-        {           
-            return await ApiManager.Service.Installer.GetLatestInstallerVersion();            
+        {
+            return await ApiManager.Service.Installer.GetLatestInstallerVersion();
         }
 
         private void StopDashBoard()
@@ -128,8 +128,8 @@ namespace Vcc.Nolvus.Updater
                 {
                     Process.Kill();
                 }
-            }            
-        }      
+            }
+        }
 
         private void StartDashBoard()
         {
@@ -140,19 +140,8 @@ namespace Vcc.Nolvus.Updater
                 Process Dashboard = new Process();
 
                 Dashboard.StartInfo.WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                Dashboard.StartInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "\\NolvusDashboard.exe";
+                Dashboard.StartInfo.FileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NolvusDashboard.exe");
                 Dashboard.Start();
-            }
-
-            Process[] DashBoardAgentProcesses = Process.GetProcessesByName("NolvusAgent");
-
-            if (DashBoardAgentProcesses.Length == 0)
-            {
-                Process DashboardAgent = new Process();
-
-                DashboardAgent.StartInfo.WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                DashboardAgent.StartInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "\\NolvusAgent.exe";
-                DashboardAgent.Start();
             }
         }
 
@@ -163,7 +152,7 @@ namespace Vcc.Nolvus.Updater
                 Invoke((System.Action<string>)SetInfo, Value);
                 return;
             }
-                 
+
             this.LblInfo.Text = Value;
         }
 
@@ -214,7 +203,7 @@ namespace Vcc.Nolvus.Updater
         }
 
         private void Downloading(object sender, DownloadProgress e)
-        {                        
+        {
             this.SetInfo("Downloading latest Nolvus Dashboard (" + e.ProgressPercentage + "%)...");
             this.SetProgress(e.ProgressPercentage);
         }
@@ -227,7 +216,7 @@ namespace Vcc.Nolvus.Updater
 
         public Main()
         {
-            InitializeComponent();                        
+            InitializeComponent();
 
             SkinManager.SetVisualStyle(this, "Office2016Black");
             this.Style.TitleBar.MaximizeButtonHoverBackColor = Color.DarkOrange;
@@ -251,7 +240,7 @@ namespace Vcc.Nolvus.Updater
 
             this.TitleBarTextControl = MessageBar;
 
-            this.LblInfo.Text = "Initializing...";            
+            this.LblInfo.Text = "Initializing...";
 
             if (BaseFolder == WindowsDownloadFolder)
             {
@@ -281,9 +270,7 @@ namespace Vcc.Nolvus.Updater
                     try
                     {
 
-                        var DashboardVersion = await CheckForInstallerVersion();
-
-                        _FreshInstall = !IsDashBoardInstalled();
+                        var DashboardVersion = await CheckForInstallerVersion();                        
 
                         if (!IsDashBoardInstalled() || IsNewerVersion(DashboardVersion, GetDashboardVersion()))
                         {
@@ -295,7 +282,7 @@ namespace Vcc.Nolvus.Updater
                             {
                                 if (CloseApp)
                                 {
-                                    StopDashBoard();                                    
+                                    StopDashBoard();
                                     await DownloadAndInstall(DashboardVersion);
                                 }
                                 else
@@ -304,7 +291,7 @@ namespace Vcc.Nolvus.Updater
                                 }
                             }
                             else
-                            {                                
+                            {
                                 await DownloadAndInstall(DashboardVersion);
                             }
                         }
@@ -315,17 +302,50 @@ namespace Vcc.Nolvus.Updater
                             ShowButton(true);
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         SetError("Error (" + ex.Message + ")");
-                    }                    
+                    }
                 });
-            }                                                          
+            }
+        }
+
+        private Task ExtractFiles(string FileName, string ExtractPath)
+        {
+            TaskCompletionSource<object> source = new TaskCompletionSource<object>();
+
+            using (ZipArchive archive = ZipFile.OpenRead(FileName))
+            {
+                int num = 0;
+
+                foreach (ZipArchiveEntry entry in archive.Entries)
+                {
+                    string fullPath = Path.GetFullPath(Path.Combine(ExtractPath, entry.FullName));
+                    if (fullPath.StartsWith(ExtractPath, StringComparison.Ordinal))
+                    {
+                        if (entry.FullName.EndsWith("/"))
+                        {
+                            Directory.CreateDirectory(fullPath);
+                        }
+                        else
+                        {
+                            entry.ExtractToFile(fullPath, true);
+                        }
+                        num++;
+                    }
+
+                    int num2 = Convert.ToInt32((int)((100 * num) / archive.Entries.Count));
+                    this.SetInfo("Installating Application (" + num2 + "%)...");
+                    this.SetProgress(num2);
+                }
+                source.SetResult(new object());
+            }
+            return source.Task;
         }
 
         private async Task DownloadAndInstall(string Version)
-        {            
-            var Tsk = Task.Run(async () => 
+        {
+            var Tsk = Task.Run(async () =>
             {
                 SetInfo("Initializing download...");
 
@@ -333,12 +353,17 @@ namespace Vcc.Nolvus.Updater
                 {
                     var FileName = Path.GetTempPath() + "Binaries" + Version.Replace(".", string.Empty) + ".7z";
 
+                    if (File.Exists(FileName))
+                    {
+                        File.Delete(FileName);
+                    }
+
                     try
-                    {                        
+                    {
                         var FileService = new FileService();
 
-                        await FileService.DownloadFile(await ApiManager.Service.Installer.GetLatestInstallerLink(), FileName, Downloading);
-                        await FileService.ExtractFile(FileName, AppDomain.CurrentDomain.BaseDirectory, Extracting);
+                        await FileService.DownloadFile(await ApiManager.Service.Installer.GetLatestInstallerLink(), FileName, Downloading);                        
+                        await ExtractFiles(FileName, AppDomain.CurrentDomain.BaseDirectory);
 
                         SetInfo("Your Nolvus Dashboard has been installed.");
 
@@ -356,17 +381,17 @@ namespace Vcc.Nolvus.Updater
 
             });
 
-            await Tsk;                  
+            await Tsk;
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
             if (!_Error)
             {
-                if (CloseApp || _FreshInstall)
+                if (CloseApp || IsDashBoardInstalled())
                 {
                     StartDashBoard();
-                }                                               
+                }
             }
 
             this.Close();

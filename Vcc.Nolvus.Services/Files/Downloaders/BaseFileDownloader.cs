@@ -17,7 +17,38 @@ namespace Vcc.Nolvus.Services.Files
         protected Stopwatch SW = new Stopwatch();
         private WebClient Wcli;
 
-        public event DownloadProgressChangedHandler DownloadProgressChanged;
+        //public event DownloadProgressChangedHandler DownloadProgressChanged;
+
+        event DownloadProgressChangedHandler DownloadProgressChangedEvent;
+
+        public event DownloadProgressChangedHandler DownloadProgressChanged
+        {
+            add
+            {
+                if (DownloadProgressChangedEvent != null)
+                {
+                    lock (DownloadProgressChangedEvent)
+                    {
+                        DownloadProgressChangedEvent += value;
+                    }
+                }
+                else
+                {
+                    DownloadProgressChangedEvent = value;
+                }
+            }
+            remove
+            {
+                if (DownloadProgressChangedEvent != null)
+                {
+                    lock (DownloadProgressChangedEvent)
+                    {
+                        DownloadProgressChangedEvent -= value;
+                    }
+                }
+            }
+        }
+
         protected readonly DownloadProgress Progress;
         protected string FileName;
 
@@ -56,28 +87,31 @@ namespace Vcc.Nolvus.Services.Files
         
         public abstract Task DownloadFile(string UrlAddress, string Location);
 
+        protected void NotifyProgress()
+        {
+            DownloadProgressChangedHandler Handler = this.DownloadProgressChangedEvent;
+            if (Handler != null) Handler(this, Progress);
+        }
+
         protected virtual void ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            if (DownloadProgressChanged != null)
+            Progress.BytesReceived = e.BytesReceived;
+
+            if (e.TotalBytesToReceive > 0L)
             {
-                Progress.BytesReceived = e.BytesReceived;
-
-                if (e.TotalBytesToReceive > 0L)
-                {
-                    Progress.TotalBytesToReceive = e.TotalBytesToReceive;
-                }
-
-                Progress.ProgressPercentage = e.ProgressPercentage;
-
-                Progress.Speed = e.BytesReceived / 1024d / 1024d / SW.Elapsed.TotalSeconds;
-
-                Progress.BytesReceivedAsString = (e.BytesReceived / 1024d / 1024d).ToString("0.00");
-                Progress.TotalBytesToReceiveAsString = (e.TotalBytesToReceive / 1024d / 1024d).ToString("0.00");
-
-                Progress.FileName = FileName;
-
-                DownloadProgressChanged(this, Progress);
+                Progress.TotalBytesToReceive = e.TotalBytesToReceive;
             }
+
+            Progress.ProgressPercentage = e.ProgressPercentage;
+
+            Progress.Speed = e.BytesReceived / 1024d / 1024d / SW.Elapsed.TotalSeconds;
+
+            Progress.BytesReceivedAsString = (e.BytesReceived / 1024d / 1024d).ToString("0.00");
+            Progress.TotalBytesToReceiveAsString = (e.TotalBytesToReceive / 1024d / 1024d).ToString("0.00");
+
+            Progress.FileName = FileName;
+
+            NotifyProgress();            
         }        
 
         protected virtual void FileCompleted(object sender, AsyncCompletedEventArgs e)

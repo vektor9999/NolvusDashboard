@@ -109,33 +109,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
             Instance.Settings.CDN = DrpDwnLstDownLoc.SelectedItem.ToString();
 
             ServiceSingleton.Instances.Save();            
-        }        
-
-        private void BtnMegaLogin_Click(object sender, EventArgs e)
-        {
-            //InstallerEnvironment.MegaLogin = string.Empty;
-            //InstallerEnvironment.MegaPassword = string.Empty;
-
-            //FrmMegaAccount MegaLogin = new FrmMegaAccount();
-
-            //if (MegaLogin.ShowDialog() == DialogResult.OK)
-            //{
-            //    InstallerEnvironment.MegaLogin = MegaLogin.UserName;
-            //    InstallerEnvironment.MegaPassword = MegaLogin.Password;
-
-            //    NolvusMessageBox.ShowMessage("Mega API", "Connection successfull", MessageBoxType.Info);
-            //}
-
-
-            //var Window = new BrowserWindow();
-            //Window.Show();
-
-            //var link = await Window.AwaitUserManualDownload("https://www.afkmods.com/index.php?/files/file/2377-expanded-towns-and-cities-sse/");
-
-
-            //string test = "test";
-            //string test2 = test;
-        }
+        }               
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
