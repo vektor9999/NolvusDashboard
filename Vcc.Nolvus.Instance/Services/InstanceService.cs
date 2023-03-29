@@ -136,7 +136,15 @@ namespace Vcc.Nolvus.Instance.Services
 
                     Instance.Id = InstanceNode["Id"].InnerText.Trim();
                     Instance.Name = InstanceNode["Name"].InnerText.Trim();
-                    Instance.Version = InstanceNode["Version"].InnerText.Trim();
+
+                    if (InstanceNode["InstallingVersion"].InnerText.Trim() != string.Empty)
+                    {
+                        Instance.Version = InstanceNode["InstallingVersion"].InnerText.Trim();
+                    }
+                    else
+                    {
+                        Instance.Version = InstanceNode["Version"].InnerText.Trim();
+                    }
 
                     try
                     {                        
