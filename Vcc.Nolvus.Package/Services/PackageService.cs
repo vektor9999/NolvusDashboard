@@ -123,10 +123,10 @@ namespace Vcc.Nolvus.Package.Services
                 Lines.Add("*Creation Club: ccbgssse002-exoticarrows");
                 Lines.Add("*Creation Club: ccasvsse001-almsivi");
                 Lines.Add("*Creation Club: ccafdsse001-dwesanctuary");
-                Lines.Add("*Creation Club: ccqdrsse001-SurvivalMode");
-                Lines.Add("*Creation Club: ccbgsse037-Curios");
-                Lines.Add("*Creation Club: ccbgsse025-AdvDSGS");
-                Lines.Add("*Creation Club: ccbgsse001-Fish");
+                Lines.Add("*Creation Club: ccqdrsse001-survivalmode");
+                Lines.Add("*Creation Club: ccbgssse037-curios");
+                Lines.Add("*Creation Club: ccbgssse025-advdsgs");
+                Lines.Add("*Creation Club: ccbgssse001-fish");
                 Lines.Add("*DLC: HearthFires");
                 Lines.Add("*DLC: Dragonborn");
                 Lines.Add("*DLC: Dawnguard");

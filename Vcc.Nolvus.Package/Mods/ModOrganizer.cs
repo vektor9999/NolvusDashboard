@@ -2138,7 +2138,7 @@ Dawnguard.esm
 HearthFires.esm
 Dragonborn.esm
 ccasvsse001-almsivi.esm
-ccbgssse001-Fish.esm
+ccbgssse001-fish.esm
 ccbgssse002-exoticarrows.esl
 ccbgssse003-zombies.esl
 ccbgssse004-ruinsedge.esl
@@ -2224,10 +2224,10 @@ ccafdsse001-dwesanctuary.esm";
 *DLC: Dawnguard
 *DLC: Dragonborn
 *DLC: HearthFires
-*Creation Club: ccbgssse001-Fish
-*Creation Club: ccbgssse025-AdvDSGS
-*Creation Club: ccbgssse037-Curios
-*Creation Club: ccqdrsse001-SurvivalMode
+*Creation Club: ccbgssse001-fish
+*Creation Club: ccbgssse025-advdsgs
+*Creation Club: ccbgssse037-curios
+*Creation Club: ccqdrsse001-survivalmode
 *Creation Club: ccafdsse001-dwesanctuary
 *Creation Club: ccasvsse001-almsivi
 *Creation Club: ccbgssse002-exoticarrows
