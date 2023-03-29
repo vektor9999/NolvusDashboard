@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -90,7 +92,11 @@ namespace Vcc.Nolvus.NexusApi
 			}
 
             httpClient.DefaultRequestHeaders.Add("Application-Name", "Nolvus Dashboard");
-            httpClient.DefaultRequestHeaders.Add("Application-Version", "3.0.0");
+
+            string Version = FileVersionInfo.GetVersionInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NolvusDashboard.exe")).ProductVersion;
+            Version = Version.Substring(0, Version.LastIndexOf('.'));
+
+            httpClient.DefaultRequestHeaders.Add("Application-Version", Version);
 
             return this.InitializeAsync(httpClient, options);
 		}
