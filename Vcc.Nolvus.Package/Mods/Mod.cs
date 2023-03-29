@@ -306,7 +306,7 @@ namespace Vcc.Nolvus.Package.Mods
                 {                                        
                     if (Patcher != null)
                     {                        
-                        await Patcher.PatchFiles(MoDirectoryFullName, DownloadingProgress, ExtractingProgress, PatchingProgress);
+                        await Patcher.PatchFiles(MoDirectoryFullName, ServiceSingleton.Instances.WorkingInstance.StockGame, DownloadingProgress, ExtractingProgress, PatchingProgress);
                     }                                        
                 }
                 catch (Exception ex)

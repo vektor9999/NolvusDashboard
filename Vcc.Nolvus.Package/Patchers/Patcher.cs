@@ -88,7 +88,7 @@ namespace Vcc.Nolvus.Package.Patchers
             await Tsk;
         }
 
-        public async Task PatchFiles(string ModDir, DownloadProgressChangedHandler DownloadProgress, ExtractProgressChangedHandler ExtractProgress, Action<string, int, int> PatchProgress)
+        public async Task PatchFiles(string ModDir, string GameDir, DownloadProgressChangedHandler DownloadProgress, ExtractProgressChangedHandler ExtractProgress, Action<string, int, int> PatchProgress)
         {
             var Tsk = Task.Run(async () =>
             {
@@ -104,7 +104,7 @@ namespace Vcc.Nolvus.Package.Patchers
                         
                         foreach (var File in Files)
                         {
-                            await File.Patch(ModDir, Path.Combine(ServiceSingleton.Folders.ExtractDirectory, PatcherFileDir));
+                            await File.Patch(ModDir, GameDir, Path.Combine(ServiceSingleton.Folders.ExtractDirectory, PatcherFileDir));
                             PatchProgress(File.OriginFileName, ++Counter, Files.Count);
                         }
                     }

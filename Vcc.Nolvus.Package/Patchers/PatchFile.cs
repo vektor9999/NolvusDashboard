@@ -42,14 +42,22 @@ namespace Vcc.Nolvus.Package.Patchers
 
             return Result;
         }
-        public async Task Patch(string ModDir, string ExtractDir)
+        public async Task Patch(string ModDir, string GameDir, string ExtractDir)
         {            
             var Tsk = Task.Run(async ()=>
             {
                 try
                 {
                     var PatcherManager = new PatcherManager(ServiceSingleton.Folders.DownloadDirectory, ServiceSingleton.Folders.LibDirectory);
-                    var SourceFileToPatch = ServiceSingleton.Files.GetFiles(ModDir).Where(x => x.Name == OriginFileName).Where(y => ServiceSingleton.Files.GetHash(y.FullName) == HashBefore).FirstOrDefault();
+
+                    var Dir = ModDir;
+
+                    if (!Directory.Exists(ModDir))
+                    {
+                        Dir = GameDir;
+                    }
+
+                    var SourceFileToPatch = ServiceSingleton.Files.GetFiles(Dir).Where(x => x.Name == OriginFileName).Where(y => ServiceSingleton.Files.GetHash(y.FullName) == HashBefore).FirstOrDefault();                    
 
                     if (SourceFileToPatch != null)
                     {

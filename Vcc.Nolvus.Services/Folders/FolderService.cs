@@ -34,8 +34,7 @@ namespace Vcc.Nolvus.Services.Folders
         {
             get
             {
-                //return Path.Combine(CacheDirectory, "Extract");                                
-                return @"C:\NOLVUS\EXTRACT";
+                return Path.Combine(CacheDirectory, "Extract");                                                
             }
         }
 
@@ -108,8 +107,6 @@ namespace Vcc.Nolvus.Services.Folders
             Directory.CreateDirectory(NexusCacheDirectory);
             Directory.CreateDirectory(WebCacheDirectory);
             Directory.CreateDirectory(InstancesDirectory);                       
-        }
-
-        
+        }        
     }
 }

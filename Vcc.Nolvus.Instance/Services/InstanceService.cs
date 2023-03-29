@@ -103,22 +103,157 @@ namespace Vcc.Nolvus.Instance.Services
             return Storage;
         }
 
+        private bool IsFileFromV2()
+        {
+            XmlDocument Storage = this.InitializeStorage();
+
+            XmlNodeList InstanceElements = Storage.SelectNodes("Instances/Instance");
+
+            if (InstanceElements.Count > 0)
+            {
+                return InstanceElements[0]["Game"] != null;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        private void Loadv2()
+        {
+            lock (this.SyncRoot)
+            {
+                this.Instances.Clear();
+
+                XmlDocument Storage = this.InitializeStorage();
+
+                XmlNodeList InstanceElements = Storage.SelectNodes("Instances/Instance");
+
+                foreach (XmlNode InstanceNode in InstanceElements)
+                {
+                    NolvusInstance Instance = new NolvusInstance();
+
+                    Instance.Id = InstanceNode["Id"].InnerText.Trim();
+                    Instance.Name = InstanceNode["Name"].InnerText.Trim();
+                    Instance.Version = InstanceNode["Version"].InnerText.Trim();
+
+                    try
+                    {                        
+                        Instance.Settings.LgCode = InstanceNode["LgCode"].InnerText.Trim();
+                        Instance.Settings.LgName = InstanceNode["LgName"].InnerText.Trim();                        
+
+                        Instance.Options.Nudity = InstanceNode["Nudity"].InnerText.Trim();
+                        Instance.Options.AlternateENB = InstanceNode["AlternateENB"].InnerText.Trim();
+                        Instance.Options.FantasyMode = InstanceNode["FantasyMode"].InnerText.Trim();
+                        Instance.Options.HardcoreMode = InstanceNode["HardcoreMode"].InnerText.Trim();
+                        Instance.Options.AlternateLeveling = InstanceNode["AlternateLeveling"].InnerText.Trim();
+                        Instance.Options.SkinType = InstanceNode["SkinType"].InnerText.Trim();
+
+                    }
+                    catch
+                    {                        
+                        Instance.Settings.LgCode = "EN";
+                        Instance.Settings.LgName = "English";                        
+
+                        Instance.Options.Nudity = "TRUE";
+                        Instance.Options.AlternateENB = "FALSE";
+                        Instance.Options.FantasyMode = "FALSE";
+                        Instance.Options.HardcoreMode = "FALSE";
+                        Instance.Options.AlternateLeveling = "FALSE";
+                        Instance.Options.SkinType = "Smooth";
+                    }
+
+                    Instance.Settings.Ratio = InstanceNode["Ratio"].InnerText.Trim();
+                    Instance.Settings.Height = InstanceNode["Height"].InnerText.Trim();
+                    Instance.Settings.Width = InstanceNode["Width"].InnerText.Trim();
+                    Instance.Settings.CDN = InstanceNode["CDN"].InnerText.Trim();
+                    Instance.Description = InstanceNode["Description"].InnerText.Trim();
+
+                    Instance.InstallDir = InstanceNode["InstallPath"].InnerText.Trim();
+                    Instance.ArchiveDir = InstanceNode["ArchivePath"].InnerText.Trim();
+
+                    if (InstanceNode["StockGame"] != null)
+                    {
+                        Instance.StockGame = InstanceNode["StockGame"].InnerText.Trim();
+                    }
+
+                    Instance.Settings.EnableArchiving = System.Convert.ToBoolean(InstanceNode["EnableArchiving"].InnerText.Trim());                    
+
+                    XmlNode StatusNode = InstanceNode.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Status").FirstOrDefault();
+
+                    if (StatusNode != null)
+                    {                       
+                        InstanceInstallStatus InstanceInstallStatus;
+                        Enum.TryParse(StatusNode["InstallState"].InnerText.Trim(), out InstanceInstallStatus);
+
+                        Instance.Status.InstallStatus = InstanceInstallStatus;                        
+                    }
+
+                    XmlNode PerformanceNode = InstanceNode.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Performance").FirstOrDefault();
+
+                    if (PerformanceNode != null)
+                    {                        
+                        Instance.Performance.AdvancedPhysics = PerformanceNode["AdvancedPhysics"].InnerText.Trim();
+                        Instance.Performance.DownScaling = PerformanceNode["DownScaling"].InnerText.Trim();
+                        Instance.Performance.DownHeight = PerformanceNode["DownHeight"].InnerText.Trim();
+                        Instance.Performance.DownWidth = PerformanceNode["DownWidth"].InnerText.Trim();
+
+                        if (PerformanceNode["IniSettings"] != null)
+                        {
+                            Instance.Performance.IniSettings = PerformanceNode["IniSettings"].InnerText.Trim();
+                        }
+
+                        if (PerformanceNode["AntiAliasing"] != null)
+                        {
+                            Instance.Performance.AntiAliasing = PerformanceNode["AntiAliasing"].InnerText.Trim();
+                        }
+
+                        if (PerformanceNode["Variant"] != null)
+                        {
+                            Instance.Performance.Variant = PerformanceNode["Variant"].InnerText.Trim();
+                        }
+
+                        if (PerformanceNode["LODs"] != null)
+                        {
+                            Instance.Performance.LODs = PerformanceNode["LODs"].InnerText.Trim();
+                        }
+
+                        if (PerformanceNode["RayTracing"] != null)
+                        {
+                            Instance.Performance.RayTracing = PerformanceNode["RayTracing"].InnerText.Trim();
+                        }                        
+                    }
+
+                    this.Instances.Add(Instance);
+                }
+            }
+        }
+
         public void Load()
         {
             lock (SyncRoot)
             {
                 this.Instances.Clear();
 
-                XmlDocument Storage = InitializeStorage();                
-
-                foreach (XmlNode InstanceNode in Storage.SelectNodes("Instances/Instance"))
+                XmlDocument Storage = InitializeStorage();
+                
+                if (!IsFileFromV2())
                 {
-                    NolvusInstance Instance = new NolvusInstance();
+                    foreach (XmlNode InstanceNode in Storage.SelectNodes("Instances/Instance"))
+                    {
+                        NolvusInstance Instance = new NolvusInstance();
 
-                    Instance.Load(InstanceNode);                    
+                        Instance.Load(InstanceNode);
 
-                    this.Instances.Add(Instance);
+                        this.Instances.Add(Instance);
+                    }
                 }
+                else
+                {
+                    Loadv2();
+                    Save();
+                }                                                
             }
         }
 
