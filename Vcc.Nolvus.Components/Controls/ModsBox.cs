@@ -66,37 +66,6 @@ namespace Vcc.Nolvus.Components.Controls
             base.OnPaint(e);
         }
 
-        //private Image DisplayGradient(Image InputImage)
-        //{            
-        //    Bitmap adjImage = new Bitmap(InputImage.Width, InputImage.Height);
-
-        //    Graphics g = Graphics.FromImage(adjImage);
-
-        //    LinearGradientBrush linearGradientBrush = new LinearGradientBrush(
-        //        new Rectangle(0, 0, adjImage.Width, adjImage.Height),
-        //        Color.White,
-        //        Color.Transparent,
-        //        0f);
-
-        //    Rectangle rect = new Rectangle(0, 0, adjImage.Width, adjImage.Height);
-        //    g.FillRectangle(linearGradientBrush, rect);
-
-        //    int x;
-        //    int y;
-        //    for (x = 0; x < adjImage.Width; ++x)
-        //    {
-        //        for (y = 0; y < adjImage.Height; ++y)
-        //        {
-        //            Color inputPixelColor = (InputImage as Bitmap).GetPixel(x, y);
-        //            Color adjPixelColor = adjImage.GetPixel(x, y);
-        //            Color newColor = Color.FromArgb(adjPixelColor.A, inputPixelColor.R, inputPixelColor.G, inputPixelColor.B);
-        //            adjImage.SetPixel(x, y, newColor);
-        //        }
-        //    }
-
-        //    return adjImage;
-        //}
-
         protected override void OnDrawItem(DrawItemEventArgs e)
         {                        
             FontFamily FamilyTitle = new FontFamily("Segoe UI Light");
@@ -142,9 +111,7 @@ namespace Vcc.Nolvus.Components.Controls
                 else
                 {
                     e.Graphics.DrawString("Error", InfoFont, Brushes.Red, 3, 21 + Top);
-                }
-                
-
+                }               
 
                 Brush Brush = Brushes.Orange;
 
