@@ -76,7 +76,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             {
                 PnlMessage.BackColor = Color.Orange;
                 PicBox.Image = Properties.Resources.Warning_Message;
-                LblMessage.Text = "You are not a Nexus Premium user. Download will not be automatic (you will have to click the download button for each mods) and bandwidth will be limited to 2 Mb/s.";
+                LblMessage.Text = "You are not a Nexus Premium user. Download will not be automatic (you will have to click the download button for each mods) and bandwidth will be limited to 2 MB/s.";
             }
             else
             {

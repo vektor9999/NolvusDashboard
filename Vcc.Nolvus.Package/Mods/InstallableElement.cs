@@ -161,7 +161,7 @@ namespace Vcc.Nolvus.Package.Mods
                 case ModInstallStatus.Downloading:                    
                     if (Event.DownloadInfo.TotalBytesToReceive != 0)
                     {
-                        Progress.Mbs = string.Format("{0}Mb/s", Event.DownloadInfo.Speed.ToString("0.0"));
+                        Progress.Mbs = string.Format("{0}MB/s", Event.DownloadInfo.Speed.ToString("0.0"));
                         Progress.Status = string.Format("Downloading {0} ({1} MB)", Event.DownloadInfo.FileName, Event.DownloadInfo.TotalBytesToReceiveAsString);
                     }
                     else
