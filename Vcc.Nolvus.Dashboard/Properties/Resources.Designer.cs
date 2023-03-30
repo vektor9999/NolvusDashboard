@@ -93,6 +93,26 @@ namespace Vcc.Nolvus.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DefaultKeyboardKeys {
+            get {
+                object obj = ResourceManager.GetObject("DefaultKeyboardKeys", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DefaultMouseKey {
+            get {
+                object obj = ResourceManager.GetObject("DefaultMouseKey", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Fall_LessLush {
             get {
                 object obj = ResourceManager.GetObject("Fall-LessLush", resourceCulture);

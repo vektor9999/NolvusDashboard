@@ -34,6 +34,7 @@
             this.BtnDiscord = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnDonate = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnPatreon = new Vcc.Nolvus.Components.Controls.FlatButton();
+            this.BtnKeyBind = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.SuspendLayout();
             // 
             // panel1
@@ -80,7 +81,7 @@
             this.BtnDiscord.BorderColor = System.Drawing.Color.White;
             this.BtnDiscord.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnDiscord.ForeColor = System.Drawing.Color.White;
-            this.BtnDiscord.Location = new System.Drawing.Point(489, 349);
+            this.BtnDiscord.Location = new System.Drawing.Point(374, 349);
             this.BtnDiscord.Name = "BtnDiscord";
             this.BtnDiscord.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnDiscord.Size = new System.Drawing.Size(90, 40);
@@ -96,7 +97,7 @@
             this.BtnDonate.BorderColor = System.Drawing.Color.White;
             this.BtnDonate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnDonate.ForeColor = System.Drawing.Color.White;
-            this.BtnDonate.Location = new System.Drawing.Point(393, 349);
+            this.BtnDonate.Location = new System.Drawing.Point(278, 349);
             this.BtnDonate.Name = "BtnDonate";
             this.BtnDonate.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnDonate.Size = new System.Drawing.Size(90, 40);
@@ -112,7 +113,7 @@
             this.BtnPatreon.BorderColor = System.Drawing.Color.White;
             this.BtnPatreon.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPatreon.ForeColor = System.Drawing.Color.White;
-            this.BtnPatreon.Location = new System.Drawing.Point(297, 349);
+            this.BtnPatreon.Location = new System.Drawing.Point(182, 349);
             this.BtnPatreon.Name = "BtnPatreon";
             this.BtnPatreon.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnPatreon.Size = new System.Drawing.Size(90, 40);
@@ -121,11 +122,28 @@
             this.BtnPatreon.UseVisualStyleBackColor = false;
             this.BtnPatreon.Click += new System.EventHandler(this.BtnPatreon_Click);
             // 
+            // BtnKeyBind
+            // 
+            this.BtnKeyBind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnKeyBind.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.BtnKeyBind.BorderColor = System.Drawing.Color.White;
+            this.BtnKeyBind.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnKeyBind.ForeColor = System.Drawing.Color.White;
+            this.BtnKeyBind.Location = new System.Drawing.Point(470, 349);
+            this.BtnKeyBind.Name = "BtnKeyBind";
+            this.BtnKeyBind.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
+            this.BtnKeyBind.Size = new System.Drawing.Size(109, 40);
+            this.BtnKeyBind.TabIndex = 6;
+            this.BtnKeyBind.Text = "Game key bind";
+            this.BtnKeyBind.UseVisualStyleBackColor = false;
+            this.BtnKeyBind.Click += new System.EventHandler(this.BtnKeyBind_Click);
+            // 
             // InstancesFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.Controls.Add(this.BtnKeyBind);
             this.Controls.Add(this.BtnPatreon);
             this.Controls.Add(this.BtnDonate);
             this.Controls.Add(this.BtnDiscord);
@@ -146,5 +164,6 @@
         private Components.Controls.FlatButton BtnDiscord;
         private Components.Controls.FlatButton BtnDonate;
         private Components.Controls.FlatButton BtnPatreon;
+        private Components.Controls.FlatButton BtnKeyBind;
     }
 }

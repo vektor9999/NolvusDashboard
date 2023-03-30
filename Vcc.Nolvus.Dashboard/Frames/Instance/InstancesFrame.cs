@@ -64,5 +64,10 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
         {
 
         }
+
+        private void BtnKeyBind_Click(object sender, EventArgs e)
+        {
+            ServiceSingleton.Dashboard.LoadFrame<KeysBindingFrame>();
+        }
     }
 }

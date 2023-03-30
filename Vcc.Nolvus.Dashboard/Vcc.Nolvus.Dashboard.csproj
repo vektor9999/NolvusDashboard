@@ -383,6 +383,12 @@
     <Compile Include="Frames\Instance\InstanceSettingsFrame.Designer.cs">
       <DependentUpon>InstanceSettingsFrame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frames\Instance\KeysBindingFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Instance\KeysBindingFrame.Designer.cs">
+      <DependentUpon>KeysBindingFrame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frames\Instance\InstancesFrame.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -493,6 +499,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\Instance\InstanceSettingsFrame.resx">
       <DependentUpon>InstanceSettingsFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Instance\KeysBindingFrame.resx">
+      <DependentUpon>KeysBindingFrame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\Instance\InstancesFrame.resx">
       <DependentUpon>InstancesFrame.cs</DependentUpon>
@@ -898,6 +907,8 @@
     <Content Include="bin\Data\ModMetaData.xml" />
     <Content Include="bin\INIFileParser.dll" />
     <Content Include="bin\INIFileParser.xml" />
+    <None Include="Resources\DefaultKeyboardKeys.jpg" />
+    <None Include="Resources\DefaultMouseKey.png" />
     <Content Include="Scripts\HandleENBDev.js" />
     <Content Include="Scripts\IsDownloadAvailable.js" />
     <Content Include="Scripts\IsFileDeleted.js" />
