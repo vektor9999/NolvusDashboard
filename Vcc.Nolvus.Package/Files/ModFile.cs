@@ -165,8 +165,7 @@ namespace Vcc.Nolvus.Package.Files
                 await ServiceSingleton.Files.DownloadFile(Link, Path.Combine(ServiceSingleton.Folders.DownloadDirectory, this.FileName), OnProgress);
             }
             catch (Exception ex)
-            {
-                ServiceSingleton.Logger.Log(string.Format("Error during file download {0} with error {1}", FileName, ex.Message));
+            {                
                 throw ex;
             }
         }
@@ -207,13 +206,20 @@ namespace Vcc.Nolvus.Package.Files
                 {
                     if (!Exist())
                     {
-                        if (RequireManualDownload)
-                        {                                                       
-                            await Browser().AwaitUserDownload(DownloadLink, FileName, OnProgress);
-                        }
-                        else
+                        try
                         {
-                            await DoDownload(DownloadLink, OnProgress);
+                            if (RequireManualDownload)
+                            {
+                                await Browser().AwaitUserDownload(DownloadLink, FileName, OnProgress);
+                            }
+                            else
+                            {
+                                await DoDownload(DownloadLink, OnProgress);
+                            }
+                        }
+                        catch(Exception ex)
+                        {
+                            ServiceSingleton.Logger.Log(string.Format("Error during file download {0} with error {1}", FileName, ex.Message));
                         }
                     }                   
 
