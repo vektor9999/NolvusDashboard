@@ -296,7 +296,7 @@ namespace Vcc.Nolvus.Package.Mods
             {
                 try
                 {
-                    Token.ThrowIfCancellationRequested();                  
+                    Token.ThrowIfCancellationRequested();                        
 
                     if (Settings != null && Settings.Browser == null) throw new Exception("Browser is not set!");
 

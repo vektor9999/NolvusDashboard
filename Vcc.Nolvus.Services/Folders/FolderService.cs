@@ -34,7 +34,7 @@ namespace Vcc.Nolvus.Services.Folders
         {
             get
             {
-                return Path.Combine(CacheDirectory, "Extract");                                                                                
+                return Path.Combine(CacheDirectory, "Extract");                                                                                                
             }
         }
 

@@ -103,6 +103,7 @@
     <Compile Include="Rules\SettingsRule.cs" />
     <Compile Include="Mods\Software.cs" />
     <Compile Include="Mods\xEdit.cs" />
+    <Compile Include="Services\QueueWatcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

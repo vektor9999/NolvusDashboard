@@ -29,10 +29,10 @@ namespace Vcc.Nolvus.Package.Services
         XmlDocument _Storage = new XmlDocument();        
         List<InstallableElement> Elements = new List<InstallableElement>();                
         SemaphoreSlim SemaphoreSlim = new SemaphoreSlim(ServiceSingleton.Settings.ProcessCount);
-        SemaphoreSlim SemaphoreSlimBeforeDownload = new SemaphoreSlim(1);        
-        Exception CancellingException = null;
+        SemaphoreSlim SemaphoreSlimBeforeDownload = new SemaphoreSlim(1);                
         CancellationTokenSource CancelTokenSource = new CancellationTokenSource();
         TaskCompletionSource<object> CancelTasks = new TaskCompletionSource<object>();
+        QueueWatcher QueueWatcher;
 
         #endregion
 
@@ -460,24 +460,7 @@ namespace Vcc.Nolvus.Package.Services
             {
                 return GetModsToInstall().Count;
             }
-        }                                            
-
-        private void StartQueueWatcher()
-        {
-            Task.Run(async () => 
-            {                
-                while (true)
-                {
-                    if (InstallingModsQueue.Count == 1)
-                    {
-                        CancelTasks.SetException(CancellingException);
-                        break;
-                    }
-
-                    await Task.Delay(10);
-                }
-            });
-        }
+        }                                              
 
         private async Task AddModToQueue(InstallableElement Mod)
         {
@@ -517,8 +500,8 @@ namespace Vcc.Nolvus.Package.Services
         }
 
         public async Task InstallModList(ModInstallSettings Settings)
-        {
-            CancellingException = null;
+        {            
+            QueueWatcher = new QueueWatcher(InstallingModsQueue);
                           
             foreach (var Category in GetCategoriesToInstall())
             {
@@ -549,20 +532,14 @@ namespace Vcc.Nolvus.Package.Services
                     }                                            
                 }
                 catch (Exception ex)
-                {
+                {                    
                     if (!CancelTokenSource.Token.IsCancellationRequested)
-                    {
-                        CancellingException = ex;
+                    {                        
                         CancelTokenSource.Cancel();
 
-                        if (InstallingModsQueue.Count == 1)
-                        {
-                            CancelTasks.SetException(CancellingException);
-                        }
-                        else
-                        {
-                            StartQueueWatcher();
-                        }                        
+                        await QueueWatcher.WaitingForCompletion();
+
+                        CancelTasks.SetException(ex);
                     }
                     else
                     {
@@ -576,11 +553,7 @@ namespace Vcc.Nolvus.Package.Services
             if (CancelTasks.Task.IsFaulted)
             {
                 throw CancelTasks.Task.Exception.InnerException;
-            }
-            else if (CancellingException != null)
-            {
-                throw CancellingException;
-            }
+            }            
 
             ServiceSingleton.Logger.Log("List is installed");
         }        
