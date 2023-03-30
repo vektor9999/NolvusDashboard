@@ -25,7 +25,13 @@ using Vcc.Nolvus.StockGame.Core;
 namespace Vcc.Nolvus.Dashboard.Frames.Installer
 {
     public partial class StockGameFrame : DashboardFrame
-    {        
+    {
+        string AEMSG1 = "You need to buy Skyrim Anniversary Edition or if you already have Skyrim Special Edition, buy the Anniversary Upgrade";
+        string AEMSG2 = "If you already have the Anniversary Edition, be sure you ran the game once from steam and when prompted download all content then close Skyrim";
+        string AEMSG3 = "If it still does not work, do an integrity check in Steam";
+        string AEMSG4 = "More info here ==> https://www.nolvus.net/appendix/installer/skyrim_setup";        
+
+
         public StockGameFrame()
         {
             InitializeComponent();
@@ -39,53 +45,49 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
         protected override async Task OnLoadedAsync()
         {
+                            
+            ServiceSingleton.Dashboard.Title("Nolvus Dashboard - [Stock Game Installation]");
+            ServiceSingleton.Dashboard.Info("Stock Game Installation");
+
+            IFolderService Folders = ServiceSingleton.Folders;
+            INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
+
+            var StockGameManager = new StockGameManager(Folders.DownloadDirectory, Folders.LibDirectory, Folders.GameDirectory, Instance, await ApiManager.Service.Installer.GetGamePackage(Instance.Version));
+
+            StockGameManager.OnDownload += StockGameManager_OnDownload;
+            StockGameManager.OnExtract += StockGameManager_OnExtract;
+            StockGameManager.OnItemProcessed += StockGameManager_OnGamePackageLoad;
+            StockGameManager.OnStepProcessed += StockGameManager_OnStepProcessed;
+
+            await StockGameManager.Load();                
+
             try
-            {                
-                ServiceSingleton.Dashboard.Title("Nolvus Dashboard - [Stock Game Installation]");
-                ServiceSingleton.Dashboard.Info("Stock Game Installation");
-
-                IFolderService Folders = ServiceSingleton.Folders;
-                INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
-
-                var StockGameManager = new StockGameManager(Folders.DownloadDirectory, Folders.LibDirectory, Folders.GameDirectory, Instance, await ApiManager.Service.Installer.GetGamePackage(Instance.Version));
-
-                StockGameManager.OnDownload += StockGameManager_OnDownload;
-                StockGameManager.OnExtract += StockGameManager_OnExtract;
-                StockGameManager.OnItemProcessed += StockGameManager_OnGamePackageLoad;
-                StockGameManager.OnStepProcessed += StockGameManager_OnStepProcessed;
-
-                await StockGameManager.Load();                
-
-                try
-                {
-                    await StockGameManager.CheckIntegrity();                    
-                }
-                catch (Exception ex)
-                {
-                    RollBack();
-                    await ServiceSingleton.Dashboard.Error("Error during game integrity checking", ex.Message, "Be sure the specified Skyrim directory (" + Folders.GameDirectory + ") is the one from Steam wtih Anniversary Edition content, freshly installed, not downgraded, with the right language you selected and without any modification. You may have to reinstall the game properly from Steam and launch it once to download all AE content. If the path does not point to your Steam path, you can modify it in the NolbusDashboard.ini under GamePath.");
-                }
-
-                await StockGameManager.CopyGameFiles();                
-
-                try
-                {
-                    await StockGameManager.PatchGameFiles();                    
-                }
-                catch (Exception ex)
-                {
-                    RollBack();
-                    await ServiceSingleton.Dashboard.Error("Error during game files patching", ex.Message);                                      
-                }
+            {
+                await StockGameManager.CheckIntegrity();
+                await StockGameManager.CopyGameFiles();
+                await StockGameManager.PatchGameFiles();
 
                 ServiceSingleton.Dashboard.ProgressCompleted();
                 ServiceSingleton.Instances.PrepareInstanceForInstall();
+
                 await ServiceSingleton.Dashboard.LoadFrameAsync<InstallFrame>();
             }
             catch (Exception ex)
             {
-                RollBack();                
-                await ServiceSingleton.Dashboard.Error("Error during stock game creation", ex.Message);
+                RollBack();
+                    
+                if (ex is GameFileMissingException)
+                {
+                    await ServiceSingleton.Dashboard.Error("Error during game file checking", "Skyrim Anniversary Edition is not installed", AEMSG1 + Environment.NewLine + AEMSG2 + Environment.NewLine + AEMSG3 + Environment.NewLine + AEMSG4 + Environment.NewLine + "Original error : " + ex.Message);
+                }
+                else if (ex is GameFileIntegrityException)
+                {
+                    await ServiceSingleton.Dashboard.Error("Error during game integrity checking", ex.Message, "Possible fix is to do an integrity check for Skyrim in Steam");
+                }
+                else if (ex is GameFilePatchingException)
+                {
+                    await ServiceSingleton.Dashboard.Error("Error during game files patching", ex.Message);
+                }
             }
         }   
 
