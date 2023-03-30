@@ -161,11 +161,12 @@ namespace Vcc.Nolvus.Package.Files
         {
             try
             {
-                //await ServiceSingleton.Files.DownloadFile(Link, Path.Combine(ServiceSingleton.Folders.DownloadDirectory, this.FileName), OnProgress, Size, string.Empty, string.Empty);
+                ServiceSingleton.Logger.Log(string.Format("Downloading file {0}", FileName));
                 await ServiceSingleton.Files.DownloadFile(Link, Path.Combine(ServiceSingleton.Folders.DownloadDirectory, this.FileName), OnProgress);
             }
             catch (Exception ex)
             {
+                ServiceSingleton.Logger.Log(string.Format("Error during file download {0} with error {1}", FileName, ex.Message));
                 throw ex;
             }
         }
@@ -178,8 +179,11 @@ namespace Vcc.Nolvus.Package.Files
                 {
                     var FileInfo = GetFileInfo();
 
+                    ServiceSingleton.Logger.Log(string.Format("Checking CRC for file {0}", FileName));
+
                     if (CRC32 == string.Empty || FileInfo.Length == 0 || (CRC32 != string.Empty && CRC32 != await ServiceSingleton.Files.GetCRC32(FileInfo, HashProgress)))
                     {
+                        ServiceSingleton.Logger.Log(string.Format("CRC check failed for file {0}", FileName));
                         Delete();
                         return false;
                     }
@@ -235,10 +239,12 @@ namespace Vcc.Nolvus.Package.Files
             {
                 try
                 {
+                    ServiceSingleton.Logger.Log(string.Format("Extracting file {0}", FileName));
                     await ServiceSingleton.Files.ExtractFile(LocationFileName, Path.Combine(ServiceSingleton.Folders.ExtractDirectory, Element.ExtractSubDir), OnProgress);
                 }
                 catch(Exception ex)
-                {                    
+                {
+                    ServiceSingleton.Logger.Log(string.Format("Error during file extract {0} with error {1}", FileName, ex.Message));
                     throw ex;
                 }
             });

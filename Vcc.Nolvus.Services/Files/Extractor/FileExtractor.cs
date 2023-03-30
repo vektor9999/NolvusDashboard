@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Events;
+using Vcc.Nolvus.Core.Services;
 
 namespace Vcc.Nolvus.Services.Files.Extractor
 {
@@ -44,7 +45,7 @@ namespace Vcc.Nolvus.Services.Files.Extractor
                     }
                 }
                 catch (Exception ex)
-                {
+                {                    
                     throw ex;
                 }
             });

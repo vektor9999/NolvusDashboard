@@ -76,7 +76,7 @@ namespace Vcc.Nolvus.Package.Patchers
                     }
                 }
                 catch(Exception ex)
-                {
+                {                    
                     throw ex;
                 }
             });

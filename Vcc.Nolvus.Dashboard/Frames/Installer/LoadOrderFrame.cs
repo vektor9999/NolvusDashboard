@@ -133,10 +133,13 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
                 ServiceSingleton.Dashboard.AdditionalInfo(string.Empty);
-                ServiceSingleton.Dashboard.Info("Applying install and load order");                
+                ServiceSingleton.Dashboard.Info("Applying install and load order");
+
+                ServiceSingleton.Logger.Log("Applying load order");
 
                 if (Instance.Status.InstallStatus == InstanceInstallStatus.Updating)
                 {
+                    ServiceSingleton.Logger.Log("Updating detected, package will be reloaded");
                     await ServiceSingleton.Packages.Load(await ApiManager.Service.Installer.GetPackage(Instance.Id, ServiceSingleton.Packages.LoadedVersion), (s, p) =>
                     {
                         ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
@@ -162,6 +165,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             }
             catch(Exception ex)
             {
+                ServiceSingleton.Logger.Log(string.Format("Error during mod list ordering with message {0}", ex.Message));
                 await ServiceSingleton.Dashboard.Error("Error during load order setup", ex.Message, ex.StackTrace);
             }                                                           
         }                      

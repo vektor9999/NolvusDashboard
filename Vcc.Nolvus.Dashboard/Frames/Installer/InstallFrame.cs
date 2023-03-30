@@ -115,9 +115,10 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
                 await ServiceSingleton.Packages.InstallModList(new ModInstallSettings()
                 {                    
-                    OnModInstalled = () =>
+                    OnModInstalled = (Mod) =>
                     {
                         GlobalProgress();
+                        ServiceSingleton.Logger.Log("Mod : " + Mod.Name + " installed.");
                     },                    
                     Browser = () =>
                     {
@@ -129,6 +130,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             }
             catch (Exception ex)
             {
+                ServiceSingleton.Logger.Log(string.Format("Error during mod list installation with message {0}", ex.Message));
                 await ServiceSingleton.Dashboard.Error("Error during mod installation", ex.Message, ex.StackTrace);
             }
 

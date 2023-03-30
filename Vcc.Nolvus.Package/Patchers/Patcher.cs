@@ -63,6 +63,7 @@ namespace Vcc.Nolvus.Package.Patchers
                 }
                 catch(Exception ex)
                 {
+                    ServiceSingleton.Logger.Log(string.Format("Error during patching file download {0} with error {1}", PatchArchive, ex.Message));
                     throw ex;
                 }
             });
@@ -81,6 +82,7 @@ namespace Vcc.Nolvus.Package.Patchers
                 }
                 catch (Exception ex)
                 {
+                    ServiceSingleton.Logger.Log(string.Format("Error during patching file extract {0} with error {1}", PatchArchive, ex.Message));
                     throw ex;
                 }
             });
@@ -116,6 +118,7 @@ namespace Vcc.Nolvus.Package.Patchers
                 }
                 catch (Exception ex)
                 {
+                    ServiceSingleton.Logger.Log(string.Format("Error during file patching {0} with error {1}", PatchArchive, ex.Message));
                     throw ex;
                 }
             });

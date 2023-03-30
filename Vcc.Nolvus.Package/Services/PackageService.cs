@@ -485,6 +485,7 @@ namespace Vcc.Nolvus.Package.Services
             {                
                 ProgressQueue.Add(await Mod.PrepareProgress());
                 InstallingModsQueue.Add(Mod);
+                ServiceSingleton.Logger.Log("Mod : " + Mod.Name + " added to queue.");
             });
 
             await Tsk;
@@ -494,6 +495,7 @@ namespace Vcc.Nolvus.Package.Services
         {
             ProgressQueue.Remove(Mod.Progress);
             InstallingModsQueue.Remove(Mod);
+            ServiceSingleton.Logger.Log("Mod : " + Mod.Name + " removed from queue.");
         }
 
         private async Task RequestManualDownloadLinkIfAny(InstallableElement Mod, ModInstallSettings Settings)
@@ -515,7 +517,9 @@ namespace Vcc.Nolvus.Package.Services
         }
 
         public async Task InstallModList(ModInstallSettings Settings)
-        {                        
+        {
+            CancellingException = null;
+                          
             foreach (var Category in GetCategoriesToInstall())
             {
                 await Category.Install(CancelTokenSource.Token);
@@ -539,7 +543,7 @@ namespace Vcc.Nolvus.Package.Services
 
                         RemoveModFromQueue(Mod);
 
-                        Settings.OnModInstalled();
+                        Settings.OnModInstalled(Mod);
 
                         SemaphoreSlim.Release();
                     }                                            
@@ -573,11 +577,12 @@ namespace Vcc.Nolvus.Package.Services
             {
                 throw CancelTasks.Task.Exception.InnerException;
             }
-            else if ( CancellingException != null)
+            else if (CancellingException != null)
             {
                 throw CancellingException;
             }
-            
+
+            ServiceSingleton.Logger.Log("List is installed");
         }        
     }
 }

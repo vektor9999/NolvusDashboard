@@ -15,9 +15,7 @@ namespace Vcc.Nolvus.Services.Files
     public abstract class BaseFileDownloader : IDisposable
     {
         protected Stopwatch SW = new Stopwatch();
-        private WebClient Wcli;
-
-        //public event DownloadProgressChangedHandler DownloadProgressChanged;
+        private WebClient Wcli;       
 
         event DownloadProgressChangedHandler DownloadProgressChangedEvent;
 
