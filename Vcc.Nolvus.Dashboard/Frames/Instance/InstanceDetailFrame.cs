@@ -135,55 +135,55 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
         {
             return await Task.Run(() =>
             {
-            try
-            {
                 try
                 {
-                    ShowLoading();
-                    ServiceSingleton.Dashboard.Status("Loading mods...");
-                    INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
-
-                    var InstallList = ServiceSingleton.Packages.GetInstallList();
-
-                    var ModListFile = Path.Combine(Instance.InstallDir, "MODS", "profiles", Instance.Name, "modlist.txt");
-
-                    List<string> Mods = System.IO.File.ReadAllLines(ModListFile).ToList();
-
-                    Mods.Reverse();
-
-                    Mods.RemoveAt(Mods.Count - 1);
-
-                    List<GridModObject> ModList = new List<GridModObject>();
-                    var Category = string.Empty;
-                    var Counter = 0;
-
-                    foreach (var Mod in Mods)
+                    try
                     {
-                        #region Mods
+                        ShowLoading();
+                        ServiceSingleton.Dashboard.Status("Loading mods...");
+                        INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
-                        var ModLine = Mod.Substring(1, Mod.Length - 1);
+                        var InstallList = ServiceSingleton.Packages.GetInstallList();
 
-                        if (ModLine.Contains("_separator"))
+                        var ModListFile = Path.Combine(Instance.InstallDir, "MODS", "profiles", Instance.Name, "modlist.txt");
+
+                        List<string> Mods = System.IO.File.ReadAllLines(ModListFile).ToList();
+
+                        Mods.Reverse();
+
+                        Mods.RemoveAt(Mods.Count - 1);
+
+                        List<GridModObject> ModList = new List<GridModObject>();
+                        var Category = string.Empty;
+                        var Counter = 0;
+
+                        foreach (var Mod in Mods)
                         {
-                            Category = ModLine.Replace("_separator", string.Empty);
-                        }
-                        else
-                        {
-                            GridModObject GridModObject = new GridModObject();
+                            #region Mods
 
-                            GridModObject.Priority = ModList.Count + 1;
-                            GridModObject.Name = ModLine;
-                            GridModObject.Category = Category;
+                            var ModLine = Mod.Substring(1, Mod.Length - 1);
 
-                            try
+                            if (ModLine.Contains("_separator"))
                             {
-                                IMOElement MOElement = InstallList.Where(x => x.Name == ModLine).FirstOrDefault();
+                                Category = ModLine.Replace("_separator", string.Empty);
+                            }
+                            else
+                            {
+                                GridModObject GridModObject = new GridModObject();
 
-                                GridModObject.Status = GridModObjectStatus.OK;
-                                GridModObject.StatusText = "OK";
+                                GridModObject.Priority = ModList.Count + 1;
+                                GridModObject.Name = ModLine;
+                                GridModObject.Category = Category;
 
-                                if (MOElement != null)
+                                try
                                 {
+                                    IMOElement MOElement = InstallList.Where(x => x.Name == ModLine).FirstOrDefault();
+
+                                    GridModObject.Status = GridModObjectStatus.OK;
+                                    GridModObject.StatusText = "OK";
+
+                                    if (MOElement != null)
+                                    {
                                         var MetaIniFile = Path.Combine(Instance.InstallDir, "MODS", "mods", ModLine, "meta.ini");
 
                                         if (File.Exists(MetaIniFile))
@@ -223,13 +223,13 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                                     GridModObject.StatusText = ex.Message;
                                 }
 
-                                ModList.Add(GridModObject);
+                                    ModList.Add(GridModObject);
 
-                            }
+                             }                            
 
-                            #endregion
+                                ServiceSingleton.Dashboard.Progress(System.Convert.ToInt16(Math.Round(((double)++Counter / Mods.Count * 100))));
 
-                            ServiceSingleton.Dashboard.Progress(System.Convert.ToInt16(Math.Round(((double)++Counter / Mods.Count * 100))));
+                                #endregion
                         }
 
                         return ModList;

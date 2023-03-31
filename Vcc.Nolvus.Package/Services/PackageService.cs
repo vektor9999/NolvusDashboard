@@ -534,9 +534,10 @@ namespace Vcc.Nolvus.Package.Services
                 catch (Exception ex)
                 {                    
                     if (!CancelTokenSource.Token.IsCancellationRequested)
-                    {                        
+                    {
+                        ServiceSingleton.Logger.Log("Cancelling current tasks");
                         CancelTokenSource.Cancel();
-
+                        
                         await QueueWatcher.WaitingForCompletion();
 
                         CancelTasks.SetException(ex);

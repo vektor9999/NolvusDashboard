@@ -246,18 +246,23 @@ namespace Vcc.Nolvus.Package.Mods
             var Tsk = Task.Run(async () =>
             {
                 try
-                {                                          
-                    var Counter = 0;
+                {
+                    if (Bsas.Count > 0)
+                    {
+                        ServiceSingleton.Logger.Log(string.Format("Unpacking mod {0}", Name));
+                        var Counter = 0;
 
-                    foreach (BsaUnPacking BSA in this.Bsas)
-                    {                        
-                        await BSA.UnPack(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir));
+                        foreach (BsaUnPacking BSA in this.Bsas)
+                        {
+                            await BSA.UnPack(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir));
 
-                        UnpackingProgress(BSA.FileName, ++Counter, Bsas.Count);
-                    }                   
+                            UnpackingProgress(BSA.FileName, ++Counter, Bsas.Count);
+                        }
+                    }                                     
                 }
                 catch (Exception ex)
                 {
+                    ServiceSingleton.Logger.Log(string.Format("Error during unpacking mod {0} with error {0}", Name, ex.Message));
                     ServiceSingleton.Files.RemoveDirectory(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), true);
                     throw ex;
                 }
@@ -273,6 +278,7 @@ namespace Vcc.Nolvus.Package.Mods
                 {
                     try
                     {
+                        ServiceSingleton.Logger.Log(string.Format("Installing mod {0}", Name));
                         this.PrepareDirectrory();
                         var Rules = FetchRules();
                         var Counter = 0;
@@ -305,7 +311,8 @@ namespace Vcc.Nolvus.Package.Mods
                 try
                 {                                        
                     if (Patcher != null)
-                    {                        
+                    {
+                        ServiceSingleton.Logger.Log(string.Format("Patching mod {0}", Name));
                         await Patcher.PatchFiles(MoDirectoryFullName, ServiceSingleton.Instances.WorkingInstance.StockGame, DownloadingProgress, ExtractingProgress, PatchingProgress);
                     }                                        
                 }

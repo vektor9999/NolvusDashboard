@@ -60,10 +60,6 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
             System.Diagnostics.Process.Start("https://www.patreon.com/nolvus");
         }
 
-        private void BtnSettings_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void BtnKeyBind_Click(object sender, EventArgs e)
         {

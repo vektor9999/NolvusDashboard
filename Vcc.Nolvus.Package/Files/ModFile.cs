@@ -180,7 +180,7 @@ namespace Vcc.Nolvus.Package.Files
 
                     ServiceSingleton.Logger.Log(string.Format("Checking CRC for file {0}", FileName));
 
-                    if (CRC32 == string.Empty || FileInfo.Length == 0 || (CRC32 != string.Empty && CRC32 != await ServiceSingleton.Files.GetCRC32(FileInfo, HashProgress)))
+                    if (CRC32 == string.Empty || !FileInfo.Exists || FileInfo.Length == 0 || (CRC32 != string.Empty && CRC32 != await ServiceSingleton.Files.GetCRC32(FileInfo, HashProgress)))
                     {
                         ServiceSingleton.Logger.Log(string.Format("CRC check failed for file {0}", FileName));
                         Delete();
@@ -199,8 +199,9 @@ namespace Vcc.Nolvus.Package.Files
         public async Task Download(DownloadProgressChangedHandler OnProgress, Action<string, int> HashProgress, int RetryCount, Func<IBrowserInstance> Browser)
         {
             var Tsk = Task.Run(async () =>
-            {
+            {                
                 var Tries = 0;
+                Exception CaughtException = null;
 
                 while (true)
                 {
@@ -219,6 +220,7 @@ namespace Vcc.Nolvus.Package.Files
                         }
                         catch(Exception ex)
                         {
+                            CaughtException = ex;
                             ServiceSingleton.Logger.Log(string.Format("Error during file download {0} with error {1}", FileName, ex.Message));
                         }
                     }                   
@@ -229,7 +231,15 @@ namespace Vcc.Nolvus.Package.Files
                     }
                     else if (Tries == RetryCount)
                     {
-                        throw new Exception(string.Format("Unable to download the file after {0} retries!", RetryCount.ToString()));
+                        if(CaughtException != null)
+                        {
+                            throw new Exception(string.Format("Unable to download file {0} after {1} retries with error {2}!", FileName, RetryCount.ToString(), CaughtException.Message));
+                        }
+                        else
+                        {
+                            throw new Exception(string.Format("Unable to download file {0} after {1} retries!", FileName, RetryCount.ToString()));
+                        }
+                        
                     }
 
                     Tries++;

@@ -73,6 +73,10 @@ namespace Vcc.Nolvus.Package.Mods
                         throw new Exception("Failed to unpack file : " + FileName + "==>" + String.Join(Environment.NewLine, Output.ToArray()));
                     }
                 }
+                else
+                {
+                    throw new Exception("Failed to unpack file : " + FileName + "==> File not found");
+                }
                 
             });
 

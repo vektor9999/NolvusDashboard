@@ -34,7 +34,8 @@ namespace Vcc.Nolvus.Services.Folders
         {
             get
             {
-                return Path.Combine(CacheDirectory, "Extract");                                                                                                
+                var cp = ServiceSingleton.Settings.GetIniValue("CustomPath", "Extract");
+                return cp == null ? Path.Combine(CacheDirectory, "Extract") : cp;                                                                                               
             }
         }
 

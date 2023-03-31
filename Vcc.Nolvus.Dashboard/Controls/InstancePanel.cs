@@ -137,9 +137,7 @@ namespace Vcc.Nolvus.Dashboard.Controls
 
         private void BrItmDelete_Click(object sender, EventArgs e)
         {
-            //OnInstanceDeleteHandler Handler = this.OnInstanceDeleteEvent;
-            //InstanceEvent Event = new InstanceEvent(_Instance);
-            //if (Handler != null) Handler(this, Event);
+            ServiceSingleton.Dashboard.LoadFrame<DeleteFrame>(new FrameParameters(new FrameParameter() { Key = "Instance", Value = _Instance as INolvusInstance }, new FrameParameter() { Key = "Action", Value = InstanceAction.Delete }));
         }       
     }
 }

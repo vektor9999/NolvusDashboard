@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Interfaces;
+using Vcc.Nolvus.Core.Services;
 
 namespace Vcc.Nolvus.Package.Services
 {
@@ -20,10 +21,13 @@ namespace Vcc.Nolvus.Package.Services
         {
             return Task.Run(async () =>
             {
+                ServiceSingleton.Logger.Log("Queue Watcher ==> Waiting for completion");
+
                 while (true)
                 {
                     if (_List.Count == 1)
-                    {                        
+                    {
+                        ServiceSingleton.Logger.Log("Queue Watcher ==> Queue completed");
                         break;
                     }
 

@@ -87,9 +87,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 {
                     File.Delete(_File);
 
-                    int PercentDone = System.Convert.ToInt16(((double)++Counter / Files.Length) * 100);
-
-                    ServiceSingleton.Dashboard.Status("Deleting instance (" + PercentDone + "%)");
+                    int PercentDone = System.Convert.ToInt16(((double)++Counter / Files.Length) * 100);                    
 
                     ServiceSingleton.Dashboard.Progress(PercentDone);
                 }

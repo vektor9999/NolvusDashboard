@@ -21,7 +21,7 @@ namespace Vcc.Nolvus.Package.Patchers
         {
             get
             {
-                return new FileInfo(this.PatchArchive);
+                return new FileInfo(PatchArchive);
             }
         }
 
@@ -52,6 +52,7 @@ namespace Vcc.Nolvus.Package.Patchers
             {
                 try
                 {
+                    ServiceSingleton.Logger.Log(string.Format("Downloading patch file {0}", PatchArchive));
                     var PatchFilePath = Path.Combine(ServiceSingleton.Folders.DownloadDirectory, PatchArchive);
 
                     if (File.Exists(PatchFilePath))
@@ -77,6 +78,7 @@ namespace Vcc.Nolvus.Package.Patchers
             {
                 try
                 {
+                    ServiceSingleton.Logger.Log(string.Format("Extracting patch file {0}", PatchArchive));
                     ServiceSingleton.Files.RemoveDirectory(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, PatcherFileDir), true);
                     await ServiceSingleton.Files.ExtractFile(Path.Combine(ServiceSingleton.Folders.DownloadDirectory, PatchArchive), Path.Combine(ServiceSingleton.Folders.ExtractDirectory, PatcherFileDir), OnProgress);                                        
                 }
@@ -99,10 +101,25 @@ namespace Vcc.Nolvus.Package.Patchers
                     try
                     {
                         var Counter = 0;
+                        var Tries = 0;
 
-                        await DownloadPatch(DownloadProgress);
-                        await ExtractPatch(ExtractProgress);
-
+                        while (true)
+                        {
+                            try
+                            {
+                                await DownloadPatch(DownloadProgress);
+                                await ExtractPatch(ExtractProgress);
+                                break;
+                            }
+                            catch(Exception ex)
+                            {
+                                if (Tries == ServiceSingleton.Settings.RetryCount)
+                                {
+                                    throw new Exception(string.Format("Unable to download file {0} after {1} retries with error {2}!", PatchArchive, ServiceSingleton.Settings.RetryCount.ToString(), ex.Message));
+                                }
+                                Tries++;
+                            }
+                        }                        
                         
                         foreach (var File in Files)
                         {

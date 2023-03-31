@@ -33,8 +33,8 @@ namespace Vcc.Nolvus.Dashboard
         {
             ServiceSingleton.RegisterService<ILogService>(new LogService());
             ServiceSingleton.RegisterService<IGlobalsService>(new GlobalsService());
-            ServiceSingleton.RegisterService<IFolderService>(new FolderService());
             ServiceSingleton.RegisterService<ISettingsService>(new SettingsService());
+            ServiceSingleton.RegisterService<IFolderService>(new FolderService());            
             ServiceSingleton.RegisterService<IInstanceService>(new InstanceService());
             ServiceSingleton.RegisterService<IUpdaterService>(new UpdaterService());
             ServiceSingleton.RegisterService<IPackageService>(new PackageService());
