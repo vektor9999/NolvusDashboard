@@ -221,7 +221,10 @@ namespace Vcc.Nolvus.Package.Files
                         catch(Exception ex)
                         {
                             CaughtException = ex;
-                            ServiceSingleton.Logger.Log(string.Format("Error during file download {0} with error {1}", FileName, ex.Message));
+
+                            if (ex.InnerException != null) CaughtException = ex.InnerException;
+
+                            ServiceSingleton.Logger.Log(string.Format("Error during file download {0} with error {1}", FileName, CaughtException.Message));
                         }
                     }                   
 

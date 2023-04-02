@@ -12,21 +12,14 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
     public class FileDownloader : BaseFileDownloader
     {        
         public override async Task DownloadFile(string UrlAddress, string Location)
-        {            
-            try
-            {
-                FileName = new FileInfo(Location).Name;                
+        {                       
+            FileName = new FileInfo(Location).Name;                
 
-                SW.Start();
+            SW.Start();
 
-                await Client.DownloadFileTaskAsync(new Uri(UrlAddress), Location);                
+            await Client.DownloadFileTaskAsync(new Uri(UrlAddress), Location);                
 
-                SW.Stop();
-            }
-            catch (Exception ex)
-            {                
-                throw ex;
-            }
+            SW.Stop();            
         }
     }
 }
