@@ -112,16 +112,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\NolvusLauncher.exe" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\splash.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Loading_NoBG.gif" />
+    <None Include="Resources\mod-def-22.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\mod-def-22.png" />
+    <None Include="Resources\NolvusLauncher.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
