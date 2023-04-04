@@ -304,6 +304,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
                 LblPhysics.Text = "No";
                 LblRayTracing.Text = "No";
+                LblFPS.Text = "No";
+
 
                 LblHC.Text = "No";
                 LblLeveling.Text = "No";
@@ -318,6 +320,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                 if (Instance.Performance.RayTracing == "TRUE")
                 {
                     LblRayTracing.Text = "Yes";
+                }
+
+                if (Instance.Performance.FPSStabilizer == "TRUE")
+                {
+                    LblFPS.Text = "Yes";
                 }
 
                 if (Instance.Options.HardcoreMode == "TRUE")

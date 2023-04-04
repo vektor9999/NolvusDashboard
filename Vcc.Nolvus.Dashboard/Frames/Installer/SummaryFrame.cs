@@ -66,6 +66,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             LblPhysics.Text = Instance.Performance.AdvancedPhysics == "TRUE" ? "Yes" : "No";
             LblLODs.Text = Instance.Performance.LODs;
             LblRayTracing.Text = Instance.Performance.RayTracing == "TRUE" ? "Yes" : "No";
+            LblFPS.Text = Instance.Performance.FPSStabilizer == "TRUE" ? "Yes" : "No";
 
             LblNudity.Text = Instance.Options.Nudity == "TRUE" ? "Yes" : "No";
             LblHC.Text = Instance.Options.HardcoreMode == "TRUE" ? "Yes" : "No";

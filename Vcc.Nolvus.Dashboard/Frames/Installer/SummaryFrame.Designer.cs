@@ -72,6 +72,8 @@
             this.PicBox = new System.Windows.Forms.PictureBox();
             this.BtnPrevious = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnStart = new Vcc.Nolvus.Components.Controls.FlatButton();
+            this.LblFPS = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -125,7 +127,7 @@
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(389, 234);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(397, 202);
+            this.groupBox3.Size = new System.Drawing.Size(397, 227);
             this.groupBox3.TabIndex = 31;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Options";
@@ -358,6 +360,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.LblFPS);
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.LblRayTracing);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.LblLODs);
@@ -375,7 +379,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(15, 234);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(365, 202);
+            this.groupBox1.Size = new System.Drawing.Size(365, 227);
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Performance";
@@ -586,6 +590,26 @@
             this.BtnStart.UseVisualStyleBackColor = false;
             this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
+            // LblFPS
+            // 
+            this.LblFPS.AutoSize = true;
+            this.LblFPS.ForeColor = System.Drawing.Color.Orange;
+            this.LblFPS.Location = new System.Drawing.Point(140, 200);
+            this.LblFPS.Name = "LblFPS";
+            this.LblFPS.Size = new System.Drawing.Size(33, 13);
+            this.LblFPS.TabIndex = 44;
+            this.LblFPS.Text = "[FPS]";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(10, 200);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(72, 13);
+            this.label12.TabIndex = 43;
+            this.label12.Text = "FPS Stabilizer";
+            // 
             // SummaryFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -655,5 +679,7 @@
         private System.Windows.Forms.Label LblNudity;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label LblFPS;
+        private System.Windows.Forms.Label label12;
     }
 }
