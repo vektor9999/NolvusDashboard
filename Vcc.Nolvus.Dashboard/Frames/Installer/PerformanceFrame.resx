@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label26.Text" xml:space="preserve">
+    <value>FPS Stabilizer is used to reduce draw distance on the fly to keep most fps possible. WARNING using this feature, you may gain 5-10 fps but some actors could pop really close to you. You may also experience objects and trees popins. Use this feature wisely.</value>
+  </data>
   <data name="label23.Text" xml:space="preserve">
     <value>These recommendations are an estimation only. It will always vary from a computer to an other and you can always tweak a bit more by selecting a lower Skyrim ini profile or disable other effects like Advanced Physics or Fake Ray tracing.</value>
   </data>

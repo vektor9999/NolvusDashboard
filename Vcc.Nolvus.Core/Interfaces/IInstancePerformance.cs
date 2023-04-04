@@ -17,6 +17,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         string Variant { get; set; }
         string LODs { get; set; }
         string RayTracing { get; set; }
-        string DownScaledResolution { get; }       
+        string DownScaledResolution { get; }
+        string FPSStabilizer { get; set; }
     }
 }

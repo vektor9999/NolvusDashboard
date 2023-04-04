@@ -29,6 +29,8 @@ namespace Vcc.Nolvus.Instance.Core
             }
         }
 
+        public string FPSStabilizer { get; set; } = "FALSE";
+
         #endregion
 
         public void Load(XmlNode Node)
@@ -41,7 +43,12 @@ namespace Vcc.Nolvus.Instance.Core
             AntiAliasing = Node["AntiAliasing"].InnerText.Trim();
             Variant = Node["Variant"].InnerText.Trim();
             LODs = Node["LODs"].InnerText.Trim();
-            RayTracing = Node["RayTracing"].InnerText.Trim();            
+            RayTracing = Node["RayTracing"].InnerText.Trim();  
+            
+            if (Node["FPSStabilizer"] != null)
+            {
+                FPSStabilizer = Node["FPSStabilizer"].InnerText.Trim();
+            }          
         }
         public XmlNode Save(XmlDocument Storage)
         {
@@ -82,6 +89,10 @@ namespace Vcc.Nolvus.Instance.Core
             XmlNode RTNode = Storage.CreateNode("element", "RayTracing", "");
             RTNode.InnerText = RayTracing.Trim();
             PerformanceNode.AppendChild(RTNode);
+
+            XmlNode FPSStabilizerNode = Storage.CreateNode("element", "FPSStabilizer", "");
+            FPSStabilizerNode.InnerText = FPSStabilizer.Trim();
+            PerformanceNode.AppendChild(FPSStabilizerNode);
 
             return PerformanceNode;
         }

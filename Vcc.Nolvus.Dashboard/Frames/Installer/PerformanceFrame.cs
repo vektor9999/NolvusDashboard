@@ -85,6 +85,18 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             this.TglBtnRayTracing.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
             this.TglBtnRayTracing.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
             this.TglBtnRayTracing.InactiveState.HoverColor = Color.White;
+
+            this.TglBtnFPSStabilizer.ActiveState.Text = "ON";
+            this.TglBtnFPSStabilizer.ActiveState.BackColor = Color.Orange;
+            this.TglBtnFPSStabilizer.ActiveState.BorderColor = Color.Orange;
+            this.TglBtnFPSStabilizer.ActiveState.ForeColor = Color.White;
+            this.TglBtnFPSStabilizer.ActiveState.HoverColor = Color.Orange;
+
+            this.TglBtnFPSStabilizer.InactiveState.Text = "OFF";
+            this.TglBtnFPSStabilizer.InactiveState.BackColor = Color.White;
+            this.TglBtnFPSStabilizer.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
+            this.TglBtnFPSStabilizer.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
+            this.TglBtnFPSStabilizer.InactiveState.HoverColor = Color.White;
         }
        
         private int ResolutionIndex(List<string> Resolutions)
@@ -202,6 +214,13 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 this.TglBtnDownScale.ToggleState = ToggleButtonState.Active;
             }
 
+            this.TglBtnFPSStabilizer.ToggleState = ToggleButtonState.Inactive;
+
+            if (Instance.Performance.FPSStabilizer == "TRUE")
+            {
+                this.TglBtnFPSStabilizer.ToggleState = ToggleButtonState.Active;
+            }
+
             DrpDwnLstAntiAliasing.DataSource = AntiAliasing;
 
             DrpDwnLstAntiAliasing.SelectedIndex = AntiAliasingIndex(AntiAliasing);
@@ -237,7 +256,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             else
             {
 
-                if (NolvusMessageBox.ShowConfirmation("Confirmation", "Some of the options you selected (like the variant, LODs quality, Advanced physics or Global Illumination) can not be changed after installation. Are you sure you want to continue?") == DialogResult.Yes)
+                if (NolvusMessageBox.ShowConfirmation("Confirmation", "Some of the options you selected (like the variant, LODs quality, Advanced physics, Global Illumination or FPS stabilizer) can not be changed after installation. Are you sure you want to continue?") == DialogResult.Yes)
                 {
                     if ((Performance.Variant == "Redux") && (Performance.AdvancedPhysics == "TRUE" || Performance.RayTracing == "TRUE" || Performance.AntiAliasing == "DLAA"))
                     {
@@ -289,6 +308,18 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             else
             {
                 ServiceSingleton.Instances.WorkingInstance.Performance.RayTracing = "FALSE";
+            }
+        }
+
+        private void TglBtnFPSStabilizer_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
+        {
+            if (e.ToggleState == ToggleButtonState.Active)
+            {
+                ServiceSingleton.Instances.WorkingInstance.Performance.FPSStabilizer = "TRUE";
+            }
+            else
+            {
+                ServiceSingleton.Instances.WorkingInstance.Performance.FPSStabilizer = "FALSE";
             }
         }
 

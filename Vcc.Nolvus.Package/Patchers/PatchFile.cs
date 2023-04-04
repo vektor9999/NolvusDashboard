@@ -61,6 +61,8 @@ namespace Vcc.Nolvus.Package.Patchers
 
                     if (SourceFileToPatch != null)
                     {
+                        ServiceSingleton.Logger.Log(string.Format("Patching file {0}", SourceFileToPatch.Name));
+
                         var DestinationFileToPatch = new FileInfo(Path.Combine(ExtractDir, DestinationFileName));
 
                         await PatcherManager.PatchFile(SourceFileToPatch.FullName, DestinationFileToPatch.FullName, Path.Combine(ExtractDir, PatchFileName));

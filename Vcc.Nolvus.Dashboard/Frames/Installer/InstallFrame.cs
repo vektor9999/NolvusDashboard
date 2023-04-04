@@ -47,7 +47,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         private void GlobalProgress()
         {
             ServiceSingleton.Dashboard.Info("Installing mods (" + Math.Floor(((double)ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Count / ServiceSingleton.Packages.ModsCount) * 100).ToString() + "%)");
-            ServiceSingleton.Dashboard.AdditionalInfo(string.Format("Mods {0}/{1}", ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Count, ServiceSingleton.Packages.ModsCount));
+            ServiceSingleton.Dashboard.AdditionalInfo(string.Format("Mods {0}/{1}", ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Count, ServiceSingleton.Packages.ModsCount));            
         }
 
         private void RefreshBox()
@@ -58,7 +58,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 return;
             }
             
-            ModsBox.DataSource = ServiceSingleton.Packages.ProgressQueue.ToList();            
+            ModsBox.DataSource = ServiceSingleton.Packages.ProgressQueue.ToList();
+            ModsBox.Refresh();                        
         }        
 
         private void ShowLoading()
@@ -111,7 +112,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
                 HideLoading();
 
-                Refresh(10);                
+                Refresh(10);                 
 
                 await ServiceSingleton.Packages.InstallModList(new ModInstallSettings()
                 {                    
