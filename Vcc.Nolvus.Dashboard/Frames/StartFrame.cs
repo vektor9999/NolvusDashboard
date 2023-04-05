@@ -238,7 +238,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 }
                 catch (Exception ex)
                 {
-                    await ServiceSingleton.Dashboard.Error("Error during initialization", ex.Message);
+                    await ServiceSingleton.Dashboard.Error("Error during initialization", ex.Message, ex.StackTrace);
                 }
             }
             finally

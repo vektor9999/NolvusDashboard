@@ -506,7 +506,7 @@ namespace Vcc.Nolvus.Package.Services
             foreach (var Category in GetCategoriesToInstall())
             {
                 await Category.Install(CancelTokenSource.Token);
-            }                   
+            }            
 
             var Tasks = GetModsToInstall().Where(x => !ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Any(y => y == x.Name)).ToList().Select(async Mod =>
             {                    

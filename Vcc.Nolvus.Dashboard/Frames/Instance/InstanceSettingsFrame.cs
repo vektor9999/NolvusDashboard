@@ -255,8 +255,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
                 List<string> Ratios = new List<string>();
 
-                Ratios.Add("16:9");
-                Ratios.Add("16:10");
+                Ratios.Add("16:9");                
                 Ratios.Add("21:9");
 
                 DrpDwnLstRatios.DataSource = Ratios;

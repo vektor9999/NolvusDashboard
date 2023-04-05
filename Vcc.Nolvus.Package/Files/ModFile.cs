@@ -207,6 +207,8 @@ namespace Vcc.Nolvus.Package.Files
                 {
                     if (!Exist())
                     {
+                        ServiceSingleton.Logger.Log(string.Format("Trying to download file {0} ({1}/{2})", FileName, Tries.ToString(), RetryCount.ToString()));
+
                         try
                         {
                             if (RequireManualDownload)
@@ -234,7 +236,9 @@ namespace Vcc.Nolvus.Package.Files
                     }
                     else if (Tries == RetryCount)
                     {
-                        if(CaughtException != null)
+                        ServiceSingleton.Logger.Log(string.Format("Download retry count reached for file {0}", FileName));
+
+                        if (CaughtException != null)
                         {
                             throw new Exception(string.Format("Unable to download file {0} after {1} retries with error {2}!", FileName, RetryCount.ToString(), CaughtException.Message));
                         }

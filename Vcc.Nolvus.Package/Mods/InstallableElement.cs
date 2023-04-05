@@ -323,20 +323,17 @@ namespace Vcc.Nolvus.Package.Mods
                     }                    
                 }
                 catch(Exception ex)
-                {
-                    if (!Token.IsCancellationRequested)
-                    {
-                        Progress.HasError = true;
-                        Progress.GlobalDone = 0;
-                        Progress.PercentDone = 0;
-                        Progress.Mbs = string.Empty;
-                        Progress.Action = string.Empty;
-                        Progress.Status = "Error detected waiting for the queue to finish...";
-                        ServiceSingleton.Logger.Log("Error during mod installation(" + this.Name + ") with message : " + ex.Message + Environment.NewLine + "Stack => " + ex.StackTrace);
-                        throw new Exception("Error during mod installation(" + this.Name + ") with message : " + ex.Message);                                                                        
-                    }                    
+                {                    
+                    Progress.HasError = true;
+                    Progress.GlobalDone = 0;
+                    Progress.PercentDone = 0;
+                    Progress.Mbs = string.Empty;
+                    Progress.Action = string.Empty;
+                    Progress.Status = "Error detected waiting for the queue to finish...";
+                    ServiceSingleton.Logger.Log("Error during mod installation(" + this.Name + ") with message : " + ex.Message + Environment.NewLine + "Stack => " + ex.StackTrace);
+                    throw new Exception("Error during mod installation(" + this.Name + ") with message : " + ex.Message);                                        
                 }
-            }, Token);
+            });
 
             await Tsk;
         }

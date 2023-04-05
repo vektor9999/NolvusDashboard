@@ -257,9 +257,9 @@ namespace Vcc.Nolvus.Updater
                 SetError("Nolvus Dashboard can not be installed on a root drive, please copy the updater.exe into an other folder (like D:\\Nolvus).");
                 ShowButton(true);
             }
-            else if (BaseFolder.Length > 30)
+            else if (BaseFolder.Length > 10)
             {
-                SetError("Your Installation path (" + BaseFolder + ") is too long, try reduce it (less than 30 characters). Your installation path will be automatically the path you are starting this program from.");
+                SetError("Your Installation path (" + BaseFolder + ") is too long, please copy the updater.exe into a shorter path like (D:\\Nolvus). Your installation path will be automatically the path you are starting this program from.");
                 ShowButton(true);
             }
             else
