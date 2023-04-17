@@ -80,7 +80,7 @@
     <Compile Include="Folders\FolderService.cs" />
     <Compile Include="Game\GameService.cs" />
     <Compile Include="Globals\GlobalsService.cs" />
-    <Compile Include="Log\LogService.cs" />
+    <Compile Include="Logger\LogService.cs" />
     <Compile Include="Settings\SettingsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Updater\UpdaterService.cs" />

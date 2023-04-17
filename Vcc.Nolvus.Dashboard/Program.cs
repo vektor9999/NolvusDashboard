@@ -15,7 +15,7 @@ using Vcc.Nolvus.Services.Settings;
 using Vcc.Nolvus.Services.Folders;
 using Vcc.Nolvus.Services.Updater;
 using Vcc.Nolvus.Services.Lib;
-using Vcc.Nolvus.Services.Log;
+using Vcc.Nolvus.Services.Logger;
 using Vcc.Nolvus.Services.Game;
 using Vcc.Nolvus.Services.Files;
 using Vcc.Nolvus.Instance.Services;
