@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Vcc.Nolvus.Core.Services;
 
 namespace Vcc.Nolvus.Components.Controls
 {
@@ -45,7 +46,7 @@ namespace Vcc.Nolvus.Components.Controls
 
         public TitleBarControl()
         {
-            InitializeComponent();
+            InitializeComponent();                        
 
             this.LblTitle.MouseDown += LabelMouseDown;
             this.LblInfo.MouseDown += LabelMouseDown;

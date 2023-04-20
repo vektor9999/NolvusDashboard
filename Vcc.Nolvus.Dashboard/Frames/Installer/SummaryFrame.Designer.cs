@@ -53,6 +53,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LblFPS = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.LblRayTracing = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.LblLODs = new System.Windows.Forms.Label();
@@ -72,8 +74,6 @@
             this.PicBox = new System.Windows.Forms.PictureBox();
             this.BtnPrevious = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnStart = new Vcc.Nolvus.Components.Controls.FlatButton();
-            this.LblFPS = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -110,7 +110,7 @@
             this.panel1.Controls.Add(this.BtnStart);
             this.panel1.Location = new System.Drawing.Point(7, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 659);
+            this.panel1.Size = new System.Drawing.Size(800, 553);
             this.panel1.TabIndex = 9;
             // 
             // groupBox3
@@ -125,7 +125,7 @@
             this.groupBox3.Controls.Add(this.label26);
             this.groupBox3.Controls.Add(this.label27);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(389, 234);
+            this.groupBox3.Location = new System.Drawing.Point(389, 217);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(397, 227);
             this.groupBox3.TabIndex = 31;
@@ -229,7 +229,7 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(15, 14);
+            this.groupBox2.Location = new System.Drawing.Point(15, 7);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(771, 202);
             this.groupBox2.TabIndex = 30;
@@ -377,12 +377,32 @@
             this.groupBox1.Controls.Add(this.LblDownscaling);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(15, 234);
+            this.groupBox1.Location = new System.Drawing.Point(15, 217);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(365, 227);
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Performance";
+            // 
+            // LblFPS
+            // 
+            this.LblFPS.AutoSize = true;
+            this.LblFPS.ForeColor = System.Drawing.Color.Orange;
+            this.LblFPS.Location = new System.Drawing.Point(140, 200);
+            this.LblFPS.Name = "LblFPS";
+            this.LblFPS.Size = new System.Drawing.Size(33, 13);
+            this.LblFPS.TabIndex = 44;
+            this.LblFPS.Text = "[FPS]";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(10, 200);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(72, 13);
+            this.label12.TabIndex = 43;
+            this.label12.Text = "FPS Stabilizer";
             // 
             // LblRayTracing
             // 
@@ -531,7 +551,7 @@
             this.PnlMessage.BackColor = System.Drawing.Color.Orange;
             this.PnlMessage.Controls.Add(this.LblMessage);
             this.PnlMessage.Controls.Add(this.PicBox);
-            this.PnlMessage.Location = new System.Drawing.Point(15, 511);
+            this.PnlMessage.Location = new System.Drawing.Point(15, 452);
             this.PnlMessage.Name = "PnlMessage";
             this.PnlMessage.Size = new System.Drawing.Size(771, 45);
             this.PnlMessage.TabIndex = 20;
@@ -565,7 +585,7 @@
             this.BtnPrevious.BorderColor = System.Drawing.Color.White;
             this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPrevious.ForeColor = System.Drawing.Color.White;
-            this.BtnPrevious.Location = new System.Drawing.Point(604, 604);
+            this.BtnPrevious.Location = new System.Drawing.Point(605, 503);
             this.BtnPrevious.Name = "BtnPrevious";
             this.BtnPrevious.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnPrevious.Size = new System.Drawing.Size(88, 40);
@@ -581,7 +601,7 @@
             this.BtnStart.BorderColor = System.Drawing.Color.White;
             this.BtnStart.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnStart.ForeColor = System.Drawing.Color.White;
-            this.BtnStart.Location = new System.Drawing.Point(698, 604);
+            this.BtnStart.Location = new System.Drawing.Point(698, 503);
             this.BtnStart.Name = "BtnStart";
             this.BtnStart.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnStart.Size = new System.Drawing.Size(88, 40);
@@ -589,26 +609,6 @@
             this.BtnStart.Text = "Start";
             this.BtnStart.UseVisualStyleBackColor = false;
             this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
-            // 
-            // LblFPS
-            // 
-            this.LblFPS.AutoSize = true;
-            this.LblFPS.ForeColor = System.Drawing.Color.Orange;
-            this.LblFPS.Location = new System.Drawing.Point(140, 200);
-            this.LblFPS.Name = "LblFPS";
-            this.LblFPS.Size = new System.Drawing.Size(33, 13);
-            this.LblFPS.TabIndex = 44;
-            this.LblFPS.Text = "[FPS]";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(10, 200);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(72, 13);
-            this.label12.TabIndex = 43;
-            this.label12.Text = "FPS Stabilizer";
             // 
             // SummaryFrame
             // 
@@ -618,7 +618,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.LblStepText);
             this.Name = "SummaryFrame";
-            this.Size = new System.Drawing.Size(810, 694);
+            this.Size = new System.Drawing.Size(810, 588);
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

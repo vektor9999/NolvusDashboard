@@ -21,16 +21,16 @@ namespace Vcc.Nolvus.Dashboard
 {
     public partial class DashboardWindow : SfForm, IDashboard
     {
+        private int DefaultDpi = 96;
         private DashboardFrame LoadedFrame;
         private TitleBarControl TitleBarControl;
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
-
+        
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
-        public static extern bool ReleaseCapture();
-               
+        public static extern bool ReleaseCapture();      
 
         #region Events
 
@@ -95,6 +95,14 @@ namespace Vcc.Nolvus.Dashboard
         #endregion
 
         #region Properties
+
+        public double ScalingFactor
+        {
+            get
+            {
+                return CreateGraphics().DpiX / DefaultDpi;
+            }
+        }
 
         #endregion
 
@@ -306,7 +314,7 @@ namespace Vcc.Nolvus.Dashboard
             Frame.Width = this.ContentPanel.Width;
             Frame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                    | System.Windows.Forms.AnchorStyles.Left)
-                   | System.Windows.Forms.AnchorStyles.Right)));
+                   | System.Windows.Forms.AnchorStyles.Right)));            
 
             AddFrame(Frame);
         }
@@ -365,7 +373,8 @@ namespace Vcc.Nolvus.Dashboard
 
         public DashboardWindow()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            
             ServiceSingleton.RegisterService<IDashboard>(this);
 
             ServiceSingleton.Logger.LineBreak();
@@ -376,7 +385,7 @@ namespace Vcc.Nolvus.Dashboard
             this.StStripLblInfo.Text = string.Empty;
             this.StStripLblAdditionalInfo.Text = string.Empty;
             this.StripLblAccountType.Text = string.Empty;
-            this.StripLblNexus.Text = string.Empty;           
+            this.StripLblNexus.Text = string.Empty;
 
             SkinManager.SetVisualStyle(this, "Office2016Black");
             this.Style.TitleBar.MaximizeButtonHoverBackColor = Color.DarkOrange;
@@ -391,13 +400,13 @@ namespace Vcc.Nolvus.Dashboard
             this.Style.TitleBar.BackColor = Color.FromArgb(54, 54, 54);
             this.Style.TitleBar.IconBackColor = Color.FromArgb(54, 54, 54);
             this.Style.TitleBar.Height = 50;
-            this.Style.BackColor = Color.FromArgb(54, 54, 54);
-
+            this.Padding = new Padding(0, this.Style.TitleBar.Height, 0, 0);
+            this.Style.BackColor = Color.FromArgb(54, 54, 54);            
 
             TitleBarControl = new TitleBarControl();
             TitleBarControl.Width = 3000;
             TitleBarControl.MouseDown += TitleBarControl_MouseDown;
-            this.TitleBarTextControl = TitleBarControl;
+            this.TitleBarTextControl = TitleBarControl;            
 
             this.TitleBarControl.Title = "Nolvus Dashboard";
             this.TitleBarControl.InfoCaption = "v" + ServiceSingleton.Dashboard.Version + " | Not logged";
@@ -405,7 +414,9 @@ namespace Vcc.Nolvus.Dashboard
             this.LoadAccountImage("https://www.nolvus.net/assets/images/account/user-profile.png");                      
 
             ProgressBar.Value = 0;
-            ProgressBar.Maximum = 100;                               
+            ProgressBar.Maximum = 100;
+
+            IconSize = new Size((int)Math.Round(IconSize.Width * ScalingFactor), (int)Math.Round(IconSize.Height * ScalingFactor));
         }        
         private void TitleBarControl_MouseDown(object sender, MouseEventArgs e)
         {
@@ -425,7 +436,7 @@ namespace Vcc.Nolvus.Dashboard
         private void DashboardWindow_Load(object sender, EventArgs e)
         {            
             ServiceSingleton.Dashboard.LoadFrameAsync<StartFrame>();
-        }       
+        }               
 
         protected override void OnClientSizeChanged(EventArgs e)
         {
@@ -434,8 +445,9 @@ namespace Vcc.Nolvus.Dashboard
                 TitleBarControl.Refresh();
                 Application.DoEvents();
             }
-            
+
             base.OnClientSizeChanged(e);
-        }
+        }      
     }
 }
+

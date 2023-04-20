@@ -40,11 +40,12 @@
             // 
             this.LblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblTitle.AutoSize = true;
             this.LblTitle.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.LblTitle.ForeColor = System.Drawing.Color.White;
-            this.LblTitle.Location = new System.Drawing.Point(0, 0);
+            this.LblTitle.Location = new System.Drawing.Point(3, 8);
             this.LblTitle.Name = "LblTitle";
-            this.LblTitle.Size = new System.Drawing.Size(236, 36);
+            this.LblTitle.Size = new System.Drawing.Size(139, 21);
             this.LblTitle.TabIndex = 0;
             this.LblTitle.Text = "Nolvus Dashboard";
             this.LblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -70,7 +71,7 @@
             this.AccountImage.Location = new System.Drawing.Point(530, 3);
             this.AccountImage.Name = "AccountImage";
             this.AccountImage.Size = new System.Drawing.Size(39, 34);
-            this.AccountImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.AccountImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.AccountImage.TabIndex = 5;
             this.AccountImage.TabStop = false;
             // 
@@ -102,6 +103,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.AccountImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LoadingBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

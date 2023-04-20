@@ -41,7 +41,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         public InstallFrame(IDashboard Dashboard, FrameParameters Params) 
             : base(Dashboard, Params)            
         {
-            InitializeComponent();                        
+            InitializeComponent();
+            ModsBox.ScalingFactor = ServiceSingleton.Dashboard.ScalingFactor;                 
         }        
 
         private void GlobalProgress()

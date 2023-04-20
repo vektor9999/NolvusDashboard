@@ -54,12 +54,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\DashboardTitleBar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\DashboardTitleBar.Designer.cs">
-      <DependentUpon>DashboardTitleBar.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\FlatButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -98,9 +92,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\DashboardTitleBar.resx">
-      <DependentUpon>DashboardTitleBar.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\MessageBar.resx">
       <DependentUpon>MessageBar.cs</DependentUpon>
     </EmbeddedResource>

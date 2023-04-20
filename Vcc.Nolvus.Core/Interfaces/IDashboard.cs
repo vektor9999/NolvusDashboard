@@ -22,6 +22,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         event OnFrameLoadedHandler OnFrameLoaded;
         event OnFrameLoadedHandler OnFrameLoadedAsync;
 
+        double ScalingFactor { get; }
 
         void Status(string Value);
         void NoStatus();

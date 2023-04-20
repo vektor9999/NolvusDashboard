@@ -52,6 +52,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             IFolderService Folders = ServiceSingleton.Folders;
             INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
+            LstBxOutput.ItemHeight = (int)Math.Round(LstBxOutput.ItemHeight * ServiceSingleton.Dashboard.ScalingFactor);
+
             var StockGameManager = new StockGameManager(Folders.DownloadDirectory, Folders.LibDirectory, Folders.GameDirectory, Instance, await ApiManager.Service.Installer.GetGamePackage(Instance.Version));
 
             StockGameManager.OnDownload += StockGameManager_OnDownload;
@@ -135,6 +137,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
         private void LstBxOutput_DrawItem(object sender, DrawItemEventArgs e)
         {
+            Font Font = new Font(e.Font.FontFamily, (float)(e.Font.Size * ServiceSingleton.Dashboard.ScalingFactor), GraphicsUnit.Pixel);
+
             if (e.Index < 0) return;            
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
                 e = new DrawItemEventArgs(e.Graphics,
@@ -146,7 +150,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                                           Color.Orange);
             
             e.DrawBackground();            
-            e.Graphics.DrawString(LstBxOutput.Items[e.Index].ToString(), e.Font, Brushes.White, e.Bounds, StringFormat.GenericDefault);            
+            e.Graphics.DrawString(LstBxOutput.Items[e.Index].ToString(), Font, Brushes.White, e.Bounds, StringFormat.GenericDefault);            
             e.DrawFocusRectangle();
         }
 

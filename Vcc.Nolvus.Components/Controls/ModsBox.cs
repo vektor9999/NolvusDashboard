@@ -8,11 +8,14 @@ using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Vcc.Nolvus.Core.Events;
+using Vcc.Nolvus.Core.Services;
 
 namespace Vcc.Nolvus.Components.Controls
 {
     public class ModsBox : ListBox
-    {        
+    {
+        public double ScalingFactor { get; set; } = 1;
+                
         public ModsBox()
         {
             this.SetStyle(
@@ -67,10 +70,11 @@ namespace Vcc.Nolvus.Components.Controls
         }
 
         protected override void OnDrawItem(DrawItemEventArgs e)
-        {                        
+        {                                       
             FontFamily FamilyTitle = new FontFamily("Segoe UI Light");
-            Font IFont = new Font(FamilyTitle, (float)9, FontStyle.Bold);
-            Font InfoFont = new Font(FontFamily.GenericSansSerif, (float)7, FontStyle.Regular);            
+            Font IFont = new Font(FamilyTitle, (float)(9 * ScalingFactor), FontStyle.Bold, GraphicsUnit.Pixel);
+            Font InfoFont = new Font(FontFamily.GenericSansSerif, (float)(7 * ScalingFactor), FontStyle.Regular, GraphicsUnit.Pixel);
+            Font StatusFont = new Font(e.Font.FontFamily, (float)(e.Font.Size * ScalingFactor), GraphicsUnit.Pixel);
 
             if (e.Index != -1 && !DesignMode)
             {
@@ -117,7 +121,7 @@ namespace Vcc.Nolvus.Components.Controls
 
                 if (Progress.HasError) Brush = Brushes.Red;
                 
-                e.Graphics.DrawString(Progress.Status, e.Font, Brush, 105, 20 + Top);                                
+                e.Graphics.DrawString(Progress.Status, StatusFont, Brush, 105, 20 + Top);                                
             }       
         }
     }

@@ -64,6 +64,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.LblFPS = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.LblAntiAliasing = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.LblSkinType = new System.Windows.Forms.Label();
@@ -84,8 +86,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.LblFPS = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.PnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -540,6 +540,26 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Options (Can not be changed after installation)";
             // 
+            // LblFPS
+            // 
+            this.LblFPS.AutoSize = true;
+            this.LblFPS.ForeColor = System.Drawing.Color.Orange;
+            this.LblFPS.Location = new System.Drawing.Point(115, 250);
+            this.LblFPS.Name = "LblFPS";
+            this.LblFPS.Size = new System.Drawing.Size(33, 13);
+            this.LblFPS.TabIndex = 48;
+            this.LblFPS.Text = "[FPS]";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.ForeColor = System.Drawing.Color.White;
+            this.label21.Location = new System.Drawing.Point(6, 250);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(72, 13);
+            this.label21.TabIndex = 47;
+            this.label21.Text = "FPS Stabilizer";
+            // 
             // LblAntiAliasing
             // 
             this.LblAntiAliasing.AutoSize = true;
@@ -741,26 +761,6 @@
             this.label7.Size = new System.Drawing.Size(40, 13);
             this.label7.TabIndex = 27;
             this.label7.Text = "Variant";
-            // 
-            // LblFPS
-            // 
-            this.LblFPS.AutoSize = true;
-            this.LblFPS.ForeColor = System.Drawing.Color.Orange;
-            this.LblFPS.Location = new System.Drawing.Point(115, 250);
-            this.LblFPS.Name = "LblFPS";
-            this.LblFPS.Size = new System.Drawing.Size(33, 13);
-            this.LblFPS.TabIndex = 48;
-            this.LblFPS.Text = "[FPS]";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(6, 250);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(72, 13);
-            this.label21.TabIndex = 47;
-            this.label21.Text = "FPS Stabilizer";
             // 
             // InstanceSettingsFrame
             // 
