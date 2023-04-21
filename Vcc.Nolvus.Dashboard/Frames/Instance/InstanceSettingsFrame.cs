@@ -240,6 +240,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
             this.TglBtnDownScale.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
             this.TglBtnDownScale.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
             this.TglBtnDownScale.InactiveState.HoverColor = Color.White;
+
+            PicBox.Location = new Point((int)Math.Round(PicBox.Location.X * ServiceSingleton.Dashboard.ScalingFactor), (int)Math.Round(PicBox.Location.Y * ServiceSingleton.Dashboard.ScalingFactor));
+            PicBox.Size = new Size((int)Math.Round(PicBox.Size.Width * ServiceSingleton.Dashboard.ScalingFactor), (int)Math.Round(PicBox.Size.Height * ServiceSingleton.Dashboard.ScalingFactor));
         }
       
         protected override async Task OnLoadAsync()

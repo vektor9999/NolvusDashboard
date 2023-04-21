@@ -72,9 +72,17 @@ namespace Vcc.Nolvus.Components.Controls
         protected override void OnDrawItem(DrawItemEventArgs e)
         {                                       
             FontFamily FamilyTitle = new FontFamily("Segoe UI Light");
-            Font IFont = new Font(FamilyTitle, (float)(9 * ScalingFactor), FontStyle.Bold, GraphicsUnit.Pixel);
-            Font InfoFont = new Font(FontFamily.GenericSansSerif, (float)(7 * ScalingFactor), FontStyle.Regular, GraphicsUnit.Pixel);
-            Font StatusFont = new Font(e.Font.FontFamily, (float)(e.Font.Size * ScalingFactor), GraphicsUnit.Pixel);
+
+            Font IFont = new Font(FamilyTitle, (float)9, FontStyle.Bold);
+            Font InfoFont = new Font(FontFamily.GenericSansSerif, (float)7, FontStyle.Regular);
+            Font StatusFont = e.Font;
+
+            if (ScalingFactor > 1)
+            {
+                IFont = new Font(FamilyTitle, (float)(9 * ScalingFactor), FontStyle.Bold, GraphicsUnit.Pixel);
+                InfoFont = new Font(FontFamily.GenericSansSerif, (float)(7 * ScalingFactor), FontStyle.Regular, GraphicsUnit.Pixel);
+                StatusFont = new Font(e.Font.FontFamily, (float)(e.Font.Size * ScalingFactor), GraphicsUnit.Pixel);
+            }           
 
             if (e.Index != -1 && !DesignMode)
             {

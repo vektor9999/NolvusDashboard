@@ -417,6 +417,7 @@ namespace Vcc.Nolvus.Dashboard
             ProgressBar.Maximum = 100;
 
             IconSize = new Size((int)Math.Round(IconSize.Width * ScalingFactor), (int)Math.Round(IconSize.Height * ScalingFactor));
+            StripLblScaling.Text = "[DPI:" + this.ScalingFactor * 100 + "%" + "]";
         }        
         private void TitleBarControl_MouseDown(object sender, MouseEventArgs e)
         {

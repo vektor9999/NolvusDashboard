@@ -40,6 +40,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.LblStatus = new System.Windows.Forms.Label();
             this.ProgressBar = new Syncfusion.Windows.Forms.Tools.ProgressBarAdv();
+            this.StripLblScaling = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusStripEx.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProgressBar)).BeginInit();
@@ -92,6 +93,7 @@
             this.StatusStripEx.BeforeTouchSize = new System.Drawing.Size(1005, 22);
             this.StatusStripEx.Dock = Syncfusion.Windows.Forms.Tools.DockStyleEx.Bottom;
             this.StatusStripEx.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StripLblScaling,
             this.StripLblNexus,
             this.StStripLblInfo,
             this.StripLblAccountType,
@@ -171,6 +173,12 @@
             this.ProgressBar.Visible = false;
             this.ProgressBar.WaitingGradientWidth = 400;
             // 
+            // StripLblScaling
+            // 
+            this.StripLblScaling.Name = "StripLblScaling";
+            this.StripLblScaling.Size = new System.Drawing.Size(63, 15);
+            this.StripLblScaling.Text = "[SCALING]";
+            // 
             // DashboardWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -216,6 +224,7 @@
         private Syncfusion.Windows.Forms.Tools.ProgressBarAdv ProgressBar;
         private System.Windows.Forms.Label LblStatus;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripStatusLabel StripLblScaling;
     }
 }
 

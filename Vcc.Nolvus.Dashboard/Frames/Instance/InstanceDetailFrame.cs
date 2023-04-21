@@ -55,6 +55,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
             ModsGrid.AllowSorting = false;
 
+            PicBox.Location = new Point((int)Math.Round(PicBox.Location.X * ServiceSingleton.Dashboard.ScalingFactor), (int)Math.Round(PicBox.Location.Y * ServiceSingleton.Dashboard.ScalingFactor));
+            PicBox.Size = new Size((int)Math.Round(PicBox.Size.Width * ServiceSingleton.Dashboard.ScalingFactor), (int)Math.Round(PicBox.Size.Height * ServiceSingleton.Dashboard.ScalingFactor));
+
         }
 
         protected override async Task OnLoadedAsync()
