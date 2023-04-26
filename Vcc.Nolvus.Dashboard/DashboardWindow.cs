@@ -399,9 +399,10 @@ namespace Vcc.Nolvus.Dashboard
 
             this.Style.TitleBar.BackColor = Color.FromArgb(54, 54, 54);
             this.Style.TitleBar.IconBackColor = Color.FromArgb(54, 54, 54);
-            this.Style.TitleBar.Height = 50;
-            this.Padding = new Padding(0, this.Style.TitleBar.Height, 0, 0);
-            this.Style.BackColor = Color.FromArgb(54, 54, 54);            
+            this.Style.TitleBar.Height = 50;            
+
+            Padding = new Padding(0, 50, 0, 0);
+            Style.BackColor = Color.FromArgb(54, 54, 54);            
 
             TitleBarControl = new TitleBarControl();
             TitleBarControl.Width = 3000;
@@ -443,6 +444,9 @@ namespace Vcc.Nolvus.Dashboard
         {
             if (TitleBarControl != null)
             {
+                var h = Convert.ToInt32(Math.Round(50 * ScalingFactor, 0)); ;
+                Style.TitleBar.Height = h;
+                Padding = new Padding(0, h, 0, 0);
                 TitleBarControl.Refresh();
                 Application.DoEvents();
             }

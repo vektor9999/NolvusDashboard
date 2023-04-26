@@ -35,12 +35,12 @@
             this.StripLblNexus = new System.Windows.Forms.ToolStripStatusLabel();
             this.StStripLblInfo = new Syncfusion.Windows.Forms.Tools.StatusStripLabel();
             this.StatusStripEx = new Syncfusion.Windows.Forms.Tools.StatusStripEx();
+            this.StripLblScaling = new System.Windows.Forms.ToolStripStatusLabel();
             this.StripLblAccountType = new System.Windows.Forms.ToolStripStatusLabel();
             this.StStripLblAdditionalInfo = new Syncfusion.Windows.Forms.Tools.StatusStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LblStatus = new System.Windows.Forms.Label();
             this.ProgressBar = new Syncfusion.Windows.Forms.Tools.ProgressBarAdv();
-            this.StripLblScaling = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusStripEx.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProgressBar)).BeginInit();
@@ -105,7 +105,12 @@
             this.StatusStripEx.TabIndex = 12;
             this.StatusStripEx.Text = "statusStripEx1";
             this.StatusStripEx.ThemeName = "Office2016Black";
-            this.StatusStripEx.Visible = false;
+            // 
+            // StripLblScaling
+            // 
+            this.StripLblScaling.Name = "StripLblScaling";
+            this.StripLblScaling.Size = new System.Drawing.Size(63, 15);
+            this.StripLblScaling.Text = "[SCALING]";
             // 
             // StripLblAccountType
             // 
@@ -172,12 +177,6 @@
             this.ProgressBar.Value = 100;
             this.ProgressBar.Visible = false;
             this.ProgressBar.WaitingGradientWidth = 400;
-            // 
-            // StripLblScaling
-            // 
-            this.StripLblScaling.Name = "StripLblScaling";
-            this.StripLblScaling.Size = new System.Drawing.Size(63, 15);
-            this.StripLblScaling.Text = "[SCALING]";
             // 
             // DashboardWindow
             // 

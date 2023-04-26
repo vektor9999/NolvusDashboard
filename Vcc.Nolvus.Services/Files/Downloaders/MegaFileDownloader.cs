@@ -65,6 +65,10 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
                         {
                             throw new Exception("Your daily mega.nz limit of 5gb by day has been reached. Wait until the limit (24 hours) has been reset or use a VPN to bypass this limit.");
                         }
+                        else
+                        {
+                            throw ex;
+                        }
                     }                  
                 }
                 finally
