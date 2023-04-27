@@ -115,6 +115,13 @@ WindowRounding=0.000000";
                 {
                     var ShaderFile = Path.Combine(ServiceSingleton.Folders.DownloadDirectory, ShaderName + ".zip");
 
+                    if (File.Exists(ShaderFile))
+                    {
+                        File.Delete(ShaderFile);
+                    }
+                    
+                    ServiceSingleton.Files.RemoveDirectory(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ShaderName), true);
+
                     ServiceSingleton.Logger.Log(string.Format("Downloading shader {0}", ShaderName));
                     await ServiceSingleton.Files.DownloadFile(Url, ShaderFile, DownloadingProgress);
 
@@ -123,6 +130,7 @@ WindowRounding=0.000000";
                 }
                 catch(Exception ex)
                 {
+                    ServiceSingleton.Logger.Log(string.Format("Error during shader download/extract with error {0}", ex.Message));
                     throw ex;
                 }
             });
@@ -137,6 +145,8 @@ WindowRounding=0.000000";
             {
                 try
                 {
+                    ServiceSingleton.Logger.Log("Extracting reshade binaries");
+
                     Process ReshadeProcess = new Process
                     {
                         StartInfo = { WorkingDirectory = ServiceSingleton.Folders.DownloadDirectory, FileName = "cmd.exe", CreateNoWindow = true, UseShellExecute = false, WindowStyle = ProcessWindowStyle.Hidden }
@@ -175,6 +185,7 @@ WindowRounding=0.000000";
                 }
                 catch(Exception ex)
                 {
+                    ServiceSingleton.Logger.Log(string.Format("Error during reshade binaries extraction with error {0}", ex.Message));
                     throw ex;
                 }
             });
@@ -237,6 +248,7 @@ WindowRounding=0.000000";
                     }
                     catch (Exception ex)
                     {
+                        ServiceSingleton.Logger.Log(string.Format("Error during reshade binaries installation with error {0}", ex.Message));
                         throw ex;
                     }
                 }
