@@ -111,10 +111,20 @@ WindowRounding=0.000000";
 
             var Tsk = Task.Run(async() => 
             {
-                var ShaderFile = Path.Combine(ServiceSingleton.Folders.DownloadDirectory, ShaderName + ".zip");
+                try
+                {
+                    var ShaderFile = Path.Combine(ServiceSingleton.Folders.DownloadDirectory, ShaderName + ".zip");
 
-                await ServiceSingleton.Files.DownloadFile(Url, ShaderFile, DownloadingProgress);
-                await ServiceSingleton.Files.ExtractFile(ShaderFile, Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ShaderName), ExtractingProgress);
+                    ServiceSingleton.Logger.Log(string.Format("Downloading shader {0}", ShaderName));
+                    await ServiceSingleton.Files.DownloadFile(Url, ShaderFile, DownloadingProgress);
+
+                    ServiceSingleton.Logger.Log(string.Format("Extracting shader {0}", ShaderName));
+                    await ServiceSingleton.Files.ExtractFile(ShaderFile, Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ShaderName), ExtractingProgress);
+                }
+                catch(Exception ex)
+                {
+                    throw ex;
+                }
             });
 
             await Tsk;                        
@@ -186,7 +196,11 @@ WindowRounding=0.000000";
 
                         Directory.CreateDirectory(ShadersDir);
 
+                        ServiceSingleton.Logger.Log("Installing reshade binaries");
+
                         File.Copy(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, Name, "ReShade64.dll"), Path.Combine(Instance.StockGame, "dxgi.dll"), true);
+
+                        ServiceSingleton.Logger.Log("Reshade binaries installed");
 
                         await DownloadAndExtractShaders(StandardEffect, "Standard");
                         await DownloadAndExtractShaders(LegacyEffectv5, "Legacy");
@@ -194,7 +208,7 @@ WindowRounding=0.000000";
                         await DownloadAndExtractShaders(AstrayFX, "AstrayFX");
                         await DownloadAndExtractShaders(Prod80Effect, "Prod80");
 
-                        
+                        ServiceSingleton.Logger.Log("Copying Shaders");
                         ServiceSingleton.Files.CopyFiles(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, "Standard", "reshade-shaders-slim", "Shaders"), Path.Combine(ShadersDir, "Shaders"), true);
                         ServiceSingleton.Files.CopyFiles(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, "Standard", "reshade-shaders-slim", "Textures"), Path.Combine(ShadersDir, "Textures"), true);
                         CopyingProgress(1, 5);

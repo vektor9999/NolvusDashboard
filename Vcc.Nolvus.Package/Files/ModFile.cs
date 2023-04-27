@@ -187,6 +187,8 @@ namespace Vcc.Nolvus.Package.Files
                         return false;
                     }
 
+                    ServiceSingleton.Logger.Log(string.Format("CRC validated for file {0}", FileName));
+
                     return true;
                 }
                 catch (Exception ex)
