@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Events;
 using CG.Web.MegaApiClient;
+using Vcc.Nolvus.Core.Services;
 
 
 namespace Vcc.Nolvus.Services.Files.Downloaders
@@ -16,7 +17,13 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
 
         public MegaFileDownloader()
         {
-            MegaApiClient = new MegaApiClient();            
+            MegaApiClient = new MegaApiClient();
+            MegaApiClient.ApiRequestFailed += MegaApiClient_ApiRequestFailed;  
+        }
+
+        private void MegaApiClient_ApiRequestFailed(object sender, ApiRequestFailedEventArgs e)
+        {
+            ServiceSingleton.Logger.Log($"Mega Api Request Failed: {e.ApiResult}, {e.ApiUrl}, {e.AttemptNum}, {e.RetryDelay}, {e.ResponseJson}, {e.Exception} {e.Exception?.Message}");
         }
 
         public override async Task DownloadFile(string UrlAddress, string Location)

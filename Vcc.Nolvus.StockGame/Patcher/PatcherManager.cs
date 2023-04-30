@@ -166,16 +166,24 @@ namespace Vcc.Nolvus.StockGame.Patcher
         {            
             var Tsk = Task.Run(async () => 
             {
-                if (!File.Exists(Path.Combine(_WorkingDir, Instruction.PatchFile)))
+                try
                 {
-                    this.StepProcessed("Downloading patch file " + Instruction.PatchFile);
+                    if (!File.Exists(Path.Combine(_WorkingDir, Instruction.PatchFile)))
+                    {
+                        this.StepProcessed("Downloading patch file " + Instruction.PatchFile);
 
-                    string DownloadedFile = Path.Combine(_WorkingDir, Instruction.PatchFile);
+                        string DownloadedFile = Path.Combine(_WorkingDir, Instruction.PatchFile);
 
-                    await ServiceSingleton.Files.DownloadFile(Instruction.DownLoadLink, DownloadedFile, Downloading);
+                        await ServiceSingleton.Files.DownloadFile(Instruction.DownLoadLink, DownloadedFile, Downloading);
 
-                    this.StepProcessed("Patching file downloaded");                    
-                }               
+                        this.StepProcessed("Patching file downloaded");
+                    }
+                }
+                catch(Exception ex)
+                {
+                    ServiceSingleton.Logger.Log(string.Format("Error during patch file download with message {0}", ex.Message));
+                    throw ex;
+                }              
             });
 
             await Tsk;                              
@@ -185,75 +193,80 @@ namespace Vcc.Nolvus.StockGame.Patcher
         {            
             var Tsk = Task.Run(async () => 
             {
-                await DoDownloadPatchFile(Instruction);
-
-                this.StepProcessed("Patching game file : " + Instruction.DestFile.Name);
-                this.ElementProcessed(0, 1, "Patching game file: " + Instruction.DestFile.Name);
-
-                string SourceFileName = Instruction.SourceFile.GetFullName(SourceDir);
-                string DestinationFileName = Instruction.DestFile.GetFullName(DestDir);
-                string PatchFileName = Path.Combine(_WorkingDir, Instruction.PatchFile);
-
-                Process PatchingProcess = new Process();
-
-                PatchingProcess.StartInfo.WorkingDirectory = DestDir;
-                PatchingProcess.StartInfo.FileName = "cmd.exe";
-                PatchingProcess.StartInfo.CreateNoWindow = true;
-                PatchingProcess.StartInfo.UseShellExecute = false;
-                PatchingProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-
-                string CommandLine = string.Format("\"" + Path.Combine(_LibDir, "xdelta3.exe") + "\" -d -f -s \"{0}\" \"{1}\" \"{2}\"", SourceFileName, PatchFileName, DestinationFileName);
-
-                PatchingProcess.StartInfo.Arguments = "/c \"" + CommandLine + "\"";
-
-                PatchingProcess.StartInfo.RedirectStandardOutput = true;
-                PatchingProcess.StartInfo.RedirectStandardError = true;
-
-                List<String> Output = new List<string>();
-
-                PatchingProcess.OutputDataReceived += new DataReceivedEventHandler((s, e) =>
+                try
                 {
-                    if (e.Data != null)
+                    await DoDownloadPatchFile(Instruction);
+
+                    this.StepProcessed("Patching game file : " + Instruction.DestFile.Name);
+                    this.ElementProcessed(0, 1, "Patching game file: " + Instruction.DestFile.Name);
+
+                    string SourceFileName = Instruction.SourceFile.GetFullName(SourceDir);
+                    string DestinationFileName = Instruction.DestFile.GetFullName(DestDir);
+                    string PatchFileName = Path.Combine(_WorkingDir, Instruction.PatchFile);
+
+                    Process PatchingProcess = new Process();
+
+                    PatchingProcess.StartInfo.WorkingDirectory = DestDir;
+                    PatchingProcess.StartInfo.FileName = "cmd.exe";
+                    PatchingProcess.StartInfo.CreateNoWindow = true;
+                    PatchingProcess.StartInfo.UseShellExecute = false;
+                    PatchingProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+
+                    string CommandLine = string.Format("\"" + Path.Combine(_LibDir, "xdelta3.exe") + "\" -d -f -s \"{0}\" \"{1}\" \"{2}\"", SourceFileName, PatchFileName, DestinationFileName);
+
+                    PatchingProcess.StartInfo.Arguments = "/c \"" + CommandLine + "\"";
+
+                    PatchingProcess.StartInfo.RedirectStandardOutput = true;
+                    PatchingProcess.StartInfo.RedirectStandardError = true;
+
+                    List<String> Output = new List<string>();
+
+                    PatchingProcess.OutputDataReceived += new DataReceivedEventHandler((s, e) =>
                     {
-                        Output.Add((string)e.Data);
-                    }
-                });
-                PatchingProcess.ErrorDataReceived += new DataReceivedEventHandler((s, e) =>
-                {
-                    if (e.Data != null)
-                    {
-                        Output.Add((String)e.Data);
-                    }
-                });
-
-                PatchingProcess.Start();
-                PatchingProcess.BeginOutputReadLine();
-                PatchingProcess.BeginErrorReadLine();
-
-                PatchingProcess.WaitForExit();
-
-                if (PatchingProcess.ExitCode == 0)
-                {
-                    File.Delete(PatchFileName);
-                    this.StepProcessed("Game file : " + Instruction.DestFile.Name + " patched");
-                    this.ElementProcessed(1, 1, "Patching game file: " + Instruction.DestFile.Name);
-
-                    if (Output.Count > 1)
-                    {
-                        //File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\Log.txt", Environment.NewLine + "xdelta3 output : " + string.Join(Environment.NewLine, Output.ToArray()));
-
-                        if (Output.Where(x => x.Contains("The screen cannot be set to the number of lines and columns specified")).FirstOrDefault() != null)
+                        if (e.Data != null)
                         {
-                           throw new GameFilePatchingException("Failed to patch game file : " + Instruction.DestFile.Name, string.Join(Environment.NewLine, Output.ToArray()));
+                            Output.Add((string)e.Data);
                         }
+                    });
+                    PatchingProcess.ErrorDataReceived += new DataReceivedEventHandler((s, e) =>
+                    {
+                        if (e.Data != null)
+                        {
+                            Output.Add((String)e.Data);
+                        }
+                    });
 
-                    }                    
+                    PatchingProcess.Start();
+                    PatchingProcess.BeginOutputReadLine();
+                    PatchingProcess.BeginErrorReadLine();
+
+                    PatchingProcess.WaitForExit();
+
+                    if (PatchingProcess.ExitCode == 0)
+                    {
+                        File.Delete(PatchFileName);
+                        this.StepProcessed("Game file : " + Instruction.DestFile.Name + " patched");
+                        this.ElementProcessed(1, 1, "Patching game file: " + Instruction.DestFile.Name);
+
+                        if (Output.Count > 1)
+                        {                            
+                            if (Output.Where(x => x.Contains("The screen cannot be set to the number of lines and columns specified")).FirstOrDefault() != null)
+                            {
+                                throw new GameFilePatchingException("Failed to patch game file : " + Instruction.DestFile.Name, string.Join(Environment.NewLine, Output.ToArray()));
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        throw new GameFilePatchingException("Failed to patch game file : " + Instruction.DestFile.Name, String.Join(Environment.NewLine, Output.ToArray()));
+                    }
                 }
-                else
+                catch(Exception ex)
                 {
-                    throw new GameFilePatchingException("Failed to patch game file : " + Instruction.DestFile.Name, String.Join(Environment.NewLine, Output.ToArray()));
+                    ServiceSingleton.Logger.Log(string.Format("Error during game file patching with message {0}", ex.Message));
+                    throw ex;
                 }
-
             });
 
             await Tsk;           
@@ -339,6 +352,7 @@ namespace Vcc.Nolvus.StockGame.Patcher
                 }
                 catch (Exception ex)
                 {
+                    ServiceSingleton.Logger.Log(string.Format("Error during game file patching with message {0}", ex.Message));
                     throw ex;
                 }
             });
