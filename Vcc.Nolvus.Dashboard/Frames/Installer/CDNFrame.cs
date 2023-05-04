@@ -89,7 +89,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
         private void BtnPrevious_Click(object sender, EventArgs e)
         {
-            ServiceSingleton.Dashboard.LoadFrame<ENBFrame>();
+            ServiceSingleton.Dashboard.LoadFrame<PageFileFrame>();
             
         }
     }

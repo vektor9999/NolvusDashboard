@@ -21,6 +21,7 @@ namespace Vcc.Nolvus.StockGame.Patcher
 
         string _WorkingDir = string.Empty;
         string _LibDir = string.Empty;
+        string _PatchDir = string.Empty;
 
         #endregion
 
@@ -91,10 +92,11 @@ namespace Vcc.Nolvus.StockGame.Patcher
 
         #endregion
 
-        public PatcherManager(string WorkingDir, string LibDir)
+        public PatcherManager(string WorkingDir, string LibDir, string PatchDir)
         {
             _WorkingDir = WorkingDir;
             _LibDir = LibDir;
+            _PatchDir = PatchDir;
         }
 
         #region Methods
@@ -168,11 +170,11 @@ namespace Vcc.Nolvus.StockGame.Patcher
             {
                 try
                 {
-                    if (!File.Exists(Path.Combine(_WorkingDir, Instruction.PatchFile)))
+                    if (!File.Exists(Path.Combine(_PatchDir, Instruction.PatchFile)))
                     {
                         this.StepProcessed("Downloading patch file " + Instruction.PatchFile);
 
-                        string DownloadedFile = Path.Combine(_WorkingDir, Instruction.PatchFile);
+                        string DownloadedFile = Path.Combine(_PatchDir, Instruction.PatchFile);
 
                         await ServiceSingleton.Files.DownloadFile(Instruction.DownLoadLink, DownloadedFile, Downloading);
 
@@ -189,7 +191,7 @@ namespace Vcc.Nolvus.StockGame.Patcher
             await Tsk;                              
         }      
 
-        private async Task DoPatchFile(PatchingInstruction Instruction, string SourceDir, string DestDir)
+        private async Task DoPatchFile(PatchingInstruction Instruction, string SourceDir, string DestDir, bool KeepPatches)
         {            
             var Tsk = Task.Run(async () => 
             {
@@ -202,7 +204,7 @@ namespace Vcc.Nolvus.StockGame.Patcher
 
                     string SourceFileName = Instruction.SourceFile.GetFullName(SourceDir);
                     string DestinationFileName = Instruction.DestFile.GetFullName(DestDir);
-                    string PatchFileName = Path.Combine(_WorkingDir, Instruction.PatchFile);
+                    string PatchFileName = Path.Combine(_PatchDir, Instruction.PatchFile);
 
                     Process PatchingProcess = new Process();
 
@@ -244,7 +246,11 @@ namespace Vcc.Nolvus.StockGame.Patcher
 
                     if (PatchingProcess.ExitCode == 0)
                     {
-                        File.Delete(PatchFileName);
+                        if (!KeepPatches)
+                        {
+                            File.Delete(PatchFileName);
+                        }
+                        
                         this.StepProcessed("Game file : " + Instruction.DestFile.Name + " patched");
                         this.ElementProcessed(1, 1, "Patching game file: " + Instruction.DestFile.Name);
 
@@ -340,13 +346,13 @@ namespace Vcc.Nolvus.StockGame.Patcher
                         {                            
                             if (Output.Where(x => x.Contains("The screen cannot be set to the number of lines and columns specified")).FirstOrDefault() != null)
                             {
-                                throw new GameFilePatchingException("Failed to patch game file : " + new FileInfo(DestinationFile).Name, string.Join(Environment.NewLine, Output.ToArray()));
+                                throw new GameFilePatchingException("Failed to patch game file : " + new FileInfo(DestinationFile).Name + " (" + String.Join(Environment.NewLine, Output.ToArray()) + ")", string.Join(Environment.NewLine, Output.ToArray()));
                             }
                         }                        
                     }
                     else
                     {
-                        throw new GameFilePatchingException("Failed to patch game file : " + new FileInfo(DestinationFile).Name, String.Join(Environment.NewLine, Output.ToArray()));
+                        throw new GameFilePatchingException("Failed to patch game file : " + new FileInfo(DestinationFile).Name + " (" + String.Join(Environment.NewLine, Output.ToArray()) + ")", String.Join(Environment.NewLine, Output.ToArray()));
                     }
 
                 }
@@ -360,7 +366,7 @@ namespace Vcc.Nolvus.StockGame.Patcher
             await Tsk;
         }
 
-        public async Task PatchFile(PatchingInstruction Instruction, string SourceDir, string DestDir)
+        public async Task PatchFile(PatchingInstruction Instruction, string SourceDir, string DestDir, bool KeepPatches)
         {            
             var Tsk = Task.Run(async ()=>
             {
@@ -377,7 +383,7 @@ namespace Vcc.Nolvus.StockGame.Patcher
                             StepProcessed("Game file : " + Instruction.DestFile.Name + " deleted");
                             break;
                         case PatcherAction.Patch:                            
-                            await DoPatchFile(Instruction, SourceDir, DestDir);                                                        
+                            await DoPatchFile(Instruction, SourceDir, DestDir, KeepPatches);                                                        
                             CheckPatchedFile(Instruction, DestDir);                            
                             break;
                     }                    

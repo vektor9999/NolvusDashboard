@@ -30,8 +30,10 @@ namespace Vcc.Nolvus.StockGame.Core
         string _LibDir = string.Empty;
         string _GameDir = string.Empty;
         string _StockGameDir = string.Empty;
+        string _PatchDir = string.Empty;
         string _Language = string.Empty;
         string _LanguageCode = string.Empty;
+        bool _KeepPatches = false;
         GameManifest _Package;
         PatcherManager _Patcher;
 
@@ -137,22 +139,43 @@ namespace Vcc.Nolvus.StockGame.Core
 
         #endregion
 
-        public StockGameManager(string WorkingDir, string LibDir, string GameDir, INolvusInstance Instance, IGamePackageDTO GamePackage)
+        public StockGameManager(string WorkingDir, string LibDir, string PatchDir, string GameDir, INolvusInstance Instance, IGamePackageDTO GamePackage, bool KeepPatches = false)
         {            
             _WorkingDir = WorkingDir;
             _LibDir = LibDir;
+            _PatchDir = PatchDir;
             _GameDir = GameDir;
             _GamePackage = GamePackage;
             _StockGameDir = Instance.StockGame;
             _Language = Instance.Settings.LgName;
             _LanguageCode = Instance.Settings.LgCode;
-            _Patcher = new PatcherManager(WorkingDir, LibDir);
+            _KeepPatches = KeepPatches;
+            _Patcher = new PatcherManager(WorkingDir, LibDir, PatchDir);
 
             _Patcher.OnDownload += Downloading;
             _Patcher.OnExtract += Extracting;
             _Patcher.OnStepProcessed += StepProcessing;
             _Patcher.OnItemProcessed += ItemProcessing;                        
-        }       
+        }
+
+        public StockGameManager(string WorkingDir, string LibDir, string PatchDir, string GameDir, string StockGameDir, string LgName, string LgCode, IGamePackageDTO GamePackage, bool KeepPatches = false)
+        {
+            _WorkingDir = WorkingDir;
+            _LibDir = LibDir;
+            _PatchDir = PatchDir;
+            _GameDir = GameDir;
+            _GamePackage = GamePackage;
+            _StockGameDir = StockGameDir;
+            _Language = LgName;
+            _LanguageCode = LgCode;
+            _KeepPatches = KeepPatches;
+            _Patcher = new PatcherManager(WorkingDir, LibDir, PatchDir);
+
+            _Patcher.OnDownload += Downloading;
+            _Patcher.OnExtract += Extracting;
+            _Patcher.OnStepProcessed += StepProcessing;
+            _Patcher.OnItemProcessed += ItemProcessing;
+        }
 
         #region Methods
 
@@ -368,7 +391,7 @@ namespace Vcc.Nolvus.StockGame.Core
 
                     foreach (var Instruction in _Package.Instructions)
                     {                                                
-                        await _Patcher.PatchFile(Instruction, _GameDir, _StockGameDir);
+                        await _Patcher.PatchFile(Instruction, _GameDir, _StockGameDir, _KeepPatches);
 
                         ElementProcessed(Counter, Total, "Patching game files");
 

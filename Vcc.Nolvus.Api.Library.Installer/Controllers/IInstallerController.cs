@@ -28,6 +28,7 @@ namespace Vcc.Nolvus.Api.Installer.Controllers
         Task<IInstalledInstanceDTO> GetInstalledInstance(string UserName);
         Task<IEnumerable<IInstalledInstanceDTO>> GetInstalledInstances(string UserName);
         Task<object> SetInstalledInstance(string Name, DateTime InstallDate, string UserName);
-        Task<IGamePackageDTO> GetGamePackage(string Version);          
+        Task<IGamePackageDTO> GetGamePackage(string Version);
+        Task<IGamePackageDTO> GetLatestGamePackage();
     }
 }

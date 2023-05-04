@@ -122,7 +122,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             }
             else
             {
-                ServiceSingleton.Dashboard.LoadFrame<OptionsFrame>();
+                ServiceSingleton.Dashboard.LoadFrame<PageFileFrame>();
             }
         }                 
     }

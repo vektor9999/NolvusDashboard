@@ -311,6 +311,12 @@
     <Compile Include="Frames\Installer\ChangeLogFrame.Designer.cs">
       <DependentUpon>ChangeLogFrame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frames\Installer\PageFileFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Installer\PageFileFrame.Designer.cs">
+      <DependentUpon>PageFileFrame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frames\Installer\FinishFrame.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -462,6 +468,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\Installer\ChangeLogFrame.resx">
       <DependentUpon>ChangeLogFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Installer\PageFileFrame.resx">
+      <DependentUpon>PageFileFrame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\Installer\FinishFrame.resx">
       <DependentUpon>FinishFrame.cs</DependentUpon>

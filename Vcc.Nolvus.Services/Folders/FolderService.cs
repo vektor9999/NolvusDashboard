@@ -54,6 +54,14 @@ namespace Vcc.Nolvus.Services.Folders
             }
         }
 
+        public string PatchDirectory
+        {
+            get
+            {
+                return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "lib", "Patches");
+            }
+        }
+
         public string NexusCacheDirectory
         {
             get

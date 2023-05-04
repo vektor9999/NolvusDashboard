@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows.Forms;
 using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Frames;
@@ -19,30 +20,22 @@ using Syncfusion.Windows.Forms.Tools;
 
 namespace Vcc.Nolvus.Dashboard.Frames.Installer
 {
-    public partial class ENBFrame : DashboardFrame
+    public partial class PageFileFrame : DashboardFrame
     {
-        public ENBFrame()
+        public PageFileFrame()
         {
             InitializeComponent();
         }
 
-        public ENBFrame(IDashboard Dashboard, FrameParameters Params)
+        public PageFileFrame(IDashboard Dashboard, FrameParameters Params)
             : base(Dashboard, Params)            
         {
             InitializeComponent();
         }
 
         protected override void OnLoad()
-        {            
-            List<string> ENBs = new List<string>();
-
-            ENBs.Add("Standard ENB (PI-CHO ENB)");
-
-            DrpDwnLstENB.DataSource = ENBs;
-
-            DrpDwnLstENB.SelectedIndex = 0;
-
-            ServiceSingleton.Dashboard.Info("ENB Selection");
+        {                       
+            ServiceSingleton.Dashboard.Info("Page file size configuration");
         }
         
 
@@ -64,24 +57,28 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                
         private void BtnPrevious_Click(object sender, EventArgs e)
         {
-            ServiceSingleton.Dashboard.LoadFrame<OptionsFrame>();
+            ServiceSingleton.Dashboard.LoadFrame<ENBFrame>();
         }
 
         private void BtnContinue_Click(object sender, EventArgs e)
-        {                       
-            ServiceSingleton.Dashboard.LoadFrame<PageFileFrame>();            
-        }
-
-        private void DrpDwnLstENB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (DrpDwnLstENB.SelectedIndex == 0)
+            if (NolvusMessageBox.ShowConfirmation("Confirmation", "Page file size configuration is REALLY IMPORTANT to avoid crashes, be sure you set it up correctly. Do you want to continue?") == DialogResult.Yes)
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB = "FALSE";
+                if (NexusApi.ApiManager.AccountInfo.IsPremium)
+                {
+                    ServiceSingleton.Dashboard.LoadFrame<CDNFrame>();
+                }
+                else
+                {
+                    ServiceSingleton.Dashboard.LoadFrame<SummaryFrame>();
+                }
             }
-            else
-            {
-                ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB = "TRUE";
-            }
+        }
+        
+
+        private void LnkLblPageFile_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://www.nolvus.net/appendix/pagefile");
         }
     }
 }

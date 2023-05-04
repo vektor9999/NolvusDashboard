@@ -54,17 +54,16 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
             LstBxOutput.ItemHeight = (int)Math.Round(LstBxOutput.ItemHeight * ServiceSingleton.Dashboard.ScalingFactor);
 
-            var StockGameManager = new StockGameManager(Folders.DownloadDirectory, Folders.LibDirectory, Folders.GameDirectory, Instance, await ApiManager.Service.Installer.GetGamePackage(Instance.Version));
+            var StockGameManager = new StockGameManager(Folders.DownloadDirectory, Folders.LibDirectory, Folders.PatchDirectory, Folders.GameDirectory, Instance, await ApiManager.Service.Installer.GetGamePackage(Instance.Version), true);
 
             StockGameManager.OnDownload += StockGameManager_OnDownload;
             StockGameManager.OnExtract += StockGameManager_OnExtract;
             StockGameManager.OnItemProcessed += StockGameManager_OnGamePackageLoad;
-            StockGameManager.OnStepProcessed += StockGameManager_OnStepProcessed;
-
-            await StockGameManager.Load();                
+            StockGameManager.OnStepProcessed += StockGameManager_OnStepProcessed;                           
 
             try
             {
+                await StockGameManager.Load();
                 await StockGameManager.CheckIntegrity();
                 await StockGameManager.CopyGameFiles();
                 await StockGameManager.PatchGameFiles();
@@ -90,6 +89,10 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 {
                     await ServiceSingleton.Dashboard.Error("Error during game files patching", ex.Message);
                 }
+                else
+                {
+                    await ServiceSingleton.Dashboard.Error("Error during stock game installation", ex.Message);
+                }
             }
         }   
 
@@ -104,8 +107,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             LstBxOutput.Items.Add(Item);
 
             int VisibleItems = LstBxOutput.ClientSize.Height / LstBxOutput.ItemHeight;
-            LstBxOutput.TopIndex = Math.Max(LstBxOutput.Items.Count - VisibleItems + 1, 0);
-            File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\Log.txt", Environment.NewLine + Item);
+            LstBxOutput.TopIndex = Math.Max(LstBxOutput.Items.Count - VisibleItems + 1, 0);            
+            ServiceSingleton.Logger.Log(Item);
         }
 
         private void StockGameManager_OnDownload(object sender, DownloadProgress e)

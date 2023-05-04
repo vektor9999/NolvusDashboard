@@ -48,7 +48,7 @@ namespace Vcc.Nolvus.Package.Patchers
             {
                 try
                 {
-                    var PatcherManager = new PatcherManager(ServiceSingleton.Folders.DownloadDirectory, ServiceSingleton.Folders.LibDirectory);
+                    var PatcherManager = new PatcherManager(ServiceSingleton.Folders.DownloadDirectory, ServiceSingleton.Folders.LibDirectory, ServiceSingleton.Folders.PatchDirectory);
 
                     var Dir = ModDir;
 

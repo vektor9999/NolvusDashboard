@@ -172,5 +172,10 @@ namespace Vcc.Nolvus.Api.Installer.Controllers
 
             return await this._Service.GetPolyMorphic<GamePackageDTO>($"{_Api}/getgamepackage", Params);
         }
+
+        public async Task<IGamePackageDTO> GetLatestGamePackage()
+        {            
+            return await this._Service.GetUnRestricted<GamePackageDTO>($"{_Api}/getlatestgamepackage");
+        }
     }
 }

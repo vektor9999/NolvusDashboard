@@ -12,6 +12,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         string DownloadDirectory { get; }
         string ExtractDirectory { get; }
         string LibDirectory { get; }
+        string PatchDirectory { get; }
         string NexusCacheDirectory { get; }
         string WebCacheDirectory { get; }
         string ResourcesDirectory { get; }
