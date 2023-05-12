@@ -64,8 +64,13 @@ namespace Vcc.Nolvus.Package.Patchers
                 }
                 catch(Exception ex)
                 {
-                    ServiceSingleton.Logger.Log(string.Format("Error during patching file download {0} with error {1}", PatchArchive, ex.Message));
-                    throw ex;
+                    var CaughtException = ex;
+
+                    if (ex.InnerException != null) CaughtException = ex.InnerException;
+
+                    ServiceSingleton.Logger.Log(string.Format("Error during patching file download {0} with error {1}", PatchArchive, CaughtException.Message));
+
+                    throw CaughtException;
                 }
             });
 
