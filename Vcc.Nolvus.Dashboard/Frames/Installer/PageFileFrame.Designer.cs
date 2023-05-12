@@ -33,10 +33,11 @@
             this.BtnContinue = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.LnkLblPageFile = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.LblStepText = new System.Windows.Forms.Label();
-            this.LnkLblPageFile = new System.Windows.Forms.LinkLabel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -103,6 +104,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.LnkLblPageFile);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.pictureBox1);
@@ -110,6 +112,21 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(641, 531);
             this.panel2.TabIndex = 17;
+            // 
+            // LnkLblPageFile
+            // 
+            this.LnkLblPageFile.AutoSize = true;
+            this.LnkLblPageFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LnkLblPageFile.ForeColor = System.Drawing.Color.Orange;
+            this.LnkLblPageFile.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.LnkLblPageFile.LinkColor = System.Drawing.Color.Orange;
+            this.LnkLblPageFile.Location = new System.Drawing.Point(13, 117);
+            this.LnkLblPageFile.Name = "LnkLblPageFile";
+            this.LnkLblPageFile.Size = new System.Drawing.Size(140, 13);
+            this.LnkLblPageFile.TabIndex = 43;
+            this.LnkLblPageFile.TabStop = true;
+            this.LnkLblPageFile.Text = "Page FIle Size Configuration";
+            this.LnkLblPageFile.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LnkLblPageFile_LinkClicked);
             // 
             // label3
             // 
@@ -146,20 +163,16 @@
             this.LblStepText.Text = "Page File Size Configuration";
             this.LblStepText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // LnkLblPageFile
+            // label1
             // 
-            this.LnkLblPageFile.AutoSize = true;
-            this.LnkLblPageFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LnkLblPageFile.ForeColor = System.Drawing.Color.Orange;
-            this.LnkLblPageFile.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.LnkLblPageFile.LinkColor = System.Drawing.Color.Orange;
-            this.LnkLblPageFile.Location = new System.Drawing.Point(13, 117);
-            this.LnkLblPageFile.Name = "LnkLblPageFile";
-            this.LnkLblPageFile.Size = new System.Drawing.Size(140, 13);
-            this.LnkLblPageFile.TabIndex = 43;
-            this.LnkLblPageFile.TabStop = true;
-            this.LnkLblPageFile.Text = "Page FIle Size Configuration";
-            this.LnkLblPageFile.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LnkLblPageFile_LinkClicked);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(13, 154);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(610, 35);
+            this.label1.TabIndex = 44;
+            this.label1.Text = "This setup will require a reboot so you can do this after installation but don\'t " +
+    "forget to do it before playing the game.";
             // 
             // PageFileFrame
             // 
@@ -190,5 +203,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.LinkLabel LnkLblPageFile;
+        private System.Windows.Forms.Label label1;
     }
 }

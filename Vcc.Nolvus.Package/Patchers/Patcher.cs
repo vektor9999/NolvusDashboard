@@ -115,8 +115,13 @@ namespace Vcc.Nolvus.Package.Patchers
                             {
                                 if (Tries == ServiceSingleton.Settings.RetryCount)
                                 {
-                                    throw new Exception(string.Format("Unable to download file {0} after {1} retries with error {2}!", PatchArchive, ServiceSingleton.Settings.RetryCount.ToString(), ex.Message));
+                                    var CaughtException = ex;
+
+                                    if (ex.InnerException != null) CaughtException = ex.InnerException;                                
+
+                                    throw new Exception(string.Format("Unable to download file {0} after {1} retries with error {2}!", PatchArchive, ServiceSingleton.Settings.RetryCount.ToString(), CaughtException.Message));
                                 }
+
                                 Tries++;
                             }
                         }                        
