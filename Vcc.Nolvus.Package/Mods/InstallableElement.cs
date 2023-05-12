@@ -281,13 +281,16 @@ namespace Vcc.Nolvus.Package.Mods
 
         public virtual async Task RequestManualNexusDownloadLink(Func<IBrowserInstance> Browser)
         {
-            await Task.WhenAll(Files.Where(x => x is NexusModFile).Select(async File => 
+            if (Action != ElementAction.Remove)
             {
-                if (!File.Exist() || !await File.CRCCheck())
+                await Task.WhenAll(Files.Where(x => x is NexusModFile).Select(async File => 
                 {
-                    File.DownloadLink = await Browser().GetNexusManualDownloadLink(File.DownloadLink, (File as NexusModFile).NexusId);
-                }
-            }));                        
+                    if (!File.Exist() || !await File.CRCCheck())
+                    {
+                        File.DownloadLink = await Browser().GetNexusManualDownloadLink(File.DownloadLink, (File as NexusModFile).NexusId);
+                    }
+                }));
+            }
         }   
             
         public virtual async Task Install(CancellationToken Token, ModInstallSettings Settings = null)
