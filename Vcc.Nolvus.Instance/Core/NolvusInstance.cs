@@ -83,6 +83,11 @@ namespace Vcc.Nolvus.Instance.Core
         {
             return await ApiManager.Service.Installer.GetLatestPackage(this.Id);            
         }
+
+        public async Task<bool> LatestPackageRequireNewGame()
+        {
+            return await ApiManager.Service.Installer.LatestPackageRequireNewGame(Id, Version);
+        }
               
         public InstanceCheckStatus Check()
         {

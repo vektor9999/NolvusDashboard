@@ -177,5 +177,15 @@ namespace Vcc.Nolvus.Api.Installer.Controllers
         {            
             return await this._Service.GetUnRestricted<GamePackageDTO>($"{_Api}/getlatestgamepackage");
         }
+
+        public async Task<bool> LatestPackageRequireNewGame(string GuideId, string CurrentVersion)
+        {
+            Dictionary<string, object> Params = new Dictionary<string, object>();
+
+            Params.Add("GuideId", GuideId);
+            Params.Add("CurrentVersion", CurrentVersion);
+
+            return await this._Service.GetPolyMorphic<bool>($"{_Api}/latestpackagenewgame", Params);
+        }
     }
 }

@@ -127,10 +127,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         }
 
         private async void BtnContinue_Click(object sender, EventArgs e)
-        {
-            var LatestPackage = await (Parameters["Instance"] as INolvusInstance).GetLatestPackage();
-
-            if (LatestPackage.NewGame)
+        {            
+            if (await (Parameters["Instance"] as INolvusInstance).LatestPackageRequireNewGame())
             {
                 if (NolvusMessageBox.ShowConfirmation("Warning", "This new Nolvus version requires a new game. Your current saves will not work with it. Are you really sure you want to proceed with the installation?") == DialogResult.Yes)
                 {

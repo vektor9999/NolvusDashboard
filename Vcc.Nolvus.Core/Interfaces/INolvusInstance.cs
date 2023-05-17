@@ -25,5 +25,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         Task<string> GetState();
         Task<string> GetLatestVersion();
         Task<IInstallPackageDTO> GetLatestPackage();
+        Task<bool> LatestPackageRequireNewGame();
     }
 }

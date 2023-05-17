@@ -30,5 +30,6 @@ namespace Vcc.Nolvus.Api.Installer.Controllers
         Task<object> SetInstalledInstance(string Name, DateTime InstallDate, string UserName);
         Task<IGamePackageDTO> GetGamePackage(string Version);
         Task<IGamePackageDTO> GetLatestGamePackage();
+        Task<bool> LatestPackageRequireNewGame(string GuideId, string CurrentVersion);        
     }
 }

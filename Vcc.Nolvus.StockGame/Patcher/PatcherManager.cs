@@ -216,6 +216,8 @@ namespace Vcc.Nolvus.StockGame.Patcher
 
                     string CommandLine = string.Format("\"" + Path.Combine(_LibDir, "xdelta3.exe") + "\" -d -f -s \"{0}\" \"{1}\" \"{2}\"", SourceFileName, PatchFileName, DestinationFileName);
 
+                    ServiceSingleton.Logger.Log(string.Format("Executing command {0}", CommandLine));
+
                     PatchingProcess.StartInfo.Arguments = "/c \"" + CommandLine + "\"";
 
                     PatchingProcess.StartInfo.RedirectStandardOutput = true;
@@ -246,13 +248,15 @@ namespace Vcc.Nolvus.StockGame.Patcher
 
                     if (PatchingProcess.ExitCode == 0)
                     {
+                        ServiceSingleton.Logger.Log(string.Format("Command output [{0}]", string.Join(Environment.NewLine, Output.ToArray())));
+
                         if (!KeepPatches)
                         {
                             File.Delete(PatchFileName);
                         }
                         
                         this.StepProcessed("Game file : " + Instruction.DestFile.Name + " patched");
-                        this.ElementProcessed(1, 1, "Patching game file: " + Instruction.DestFile.Name);
+                        this.ElementProcessed(1, 1, "Game file: " + Instruction.DestFile.Name + " patched");
 
                         if (Output.Count > 1)
                         {                            
@@ -265,6 +269,7 @@ namespace Vcc.Nolvus.StockGame.Patcher
                     }
                     else
                     {
+                        ServiceSingleton.Logger.Log(string.Format("Command output [{0}]", string.Join(Environment.NewLine, Output.ToArray())));
                         throw new GameFilePatchingException("Failed to patch game file : " + Instruction.DestFile.Name, String.Join(Environment.NewLine, Output.ToArray()));
                     }
                 }
@@ -298,10 +303,12 @@ namespace Vcc.Nolvus.StockGame.Patcher
 
         public async Task PatchFile(string SourceFile, string DestinationFile, string PatchFileName)
         {            
-            var Tsk = Task.Run(() =>
+            var Tsk = Task.Run(async () =>
             {
                 try
-                {                   
+                {
+                    await DoDownloadBinaries();
+                                     
                     Process PatchingProcess = new Process();
 
                     PatchingProcess.StartInfo.WorkingDirectory = new FileInfo(DestinationFile).DirectoryName;

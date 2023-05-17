@@ -68,9 +68,13 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
                     }
                     catch(Exception ex)
                     {
-                        if (ex.Message.Contains("509"))
+                        var CaughtException = ex;
+
+                        if (ex.InnerException != null) CaughtException = ex.InnerException;
+
+                        if (CaughtException.Message.Contains("509"))
                         {
-                            throw new Exception("Your daily mega.nz limit of 5gb by day has been reached. Wait until the limit (24 hours) has been reset or use a VPN to bypass this limit.");
+                            throw new Exception("Your daily mega.nz limit of 5gb by day has been reached. Wait until the limit (24 hours) has been reset or use a VPN to bypass this limit");
                         }
                         else
                         {
