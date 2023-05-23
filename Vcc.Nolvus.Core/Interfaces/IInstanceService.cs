@@ -24,5 +24,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         void PrepareInstanceForInstall();
         void PrepareInstanceForUpdate();
         void FinalizeInstance();
+        string GetValueFromKey(string Key);
     }
 }

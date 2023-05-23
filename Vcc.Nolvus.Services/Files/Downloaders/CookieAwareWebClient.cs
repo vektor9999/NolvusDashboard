@@ -10,6 +10,8 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
 {
     public class CookieAwareWebClient : WebClient
     {
+        private TaskCompletionSource<object> _TaskCompletion;
+
         private class CookieContainer
         {
             private readonly Dictionary<string, string> cookies = new Dictionary<string, string>();
@@ -29,6 +31,11 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
                     cookies[address.Host] = value;
                 }
             }
+        }
+
+        public CookieAwareWebClient(TaskCompletionSource<object> TaskCompletion)
+        {
+            _TaskCompletion = TaskCompletion;
         }
 
         private readonly CookieContainer cookies = new CookieContainer();
@@ -52,7 +59,25 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
 
         protected override WebResponse GetWebResponse(WebRequest request, IAsyncResult result)
         {
-            return ProcessResponse(base.GetWebResponse(request, result));
+            WebResponse Response = null;
+
+            try
+            {
+                Response = ProcessResponse(base.GetWebResponse(request, result));
+            }
+            catch (Exception ex)
+            {
+                var CaughtException = ex;
+
+                if (CaughtException.Message.Contains("429"))
+                {
+                    CaughtException = new Exception("The server returned error code 429 (too many requests) which means that the google drive server where this file is hosted is currently overloaded by the number of simultaneous downloads. Please try again later");
+                }
+                
+                _TaskCompletion.SetException(CaughtException);
+            }
+
+            return Response;
         }
 
         protected override WebResponse GetWebResponse(WebRequest request)

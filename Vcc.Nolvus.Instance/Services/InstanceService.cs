@@ -386,6 +386,44 @@ namespace Vcc.Nolvus.Instance.Services
             get { return Instances.Count == 0; }
         }             
 
+        public string GetValueFromKey(string Key)
+        {
+            string EnvValue = Key;
+
+            System.Reflection.PropertyInfo PropToCompare = typeof(INolvusInstance).GetProperty(Key);            
+            
+            if (PropToCompare == null)
+            {
+                PropToCompare = typeof(IInstanceSettings).GetProperty(Key);
+
+                if (PropToCompare == null)
+                {
+                    PropToCompare = typeof(IInstancePerformance).GetProperty(Key);
+
+                    if (PropToCompare == null)
+                    {
+                        PropToCompare = typeof(IInstanceOptions).GetProperty(Key);
+
+                        EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Options);
+                    }
+                    else
+                    {
+                        EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Performance);
+                    }
+                }
+                else
+                {
+                    EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Settings);
+                }
+            }
+            else
+            {
+                EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance);
+            }
+
+            return EnvValue;   
+        }
+
         #endregion
     }
 }

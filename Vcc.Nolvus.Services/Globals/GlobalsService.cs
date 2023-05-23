@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Management;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -135,6 +136,26 @@ namespace Vcc.Nolvus.Services.Globals
                 return Result;
             }
            
+        }
+
+        public List<string> GetVideoAdapters()
+        {            
+            ManagementObjectCollection GPUs = new ManagementObjectSearcher("SELECT * FROM Win32_VideoController").Get();
+
+            var Result = new List<string>();            
+
+            foreach (ManagementObject GPU in GPUs)
+            {
+                PropertyData CurrentBitsPerPixel = GPU.Properties["CurrentBitsPerPixel"];
+                PropertyData Description = GPU.Properties["Description"];
+
+                if (CurrentBitsPerPixel != null && Description != null)
+                {
+                    if (CurrentBitsPerPixel.Value != null) Result.Add(Description.Value.ToString().ToUpper());
+                }                              
+            }
+
+            return Result;
         }
     }
 }

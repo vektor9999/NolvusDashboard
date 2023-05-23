@@ -102,7 +102,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
         private void BtnStart_Click(object sender, EventArgs e)
         {
-            string Mo2Path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ModOrganizer");
+            string Mo2Path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ModOrganizer");            
 
             if (Directory.Exists(Mo2Path) && !ServiceSingleton.Files.IsDirectoryEmpty(Mo2Path))
             {                

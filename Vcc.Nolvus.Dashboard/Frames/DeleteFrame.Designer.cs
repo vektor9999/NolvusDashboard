@@ -37,6 +37,7 @@
             this.LblInstance = new System.Windows.Forms.Label();
             this.LblInstanceInfo = new System.Windows.Forms.Label();
             this.LblStepText = new System.Windows.Forms.Label();
+            this.LblDeleteInfo = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -111,6 +112,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.LblDeleteInfo);
             this.panel2.Controls.Add(this.LblInstance);
             this.panel2.Controls.Add(this.LblInstanceInfo);
             this.panel2.Location = new System.Drawing.Point(7, 30);
@@ -152,6 +154,17 @@
             this.LblStepText.Text = "Delete Nolvus Instance";
             this.LblStepText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // LblDeleteInfo
+            // 
+            this.LblDeleteInfo.AutoSize = true;
+            this.LblDeleteInfo.ForeColor = System.Drawing.Color.White;
+            this.LblDeleteInfo.Location = new System.Drawing.Point(3, 43);
+            this.LblDeleteInfo.Name = "LblDeleteInfo";
+            this.LblDeleteInfo.Size = new System.Drawing.Size(98, 13);
+            this.LblDeleteInfo.TabIndex = 2;
+            this.LblDeleteInfo.Text = "Deleting instance...";
+            this.LblDeleteInfo.Visible = false;
+            // 
             // DeleteFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -179,5 +192,6 @@
         private System.Windows.Forms.Label LblInstance;
         private System.Windows.Forms.Label LblInstanceInfo;
         private Components.Controls.FlatButton BtnBack;
+        private System.Windows.Forms.Label LblDeleteInfo;
     }
 }

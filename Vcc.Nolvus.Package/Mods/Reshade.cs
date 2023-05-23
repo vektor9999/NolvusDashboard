@@ -147,6 +147,8 @@ WindowRounding=0.000000";
                 {
                     ServiceSingleton.Logger.Log("Extracting reshade binaries");
 
+                    ServiceSingleton.Files.RemoveDirectory(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, Name), true);
+
                     Process ReshadeProcess = new Process
                     {
                         StartInfo = { WorkingDirectory = ServiceSingleton.Folders.DownloadDirectory, FileName = "cmd.exe", CreateNoWindow = true, UseShellExecute = false, WindowStyle = ProcessWindowStyle.Hidden }

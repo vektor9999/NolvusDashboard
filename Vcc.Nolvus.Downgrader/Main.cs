@@ -232,7 +232,7 @@ namespace Vcc.Nolvus.Downgrader
 
         private void BtnDowngrade_Click(object sender, EventArgs e)
         {
-            if (TxtBxSkyrimDir.Text != string.Empty || TxtBxOutputDir.Text != string.Empty)
+            if (TxtBxSkyrimDir.Text != string.Empty && TxtBxOutputDir.Text != string.Empty)
             {
                 if (TxtBxSkyrimDir.Text == TxtBxOutputDir.Text)
                 {
@@ -247,8 +247,7 @@ namespace Vcc.Nolvus.Downgrader
                     else
                     {
                         MessageBox.Show("The output directory is not empty! Please select an empty directory!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    
+                    }                    
                 }                
             }
             else

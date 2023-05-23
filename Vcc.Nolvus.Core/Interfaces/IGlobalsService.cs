@@ -15,5 +15,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         string NexusApiKey { get; }
         string NexusUserAgent { get; }
         List<string> WindowsResolutions { get; }
+        List<string> GetVideoAdapters();
     }
 }

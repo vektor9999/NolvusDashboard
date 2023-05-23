@@ -355,6 +355,8 @@ namespace Vcc.Nolvus.Dashboard
         {
             ServiceSingleton.Dashboard.NoStatus();
             ServiceSingleton.Dashboard.ProgressCompleted();
+            ServiceSingleton.Logger.Log("Error Form => " + Message);
+
             await LoadFrameAsync<ErrorFrame>(new FrameParameters(FrameParameter.Create("Title", Title), FrameParameter.Create("Message", Message), FrameParameter.Create("Trace", Trace), FrameParameter.Create("Retry", Retry)));
         }
 

@@ -14,30 +14,8 @@ namespace Vcc.Nolvus.Package.Rules
         public override void Execute(string GamePath, string ExtractDir, string ModDir, string InstanceDir)
         {
             if (this.CanExecute(GamePath, ModDir))
-            {
-                System.Reflection.PropertyInfo PropToCompare = typeof(IInstanceOptions).GetProperty(Value);                
-
-                string EnvValue;
-
-                if (PropToCompare == null)
-                {
-                    PropToCompare = typeof(IInstancePerformance).GetProperty(Value);
-
-                    if (PropToCompare == null)
-                    {
-                        PropToCompare = typeof(IInstanceSettings).GetProperty(Value);
-                        EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Settings);
-                    }
-                    else
-                    {
-                        EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Performance);
-                    }
-                }
-                else
-                {
-                    EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Options);
-                }
-                
+            {               
+                string EnvValue = ServiceSingleton.Instances.GetValueFromKey(Value);
 
                 if (this.IsIni)
                 {                    

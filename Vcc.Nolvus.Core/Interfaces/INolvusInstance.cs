@@ -15,7 +15,8 @@ namespace Vcc.Nolvus.Core.Interfaces
         string Description { get;}
         string InstallDir { get; set; }
         string ArchiveDir { get; set; }
-        string StockGame { get; set; }        
+        string StockGame { get; set; }
+        string Overwrite { get; }
         DateTime LastUpdate { get; set; }
         IInstanceSettings Settings { get; }
         IInstancePerformance Performance { get; }

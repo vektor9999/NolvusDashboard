@@ -31,7 +31,13 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
 
         protected override WebClient CreateWebClient()
         {
-            return new CookieAwareWebClient();
+            Tcs = new TaskCompletionSource<object>();
+
+            return new CookieAwareWebClient(Tcs);
+        }
+
+        public GoogleDriveFileDownloader()
+        {            
         }
 
         private string GetGoogleDriveDownloadAddress(string Address)
@@ -117,7 +123,7 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
         private void DownloadFileInternal()
         {            
             SW.Start();
-            Client.DownloadFileAsync(DownloadAddress, DownloadPath);           
+            Client.DownloadFileAsync(DownloadAddress, DownloadPath);                        
         }
 
         private void DoDownloadFile(string UrlAddress, string Location)
@@ -135,10 +141,8 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
         }
 
         public override Task DownloadFile(string UrlAddress, string Location)
-        {
-            Tcs = new TaskCompletionSource<object>();
-
-            DoDownloadFile(UrlAddress, Location);
+        {                       
+            DoDownloadFile(UrlAddress, Location);                            
 
             return Tcs.Task;
         }
@@ -162,11 +166,14 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
                 }
                 else
                 {
-                    if (DownloadFileCompleted != null)
-                        DownloadFileCompleted(this, e);
+                    if (DownloadFileCompleted != null) DownloadFileCompleted(this, e);
 
                     SW.Stop();
-                    Tcs.SetResult(new object());
+
+                    if (!Tcs.Task.IsFaulted)
+                    {
+                        Tcs.SetResult(new object());
+                    }                                        
                 }
             }
         }

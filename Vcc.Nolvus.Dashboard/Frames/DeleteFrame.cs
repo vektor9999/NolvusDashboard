@@ -76,9 +76,24 @@ namespace Vcc.Nolvus.Dashboard.Frames
 
             LblInstance.Text = this.Instance.Name + " v" + Version;
         }
-       
+
+        public void UpdateProgress(int Value)
+        {
+            if (InvokeRequired)
+            {
+                Invoke((System.Action<int>)UpdateProgress, Value);
+                return;
+            }
+
+            LblDeleteInfo.Text = "Deleting instance (" + Value.ToString() + "%)";
+        }
+
         private async Task DeleteInstance(string[] Files)
         {
+            LblDeleteInfo.Visible = true;
+            BtnAction.Enabled = false;
+            BtnBack.Enabled = false;
+
             var Tsk = Task.Run(() =>
             {
                 int Counter = 0;
@@ -87,7 +102,9 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 {
                     File.Delete(_File);
 
-                    int PercentDone = System.Convert.ToInt16(((double)++Counter / Files.Length) * 100);                    
+                    int PercentDone = System.Convert.ToInt16(((double)++Counter / Files.Length) * 100);
+
+                    UpdateProgress(PercentDone);
 
                     ServiceSingleton.Dashboard.Progress(PercentDone);
                 }

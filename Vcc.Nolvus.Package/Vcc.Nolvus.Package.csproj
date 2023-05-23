@@ -76,6 +76,7 @@
     <Compile Include="Mods\ENB.cs" />
     <Compile Include="Conditions\EnvironmentCompare.cs" />
     <Compile Include="Conditions\EnvironmentCondition.cs" />
+    <Compile Include="Rules\XMLSettingsRule.cs" />
     <Compile Include="Rules\EnvironmentSettingsRule.cs" />
     <Compile Include="Mods\Esp.cs" />
     <Compile Include="Rules\FileCopy.cs" />

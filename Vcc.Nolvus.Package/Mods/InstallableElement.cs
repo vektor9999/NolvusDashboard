@@ -332,7 +332,7 @@ namespace Vcc.Nolvus.Package.Mods
                     Progress.PercentDone = 0;
                     Progress.Mbs = string.Empty;
                     Progress.Action = string.Empty;
-                    Progress.Status = "Error detected waiting for the queue to finish...";
+                    Progress.Status = "Error detected waiting for the queue to finish to display the error message...";
                     ServiceSingleton.Logger.Log("Error during mod installation(" + this.Name + ") with message : " + ex.Message + Environment.NewLine + "Stack => " + ex.StackTrace);
                     throw new Exception("Error during mod installation(" + this.Name + ") with message : " + ex.Message);                                        
                 }

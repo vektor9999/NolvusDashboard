@@ -186,9 +186,17 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
             return Index;
         }
-        protected override void OnLoad()
+
+        private bool IsNvidiaRTX()
         {
+            return ServiceSingleton.Globals.GetVideoAdapters().Where(x => x.Contains("NVIDIA") && x.Contains("RTX")).FirstOrDefault() != null;
+        }
+
+        protected override void OnLoad()
+        {           
             var Instance = ServiceSingleton.Instances.WorkingInstance;
+
+            LblGPUs.Text = string.Join(Environment.NewLine, ServiceSingleton.Globals.GetVideoAdapters().ToArray());
 
             DrpDwnLstScreenRes.DataSource = ServiceSingleton.Globals.WindowsResolutions;
             DrpDwnLstScreenRes.Enabled = false;
@@ -223,6 +231,12 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
             DrpDwnLstAntiAliasing.DataSource = AntiAliasing;
 
+            if (!IsNvidiaRTX())
+            {
+                ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing = "TAA";
+                DrpDwnLstAntiAliasing.Enabled = false;
+            }
+
             DrpDwnLstAntiAliasing.SelectedIndex = AntiAliasingIndex(AntiAliasing);
 
             DrpDwnLstIni.DataSource = IniSettings;
@@ -255,9 +269,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             }
             else
             {
-
                 if (NolvusMessageBox.ShowConfirmation("Confirmation", "Some of the options you selected (like the variant, LODs quality, Advanced physics, Global Illumination or FPS stabilizer) can not be changed after installation. Are you sure you want to continue?") == DialogResult.Yes)
-                {
+                {                    
                     if ((Performance.Variant == "Redux") && (Performance.AdvancedPhysics == "TRUE" || Performance.RayTracing == "TRUE" || Performance.AntiAliasing == "DLAA"))
                     {
                         if (NolvusMessageBox.ShowConfirmation("Confirmation", "You selected the Redux variant with other effects that are normally disabled by default with this variant. Be sure you have more than the minimum requirement. Are you sure you want to continue?") == DialogResult.Yes)
@@ -266,7 +279,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                         }
                     }
                     else
-                    {
+                    {                        
                         ServiceSingleton.Dashboard.LoadFrame<OptionsFrame>();
                     }                                      
                 }                

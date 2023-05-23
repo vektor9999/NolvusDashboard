@@ -22,29 +22,8 @@ namespace Vcc.Nolvus.Package.Conditions
         }
 
         public override bool IsValid(bool Log)
-        {
-            System.Reflection.PropertyInfo PropToCompare = typeof(IInstanceOptions).GetProperty(this.DataToCompare);
-
-            string Value;
-
-            if (PropToCompare == null)
-            {
-                PropToCompare = typeof(IInstancePerformance).GetProperty(this.DataToCompare);                
-
-                if ( PropToCompare == null)
-                {
-                    PropToCompare = typeof(IInstanceSettings).GetProperty(this.DataToCompare);
-                    Value = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Settings);
-                }
-                else
-                {
-                    Value = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Performance);
-                }
-            }
-            else
-            {
-                Value = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Options);
-            }                      
+        {            
+            string Value = ServiceSingleton.Instances.GetValueFromKey(DataToCompare);              
 
             bool Valid = false;
 

@@ -81,7 +81,7 @@
             this.LblStatus.Name = "LblStatus";
             this.LblStatus.Size = new System.Drawing.Size(252, 14);
             this.LblStatus.TabIndex = 3;
-            this.LblStatus.Text = "[Status]";
+            this.LblStatus.Text = "Loading status...";
             this.LblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // BtnUpdate

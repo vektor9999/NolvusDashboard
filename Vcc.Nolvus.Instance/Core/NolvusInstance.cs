@@ -29,6 +29,14 @@ namespace Vcc.Nolvus.Instance.Core
         public IInstanceOptions Options { get; }
         public IInstanceStatus Status { get;}
 
+        public string Overwrite
+        {
+            get
+            {
+                return Path.Combine(InstallDir, "MODS", "Overwrite");
+            }
+        }
+
         #endregion
 
         public NolvusInstance()

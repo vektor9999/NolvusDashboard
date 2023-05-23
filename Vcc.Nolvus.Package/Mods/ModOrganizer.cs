@@ -2454,6 +2454,10 @@ ccafdsse001-dwesanctuary.esm";
 
             string ArgsAutoClean = "-DontCache -D:\\\"" + Path.Combine(Instance.StockGame, "Data").Replace("\\", "\\\\") + "\\\"";
             ModOrganizer.AddExecutable(Instance.InstallDir + "\\MO2", ArgsAutoClean, Path.Combine(Instance.InstallDir + "\\TOOLS\\SSE Edit", "SSEEditQuickAutoClean.exe").Replace(@"\", @"/"), false, true, "xEdit Cleaning", false, Path.Combine(Instance.InstallDir + "\\TOOLS\\SSE Edit").Replace(@"\", @"/"));
+
+
+            ModOrganizer.AddExecutable(MO2Folder, string.Empty, Path.Combine(Instance.InstallDir, "MODS", "mods", "BodySlide and Outfit Studio", "CalienteTools", "BodySlide", "BodySlide x64.exe").Replace(@"\", @"/"), false, true, "Body Slide", true, Path.Combine(Instance.InstallDir, "MODS", "mods", "BodySlide and Outfit Studio", "CalienteTools", "BodySlide").Replace(@"\", @"/"));
+
         }
 
         private void AddSplash()

@@ -34,9 +34,9 @@ namespace Vcc.Nolvus.Services.Files
         public async Task DownloadFile(string UrlAddress, string Location, DownloadProgressChangedHandler OnProgress)
         {
             using (var Downloader = CreateDownloader(UrlAddress))
-            {
+            {                
                 Downloader.DownloadProgressChanged += OnProgress;
-                await Downloader.DownloadFile(UrlAddress, Location);                
+                await Downloader.DownloadFile(UrlAddress, Location);               
             }
         }
 
