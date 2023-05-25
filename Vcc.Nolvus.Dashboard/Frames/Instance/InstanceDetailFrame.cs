@@ -318,8 +318,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
         private void ModsGrid_QueryCellStyle(object sender, Syncfusion.WinForms.DataGrid.Events.QueryCellStyleEventArgs e)
         {
             if (e.Column.MappingName == "StatusText")
-            {
-               
+            {               
                 if ((e.DataRow.RowData as GridModObject).Status == GridModObjectStatus.OK)
                 {
                     e.Style.TextColor = Color.LimeGreen;

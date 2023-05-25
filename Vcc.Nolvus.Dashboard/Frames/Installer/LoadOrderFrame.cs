@@ -147,12 +147,17 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                     });
                 }
 
+                ServiceSingleton.Logger.Log("Applying install order");
                 await ApplyInstallOrder();
+
+                ServiceSingleton.Logger.Log("Applying load order");
                 await ApplyLoadOrder();
 
                 ServiceSingleton.Dashboard.NoStatus();
                 ServiceSingleton.Dashboard.ProgressCompleted();
                 ServiceSingleton.Instances.FinalizeInstance();
+
+                ServiceSingleton.Logger.Log("Instance Finalized");
 
                 if (!Parameters.IsEmpty && Parameters["Mode"].ToString() == "Install")
                 {
