@@ -146,12 +146,15 @@ namespace Vcc.Nolvus.Services.Globals
 
             foreach (ManagementObject GPU in GPUs)
             {
-                PropertyData CurrentBitsPerPixel = GPU.Properties["CurrentBitsPerPixel"];
+                //PropertyData CurrentBitsPerPixel = GPU.Properties["CurrentBitsPerPixel"];
+                PropertyData MinRefreshRate = GPU.Properties["MinRefreshRate"];
                 PropertyData Description = GPU.Properties["Description"];
 
-                if (CurrentBitsPerPixel != null && Description != null)
+                //if (CurrentBitsPerPixel != null && Description != null)
+                if (MinRefreshRate != null && Description != null)
                 {
-                    if (CurrentBitsPerPixel.Value != null) Result.Add(Description.Value.ToString().ToUpper());
+                    //if (CurrentBitsPerPixel.Value != null) Result.Add(Description.Value.ToString().ToUpper());
+                    if (MinRefreshRate.Value != null) Result.Add(Description.Value.ToString().ToUpper());
                 }                              
             }
 

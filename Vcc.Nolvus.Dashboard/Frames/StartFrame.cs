@@ -59,7 +59,14 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error during Nolvus connection. The Nolvus web site may have issues currently. Original message : " + ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+                    Exception CaughtException = ex;
+
+                    if (ex.InnerException != null)
+                    {
+                        CaughtException = ex.InnerException;
+                    }
+
+                    throw new Exception("Error during Nolvus connection. The Nolvus web site may have issues currently. (Original message : " + CaughtException.Message + ")");
                 }
             });
 
@@ -117,7 +124,14 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error during Nexus connection. The Nexus web site may have issues currently. Original message : " + ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+                    Exception CaughtException = ex;
+
+                    if (ex.InnerException != null)
+                    {
+                        CaughtException = ex.InnerException;
+                    }
+
+                    throw new Exception("Error during Nexus connection. The Nexus web site may have issues currently. (Original message : " + CaughtException.Message + ")");
                 }
             });
 
@@ -197,7 +211,14 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Error during Nolvus updates checking. The Nolvus web site may have issues currently. Original message : " + ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+                    Exception CaughtException = ex;
+
+                    if (ex.InnerException != null)
+                    {
+                        CaughtException = ex.InnerException;
+                    }
+
+                    throw new Exception("Error during Nolvus updates checking. The Nolvus web site may have issues currently. (Original message : " + CaughtException.Message + ")");
                 }
             });
 
