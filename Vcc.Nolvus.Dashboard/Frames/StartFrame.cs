@@ -109,14 +109,17 @@ namespace Vcc.Nolvus.Dashboard.Frames
                         if (NexusApi.ApiManager.AccountInfo.IsPremium)
                         {
                             ServiceSingleton.Dashboard.AccountType("(Premium)");
+                            ServiceSingleton.Logger.Log("Nexus user : Premium");
                         }
                         else if (Vcc.Nolvus.NexusApi.ApiManager.AccountInfo.IsSupporter)
                         {
                             ServiceSingleton.Dashboard.AccountType("(Supporter)");
+                            ServiceSingleton.Logger.Log("Nexus user : Supporter");
                         }
                         else
                         {
                             ServiceSingleton.Dashboard.AccountType("(Default)");
+                            ServiceSingleton.Logger.Log("Nexus user : Default");
                         }
 
                         ServiceSingleton.Dashboard.Progress(75);

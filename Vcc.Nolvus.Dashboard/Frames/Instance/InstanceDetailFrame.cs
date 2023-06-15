@@ -211,7 +211,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                                         if (ServiceSingleton.Packages.GameBaseModsList.Where(x => x.Contains(ModLine)).ToList().Count == 0)
                                         {
                                             GridModObject.Status = GridModObjectStatus.CustomInstalled;
-                                            GridModObject.StatusText = "Not from the guide";
+                                            GridModObject.StatusText = "Not from the list";
                                         }
                                         else
                                         {

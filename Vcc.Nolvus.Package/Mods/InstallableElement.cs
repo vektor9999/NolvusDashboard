@@ -284,9 +284,10 @@ namespace Vcc.Nolvus.Package.Mods
             if (Action != ElementAction.Remove)
             {
                 await Task.WhenAll(Files.Where(x => x is NexusModFile).Select(async File => 
-                {
+                {                    
                     if (!File.Exist() || !await File.CRCCheck())
                     {
+                        ServiceSingleton.Logger.Log(string.Format("Awaiting manual user download for file {0}", File.FileName));
                         File.DownloadLink = await Browser().GetNexusManualDownloadLink(File.DownloadLink, (File as NexusModFile).NexusId);
                     }
                 }));
