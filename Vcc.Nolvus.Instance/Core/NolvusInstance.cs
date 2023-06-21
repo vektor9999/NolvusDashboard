@@ -33,7 +33,7 @@ namespace Vcc.Nolvus.Instance.Core
         {
             get
             {
-                return Path.Combine(InstallDir, "MODS", "Overwrite");
+                return Path.Combine(InstallDir, "MODS", "overwrite");
             }
         }
 

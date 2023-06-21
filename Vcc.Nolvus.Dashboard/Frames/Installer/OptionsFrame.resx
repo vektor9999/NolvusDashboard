@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label8.Text" xml:space="preserve">
-    <value>When alternate leveling is disabled, the game uses the vanilla skills based leveling. When this option is enabled the player gain xp when killing enemies, exploring the world and completing quests. Skill points are distributed manually by the player in every perk trees when sleeping.</value>
+    <value>When alternate leveling is disabled, the game uses the vanilla skills based leveling. When this option is enabled the player gains xp when killing enemies, exploring the world and completing quests. Skill points are distributed manually by the player in every perk trees when sleeping.</value>
   </data>
 </root>
