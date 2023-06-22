@@ -248,6 +248,7 @@ namespace Vcc.Nolvus.StockGame.Patcher
 
                     if (PatchingProcess.ExitCode == 0)
                     {
+                        ServiceSingleton.Logger.Log(string.Format("Exit code {0}", PatchingProcess.ExitCode));
                         ServiceSingleton.Logger.Log(string.Format("Command output [{0}]", string.Join(Environment.NewLine, Output.ToArray())));
 
                         if (!KeepPatches)
@@ -262,13 +263,14 @@ namespace Vcc.Nolvus.StockGame.Patcher
                         {                            
                             if (Output.Where(x => x.Contains("The screen cannot be set to the number of lines and columns specified")).FirstOrDefault() != null)
                             {
-                                throw new GameFilePatchingException("Failed to patch game file : " + Instruction.DestFile.Name, string.Join(Environment.NewLine, Output.ToArray()));
+                                throw new GameFilePatchingException("Failed to patch game file [CMD Error]: " + Instruction.DestFile.Name, string.Join(Environment.NewLine, Output.ToArray()));
                             }
 
                         }
                     }
                     else
                     {
+                        ServiceSingleton.Logger.Log(string.Format("Exit code {0}", PatchingProcess.ExitCode));
                         ServiceSingleton.Logger.Log(string.Format("Command output [{0}]", string.Join(Environment.NewLine, Output.ToArray())));
                         throw new GameFilePatchingException("Failed to patch game file : " + Instruction.DestFile.Name, String.Join(Environment.NewLine, Output.ToArray()));
                     }
@@ -348,17 +350,23 @@ namespace Vcc.Nolvus.StockGame.Patcher
                     PatchingProcess.WaitForExit();
 
                     if (PatchingProcess.ExitCode == 0)
-                    {                                                
+                    {
+                        ServiceSingleton.Logger.Log(string.Format("Exit code {0}", PatchingProcess.ExitCode));
+                        ServiceSingleton.Logger.Log(string.Format("Command output [{0}]", string.Join(Environment.NewLine, Output.ToArray())));
+
                         if (Output.Count > 1)
                         {                            
                             if (Output.Where(x => x.Contains("The screen cannot be set to the number of lines and columns specified")).FirstOrDefault() != null)
                             {
-                                throw new GameFilePatchingException("Failed to patch game file : " + new FileInfo(DestinationFile).Name + " (" + String.Join(Environment.NewLine, Output.ToArray()) + ")", string.Join(Environment.NewLine, Output.ToArray()));
+                                throw new GameFilePatchingException("Failed to patch game file  [CMD Error]: " + new FileInfo(DestinationFile).Name + " (" + String.Join(Environment.NewLine, Output.ToArray()) + ")", string.Join(Environment.NewLine, Output.ToArray()));
                             }
                         }                        
                     }
                     else
                     {
+                        ServiceSingleton.Logger.Log(string.Format("Exit code {0}", PatchingProcess.ExitCode));
+                        ServiceSingleton.Logger.Log(string.Format("Command output [{0}]", string.Join(Environment.NewLine, Output.ToArray())));
+
                         throw new GameFilePatchingException("Failed to patch game file : " + new FileInfo(DestinationFile).Name + " (" + String.Join(Environment.NewLine, Output.ToArray()) + ")", String.Join(Environment.NewLine, Output.ToArray()));
                     }
 

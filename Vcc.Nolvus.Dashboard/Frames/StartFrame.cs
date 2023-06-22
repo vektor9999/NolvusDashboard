@@ -190,18 +190,26 @@ namespace Vcc.Nolvus.Dashboard.Frames
                     ServiceSingleton.Dashboard.Status("Checking for updates...");
 
                     var LatestDashboard = await Api.Installer.Services.ApiManager.Service.Installer.GetLatestInstaller();
+
+                    ServiceSingleton.Logger.Log("Latest dashboard fetched");
+
                     ServiceSingleton.Dashboard.Progress(50);                    
 
                     if (ServiceSingleton.Dashboard.IsOlder(LatestDashboard.Version))
                     {
+                        ServiceSingleton.Logger.Log("New version available");
+
                         if (!ServiceSingleton.Updater.Installed || ServiceSingleton.Updater.IsOlder(LatestDashboard.UpdaterVersion))
                         {
+                            ServiceSingleton.Logger.Log("Downloading new updater version...");
+
                             await ServiceSingleton.Files.DownloadFile(LatestDashboard.UpdaterLink, ServiceSingleton.Updater.UpdaterExe, (s, e) =>
                             {
                                 ServiceSingleton.Dashboard.Status("Downloading Updater (" + e.ProgressPercentage + "%)");
                                 ServiceSingleton.Dashboard.Progress(e.ProgressPercentage);
                             });
 
+                            ServiceSingleton.Logger.Log("Launching updater...");
                             await ServiceSingleton.Updater.Launch();
                         }
                         else

@@ -63,7 +63,12 @@ namespace Vcc.Nolvus.Services.Game
 
         public string GetSkyrimSEDirectory()
         {
-            return GetInstalledApplication(SkyrimSE).GetValue("InstallLocation") as string;
+            if (IsGameInstalled())
+            {
+                return GetInstalledApplication(SkyrimSE).GetValue("InstallLocation") as string;
+            }
+
+            return string.Empty;            
         }
     }
 }
