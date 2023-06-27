@@ -34,33 +34,14 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
         protected override void OnLoad()
         {            
-            List<string> ENBs = new List<string>();
-
-            ENBs.Add("Standard ENB (PI-CHO ENB)");
-
-            DrpDwnLstENB.DataSource = ENBs;
+            DrpDwnLstENB.ValueMember = "Code";
+            DrpDwnLstENB.DisplayMember = "Name";
+            DrpDwnLstENB.DataSource = ENBs.GetAvailableENBs();
 
             DrpDwnLstENB.SelectedIndex = 0;
 
             ServiceSingleton.Dashboard.Info("ENB Selection");
-        }
-        
-
-        private void BtnMegaLogin_Click(object sender, EventArgs e)
-        {
-            //InstallerEnvironment.MegaLogin = string.Empty;
-            //InstallerEnvironment.MegaPassword = string.Empty;
-
-            //FrmMegaAccount MegaLogin = new FrmMegaAccount();
-
-            //if (MegaLogin.ShowDialog() == DialogResult.OK)
-            //{
-            //    InstallerEnvironment.MegaLogin = MegaLogin.UserName;
-            //    InstallerEnvironment.MegaPassword = MegaLogin.Password;
-
-            //    NolvusMessageBox.ShowMessage("Mega API", "Connection successfull", MessageBoxType.Info);
-            //}
-        }
+        }               
                
         private void BtnPrevious_Click(object sender, EventArgs e)
         {
@@ -74,14 +55,16 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
         private void DrpDwnLstENB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (DrpDwnLstENB.SelectedIndex == 0)
-            {
-                ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB = "FALSE";
-            }
-            else
-            {
-                ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB = "TRUE";
-            }
+            //if (DrpDwnLstENB.SelectedIndex == 0)
+            //{
+            //    ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB = "FALSE";
+            //}
+            //else
+            //{
+            //    ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB = "TRUE";
+            //}
+
+            ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB = DrpDwnLstENB.SelectedValue.ToString();
         }
     }
 }

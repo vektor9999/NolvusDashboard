@@ -167,7 +167,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                         }
                         else
                         {
-                            throw new Exception(InstanceMessage + ".This can happen if you modify the file InstancesData.xml manually!");
+                            throw new Exception(InstanceMessage + ".This can happen if you modified the file InstancesData.xml manually!");
                         }
                     }
 
@@ -175,7 +175,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    throw new Exception("Error during instance checking with error : " + ex.Message + ". Certainly due to a manual editing of the InstancesData.xml file!");
                 }
             });
 

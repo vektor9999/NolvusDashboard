@@ -402,13 +402,13 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 if (ServiceSingleton.Instances.WorkingInstance.Performance.LODs == "Ultra")
                 {
                     this.LblGPU.Text = "Recommended : RTX 3080 Ti";
-                    LblVRAM.Text = "Recommended : 12Gb @1440p (higher GPU needed beyond 1440p)";
+                    LblVRAM.Text = "Recommended : 12Gb @1440p (higher GPU needed beyond 1440p, RTX 4090 for 4K native)";
                     LblSTORAGE.Text = "Mods: 277 Gb, Archives: 115Gb, Total: 392Gb";
                 }
                 else if (ServiceSingleton.Instances.WorkingInstance.Performance.LODs == "Performance")
                 {
                     this.LblGPU.Text = "Recommended : RTX 3080";
-                    LblVRAM.Text = "Recommended : 10Gb @1440p (higher GPU needed beyond 1440p)";
+                    LblVRAM.Text = "Recommended : 10Gb @1440p (higher GPU needed beyond 1440p, RTX 4080 for 4K native)";
                     LblSTORAGE.Text = "Mods: 254 Gb, Archives: 115Gb, Total: 369Gb";
                 }
                 else if (ServiceSingleton.Instances.WorkingInstance.Performance.LODs == "Ultra Performance")

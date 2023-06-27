@@ -16,14 +16,27 @@ namespace Vcc.Nolvus.Instance.Core
         public string HardcoreMode { get; set; } = "FALSE";
         public string AlternateLeveling { get; set; } = "FALSE";
         public string SkinType { get; set; } = "Smooth";
+        public string AlternateStart { get; set; } = "TRUE";
 
         public void Load(XmlNode Node)
         {
             Nudity = Node["Nudity"].InnerText.Trim();
             AlternateENB = Node["AlternateENB"].InnerText.Trim();
+
+            if (AlternateENB == "FALSE")
+            {
+                AlternateENB = "PICHO";
+            }
+
             FantasyMode = Node["FantasyMode"].InnerText.Trim();
             HardcoreMode = Node["HardcoreMode"].InnerText.Trim();
             AlternateLeveling = Node["AlternateLeveling"].InnerText.Trim();
+
+            if (Node["AlternateStart"] != null)
+            {
+                AlternateStart = Node["AlternateStart"].InnerText.Trim();
+            }
+
             SkinType = Node["SkinType"].InnerText.Trim();
         }
 
@@ -54,6 +67,10 @@ namespace Vcc.Nolvus.Instance.Core
             XmlNode SkinTypeNode = Storage.CreateNode("element", "SkinType", "");
             SkinTypeNode.InnerText = SkinType.Trim();
             OptionsNode.AppendChild(SkinTypeNode);
+
+            XmlNode AlternateStartNode = Storage.CreateNode("element", "AlternateStart", "");
+            AlternateStartNode.InnerText = AlternateStart.Trim();
+            OptionsNode.AppendChild(AlternateStartNode);
 
             return OptionsNode;
         }

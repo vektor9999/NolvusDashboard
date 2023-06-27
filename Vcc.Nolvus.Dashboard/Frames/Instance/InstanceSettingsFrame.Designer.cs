@@ -86,6 +86,10 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.LblAltStart = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.LblENB = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             this.PnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -376,7 +380,7 @@
             this.BtnBack.BorderColor = System.Drawing.Color.White;
             this.BtnBack.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnBack.ForeColor = System.Drawing.Color.White;
-            this.BtnBack.Location = new System.Drawing.Point(803, 689);
+            this.BtnBack.Location = new System.Drawing.Point(803, 750);
             this.BtnBack.Name = "BtnBack";
             this.BtnBack.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnBack.Size = new System.Drawing.Size(88, 43);
@@ -399,7 +403,7 @@
             this.GrpBxDownscaling.ForeColor = System.Drawing.Color.White;
             this.GrpBxDownscaling.Location = new System.Drawing.Point(7, 354);
             this.GrpBxDownscaling.Name = "GrpBxDownscaling";
-            this.GrpBxDownscaling.Size = new System.Drawing.Size(559, 318);
+            this.GrpBxDownscaling.Size = new System.Drawing.Size(559, 378);
             this.GrpBxDownscaling.TabIndex = 35;
             this.GrpBxDownscaling.TabStop = false;
             this.GrpBxDownscaling.Text = "Resolution Downscaling";
@@ -412,7 +416,7 @@
             this.BtnApplyDownScaling.Enabled = false;
             this.BtnApplyDownScaling.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnApplyDownScaling.ForeColor = System.Drawing.Color.Orange;
-            this.BtnApplyDownScaling.Location = new System.Drawing.Point(473, 236);
+            this.BtnApplyDownScaling.Location = new System.Drawing.Point(473, 326);
             this.BtnApplyDownScaling.Name = "BtnApplyDownScaling";
             this.BtnApplyDownScaling.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnApplyDownScaling.Size = new System.Drawing.Size(75, 31);
@@ -510,6 +514,10 @@
             // groupBox6
             // 
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox6.Controls.Add(this.LblENB);
+            this.groupBox6.Controls.Add(this.label23);
+            this.groupBox6.Controls.Add(this.LblAltStart);
+            this.groupBox6.Controls.Add(this.label22);
             this.groupBox6.Controls.Add(this.LblFPS);
             this.groupBox6.Controls.Add(this.label21);
             this.groupBox6.Controls.Add(this.LblAntiAliasing);
@@ -535,7 +543,7 @@
             this.groupBox6.ForeColor = System.Drawing.Color.White;
             this.groupBox6.Location = new System.Drawing.Point(572, 354);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(319, 318);
+            this.groupBox6.Size = new System.Drawing.Size(319, 378);
             this.groupBox6.TabIndex = 36;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Options (Can not be changed after installation)";
@@ -624,7 +632,7 @@
             // 
             this.DrpDwnLstIni.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.DrpDwnLstIni.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
-            this.DrpDwnLstIni.Location = new System.Drawing.Point(118, 274);
+            this.DrpDwnLstIni.Location = new System.Drawing.Point(118, 329);
             this.DrpDwnLstIni.Name = "DrpDwnLstIni";
             this.DrpDwnLstIni.Size = new System.Drawing.Size(152, 28);
             this.DrpDwnLstIni.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -636,7 +644,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(6, 280);
+            this.label16.Location = new System.Drawing.Point(6, 335);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(83, 13);
             this.label16.TabIndex = 39;
@@ -762,6 +770,46 @@
             this.label7.TabIndex = 27;
             this.label7.Text = "Variant";
             // 
+            // LblAltStart
+            // 
+            this.LblAltStart.AutoSize = true;
+            this.LblAltStart.ForeColor = System.Drawing.Color.Orange;
+            this.LblAltStart.Location = new System.Drawing.Point(115, 277);
+            this.LblAltStart.Name = "LblAltStart";
+            this.LblAltStart.Size = new System.Drawing.Size(35, 13);
+            this.LblAltStart.TabIndex = 50;
+            this.LblAltStart.Text = "[Start]";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.ForeColor = System.Drawing.Color.White;
+            this.label22.Location = new System.Drawing.Point(7, 277);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(74, 13);
+            this.label22.TabIndex = 49;
+            this.label22.Text = "Alternate Start";
+            // 
+            // LblENB
+            // 
+            this.LblENB.AutoSize = true;
+            this.LblENB.ForeColor = System.Drawing.Color.Orange;
+            this.LblENB.Location = new System.Drawing.Point(115, 305);
+            this.LblENB.Name = "LblENB";
+            this.LblENB.Size = new System.Drawing.Size(35, 13);
+            this.LblENB.TabIndex = 52;
+            this.LblENB.Text = "[ENB]";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.ForeColor = System.Drawing.Color.White;
+            this.label23.Location = new System.Drawing.Point(7, 305);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(29, 13);
+            this.label23.TabIndex = 51;
+            this.label23.Text = "ENB";
+            // 
             // InstanceSettingsFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -776,7 +824,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.PnlHeader);
             this.Name = "InstanceSettingsFrame";
-            this.Size = new System.Drawing.Size(901, 744);
+            this.Size = new System.Drawing.Size(901, 805);
             this.PnlHeader.ResumeLayout(false);
             this.PnlHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).EndInit();
@@ -857,5 +905,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label LblFPS;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label LblAltStart;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label LblENB;
+        private System.Windows.Forms.Label label23;
     }
 }

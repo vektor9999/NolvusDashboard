@@ -41,7 +41,7 @@ NoReloadOnInit=0
 NoReloadOnInitForNonVR=0
 PerformanceMode=0
 PreprocessorDefinitions=RESHADE_DEPTH_LINEARIZATION_FAR_PLANE=1000.0,RESHADE_DEPTH_INPUT_IS_UPSIDE_DOWN=0,RESHADE_DEPTH_INPUT_IS_REVERSED=1,RESHADE_DEPTH_INPUT_IS_LOGARITHMIC=0
-PresetPath=.\Nolvus Reshade.ini
+PresetPath=.\{1}
 PresetTransitionDuration=1000
 SkipLoadingDisabledEffects=0
 TextureSearchPaths=.\reshade-shaders\Textures
@@ -82,7 +82,7 @@ PostSaveCommandNoWindow=0
 PostSaveCommandWorkingDirectory=.\
 SaveBeforeShot=0
 SaveOverlayShot=0
-SavePath={1}
+SavePath={2}
 SavePresetFile=0
 
 [STYLE]
@@ -245,7 +245,19 @@ WindowRounding=0.000000";
                         string ShotsDir = Path.Combine(Instance.InstallDir, "SHOTS");
 
                         Directory.CreateDirectory(ShotsDir);
-                        File.WriteAllText(Path.Combine(Instance.StockGame, "ReShade.ini"), string.Format(ReshadeIni, Path.GetTempPath(), ShotsDir));
+
+                        string ReshadePreset = "Nolvus Reshade.ini";
+
+                        if (ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB == "BJREG")
+                        {
+                            ReshadePreset = "Bjorn Reshade.ini";
+                        }
+                        else if (ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB == "BJAGE")
+                        {
+                            ReshadePreset = "Bjorn Dark Ages.ini";
+                        }
+
+                        File.WriteAllText(Path.Combine(Instance.StockGame, "ReShade.ini"), string.Format(ReshadeIni, Path.GetTempPath(), ReshadePreset, ShotsDir));
 
                     }
                     catch (Exception ex)

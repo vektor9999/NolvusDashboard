@@ -23,6 +23,7 @@ using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Package.Mods;
 using Vcc.Nolvus.Components.Controls;
+using Vcc.Nolvus.Dashboard.Core;
 using Vcc.Nolvus.Dashboard.Controls;
 using Vcc.Nolvus.Dashboard.Forms;
 using Vcc.Nolvus.Dashboard.Frames.Installer;
@@ -311,6 +312,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
                 LblHC.Text = "No";
                 LblLeveling.Text = "No";
+                LblAltStart.Text = "No";
                 LblNude.Text = "No";
                 LblSkinType.Text = Instance.Options.SkinType;
 
@@ -339,10 +341,17 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                     LblLeveling.Text = "Yes";
                 }
 
+                if (Instance.Options.AlternateStart == "TRUE")
+                {
+                    LblAltStart.Text = "Yes";
+                }
+
                 if (Instance.Options.Nudity == "TRUE")
                 {
                     LblNude.Text = "Yes";
                 }
+
+                LblENB.Text = ENBs.GetENBByCode(Instance.Options.AlternateENB);
 
                 List<string> IniSettings = new List<string>();
 

@@ -65,7 +65,19 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             this.TglBtnLeveling.InactiveState.BackColor = Color.White;
             this.TglBtnLeveling.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
             this.TglBtnLeveling.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
-            this.TglBtnLeveling.InactiveState.HoverColor = Color.White;            
+            this.TglBtnLeveling.InactiveState.HoverColor = Color.White;
+
+            this.TglBtnAltStart.ActiveState.Text = "ON";
+            this.TglBtnAltStart.ActiveState.BackColor = Color.Orange;
+            this.TglBtnAltStart.ActiveState.BorderColor = Color.Orange;
+            this.TglBtnAltStart.ActiveState.ForeColor = Color.White;
+            this.TglBtnAltStart.ActiveState.HoverColor = Color.Orange;
+
+            this.TglBtnAltStart.InactiveState.Text = "OFF";
+            this.TglBtnAltStart.InactiveState.BackColor = Color.White;
+            this.TglBtnAltStart.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
+            this.TglBtnAltStart.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
+            this.TglBtnAltStart.InactiveState.HoverColor = Color.White;
         }
 
         private int SkinTypeIndex(List<string> SkinTypes)
@@ -111,6 +123,13 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             if (Instance.Options.AlternateLeveling == "TRUE")
             {
                 this.TglBtnLeveling.ToggleState = ToggleButtonState.Active;
+            }
+
+            this.TglBtnAltStart.ToggleState = ToggleButtonState.Inactive;
+
+            if (Instance.Options.AlternateStart == "TRUE")
+            {
+                this.TglBtnAltStart.ToggleState = ToggleButtonState.Active;
             }
 
             List<string> SkinTypes = new List<string>();
@@ -189,6 +208,18 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         private void DrpDwnLstSkin_SelectedIndexChanged(object sender, EventArgs e)
         {
             ServiceSingleton.Instances.WorkingInstance.Options.SkinType = DrpDwnLstSkin.SelectedValue.ToString();
+        }
+
+        private void TglBtnAltStart_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
+        {
+            if (e.ToggleState == ToggleButtonState.Active)
+            {
+                ServiceSingleton.Instances.WorkingInstance.Options.AlternateStart = "TRUE";
+            }
+            else
+            {
+                ServiceSingleton.Instances.WorkingInstance.Options.AlternateStart = "FALSE";
+            }
         }
     }
 }

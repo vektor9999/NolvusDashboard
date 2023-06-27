@@ -14,5 +14,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         string HardcoreMode { get; set; }
         string AlternateLeveling { get; set; }
         string SkinType { get; set; }
+        string AlternateStart { get; set; }
     }
 }

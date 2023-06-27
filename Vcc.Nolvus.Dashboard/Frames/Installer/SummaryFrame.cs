@@ -71,7 +71,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             LblNudity.Text = Instance.Options.Nudity == "TRUE" ? "Yes" : "No";
             LblHC.Text = Instance.Options.HardcoreMode == "TRUE" ? "Yes" : "No";
             LblLeveling.Text = Instance.Options.AlternateLeveling == "TRUE" ? "Yes" : "No";
+            LblAltStart.Text = Instance.Options.AlternateStart == "TRUE" ? "Yes" : "No";
             LblSkinType.Text = Instance.Options.SkinType;
+            LblENB.Text = ENBs.GetENBByCode(Instance.Options.AlternateENB);
 
             if (!ApiManager.AccountInfo.IsPremium)
             {
