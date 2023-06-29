@@ -37,6 +37,14 @@ namespace Vcc.Nolvus.Instance.Core
             }
         }
 
+        public string OverwriteSl
+        {
+            get
+            {
+                return Overwrite + "\\";
+            }
+        }      
+
         #endregion
 
         public NolvusInstance()

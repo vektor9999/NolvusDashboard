@@ -112,6 +112,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Settings
             else
             {
                 ShowLoading();
+
+                ServiceSingleton.Files.RemoveDirectory(ServiceSingleton.Folders.NexusCacheDirectory, false);
+
                 SetCheck("Connecting to Nexus...", false);
 
                 if (!await NexusAuthenticate())

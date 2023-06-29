@@ -27,6 +27,14 @@ namespace Vcc.Nolvus.Instance.Core
             }
         }
 
+        public string GameDataDirSl
+        {
+            get
+            {
+                return Path.Combine(ServiceSingleton.Instances.WorkingInstance.StockGame, "Data\\");
+            }
+        }
+
         public InstanceSettings()
         {
             EnableArchiving = true;

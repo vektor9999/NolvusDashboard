@@ -16,5 +16,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         string LgCode { get; set; }
         string LgName { get; set; }
         string GameDataDir { get; }
+        string GameDataDirSl { get; }
     }
 }

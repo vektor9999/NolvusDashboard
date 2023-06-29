@@ -80,6 +80,8 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 {
                     ServiceSingleton.Dashboard.Status("Connecting to Nexus...");
 
+                    ServiceSingleton.Files.RemoveDirectory(ServiceSingleton.Folders.NexusCacheDirectory, false);
+
                     var NexusApiKey = ServiceSingleton.Globals.NexusApiKey;
                     var UserAgent = ServiceSingleton.Globals.NexusUserAgent;
 

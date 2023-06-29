@@ -209,6 +209,7 @@ namespace Vcc.Nolvus.Package.Files
                 {
                     if (!Exist())
                     {
+                        ServiceSingleton.Logger.Log(string.Format("File {0} not found!", FileName));
                         ServiceSingleton.Logger.Log(string.Format("Trying to download file {0} ({1}/{2})", FileName, Tries.ToString(), RetryCount.ToString()));
 
                         try
@@ -230,7 +231,11 @@ namespace Vcc.Nolvus.Package.Files
 
                             ServiceSingleton.Logger.Log(string.Format("Error during file download {0} with error {1}", FileName, CaughtException.Message));
                         }
-                    }                   
+                    }
+                    else
+                    {
+                        ServiceSingleton.Logger.Log(string.Format("File exists ({0}), about to check crc", LocationFileName));
+                    }
 
                     if (await CRCCheck(HashProgress))
                     {
