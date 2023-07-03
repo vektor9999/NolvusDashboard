@@ -29,34 +29,37 @@ namespace Vcc.Nolvus.Package.Rules
             };                    
         }
 
-        public List<Rule> CreateFileRules(string ExtactDir, int Destination)
+        public List<Rule> CreateFileRules(string ExtactDir, int Destination, string GamePath, string ModDir)
         {
             var Rules = new List<Rule>();
 
-            foreach(var File in ServiceSingleton.Files.GetFiles(Path.Combine(ExtactDir, this.Source)))
+            if (this.CanExecute(GamePath, ModDir))
             {
-                var SourceDir = File.FullName.Replace(ExtactDir, string.Empty).Substring(1);
-                var DestDirectory = File.Directory.FullName.Replace(ExtactDir, string.Empty);                
-
-                if (this.Source != string.Empty)
+                foreach (var File in ServiceSingleton.Files.GetFiles(Path.Combine(ExtactDir, this.Source)))
                 {
-                    var Dir = Source;
+                    var SourceDir = File.FullName.Replace(ExtactDir, string.Empty).Substring(1);
+                    var DestDirectory = File.Directory.FullName.Replace(ExtactDir, string.Empty);
 
-                    if (IncludeRootDirectory)
+                    if (this.Source != string.Empty)
                     {
-                        Dir = Source.Replace(new DirectoryInfo(this.Source).Name, string.Empty);                        
-                    }                    
+                        var Dir = Source;
 
-                    if (Dir != string.Empty)
-                    {
-                        var regex = new Regex(Regex.Escape(Dir));
-                        DestDirectory = regex.Replace(DestDirectory, string.Empty, 1);                        
-                    }                                                           
+                        if (IncludeRootDirectory)
+                        {
+                            Dir = Source.Replace(new DirectoryInfo(this.Source).Name, string.Empty);
+                        }
+
+                        if (Dir != string.Empty)
+                        {
+                            var regex = new Regex(Regex.Escape(Dir));
+                            DestDirectory = regex.Replace(DestDirectory, string.Empty, 1);
+                        }
+                    }
+
+                    DestDirectory = DestDirectory + DestinationDirectory;
+
+                    Rules.Add(CreateFileCopyRule(Destination, SourceDir, DestDirectory.TrimStart('\\')));
                 }
-
-                DestDirectory = DestDirectory + DestinationDirectory;
-                
-                Rules.Add(CreateFileCopyRule(Destination, SourceDir, DestDirectory.TrimStart('\\')));
             }
 
             return Rules;

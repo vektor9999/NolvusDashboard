@@ -224,18 +224,18 @@ namespace Vcc.Nolvus.Package.Mods
                                
                 if (DirectoryRules.Count == 0 && PriorityRules.Count == 0)
                 {
-                    Result.AddRange(new DirectoryCopy().CreateFileRules(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), 0));
+                    Result.AddRange(new DirectoryCopy().CreateFileRules(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), 0, ServiceSingleton.Instances.WorkingInstance.StockGame, MoDirectoryFullName));
                 }
                 else
                 {
                     foreach (var Rule in DirectoryRules)
-                    {
-                        Result.AddRange((Rule as DirectoryCopy).CreateFileRules(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), (Rule as DirectoryCopy).Destination));
+                    {                        
+                        Result.AddRange((Rule as DirectoryCopy).CreateFileRules(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), (Rule as DirectoryCopy).Destination, ServiceSingleton.Instances.WorkingInstance.StockGame, MoDirectoryFullName));
                     }
 
                     Result.AddRange(PriorityRules);
-                }
-                                
+                }                
+
                 Result.AddRange(Rules.Where(x => !x.Force && !x.IsPriority).ToList());
             }
 

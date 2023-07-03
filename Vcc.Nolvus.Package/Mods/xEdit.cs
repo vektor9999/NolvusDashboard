@@ -31,7 +31,7 @@ namespace Vcc.Nolvus.Package.Mods
                         Directory.CreateDirectory(CacheDir);
                         
                         var DirectoryRule = (Rules.First() as DirectoryCopy);
-                        var FileRules = DirectoryRule.CreateFileRules(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), DirectoryRule.Destination);                        
+                        var FileRules = DirectoryRule.CreateFileRules(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), DirectoryRule.Destination, string.Empty, string.Empty);                        
 
                         var Counter = 0;
 

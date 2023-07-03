@@ -2480,7 +2480,7 @@ ccafdsse001-dwesanctuary.esm";
                         CreateLauncher();
                         AddExecutables();
 
-                        var Rules = new DirectoryCopy().CreateFileRules(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), 2);
+                        var Rules = new DirectoryCopy().CreateFileRules(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), 2, string.Empty, string.Empty);
                         var Counter = 0;
 
                         foreach (var Rule in Rules)
