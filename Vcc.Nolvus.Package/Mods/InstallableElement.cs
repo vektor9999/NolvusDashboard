@@ -335,7 +335,7 @@ namespace Vcc.Nolvus.Package.Mods
                     Progress.Action = string.Empty;
                     Progress.Status = "Error detected waiting for the queue to finish to display the error message...";
                     ServiceSingleton.Logger.Log("Error during mod installation(" + this.Name + ") with message : " + ex.Message + Environment.NewLine + "Stack => " + ex.StackTrace);
-                    throw new Exception("Error during mod installation(" + this.Name + ") with message : " + ex.Message);                                        
+                    throw new Exception("Error during mod installation(" + this.Name + ") with message : " + ex.Message + Environment.NewLine + "Please consult the Dashboard Faq (https://www.nolvus.net/appendix/installer/faq) for more info.");                                        
                 }
             });
 
