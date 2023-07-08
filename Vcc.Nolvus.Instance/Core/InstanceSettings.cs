@@ -49,6 +49,14 @@ namespace Vcc.Nolvus.Instance.Core
             CDN = Node["CDN"].InnerText.Trim();
             LgCode = Node["LgCode"].InnerText.Trim();
             LgName = Node["LgName"].InnerText.Trim();
+
+            ServiceSingleton.Logger.Log(string.Format("Instance ratio : {0}", Ratio));
+            ServiceSingleton.Logger.Log(string.Format("Instance height : {0}", Height));
+            ServiceSingleton.Logger.Log(string.Format("Instance width : {0}", Width));
+            ServiceSingleton.Logger.Log(string.Format("Instance enable archiving : {0}", EnableArchiving));
+            ServiceSingleton.Logger.Log(string.Format("Instance CDN : {0}", CDN));
+            ServiceSingleton.Logger.Log(string.Format("Instance LgCode : {0}", LgCode));
+            ServiceSingleton.Logger.Log(string.Format("Instance LgName : {0}", LgName));
         }
 
         public XmlNode Save(XmlDocument Storage)

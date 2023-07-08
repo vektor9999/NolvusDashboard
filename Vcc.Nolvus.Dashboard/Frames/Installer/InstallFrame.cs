@@ -133,7 +133,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             catch (Exception ex)
             {
                 ServiceSingleton.Logger.Log(string.Format("Error during mod list installation with message {0}", ex.Message));
-                await ServiceSingleton.Dashboard.Error("Error during mod installation", ex.Message, ex.StackTrace);
+                await ServiceSingleton.Dashboard.Error("Error during mod installation", ex.Message, ex.StackTrace, true);
             }
 
         }            

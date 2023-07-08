@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml;
 using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Interfaces;
+using Vcc.Nolvus.Core.Services;
 
 namespace Vcc.Nolvus.Instance.Core
 {
@@ -48,7 +49,18 @@ namespace Vcc.Nolvus.Instance.Core
             if (Node["FPSStabilizer"] != null)
             {
                 FPSStabilizer = Node["FPSStabilizer"].InnerText.Trim();
-            }          
+            }
+
+            ServiceSingleton.Logger.Log(string.Format("Instance advanced physics : {0}", AdvancedPhysics));
+            ServiceSingleton.Logger.Log(string.Format("Instance downscaling : {0}", DownScaling));
+            ServiceSingleton.Logger.Log(string.Format("Instance downscaling height : {0}", DownHeight));
+            ServiceSingleton.Logger.Log(string.Format("Instance downscaling width : {0}", DownWidth));
+            ServiceSingleton.Logger.Log(string.Format("Instance ini settings : {0}", IniSettings));
+            ServiceSingleton.Logger.Log(string.Format("Instance anti aliasing : {0}", AntiAliasing));
+            ServiceSingleton.Logger.Log(string.Format("Instance variant : {0}", Variant));
+            ServiceSingleton.Logger.Log(string.Format("Instance lods : {0}", LODs));
+            ServiceSingleton.Logger.Log(string.Format("Instance ray tracing : {0}", RayTracing));
+            ServiceSingleton.Logger.Log(string.Format("Instance fps stabilizer : {0}", FPSStabilizer));
         }
         public XmlNode Save(XmlDocument Storage)
         {

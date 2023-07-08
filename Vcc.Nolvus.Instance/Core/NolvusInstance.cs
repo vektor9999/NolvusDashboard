@@ -128,6 +128,11 @@ namespace Vcc.Nolvus.Instance.Core
             ArchiveDir = Node["ArchivePath"].InnerText.Trim();
             StockGame = Node["StockGame"].InnerText.Trim();
 
+            ServiceSingleton.Logger.Log(string.Format("Instance name : {0}", Name));
+            ServiceSingleton.Logger.Log(string.Format("Instance version : {0}", Version));
+            ServiceSingleton.Logger.Log(string.Format("Instance install directory : {0}", InstallDir));
+            ServiceSingleton.Logger.Log(string.Format("Instance archive directory : {0}", ArchiveDir));
+
             (Settings as InstanceSettings).Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Settings").FirstOrDefault());
             (Performance as InstancePerformance).Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Performance").FirstOrDefault());
             (Options as InstanceOptions).Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Options").FirstOrDefault());                                                                                   

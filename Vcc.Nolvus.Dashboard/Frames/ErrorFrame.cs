@@ -5,6 +5,7 @@ using System.IO;
 using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Frames;
 using System.Threading.Tasks;
+using Vcc.Nolvus.Core.Services;
 
 namespace Vcc.Nolvus.Dashboard.Frames
 {
@@ -66,12 +67,22 @@ namespace Vcc.Nolvus.Dashboard.Frames
             LblTitle.Text = Title;
             LblError.Text = Message;
             LblTrace.Text = Trace;
-            BtnRetry.Visible = Retry;            
+            BtnRetry.Visible = Retry;    
+            
+            if (!Retry)
+            {
+                BtnHelp.Location = BtnRetry.Location;
+            }        
         }                 
                      
         private void BtnRetry_Click(object sender, EventArgs e)
         {
-            //ShowFrame(typeof(ResumeInstall), true);
-        }                
+            ServiceSingleton.Dashboard.LoadFrame<ResumeFrame>();
+        }
+
+        private void BtnHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.nolvus.net/appendix/installer/faq");
+        }
     }
 }

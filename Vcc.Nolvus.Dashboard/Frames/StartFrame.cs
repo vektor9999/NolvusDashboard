@@ -242,8 +242,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
             try
             {
                 try
-                {
-
+                {                    
                     if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NolvusDashboard.ini")))
                     {
                         ServiceSingleton.Dashboard.LoadFrame<GameFrame>();

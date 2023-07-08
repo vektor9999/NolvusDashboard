@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Interfaces;
+using Vcc.Nolvus.Core.Services;
 
 namespace Vcc.Nolvus.Instance.Core
 {
@@ -38,6 +39,13 @@ namespace Vcc.Nolvus.Instance.Core
             }
 
             SkinType = Node["SkinType"].InnerText.Trim();
+
+            ServiceSingleton.Logger.Log(string.Format("Instance nudity : {0}", Nudity));
+            ServiceSingleton.Logger.Log(string.Format("Instance enb : {0}", AlternateENB));
+            ServiceSingleton.Logger.Log(string.Format("Instance hardcore mode : {0}", HardcoreMode));
+            ServiceSingleton.Logger.Log(string.Format("Instance alternate levelling : {0}", AlternateLeveling));
+            ServiceSingleton.Logger.Log(string.Format("Instance alternate start : {0}", AlternateStart));
+            ServiceSingleton.Logger.Log(string.Format("Instance skin type : {0}", SkinType));
         }
 
         public XmlNode Save(XmlDocument Storage)
