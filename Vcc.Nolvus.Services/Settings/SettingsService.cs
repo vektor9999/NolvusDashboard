@@ -15,6 +15,8 @@ namespace Vcc.Nolvus.Services.Settings
         public const string ProcessSection = "Process";
         public const string Count = "Count";
         public const string Retry = "Retry";
+        public const string MiscSection = "Misc";
+        public const string ForceAntiAliasing = "ForceAA";
 
         public void StoreIniValue(string Section, string Parameter, string Value)
         {
@@ -102,6 +104,22 @@ namespace Vcc.Nolvus.Services.Settings
                 catch
                 {
                     return 10;
+                }
+            }
+        }
+
+        public bool ForceAA
+        {
+            get
+            {
+                try
+                {
+                    return System.Convert.ToBoolean(GetIniValue(MiscSection, ForceAntiAliasing));
+                    
+                }
+                catch
+                {
+                    return false;
                 }
             }
         }

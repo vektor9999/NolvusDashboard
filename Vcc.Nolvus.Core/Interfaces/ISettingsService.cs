@@ -14,5 +14,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         string GetIniValue(string File, string Section, string Parameter);
         int ProcessCount { get; }
         int RetryCount { get; }
+        bool ForceAA { get; }
     }
 }

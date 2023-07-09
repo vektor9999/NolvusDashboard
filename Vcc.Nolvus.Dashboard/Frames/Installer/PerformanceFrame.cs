@@ -231,7 +231,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
             DrpDwnLstAntiAliasing.DataSource = AntiAliasing;
 
-            if (!IsNvidiaRTX())
+            if (!IsNvidiaRTX() && !ServiceSingleton.Settings.ForceAA)
             {
                 ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing = "TAA";
                 DrpDwnLstAntiAliasing.Enabled = false;

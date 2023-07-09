@@ -34,6 +34,9 @@ Password={3}
 [Process]
 Count = {4}
 Retry = 10
+
+[Misc]
+ForceAA=False
 ";
 
         public NolvusFrame()
