@@ -194,9 +194,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
         protected override void OnLoad()
         {           
-            var Instance = ServiceSingleton.Instances.WorkingInstance;
-
-            LblGPUs.Text = string.Join(Environment.NewLine, ServiceSingleton.Globals.GetVideoAdapters().ToArray());
+            var Instance = ServiceSingleton.Instances.WorkingInstance;            
 
             DrpDwnLstScreenRes.DataSource = ServiceSingleton.Globals.WindowsResolutions;
             DrpDwnLstScreenRes.Enabled = false;
@@ -231,12 +229,21 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
             DrpDwnLstAntiAliasing.DataSource = AntiAliasing;
 
-            if (!IsNvidiaRTX() && !ServiceSingleton.Settings.ForceAA)
+            if (!ServiceSingleton.Settings.ForceAA)
             {
-                ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing = "TAA";
-                DrpDwnLstAntiAliasing.Enabled = false;
-            }
+                LblGPUs.Text = string.Join(Environment.NewLine, ServiceSingleton.Globals.GetVideoAdapters().ToArray());
 
+                if (!IsNvidiaRTX())
+                {
+                    ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing = "TAA";
+                    DrpDwnLstAntiAliasing.Enabled = false;
+                }
+            }
+            else
+            {
+                LblGPUs.Text = "NOT LISTED (CHECK BYPASSED)";
+            }
+            
             DrpDwnLstAntiAliasing.SelectedIndex = AntiAliasingIndex(AntiAliasing);
 
             DrpDwnLstIni.DataSource = IniSettings;
