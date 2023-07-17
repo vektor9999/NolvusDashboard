@@ -390,35 +390,43 @@ namespace Vcc.Nolvus.Instance.Services
         {
             string EnvValue = Key;
 
-            System.Reflection.PropertyInfo PropToCompare = typeof(INolvusInstance).GetProperty(Key);            
-            
-            if (PropToCompare == null)
-            {
-                PropToCompare = typeof(IInstanceSettings).GetProperty(Key);
+            try
+            {                
+                System.Reflection.PropertyInfo PropToCompare = typeof(INolvusInstance).GetProperty(Key);
 
                 if (PropToCompare == null)
                 {
-                    PropToCompare = typeof(IInstancePerformance).GetProperty(Key);
+                    PropToCompare = typeof(IInstanceSettings).GetProperty(Key);
 
                     if (PropToCompare == null)
                     {
-                        PropToCompare = typeof(IInstanceOptions).GetProperty(Key);
+                        PropToCompare = typeof(IInstancePerformance).GetProperty(Key);
 
-                        EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Options);
+                        if (PropToCompare == null)
+                        {
+                            PropToCompare = typeof(IInstanceOptions).GetProperty(Key);
+
+                            EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Options);
+                        }
+                        else
+                        {
+                            EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Performance);
+                        }
                     }
                     else
                     {
-                        EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Performance);
+                        EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Settings);
                     }
                 }
                 else
                 {
-                    EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Settings);
+                    EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance);
                 }
             }
-            else
+            catch(Exception ex)
             {
-                EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance);
+                ServiceSingleton.Logger.Log(string.Format("Error during environment value checking (Key {0}) with message {1}", Key, ex.Message));
+                throw ex;
             }
 
             return EnvValue;   

@@ -141,17 +141,26 @@ namespace Vcc.Nolvus.StockGame.Patcher
 
                     try
                     {
-                        this.StepProcessed("Downloading patcher binary file");
-                        
-                        await ServiceSingleton.Files.DownloadFile(xdeltaUrl, DownloadedFile, Downloading);
+                        try
+                        {
 
-                        this.StepProcessed("Patcher bynary downloaded");
+                            this.StepProcessed("Downloading patcher binary file");
 
-                        await ServiceSingleton.Files.ExtractFile(DownloadedFile, _WorkingDir, Extracting);
+                            await ServiceSingleton.Files.DownloadFile(xdeltaUrl, DownloadedFile, Downloading);
 
-                        this.StepProcessed("Patching Binaries extracted");
+                            this.StepProcessed("Patcher bynary downloaded");
 
-                        File.Copy(Path.Combine(_WorkingDir, xdeltaBin), Path.Combine(_LibDir, "xdelta3.exe"), true);
+                            await ServiceSingleton.Files.ExtractFile(DownloadedFile, _WorkingDir, Extracting);
+
+                            this.StepProcessed("Patching Binaries extracted");
+
+                            File.Copy(Path.Combine(_WorkingDir, xdeltaBin), Path.Combine(_LibDir, "xdelta3.exe"), true);
+                        }
+                        catch(Exception ex)
+                        {
+                            ServiceSingleton.Logger.Log(string.Format("Error during patcher binary file download message {0}", ex.Message));
+                            throw ex;
+                        }
                     }
                     finally
                     {
