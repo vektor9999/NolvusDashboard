@@ -322,7 +322,7 @@ namespace Vcc.Nolvus.Package.Services
 
                         Soft.Load(SoftNode, Elements);
                                      
-                        Progress("Loading softwares", System.Convert.ToInt16(Math.Round(((double)++Counter / Total * 100))));
+                        Progress(string.Format("Loading softwares for version {0}", Storage.SelectSingleNode(VersionKey).InnerText), System.Convert.ToInt16(Math.Round(((double)++Counter / Total * 100))));
                     }
 
                     Counter = 1;
@@ -333,7 +333,7 @@ namespace Vcc.Nolvus.Package.Services
 
                         Category.Load(CatNode, Elements);
                         
-                        Progress("Loading Mods", System.Convert.ToInt16(Math.Round(((double)++Counter / Total * 100))));
+                        Progress(string.Format("Loading mods for version {0}", Storage.SelectSingleNode(VersionKey).InnerText), System.Convert.ToInt16(Math.Round(((double)++Counter / Total * 100))));
                     }                    
 
                     LoadOrder.Clear();
@@ -342,7 +342,7 @@ namespace Vcc.Nolvus.Package.Services
                     {
                         LoadOrder.Add(EspNode.InnerText);
                         
-                        Progress("Loading load order", System.Convert.ToInt16(Math.Round(((double)++Counter / Total * 100))));
+                        Progress(string.Format("Loading load order for version {0}", Storage.SelectSingleNode(VersionKey).InnerText), System.Convert.ToInt16(Math.Round(((double)++Counter / Total * 100))));
                     }
 
                     LoadedVersion = Storage.SelectSingleNode(VersionKey).InnerText;
@@ -411,7 +411,7 @@ namespace Vcc.Nolvus.Package.Services
 
                         Category.Load(CatNode, Elements);
 
-                        Progress("Loading Mods", System.Convert.ToInt16(Math.Round(((double)++Counter / Total * 100))));
+                        Progress(string.Format("Loading mods for version {0}", Storage.SelectSingleNode(VersionKey).InnerText), System.Convert.ToInt16(Math.Round(((double)++Counter / Total * 100))));
                     }
 
                     LoadOrder.Clear();
@@ -420,7 +420,7 @@ namespace Vcc.Nolvus.Package.Services
                     {
                         LoadOrder.Add(EspNode.InnerText);
 
-                        Progress("Loading load order", System.Convert.ToInt16(Math.Round(((double)++Counter / Total * 100))));
+                        Progress(string.Format("Loading load order for version {0}", Storage.SelectSingleNode(VersionKey).InnerText), System.Convert.ToInt16(Math.Round(((double)++Counter / Total * 100))));
                     }
 
                     LoadedVersion = Storage.SelectSingleNode(VersionKey).InnerText;               

@@ -391,7 +391,7 @@ namespace Vcc.Nolvus.Instance.Services
             string EnvValue = Key;
 
             try
-            {                
+            {                     
                 System.Reflection.PropertyInfo PropToCompare = typeof(INolvusInstance).GetProperty(Key);
 
                 if (PropToCompare == null)
@@ -425,7 +425,7 @@ namespace Vcc.Nolvus.Instance.Services
             }
             catch(Exception ex)
             {
-                ServiceSingleton.Logger.Log(string.Format("Error during environment value checking (Key {0}) with message {1}", Key, ex.Message));
+                ServiceSingleton.Logger.Log(string.Format("Error during environment value checking (Key : {0}) with message {1}", Key, ex.Message));
                 throw ex;
             }
 
