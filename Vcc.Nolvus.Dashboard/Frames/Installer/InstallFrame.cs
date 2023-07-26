@@ -58,9 +58,10 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 Invoke((Action)RefreshBox);
                 return;
             }
-            
+
+            ModsBox.DataSource = null;
             ModsBox.DataSource = ServiceSingleton.Packages.ProgressQueue.ToList();
-            ModsBox.Refresh();                        
+            ModsBox.Refresh();                                    
         }        
 
         private void ShowLoading()

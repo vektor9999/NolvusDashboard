@@ -236,6 +236,10 @@ namespace Vcc.Nolvus.Browser.Core
             {
                 WebSite = WebSite.EnbDev;
             }
+            else
+            {
+                WebSite = WebSite.Other;
+            }
 
             DownloadHandler = new ChromeDownloaderHandler(LinkOnly, OnProgress);
             (DownloadHandler as ChromeDownloaderHandler).OnFileDownloadRequest += DownloadRequested;
@@ -274,6 +278,9 @@ namespace Vcc.Nolvus.Browser.Core
                         break;                  
                     case WebSite.EnbDev:
                         HandleEnbDev();
+                        break;
+                    case WebSite.Other:
+                        HandleOthers();
                         break;
                 }
             }
@@ -426,6 +433,15 @@ namespace Vcc.Nolvus.Browser.Core
 
             ExecuteScript(Script);
         }
+        #endregion
+
+        #region Others
+
+        private void HandleOthers()
+        {
+            Browser.HideLoading();
+        }
+
         #endregion
     }
 }

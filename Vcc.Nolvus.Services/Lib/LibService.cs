@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Net;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -9,14 +10,18 @@ using System.Drawing.Drawing2D;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Interfaces;
+using Aspose.Imaging;
+using Aspose.Imaging.Brushes;
+using Aspose.Imaging.FileFormats.Webp;
+
 
 namespace Vcc.Nolvus.Services.Lib
 {
     public class LibService : ILibService
     {
-        public Image ResizeKeepAspectRatio(Image source, int width, int height)
+        public System.Drawing.Image ResizeKeepAspectRatio(System.Drawing.Image source, int width, int height)
         {
-            Image result = null;
+            System.Drawing.Image result = null;
 
             try
             {
@@ -25,13 +30,13 @@ namespace Vcc.Nolvus.Services.Lib
                     // Resize image
                     float sourceRatio = (float)source.Width / source.Height;
 
-                    using (var target = new Bitmap(width, height))
+                    using (var target = new System.Drawing.Bitmap(width, height))
                     {
                         using (var g = System.Drawing.Graphics.FromImage(target))
                         {
-                            g.CompositingQuality = CompositingQuality.HighQuality;
-                            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                            g.SmoothingMode = SmoothingMode.HighQuality;
+                            g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
 
                             // Scaling
                             float scaling;
@@ -81,38 +86,38 @@ namespace Vcc.Nolvus.Services.Lib
             return result;
         }
 
-        public Image SetImageOpacity(Image Source, float Opacity)
+        public System.Drawing.Image SetImageOpacity(System.Drawing.Image Source, float Opacity)
         {
-            Bitmap Bmp = new Bitmap(Source.Width, Source.Height);
+            System.Drawing.Bitmap Bmp = new System.Drawing.Bitmap(Source.Width, Source.Height);
 
-            using (Graphics g = Graphics.FromImage(Bmp))
+            using (System.Drawing.Graphics g = System.Drawing.Graphics.FromImage(Bmp))
             {
-                ColorMatrix matrix = new ColorMatrix();
+                System.Drawing.Imaging.ColorMatrix matrix = new System.Drawing.Imaging.ColorMatrix();
                 matrix.Matrix33 = Opacity;
-                ImageAttributes attributes = new ImageAttributes();
-                attributes.SetColorMatrix(matrix, ColorMatrixFlag.Default,
-                                                  ColorAdjustType.Bitmap);
-                g.DrawImage(Source, new Rectangle(0, 0, Bmp.Width, Bmp.Height),
+                System.Drawing.Imaging.ImageAttributes attributes = new System.Drawing.Imaging.ImageAttributes();
+                attributes.SetColorMatrix(matrix, System.Drawing.Imaging.ColorMatrixFlag.Default,
+                                                  System.Drawing.Imaging.ColorAdjustType.Bitmap);
+                g.DrawImage(Source, new System.Drawing.Rectangle(0, 0, Bmp.Width, Bmp.Height),
                                    0, 0, Source.Width, Source.Height,
-                                   GraphicsUnit.Pixel, attributes);
+                                   System.Drawing.GraphicsUnit.Pixel, attributes);
             }
 
             return Bmp;
         }
 
-        public Image SetImageGradient(Image InputImage)
+        public System.Drawing.Image SetImageGradient(System.Drawing.Image InputImage)
         {
-            Bitmap adjImage = new Bitmap(InputImage.Width, InputImage.Height);
+            System.Drawing.Bitmap adjImage = new System.Drawing.Bitmap(InputImage.Width, InputImage.Height);
 
-            Graphics g = Graphics.FromImage(adjImage);
+            System.Drawing.Graphics g = System.Drawing.Graphics.FromImage(adjImage);
 
-            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(
-                new Rectangle(0, 0, adjImage.Width, adjImage.Height),
-                Color.White,
-                Color.Transparent,
+            System.Drawing.Drawing2D.LinearGradientBrush linearGradientBrush = new System.Drawing.Drawing2D.LinearGradientBrush(
+                new System.Drawing.Rectangle(0, 0, adjImage.Width, adjImage.Height),
+                System.Drawing.Color.White,
+                System.Drawing.Color.Transparent,
                 0f);
 
-            Rectangle rect = new Rectangle(0, 0, adjImage.Width, adjImage.Height);
+            System.Drawing.Rectangle rect = new System.Drawing.Rectangle(0, 0, adjImage.Width, adjImage.Height);
             g.FillRectangle(linearGradientBrush, rect);
 
             int x;
@@ -121,9 +126,9 @@ namespace Vcc.Nolvus.Services.Lib
             {
                 for (y = 0; y < adjImage.Height; ++y)
                 {
-                    Color inputPixelColor = (InputImage as Bitmap).GetPixel(x, y);
-                    Color adjPixelColor = adjImage.GetPixel(x, y);
-                    Color newColor = Color.FromArgb(adjPixelColor.A, inputPixelColor.R, inputPixelColor.G, inputPixelColor.B);
+                    System.Drawing.Color inputPixelColor = (InputImage as System.Drawing.Bitmap).GetPixel(x, y);
+                    System.Drawing.Color adjPixelColor = adjImage.GetPixel(x, y);
+                    System.Drawing.Color newColor = System.Drawing.Color.FromArgb(adjPixelColor.A, inputPixelColor.R, inputPixelColor.G, inputPixelColor.B);
                     adjImage.SetPixel(x, y, newColor);
                 }
             }
@@ -191,6 +196,32 @@ namespace Vcc.Nolvus.Services.Lib
             cs.Close();
 
             return Encoding.UTF8.GetString(ms.ToArray());
+        }
+
+        public System.Drawing.Image GetImageFromWebStream(string ImageUrl)
+        {
+            System.Drawing.Image Result;
+
+            var WebStream = WebRequest.Create(ImageUrl).GetResponse().GetResponseStream();
+
+            MemoryStream Stream = new MemoryStream();
+
+            byte[] chunk = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = WebStream.Read(chunk, 0, chunk.Length)) > 0)
+            {
+                Stream.Write(chunk, 0, bytesRead);
+            }
+
+            Stream.Seek(0, System.IO.SeekOrigin.Begin);
+
+          
+            using (WebPImage LoadedImage = (WebPImage)Aspose.Imaging.Image.Load(Stream))
+            {
+                Result = LoadedImage.ToBitmap();
+            }
+
+            return Result;
         }
     }
 }

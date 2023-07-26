@@ -14,6 +14,7 @@ using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Package.Files;
 using Vcc.Nolvus.NexusApi;
 
+
 namespace Vcc.Nolvus.Package.Mods
 {
     public abstract class InstallableElement : IInstallableElement
@@ -29,19 +30,19 @@ namespace Vcc.Nolvus.Package.Mods
         public ElementAction Action { get; set; }
         public List<ModFile> Files = new List<ModFile>();
         public abstract string ArchiveFolder { get; }
-
-        private Image FormatImage()
+      
+        private System.Drawing.Image FormatImage()
         {
             float Opacity = 0.30F;
             ILibService Lib = ServiceSingleton.Lib;
 
-            Image Result;
-
+            System.Drawing.Image Result;
+            
             try
             {                
                 if (ImagePath != string.Empty)
                 {
-                    Result = Image.FromStream(WebRequest.Create(ImagePath).GetResponse().GetResponseStream());
+                    Result = Lib.GetImageFromWebStream(ImagePath);
                 }
                 else
                 {
@@ -54,7 +55,7 @@ namespace Vcc.Nolvus.Package.Mods
                 
             }
             catch
-            {
+            {                
                 return Lib.SetImageOpacity(Lib.SetImageGradient(Lib.ResizeKeepAspectRatio(Properties.Resources.mod_def_22, 100, 30)), Opacity);
             }
             
@@ -345,7 +346,7 @@ namespace Vcc.Nolvus.Package.Mods
         public async Task<ModProgress> PrepareProgress()
         {
             return await Task.Run(() => 
-            {
+            {                
                 return Progress;              
             });
         }

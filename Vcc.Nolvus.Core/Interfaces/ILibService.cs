@@ -14,5 +14,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         Image SetImageGradient(Image InputImage);
         string EncryptString(string value);
         string DecryptString(string value);
+        Image GetImageFromWebStream(string ImageUrl);
     }
 }
