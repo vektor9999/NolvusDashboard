@@ -72,7 +72,7 @@
             this.statusStripEx1.Dock = Syncfusion.Windows.Forms.Tools.DockStyleEx.Bottom;
             this.statusStripEx1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StStripLblInfo});
-            this.statusStripEx1.Location = new System.Drawing.Point(2, 648);
+            this.statusStripEx1.Location = new System.Drawing.Point(2, 837);
             this.statusStripEx1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(206)))), ((int)(((byte)(255)))));
             this.statusStripEx1.Name = "statusStripEx1";
             this.statusStripEx1.Size = new System.Drawing.Size(819, 22);
@@ -89,7 +89,7 @@
             this.BrowserPanel.Controls.Add(this.LoadingBox);
             this.BrowserPanel.Location = new System.Drawing.Point(5, 48);
             this.BrowserPanel.Name = "BrowserPanel";
-            this.BrowserPanel.Size = new System.Drawing.Size(813, 582);
+            this.BrowserPanel.Size = new System.Drawing.Size(813, 771);
             this.BrowserPanel.TabIndex = 13;
             // 
             // LoadingBox
@@ -100,7 +100,7 @@
             this.LoadingBox.Image = global::Vcc.Nolvus.Browser.Properties.Resources.cog_loader_alpha;
             this.LoadingBox.Location = new System.Drawing.Point(-1, -1);
             this.LoadingBox.Name = "LoadingBox";
-            this.LoadingBox.Size = new System.Drawing.Size(813, 582);
+            this.LoadingBox.Size = new System.Drawing.Size(813, 771);
             this.LoadingBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.LoadingBox.TabIndex = 1;
             this.LoadingBox.TabStop = false;
@@ -111,7 +111,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.ClientSize = new System.Drawing.Size(823, 672);
+            this.ClientSize = new System.Drawing.Size(823, 861);
             this.Controls.Add(this.BrowserPanel);
             this.Controls.Add(this.statusStripEx1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

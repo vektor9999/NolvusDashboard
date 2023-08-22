@@ -134,8 +134,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             DrpDwnLstGuides.DisplayMember = "Name";
             DrpDwnLstGuides.ValueMember = "Id";
 
-            DrpDwnLstGuides.SelectedIndex = InstanceIndex(Versions);
-            
+            DrpDwnLstGuides.SelectedIndex = InstanceIndex(Versions);            
             DrpDwnLstScreenRes.DataSource = ServiceSingleton.Globals.WindowsResolutions;            
 
             DrpDwnLstScreenRes.SelectedIndex = ResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);

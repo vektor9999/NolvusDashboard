@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows.Forms;
 using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Frames;
@@ -54,17 +55,13 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         }
 
         private void DrpDwnLstENB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //if (DrpDwnLstENB.SelectedIndex == 0)
-            //{
-            //    ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB = "FALSE";
-            //}
-            //else
-            //{
-            //    ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB = "TRUE";
-            //}
-
+        {        
             ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB = DrpDwnLstENB.SelectedValue.ToString();
+        }
+
+        private void LnkLblENB_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://www.nolvus.net/guide/asc/enb");
         }
     }
 }

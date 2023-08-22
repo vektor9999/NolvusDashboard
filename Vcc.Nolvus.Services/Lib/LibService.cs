@@ -214,7 +214,6 @@ namespace Vcc.Nolvus.Services.Lib
             }
 
             Stream.Seek(0, System.IO.SeekOrigin.Begin);
-
           
             using (WebPImage LoadedImage = (WebPImage)Aspose.Imaging.Image.Load(Stream))
             {

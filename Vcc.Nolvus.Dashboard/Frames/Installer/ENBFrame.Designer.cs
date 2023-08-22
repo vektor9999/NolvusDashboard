@@ -33,6 +33,11 @@
             this.BtnContinue = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.LnkLblENB = new System.Windows.Forms.LinkLabel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.DrpDwnLstENB = new Syncfusion.WinForms.ListView.SfComboBox();
@@ -95,9 +100,10 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(3, 10);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(293, 35);
+            this.label4.Size = new System.Drawing.Size(293, 54);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Select the ENB you want to install.";
+            this.label4.Text = "Select the ENB you want to install. PI-CHO is the default Nolvus ENB preset and t" +
+    "he one that works better with the list.";
             // 
             // panel2
             // 
@@ -105,6 +111,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.LnkLblENB);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.DrpDwnLstENB);
@@ -113,6 +124,62 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(641, 531);
             this.panel2.TabIndex = 17;
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Orange;
+            this.label7.Location = new System.Drawing.Point(13, 212);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(511, 35);
+            this.label7.TabIndex = 47;
+            this.label7.Text = "BE SURE TO FOLLOW THIS TUTORIAL AFTER THE LIST IS INSTALLED.";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(66, 182);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(224, 13);
+            this.label6.TabIndex = 46;
+            this.label6.Text = "for the tutorial on how to install Cabbage ENB.";
+            // 
+            // LnkLblENB
+            // 
+            this.LnkLblENB.AutoSize = true;
+            this.LnkLblENB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LnkLblENB.ForeColor = System.Drawing.Color.Orange;
+            this.LnkLblENB.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.LnkLblENB.LinkColor = System.Drawing.Color.Orange;
+            this.LnkLblENB.Location = new System.Drawing.Point(40, 182);
+            this.LnkLblENB.Name = "LnkLblENB";
+            this.LnkLblENB.Size = new System.Drawing.Size(28, 13);
+            this.LnkLblENB.TabIndex = 45;
+            this.LnkLblENB.TabStop = true;
+            this.LnkLblENB.Text = "here";
+            this.LnkLblENB.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LnkLblENB_LinkClicked);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(13, 182);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(30, 13);
+            this.label5.TabIndex = 44;
+            this.label5.Text = "Click";
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(13, 153);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(511, 29);
+            this.label2.TabIndex = 43;
+            this.label2.Text = "A preset with Cabbage ENB is also available, but the Cabbage ENB must be installe" +
+    "d manually.";
             // 
             // label3
             // 
@@ -202,5 +269,10 @@
         private Syncfusion.WinForms.ListView.SfComboBox DrpDwnLstENB;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.LinkLabel LnkLblENB;
     }
 }

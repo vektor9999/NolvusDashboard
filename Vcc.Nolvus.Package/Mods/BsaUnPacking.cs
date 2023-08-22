@@ -32,8 +32,10 @@ namespace Vcc.Nolvus.Package.Mods
                     UnPackingProcess.StartInfo.CreateNoWindow = true;
                     UnPackingProcess.StartInfo.UseShellExecute = false;
                     UnPackingProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-
+                    
                     string CommandLine = string.Format("\"" + Path.Combine(BSArchDir, "bsarch.exe") + "\" unpack \"{0}\" \"{1}\"", BSAFile.FullName, BSAFile.DirectoryName);
+
+                    ServiceSingleton.Logger.Log(string.Format("Unpacking command line : {0}", CommandLine));
 
                     UnPackingProcess.StartInfo.Arguments = "/c \"" + CommandLine + "\"";
 

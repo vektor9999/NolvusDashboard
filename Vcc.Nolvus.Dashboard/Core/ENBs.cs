@@ -19,11 +19,13 @@ namespace Vcc.Nolvus.Dashboard.Core
             ENBs RUDY = new ENBs { Code = "RUDY", Name = "Rudy" };
             ENBs BJORN = new ENBs { Code = "BJREG", Name = "Bjorn" };
             ENBs BJORNDARK = new ENBs { Code = "BJAGE", Name = "Bjorn Dark Ages" };
+            ENBs BJORNWOLF = new ENBs { Code = "BJWOL", Name = "Bjorn The White Wolf Cut" };
 
             ENBList.Add(PICHO);
             ENBList.Add(RUDY);
             ENBList.Add(BJORN);
             ENBList.Add(BJORNDARK);
+            ENBList.Add(BJORNWOLF);
 
             return ENBList;
         }

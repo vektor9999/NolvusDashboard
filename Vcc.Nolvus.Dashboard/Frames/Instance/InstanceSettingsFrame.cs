@@ -313,6 +313,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                 LblHC.Text = "No";
                 LblLeveling.Text = "No";
                 LblAltStart.Text = "No";
+                LblFantasyMode.Text = "No";
                 LblNude.Text = "No";
                 LblSkinType.Text = Instance.Options.SkinType;
 
@@ -344,6 +345,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                 if (Instance.Options.AlternateStart == "TRUE")
                 {
                     LblAltStart.Text = "Yes";
+                }
+
+                if (Instance.Options.FantasyMode == "TRUE")
+                {
+                    LblFantasyMode.Text = "Yes";
                 }
 
                 if (Instance.Options.Nudity == "TRUE")

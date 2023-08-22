@@ -252,7 +252,7 @@ WindowRounding=0.000000";
                         {
                             ReshadePreset = "Bjorn Reshade.ini";
                         }
-                        else if (ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB == "BJAGE")
+                        else if (ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB == "BJAGE" || ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB == "BJWOL")
                         {
                             ReshadePreset = "Bjorn Dark Ages.ini";
                         }

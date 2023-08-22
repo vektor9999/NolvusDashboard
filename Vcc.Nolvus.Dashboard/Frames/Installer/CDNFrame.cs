@@ -82,8 +82,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         }
 
         private void BtnContinue_Click(object sender, EventArgs e)
-        {
-            //ServiceSingleton.Dashboard.LoadFrameAsync<PackageFrame>(new FrameParameters(FrameParameter.Create("InstallMode", InstallMode.Install)));            
+        {                    
             ServiceSingleton.Dashboard.LoadFrame<SummaryFrame>();
         }
 

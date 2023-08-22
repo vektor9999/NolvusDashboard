@@ -34,6 +34,54 @@ namespace Vcc.Nolvus.Dashboard.Frames
             InitializeComponent();
         }
 
+        protected async Task Install(INolvusInstance Instance)
+        {
+            IInstallPackageDTO Package = await ApiManager.Service.Installer.GetLatestPackage(Instance.Id);
+
+            Instance.Version = Package.Version;
+
+            await ServiceSingleton.Packages.Load(Package, (s, p) =>
+            {
+                ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
+                ServiceSingleton.Dashboard.Progress(p);
+            });
+
+            await ServiceSingleton.Dashboard.LoadFrameAsync<StockGameFrame>();
+        }
+
+        protected async Task Resume(INolvusInstance Instance)
+        {
+            await ServiceSingleton.Packages.Load(await ApiManager.Service.Installer.GetPackage(Instance.Id, Instance.Version), (s, p) =>
+            {
+                ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
+                ServiceSingleton.Dashboard.Progress(p);
+            });
+
+            await ServiceSingleton.Dashboard.LoadFrameAsync<InstallFrame>();
+        }
+
+        protected async Task Update(INolvusInstance Instance)
+        {
+            await ServiceSingleton.Packages.Merge(await ApiManager.Service.Installer.GetLatestPackages(Instance.Id, Instance.Version), (s, p) =>
+            {
+                ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
+                ServiceSingleton.Dashboard.Progress(p);
+            });
+
+            await ServiceSingleton.Dashboard.LoadFrameAsync<InstallFrame>();
+        }
+
+        protected async Task View(INolvusInstance Instance)
+        {
+            await ServiceSingleton.Packages.Load(await ApiManager.Service.Installer.GetPackage(Instance.Id, Instance.Version), (s, p) =>
+            {
+                ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
+                ServiceSingleton.Dashboard.Progress(p);
+            });
+
+            await ServiceSingleton.Dashboard.LoadFrameAsync<InstanceDetailFrame>();
+        }
+
         protected override async Task OnLoadedAsync()        
         {
             ServiceSingleton.Dashboard.Info("Package loading...");
@@ -43,68 +91,26 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 try
                 {
                     INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
-                    
-                    if (Instance.Status.InstallStatus == InstanceInstallStatus.None)
+
+                    switch (Instance.Status.InstallStatus)
                     {
-                        #region New Installation
+                        case InstanceInstallStatus.None:
+                            await Install(Instance);
+                            break;
 
-                        IInstallPackageDTO Package = await ApiManager.Service.Installer.GetLatestPackage(Instance.Id);
+                        case InstanceInstallStatus.Installing:
+                            await Resume(Instance);
+                            break;
 
-                        Instance.Version = Package.Version;
+                        case InstanceInstallStatus.Updating:
+                            await Update(Instance);
+                            break;
 
-                        await ServiceSingleton.Packages.Load(Package, (s, p) =>
-                        {
-                            ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
-                            ServiceSingleton.Dashboard.Progress(p);
-                        });
+                        default:
+                            await View(Instance);
+                            break;
 
-                        await ServiceSingleton.Dashboard.LoadFrameAsync<StockGameFrame>();
-
-                        #endregion
-                    }
-                    else if (Instance.Status.InstallStatus == InstanceInstallStatus.Installing)
-                    {
-                        #region Resume Installation                        
-
-                        await ServiceSingleton.Packages.Load(await ApiManager.Service.Installer.GetPackage(Instance.Id, Instance.Version), (s, p) =>
-                        {
-                            ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
-                            ServiceSingleton.Dashboard.Progress(p);
-                        });
-
-                        await ServiceSingleton.Dashboard.LoadFrameAsync<InstallFrame>();
-
-                        #endregion
-                    }
-                    else if (Instance.Status.InstallStatus == InstanceInstallStatus.Updating)
-                    {
-                        #region Update
-
-                        await ServiceSingleton.Packages.Merge(await ApiManager.Service.Installer.GetLatestPackages(Instance.Id, Instance.Version), (s, p) =>
-                        {
-                            ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
-                            ServiceSingleton.Dashboard.Progress(p);
-                        });
-
-                        await ServiceSingleton.Dashboard.LoadFrameAsync<InstallFrame>();
-
-                        #endregion
-                    }
-                    else
-                    {
-                        #region Installed Instance
-
-                        await ServiceSingleton.Packages.Load(await ApiManager.Service.Installer.GetPackage(Instance.Id, Instance.Version), (s, p) =>
-                        {
-                            ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
-                            ServiceSingleton.Dashboard.Progress(p);
-                        });
-
-                        await ServiceSingleton.Dashboard.LoadFrameAsync<InstanceDetailFrame>();
-
-                        #endregion
-                    }
-
+                    }                  
                 }
                 catch (Exception ex)
                 {

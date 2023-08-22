@@ -22,15 +22,26 @@ namespace Vcc.Nolvus.Package.Mods
                 try
                 {
                     try
-                    {                        
-                        var Rules = FetchRules();
-                        var Counter = 0;
-
+                    {
                         INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
+
+                        var ENBCacheDir = Path.Combine(Instance.StockGame, "enbcache");
+
+                        if (Directory.Exists(ENBCacheDir))
+                        {
+                            ServiceSingleton.Files.RemoveDirectory(ENBCacheDir, true);
+                        }
+
+                        var Rules = FetchRules();
+                        var Counter = 0;                        
 
                         foreach (var Rule in Rules)
                         {
-                            Rule.Execute(Instance.StockGame, Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), Instance.StockGame , Instance.InstallDir);
+                            Rule.Execute(Instance.StockGame, 
+                                         Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), 
+                                         Instance.StockGame, 
+                                         Instance.InstallDir);
+
                             CopyingProgress(++Counter, Rules.Count);
                         }                        
                     }

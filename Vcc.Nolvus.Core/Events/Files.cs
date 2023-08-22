@@ -38,6 +38,7 @@ namespace Vcc.Nolvus.Core.Events
 
     public delegate void DownloadProgressChangedHandler(object sender, DownloadProgress progress);
     public delegate void ExtractProgressChangedHandler(object sender, ExtractProgress progress);
+
     public abstract class BaseProgress
     {
         public string FileName;

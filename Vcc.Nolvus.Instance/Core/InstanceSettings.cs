@@ -16,7 +16,7 @@ namespace Vcc.Nolvus.Instance.Core
         public string Height { get; set; } = string.Empty;
         public string Width { get; set; } = string.Empty;
         public bool EnableArchiving { get; set; }
-        public string CDN { get; set; } = string.Empty;
+        public string CDN { get; set; } = "Nexus CDN";
         public string LgCode { get; set; } = "EN";
         public string LgName { get; set; } = "English";
         public string GameDataDir

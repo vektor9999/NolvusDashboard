@@ -78,6 +78,18 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             this.TglBtnAltStart.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
             this.TglBtnAltStart.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
             this.TglBtnAltStart.InactiveState.HoverColor = Color.White;
+
+            this.TglBtnFantasyMode.ActiveState.Text = "ON";
+            this.TglBtnFantasyMode.ActiveState.BackColor = Color.Orange;
+            this.TglBtnFantasyMode.ActiveState.BorderColor = Color.Orange;
+            this.TglBtnFantasyMode.ActiveState.ForeColor = Color.White;
+            this.TglBtnFantasyMode.ActiveState.HoverColor = Color.Orange;
+
+            this.TglBtnFantasyMode.InactiveState.Text = "OFF";
+            this.TglBtnFantasyMode.InactiveState.BackColor = Color.White;
+            this.TglBtnFantasyMode.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
+            this.TglBtnFantasyMode.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
+            this.TglBtnFantasyMode.InactiveState.HoverColor = Color.White;
         }
 
         private int SkinTypeIndex(List<string> SkinTypes)
@@ -130,6 +142,13 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             if (Instance.Options.AlternateStart == "TRUE")
             {
                 this.TglBtnAltStart.ToggleState = ToggleButtonState.Active;
+            }
+
+            this.TglBtnFantasyMode.ToggleState = ToggleButtonState.Inactive;
+
+            if (Instance.Options.FantasyMode == "TRUE")
+            {
+                this.TglBtnFantasyMode.ToggleState = ToggleButtonState.Active;
             }
 
             List<string> SkinTypes = new List<string>();
@@ -219,6 +238,18 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             else
             {
                 ServiceSingleton.Instances.WorkingInstance.Options.AlternateStart = "FALSE";
+            }
+        }
+
+        private void TglBtnFantasyMode_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
+        {
+            if (e.ToggleState == ToggleButtonState.Active)
+            {
+                ServiceSingleton.Instances.WorkingInstance.Options.FantasyMode = "TRUE";
+            }
+            else
+            {
+                ServiceSingleton.Instances.WorkingInstance.Options.FantasyMode = "FALSE";
             }
         }
     }

@@ -31,6 +31,10 @@
             this.LblStepText = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.LblENB = new System.Windows.Forms.Label();
+            this.LblEN = new System.Windows.Forms.Label();
+            this.LblAltStart = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.LblHC = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.LblLeveling = new System.Windows.Forms.Label();
@@ -74,10 +78,8 @@
             this.PicBox = new System.Windows.Forms.PictureBox();
             this.BtnPrevious = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnStart = new Vcc.Nolvus.Components.Controls.FlatButton();
-            this.LblAltStart = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.LblENB = new System.Windows.Forms.Label();
-            this.LblEN = new System.Windows.Forms.Label();
+            this.LblFantasyMode = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -120,6 +122,8 @@
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.LblFantasyMode);
+            this.groupBox3.Controls.Add(this.label18);
             this.groupBox3.Controls.Add(this.LblENB);
             this.groupBox3.Controls.Add(this.LblEN);
             this.groupBox3.Controls.Add(this.LblAltStart);
@@ -139,6 +143,46 @@
             this.groupBox3.TabIndex = 31;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Options";
+            // 
+            // LblENB
+            // 
+            this.LblENB.AutoSize = true;
+            this.LblENB.ForeColor = System.Drawing.Color.Orange;
+            this.LblENB.Location = new System.Drawing.Point(140, 175);
+            this.LblENB.Name = "LblENB";
+            this.LblENB.Size = new System.Drawing.Size(35, 13);
+            this.LblENB.TabIndex = 45;
+            this.LblENB.Text = "[ENB]";
+            // 
+            // LblEN
+            // 
+            this.LblEN.AutoSize = true;
+            this.LblEN.ForeColor = System.Drawing.Color.White;
+            this.LblEN.Location = new System.Drawing.Point(10, 175);
+            this.LblEN.Name = "LblEN";
+            this.LblEN.Size = new System.Drawing.Size(29, 13);
+            this.LblEN.TabIndex = 44;
+            this.LblEN.Text = "ENB";
+            // 
+            // LblAltStart
+            // 
+            this.LblAltStart.AutoSize = true;
+            this.LblAltStart.ForeColor = System.Drawing.Color.Orange;
+            this.LblAltStart.Location = new System.Drawing.Point(140, 125);
+            this.LblAltStart.Name = "LblAltStart";
+            this.LblAltStart.Size = new System.Drawing.Size(35, 13);
+            this.LblAltStart.TabIndex = 43;
+            this.LblAltStart.Text = "[Start]";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(10, 125);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(74, 13);
+            this.label13.TabIndex = 42;
+            this.label13.Text = "Alternate Start";
             // 
             // LblHC
             // 
@@ -618,45 +662,25 @@
             this.BtnStart.UseVisualStyleBackColor = false;
             this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
-            // LblAltStart
+            // LblFantasyMode
             // 
-            this.LblAltStart.AutoSize = true;
-            this.LblAltStart.ForeColor = System.Drawing.Color.Orange;
-            this.LblAltStart.Location = new System.Drawing.Point(140, 125);
-            this.LblAltStart.Name = "LblAltStart";
-            this.LblAltStart.Size = new System.Drawing.Size(35, 13);
-            this.LblAltStart.TabIndex = 43;
-            this.LblAltStart.Text = "[Start]";
+            this.LblFantasyMode.AutoSize = true;
+            this.LblFantasyMode.ForeColor = System.Drawing.Color.Orange;
+            this.LblFantasyMode.Location = new System.Drawing.Point(140, 150);
+            this.LblFantasyMode.Name = "LblFantasyMode";
+            this.LblFantasyMode.Size = new System.Drawing.Size(77, 13);
+            this.LblFantasyMode.TabIndex = 47;
+            this.LblFantasyMode.Text = "[FantasyMode]";
             // 
-            // label13
+            // label18
             // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(10, 125);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(74, 13);
-            this.label13.TabIndex = 42;
-            this.label13.Text = "Alternate Start";
-            // 
-            // LblENB
-            // 
-            this.LblENB.AutoSize = true;
-            this.LblENB.ForeColor = System.Drawing.Color.Orange;
-            this.LblENB.Location = new System.Drawing.Point(140, 150);
-            this.LblENB.Name = "LblENB";
-            this.LblENB.Size = new System.Drawing.Size(35, 13);
-            this.LblENB.TabIndex = 45;
-            this.LblENB.Text = "[ENB]";
-            // 
-            // LblEN
-            // 
-            this.LblEN.AutoSize = true;
-            this.LblEN.ForeColor = System.Drawing.Color.White;
-            this.LblEN.Location = new System.Drawing.Point(10, 150);
-            this.LblEN.Name = "LblEN";
-            this.LblEN.Size = new System.Drawing.Size(29, 13);
-            this.LblEN.TabIndex = 44;
-            this.LblEN.Text = "ENB";
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.Color.White;
+            this.label18.Location = new System.Drawing.Point(10, 150);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(74, 13);
+            this.label18.TabIndex = 46;
+            this.label18.Text = "Fantasy Mode";
             // 
             // SummaryFrame
             // 
@@ -733,5 +757,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label LblENB;
         private System.Windows.Forms.Label LblEN;
+        private System.Windows.Forms.Label LblFantasyMode;
+        private System.Windows.Forms.Label label18;
     }
 }

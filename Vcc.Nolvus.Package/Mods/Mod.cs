@@ -262,7 +262,7 @@ namespace Vcc.Nolvus.Package.Mods
                 }
                 catch (Exception ex)
                 {
-                    ServiceSingleton.Logger.Log(string.Format("Error during unpacking mod {0} with error {0}", Name, ex.Message));
+                    ServiceSingleton.Logger.Log(string.Format("Error during unpacking mod {0} with error {1}", Name, ex.Message));
                     ServiceSingleton.Files.RemoveDirectory(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), true);
                     throw ex;
                 }
@@ -279,13 +279,20 @@ namespace Vcc.Nolvus.Package.Mods
                     try
                     {
                         ServiceSingleton.Logger.Log(string.Format("Installing mod {0}", Name));
+
+                        CopyingProgress(0, 0);
+
                         this.PrepareDirectrory();
                         var Rules = FetchRules();
-                        var Counter = 0;
+                        var Counter = 0;                        
 
                         foreach (var Rule in Rules)
                         {
-                            Rule.Execute(ServiceSingleton.Instances.WorkingInstance.StockGame, Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), MoDirectoryFullName, ServiceSingleton.Instances.WorkingInstance.InstallDir);
+                            Rule.Execute(ServiceSingleton.Instances.WorkingInstance.StockGame, 
+                                         Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), 
+                                         MoDirectoryFullName, 
+                                         ServiceSingleton.Instances.WorkingInstance.InstallDir);
+
                             CopyingProgress(++Counter, Rules.Count);
                         }
 

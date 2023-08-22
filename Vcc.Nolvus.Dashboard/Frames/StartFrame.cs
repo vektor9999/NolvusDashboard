@@ -35,8 +35,9 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 {
                     ServiceSingleton.Dashboard.Progress(0);
                     ServiceSingleton.Dashboard.Status("Connecting to Nolvus...");
+                    ServiceSingleton.Logger.Log("Connecting to Nolvus...");
 
-                    var ApiUrl = ServiceSingleton.Globals.ApiUrl;
+                    var ApiUrl = ServiceSingleton.Globals.ApiUrl;                    
                     var ApiVersion = ServiceSingleton.Globals.ApiVersion;                    
                     var UserName = ServiceSingleton.Globals.NolvusUserName;
                     var Password = ServiceSingleton.Globals.NolvusPassword;
@@ -79,6 +80,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 try
                 {
                     ServiceSingleton.Dashboard.Status("Connecting to Nexus...");
+                    ServiceSingleton.Logger.Log("Connecting to Nexus...");
 
                     ServiceSingleton.Files.RemoveDirectory(ServiceSingleton.Folders.NexusCacheDirectory, false);
 
@@ -149,6 +151,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 try
                 {
                     ServiceSingleton.Dashboard.Status("Checking instances...");
+                    ServiceSingleton.Logger.Log("Checking instances...");
 
                     ServiceSingleton.Instances.Load();
 
@@ -190,6 +193,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 try
                 {
                     ServiceSingleton.Dashboard.Status("Checking for updates...");
+                    ServiceSingleton.Logger.Log("Checking for updates...");
 
                     var LatestDashboard = await Api.Installer.Services.ApiManager.Service.Installer.GetLatestInstaller();
 

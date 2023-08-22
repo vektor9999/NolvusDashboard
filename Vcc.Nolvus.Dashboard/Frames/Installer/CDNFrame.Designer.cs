@@ -36,6 +36,7 @@
             this.DrpDwnLstDownLoc = new Syncfusion.WinForms.ListView.SfComboBox();
             this.LblDownLoc = new System.Windows.Forms.Label();
             this.LblStepText = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstDownLoc)).BeginInit();
@@ -102,6 +103,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.DrpDwnLstDownLoc);
             this.panel2.Controls.Add(this.LblDownLoc);
             this.panel2.Location = new System.Drawing.Point(7, 30);
@@ -145,6 +147,16 @@
             this.LblStepText.Text = "CDN Location";
             this.LblStepText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label5
+            // 
+            this.label5.ForeColor = System.Drawing.Color.Orange;
+            this.label5.Location = new System.Drawing.Point(4, 55);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(431, 31);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "Only work for nexus mods and not for other file hosting web sites Nolvus connects" +
+    " onto";
+            // 
             // CDNFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -173,5 +185,6 @@
         private System.Windows.Forms.Label LblStepText;
         private Syncfusion.WinForms.ListView.SfComboBox DrpDwnLstDownLoc;
         private System.Windows.Forms.Label LblDownLoc;
+        private System.Windows.Forms.Label label5;
     }
 }
