@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Events;
+using Vcc.Nolvus.Core.Services;
 
 
 namespace Vcc.Nolvus.Services.Files
@@ -73,8 +74,8 @@ namespace Vcc.Nolvus.Services.Files
 
             Wcli.Credentials = System.Net.CredentialCache.DefaultCredentials;
             Wcli.Headers["Accept"] = "*/*";
-            Wcli.Headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36";
-                                                      
+            Wcli.Headers["User-Agent"] = ServiceSingleton.Globals.NolvusUserAgent;
+
             Wcli.DownloadProgressChanged += ProgressChanged;
             Wcli.DownloadFileCompleted += FileCompleted;
 

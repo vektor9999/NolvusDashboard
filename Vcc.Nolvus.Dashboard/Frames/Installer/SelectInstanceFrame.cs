@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Linq;
 using Vcc.Nolvus.Api.Installer.Services;
 using Vcc.Nolvus.Api.Installer.Library;
 using Vcc.Nolvus.Core.Interfaces;
@@ -30,7 +31,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
         private int InstanceIndex(IEnumerable<INolvusVersionDTO> Versions)
         {
-            int Index = 0;
+            int Index = Versions.ToList().Count - 1;                       
 
             INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
@@ -132,7 +133,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
             DrpDwnLstGuides.DataSource = Versions;
             DrpDwnLstGuides.DisplayMember = "Name";
-            DrpDwnLstGuides.ValueMember = "Id";
+            DrpDwnLstGuides.ValueMember = "Id";            
 
             DrpDwnLstGuides.SelectedIndex = InstanceIndex(Versions);            
             DrpDwnLstScreenRes.DataSource = ServiceSingleton.Globals.WindowsResolutions;            
