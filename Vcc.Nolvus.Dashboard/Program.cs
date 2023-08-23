@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Diagnostics;
 using System.Windows.Forms;
 using Syncfusion.WinForms.Controls;
 using Syncfusion.WinForms.Themes;
@@ -20,6 +21,7 @@ using Vcc.Nolvus.Services.Game;
 using Vcc.Nolvus.Services.Files;
 using Vcc.Nolvus.Instance.Services;
 using Vcc.Nolvus.Package.Services;
+using Vcc.Nolvus.Dashboard.Forms;
 
 namespace Vcc.Nolvus.Dashboard
 {
@@ -56,7 +58,16 @@ namespace Vcc.Nolvus.Dashboard
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            LoadApp();      
+            Process[] DashBoardProcesses = Process.GetProcessesByName("NolvusDashBoard");
+
+            if (DashBoardProcesses.Length > 1)
+            {
+                NolvusMessageBox.ShowMessage("Error", "An other Nolvus Dashboard instance is already running, please close it first. If you don't see it, open your Windows task manager and close the process (NolvusDashboard.exe)", Nolvus.Core.Enums.MessageBoxType.Error);                
+            }
+            else
+            {
+                LoadApp();
+            }            
         }
 
         private static void ExceptionHandler(object sender, UnhandledExceptionEventArgs e)
