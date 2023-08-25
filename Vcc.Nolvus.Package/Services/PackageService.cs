@@ -500,7 +500,10 @@ namespace Vcc.Nolvus.Package.Services
         }
 
         public async Task InstallModList(ModInstallSettings Settings)
-        {            
+        {
+            CancelTasks = new TaskCompletionSource<object>();
+            CancelTokenSource = new CancellationTokenSource();            
+
             QueueWatcher = new QueueWatcher(InstallingModsQueue);
                           
             foreach (var Category in GetCategoriesToInstall())
@@ -553,6 +556,7 @@ namespace Vcc.Nolvus.Package.Services
 
             if (CancelTasks.Task.IsFaulted)
             {
+                ProgressQueue.Clear();
                 throw CancelTasks.Task.Exception.InnerException;
             }            
 

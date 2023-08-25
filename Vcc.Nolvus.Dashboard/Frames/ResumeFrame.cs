@@ -115,7 +115,17 @@ namespace Vcc.Nolvus.Dashboard.Frames
         {
             if (NolvusMessageBox.ShowConfirmation("Cancel install?", "Are you sure you want to cancel installation? Your current installation will be deleted.") == DialogResult.Yes)
             {                
-                ServiceSingleton.Dashboard.LoadFrame<DeleteFrame>(new FrameParameters(new FrameParameter() {Key="Instance", Value= DrpDwnLstInstances.SelectedItem as INolvusInstance }, new FrameParameter() {Key="Action", Value=InstanceAction.Cancel }));               
+                ServiceSingleton.Dashboard.LoadFrame<DeleteFrame>(
+                    new FrameParameters(
+                        new FrameParameter()
+                        {
+                            Key ="Instance", Value= DrpDwnLstInstances.SelectedItem as INolvusInstance
+                        }, 
+                        new FrameParameter()
+                        {
+                            Key ="Action", Value=InstanceAction.Cancel
+                        }
+                        ));               
             }
         }
     }

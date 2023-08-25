@@ -129,9 +129,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(13, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 13);
+            this.label1.Size = new System.Drawing.Size(289, 13);
             this.label1.TabIndex = 12;
-            this.label1.Text = "Please enter your Nolvus credentials";
+            this.label1.Text = "Please enter your Nolvus credentials (not the Nexus ones!!!)";
             // 
             // NolvusFrame
             // 
