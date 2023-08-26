@@ -54,9 +54,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
             return Index;
         }
 
-        private int ResolutionIndex(List<string> Resolutions)
+        private int ResolutionIndex(List<string> Resolutions, out bool Error)
         {
             int Index = Resolutions.Count - 1;
+
+            Error = false;
 
             bool Found = false;
 
@@ -84,14 +86,18 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
             }
             else
             {
-                throw new Exception("The resolution you set up (" + Resolution + ") is not compatible with your available windows resolutions. Did you modify the instancesdata.xml file manually? If yes put back a compatible windows resolution.");
+                Error = true;
+                NolvusMessageBox.ShowMessage("Error", "The resolution you set up (" + Resolution + ") is no more compatible with your current Windows available resolutions. It can happen if you changed your monitor or modified the instancesdata.xml file manually. The dashboard will revert to the first available resolution. Be sure to change it.", MessageBoxType.Error);
+                return 0;                
             }
 
         }
 
-        private int DownScaledResolutionIndex(List<string> Resolutions)
+        private int DownScaledResolutionIndex(List<string> Resolutions, out bool Error)
         {
             int Index = Resolutions.Count - 1;
+
+            Error = false;
 
             bool Found = false;
 
@@ -122,7 +128,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                 }
                 else
                 {
-                    throw new Exception("The downscale resolution you set up (" + Resolution + ") is not compatible with your available windows resolutions. Did you modify the instancesdata.xml file manually? If yes put back a compatible windows resolution.");
+                    Error = true;
+                    NolvusMessageBox.ShowMessage("Error", "The downscale resolution you set up (" + Resolution + ") is no more compatible with your current Windows available resolutions. It can happen if you changed your monitor or modified the instancesdata.xml file manually. The dashboard will revert to the first available resolution. Be sure to change it.", MessageBoxType.Error);
+                    return 0;                    
                 }
             }
             else
@@ -250,12 +258,19 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
         {
             try
             {
+                bool ResError = false;
+
                 INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
                 LblHeader.Text = "Settings for " + Instance.Name + " v" + Instance.Version;
                 List<string> Resolutions = ServiceSingleton.Globals.WindowsResolutions;
                 DrpDwnLstScreenRes.DataSource = Resolutions;
-                DrpDwnLstScreenRes.SelectedIndex = ResolutionIndex(Resolutions);
+                DrpDwnLstScreenRes.SelectedIndex = ResolutionIndex(Resolutions, out ResError);
+
+                if (ResError)
+                {
+                    ApplyResolution();
+                }
 
                 List<string> Ratios = new List<string>();
 
@@ -267,7 +282,12 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                 DrpDwnLstRatios.SelectedIndex = RatioIndex(Ratios);
 
                 DrpDwnLstDownRes.DataSource = Resolutions;
-                DrpDwnLstDownRes.SelectedIndex = DownScaledResolutionIndex(Resolutions);
+                DrpDwnLstDownRes.SelectedIndex = DownScaledResolutionIndex(Resolutions, out ResError);
+
+                if (ResError)
+                {
+                    ApplyDowncalingResolution();
+                }
 
                 this.TxtBxInstancePath.Text = Instance.InstallDir;
                 this.TxtBxArchivePath.Text = Instance.ArchiveDir;
@@ -465,7 +485,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
             await ServiceSingleton.Dashboard.LoadFrameAsync<InstanceDetailFrame>();
         }
 
-        private void BtnApplyRes_Click(object sender, EventArgs e)
+        private void ApplyResolution()
         {
             try
             {
@@ -484,17 +504,21 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
                 ServiceSingleton.Settings.StoreIniValue(FileName, "Display", "iSize W", Instance.Settings.Width);
                 ServiceSingleton.Settings.StoreIniValue(FileName, "Display", "iSize H", Instance.Settings.Height);
-                
 
                 EnableFlatButton(BtnApplyRes, false);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 NolvusMessageBox.ShowMessage("Error", "Error applying resolution with message : " + ex.Message, MessageBoxType.Error);
-            }
+            }            
+        }
+
+        private void BtnApplyRes_Click(object sender, EventArgs e)
+        {
+            ApplyResolution();
         }
        
-        private void BtnApplyDownScaling_Click(object sender, EventArgs e)
+        private void ApplyDowncalingResolution()
         {
             try
             {
@@ -580,6 +604,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
             {
                 NolvusMessageBox.ShowMessage("Error", "Error applying downscaling with message : " + ex.Message, MessageBoxType.Error);
             }
+        }
+
+        private void BtnApplyDownScaling_Click(object sender, EventArgs e)
+        {
+            ApplyDowncalingResolution();
         }
 
         
