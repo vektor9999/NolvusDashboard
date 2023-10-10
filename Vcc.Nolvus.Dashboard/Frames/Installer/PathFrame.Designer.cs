@@ -264,7 +264,7 @@
             // 
             this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(3, 138);
+            this.label5.Location = new System.Drawing.Point(3, 160);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(293, 80);
             this.label5.TabIndex = 5;
@@ -290,7 +290,7 @@
             // 
             this.label6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(3, 63);
+            this.label6.Location = new System.Drawing.Point(3, 87);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(293, 55);
             this.label6.TabIndex = 2;
@@ -320,10 +320,9 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(3, 6);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(293, 48);
+            this.label4.Size = new System.Drawing.Size(293, 66);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Select your Nolvus instance installation and archive directories. ALWAYS be sure " +
-    "you don\'t have archive and instance into the same root directory.";
+            this.label4.Text = resources.GetString("label4.Text");
             // 
             // PathFrame
             // 

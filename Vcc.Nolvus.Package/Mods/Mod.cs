@@ -282,7 +282,7 @@ namespace Vcc.Nolvus.Package.Mods
 
                         CopyingProgress(0, 0);
 
-                        this.PrepareDirectrory();
+                        PrepareDirectrory();
                         var Rules = FetchRules();
                         var Counter = 0;                        
 
@@ -296,7 +296,7 @@ namespace Vcc.Nolvus.Package.Mods
                             CopyingProgress(++Counter, Rules.Count);
                         }
 
-                        this.CreateElementIni();
+                        CreateElementIni();
                     }
                     finally
                     {

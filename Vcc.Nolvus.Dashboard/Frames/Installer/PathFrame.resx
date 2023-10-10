@@ -120,6 +120,9 @@
   <data name="label5.Text" xml:space="preserve">
     <value>If you already have a folder containing mod archive files, you can also point your archive directory to this directory. The installer will look into this folder first and will not download the mod if it finds the corresponding file.</value>
   </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Select your Nolvus instance installation and archive directories. ALWAYS be sure you don't have the archive directory inside your instance directory. If you are not sure, use the default paths the application has setup for you.</value>
+  </data>
   <metadata name="folderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

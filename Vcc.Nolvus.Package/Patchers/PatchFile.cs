@@ -74,7 +74,7 @@ namespace Vcc.Nolvus.Package.Patchers
                     }
                     else
                     {
-                        throw new Exception("File name to patch does not exist (" + OriginFileName + ") hash : " + HashBefore);
+                        throw new Exception("File name to patch does not exist (" + OriginFileName + ") hash : " + HashBefore + " in " + Dir);
                     }
                 }
                 catch(Exception ex)

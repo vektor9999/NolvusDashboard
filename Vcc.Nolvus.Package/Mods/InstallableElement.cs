@@ -289,7 +289,7 @@ namespace Vcc.Nolvus.Package.Mods
                     if (!File.Exist() || !await File.CRCCheck())
                     {
                         ServiceSingleton.Logger.Log(string.Format("Awaiting manual user download for file {0}", File.FileName));
-                        File.DownloadLink = await Browser().GetNexusManualDownloadLink(File.DownloadLink, (File as NexusModFile).NexusId);
+                        File.DownloadLink = await Browser().GetNexusManualDownloadLink(Name, File.DownloadLink, (File as NexusModFile).NexusId);
                     }
                 }));
             }

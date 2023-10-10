@@ -129,7 +129,7 @@
             // 
             this.label7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Orange;
-            this.label7.Location = new System.Drawing.Point(13, 212);
+            this.label7.Location = new System.Drawing.Point(13, 237);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(511, 35);
             this.label7.TabIndex = 47;
@@ -139,7 +139,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(66, 182);
+            this.label6.Location = new System.Drawing.Point(66, 207);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(224, 13);
             this.label6.TabIndex = 46;
@@ -152,7 +152,7 @@
             this.LnkLblENB.ForeColor = System.Drawing.Color.Orange;
             this.LnkLblENB.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.LnkLblENB.LinkColor = System.Drawing.Color.Orange;
-            this.LnkLblENB.Location = new System.Drawing.Point(40, 182);
+            this.LnkLblENB.Location = new System.Drawing.Point(40, 207);
             this.LnkLblENB.Name = "LnkLblENB";
             this.LnkLblENB.Size = new System.Drawing.Size(28, 13);
             this.LnkLblENB.TabIndex = 45;
@@ -164,7 +164,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(13, 182);
+            this.label5.Location = new System.Drawing.Point(13, 207);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 13);
             this.label5.TabIndex = 44;
@@ -176,10 +176,11 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(13, 153);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(511, 29);
+            this.label2.Size = new System.Drawing.Size(511, 43);
             this.label2.TabIndex = 43;
-            this.label2.Text = "A preset with Cabbage ENB is also available, but the Cabbage ENB must be installe" +
-    "d manually.";
+            this.label2.Text = "A preset with Cabbage ENB is also available, but as Cabbage ENB can not be shippe" +
+    "d with any automated lists, it must be installed manually. This is why it is not" +
+    " listed in the presets list.";
             // 
             // label3
             // 

@@ -39,7 +39,7 @@
             this.LblTitle.ForeColor = System.Drawing.Color.White;
             this.LblTitle.Location = new System.Drawing.Point(0, 0);
             this.LblTitle.Name = "LblTitle";
-            this.LblTitle.Size = new System.Drawing.Size(189, 36);
+            this.LblTitle.Size = new System.Drawing.Size(565, 36);
             this.LblTitle.TabIndex = 0;
             this.LblTitle.Text = "Nolvus Dashboard";
             this.LblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

@@ -183,6 +183,7 @@ namespace Vcc.Nolvus.Package.Files
                     if (CRC32 == string.Empty || !FileInfo.Exists || FileInfo.Length == 0 || (CRC32 != string.Empty && CRC32 != await ServiceSingleton.Files.GetCRC32(FileInfo, HashProgress)))
                     {
                         ServiceSingleton.Logger.Log(string.Format("CRC check failed for file {0}", FileName));
+                        ServiceSingleton.Logger.Log(string.Format("Deleting bad file {0}", FileName));
                         Delete();
                         return false;
                     }
@@ -207,6 +208,8 @@ namespace Vcc.Nolvus.Package.Files
 
                 while (true)
                 {
+                    ServiceSingleton.Logger.Log(string.Format("Checking file {0}", FileName));
+
                     if (!Exist())
                     {
                         ServiceSingleton.Logger.Log(string.Format("File {0} not found!", FileName));

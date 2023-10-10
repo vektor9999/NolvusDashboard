@@ -204,8 +204,10 @@ namespace Vcc.Nolvus.Browser.Forms
             CloseBrowserWindow();            
         }
 
-        public async Task<string> GetNexusManualDownloadLink(string Link, string NexusModId)
-        {            
+        public async Task<string> GetNexusManualDownloadLink(string ModName, string Link, string NexusModId)
+        {
+            TitleBarControl.Title = "Manual download [" + ModName + "]";
+
             return await LoadBrowser(Link, true).AwaitDownloadLink(NexusModId);            
         } 
     }

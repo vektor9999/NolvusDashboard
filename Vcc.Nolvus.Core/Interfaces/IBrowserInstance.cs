@@ -10,6 +10,6 @@ namespace Vcc.Nolvus.Core.Interfaces
     public interface IBrowserInstance
     {
         Task AwaitUserDownload(string Link, string FileName, DownloadProgressChangedHandler Progress);
-        Task<string> GetNexusManualDownloadLink(string Link, string NexusModId);
+        Task<string> GetNexusManualDownloadLink(string ModName, string Link, string NexusModId);
     }
 }

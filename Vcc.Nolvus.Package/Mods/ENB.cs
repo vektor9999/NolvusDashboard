@@ -25,6 +25,8 @@ namespace Vcc.Nolvus.Package.Mods
                     {
                         INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
+                        ServiceSingleton.Logger.Log(string.Format("Installing ENB binaries", Name));
+
                         var ENBCacheDir = Path.Combine(Instance.StockGame, "enbcache");
 
                         if (Directory.Exists(ENBCacheDir))
