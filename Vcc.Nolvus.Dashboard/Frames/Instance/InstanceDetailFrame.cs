@@ -201,9 +201,18 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                                         }
                                         else
                                         {
-                                            GridModObject.Version = "NA";
-                                            GridModObject.Status = GridModObjectStatus.NotInstalled;
-                                            GridModObject.StatusText = "Not installed";
+                                            if (Directory.Exists(Path.Combine(Instance.InstallDir, "MODS", "mods", ModLine)))
+                                            {
+                                                GridModObject.Version = "NA";
+                                                GridModObject.Status = GridModObjectStatus.InstalledIniMissing;
+                                                GridModObject.StatusText = "Installed but meta.ini file is missing";
+                                            }
+                                            else
+                                            {
+                                                GridModObject.Version = "NA";
+                                                GridModObject.Status = GridModObjectStatus.NotInstalled;
+                                                GridModObject.StatusText = "Not installed";
+                                            }                                            
                                         }
                                     }
                                     else
@@ -323,7 +332,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                 {
                     e.Style.TextColor = Color.LimeGreen;
                 }
-                else if ((e.DataRow.RowData as GridModObject).Status == GridModObjectStatus.VersionMisMatch)
+                else if ((e.DataRow.RowData as GridModObject).Status == GridModObjectStatus.VersionMisMatch || (e.DataRow.RowData as GridModObject).Status == GridModObjectStatus.InstalledIniMissing)
                 {
                     e.Style.TextColor = Color.Orange;
                 }

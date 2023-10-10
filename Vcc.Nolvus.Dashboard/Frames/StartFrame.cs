@@ -252,7 +252,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                         ServiceSingleton.Dashboard.LoadFrame<GameFrame>();
                     }
                     else
-                    {
+                    {                        
                         await CheckNolvus();
                         await CheckForUpdates();
                         await CheckNexus();

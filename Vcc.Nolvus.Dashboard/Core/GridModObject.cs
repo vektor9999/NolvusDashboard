@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vcc.Nolvus.Dashboard.Core
 {
-    public enum GridModObjectStatus { OK, NotInstalled, Error, VersionMisMatch, CustomInstalled }
+    public enum GridModObjectStatus { OK, NotInstalled, Error, VersionMisMatch, CustomInstalled, InstalledIniMissing }
     public class GridModObject
     {
         public int Priority { get; set; }
