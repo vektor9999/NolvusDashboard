@@ -34,7 +34,7 @@ UserAgent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, l
 
 [Process]
 Count = {4}
-Retry = 10
+Retry = 3
 
 [Misc]
 ForceAA=False

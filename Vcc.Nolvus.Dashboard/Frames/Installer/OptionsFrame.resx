@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label12.Text" xml:space="preserve">
+    <value>If Alternate start is enabled, the default vanilla start will be disabled and the player will be able to choose his starting options. More info on the Nolvus web site player guide. NOT RECOMMENDED IF YOU NEVER PLAYED SKYRIM BEFORE</value>
+  </data>
   <data name="label8.Text" xml:space="preserve">
     <value>When alternate leveling is disabled, the game uses the vanilla skills based leveling. When this option is enabled the player gains xp when killing enemies, exploring the world and completing quests. Skill points are distributed manually by the player in every perk trees when sleeping.</value>
   </data>

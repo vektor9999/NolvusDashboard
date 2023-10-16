@@ -71,7 +71,7 @@ namespace Vcc.Nolvus.Instance.Core
         }        
         public async Task<string> GetState()
         {           
-            var Package = await ApiManager.Service.Installer.GetLatestPackage(this.Id);            
+            var Package = await ApiManager.Service.Installer.GetLatestPackage(Id);            
 
             if (this.Version == Package.Version)
             {               
@@ -84,20 +84,20 @@ namespace Vcc.Nolvus.Instance.Core
         }
         public async Task<bool> IsBeta()
         {
-            var Package = await ApiManager.Service.Installer.GetLatestPackage(this.Id);
+            var Package = await ApiManager.Service.Installer.GetLatestPackage(Id);
 
             return Package.IsBeta;
         }
         public async Task<string> GetLatestVersion()
         {
-            var Package = await ApiManager.Service.Installer.GetLatestPackage(this.Id);
+            var Package = await ApiManager.Service.Installer.GetLatestPackage(Id);
 
             return Package.Version;
         }
         
         public async Task<IInstallPackageDTO> GetLatestPackage()
         {
-            return await ApiManager.Service.Installer.GetLatestPackage(this.Id);            
+            return await ApiManager.Service.Installer.GetLatestPackage(Id);            
         }
 
         public async Task<bool> LatestPackageRequireNewGame()
@@ -107,11 +107,11 @@ namespace Vcc.Nolvus.Instance.Core
               
         public InstanceCheckStatus Check()
         {
-            if (this.Version == string.Empty)
+            if (Version == string.Empty)
             {
                 return InstanceCheckStatus.VersionError;
             }
-            else if ( this.Id == string.Empty)
+            else if ( Id == string.Empty)
             {
                 return InstanceCheckStatus.NoId;
             }

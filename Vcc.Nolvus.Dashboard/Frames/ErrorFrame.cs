@@ -67,12 +67,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
             LblTitle.Text = Title;
             LblError.Text = Message;
             LblTrace.Text = Trace;
-            BtnRetry.Visible = Retry;    
-            
-            if (!Retry)
-            {
-                BtnHelp.Location = BtnRetry.Location;
-            }        
+            BtnRetry.Visible = Retry;               
         }                 
                      
         private void BtnRetry_Click(object sender, EventArgs e)

@@ -35,7 +35,6 @@
             this.LblTrace = new System.Windows.Forms.Label();
             this.BtnRetry = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnHelp = new Vcc.Nolvus.Components.Controls.FlatButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.PnlTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -119,40 +118,24 @@
             // 
             // BtnHelp
             // 
-            this.BtnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnHelp.BorderColor = System.Drawing.Color.White;
             this.BtnHelp.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnHelp.ForeColor = System.Drawing.Color.White;
-            this.BtnHelp.Location = new System.Drawing.Point(592, 441);
+            this.BtnHelp.Location = new System.Drawing.Point(3, 210);
             this.BtnHelp.Name = "BtnHelp";
             this.BtnHelp.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnHelp.Size = new System.Drawing.Size(113, 35);
             this.BtnHelp.TabIndex = 5;
-            this.BtnHelp.Text = "Online Help";
+            this.BtnHelp.Text = "Clear here to fix";
             this.BtnHelp.UseVisualStyleBackColor = false;
             this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.BackColor = System.Drawing.Color.Orange;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 211);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(836, 31);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "CLICK ON ONLINE HELP TO FIX";
-            this.label1.UseMnemonic = false;
             // 
             // ErrorFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.BtnRetry);
             this.Controls.Add(this.LblTrace);
@@ -176,6 +159,5 @@
         private System.Windows.Forms.Label LblTrace;
         private Components.Controls.FlatButton BtnRetry;
         private Components.Controls.FlatButton BtnHelp;
-        private System.Windows.Forms.Label label1;
     }
 }

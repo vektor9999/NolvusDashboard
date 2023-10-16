@@ -99,11 +99,11 @@ namespace Vcc.Nolvus.Services.Settings
                 try
                 {
                     var r = System.Convert.ToInt16(GetIniValue(ProcessSection, Retry));
-                    return r == 0 ? 10 : r;
+                    return r == 0 ? 3 : r;
                 }
                 catch
                 {
-                    return 10;
+                    return 3;
                 }
             }
         }
