@@ -127,7 +127,7 @@
             this.BtnHelp.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnHelp.Size = new System.Drawing.Size(113, 35);
             this.BtnHelp.TabIndex = 5;
-            this.BtnHelp.Text = "Clear here to fix";
+            this.BtnHelp.Text = "Click here to fix";
             this.BtnHelp.UseVisualStyleBackColor = false;
             this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
             // 
