@@ -113,10 +113,16 @@ namespace Vcc.Nolvus.Package.Files
 
             return true;
         }
-
+        
         public bool Exist()
         {
-            return Found(ServiceSingleton.Folders.DownloadDirectory) || Found(ServiceSingleton.Instances.WorkingInstance.ArchiveDir);
+            return Exist(out bool IsArchived);
+        }
+        
+        public bool Exist(out bool IsArchived)
+        {
+            IsArchived = Found(ServiceSingleton.Instances.WorkingInstance.ArchiveDir);
+            return Found(ServiceSingleton.Folders.DownloadDirectory) || IsArchived;
         }
 
         public FileInfo GetFileInfo()
@@ -210,7 +216,7 @@ namespace Vcc.Nolvus.Package.Files
                 {
                     ServiceSingleton.Logger.Log(string.Format("Checking file {0}", FileName));
 
-                    if (!Exist())
+                    if (!Exist(out bool IsArchived))
                     {
                         ServiceSingleton.Logger.Log(string.Format("File {0} not found!", FileName));
                         ServiceSingleton.Logger.Log(string.Format("Trying to download file {0} ({1}/{2})", FileName, Tries.ToString(), RetryCount.ToString()));
@@ -237,7 +243,13 @@ namespace Vcc.Nolvus.Package.Files
                     }
                     else
                     {
-                        ServiceSingleton.Logger.Log(string.Format("File exists ({0}), about to check crc", LocationFileName));
+                        if (!IsArchived)
+                            ServiceSingleton.Logger.Log(string.Format("File exists ({0}), about to check crc", LocationFileName));
+                        else
+                        {
+                            ServiceSingleton.Logger.Log(string.Format("File exists in archive ({0}), not checking crc", LocationFileName));
+                            break;
+                        }
                     }
 
                     if (await CRCCheck(HashProgress))
