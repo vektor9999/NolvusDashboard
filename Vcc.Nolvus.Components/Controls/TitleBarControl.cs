@@ -44,6 +44,11 @@ namespace Vcc.Nolvus.Components.Controls
             this.AccountImage.Load(Url);            
         }
 
+        public void SetAccountImage(System.Drawing.Image Image)
+        {            
+            this.AccountImage.Image = Image;            
+        }
+
         public TitleBarControl()
         {
             InitializeComponent();                        

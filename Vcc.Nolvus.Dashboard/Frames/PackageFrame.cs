@@ -46,6 +46,8 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 ServiceSingleton.Dashboard.Progress(p);
             });
 
+            ServiceSingleton.Logger.Log(string.Format("Start installing {0} - v {1}...", Instance.Name, Instance.Version));
+
             await ServiceSingleton.Dashboard.LoadFrameAsync<StockGameFrame>();
         }
 
@@ -57,16 +59,22 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 ServiceSingleton.Dashboard.Progress(p);
             });
 
+            ServiceSingleton.Logger.Log(string.Format("Resume installing {0} - v {1}...", Instance.Name, Instance.Version));
+
             await ServiceSingleton.Dashboard.LoadFrameAsync<InstallFrame>();
         }
 
         protected async Task Update(INolvusInstance Instance)
         {
-            await ServiceSingleton.Packages.Merge(await ApiManager.Service.Installer.GetLatestPackages(Instance.Id, Instance.Version), (s, p) =>
+            var Packages = await ApiManager.Service.Installer.GetLatestPackages(Instance.Id, Instance.Version);
+
+            await ServiceSingleton.Packages.Merge(Packages, (s, p) =>
             {
                 ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
                 ServiceSingleton.Dashboard.Progress(p);
             });
+
+            ServiceSingleton.Logger.Log(string.Format("Updating {0} - v {1} to v {2}...", Instance.Name, Instance.Version, Packages.Last().Version));
 
             await ServiceSingleton.Dashboard.LoadFrameAsync<InstallFrame>();
         }
@@ -78,6 +86,8 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
                 ServiceSingleton.Dashboard.Progress(p);
             });
+
+            ServiceSingleton.Logger.Log(string.Format("Viewing {0} - v {1}...", Instance.Name, Instance.Version));
 
             await ServiceSingleton.Dashboard.LoadFrameAsync<InstanceDetailFrame>();
         }
@@ -94,15 +104,15 @@ namespace Vcc.Nolvus.Dashboard.Frames
 
                     switch (Instance.Status.InstallStatus)
                     {
-                        case InstanceInstallStatus.None:
+                        case InstanceInstallStatus.None:                            
                             await Install(Instance);
                             break;
 
-                        case InstanceInstallStatus.Installing:
+                        case InstanceInstallStatus.Installing:                            
                             await Resume(Instance);
                             break;
 
-                        case InstanceInstallStatus.Updating:
+                        case InstanceInstallStatus.Updating:                            
                             await Update(Instance);
                             break;
 

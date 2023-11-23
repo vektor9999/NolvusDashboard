@@ -98,8 +98,8 @@ namespace Vcc.Nolvus.Dashboard.Frames
                         try
                         {
                             if (NexusApi.ApiManager.AccountInfo.ProfileUrl != null)
-                            {
-                                ServiceSingleton.Dashboard.LoadAccountImage(NexusApi.ApiManager.AccountInfo.ProfileUrl);
+                            {                                
+                                ServiceSingleton.Dashboard.LoadAccountImage(NexusApi.ApiManager.AccountInfo.ProfileUrl);                                
                             }
                         }
                         catch

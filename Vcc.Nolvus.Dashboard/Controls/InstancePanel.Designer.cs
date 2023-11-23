@@ -45,6 +45,7 @@
             this.barItem1 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.BrItmDelete = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.LblBeta = new System.Windows.Forms.Label();
+            this.BrItmShortCut = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             ((System.ComponentModel.ISupportInitialize)(this.PicInstanceImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -164,6 +165,7 @@
             this.parentBarItem1.BarName = "parentBarItem1";
             this.parentBarItem1.Items.AddRange(new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem[] {
             this.BrItmMods,
+            this.BrItmShortCut,
             this.barItem1,
             this.BrItmDelete});
             this.parentBarItem1.MetroColor = System.Drawing.Color.LightSkyBlue;
@@ -210,6 +212,16 @@
             this.LblBeta.TabIndex = 8;
             this.LblBeta.Text = "[Beta]";
             // 
+            // BrItmShortCut
+            // 
+            this.BrItmShortCut.BarName = "BrItmShortCut";
+            this.BrItmShortCut.ID = "Add a desktop shortcut for this instance";
+            this.BrItmShortCut.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmShortCut.Image")));
+            this.BrItmShortCut.ShowToolTipInPopUp = false;
+            this.BrItmShortCut.SizeToFit = true;
+            this.BrItmShortCut.Text = "Add a desktop shortcut for this instance";
+            this.BrItmShortCut.Click += new System.EventHandler(this.BrItmShortCut_Click);
+            // 
             // InstancePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,5 +264,6 @@
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem barItem1;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmDelete;
         private System.Windows.Forms.Label LblBeta;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmShortCut;
     }
 }

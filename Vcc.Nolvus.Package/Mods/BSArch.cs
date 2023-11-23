@@ -26,7 +26,11 @@ namespace Vcc.Nolvus.Package.Mods
 
                         foreach (var Rule in Rules)
                         {
-                            Rule.Execute(ServiceSingleton.Instances.WorkingInstance.StockGame, Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), InstallDirectory, InstallDirectory);
+                            Rule.Execute(ServiceSingleton.Instances.WorkingInstance.StockGame, 
+                                         Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), 
+                                         InstallDirectory, 
+                                         InstallDirectory);
+
                             CopyingProgress(++Counter, Rules.Count);
                         }
                     }

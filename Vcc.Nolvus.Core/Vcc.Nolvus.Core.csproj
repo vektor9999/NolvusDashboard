@@ -78,6 +78,7 @@
     <Compile Include="Interfaces\IPackageService.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Interfaces\INolvusInstance.cs" />
+    <Compile Include="Interfaces\IShellLink.cs" />
     <Compile Include="Interfaces\IUpdaterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\INolvusService.cs" />

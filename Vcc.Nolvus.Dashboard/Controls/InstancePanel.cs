@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Reflection;
 using System.Drawing;
 using System.Data;
 using System.IO;
+using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -138,6 +141,24 @@ namespace Vcc.Nolvus.Dashboard.Controls
         private void BrItmDelete_Click(object sender, EventArgs e)
         {
             ServiceSingleton.Dashboard.LoadFrame<DeleteFrame>(new FrameParameters(new FrameParameter() { Key = "Instance", Value = _Instance as INolvusInstance }, new FrameParameter() { Key = "Action", Value = InstanceAction.Delete }));
-        }       
+        }
+
+        private void BrItmShortCut_Click(object sender, EventArgs e)
+        {
+            IShellLink Link = (IShellLink)new ShellLink();
+            
+            Link.SetDescription(string.Format( "Desktop shortcut for your {0} instance.", _Instance.Name));
+            Link.SetPath(Path.Combine(_Instance.InstallDir, "MO2", "ModOrganizer.exe"));            
+
+            var IconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "nolvus-ico.ico");
+
+            Link.SetIconLocation(IconPath, 0);
+
+            IPersistFile File = (IPersistFile)Link;            
+            string DesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            File.Save(Path.Combine(DesktopPath, _Instance.Name + ".lnk"), false);
+
+            NolvusMessageBox.ShowMessage("Desktop shortcut", string.Format("Your {0} shortcut has been added to your desktop.", _Instance.Name), MessageBoxType.Info);
+        }
     }
 }

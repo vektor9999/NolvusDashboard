@@ -35,5 +35,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         void NexusAccount(string Value);
         void AccountType(string Value);
         void LoadAccountImage(string Url);
+        void LoadAccountImage(System.Drawing.Image Image);
     }
 }

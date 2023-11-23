@@ -226,6 +226,18 @@ namespace Vcc.Nolvus.Dashboard
 
             TitleBarControl.SetAccountImage(Url);
         }
+
+        public void LoadAccountImage(System.Drawing.Image Image)
+        {
+            if (InvokeRequired)
+            {
+                Invoke((System.Action<System.Drawing.Image>)LoadAccountImage, Image);
+                return;
+            }
+
+            TitleBarControl.SetAccountImage(Image);
+        }
+
         public void Status(string Value)
         {
             if (InvokeRequired)

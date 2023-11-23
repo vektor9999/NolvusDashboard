@@ -225,7 +225,7 @@ namespace Vcc.Nolvus.StockGame.Patcher
 
                     string CommandLine = string.Format("\"" + Path.Combine(_LibDir, "xdelta3.exe") + "\" -d -f -s \"{0}\" \"{1}\" \"{2}\"", SourceFileName, PatchFileName, DestinationFileName);
 
-                    ServiceSingleton.Logger.Log(string.Format("Executing command {0}", CommandLine));
+                    ServiceSingleton.Logger.Log(string.Format("Executing command {0}", CommandLine));                 
 
                     PatchingProcess.StartInfo.Arguments = "/c \"" + CommandLine + "\"";
 
