@@ -145,20 +145,27 @@ namespace Vcc.Nolvus.Dashboard.Controls
 
         private void BrItmShortCut_Click(object sender, EventArgs e)
         {
-            IShellLink Link = (IShellLink)new ShellLink();
-            
-            Link.SetDescription(string.Format( "Desktop shortcut for your {0} instance.", _Instance.Name));
-            Link.SetPath(Path.Combine(_Instance.InstallDir, "MO2", "ModOrganizer.exe"));            
+            try
+            {
+                IShellLink Link = (IShellLink)new ShellLink();
 
-            var IconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "nolvus-ico.ico");
+                Link.SetDescription(string.Format("Desktop shortcut for your {0} instance.", _Instance.Name));
+                Link.SetPath(Path.Combine(_Instance.InstallDir, "MO2", "ModOrganizer.exe"));
 
-            Link.SetIconLocation(IconPath, 0);
+                var IconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "nolvus-ico.ico");
 
-            IPersistFile File = (IPersistFile)Link;            
-            string DesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-            File.Save(Path.Combine(DesktopPath, _Instance.Name + ".lnk"), false);
+                Link.SetIconLocation(IconPath, 0);
 
-            NolvusMessageBox.ShowMessage("Desktop shortcut", string.Format("Your {0} shortcut has been added to your desktop.", _Instance.Name), MessageBoxType.Info);
+                IPersistFile File = (IPersistFile)Link;
+                string DesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                File.Save(Path.Combine(DesktopPath, _Instance.Name + ".lnk"), false);
+
+                NolvusMessageBox.ShowMessage("Desktop shortcut", string.Format("Your {0} shortcut has been added to your desktop.", _Instance.Name), MessageBoxType.Info);
+            }
+            catch(Exception ex)
+            {
+                NolvusMessageBox.ShowMessage("Error", ex.Message, MessageBoxType.Error);
+            }
         }
     }
 }
