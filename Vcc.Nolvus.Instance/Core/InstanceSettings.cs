@@ -57,41 +57,41 @@ namespace Vcc.Nolvus.Instance.Core
             ServiceSingleton.Logger.Log(string.Format("Instance CDN : {0}", CDN));
             ServiceSingleton.Logger.Log(string.Format("Instance LgCode : {0}", LgCode));
             ServiceSingleton.Logger.Log(string.Format("Instance LgName : {0}", LgName));
-        }
+        }        
 
-        public XmlNode Save(XmlDocument Storage)
+        public void Save(XmlWriter XMLWriter)
         {
-            var SettingsNode = Storage.CreateNode("element", "Settings", "");
+            XMLWriter.WriteStartElement("Settings");
 
-            XmlNode RatioNode = Storage.CreateNode("element", "Ratio", "");
-            RatioNode.InnerText = Ratio.Trim();
-            SettingsNode.AppendChild(RatioNode);
+            XMLWriter.WriteStartElement("Ratio");
+            XMLWriter.WriteString(Ratio.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode HeightNode = Storage.CreateNode("element", "Height", "");
-            HeightNode.InnerText = Height.Trim();
-            SettingsNode.AppendChild(HeightNode);
+            XMLWriter.WriteStartElement("Height");
+            XMLWriter.WriteString(Height.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode WidthNode = Storage.CreateNode("element", "Width", "");
-            WidthNode.InnerText = Width.Trim();
-            SettingsNode.AppendChild(WidthNode);
+            XMLWriter.WriteStartElement("Width");
+            XMLWriter.WriteString(Width.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode EnableArchivingNode = Storage.CreateNode("element", "EnableArchiving", "");
-            EnableArchivingNode.InnerText = EnableArchiving.ToString().Trim();
-            SettingsNode.AppendChild(EnableArchivingNode);
+            XMLWriter.WriteStartElement("EnableArchiving");
+            XMLWriter.WriteString(EnableArchiving.ToString().Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode CDNNode = Storage.CreateNode("element", "CDN", "");
-            CDNNode.InnerText = CDN.Trim();
-            SettingsNode.AppendChild(CDNNode);
+            XMLWriter.WriteStartElement("CDN");
+            XMLWriter.WriteString(CDN.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode LgCodeNode = Storage.CreateNode("element", "LgCode", "");
-            LgCodeNode.InnerText = LgCode.Trim();
-            SettingsNode.AppendChild(LgCodeNode);
+            XMLWriter.WriteStartElement("LgCode");
+            XMLWriter.WriteString(LgCode.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode LgNameNode = Storage.CreateNode("element", "LgName", "");
-            LgNameNode.InnerText = LgName.Trim();
-            SettingsNode.AppendChild(LgNameNode);
+            XMLWriter.WriteStartElement("LgName");
+            XMLWriter.WriteString(LgName.Trim());
+            XMLWriter.WriteEndElement();
 
-            return SettingsNode;
+            XMLWriter.WriteEndElement();
         }
     }
 }

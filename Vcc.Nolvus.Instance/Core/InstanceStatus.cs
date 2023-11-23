@@ -16,7 +16,7 @@ namespace Vcc.Nolvus.Instance.Core
         public string CurrentMod { get; set; } = string.Empty;
         public InstanceInstallStatus InstallStatus { get; set; } = InstanceInstallStatus.None;
         public int TotalMods { get; set; }
-        public List<string> InstalledMods { get; set; } = new List<string>();       
+        public List<string> InstalledMods { get; set; } = new List<string>();
 
         #endregion
 
@@ -31,33 +31,32 @@ namespace Vcc.Nolvus.Instance.Core
             {
                 InstalledMods.Add(InstalledModNode.InnerText);
             }
-        }
-        public XmlNode Save(XmlDocument Storage)
+        }       
+
+        public void Save(XmlWriter XMLWriter)
         {
-            var StatusNode = Storage.CreateNode("element", "Status", "");
-            
-            XmlNode InstallStatusNode = Storage.CreateNode("element", "InstallStatus", "");
-            InstallStatusNode.InnerText = InstallStatus.ToString().Trim();
-            StatusNode.AppendChild(InstallStatusNode);
+            XMLWriter.WriteStartElement("Status");
 
-            XmlNode TotalModsNode = Storage.CreateNode("element", "TotalMods", "");
-            TotalModsNode.InnerText = TotalMods.ToString().Trim();
-            StatusNode.AppendChild(TotalModsNode);
+            XMLWriter.WriteStartElement("InstallStatus");
+            XMLWriter.WriteString(InstallStatus.ToString().Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode InstalledModsNode = Storage.CreateNode("element", "InstalledMods", "");
+            XMLWriter.WriteStartElement("TotalMods");
+            XMLWriter.WriteString(TotalMods.ToString().Trim());
+            XMLWriter.WriteEndElement();
+
+            XMLWriter.WriteStartElement("InstalledMods");
 
             foreach (string InstalledMod in InstalledMods)
             {
-                XmlNode InstalledModNode = Storage.CreateNode("element", "InstalledMod", "");
-                InstalledModNode.InnerText = InstalledMod.Trim();
-
-                InstalledModsNode.AppendChild(InstalledModNode);
+                XMLWriter.WriteStartElement("InstalledMod");
+                XMLWriter.WriteString(InstalledMod.Trim());
+                XMLWriter.WriteEndElement();
             }
 
-            StatusNode.AppendChild(InstalledModsNode);
+            XMLWriter.WriteEndElement();
 
-
-            return StatusNode;
+            XMLWriter.WriteEndElement();
         }
     }
 }

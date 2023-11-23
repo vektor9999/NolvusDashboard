@@ -138,45 +138,47 @@ namespace Vcc.Nolvus.Instance.Core
             (Options as InstanceOptions).Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Options").FirstOrDefault());                                                                                   
             (Status as InstanceStatus).Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Status").FirstOrDefault());
             
-        }
-        public XmlNode Save(XmlDocument Storage)
-        {
-            var InstanceNode = Storage.CreateNode("element", "Instance", "");
+        }       
 
-            XmlNode IdNode = Storage.CreateNode("element", "Id", "");
-            IdNode.InnerText = Id.Trim();
-            InstanceNode.AppendChild(IdNode);
+        public void Save(XmlWriter XMLWriter)
+        {            
+            XMLWriter.WriteStartElement("Instance");
 
-            XmlNode NameNode = Storage.CreateNode("element", "Name", "");
-            NameNode.InnerText = Name.Trim();
-            InstanceNode.AppendChild(NameNode);
+            XMLWriter.WriteStartElement("Id");
+            XMLWriter.WriteString(Id.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode DescNode = Storage.CreateNode("element", "Description", "");
-            DescNode.InnerText = Description.Trim();
-            InstanceNode.AppendChild(DescNode);
+            XMLWriter.WriteStartElement("Name");
+            XMLWriter.WriteString(Name.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode VersionNode = Storage.CreateNode("element", "Version", "");
-            VersionNode.InnerText = Version.Trim();
-            InstanceNode.AppendChild(VersionNode);          
+            XMLWriter.WriteStartElement("Description");
+            XMLWriter.WriteString(Description.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode InstallPathNode = Storage.CreateNode("element", "InstallPath", "");
-            InstallPathNode.InnerText = InstallDir.Trim();
-            InstanceNode.AppendChild(InstallPathNode);
+            XMLWriter.WriteStartElement("Version");
+            XMLWriter.WriteString(Version.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode ArchivePathNode = Storage.CreateNode("element", "ArchivePath", "");
-            ArchivePathNode.InnerText = ArchiveDir.Trim();
-            InstanceNode.AppendChild(ArchivePathNode);
+            XMLWriter.WriteStartElement("InstallPath");
+            XMLWriter.WriteString(InstallDir.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode StockGameNode = Storage.CreateNode("element", "StockGame", "");
-            StockGameNode.InnerText = StockGame.Trim();
-            InstanceNode.AppendChild(StockGameNode);
+            XMLWriter.WriteStartElement("ArchivePath");
+            XMLWriter.WriteString(ArchiveDir.Trim());
+            XMLWriter.WriteEndElement();
 
-            InstanceNode.AppendChild((Settings as InstanceSettings).Save(Storage));            
-            InstanceNode.AppendChild((Performance as InstancePerformance).Save(Storage));
-            InstanceNode.AppendChild((Options as InstanceOptions).Save(Storage));
-            InstanceNode.AppendChild((Status as InstanceStatus).Save(Storage));
+            XMLWriter.WriteStartElement("StockGame");
+            XMLWriter.WriteString(StockGame.Trim());
+            XMLWriter.WriteEndElement();
 
-            return InstanceNode;
+            (Settings as InstanceSettings).Save(XMLWriter);
+            (Performance as InstancePerformance).Save(XMLWriter);
+            (Options as InstanceOptions).Save(XMLWriter);
+            (Status as InstanceStatus).Save(XMLWriter);
+
+
+            XMLWriter.WriteEndElement();
         }
     }
 }

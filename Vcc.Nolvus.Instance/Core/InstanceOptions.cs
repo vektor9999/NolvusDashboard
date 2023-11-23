@@ -46,43 +46,43 @@ namespace Vcc.Nolvus.Instance.Core
             ServiceSingleton.Logger.Log(string.Format("Instance alternate levelling : {0}", AlternateLeveling));
             ServiceSingleton.Logger.Log(string.Format("Instance alternate start : {0}", AlternateStart));
             ServiceSingleton.Logger.Log(string.Format("Instance skin type : {0}", SkinType));
-        }
+        }      
 
-        public XmlNode Save(XmlDocument Storage)
+        public void Save(XmlWriter XMLWriter)
         {
-            var OptionsNode = Storage.CreateNode("element", "Options", "");
+            XMLWriter.WriteStartElement("Options");
 
-            XmlNode NudityNode = Storage.CreateNode("element", "Nudity", "");
-            NudityNode.InnerText = Nudity.Trim();
-            OptionsNode.AppendChild(NudityNode);
+            XMLWriter.WriteStartElement("Nudity");
+            XMLWriter.WriteString(Nudity.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode AlternateENBNode = Storage.CreateNode("element", "AlternateENB", "");
-            AlternateENBNode.InnerText = AlternateENB.Trim();
-            OptionsNode.AppendChild(AlternateENBNode);
+            XMLWriter.WriteStartElement("AlternateENB");
+            XMLWriter.WriteString(AlternateENB.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode FantasyModeNode = Storage.CreateNode("element", "FantasyMode", "");
-            FantasyModeNode.InnerText = FantasyMode.Trim();
-            OptionsNode.AppendChild(FantasyModeNode);
+            XMLWriter.WriteStartElement("FantasyMode");
+            XMLWriter.WriteString(FantasyMode.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode HardcoreModeNode = Storage.CreateNode("element", "HardcoreMode", "");
-            HardcoreModeNode.InnerText = HardcoreMode.Trim();
-            OptionsNode.AppendChild(HardcoreModeNode);
+            XMLWriter.WriteStartElement("HardcoreMode");
+            XMLWriter.WriteString(HardcoreMode.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode AlternateLevelingNode = Storage.CreateNode("element", "AlternateLeveling", "");
-            AlternateLevelingNode.InnerText = AlternateLeveling.Trim();
-            OptionsNode.AppendChild(AlternateLevelingNode);
+            XMLWriter.WriteStartElement("AlternateLeveling");
+            XMLWriter.WriteString(AlternateLeveling.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode SkinTypeNode = Storage.CreateNode("element", "SkinType", "");
-            SkinTypeNode.InnerText = SkinType.Trim();
-            OptionsNode.AppendChild(SkinTypeNode);
+            XMLWriter.WriteStartElement("SkinType");
+            XMLWriter.WriteString(SkinType.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode AlternateStartNode = Storage.CreateNode("element", "AlternateStart", "");
-            AlternateStartNode.InnerText = AlternateStart.Trim();
-            OptionsNode.AppendChild(AlternateStartNode);
+            XMLWriter.WriteStartElement("AlternateStart");
+            XMLWriter.WriteString(AlternateStart.Trim());
+            XMLWriter.WriteEndElement();
 
-            return OptionsNode;
+            XMLWriter.WriteEndElement();
         }
-    }
 
+    }
     
 }

@@ -15,8 +15,8 @@ namespace Vcc.Nolvus.Instance.Core
 
         public string DownScaling { get; set; } = "FALSE";
         public string DownHeight { get; set; } = string.Empty;
-        public string DownWidth { get; set; } = string.Empty;       
-        public string AdvancedPhysics { get; set; } = "TRUE";               
+        public string DownWidth { get; set; } = string.Empty;
+        public string AdvancedPhysics { get; set; } = "TRUE";
         public string IniSettings { get; set; } = "2";
         public string AntiAliasing { get; set; } = "DLAA";
         public string Variant { get; set; } = "Ultra";
@@ -35,7 +35,7 @@ namespace Vcc.Nolvus.Instance.Core
         #endregion
 
         public void Load(XmlNode Node)
-        {                                    
+        {
             AdvancedPhysics = Node["AdvancedPhysics"].InnerText.Trim();
             DownScaling = Node["DownScaling"].InnerText.Trim();
             DownHeight = Node["DownHeight"].InnerText.Trim();
@@ -44,8 +44,8 @@ namespace Vcc.Nolvus.Instance.Core
             AntiAliasing = Node["AntiAliasing"].InnerText.Trim();
             Variant = Node["Variant"].InnerText.Trim();
             LODs = Node["LODs"].InnerText.Trim();
-            RayTracing = Node["RayTracing"].InnerText.Trim();  
-            
+            RayTracing = Node["RayTracing"].InnerText.Trim();
+
             if (Node["FPSStabilizer"] != null)
             {
                 FPSStabilizer = Node["FPSStabilizer"].InnerText.Trim();
@@ -61,52 +61,53 @@ namespace Vcc.Nolvus.Instance.Core
             ServiceSingleton.Logger.Log(string.Format("Instance lods : {0}", LODs));
             ServiceSingleton.Logger.Log(string.Format("Instance ray tracing : {0}", RayTracing));
             ServiceSingleton.Logger.Log(string.Format("Instance fps stabilizer : {0}", FPSStabilizer));
-        }
-        public XmlNode Save(XmlDocument Storage)
+        }        
+
+        public void Save(XmlWriter XMLWriter)
         {
-            var PerformanceNode = Storage.CreateNode("element", "Performance", "");                                 
+            XMLWriter.WriteStartElement("Performance");
 
-            XmlNode AdvancedPhysicsNode = Storage.CreateNode("element", "AdvancedPhysics", "");
-            AdvancedPhysicsNode.InnerText = AdvancedPhysics.Trim();
-            PerformanceNode.AppendChild(AdvancedPhysicsNode);
+            XMLWriter.WriteStartElement("AdvancedPhysics");
+            XMLWriter.WriteString(AdvancedPhysics.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode DownScalingNode = Storage.CreateNode("element", "DownScaling", "");
-            DownScalingNode.InnerText = DownScaling.Trim();
-            PerformanceNode.AppendChild(DownScalingNode);
+            XMLWriter.WriteStartElement("DownScaling");
+            XMLWriter.WriteString(DownScaling.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode DownHeightNode = Storage.CreateNode("element", "DownHeight", "");
-            DownHeightNode.InnerText = DownHeight.Trim();
-            PerformanceNode.AppendChild(DownHeightNode);
+            XMLWriter.WriteStartElement("DownHeight");
+            XMLWriter.WriteString(DownHeight.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode DownWidthtNode = Storage.CreateNode("element", "DownWidth", "");
-            DownWidthtNode.InnerText = DownWidth.Trim();
-            PerformanceNode.AppendChild(DownWidthtNode);
+            XMLWriter.WriteStartElement("DownWidth");
+            XMLWriter.WriteString(DownWidth.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode IniNode = Storage.CreateNode("element", "IniSettings", "");
-            IniNode.InnerText = IniSettings.Trim();
-            PerformanceNode.AppendChild(IniNode);
+            XMLWriter.WriteStartElement("IniSettings");
+            XMLWriter.WriteString(IniSettings.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode AntiAliasingNode = Storage.CreateNode("element", "AntiAliasing", "");
-            AntiAliasingNode.InnerText = AntiAliasing.Trim();
-            PerformanceNode.AppendChild(AntiAliasingNode);
+            XMLWriter.WriteStartElement("AntiAliasing");
+            XMLWriter.WriteString(AntiAliasing.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode VariantNode = Storage.CreateNode("element", "Variant", "");
-            VariantNode.InnerText = Variant.Trim();
-            PerformanceNode.AppendChild(VariantNode);
+            XMLWriter.WriteStartElement("Variant");
+            XMLWriter.WriteString(Variant.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode LODsNode = Storage.CreateNode("element", "LODs", "");
-            LODsNode.InnerText = LODs.Trim();
-            PerformanceNode.AppendChild(LODsNode);
+            XMLWriter.WriteStartElement("LODs");
+            XMLWriter.WriteString(LODs.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode RTNode = Storage.CreateNode("element", "RayTracing", "");
-            RTNode.InnerText = RayTracing.Trim();
-            PerformanceNode.AppendChild(RTNode);
+            XMLWriter.WriteStartElement("RayTracing");
+            XMLWriter.WriteString(RayTracing.Trim());
+            XMLWriter.WriteEndElement();
 
-            XmlNode FPSStabilizerNode = Storage.CreateNode("element", "FPSStabilizer", "");
-            FPSStabilizerNode.InnerText = FPSStabilizer.Trim();
-            PerformanceNode.AppendChild(FPSStabilizerNode);
+            XMLWriter.WriteStartElement("FPSStabilizer");
+            XMLWriter.WriteString(FPSStabilizer.Trim());
+            XMLWriter.WriteEndElement();
 
-            return PerformanceNode;
+            XMLWriter.WriteEndElement();
         }
     }
 }
