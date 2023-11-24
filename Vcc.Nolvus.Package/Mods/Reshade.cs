@@ -15,7 +15,7 @@ namespace Vcc.Nolvus.Package.Mods
 {
     public class Reshade : Mod
     {
-        private const string StandardEffect = "https://github.com//crosire/reshade-shaders/archive/refs/heads/slim.zip";
+        private const string StandardEffect = "https://github.com/crosire/reshade-shaders/archive/refs/heads/slim.zip";
         private const string LegacyEffect = "https://github.com/crosire/reshade-shaders/archive/master.zip";
         private const string LegacyEffectv5 = "https://github.com/crosire/reshade-shaders/archive/refs/heads/legacy.zip";
         private const string SweetFX = "https://github.com/CeeJayDK/SweetFX/archive/refs/heads/master.zip";
@@ -122,7 +122,7 @@ WindowRounding=0.000000";
                     
                     ServiceSingleton.Files.RemoveDirectory(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ShaderName), true);
 
-                    ServiceSingleton.Logger.Log(string.Format("Downloading shader {0}", ShaderName));
+                    ServiceSingleton.Logger.Log(string.Format("Downloading shader {0} ({1})", ShaderName, Url));
                     await ServiceSingleton.Files.DownloadFile(Url, ShaderFile, DownloadingProgress);
 
                     ServiceSingleton.Logger.Log(string.Format("Extracting shader {0}", ShaderName));

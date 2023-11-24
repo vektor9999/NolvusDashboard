@@ -8,6 +8,8 @@ namespace Vcc.Nolvus.Browser.Core
 {
     public static class ScriptManager
     {
+        public static string ScrollToButton = "(function () { var el = document.getElementById('slowDownloadButton'); if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' }); } })();";
+
         public static string ReadScript(string FileName)
         {
             return System.IO.File.ReadAllText(FileName);
@@ -39,8 +41,8 @@ namespace Vcc.Nolvus.Browser.Core
         }
 
         public static string GetNexusManualDownload()
-        {
-            return ScriptManager.ReadScript(AppDomain.CurrentDomain.BaseDirectory + "\\Scripts\\NexusManualDownload.js");
+        {            
+            return ScriptManager.ScrollToButton;
         }
 
         public static string GetRedirectToLogin()
