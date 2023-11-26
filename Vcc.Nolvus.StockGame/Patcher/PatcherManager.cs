@@ -257,25 +257,23 @@ namespace Vcc.Nolvus.StockGame.Patcher
 
                     if (PatchingProcess.ExitCode == 0)
                     {
-                        ServiceSingleton.Logger.Log(string.Format("Exit code {0}", PatchingProcess.ExitCode));
-                        ServiceSingleton.Logger.Log(string.Format("Command output [{0}]", string.Join(Environment.NewLine, Output.ToArray())));
+                        var CommandOutput = string.Join(Environment.NewLine, Output.ToArray());
 
+                        ServiceSingleton.Logger.Log(string.Format("Exit code {0}", PatchingProcess.ExitCode));
+                        ServiceSingleton.Logger.Log(string.Format("Command output [{0}]", CommandOutput));
+
+                        if (CommandOutput.Contains("The screen cannot be set to the number of lines and columns specified"))
+                        {
+                            throw new GameFilePatchingException("Failed to patch game file [CMD Error]: " + Instruction.DestFile.Name, string.Join(Environment.NewLine, Output.ToArray()));
+                        }
+                        
                         if (!KeepPatches)
                         {
                             File.Delete(PatchFileName);
                         }
                         
                         this.StepProcessed("Game file : " + Instruction.DestFile.Name + " patched");
-                        this.ElementProcessed(1, 1, "Game file: " + Instruction.DestFile.Name + " patched");
-
-                        if (Output.Count > 1)
-                        {                            
-                            if (Output.Where(x => x.Contains("The screen cannot be set to the number of lines and columns specified")).FirstOrDefault() != null)
-                            {
-                                throw new GameFilePatchingException("Failed to patch game file [CMD Error]: " + Instruction.DestFile.Name, string.Join(Environment.NewLine, Output.ToArray()));
-                            }
-
-                        }
+                        this.ElementProcessed(1, 1, "Game file: " + Instruction.DestFile.Name + " patched");                        
                     }
                     else
                     {
@@ -360,16 +358,15 @@ namespace Vcc.Nolvus.StockGame.Patcher
 
                     if (PatchingProcess.ExitCode == 0)
                     {
-                        ServiceSingleton.Logger.Log(string.Format("Exit code {0}", PatchingProcess.ExitCode));
-                        ServiceSingleton.Logger.Log(string.Format("Command output [{0}]", string.Join(Environment.NewLine, Output.ToArray())));
+                        var CommandOutput = string.Join(Environment.NewLine, Output.ToArray());
 
-                        if (Output.Count > 1)
-                        {                            
-                            if (Output.Where(x => x.Contains("The screen cannot be set to the number of lines and columns specified")).FirstOrDefault() != null)
-                            {
-                                throw new GameFilePatchingException("Failed to patch game file  [CMD Error]: " + new FileInfo(DestinationFile).Name + " (" + String.Join(Environment.NewLine, Output.ToArray()) + ")", string.Join(Environment.NewLine, Output.ToArray()));
-                            }
-                        }                        
+                        ServiceSingleton.Logger.Log(string.Format("Exit code {0}", PatchingProcess.ExitCode));
+                        ServiceSingleton.Logger.Log(string.Format("Command output [{0}]", CommandOutput));
+
+                        if (CommandOutput.Contains("The screen cannot be set to the number of lines and columns specified"))
+                        {
+                            throw new GameFilePatchingException("Failed to patch game file  [CMD Error]: " + new FileInfo(DestinationFile).Name + " (" + String.Join(Environment.NewLine, Output.ToArray()) + ")", string.Join(Environment.NewLine, Output.ToArray()));
+                        }                                             
                     }
                     else
                     {

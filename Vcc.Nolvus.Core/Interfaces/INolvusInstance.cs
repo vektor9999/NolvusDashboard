@@ -22,7 +22,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         IInstanceSettings Settings { get; }
         IInstancePerformance Performance { get; }
         IInstanceOptions Options { get; }
-        IInstanceStatus Status { get; }
+        IInstanceStatus Status { get; }        
         Task<bool> IsBeta();
         Task<string> GetState();
         Task<string> GetLatestVersion();

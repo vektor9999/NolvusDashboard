@@ -19,11 +19,11 @@ namespace Vcc.Nolvus.Components.Controls
         {
             get
             {
-                return this.LblTitle.Text;
+                return LblTitle.Text;
             }
             set
             {
-                this.LblTitle.Text = value;
+                LblTitle.Text = value;
             }
         }
        
@@ -31,30 +31,30 @@ namespace Vcc.Nolvus.Components.Controls
         {
             get
             {
-                return this.LblInfo.Text;
+                return LblInfo.Text;
             }
             set
             {
-                this.LblInfo.Text = value;
+                LblInfo.Text = value;
             }
         }
 
         public void SetAccountImage(string Url)
         {
-            this.AccountImage.Load(Url);            
+            AccountImage.Load(Url);            
         }
 
         public void SetAccountImage(System.Drawing.Image Image)
         {            
-            this.AccountImage.Image = Image;            
+            AccountImage.Image = Image;            
         }
 
         public TitleBarControl()
         {
             InitializeComponent();                        
 
-            this.LblTitle.MouseDown += LabelMouseDown;
-            this.LblInfo.MouseDown += LabelMouseDown;
+            LblTitle.MouseDown += LabelMouseDown;
+            LblInfo.MouseDown += LabelMouseDown;
         }
 
         public void ShowLoading()
@@ -69,7 +69,7 @@ namespace Vcc.Nolvus.Components.Controls
 
         private void LabelMouseDown(object sender, MouseEventArgs e)
         {
-            this.OnMouseDown(e);
+            OnMouseDown(e);
         }
     }
 }

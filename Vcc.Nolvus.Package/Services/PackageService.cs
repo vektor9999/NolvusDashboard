@@ -436,22 +436,22 @@ namespace Vcc.Nolvus.Package.Services
 
         public List<InstallableElement> GetModsToInstall()
         {
-            return this.Elements.Where(x => x.IsInstallable(false) && (x is Mod || x is Software)).ToList();            
+            return Elements.Where(x => x.IsInstallable() && (x is Mod || x is Software)).ToList();            
         }
 
         public List<InstallableElement> GetCategoriesToInstall()
         {
-            return this.Elements.Where(x => x.IsInstallable(false) && x is Category).ToList();
+            return Elements.Where(x => x.IsInstallable() && x is Category).ToList();
         }
 
         public List<IMOElement> GetInstallList()
         {
-            return this.Elements.Where(x => x.IsInstallable(false) && (x is MOElement) && (x as MOElement).Display).Cast<IMOElement>().ToList();
+            return Elements.Where(x => x.IsInstallable() && (x is MOElement) && (x as MOElement).Display).Cast<IMOElement>().ToList();
         }
 
         public List<string> GetOptionalEsps()
         {
-            return Elements.Where(x => !x.IsInstallable(false) && x is Mod).Cast<Mod>().SelectMany(x => x.Esps).Select(x => x.FileName).ToList();
+            return Elements.Where(x => !x.IsInstallable() && x is Mod).Cast<Mod>().SelectMany(x => x.Esps).Select(x => x.FileName).ToList();
         }
 
         public int ModsCount
@@ -461,6 +461,14 @@ namespace Vcc.Nolvus.Package.Services
                 return GetModsToInstall().Count;
             }
         }                                              
+
+        public double InstallProgression
+        {
+            get
+            {
+                return Math.Floor(((double)ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Count / ModsCount) * 100);
+            }
+        }
 
         private async Task AddModToQueue(InstallableElement Mod)
         {
@@ -509,7 +517,9 @@ namespace Vcc.Nolvus.Package.Services
             foreach (var Category in GetCategoriesToInstall())
             {
                 await Category.Install(CancelTokenSource.Token);
-            }            
+            }
+
+            Settings.OnStartInstalling();  
 
             var Tasks = GetModsToInstall().Where(x => !ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Any(y => y == x.Name)).ToList().Select(async Mod =>
             {                    

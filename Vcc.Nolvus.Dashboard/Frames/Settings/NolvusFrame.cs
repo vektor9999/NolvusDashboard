@@ -38,6 +38,7 @@ Retry = 3
 
 [Misc]
 ForceAA=False
+RefreshInterval=10
 ";
 
         public NolvusFrame()

@@ -21,7 +21,7 @@ namespace Vcc.Nolvus.Package.Conditions
             ValueToCompare = Node["ValueToCompare"].InnerText;
         }
 
-        public override bool IsValid(bool Log)
+        public override bool IsValid()
         {            
             string Value = ServiceSingleton.Instances.GetValueFromKey(DataToCompare);              
 
@@ -30,19 +30,11 @@ namespace Vcc.Nolvus.Package.Conditions
             switch (this.Operator)
             {
                 case 0:
-                    Valid = Value == this.ValueToCompare;
-
-                    if (Log)
-                    {                        
-                    }
+                    Valid = Value == ValueToCompare;                    
                     
                     break;
                 case 1:
-                    Valid = Value != this.ValueToCompare;
-
-                    if (Log)
-                    {                        
-                    }
+                    Valid = Value != ValueToCompare;                   
 
                     break;
             }            

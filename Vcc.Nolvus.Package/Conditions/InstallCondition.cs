@@ -11,7 +11,7 @@ namespace Vcc.Nolvus.Package.Conditions
     {
         public int Operator { get; set; }
 
-        public abstract bool IsValid(bool Log);
+        public abstract bool IsValid();
 
         public virtual void Load(XmlNode Node)
         {

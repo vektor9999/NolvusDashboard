@@ -184,7 +184,9 @@ namespace Vcc.Nolvus.Package.Files
                     {
                         ServiceSingleton.Logger.Log(string.Format("CRC check failed for file {0}", FileName));
                         ServiceSingleton.Logger.Log(string.Format("Deleting bad file {0}", FileName));
+
                         Delete();
+
                         return false;
                     }
 

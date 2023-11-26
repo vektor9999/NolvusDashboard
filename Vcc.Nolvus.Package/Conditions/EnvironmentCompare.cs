@@ -24,10 +24,10 @@ namespace Vcc.Nolvus.Package.Conditions
 
             switch (this.Operator)
             {
-                case 0: Valid = Value == this.ValueToCompare;
+                case 0: Valid = Value == ValueToCompare;
                     break;
                 case 1:
-                    Valid = Value != this.ValueToCompare;
+                    Valid = Value != ValueToCompare;
                     break;
 
             }

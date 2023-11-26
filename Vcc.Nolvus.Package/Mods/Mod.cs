@@ -176,11 +176,11 @@ namespace Vcc.Nolvus.Package.Mods
                 File.WriteAllText(Path.Combine(MoDirectoryFullName, "meta.ini"), string.Format(MetaIni, "0", Version, GetInstallFileName().Replace("\\", "/"), "0"));
             }            
         }
-        public override bool IsInstallable(bool Log)
+        public override bool IsInstallable()
         {
             foreach (var Condition in InstallConditions)
             {
-                if (!Condition.IsValid(Log))
+                if (!Condition.IsValid())
                 {                    
                     return false;
                 }
@@ -224,13 +224,23 @@ namespace Vcc.Nolvus.Package.Mods
                                
                 if (DirectoryRules.Count == 0 && PriorityRules.Count == 0)
                 {
-                    Result.AddRange(new DirectoryCopy().CreateFileRules(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), 0, ServiceSingleton.Instances.WorkingInstance.StockGame, MoDirectoryFullName));
+                    Result.AddRange(
+                        new DirectoryCopy().CreateFileRules(
+                        Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), 
+                        0, 
+                        ServiceSingleton.Instances.WorkingInstance.StockGame, 
+                        MoDirectoryFullName));
                 }
                 else
                 {
                     foreach (var Rule in DirectoryRules)
                     {                        
-                        Result.AddRange((Rule as DirectoryCopy).CreateFileRules(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), (Rule as DirectoryCopy).Destination, ServiceSingleton.Instances.WorkingInstance.StockGame, MoDirectoryFullName));
+                        Result.AddRange(
+                            (Rule as DirectoryCopy).CreateFileRules
+                            (Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), 
+                            (Rule as DirectoryCopy).Destination, 
+                            ServiceSingleton.Instances.WorkingInstance.StockGame, 
+                            MoDirectoryFullName));
                     }
 
                     Result.AddRange(PriorityRules);

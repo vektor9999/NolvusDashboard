@@ -37,6 +37,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
             if (Instance != null)
             {
+                Index = 0;
+
                 foreach (var Version in Versions)
                 {
                     if (Version.Name == Instance.Name)

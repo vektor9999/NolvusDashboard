@@ -15,7 +15,7 @@ namespace Vcc.Nolvus.Package.Mods
     {
         public List<Rule> Rules = new List<Rule>();
 
-        public override bool IsInstallable(bool Log)
+        public override bool IsInstallable()
         {
             return true;
         }

@@ -189,7 +189,7 @@ namespace Vcc.Nolvus.Package.Mods
                     break;
                 case ModInstallStatus.UnPacking:
                     Progress.Mbs = string.Empty;
-                    Progress.Status = ("Unpacking files...");
+                    Progress.Status = "Unpacking files...";
                     Progress.PercentDone = Event.UnPackInfo.PercentDone;
                     break;
                 case ModInstallStatus.Archiving:
@@ -201,7 +201,7 @@ namespace Vcc.Nolvus.Package.Mods
             }            
         }
 
-        public abstract bool IsInstallable(bool Log);        
+        public abstract bool IsInstallable();        
         protected virtual async Task DoDownload(Func<IBrowserInstance> Browser)
         {
             var Tsk = Task.Run(async () =>

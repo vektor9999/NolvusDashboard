@@ -52,7 +52,7 @@ namespace Vcc.Nolvus.Package.Mods
             }
         }
 
-        public override bool IsInstallable(bool Log)
+        public override bool IsInstallable()
         {
             return true;
         }

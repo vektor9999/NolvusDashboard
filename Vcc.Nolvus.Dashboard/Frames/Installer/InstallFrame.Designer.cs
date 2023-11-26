@@ -30,11 +30,9 @@
         {
             this.ModsPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.LoadingBox = new System.Windows.Forms.PictureBox();
             this.ModsBox = new Vcc.Nolvus.Components.Controls.ModsBox();
             this.ModsPanel.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.LoadingBox)).BeginInit();
             this.SuspendLayout();
             // 
             // ModsPanel
@@ -54,25 +52,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.LoadingBox);
             this.panel1.Controls.Add(this.ModsBox);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(975, 632);
             this.panel1.TabIndex = 4;
-            // 
-            // LoadingBox
-            // 
-            this.LoadingBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LoadingBox.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.cog_loader_alpha;
-            this.LoadingBox.Location = new System.Drawing.Point(0, 3);
-            this.LoadingBox.Name = "LoadingBox";
-            this.LoadingBox.Size = new System.Drawing.Size(974, 643);
-            this.LoadingBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.LoadingBox.TabIndex = 5;
-            this.LoadingBox.TabStop = false;
             // 
             // ModsBox
             // 
@@ -84,6 +68,7 @@
             this.ModsBox.ItemHeight = 35;
             this.ModsBox.Location = new System.Drawing.Point(0, 0);
             this.ModsBox.Name = "ModsBox";
+            this.ModsBox.ScalingFactor = 1D;
             this.ModsBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.ModsBox.Size = new System.Drawing.Size(973, 630);
             this.ModsBox.TabIndex = 4;
@@ -98,7 +83,6 @@
             this.Size = new System.Drawing.Size(987, 659);
             this.ModsPanel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.LoadingBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -108,6 +92,5 @@
         private System.Windows.Forms.Panel ModsPanel;
         private Components.Controls.ModsBox ModsBox;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox LoadingBox;
     }
 }

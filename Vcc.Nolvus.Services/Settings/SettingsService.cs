@@ -17,6 +17,7 @@ namespace Vcc.Nolvus.Services.Settings
         public const string Retry = "Retry";
         public const string MiscSection = "Misc";
         public const string ForceAntiAliasing = "ForceAA";
+        public const string Interval = "RefreshInterval";
 
         public void StoreIniValue(string Section, string Parameter, string Value)
         {
@@ -120,6 +121,22 @@ namespace Vcc.Nolvus.Services.Settings
                 catch
                 {
                     return false;
+                }
+            }
+        }
+
+        public int RefreshInterval
+        {
+            get
+            {
+                try
+                {
+                    var r = System.Convert.ToInt16(GetIniValue(MiscSection, Interval));
+                    return r == 0 || r > 1000 ? 10 : r;
+                }
+                catch
+                {
+                    return 10;
                 }
             }
         }

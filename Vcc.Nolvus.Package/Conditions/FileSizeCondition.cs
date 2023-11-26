@@ -24,7 +24,7 @@ namespace Vcc.Nolvus.Package.Conditions
 
             string SourceDir = string.Empty;
 
-            if (this.Source == 1)
+            if (Source == 1)
             {
                 SourceDir = GamePath;
             }
@@ -33,23 +33,23 @@ namespace Vcc.Nolvus.Package.Conditions
                 SourceDir = InstallDir;
             }
 
-            FileInfo File = new FileInfo(SourceDir + "\\" + this.DataToCompare);
+            FileInfo File = new FileInfo(SourceDir + "\\" + DataToCompare);
 
             long Size = File.Length / 1024;
 
             switch (this.Operator)
             {
                 case 0:
-                    Valid =  Size == System.Convert.ToInt32(this.ValueToCompare);
+                    Valid =  Size == System.Convert.ToInt32(ValueToCompare);
                     break;
                 case 1:
-                    Valid = Size != System.Convert.ToInt32(this.ValueToCompare);
+                    Valid = Size != System.Convert.ToInt32(ValueToCompare);
                     break;
                 case 2:
-                    Valid = Size > System.Convert.ToInt32(this.ValueToCompare);
+                    Valid = Size > System.Convert.ToInt32(ValueToCompare);
                     break;
                 case 3:
-                    Valid = Size < System.Convert.ToInt32(this.ValueToCompare);
+                    Valid = Size < System.Convert.ToInt32(ValueToCompare);
                     break;
 
             }

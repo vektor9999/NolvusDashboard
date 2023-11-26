@@ -202,7 +202,8 @@ namespace Vcc.Nolvus.Core.Events
     public class ModInstallSettings
     {        
         public Func<IBrowserInstance> Browser { get; set; }               
-        public Action<IInstallableElement> OnModInstalled { get; set; }        
+        public Action<IInstallableElement> OnModInstalled { get; set; }
+        public Action OnStartInstalling { get; set; }
     }    
     public class ModProgress
     {
