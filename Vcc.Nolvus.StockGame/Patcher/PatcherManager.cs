@@ -387,6 +387,20 @@ namespace Vcc.Nolvus.StockGame.Patcher
             await Tsk;
         }
 
+        private void DeleteFile(PatchingInstruction Instruction, string DestDir)
+        {
+            switch (Instruction.SourceFile.Location)
+            {
+                case FileLocation.Data:
+                    File.Delete(Path.Combine(DestDir, "Data", Instruction.SourceFile.Name));
+                    break;
+
+                default:
+                    File.Delete(Path.Combine(DestDir, Instruction.SourceFile.Name));
+                    break;
+            }            
+        }
+
         public async Task PatchFile(PatchingInstruction Instruction, string SourceDir, string DestDir, bool KeepPatches)
         {            
             var Tsk = Task.Run(async ()=>
@@ -400,7 +414,7 @@ namespace Vcc.Nolvus.StockGame.Patcher
                     switch (Instruction.Action)
                     {
                         case PatcherAction.Delete:
-                            File.Delete(Path.Combine(DestDir, Instruction.SourceFile.Name));
+                            DeleteFile(Instruction, DestDir);
                             StepProcessed("Game file : " + Instruction.DestFile.Name + " deleted");
                             break;
                         case PatcherAction.Patch:                            

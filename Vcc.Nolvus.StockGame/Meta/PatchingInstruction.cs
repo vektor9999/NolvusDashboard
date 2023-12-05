@@ -15,7 +15,7 @@ namespace Vcc.Nolvus.StockGame.Meta
         public string PatchFile { get; set; }
         public GameFile SourceFile { get; set; }
         public GameFile DestFile { get; set; }
-        public string DownLoadLink { get; set; }
+        public string DownLoadLink { get; set; }        
 
         public void Parse(XmlNode Node)
         {            
@@ -35,7 +35,7 @@ namespace Vcc.Nolvus.StockGame.Meta
             
 
             PatchFile = Node["PatchFile"].InnerText;
-            DownLoadLink = Node["DownloadLink"].InnerText;
+            DownLoadLink = Node["DownloadLink"].InnerText;            
         }
 
         //private void DoDeleteFile(string Dir)
