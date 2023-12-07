@@ -143,7 +143,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
 
                     ServiceSingleton.Instances.Load();
 
-                    if (ServiceSingleton.Instances.InstanceFileExists && !ServiceSingleton.Instances.Empty)
+                    if (!ServiceSingleton.Instances.Empty)
                     {                        
                         var InstanceMessage = string.Empty;
 

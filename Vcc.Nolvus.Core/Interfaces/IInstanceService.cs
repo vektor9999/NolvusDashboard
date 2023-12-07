@@ -9,8 +9,7 @@ namespace Vcc.Nolvus.Core.Interfaces
     public interface IInstanceService : INolvusService
     {
         INolvusInstance WorkingInstance { get; set; }
-        IInstanceOptions Options { get; set; }
-        bool InstanceFileExists { get; }
+        IInstanceOptions Options { get; set; }        
         void Load();
         void Save();
         bool Empty { get; }

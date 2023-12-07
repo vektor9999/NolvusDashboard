@@ -554,9 +554,7 @@ namespace Vcc.Nolvus.Package.Services
                 await SemaphoreSlim.WaitAsync();                
 
                 try
-                {
-                    //Settings.Dummy(Mod.Name);
-
+                {                    
                     if (!_ErrorHandler.Cancelling)
                     {
                         await RequestManualDownloadLinkIfAny(Mod, Settings);

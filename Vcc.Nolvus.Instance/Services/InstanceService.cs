@@ -40,20 +40,30 @@ namespace Vcc.Nolvus.Instance.Services
             }
         }
 
-        protected string InstancesDataFile
+        protected FileInfo InstancesDataFile
         {
             get
             {
-                return Path.Combine(InstancesDirectory, "InstancesData.xml");
+                return new FileInfo(Path.Combine(InstancesDirectory, "InstancesData.xml"));
             }
         }
 
-        public bool InstanceFileExists
+        protected FileInfo BufferInstancesDataFile
         {
             get
             {
-                return File.Exists(InstancesDataFile);
+                return new FileInfo(Path.Combine(InstancesDirectory, "InstancesData.temp.xml"));
             }
+        }
+
+        protected bool NoInstanceFile()
+        {
+            return !InstancesDataFile.Exists && !BufferInstancesDataFile.Exists;
+        }
+
+        protected bool OnlyBufferExists()
+        {
+            return !InstancesDataFile.Exists && BufferInstancesDataFile.Exists;
         }
 
         public INolvusInstance WorkingInstance { get; set; }
@@ -71,21 +81,30 @@ namespace Vcc.Nolvus.Instance.Services
             Directory.CreateDirectory(ArchivesDirectory);
         }
 
+        private void MoveBuffer()
+        {
+            File.Move(BufferInstancesDataFile.FullName, InstancesDataFile.FullName);
+        }
+
         private XmlDocument InitializeStorage()
         {
             XmlDocument Storage = new XmlDocument();
 
-            if (!InstanceFileExists)
+            if (NoInstanceFile())
             {
                 if (!Directory.Exists(InstancesDirectory))
                 {
                     Directory.CreateDirectory(InstancesDirectory);
                 }
                 
-                Save();
+                Save();                
+            }
+            else if (OnlyBufferExists())
+            {
+                MoveBuffer();
             }
 
-            Storage.Load(InstancesDataFile);            
+            Storage.Load(InstancesDataFile.FullName);
 
             return Storage;
         }      
@@ -112,12 +131,7 @@ namespace Vcc.Nolvus.Instance.Services
         public void Save()
         {
             lock (SyncRoot)
-            {
-                if (InstanceFileExists)
-                {
-                    File.Copy(InstancesDataFile, Path.Combine(InstancesDirectory, "InstancesData.bak"), true);
-                }
-
+            {                
                 Encoding Utf8noBOM = new UTF8Encoding(false);
                 XmlWriterSettings Settings = new XmlWriterSettings();
                 Settings.Indent = true;
@@ -141,8 +155,15 @@ namespace Vcc.Nolvus.Instance.Services
                     }
 
 
-                    File.WriteAllBytes(InstancesDataFile, Output.ToArray());                    
+                    File.WriteAllBytes(BufferInstancesDataFile.FullName, Output.ToArray());                    
+                }                
+                
+                if (InstancesDataFile.Exists)
+                {
+                    InstancesDataFile.Delete();                    
                 }
+
+                MoveBuffer();
             }
         }
 

@@ -103,7 +103,15 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                     }, 
                     OnModError = (ErrorCount) => 
                     {
-                        ServiceSingleton.Dashboard.AdditionalSecondaryInfo(string.Format("Error(s) : {0} {1}", ServiceSingleton.Packages.ErrorHandler.ErrorsCount, "(Errors will be displayed at the end of the installation)"));
+                        if (ServiceSingleton.Packages.ErrorHandler.ThresholdEnabled)
+                        {
+                            ServiceSingleton.Dashboard.AdditionalSecondaryInfo(string.Format("Error(s) : {0} Threshold : {1} {2}", ServiceSingleton.Packages.ErrorHandler.ErrorsCount, ServiceSingleton.Settings.ErrorsThreshold, "(Errors will be displayed at the end of the installation)"));
+                        }
+                        else
+                        {
+                            ServiceSingleton.Dashboard.AdditionalSecondaryInfo(string.Format("Error(s) : {0}/{1}", ServiceSingleton.Packages.ErrorHandler.ErrorsCount, "(Errors will be displayed at the end of the installation)"));
+                        }
+                        
                     },
                     OnMaxErrors = () =>
                     {
