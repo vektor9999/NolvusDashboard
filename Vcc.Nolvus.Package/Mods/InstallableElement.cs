@@ -71,7 +71,7 @@ namespace Vcc.Nolvus.Package.Mods
 
                     _p.Name = Name + " by " + Author + " (v " + Version + ")";
                     _p.Status = "Initializing";
-                    _p.Mbs = string.Empty;
+                    _p.Mbs = 0;
                     _p.Image = FormatImage();
                 }
 
@@ -157,12 +157,14 @@ namespace Vcc.Nolvus.Package.Mods
         {            
             Progress.Action = Event.Status.ToString();
 
+            Progress.Mbs = 0;            
+
             switch (Event.Status)
-            {
+            {                
                 case ModInstallStatus.Downloading:                    
                     if (Event.DownloadInfo.TotalBytesToReceive != 0)
                     {
-                        Progress.Mbs = string.Format("{0}MB/s", Event.DownloadInfo.Speed.ToString("0.0"));
+                        Progress.Mbs = Event.DownloadInfo.Speed;                        
                         Progress.Status = string.Format("Downloading {0} ({1} MB)", Event.DownloadInfo.FileName, Event.DownloadInfo.TotalBytesToReceiveAsString);
                     }
                     else
@@ -173,27 +175,23 @@ namespace Vcc.Nolvus.Package.Mods
                     Progress.PercentDone = Event.DownloadInfo.PercentDone;
                     break;
                 case ModInstallStatus.Hashing:                    
-                    Progress.Mbs = string.Empty;
+                    
                     Progress.Status = string.Format("Hashing {0}", Event.HashInfo.FileName);
                     Progress.PercentDone = Event.HashInfo.PercentDone;
                     break;
-                case ModInstallStatus.Extracting:
-                    Progress.Mbs = string.Empty;
+                case ModInstallStatus.Extracting:                    
                     Progress.Status = string.Format("Extracting {0}", Event.ExtractInfo.FileName);
                     Progress.PercentDone = Event.ExtractInfo.PercentDone;                    
                     break;
-                case ModInstallStatus.Installing:
-                    Progress.Mbs = string.Empty;
+                case ModInstallStatus.Installing:                    
                     Progress.Status = "Installing files...";
                     Progress.PercentDone = Event.CopyInfo.PercentDone;
                     break;
-                case ModInstallStatus.UnPacking:
-                    Progress.Mbs = string.Empty;
+                case ModInstallStatus.UnPacking:                    
                     Progress.Status = "Unpacking files...";
                     Progress.PercentDone = Event.UnPackInfo.PercentDone;
                     break;
-                case ModInstallStatus.Archiving:
-                    Progress.Mbs = string.Empty;
+                case ModInstallStatus.Archiving:                    
                     Progress.Status = string.Format("Archiving {0}", Event.ArchivingInfo.FileName);
                     Progress.PercentDone = Event.ArchivingInfo.PercentDone;
                     break;
@@ -301,7 +299,7 @@ namespace Vcc.Nolvus.Package.Mods
             {
                 try
                 {
-                    Token.ThrowIfCancellationRequested();                        
+                    Token.ThrowIfCancellationRequested();                    
 
                     if (Settings != null && Settings.Browser == null) throw new Exception("Browser is not set!");
 
@@ -329,14 +327,12 @@ namespace Vcc.Nolvus.Package.Mods
                 }
                 catch(Exception ex)
                 {                    
-                    Progress.HasError = true;
                     Progress.GlobalDone = 0;
                     Progress.PercentDone = 0;
-                    Progress.Mbs = string.Empty;
+                    Progress.Mbs = 0;
                     Progress.Action = string.Empty;
-                    Progress.Status = "Error detected waiting for the queue to finish to display the error message...";
-                    ServiceSingleton.Logger.Log("Error during mod installation(" + Name + ") with message : " + ex.Message + Environment.NewLine + "Stack => " + ex.StackTrace);
-                    throw new Exception("Error during mod installation(" + Name + ") with message : " + ex.Message);                                        
+                    ServiceSingleton.Logger.Log("Error during mod installation(" + Name + ") with message : " + ex.Message + Environment.NewLine + "Stack => " + ex.StackTrace);                    
+                    throw ex;
                 }
             });
 

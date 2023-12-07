@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\Enums.cs" />
+    <Compile Include="Error\FaultyMod.cs" />
     <Compile Include="Events\Browser.cs" />
     <Compile Include="Events\Files.cs" />
     <Compile Include="Events\Package.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Interfaces\IBrowserInstance.cs" />
     <Compile Include="Interfaces\IDashboard.cs" />
     <Compile Include="Interfaces\IDashboardFrame.cs" />
+    <Compile Include="Interfaces\IErrorHandler.cs" />
     <Compile Include="Interfaces\IFileService.cs" />
     <Compile Include="Interfaces\IFolderService.cs" />
     <Compile Include="Interfaces\IGameService.cs" />

@@ -16,7 +16,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         string ImagePath { get; set; }
         string Author { get; set; }        
         Task Install(CancellationToken Token, ModInstallSettings Settings = null);
-        ModProgress Progress { get; }
-
+        ModProgress Progress { get; }        
     }
 }

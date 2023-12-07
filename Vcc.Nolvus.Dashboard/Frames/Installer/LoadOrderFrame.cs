@@ -30,13 +30,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         {
             InitializeComponent();
         }
-
         public LoadOrderFrame(IDashboard Dashboard, FrameParameters Params) 
             : base(Dashboard, Params)            
         {
             InitializeComponent();            
         }
-
         public async Task ApplyInstallOrder()
         {
             ServiceSingleton.Dashboard.Status("Applying Install order...");
@@ -125,15 +123,14 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
             await Tsk;
         }
-
         protected override async Task OnLoadedAsync()
         {
             try
             {
                 INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
-                ServiceSingleton.Dashboard.AdditionalInfo(string.Empty);
-                ServiceSingleton.Dashboard.Info("Applying install and load order");
+                ServiceSingleton.Dashboard.ClearInfo();
+                ServiceSingleton.Dashboard.Info("Applying install and load order");                
 
                 ServiceSingleton.Logger.Log("Applying load order");
 

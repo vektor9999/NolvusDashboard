@@ -203,6 +203,8 @@ namespace Vcc.Nolvus.Core.Events
     {        
         public Func<IBrowserInstance> Browser { get; set; }               
         public Action<IInstallableElement> OnModInstalled { get; set; }
+        public Action<int> OnModError { get; set; }
+        public Action OnMaxErrors { get; set; }
         public Action OnStartInstalling { get; set; }
     }    
     public class ModProgress
@@ -213,7 +215,7 @@ namespace Vcc.Nolvus.Core.Events
         public int GlobalDone { get; set; }
         public Image Image { get; set; }
         public bool HasError { get; set; }
-        public string Mbs { get; set; }
+        public double Mbs { get; set; }        
         public string Action { get; set; }
     }    
 }

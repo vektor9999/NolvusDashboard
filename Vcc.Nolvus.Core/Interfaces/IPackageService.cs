@@ -25,5 +25,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         List<string> GameBaseModsList { get; }
         List<string> GameBasePluginsList { get; }
         double InstallProgression { get; }
+        IErrorHandler ErrorHandler { get; }
+        double DownloadSpeed { get; }
     }
 }

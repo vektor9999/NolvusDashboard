@@ -84,6 +84,18 @@ namespace Vcc.Nolvus.Dashboard.Forms
             return MessageBox.ShowDialog();
         }
 
+        public static DialogResult ShowMessage(string Title, string Message, MessageBoxType Type, int Height, int Width, Color MessageColor)
+        {
+            NolvusMessageBox MessageBox = new NolvusMessageBox(Title, Message, Type);
+
+            MessageBox.Height = Height;
+            MessageBox.Width = Width;
+
+            MessageBox.LblMessage.ForeColor = MessageColor;
+
+            return MessageBox.ShowDialog();
+        }
+
         public static DialogResult ShowConfirmation(string Title, string Message)
         {
             NolvusMessageBox MessageBox = new NolvusMessageBox(Title, Message, MessageBoxType.Question);

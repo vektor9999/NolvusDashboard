@@ -30,11 +30,14 @@ namespace Vcc.Nolvus.Core.Interfaces
         void ProgressCompleted();
         void Info(string Value);
         void AdditionalInfo(string Value);
+        void AdditionalSecondaryInfo(string Value);
+        void AdditionalTertiaryInfo(string Value);
         void TitleInfo(string Value);
         void Title(string Value);
         void NexusAccount(string Value);
         void AccountType(string Value);
         void LoadAccountImage(string Url);
         void LoadAccountImage(System.Drawing.Image Image);
+        void ClearInfo();
     }
 }

@@ -13,6 +13,7 @@ using Vcc.Nolvus.Core.Enums;
 using Vcc.Nolvus.Core.Events;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Package.Mods;
+using Vcc.Nolvus.Package.Errors;
 using Vcc.Nolvus.Api.Installer.Library;
 
 namespace Vcc.Nolvus.Package.Services
@@ -27,12 +28,10 @@ namespace Vcc.Nolvus.Package.Services
         #region Fields
 
         XmlDocument _Storage = new XmlDocument();        
-        List<InstallableElement> Elements = new List<InstallableElement>();                
-        SemaphoreSlim SemaphoreSlim = new SemaphoreSlim(ServiceSingleton.Settings.ProcessCount);
-        SemaphoreSlim SemaphoreSlimBeforeDownload = new SemaphoreSlim(1);                
-        CancellationTokenSource CancelTokenSource = new CancellationTokenSource();
-        TaskCompletionSource<object> CancelTasks = new TaskCompletionSource<object>();
-        QueueWatcher QueueWatcher;
+        List<InstallableElement> Elements = new List<InstallableElement>();
+        SemaphoreSlim SemaphoreSlim;
+        SemaphoreSlim SemaphoreSlimBeforeDownload;
+        QueueWatcher QueueWatcher;        
 
         #endregion
 
@@ -45,6 +44,7 @@ namespace Vcc.Nolvus.Package.Services
         }
         public List<IInstallableElement> InstallingModsQueue { get; set; } = new List<IInstallableElement>();
         public List<ModProgress> ProgressQueue { get; set; } = new List<ModProgress>();
+        private ErrorHandler _ErrorHandler { get; set; } = new ErrorHandler(ServiceSingleton.Settings.ErrorsThreshold);
         public string LoadedVersion { get; set; }
         public List<string> GameBaseModsList
         {
@@ -222,6 +222,30 @@ namespace Vcc.Nolvus.Package.Services
                 Lines.Add("ccafdsse001-dwesanctuary.esm");
 
                 return Lines;
+            }
+        }
+
+        public IErrorHandler ErrorHandler
+        {
+            get
+            {
+                return _ErrorHandler;
+            }
+        }
+
+        public double DownloadSpeed
+        {
+            get
+            {
+                try
+
+                {
+                    return ServiceSingleton.Packages.ProgressQueue.Sum(x => x.Mbs);
+                }
+                catch
+                {
+                    return 0;
+                }
             }
         }
 
@@ -509,14 +533,18 @@ namespace Vcc.Nolvus.Package.Services
 
         public async Task InstallModList(ModInstallSettings Settings)
         {
-            CancelTasks = new TaskCompletionSource<object>();
-            CancelTokenSource = new CancellationTokenSource();            
+            SemaphoreSlim = new SemaphoreSlim(ServiceSingleton.Settings.ProcessCount);
+            SemaphoreSlimBeforeDownload = new SemaphoreSlim(1);            
+
+            _ErrorHandler.Clear();
+            _ErrorHandler.CancelTasks = new TaskCompletionSource<object>();
+            _ErrorHandler.CancelTokenSource = new CancellationTokenSource();
 
             QueueWatcher = new QueueWatcher(InstallingModsQueue);
                           
             foreach (var Category in GetCategoriesToInstall())
             {
-                await Category.Install(CancelTokenSource.Token);
+                await Category.Install(_ErrorHandler.Token);
             }
 
             Settings.OnStartInstalling();  
@@ -526,14 +554,16 @@ namespace Vcc.Nolvus.Package.Services
                 await SemaphoreSlim.WaitAsync();                
 
                 try
-                {                                                                        
-                    if (!CancelTokenSource.Token.IsCancellationRequested)
+                {
+                    //Settings.Dummy(Mod.Name);
+
+                    if (!_ErrorHandler.Cancelling)
                     {
                         await RequestManualDownloadLinkIfAny(Mod, Settings);
                             
                         await AddModToQueue(Mod);
 
-                        await Mod.Install(CancelTokenSource.Token, Settings);
+                        await Mod.Install(_ErrorHandler.Token, Settings);
 
                         SaveInstance(Mod);                           
 
@@ -545,30 +575,38 @@ namespace Vcc.Nolvus.Package.Services
                     }                                            
                 }
                 catch (Exception ex)
-                {                    
-                    if (!CancelTokenSource.Token.IsCancellationRequested)
-                    {
-                        ServiceSingleton.Logger.Log("Cancelling current tasks");
-                        CancelTokenSource.Cancel();
-                        
-                        await QueueWatcher.WaitingForCompletion();
+                {
+                    RemoveModFromQueue(Mod);                    
 
-                        CancelTasks.SetException(ex);
-                    }
-                    else
-                    {
-                        RemoveModFromQueue(Mod);
+                    SemaphoreSlim.Release();
+
+                    if (!_ErrorHandler.Cancelling)
+                    {                        
+                        _ErrorHandler.AddFaultyMod(Mod, ex);
+
+                        Settings.OnModError(_ErrorHandler.ErrorsCount);
+
+                        if (_ErrorHandler.ThresholdEnabled && _ErrorHandler.ThresholdReached)
+                        {
+                            Settings.OnMaxErrors();
+
+                            _ErrorHandler.CancelInstall();
+
+                            await QueueWatcher.WaitingForCompletion();
+
+                            _ErrorHandler.Exit();
+                        }
                     }                    
                 }                                                               
             }).ToList();
                 
-            await Task.WhenAny(Task.WhenAll(Tasks), CancelTasks.Task);                
+            await Task.WhenAny(Task.WhenAll(Tasks), _ErrorHandler.CancelTasks.Task);                
 
-            if (CancelTasks.Task.IsFaulted)
+            if (_ErrorHandler.HasErrors)
             {
                 ProgressQueue.Clear();
-                throw CancelTasks.Task.Exception.InnerException;
-            }            
+                _ErrorHandler.ThrowException();
+            }     
 
             ServiceSingleton.Logger.Log("List is installed");
         }        

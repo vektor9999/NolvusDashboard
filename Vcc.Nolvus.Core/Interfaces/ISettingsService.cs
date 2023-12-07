@@ -16,5 +16,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         int RetryCount { get; }
         bool ForceAA { get; }
         int RefreshInterval { get; }
+        int ErrorsThreshold { get; }
     }
 }

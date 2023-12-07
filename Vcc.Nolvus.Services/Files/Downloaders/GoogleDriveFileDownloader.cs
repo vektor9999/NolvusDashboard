@@ -88,7 +88,7 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
         private bool ProcessDriveDownload()
         {
             FileInfo DownloadedFile = new FileInfo(DownloadPath);
-            if (DownloadedFile == null)
+            if (DownloadedFile == null || !DownloadedFile.Exists)
                 return true;
 
             if (DownloadedFile.Length > 60000L)

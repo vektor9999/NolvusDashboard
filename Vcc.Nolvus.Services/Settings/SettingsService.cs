@@ -15,6 +15,7 @@ namespace Vcc.Nolvus.Services.Settings
         public const string ProcessSection = "Process";
         public const string Count = "Count";
         public const string Retry = "Retry";
+        public const string EThreshold = "ErrorsTreshold";
         public const string MiscSection = "Misc";
         public const string ForceAntiAliasing = "ForceAA";
         public const string Interval = "RefreshInterval";
@@ -137,6 +138,22 @@ namespace Vcc.Nolvus.Services.Settings
                 catch
                 {
                     return 10;
+                }
+            }
+        }
+
+        public int ErrorsThreshold
+        {
+            get
+            {
+                try
+                {
+                    var r = System.Convert.ToInt16(GetIniValue(ProcessSection, EThreshold));
+                    return r > 100 ? 50 : r;
+                }
+                catch
+                {
+                    return 50;
                 }
             }
         }

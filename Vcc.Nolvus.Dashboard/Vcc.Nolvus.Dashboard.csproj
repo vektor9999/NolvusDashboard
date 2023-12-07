@@ -272,6 +272,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ErrorPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ErrorPanel.Designer.cs">
+      <DependentUpon>ErrorPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ErrorsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ErrorsPanel.Designer.cs">
+      <DependentUpon>ErrorsPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\InstancePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -311,6 +323,12 @@
     </Compile>
     <Compile Include="Frames\Installer\ChangeLogFrame.Designer.cs">
       <DependentUpon>ChangeLogFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Installer\ErrorSummaryFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Installer\ErrorSummaryFrame.Designer.cs">
+      <DependentUpon>ErrorSummaryFrame.cs</DependentUpon>
     </Compile>
     <Compile Include="Frames\Installer\PageFileFrame.cs">
       <SubType>UserControl</SubType>
@@ -452,6 +470,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\ErrorPanel.resx">
+      <DependentUpon>ErrorPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ErrorsPanel.resx">
+      <DependentUpon>ErrorsPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\InstancePanel.resx">
       <DependentUpon>InstancePanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -469,6 +493,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\Installer\ChangeLogFrame.resx">
       <DependentUpon>ChangeLogFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Installer\ErrorSummaryFrame.resx">
+      <DependentUpon>ErrorSummaryFrame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\Installer\PageFileFrame.resx">
       <DependentUpon>PageFileFrame.cs</DependentUpon>

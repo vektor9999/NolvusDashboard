@@ -38,6 +38,8 @@
             this.StripLblScaling = new System.Windows.Forms.ToolStripStatusLabel();
             this.StripLblAccountType = new System.Windows.Forms.ToolStripStatusLabel();
             this.StStripLblAdditionalInfo = new Syncfusion.Windows.Forms.Tools.StatusStripLabel();
+            this.StStripLblAdditionalInfo2 = new Syncfusion.Windows.Forms.Tools.StatusStripLabel();
+            this.StStripLblAdditionalInfo3 = new Syncfusion.Windows.Forms.Tools.StatusStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LblStatus = new System.Windows.Forms.Label();
             this.ProgressBar = new Syncfusion.Windows.Forms.Tools.ProgressBarAdv();
@@ -71,7 +73,7 @@
             this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContentPanel.Location = new System.Drawing.Point(2, 45);
             this.ContentPanel.Name = "ContentPanel";
-            this.ContentPanel.Size = new System.Drawing.Size(1005, 897);
+            this.ContentPanel.Size = new System.Drawing.Size(1080, 897);
             this.ContentPanel.TabIndex = 0;
             // 
             // StripLblNexus
@@ -90,18 +92,20 @@
             // StatusStripEx
             // 
             this.StatusStripEx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.StatusStripEx.BeforeTouchSize = new System.Drawing.Size(1005, 22);
+            this.StatusStripEx.BeforeTouchSize = new System.Drawing.Size(1080, 22);
             this.StatusStripEx.Dock = Syncfusion.Windows.Forms.Tools.DockStyleEx.Bottom;
             this.StatusStripEx.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripLblScaling,
             this.StripLblNexus,
             this.StStripLblInfo,
             this.StripLblAccountType,
-            this.StStripLblAdditionalInfo});
+            this.StStripLblAdditionalInfo,
+            this.StStripLblAdditionalInfo2,
+            this.StStripLblAdditionalInfo3});
             this.StatusStripEx.Location = new System.Drawing.Point(2, 942);
             this.StatusStripEx.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(206)))), ((int)(((byte)(255)))));
             this.StatusStripEx.Name = "StatusStripEx";
-            this.StatusStripEx.Size = new System.Drawing.Size(1005, 22);
+            this.StatusStripEx.Size = new System.Drawing.Size(1080, 22);
             this.StatusStripEx.TabIndex = 12;
             this.StatusStripEx.Text = "statusStripEx1";
             this.StatusStripEx.ThemeName = "Office2016Black";
@@ -125,6 +129,20 @@
             this.StStripLblAdditionalInfo.Size = new System.Drawing.Size(113, 15);
             this.StStripLblAdditionalInfo.Text = "[ADDITIONAL INFO]";
             // 
+            // StStripLblAdditionalInfo2
+            // 
+            this.StStripLblAdditionalInfo2.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
+            this.StStripLblAdditionalInfo2.Name = "StStripLblAdditionalInfo2";
+            this.StStripLblAdditionalInfo2.Size = new System.Drawing.Size(122, 15);
+            this.StStripLblAdditionalInfo2.Text = "[ADDITIONAL INFO 2]";
+            // 
+            // StStripLblAdditionalInfo3
+            // 
+            this.StStripLblAdditionalInfo3.Margin = new System.Windows.Forms.Padding(0, 3, 0, 2);
+            this.StStripLblAdditionalInfo3.Name = "StStripLblAdditionalInfo3";
+            this.StStripLblAdditionalInfo3.Size = new System.Drawing.Size(122, 15);
+            this.StStripLblAdditionalInfo3.Text = "[ADDITIONAL INFO 3]";
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.LblStatus);
@@ -132,7 +150,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1005, 43);
+            this.panel1.Size = new System.Drawing.Size(1080, 43);
             this.panel1.TabIndex = 15;
             // 
             // LblStatus
@@ -169,7 +187,7 @@
         System.Drawing.Color.Empty};
             this.ProgressBar.Name = "ProgressBar";
             this.ProgressBar.SegmentWidth = 12;
-            this.ProgressBar.Size = new System.Drawing.Size(988, 5);
+            this.ProgressBar.Size = new System.Drawing.Size(1063, 5);
             this.ProgressBar.TabIndex = 14;
             this.ProgressBar.Text = "progressBarAdv1";
             this.ProgressBar.TextStyle = Syncfusion.Windows.Forms.Tools.ProgressBarTextStyles.Custom;
@@ -183,13 +201,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.ClientSize = new System.Drawing.Size(1009, 966);
+            this.ClientSize = new System.Drawing.Size(1084, 966);
             this.Controls.Add(this.ContentPanel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.StatusStripEx);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IconSize = new System.Drawing.Size(32, 32);
-            this.MinimumSize = new System.Drawing.Size(900, 900);
+            this.MinimumSize = new System.Drawing.Size(1100, 900);
             this.Name = "DashboardWindow";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -224,6 +242,8 @@
         private System.Windows.Forms.Label LblStatus;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripStatusLabel StripLblScaling;
+        private Syncfusion.Windows.Forms.Tools.StatusStripLabel StStripLblAdditionalInfo2;
+        private Syncfusion.Windows.Forms.Tools.StatusStripLabel StStripLblAdditionalInfo3;
     }
 }
 

@@ -93,19 +93,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                     }
                     else
                     {
-                        NexusApi.ApiManager.Init(NexusApiKey, UserAgent, ServiceSingleton.Folders.NexusCacheDirectory);
-
-                        try
-                        {
-                            if (NexusApi.ApiManager.AccountInfo.ProfileUrl != null)
-                            {                                
-                                ServiceSingleton.Dashboard.LoadAccountImage(NexusApi.ApiManager.AccountInfo.ProfileUrl);                                
-                            }
-                        }
-                        catch
-                        {
-
-                        }
+                        NexusApi.ApiManager.Init(NexusApiKey, UserAgent, ServiceSingleton.Folders.NexusCacheDirectory);                       
 
                         ServiceSingleton.Dashboard.TitleInfo(NexusApi.ApiManager.AccountInfo.Name);
                         ServiceSingleton.Dashboard.NexusAccount(ApiManager.Service.Installer.LoggedUser + "@" + NexusApi.ApiManager.AccountInfo.Name);

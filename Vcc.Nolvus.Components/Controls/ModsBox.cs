@@ -109,7 +109,10 @@ namespace Vcc.Nolvus.Components.Controls
 
                 if (Progress.Image != null) e.Graphics.DrawImage(Progress.Image, 3, 5 + Top);
 
-                e.Graphics.DrawString(Progress.Mbs, InfoFont, Brushes.White, 105, 10 + Top, new StringFormat(StringFormatFlags.DirectionRightToLeft));
+                if ( Progress.Mbs != 0)
+                {
+                    e.Graphics.DrawString(string.Format("{0}MB/s", Progress.Mbs.ToString("0.0")), InfoFont, Brushes.White, 105, 10 + Top, new StringFormat(StringFormatFlags.DirectionRightToLeft));
+                }                
 
                 if (!Progress.HasError)
                 {

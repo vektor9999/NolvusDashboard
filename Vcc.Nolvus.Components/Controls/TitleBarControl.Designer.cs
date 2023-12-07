@@ -74,6 +74,7 @@
             this.AccountImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.AccountImage.TabIndex = 5;
             this.AccountImage.TabStop = false;
+            this.AccountImage.Visible = false;
             // 
             // LoadingBox
             // 

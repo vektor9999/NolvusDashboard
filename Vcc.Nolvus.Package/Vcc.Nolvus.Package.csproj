@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Errors\InstallationCancelledException.cs" />
     <Compile Include="Mods\BSArch.cs" />
     <Compile Include="Mods\BsaUnPacking.cs" />
     <Compile Include="Mods\Category.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Files\NexusModFile.cs" />
     <Compile Include="Mods\NexusSoftware.cs" />
     <Compile Include="Rules\OptionalEsp.cs" />
+    <Compile Include="Errors\ErrorHandler.cs" />
     <Compile Include="Services\PackageService.cs" />
     <Compile Include="Patchers\Patcher.cs" />
     <Compile Include="Patchers\PatchFile.cs" />

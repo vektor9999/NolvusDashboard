@@ -29,10 +29,7 @@ using Vcc.Nolvus.Dashboard.Controls;
 namespace Vcc.Nolvus.Dashboard.Frames.Installer
 {
     public partial class InstallFrame : DashboardFrame
-    {                
-        private CancellationTokenSource CancelTokenSource = new CancellationTokenSource();
-        private TaskCompletionSource<object> CancelTasks = new TaskCompletionSource<object>();
-        private Random Rnd = new Random();
+    {                                
         public InstallFrame()
         {
             InitializeComponent();
@@ -60,6 +57,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             }
             
             ModsBox.DataSource = ServiceSingleton.Packages.ProgressQueue.ToList();
+            
+            ServiceSingleton.Dashboard.AdditionalTertiaryInfo(string.Format("Download : {0}MB/s", ServiceSingleton.Packages.DownloadSpeed.ToString("0.0")));
+
             ModsBox.Refresh();                                    
         }        
       
@@ -84,7 +84,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 
                 ServiceSingleton.Dashboard.Title("Nolvus Dashboard - [Instance Auto Installer]");
                 ServiceSingleton.Dashboard.Status(string.Format("Installing {0} (v{1})", Instance.Name, ServiceSingleton.Packages.LoadedVersion));
-                ServiceSingleton.Dashboard.Info("Installing mods...");
+                ServiceSingleton.Dashboard.AdditionalSecondaryInfo("Error(s) : 0");
+
+                GlobalProgress();
 
                 ServiceSingleton.Files.RemoveDirectory(ServiceSingleton.Folders.NexusCacheDirectory, false);                                             
 
@@ -98,7 +100,15 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                     {
                         GlobalProgress();
                         ServiceSingleton.Logger.Log(string.Format("Mod : {0} installed.", Mod.Name));
-                    },                    
+                    }, 
+                    OnModError = (ErrorCount) => 
+                    {
+                        ServiceSingleton.Dashboard.AdditionalSecondaryInfo(string.Format("Error(s) : {0} {1}", ServiceSingleton.Packages.ErrorHandler.ErrorsCount, "(Errors will be displayed at the end of the installation)"));
+                    },
+                    OnMaxErrors = () =>
+                    {
+                        ServiceSingleton.Dashboard.AdditionalSecondaryInfo(string.Format("Error(s) : {0} {1}", ServiceSingleton.Packages.ErrorHandler.ErrorsCount, "(Maximum errors treshold reached, waiting for current queue to finish...)"));
+                    },               
                     Browser = () =>
                     {
                         return Invoke((Func<IBrowserInstance>)(() => { return new BrowserWindow(); })) as IBrowserInstance;
@@ -107,10 +117,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
                 await ServiceSingleton.Dashboard.LoadFrameAsync<LoadOrderFrame>(new FrameParameters(new FrameParameter(){Key = "Mode", Value = "Install"}));
             }
-            catch (Exception ex)
+            catch
             {
-                ServiceSingleton.Logger.Log(string.Format("Error during mod list installation with message {0}", ex.Message));
-                await ServiceSingleton.Dashboard.Error("Error during mod installation", ex.Message, ex.StackTrace, true);
+                ServiceSingleton.Dashboard.ClearInfo();
+                
+                await ServiceSingleton.Dashboard.LoadFrameAsync<ErrorSummaryFrame>();                
             }
 
         }            

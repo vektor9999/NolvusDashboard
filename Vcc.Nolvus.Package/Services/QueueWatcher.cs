@@ -24,8 +24,8 @@ namespace Vcc.Nolvus.Package.Services
                 ServiceSingleton.Logger.Log("Queue Watcher ==> Waiting for completion");
 
                 while (true)
-                {
-                    if (_List.Count == 1)
+                {                    
+                    if (_List.Count == 0)
                     {
                         ServiceSingleton.Logger.Log("Queue Watcher ==> Queue completed");
                         break;

@@ -226,7 +226,6 @@ namespace Vcc.Nolvus.Dashboard
 
             TitleBarControl.SetAccountImage(Url);
         }
-
         public void LoadAccountImage(System.Drawing.Image Image)
         {
             if (InvokeRequired)
@@ -237,7 +236,6 @@ namespace Vcc.Nolvus.Dashboard
 
             TitleBarControl.SetAccountImage(Image);
         }
-
         public void Status(string Value)
         {
             if (InvokeRequired)
@@ -288,6 +286,38 @@ namespace Vcc.Nolvus.Dashboard
             StatusStripEx.Visible = true;
             StStripLblAdditionalInfo.Text = Value;
         }
+        public void AdditionalSecondaryInfo(string Value)
+        {
+            if (InvokeRequired)
+            {
+                Invoke((System.Action<string>)AdditionalSecondaryInfo, Value);
+                return;
+            }
+            StatusStripEx.Visible = true;
+            StStripLblAdditionalInfo2.Text = Value;
+        }
+        public void AdditionalTertiaryInfo(string Value)
+        {
+            if (InvokeRequired)
+            {
+                Invoke((System.Action<string>)AdditionalTertiaryInfo, Value);
+                return;
+            }
+            StatusStripEx.Visible = true;
+            StStripLblAdditionalInfo3.Text = Value;
+        }
+        public void ClearInfo()
+        {
+            if (InvokeRequired)
+            {
+                Invoke((System.Action)ClearInfo);
+                return;
+            }
+            StStripLblInfo.Text = string.Empty;
+            StStripLblAdditionalInfo.Text = string.Empty;
+            StStripLblAdditionalInfo2.Text = string.Empty;
+            StStripLblAdditionalInfo3.Text = string.Empty;
+        }
         public void TitleInfo(string Value)
         {
             if (InvokeRequired)
@@ -331,38 +361,29 @@ namespace Vcc.Nolvus.Dashboard
             AddFrame(Frame);
         }
         public async Task<T> LoadFrameAsync<T>(FrameParameters Parameters = null) where T : DashboardFrame
-        {
-            //TitleBarControl.ShowLoading();
-
+        {            
             RemoveLoadedFrame();
 
             var Frame = await DashboardFrame.CreateAsync<T>(new object[] { this, Parameters });
 
             DoLoad(Frame);
 
-            OnFrameLoadedAsyncEvent(this, new EventArgs());
-
-            //TitleBarControl.HideLoading();
+            OnFrameLoadedAsyncEvent(this, new EventArgs());            
 
             return Frame;
         }
         public T LoadFrame<T>(FrameParameters Parameters = null) where T : DashboardFrame
-        {
-            //TitleBarControl.ShowLoading();
-
+        {            
             RemoveLoadedFrame();
 
             var Frame = DashboardFrame.Create<T>(new object[] { this, Parameters });
 
             DoLoad(Frame);
 
-            OnFrameLoadedEvent(this, new EventArgs());
-
-            //TitleBarControl.HideLoading();
+            OnFrameLoadedEvent(this, new EventArgs());            
 
             return Frame;            
         }
-
         public async Task Error(string Title, string Message, string Trace = null, bool Retry = false)
         {
             ServiceSingleton.Dashboard.NoStatus();
@@ -371,7 +392,6 @@ namespace Vcc.Nolvus.Dashboard
 
             await LoadFrameAsync<ErrorFrame>(new FrameParameters(FrameParameter.Create("Title", Title), FrameParameter.Create("Message", Message), FrameParameter.Create("Trace", Trace), FrameParameter.Create("Retry", Retry)));
         }
-
         public void ShutDown()
         {
             if (InvokeRequired)
@@ -398,6 +418,8 @@ namespace Vcc.Nolvus.Dashboard
 
             this.StStripLblInfo.Text = string.Empty;
             this.StStripLblAdditionalInfo.Text = string.Empty;
+            this.StStripLblAdditionalInfo2.Text = string.Empty;
+            this.StStripLblAdditionalInfo3.Text = string.Empty;
             this.StripLblAccountType.Text = string.Empty;
             this.StripLblNexus.Text = string.Empty;
 
@@ -453,7 +475,6 @@ namespace Vcc.Nolvus.Dashboard
         {            
             ServiceSingleton.Dashboard.LoadFrameAsync<StartFrame>();
         }               
-
         protected override void OnClientSizeChanged(EventArgs e)
         {
             if (TitleBarControl != null)
