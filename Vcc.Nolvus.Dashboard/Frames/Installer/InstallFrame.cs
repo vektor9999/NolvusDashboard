@@ -109,9 +109,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                         }
                         else
                         {
-                            ServiceSingleton.Dashboard.AdditionalSecondaryInfo(string.Format("Error(s) : {0}/{1}", ServiceSingleton.Packages.ErrorHandler.ErrorsCount, "(Errors will be displayed at the end of the installation)"));
+                            ServiceSingleton.Dashboard.AdditionalSecondaryInfo(string.Format("Error(s) : {0} {1}", ServiceSingleton.Packages.ErrorHandler.ErrorsCount, "(Errors will be displayed at the end of the installation)"));
                         }
-                        
                     },
                     OnMaxErrors = () =>
                     {

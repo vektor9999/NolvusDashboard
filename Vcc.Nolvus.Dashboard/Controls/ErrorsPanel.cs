@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vcc.Nolvus.Core.Errors;
+using Vcc.Nolvus.Core.Services;
 
 namespace Vcc.Nolvus.Dashboard.Controls
 {
@@ -40,7 +41,7 @@ namespace Vcc.Nolvus.Dashboard.Controls
                 ErrorPanel.Width = this.Width;
 
 
-                Top += 40;
+                Top += System.Convert.ToInt16(40 * ServiceSingleton.Dashboard.ScalingFactor);
 
                 Controls.Add(ErrorPanel);
             }
