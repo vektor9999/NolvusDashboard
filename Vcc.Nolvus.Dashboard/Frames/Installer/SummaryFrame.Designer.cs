@@ -30,7 +30,14 @@
         {
             this.LblStepText = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.RdBtnNoThreshold = new System.Windows.Forms.RadioButton();
+            this.RdBtnThreshold = new System.Windows.Forms.RadioButton();
+            this.RdBtnOneError = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.LblFantasyMode = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.LblENB = new System.Windows.Forms.Label();
             this.LblEN = new System.Windows.Forms.Label();
             this.LblAltStart = new System.Windows.Forms.Label();
@@ -78,9 +85,8 @@
             this.PicBox = new System.Windows.Forms.PictureBox();
             this.BtnPrevious = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnStart = new Vcc.Nolvus.Components.Controls.FlatButton();
-            this.LblFantasyMode = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -108,6 +114,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.groupBox4);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
@@ -116,8 +123,69 @@
             this.panel1.Controls.Add(this.BtnStart);
             this.panel1.Location = new System.Drawing.Point(7, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 553);
+            this.panel1.Size = new System.Drawing.Size(800, 726);
             this.panel1.TabIndex = 9;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.RdBtnNoThreshold);
+            this.groupBox4.Controls.Add(this.RdBtnThreshold);
+            this.groupBox4.Controls.Add(this.RdBtnOneError);
+            this.groupBox4.ForeColor = System.Drawing.Color.White;
+            this.groupBox4.Location = new System.Drawing.Point(15, 506);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(771, 163);
+            this.groupBox4.TabIndex = 32;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Errors Management";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(22, 28);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(176, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Action to take when an error occurs";
+            // 
+            // RdBtnNoThreshold
+            // 
+            this.RdBtnNoThreshold.AutoSize = true;
+            this.RdBtnNoThreshold.Location = new System.Drawing.Point(25, 123);
+            this.RdBtnNoThreshold.Name = "RdBtnNoThreshold";
+            this.RdBtnNoThreshold.Size = new System.Drawing.Size(442, 17);
+            this.RdBtnNoThreshold.TabIndex = 2;
+            this.RdBtnNoThreshold.Text = "Don\'t stop installation and display all error messages at the end of the process " +
+    "(overnight)";
+            this.RdBtnNoThreshold.UseVisualStyleBackColor = true;
+            // 
+            // RdBtnThreshold
+            // 
+            this.RdBtnThreshold.AutoSize = true;
+            this.RdBtnThreshold.Checked = true;
+            this.RdBtnThreshold.Location = new System.Drawing.Point(25, 88);
+            this.RdBtnThreshold.Name = "RdBtnThreshold";
+            this.RdBtnThreshold.Size = new System.Drawing.Size(85, 17);
+            this.RdBtnThreshold.TabIndex = 1;
+            this.RdBtnThreshold.TabStop = true;
+            this.RdBtnThreshold.Text = "radioButton2";
+            this.RdBtnThreshold.UseVisualStyleBackColor = true;
+            // 
+            // RdBtnOneError
+            // 
+            this.RdBtnOneError.AutoSize = true;
+            this.RdBtnOneError.ForeColor = System.Drawing.Color.White;
+            this.RdBtnOneError.Location = new System.Drawing.Point(24, 56);
+            this.RdBtnOneError.Name = "RdBtnOneError";
+            this.RdBtnOneError.Size = new System.Drawing.Size(507, 17);
+            this.RdBtnOneError.TabIndex = 0;
+            this.RdBtnOneError.Text = "Stop installation and display the error message (recommended when you are no a Ne" +
+    "xus premium user)";
+            this.RdBtnOneError.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -143,6 +211,26 @@
             this.groupBox3.TabIndex = 31;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Options";
+            // 
+            // LblFantasyMode
+            // 
+            this.LblFantasyMode.AutoSize = true;
+            this.LblFantasyMode.ForeColor = System.Drawing.Color.Orange;
+            this.LblFantasyMode.Location = new System.Drawing.Point(140, 150);
+            this.LblFantasyMode.Name = "LblFantasyMode";
+            this.LblFantasyMode.Size = new System.Drawing.Size(77, 13);
+            this.LblFantasyMode.TabIndex = 47;
+            this.LblFantasyMode.Text = "[FantasyMode]";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.Color.White;
+            this.label18.Location = new System.Drawing.Point(10, 150);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(74, 13);
+            this.label18.TabIndex = 46;
+            this.label18.Text = "Fantasy Mode";
             // 
             // LblENB
             // 
@@ -637,7 +725,7 @@
             this.BtnPrevious.BorderColor = System.Drawing.Color.White;
             this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPrevious.ForeColor = System.Drawing.Color.White;
-            this.BtnPrevious.Location = new System.Drawing.Point(605, 503);
+            this.BtnPrevious.Location = new System.Drawing.Point(605, 676);
             this.BtnPrevious.Name = "BtnPrevious";
             this.BtnPrevious.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnPrevious.Size = new System.Drawing.Size(88, 40);
@@ -653,7 +741,7 @@
             this.BtnStart.BorderColor = System.Drawing.Color.White;
             this.BtnStart.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnStart.ForeColor = System.Drawing.Color.White;
-            this.BtnStart.Location = new System.Drawing.Point(698, 503);
+            this.BtnStart.Location = new System.Drawing.Point(698, 676);
             this.BtnStart.Name = "BtnStart";
             this.BtnStart.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnStart.Size = new System.Drawing.Size(88, 40);
@@ -661,26 +749,6 @@
             this.BtnStart.Text = "Start";
             this.BtnStart.UseVisualStyleBackColor = false;
             this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
-            // 
-            // LblFantasyMode
-            // 
-            this.LblFantasyMode.AutoSize = true;
-            this.LblFantasyMode.ForeColor = System.Drawing.Color.Orange;
-            this.LblFantasyMode.Location = new System.Drawing.Point(140, 150);
-            this.LblFantasyMode.Name = "LblFantasyMode";
-            this.LblFantasyMode.Size = new System.Drawing.Size(77, 13);
-            this.LblFantasyMode.TabIndex = 47;
-            this.LblFantasyMode.Text = "[FantasyMode]";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(10, 150);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(74, 13);
-            this.label18.TabIndex = 46;
-            this.label18.Text = "Fantasy Mode";
             // 
             // SummaryFrame
             // 
@@ -690,8 +758,10 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.LblStepText);
             this.Name = "SummaryFrame";
-            this.Size = new System.Drawing.Size(810, 588);
+            this.Size = new System.Drawing.Size(810, 761);
             this.panel1.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -759,5 +829,10 @@
         private System.Windows.Forms.Label LblEN;
         private System.Windows.Forms.Label LblFantasyMode;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton RdBtnNoThreshold;
+        private System.Windows.Forms.RadioButton RdBtnThreshold;
+        private System.Windows.Forms.RadioButton RdBtnOneError;
     }
 }

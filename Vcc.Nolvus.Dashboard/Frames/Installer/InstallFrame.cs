@@ -114,7 +114,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                     },
                     OnMaxErrors = () =>
                     {
-                        ServiceSingleton.Dashboard.AdditionalSecondaryInfo(string.Format("Error(s) : {0} {1}", ServiceSingleton.Packages.ErrorHandler.ErrorsCount, "(Maximum errors treshold reached, waiting for current queue to finish...)"));
+                        ServiceSingleton.Dashboard.AdditionalSecondaryInfo(string.Format("Error(s) : {0} {1}", ServiceSingleton.Packages.ErrorHandler.ErrorsCount, "(Maximum errors threshold reached, waiting for current queue to finish...)"));
                     },               
                     Browser = () =>
                     {

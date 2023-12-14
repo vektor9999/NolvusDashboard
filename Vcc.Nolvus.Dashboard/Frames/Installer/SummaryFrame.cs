@@ -91,6 +91,22 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
             PnlMessage.Paint += PnlMessage_Paint;
 
+            if (ServiceSingleton.Settings.ErrorsThreshold == 1 || !NexusApi.ApiManager.AccountInfo.IsPremium)
+            {
+                RdBtnOneError.Checked = true;
+                RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages (max errors can be set up in the Nolvus Dashboard.ini file)", 50);
+            }
+            else if (ServiceSingleton.Settings.ErrorsThreshold == 0)
+            {
+                RdBtnNoThreshold.Checked = true;
+                RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages (max errors can be set up in the Nolvus Dashboard.ini file)", 50);
+            }
+            else
+            {
+                RdBtnThreshold.Checked = true;
+                RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages (max errors can be set up in the Nolvus Dashboard.ini file)", ServiceSingleton.Settings.ErrorsThreshold);
+            }                      
+
             ServiceSingleton.Dashboard.Info("Review your selections");
         }         
 
@@ -112,7 +128,23 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 ServiceSingleton.Dashboard.Error("Global ModOrganizer instance detected", "The installer can not proceed to the installation because a global ModOrganizer instance has been detected. Read the message below to fix", "READ THIS TO FIX!!!" + Environment.NewLine + "All automated mod lists use portable instances, this way you can have multiple lists installed together." + Environment.NewLine + "If you want to install Nolvus, you need to remove this installed ModOrganizer global instance to avoid issues(make a backup before if it's sensitive)." + Environment.NewLine + "To know where your global instance is installed go to " + Mo2Path + "." + Environment.NewLine + "This folder may be hidden (be sure you disable hidden files and folder in Windows folder options if you don't see it)" + Environment.NewLine + "If you made a backup of your global instance and want to continue, just delete the " + Mo2Path + " folder" + Environment.NewLine + "DON'T REACTIVATE THIS GLOBAL INSTANCE AFTER INSTALLATION!!! YOUR NOLVUS MOD ORGANIZER WILL NOT WORK!!!");
             }
             else
-            {                
+            {         
+                if (RdBtnOneError.Checked)
+                {
+                    ServiceSingleton.Settings.StoreIniValue("Process", "ErrorsThreshold", "1");
+                }   
+                else if (RdBtnNoThreshold.Checked)
+                {
+                    ServiceSingleton.Settings.StoreIniValue("Process", "ErrorsThreshold", "0");
+                }
+                else
+                {
+                    if (ServiceSingleton.Settings.ErrorsThreshold == 1 || ServiceSingleton.Settings.ErrorsThreshold == 0)
+                    {
+                        ServiceSingleton.Settings.StoreIniValue("Process", "ErrorsThreshold", "50");
+                    }                    
+                }               
+                                                    
                 ServiceSingleton.Dashboard.LoadFrameAsync<PackageFrame>();
             }
         }
@@ -127,6 +159,6 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             {
                 ServiceSingleton.Dashboard.LoadFrame<PageFileFrame>();
             }
-        }                 
+        }        
     }
 }
