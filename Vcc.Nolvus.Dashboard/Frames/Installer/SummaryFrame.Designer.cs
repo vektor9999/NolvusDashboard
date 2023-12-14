@@ -181,10 +181,10 @@
             this.RdBtnOneError.ForeColor = System.Drawing.Color.White;
             this.RdBtnOneError.Location = new System.Drawing.Point(24, 56);
             this.RdBtnOneError.Name = "RdBtnOneError";
-            this.RdBtnOneError.Size = new System.Drawing.Size(507, 17);
+            this.RdBtnOneError.Size = new System.Drawing.Size(526, 17);
             this.RdBtnOneError.TabIndex = 0;
-            this.RdBtnOneError.Text = "Stop installation and display the error message (recommended when you are no a Ne" +
-    "xus premium user)";
+            this.RdBtnOneError.Text = "Stop installation and display the error message (recommended if you don\'t have a " +
+    "Nexus Premium account)";
             this.RdBtnOneError.UseVisualStyleBackColor = true;
             // 
             // groupBox3

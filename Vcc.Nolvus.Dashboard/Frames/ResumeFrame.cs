@@ -81,7 +81,23 @@ namespace Vcc.Nolvus.Dashboard.Frames
             {
                 LblDownLoc.Visible = false;
                 DrpDwnLstDownLoc.Visible = false;
-            }                           
+            }
+
+            if (ServiceSingleton.Settings.ErrorsThreshold == 1 || !NexusApi.ApiManager.AccountInfo.IsPremium)
+            {
+                RdBtnOneError.Checked = true;
+                RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages (max errors can be set up in the Nolvus Dashboard.ini file)", 50);
+            }
+            else if (ServiceSingleton.Settings.ErrorsThreshold == 0)
+            {
+                RdBtnNoThreshold.Checked = true;
+                RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages (max errors can be set up in the Nolvus Dashboard.ini file)", 50);
+            }
+            else
+            {
+                RdBtnThreshold.Checked = true;
+                RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages (max errors can be set up in the Nolvus Dashboard.ini file)", ServiceSingleton.Settings.ErrorsThreshold);
+            }
         }       
 
         private void DrpDwnLstInstances_SelectedIndexChanged(object sender, EventArgs e)
@@ -98,7 +114,23 @@ namespace Vcc.Nolvus.Dashboard.Frames
         }
 
         private void Resume_Click(object sender, EventArgs e)
-        {            
+        {
+            if (RdBtnOneError.Checked)
+            {
+                ServiceSingleton.Settings.StoreIniValue("Process", "ErrorsThreshold", "1");
+            }
+            else if (RdBtnNoThreshold.Checked)
+            {
+                ServiceSingleton.Settings.StoreIniValue("Process", "ErrorsThreshold", "0");
+            }
+            else
+            {
+                if (ServiceSingleton.Settings.ErrorsThreshold == 1 || ServiceSingleton.Settings.ErrorsThreshold == 0)
+                {
+                    ServiceSingleton.Settings.StoreIniValue("Process", "ErrorsThreshold", "50");
+                }
+            }
+
             ServiceSingleton.Dashboard.LoadFrameAsync<PackageFrame>(); 
         }
 

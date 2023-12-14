@@ -39,10 +39,16 @@
             this.Resume = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.label4 = new System.Windows.Forms.Label();
             this.LblStepText = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.RdBtnNoThreshold = new System.Windows.Forms.RadioButton();
+            this.RdBtnThreshold = new System.Windows.Forms.RadioButton();
+            this.RdBtnOneError = new System.Windows.Forms.RadioButton();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstDownLoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstInstances)).BeginInit();
             this.panel1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -51,13 +57,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.groupBox4);
             this.panel2.Controls.Add(this.DrpDwnLstDownLoc);
             this.panel2.Controls.Add(this.LblDownLoc);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.DrpDwnLstInstances);
             this.panel2.Location = new System.Drawing.Point(7, 30);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(435, 313);
+            this.panel2.Size = new System.Drawing.Size(707, 642);
             this.panel2.TabIndex = 16;
             // 
             // DrpDwnLstDownLoc
@@ -113,9 +120,9 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.Resume);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Location = new System.Drawing.Point(448, 30);
+            this.panel1.Location = new System.Drawing.Point(720, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(344, 313);
+            this.panel1.Size = new System.Drawing.Size(344, 642);
             this.panel1.TabIndex = 15;
             // 
             // BtnCancel
@@ -125,7 +132,7 @@
             this.BtnCancel.BorderColor = System.Drawing.Color.White;
             this.BtnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnCancel.ForeColor = System.Drawing.Color.White;
-            this.BtnCancel.Location = new System.Drawing.Point(148, 258);
+            this.BtnCancel.Location = new System.Drawing.Point(148, 587);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnCancel.Size = new System.Drawing.Size(88, 40);
@@ -151,7 +158,7 @@
             this.Resume.BorderColor = System.Drawing.Color.White;
             this.Resume.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.Resume.ForeColor = System.Drawing.Color.White;
-            this.Resume.Location = new System.Drawing.Point(242, 258);
+            this.Resume.Location = new System.Drawing.Point(242, 587);
             this.Resume.Name = "Resume";
             this.Resume.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.Resume.Size = new System.Drawing.Size(88, 40);
@@ -179,10 +186,71 @@
             this.LblStepText.ForeColor = System.Drawing.Color.White;
             this.LblStepText.Location = new System.Drawing.Point(3, 0);
             this.LblStepText.Name = "LblStepText";
-            this.LblStepText.Size = new System.Drawing.Size(793, 20);
+            this.LblStepText.Size = new System.Drawing.Size(1065, 20);
             this.LblStepText.TabIndex = 14;
             this.LblStepText.Text = "Resume Nolvus Instance installation";
             this.LblStepText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.RdBtnNoThreshold);
+            this.groupBox4.Controls.Add(this.RdBtnThreshold);
+            this.groupBox4.Controls.Add(this.RdBtnOneError);
+            this.groupBox4.ForeColor = System.Drawing.Color.White;
+            this.groupBox4.Location = new System.Drawing.Point(16, 112);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(673, 163);
+            this.groupBox4.TabIndex = 34;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Errors Management";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(22, 28);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(176, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Action to take when an error occurs";
+            // 
+            // RdBtnNoThreshold
+            // 
+            this.RdBtnNoThreshold.AutoSize = true;
+            this.RdBtnNoThreshold.Location = new System.Drawing.Point(25, 123);
+            this.RdBtnNoThreshold.Name = "RdBtnNoThreshold";
+            this.RdBtnNoThreshold.Size = new System.Drawing.Size(442, 17);
+            this.RdBtnNoThreshold.TabIndex = 2;
+            this.RdBtnNoThreshold.Text = "Don\'t stop installation and display all error messages at the end of the process " +
+    "(overnight)";
+            this.RdBtnNoThreshold.UseVisualStyleBackColor = true;
+            // 
+            // RdBtnThreshold
+            // 
+            this.RdBtnThreshold.AutoSize = true;
+            this.RdBtnThreshold.Checked = true;
+            this.RdBtnThreshold.Location = new System.Drawing.Point(25, 88);
+            this.RdBtnThreshold.Name = "RdBtnThreshold";
+            this.RdBtnThreshold.Size = new System.Drawing.Size(85, 17);
+            this.RdBtnThreshold.TabIndex = 1;
+            this.RdBtnThreshold.TabStop = true;
+            this.RdBtnThreshold.Text = "radioButton2";
+            this.RdBtnThreshold.UseVisualStyleBackColor = true;
+            // 
+            // RdBtnOneError
+            // 
+            this.RdBtnOneError.AutoSize = true;
+            this.RdBtnOneError.ForeColor = System.Drawing.Color.White;
+            this.RdBtnOneError.Location = new System.Drawing.Point(24, 56);
+            this.RdBtnOneError.Name = "RdBtnOneError";
+            this.RdBtnOneError.Size = new System.Drawing.Size(526, 17);
+            this.RdBtnOneError.TabIndex = 0;
+            this.RdBtnOneError.Text = "Stop installation and display the error message (recommended if you don\'t have a " +
+    "Nexus Premium account)";
+            this.RdBtnOneError.UseVisualStyleBackColor = true;
             // 
             // ResumeFrame
             // 
@@ -193,12 +261,14 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.LblStepText);
             this.Name = "ResumeFrame";
-            this.Size = new System.Drawing.Size(799, 350);
+            this.Size = new System.Drawing.Size(1071, 679);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstDownLoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstInstances)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -216,5 +286,10 @@
         private Syncfusion.WinForms.ListView.SfComboBox DrpDwnLstDownLoc;
         private System.Windows.Forms.Label LblDownLoc;
         private Components.Controls.FlatButton BtnCancel;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton RdBtnNoThreshold;
+        private System.Windows.Forms.RadioButton RdBtnThreshold;
+        private System.Windows.Forms.RadioButton RdBtnOneError;
     }
 }
