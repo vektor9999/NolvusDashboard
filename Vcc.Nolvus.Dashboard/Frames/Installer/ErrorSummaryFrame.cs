@@ -43,7 +43,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             ServiceSingleton.Dashboard.ClearInfo();
 
             ServiceSingleton.Dashboard.Title("Nolvus Dashboard - [Installation Failed]");
-            ServiceSingleton.Dashboard.Status("Installation is not completed, please reviews errors.");
+            ServiceSingleton.Dashboard.Status("Installation is not completed, please review errors.");
             ServiceSingleton.Dashboard.Info(string.Format("Error(s) : {0}", ServiceSingleton.Packages.ErrorHandler.ErrorsCount));            
 
             if (ServiceSingleton.Packages.ErrorHandler.ThresholdEnabled)

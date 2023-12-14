@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection3 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection3 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection3 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
-            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection4 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection4 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection4 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
+            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection1 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection1 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection1 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
+            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection2 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection2 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection2 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
             this.PnlHeader = new System.Windows.Forms.Panel();
             this.LblHeader = new System.Windows.Forms.Label();
             this.PicBox = new System.Windows.Forms.PictureBox();
@@ -64,6 +64,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.LblFantasyMode = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.LblENB = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.LblAltStart = new System.Windows.Forms.Label();
@@ -90,8 +92,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.LblFantasyMode = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
             this.PnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -118,7 +118,7 @@
             this.PnlHeader.Controls.Add(this.PicBox);
             this.PnlHeader.Location = new System.Drawing.Point(7, 5);
             this.PnlHeader.Name = "PnlHeader";
-            this.PnlHeader.Size = new System.Drawing.Size(886, 45);
+            this.PnlHeader.Size = new System.Drawing.Size(890, 45);
             this.PnlHeader.TabIndex = 22;
             // 
             // LblHeader
@@ -129,7 +129,7 @@
             this.LblHeader.ForeColor = System.Drawing.Color.White;
             this.LblHeader.Location = new System.Drawing.Point(44, 5);
             this.LblHeader.Name = "LblHeader";
-            this.LblHeader.Size = new System.Drawing.Size(835, 32);
+            this.LblHeader.Size = new System.Drawing.Size(839, 32);
             this.LblHeader.TabIndex = 1;
             this.LblHeader.Text = "Instance";
             this.LblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -156,7 +156,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(7, 61);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(344, 170);
+            this.groupBox1.Size = new System.Drawing.Size(348, 170);
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Screen and Resolution";
@@ -169,7 +169,7 @@
             this.BtnApplyRes.Enabled = false;
             this.BtnApplyRes.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnApplyRes.ForeColor = System.Drawing.Color.Orange;
-            this.BtnApplyRes.Location = new System.Drawing.Point(233, 116);
+            this.BtnApplyRes.Location = new System.Drawing.Point(237, 116);
             this.BtnApplyRes.Name = "BtnApplyRes";
             this.BtnApplyRes.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnApplyRes.Size = new System.Drawing.Size(75, 31);
@@ -186,7 +186,7 @@
             this.DrpDwnLstRatios.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
             this.DrpDwnLstRatios.Location = new System.Drawing.Point(115, 68);
             this.DrpDwnLstRatios.Name = "DrpDwnLstRatios";
-            this.DrpDwnLstRatios.Size = new System.Drawing.Size(193, 28);
+            this.DrpDwnLstRatios.Size = new System.Drawing.Size(197, 28);
             this.DrpDwnLstRatios.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.DrpDwnLstRatios.TabIndex = 29;
             this.DrpDwnLstRatios.ThemeName = "Office2016Black";
@@ -210,7 +210,7 @@
             this.DrpDwnLstScreenRes.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
             this.DrpDwnLstScreenRes.Location = new System.Drawing.Point(115, 29);
             this.DrpDwnLstScreenRes.Name = "DrpDwnLstScreenRes";
-            this.DrpDwnLstScreenRes.Size = new System.Drawing.Size(193, 28);
+            this.DrpDwnLstScreenRes.Size = new System.Drawing.Size(197, 28);
             this.DrpDwnLstScreenRes.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.DrpDwnLstScreenRes.TabIndex = 27;
             this.DrpDwnLstScreenRes.ThemeName = "Office2016Black";
@@ -237,7 +237,7 @@
             this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(7, 237);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(884, 107);
+            this.groupBox2.Size = new System.Drawing.Size(888, 107);
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Paths";
@@ -252,7 +252,7 @@
             this.TxtBxArchivePath.Location = new System.Drawing.Point(129, 67);
             this.TxtBxArchivePath.Name = "TxtBxArchivePath";
             this.TxtBxArchivePath.ReadOnly = true;
-            this.TxtBxArchivePath.Size = new System.Drawing.Size(749, 20);
+            this.TxtBxArchivePath.Size = new System.Drawing.Size(753, 20);
             this.TxtBxArchivePath.TabIndex = 30;
             // 
             // TxtBxInstancePath
@@ -265,7 +265,7 @@
             this.TxtBxInstancePath.Location = new System.Drawing.Point(129, 25);
             this.TxtBxInstancePath.Name = "TxtBxInstancePath";
             this.TxtBxInstancePath.ReadOnly = true;
-            this.TxtBxInstancePath.Size = new System.Drawing.Size(749, 20);
+            this.TxtBxInstancePath.Size = new System.Drawing.Size(753, 20);
             this.TxtBxInstancePath.TabIndex = 29;
             // 
             // label1
@@ -294,7 +294,7 @@
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.TglBtnEnableArchive);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(690, 61);
+            this.groupBox3.Location = new System.Drawing.Point(694, 61);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(201, 170);
             this.groupBox3.TabIndex = 25;
@@ -313,28 +313,28 @@
             // 
             // TglBtnEnableArchive
             // 
-            activeStateCollection3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            activeStateCollection3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
-            this.TglBtnEnableArchive.ActiveState = activeStateCollection3;
+            activeStateCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            activeStateCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
+            this.TglBtnEnableArchive.ActiveState = activeStateCollection1;
             this.TglBtnEnableArchive.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.TglBtnEnableArchive.ForeColor = System.Drawing.Color.Black;
-            inactiveStateCollection3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            inactiveStateCollection3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            inactiveStateCollection3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            inactiveStateCollection3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.TglBtnEnableArchive.InactiveState = inactiveStateCollection3;
+            inactiveStateCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            inactiveStateCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            inactiveStateCollection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            inactiveStateCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.TglBtnEnableArchive.InactiveState = inactiveStateCollection1;
             this.TglBtnEnableArchive.Location = new System.Drawing.Point(129, 28);
             this.TglBtnEnableArchive.MinimumSize = new System.Drawing.Size(52, 20);
             this.TglBtnEnableArchive.Name = "TglBtnEnableArchive";
             this.TglBtnEnableArchive.Size = new System.Drawing.Size(63, 24);
-            sliderCollection3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            sliderCollection3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection3.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            sliderCollection3.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.TglBtnEnableArchive.Slider = sliderCollection3;
+            sliderCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            sliderCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection1.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            sliderCollection1.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.TglBtnEnableArchive.Slider = sliderCollection1;
             this.TglBtnEnableArchive.TabIndex = 31;
             this.TglBtnEnableArchive.Text = "toggleButton1";
             this.TglBtnEnableArchive.ThemeName = "Office2016Black";
@@ -346,7 +346,7 @@
             this.groupBox4.Controls.Add(this.DrpDwnLstDownLoc);
             this.groupBox4.Controls.Add(this.LblDownLoc);
             this.groupBox4.ForeColor = System.Drawing.Color.White;
-            this.groupBox4.Location = new System.Drawing.Point(357, 61);
+            this.groupBox4.Location = new System.Drawing.Point(361, 61);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(327, 170);
             this.groupBox4.TabIndex = 26;
@@ -382,7 +382,7 @@
             this.BtnBack.BorderColor = System.Drawing.Color.White;
             this.BtnBack.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnBack.ForeColor = System.Drawing.Color.White;
-            this.BtnBack.Location = new System.Drawing.Point(803, 778);
+            this.BtnBack.Location = new System.Drawing.Point(807, 779);
             this.BtnBack.Name = "BtnBack";
             this.BtnBack.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnBack.Size = new System.Drawing.Size(88, 43);
@@ -393,7 +393,8 @@
             // 
             // GrpBxDownscaling
             // 
-            this.GrpBxDownscaling.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.GrpBxDownscaling.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GrpBxDownscaling.Controls.Add(this.BtnApplyDownScaling);
             this.GrpBxDownscaling.Controls.Add(this.DrpDwnLstDownRes);
@@ -405,20 +406,20 @@
             this.GrpBxDownscaling.ForeColor = System.Drawing.Color.White;
             this.GrpBxDownscaling.Location = new System.Drawing.Point(7, 354);
             this.GrpBxDownscaling.Name = "GrpBxDownscaling";
-            this.GrpBxDownscaling.Size = new System.Drawing.Size(559, 412);
+            this.GrpBxDownscaling.Size = new System.Drawing.Size(563, 412);
             this.GrpBxDownscaling.TabIndex = 35;
             this.GrpBxDownscaling.TabStop = false;
             this.GrpBxDownscaling.Text = "Resolution Downscaling";
             // 
             // BtnApplyDownScaling
             // 
-            this.BtnApplyDownScaling.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnApplyDownScaling.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnApplyDownScaling.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnApplyDownScaling.BorderColor = System.Drawing.Color.White;
             this.BtnApplyDownScaling.Enabled = false;
             this.BtnApplyDownScaling.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnApplyDownScaling.ForeColor = System.Drawing.Color.Orange;
-            this.BtnApplyDownScaling.Location = new System.Drawing.Point(464, 352);
+            this.BtnApplyDownScaling.Location = new System.Drawing.Point(468, 352);
             this.BtnApplyDownScaling.Name = "BtnApplyDownScaling";
             this.BtnApplyDownScaling.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnApplyDownScaling.Size = new System.Drawing.Size(75, 31);
@@ -452,28 +453,28 @@
             // 
             // TglBtnDownScale
             // 
-            activeStateCollection4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            activeStateCollection4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
-            this.TglBtnDownScale.ActiveState = activeStateCollection4;
+            activeStateCollection2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            activeStateCollection2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
+            this.TglBtnDownScale.ActiveState = activeStateCollection2;
             this.TglBtnDownScale.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.TglBtnDownScale.ForeColor = System.Drawing.Color.Black;
-            inactiveStateCollection4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            inactiveStateCollection4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            inactiveStateCollection4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            inactiveStateCollection4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.TglBtnDownScale.InactiveState = inactiveStateCollection4;
+            inactiveStateCollection2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            inactiveStateCollection2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            inactiveStateCollection2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            inactiveStateCollection2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.TglBtnDownScale.InactiveState = inactiveStateCollection2;
             this.TglBtnDownScale.Location = new System.Drawing.Point(10, 127);
             this.TglBtnDownScale.MinimumSize = new System.Drawing.Size(52, 20);
             this.TglBtnDownScale.Name = "TglBtnDownScale";
             this.TglBtnDownScale.Size = new System.Drawing.Size(63, 24);
-            sliderCollection4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            sliderCollection4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection4.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            sliderCollection4.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.TglBtnDownScale.Slider = sliderCollection4;
+            sliderCollection2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            sliderCollection2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection2.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            sliderCollection2.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.TglBtnDownScale.Slider = sliderCollection2;
             this.TglBtnDownScale.TabIndex = 33;
             this.TglBtnDownScale.Text = "toggleButton1";
             this.TglBtnDownScale.ThemeName = "Office2016Black";
@@ -486,7 +487,7 @@
             this.label10.ForeColor = System.Drawing.Color.Orange;
             this.label10.Location = new System.Drawing.Point(6, 82);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(542, 24);
+            this.label10.Size = new System.Drawing.Size(546, 24);
             this.label10.TabIndex = 32;
             this.label10.Text = "Recommended setup is 720p on a 1080p monitor, 1080p on a 1440p monitor.";
             // 
@@ -497,7 +498,7 @@
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(7, 54);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(542, 24);
+            this.label9.Size = new System.Drawing.Size(546, 24);
             this.label9.TabIndex = 31;
             this.label9.Text = "With this option enabled you can play at 1080p on a 1440p monitor.";
             // 
@@ -508,14 +509,15 @@
             this.label8.ForeColor = System.Drawing.Color.White;
             this.label8.Location = new System.Drawing.Point(7, 27);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(542, 39);
+            this.label8.Size = new System.Drawing.Size(546, 39);
             this.label8.TabIndex = 30;
             this.label8.Text = "Resolution downscaling allows you to play at a lower resolution than your monitor" +
     " to improve performances.";
             // 
             // groupBox6
             // 
-            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox6.Controls.Add(this.LblFantasyMode);
             this.groupBox6.Controls.Add(this.label24);
             this.groupBox6.Controls.Add(this.LblENB);
@@ -545,12 +547,32 @@
             this.groupBox6.Controls.Add(this.label12);
             this.groupBox6.Controls.Add(this.label7);
             this.groupBox6.ForeColor = System.Drawing.Color.White;
-            this.groupBox6.Location = new System.Drawing.Point(572, 354);
+            this.groupBox6.Location = new System.Drawing.Point(576, 354);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(319, 412);
             this.groupBox6.TabIndex = 36;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Options (Can not be changed after installation)";
+            // 
+            // LblFantasyMode
+            // 
+            this.LblFantasyMode.AutoSize = true;
+            this.LblFantasyMode.ForeColor = System.Drawing.Color.Orange;
+            this.LblFantasyMode.Location = new System.Drawing.Point(115, 301);
+            this.LblFantasyMode.Name = "LblFantasyMode";
+            this.LblFantasyMode.Size = new System.Drawing.Size(50, 13);
+            this.LblFantasyMode.TabIndex = 54;
+            this.LblFantasyMode.Text = "[Fantasy]";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.ForeColor = System.Drawing.Color.White;
+            this.label24.Location = new System.Drawing.Point(7, 301);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(74, 13);
+            this.label24.TabIndex = 53;
+            this.label24.Text = "Fantasy Mode";
             // 
             // LblENB
             // 
@@ -814,26 +836,6 @@
             this.label7.TabIndex = 27;
             this.label7.Text = "Variant";
             // 
-            // LblFantasyMode
-            // 
-            this.LblFantasyMode.AutoSize = true;
-            this.LblFantasyMode.ForeColor = System.Drawing.Color.Orange;
-            this.LblFantasyMode.Location = new System.Drawing.Point(115, 301);
-            this.LblFantasyMode.Name = "LblFantasyMode";
-            this.LblFantasyMode.Size = new System.Drawing.Size(50, 13);
-            this.LblFantasyMode.TabIndex = 54;
-            this.LblFantasyMode.Text = "[Fantasy]";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.ForeColor = System.Drawing.Color.White;
-            this.label24.Location = new System.Drawing.Point(7, 301);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(74, 13);
-            this.label24.TabIndex = 53;
-            this.label24.Text = "Fantasy Mode";
-            // 
             // InstanceSettingsFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -848,7 +850,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.PnlHeader);
             this.Name = "InstanceSettingsFrame";
-            this.Size = new System.Drawing.Size(901, 833);
+            this.Size = new System.Drawing.Size(905, 834);
             this.PnlHeader.ResumeLayout(false);
             this.PnlHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).EndInit();

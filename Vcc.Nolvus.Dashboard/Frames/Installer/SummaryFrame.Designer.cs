@@ -123,12 +123,13 @@
             this.panel1.Controls.Add(this.BtnStart);
             this.panel1.Location = new System.Drawing.Point(7, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 726);
+            this.panel1.Size = new System.Drawing.Size(800, 732);
             this.panel1.TabIndex = 9;
             // 
             // groupBox4
             // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Controls.Add(this.RdBtnNoThreshold);
@@ -137,7 +138,7 @@
             this.groupBox4.ForeColor = System.Drawing.Color.White;
             this.groupBox4.Location = new System.Drawing.Point(15, 506);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(771, 163);
+            this.groupBox4.Size = new System.Drawing.Size(771, 169);
             this.groupBox4.TabIndex = 32;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Errors Management";
@@ -725,7 +726,7 @@
             this.BtnPrevious.BorderColor = System.Drawing.Color.White;
             this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPrevious.ForeColor = System.Drawing.Color.White;
-            this.BtnPrevious.Location = new System.Drawing.Point(605, 676);
+            this.BtnPrevious.Location = new System.Drawing.Point(605, 682);
             this.BtnPrevious.Name = "BtnPrevious";
             this.BtnPrevious.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnPrevious.Size = new System.Drawing.Size(88, 40);
@@ -741,7 +742,7 @@
             this.BtnStart.BorderColor = System.Drawing.Color.White;
             this.BtnStart.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnStart.ForeColor = System.Drawing.Color.White;
-            this.BtnStart.Location = new System.Drawing.Point(698, 676);
+            this.BtnStart.Location = new System.Drawing.Point(698, 682);
             this.BtnStart.Name = "BtnStart";
             this.BtnStart.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnStart.Size = new System.Drawing.Size(88, 40);
@@ -758,7 +759,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.LblStepText);
             this.Name = "SummaryFrame";
-            this.Size = new System.Drawing.Size(810, 761);
+            this.Size = new System.Drawing.Size(810, 767);
             this.panel1.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();

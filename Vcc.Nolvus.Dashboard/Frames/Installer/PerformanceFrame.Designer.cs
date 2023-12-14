@@ -122,7 +122,7 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Location = new System.Drawing.Point(730, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(310, 561);
+            this.panel1.Size = new System.Drawing.Size(310, 583);
             this.panel1.TabIndex = 18;
             // 
             // LblGPUs
@@ -195,7 +195,7 @@
             this.BtnPrevious.BorderColor = System.Drawing.Color.White;
             this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPrevious.ForeColor = System.Drawing.Color.White;
-            this.BtnPrevious.Location = new System.Drawing.Point(114, 506);
+            this.BtnPrevious.Location = new System.Drawing.Point(114, 528);
             this.BtnPrevious.Name = "BtnPrevious";
             this.BtnPrevious.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnPrevious.Size = new System.Drawing.Size(88, 40);
@@ -233,7 +233,7 @@
             this.BtnContinue.BorderColor = System.Drawing.Color.White;
             this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnContinue.ForeColor = System.Drawing.Color.White;
-            this.BtnContinue.Location = new System.Drawing.Point(208, 506);
+            this.BtnContinue.Location = new System.Drawing.Point(208, 528);
             this.BtnContinue.Name = "BtnContinue";
             this.BtnContinue.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnContinue.Size = new System.Drawing.Size(88, 40);
@@ -280,7 +280,7 @@
             this.panel2.Controls.Add(this.label3);
             this.panel2.Location = new System.Drawing.Point(7, 30);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(717, 561);
+            this.panel2.Size = new System.Drawing.Size(717, 583);
             this.panel2.TabIndex = 17;
             // 
             // label25
@@ -590,7 +590,8 @@
             // 
             // GrpBxDownScaling
             // 
-            this.GrpBxDownScaling.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.GrpBxDownScaling.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GrpBxDownScaling.Controls.Add(this.DrpDwnLstScreenRes);
             this.GrpBxDownScaling.Controls.Add(this.label11);
@@ -601,7 +602,7 @@
             this.GrpBxDownScaling.ForeColor = System.Drawing.Color.White;
             this.GrpBxDownScaling.Location = new System.Drawing.Point(16, 339);
             this.GrpBxDownScaling.Name = "GrpBxDownScaling";
-            this.GrpBxDownScaling.Size = new System.Drawing.Size(683, 207);
+            this.GrpBxDownScaling.Size = new System.Drawing.Size(683, 229);
             this.GrpBxDownScaling.TabIndex = 34;
             this.GrpBxDownScaling.TabStop = false;
             this.GrpBxDownScaling.Text = "Resolution Downscaling (Not Compatible with DLAA)";
@@ -762,7 +763,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.LblStepText);
             this.Name = "PerformanceFrame";
-            this.Size = new System.Drawing.Size(1043, 596);
+            this.Size = new System.Drawing.Size(1043, 618);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

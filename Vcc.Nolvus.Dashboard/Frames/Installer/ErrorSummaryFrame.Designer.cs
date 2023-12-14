@@ -77,9 +77,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(3, 631);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 13);
+            this.label1.Size = new System.Drawing.Size(271, 13);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Click on the Fix button to get help";
+            this.label1.Text = "Click on the Fix button to get help, click retry to try again";
             // 
             // LblMessage
             // 

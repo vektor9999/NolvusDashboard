@@ -87,10 +87,9 @@ namespace Vcc.Nolvus.Dashboard.Controls
         }
 
         private void BtnPlay_Click(object sender, EventArgs e)
-        {
-            Process[] ModOrganizerProcesses = Process.GetProcessesByName("ModOrganizer");
+        {            
 
-            if (ModOrganizerProcesses.Length == 0)
+            if (System.Diagnostics.Process.GetProcessesByName("ModOrganizer").Length == 0)
             {
                 Process ModOrganizer = Process.Start(Path.Combine(_Instance.InstallDir, "MO2", "ModOrganizer.exe"));
 
@@ -114,10 +113,8 @@ namespace Vcc.Nolvus.Dashboard.Controls
         }
 
         private void BtnUpdate_Click(object sender, EventArgs e)
-        {
-            Process[] ModOrganizerProcesses = Process.GetProcessesByName("ModOrganizer");
-
-            if (ModOrganizerProcesses.Length == 0)
+        {            
+            if (System.Diagnostics.Process.GetProcessesByName("ModOrganizer").Length == 0)
             {                
                 ServiceSingleton.Dashboard.LoadFrame<ChangeLogFrame>(new FrameParameters(new FrameParameter() {Key = "Instance", Value =_Instance }));
             }

@@ -154,10 +154,8 @@ namespace Vcc.Nolvus.Dashboard.Frames
         }
 
         private void BtnAction_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process[] ModOrganizerProcesses = System.Diagnostics.Process.GetProcessesByName("ModOrganizer");
-
-            if (ModOrganizerProcesses.Length == 0)
+        {            
+            if (System.Diagnostics.Process.GetProcessesByName("ModOrganizer").Length == 0)
             {
                 DoAction();
             }

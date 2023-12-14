@@ -2394,7 +2394,7 @@ ccafdsse001-dwesanctuary.esm";
             ModOrganizer.AppendToIni(IniDir, "customExecutables", Size + "\\title", Title);
             ModOrganizer.AppendToIni(IniDir, "customExecutables", Size + "\\toolbar", Toolbar.ToString().ToLower());
             ModOrganizer.AppendToIni(IniDir, "customExecutables", Size + "\\workingDirectory", WorkingDirectory);
-        }
+        }       
 
         private void CreateBaseDirectories()
         {
