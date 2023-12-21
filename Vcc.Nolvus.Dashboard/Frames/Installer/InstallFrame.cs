@@ -128,7 +128,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             {
                 ServiceSingleton.Dashboard.ClearInfo();
                 
-                await ServiceSingleton.Dashboard.LoadFrameAsync<ErrorSummaryFrame>();                
+                ServiceSingleton.Dashboard.LoadFrame<ErrorSummaryFrame>();                
             }
 
         }            

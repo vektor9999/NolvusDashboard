@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using Vcc.Nolvus.Core.Events;
 using Vcc.Nolvus.Core.Services;
+using Vcc.Nolvus.Core.Enums;
 using Vcc.Nolvus.StockGame.Core;
 using Vcc.Nolvus.StockGame.Meta;
 
@@ -117,17 +118,17 @@ namespace Vcc.Nolvus.StockGame.Patcher
             }
         }
 
-        private void ElementProcessed(int Value, int Total, string Step)
+        private void ElementProcessed(int Value, int Total, StockGameProcessStep Step, string ItemName)
         {
             OnItemProcessedHandler Handler = this.OnItemProcessedEvent;
-            ItemProcessedEventArgs Event = new ItemProcessedEventArgs(Value, Total, Step);
+            ItemProcessedEventArgs Event = new ItemProcessedEventArgs(Value, Total, Step, ItemName);
             if (Handler != null) Handler(this, Event);
         }
 
         private void StepProcessed(string Step)
         {
             OnStepProcessedHandler Handler = this.OnStepProcessedEvent;
-            ItemProcessedEventArgs Event = new ItemProcessedEventArgs(0, 0, Step);
+            StepProcessedEventArgs Event = new StepProcessedEventArgs(0, 0, Step);
             if (Handler != null) Handler(this, Event);
         }
 
@@ -208,8 +209,8 @@ namespace Vcc.Nolvus.StockGame.Patcher
                 {
                     await DoDownloadPatchFile(Instruction);
 
-                    this.StepProcessed("Patching game file : " + Instruction.DestFile.Name);
-                    this.ElementProcessed(0, 1, "Patching game file: " + Instruction.DestFile.Name);
+                    StepProcessed("Patching game file : " + Instruction.DestFile.Name);
+                    ElementProcessed(0, 1, StockGameProcessStep.PatchGameFile, Instruction.DestFile.Name);
 
                     string SourceFileName = Instruction.SourceFile.GetFullName(SourceDir);
                     string DestinationFileName = Instruction.DestFile.GetFullName(DestDir);
@@ -272,8 +273,8 @@ namespace Vcc.Nolvus.StockGame.Patcher
                             File.Delete(PatchFileName);
                         }
                         
-                        this.StepProcessed("Game file : " + Instruction.DestFile.Name + " patched");
-                        this.ElementProcessed(1, 1, "Game file: " + Instruction.DestFile.Name + " patched");                        
+                        StepProcessed("Game file : " + Instruction.DestFile.Name + " patched");
+                        ElementProcessed(1, 1, StockGameProcessStep.PatchGameFile, Instruction.DestFile.Name);
                     }
                     else
                     {
@@ -296,8 +297,8 @@ namespace Vcc.Nolvus.StockGame.Patcher
         {
             string FileName = Instruction.DestFile.GetFullName(DestDir);
 
-            this.StepProcessed("Checking integrity for patched game file " + Instruction.DestFile.Name);
-            this.ElementProcessed(0, 1, "Checking integrity");            
+            StepProcessed("Checking integrity for patched game file " + Instruction.DestFile.Name);
+            ElementProcessed(0, 1, StockGameProcessStep.CheckPatchedGameFile, Instruction.DestFile.Name);            
 
             string FileHash = ServiceSingleton.Files.GetHash(FileName);
 
@@ -307,7 +308,7 @@ namespace Vcc.Nolvus.StockGame.Patcher
             }
 
             this.StepProcessed("Patched game file " + Instruction.DestFile.Name + " integrity ok");
-            this.ElementProcessed(1, 1, "Checking integrity");
+            ElementProcessed(1, 1, StockGameProcessStep.CheckPatchedGameFile, Instruction.DestFile.Name);
         }
 
         public async Task PatchFile(string SourceFile, string DestinationFile, string PatchFileName)

@@ -203,7 +203,7 @@ namespace Vcc.Nolvus.Downgrader
             ServiceSingleton.Logger.Log(Item);
         }
 
-        private void StockGameManager_OnStepProcessed(object sender, ItemProcessedEventArgs e)
+        private void StockGameManager_OnStepProcessed(object sender, StepProcessedEventArgs e)
         {
             AddItemToList(e.Step);
         }

@@ -590,8 +590,7 @@
             // 
             // GrpBxDownScaling
             // 
-            this.GrpBxDownScaling.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.GrpBxDownScaling.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GrpBxDownScaling.Controls.Add(this.DrpDwnLstScreenRes);
             this.GrpBxDownScaling.Controls.Add(this.label11);

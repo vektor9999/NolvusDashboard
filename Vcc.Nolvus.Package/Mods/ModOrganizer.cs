@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Package.Rules;
@@ -2395,6 +2396,19 @@ ccafdsse001-dwesanctuary.esm";
             ModOrganizer.AppendToIni(IniDir, "customExecutables", Size + "\\toolbar", Toolbar.ToString().ToLower());
             ModOrganizer.AppendToIni(IniDir, "customExecutables", Size + "\\workingDirectory", WorkingDirectory);
         }       
+
+        public static bool IsRunning
+        {
+            get
+            {
+                return Process.GetProcessesByName("ModOrganizer").Length == 0;
+            }
+        }
+
+        public static System.Diagnostics.Process Start(string InstallDir)
+        {
+            return Process.Start(Path.Combine(InstallDir, "MO2", "ModOrganizer.exe"));
+        }
 
         private void CreateBaseDirectories()
         {

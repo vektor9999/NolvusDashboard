@@ -38,13 +38,16 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         public ErrorSummaryFrame(IDashboard Dashboard, FrameParameters Params) 
             : base(Dashboard, Params)            
         {
-            InitializeComponent();
+            InitializeComponent();           
+        }               
 
+        protected override void OnLoaded()
+        {
             ServiceSingleton.Dashboard.ClearInfo();
 
             ServiceSingleton.Dashboard.Title("Nolvus Dashboard - [Installation Failed]");
             ServiceSingleton.Dashboard.Status("Installation is not completed, please review errors.");
-            ServiceSingleton.Dashboard.Info(string.Format("Error(s) : {0}", ServiceSingleton.Packages.ErrorHandler.ErrorsCount));            
+            ServiceSingleton.Dashboard.Info(string.Format("Error(s) : {0}", ServiceSingleton.Packages.ErrorHandler.ErrorsCount));
 
             if (ServiceSingleton.Packages.ErrorHandler.ThresholdEnabled)
             {
@@ -55,7 +58,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             {
                 LblMessage.Text = string.Format("The installation has not been completed because {0} error(s) occured", ServiceSingleton.Packages.ErrorHandler.ErrorsCount);
                 ServiceSingleton.Dashboard.AdditionalInfo("Error threshold : Disabled");
-            }            
+            }
 
             ErrorsPanel.LoadMods(ServiceSingleton.Packages.ErrorHandler.List);
 
@@ -64,7 +67,6 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             ErrorsPanel.HorizontalScroll.Visible = false;
             ErrorsPanel.HorizontalScroll.Maximum = 0;
             ErrorsPanel.AutoScroll = true;
-
         }
 
         private void BtnRetry_Click(object sender, EventArgs e)

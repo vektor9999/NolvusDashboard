@@ -22,6 +22,7 @@ using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Dashboard.Core;
 using Vcc.Nolvus.Dashboard.Frames.Installer;
+using Vcc.Nolvus.Package.Mods;
 using Vcc.Nolvus.Api.Installer;
 
 namespace Vcc.Nolvus.Dashboard.Frames.Instance
@@ -345,16 +346,16 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
         private void BtnPlay_Click(object sender, EventArgs e)
         {
-            Process ModOrganizer = Process.Start(Path.Combine(ServiceSingleton.Instances.WorkingInstance.InstallDir, "MO2", "ModOrganizer.exe"));
+            Process MO2 = ModOrganizer.Start(ServiceSingleton.Instances.WorkingInstance.InstallDir);
 
             this.BtnPlay.Text = "Running...";
             this.BtnPlay.Enabled = false;
 
             Task.Run(() =>
             {
-                ModOrganizer.WaitForExit();
+                MO2.WaitForExit();
 
-                if (ModOrganizer.ExitCode == 0)
+                if (MO2.ExitCode == 0)
                 {
                     this.SetPlayText("Play");
                 }

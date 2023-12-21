@@ -19,7 +19,7 @@ namespace Vcc.Nolvus.Package.Mods
 {
     public abstract class InstallableElement : IInstallableElement
     {
-        ModProgress _p = null;
+        ModProgress _p = null;        
 
         #region Properties
 
@@ -302,7 +302,7 @@ namespace Vcc.Nolvus.Package.Mods
                     Token.ThrowIfCancellationRequested();                    
 
                     if (Settings != null && Settings.Browser == null) throw new Exception("Browser is not set!");
-
+                    
                     switch (Action)
                     {
                         case ElementAction.Add:

@@ -18,6 +18,7 @@ using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Core.Events;
+using Vcc.Nolvus.Core.Enums;
 using Vcc.Nolvus.Api.Installer.Library;
 using Vcc.Nolvus.Api.Installer.Services;
 using Vcc.Nolvus.StockGame.Core;
@@ -58,15 +59,19 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
             StockGameManager.OnDownload += StockGameManager_OnDownload;
             StockGameManager.OnExtract += StockGameManager_OnExtract;
-            StockGameManager.OnItemProcessed += StockGameManager_OnGamePackageLoad;
+            StockGameManager.OnItemProcessed += StockGameManager_OnItemProcessed;
             StockGameManager.OnStepProcessed += StockGameManager_OnStepProcessed;                           
 
             try
             {
                 await StockGameManager.Load();
+                ServiceSingleton.Dashboard.Info("Stock Game Installation 1/4 (25%)");
                 await StockGameManager.CheckIntegrity();
+                ServiceSingleton.Dashboard.Info("Stock Game Installation 2/4 (50%)");
                 await StockGameManager.CopyGameFiles();
+                ServiceSingleton.Dashboard.Info("Stock Game Installation 3/4 (75%)");
                 await StockGameManager.PatchGameFiles();
+                ServiceSingleton.Dashboard.Info("Stock Game Installation 4/4 (100%)");
 
                 ServiceSingleton.Dashboard.ProgressCompleted();
                 ServiceSingleton.Instances.PrepareInstanceForInstall();
@@ -123,17 +128,51 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             ServiceSingleton.Dashboard.Progress(e.ProgressPercentage);
         }
 
-        private void StockGameManager_OnGamePackageLoad(object sender, ItemProcessedEventArgs e)
+        private void StockGameManager_OnItemProcessed(object sender, ItemProcessedEventArgs e)
         {
             double Percent = ((double)e.Value / (double)e.Total) * 100;
 
-            Percent = Math.Round(Percent, 0);
+            Percent = Math.Round(Percent, 0);            
 
-            ServiceSingleton.Dashboard.Status(e.Step + " (" + Percent.ToString() + "%)...");            
-            ServiceSingleton.Dashboard.Progress(System.Convert.ToInt16(Percent));            
+            switch (e.Step)
+            {
+                case StockGameProcessStep.GameFileInfoLoading:
+                    ServiceSingleton.Dashboard.Status(string.Format("Loading game files info for {0}...", e.ItemName));
+                    ServiceSingleton.Dashboard.AdditionalInfo(string.Format("Loading game files info {0}", Percent));
+                    ServiceSingleton.Dashboard.Progress(System.Convert.ToInt16(Percent));
+                    break;
+                case StockGameProcessStep.PatchingInfoLoading:
+                    ServiceSingleton.Dashboard.Status(string.Format("Loading patching info for {0}...", e.ItemName));
+                    ServiceSingleton.Dashboard.AdditionalInfo(string.Format("Loading patching info ({0}%)", Percent));
+                    ServiceSingleton.Dashboard.Progress(System.Convert.ToInt16(Percent));
+                    break;
+                case StockGameProcessStep.GameFilesChecking:
+                    ServiceSingleton.Dashboard.Status(string.Format("Checking game file {0}...", e.ItemName));
+                    ServiceSingleton.Dashboard.AdditionalInfo(string.Format("Game files checking ({0}%)", Percent));
+                    ServiceSingleton.Dashboard.Progress(System.Convert.ToInt16(Percent));
+                    break;
+                case StockGameProcessStep.GameFilesCopy:
+                    ServiceSingleton.Dashboard.Status(string.Format("Copying game file {0}...", e.ItemName));
+                    ServiceSingleton.Dashboard.AdditionalInfo(string.Format("Copying game files ({0}%)", Percent));
+                    ServiceSingleton.Dashboard.Progress(System.Convert.ToInt16(Percent));
+                    break;
+                case StockGameProcessStep.GameFilesPatching:
+                    ServiceSingleton.Dashboard.Status("Awaiting game file to patch...");
+                    ServiceSingleton.Dashboard.AdditionalInfo(string.Format("Patching game files ({0}%)", Percent));
+                    break;
+                case StockGameProcessStep.PatchGameFile:
+                    ServiceSingleton.Dashboard.Status(string.Format("Patching game files {0} ({1}%)...", e.ItemName, Percent));
+                    ServiceSingleton.Dashboard.Progress(System.Convert.ToInt16(Percent));
+                    break;
+                case StockGameProcessStep.CheckPatchedGameFile:
+                    ServiceSingleton.Dashboard.Status(string.Format("Checking patched game files {0} ({1}%)...", e.ItemName, Percent));
+                    ServiceSingleton.Dashboard.Progress(System.Convert.ToInt16(Percent));
+                    break;
+
+            }                           
         }
 
-        private void StockGameManager_OnStepProcessed(object sender, ItemProcessedEventArgs e)
+        private void StockGameManager_OnStepProcessed(object sender, StepProcessedEventArgs e)
         {
             AddItemToList(e.Step);            
         }

@@ -16,6 +16,7 @@ using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Core.Enums;
+using Vcc.Nolvus.Package.Mods;
 
 namespace Vcc.Nolvus.Dashboard.Frames
 {
@@ -155,7 +156,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
 
         private void BtnAction_Click(object sender, EventArgs e)
         {            
-            if (System.Diagnostics.Process.GetProcessesByName("ModOrganizer").Length == 0)
+            if (!ModOrganizer.IsRunning)
             {
                 DoAction();
             }

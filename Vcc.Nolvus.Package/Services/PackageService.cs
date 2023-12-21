@@ -44,7 +44,7 @@ namespace Vcc.Nolvus.Package.Services
         }
         public List<IInstallableElement> InstallingModsQueue { get; set; } = new List<IInstallableElement>();
         public List<ModProgress> ProgressQueue { get; set; } = new List<ModProgress>();
-        private ErrorHandler _ErrorHandler { get; set; } = new ErrorHandler(ServiceSingleton.Settings.ErrorsThreshold);
+        private ErrorHandler _ErrorHandler { get; set; }
         public string LoadedVersion { get; set; }
         public List<string> GameBaseModsList
         {
@@ -534,9 +534,9 @@ namespace Vcc.Nolvus.Package.Services
         public async Task InstallModList(ModInstallSettings Settings)
         {
             SemaphoreSlim = new SemaphoreSlim(ServiceSingleton.Settings.ProcessCount);
-            SemaphoreSlimBeforeDownload = new SemaphoreSlim(1);            
+            SemaphoreSlimBeforeDownload = new SemaphoreSlim(1);
 
-            _ErrorHandler.Clear();
+            _ErrorHandler = new ErrorHandler(ServiceSingleton.Settings.ErrorsThreshold);            
             _ErrorHandler.CancelTasks = new TaskCompletionSource<object>();
             _ErrorHandler.CancelTokenSource = new CancellationTokenSource();
 

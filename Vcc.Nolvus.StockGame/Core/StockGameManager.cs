@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Vcc.Nolvus.Api.Installer.Library;
 using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Events;
+using Vcc.Nolvus.Core.Enums;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.StockGame.Meta;
 using Vcc.Nolvus.StockGame.Patcher;
@@ -195,27 +196,27 @@ namespace Vcc.Nolvus.StockGame.Core
             }
         }
 
-        private void StepProcessing(object sender, ItemProcessedEventArgs e)
+        private void StepProcessing(object sender, StepProcessedEventArgs e)
         {
-            this.StepProcessed(e.Step);
+            StepProcessed(e.Step);
         }
 
         private void ItemProcessing(object sender, ItemProcessedEventArgs e)
         {
-            this.ElementProcessed(e.Value, e.Total, e.Step);
+            ElementProcessed(e.Value, e.Total, e.Step, e.ItemName);
         }
 
-        private void ElementProcessed(int Value, int Total, string Step)
+        private void ElementProcessed(int Value, int Total, StockGameProcessStep Step, string ItemName)
         {
             OnItemProcessedHandler Handler = this.OnItemProcessedEvent;
-            ItemProcessedEventArgs Event = new ItemProcessedEventArgs(Value, Total, Step);
+            ItemProcessedEventArgs Event = new ItemProcessedEventArgs(Value, Total, Step, ItemName);
             if (Handler != null) Handler(this, Event);
         }
 
         private void StepProcessed(string Step)
         {
             OnStepProcessedHandler Handler = this.OnStepProcessedEvent;
-            ItemProcessedEventArgs Event = new ItemProcessedEventArgs(0, 0, Step);
+            StepProcessedEventArgs Event = new StepProcessedEventArgs(0, 0, Step);
             if (Handler != null) Handler(this, Event);
         }
 
@@ -278,7 +279,7 @@ namespace Vcc.Nolvus.StockGame.Core
                     {
                         _Package.AddFile(FileNode);
 
-                        ElementProcessed(Counter, FileCount, "Loading game files info for " + _Package.Name);
+                        ElementProcessed(Counter, FileCount, StockGameProcessStep.GameFileInfoLoading, _Package.Name);
 
                         Counter++;
                     }
@@ -294,7 +295,7 @@ namespace Vcc.Nolvus.StockGame.Core
                     {
                         _Package.AddInstruction(InstructionNode);
 
-                        ElementProcessed(Counter, InstructionCount, "Loading patching info for " + _Package.Name);
+                        ElementProcessed(Counter, InstructionCount, StockGameProcessStep.PatchingInfoLoading, _Package.Name);
 
                         Counter++;
                     }
@@ -329,7 +330,7 @@ namespace Vcc.Nolvus.StockGame.Core
 
                         GameFile.Check(_GameDir, _LanguageCode);                        
 
-                        ElementProcessed(Counter, Total, "Checking game files");                        
+                        ElementProcessed(Counter, Total, StockGameProcessStep.GameFilesChecking, GameFile.Name);                        
 
                         Counter++;
                     }
@@ -362,7 +363,7 @@ namespace Vcc.Nolvus.StockGame.Core
 
                         GameFile.Copy(_GameDir, _StockGameDir, _LanguageCode);
 
-                        ElementProcessed(Counter, Total, "Copying game files");
+                        ElementProcessed(Counter, Total, StockGameProcessStep.GameFilesCopy, GameFile.Name);
 
                         Counter++;
                     }
@@ -393,7 +394,7 @@ namespace Vcc.Nolvus.StockGame.Core
                     {                                                
                         await _Patcher.PatchFile(Instruction, _GameDir, _StockGameDir, _KeepPatches);
 
-                        ElementProcessed(Counter, Total, "Patching game files");
+                        ElementProcessed(Counter, Total, StockGameProcessStep.GameFilesPatching, Instruction.DestFile.Name);
 
                         Counter++;
                     }

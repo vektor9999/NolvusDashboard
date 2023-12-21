@@ -20,6 +20,7 @@ using Vcc.Nolvus.Dashboard.Forms;
 using Vcc.Nolvus.Dashboard.Frames;
 using Vcc.Nolvus.Dashboard.Frames.Installer;
 using Vcc.Nolvus.Dashboard.Frames.Instance;
+using Vcc.Nolvus.Package.Mods;
 
 namespace Vcc.Nolvus.Dashboard.Controls
 {
@@ -89,18 +90,18 @@ namespace Vcc.Nolvus.Dashboard.Controls
         private void BtnPlay_Click(object sender, EventArgs e)
         {            
 
-            if (System.Diagnostics.Process.GetProcessesByName("ModOrganizer").Length == 0)
+            if (!ModOrganizer.IsRunning)
             {
-                Process ModOrganizer = Process.Start(Path.Combine(_Instance.InstallDir, "MO2", "ModOrganizer.exe"));
+                Process MO2 = ModOrganizer.Start(_Instance.InstallDir);
 
                 this.BtnPlay.Text = "Running...";
                 this.BtnPlay.Enabled = false;
 
                 Task.Run(() =>
                 {
-                    ModOrganizer.WaitForExit();
+                    MO2.WaitForExit();
 
-                    if (ModOrganizer.ExitCode == 0)
+                    if (MO2.ExitCode == 0)
                     {
                         this.SetPlayText("Play");
                     }
@@ -114,7 +115,7 @@ namespace Vcc.Nolvus.Dashboard.Controls
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {            
-            if (System.Diagnostics.Process.GetProcessesByName("ModOrganizer").Length == 0)
+            if (!ModOrganizer.IsRunning)
             {                
                 ServiceSingleton.Dashboard.LoadFrame<ChangeLogFrame>(new FrameParameters(new FrameParameter() {Key = "Instance", Value =_Instance }));
             }
