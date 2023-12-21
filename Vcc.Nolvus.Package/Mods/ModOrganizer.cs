@@ -2401,7 +2401,7 @@ ccafdsse001-dwesanctuary.esm";
         {
             get
             {
-                return Process.GetProcessesByName("ModOrganizer").Length == 0;
+                return Process.GetProcessesByName("ModOrganizer").Length != 0;
             }
         }
 

@@ -18,9 +18,11 @@ using Syncfusion.WinForms.ListView.Enums;
 using Syncfusion.WinForms.DataGrid;
 using Syncfusion.WinForms.DataGrid.Enums;
 using Vcc.Nolvus.Core.Interfaces;
+using Vcc.Nolvus.Core.Enums;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Dashboard.Core;
+using Vcc.Nolvus.Dashboard.Forms;
 using Vcc.Nolvus.Dashboard.Frames.Installer;
 using Vcc.Nolvus.Package.Mods;
 using Vcc.Nolvus.Api.Installer;
@@ -346,20 +348,27 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
         private void BtnPlay_Click(object sender, EventArgs e)
         {
-            Process MO2 = ModOrganizer.Start(ServiceSingleton.Instances.WorkingInstance.InstallDir);
-
-            this.BtnPlay.Text = "Running...";
-            this.BtnPlay.Enabled = false;
-
-            Task.Run(() =>
+            if (!ModOrganizer.IsRunning)
             {
-                MO2.WaitForExit();
+                Process MO2 = ModOrganizer.Start(ServiceSingleton.Instances.WorkingInstance.InstallDir);
 
-                if (MO2.ExitCode == 0)
+                this.BtnPlay.Text = "Running...";
+                this.BtnPlay.Enabled = false;
+
+                Task.Run(() =>
                 {
-                    this.SetPlayText("Play");
-                }
-            });
+                    MO2.WaitForExit();
+
+                    if (MO2.ExitCode == 0)
+                    {
+                        this.SetPlayText("Play");
+                    }
+                });
+            }
+            else
+            {
+                NolvusMessageBox.ShowMessage("Mod Organizer 2", "An instance of Mod Organizer 2 is already running!", MessageBoxType.Error);
+            }
         }       
 
         private async void BtnSettings_Click(object sender, EventArgs e)
