@@ -48,7 +48,7 @@
             this.PnlTitle.Controls.Add(this.pictureBox1);
             this.PnlTitle.Location = new System.Drawing.Point(3, 3);
             this.PnlTitle.Name = "PnlTitle";
-            this.PnlTitle.Size = new System.Drawing.Size(836, 80);
+            this.PnlTitle.Size = new System.Drawing.Size(839, 80);
             this.PnlTitle.TabIndex = 0;
             // 
             // LblTitle
@@ -58,7 +58,7 @@
             this.LblTitle.ForeColor = System.Drawing.Color.White;
             this.LblTitle.Location = new System.Drawing.Point(55, 23);
             this.LblTitle.Name = "LblTitle";
-            this.LblTitle.Size = new System.Drawing.Size(765, 32);
+            this.LblTitle.Size = new System.Drawing.Size(768, 32);
             this.LblTitle.TabIndex = 1;
             this.LblTitle.Text = "[Title]";
             this.LblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -81,7 +81,7 @@
             this.LblError.ForeColor = System.Drawing.Color.Red;
             this.LblError.Location = new System.Drawing.Point(3, 98);
             this.LblError.Name = "LblError";
-            this.LblError.Size = new System.Drawing.Size(836, 109);
+            this.LblError.Size = new System.Drawing.Size(839, 109);
             this.LblError.TabIndex = 1;
             this.LblError.Text = "[Error]";
             this.LblError.UseMnemonic = false;
@@ -95,7 +95,7 @@
             this.LblTrace.ForeColor = System.Drawing.Color.White;
             this.LblTrace.Location = new System.Drawing.Point(3, 257);
             this.LblTrace.Name = "LblTrace";
-            this.LblTrace.Size = new System.Drawing.Size(836, 181);
+            this.LblTrace.Size = new System.Drawing.Size(839, 171);
             this.LblTrace.TabIndex = 2;
             this.LblTrace.Text = "[Trace]";
             this.LblTrace.UseMnemonic = false;
@@ -107,7 +107,7 @@
             this.BtnRetry.BorderColor = System.Drawing.Color.White;
             this.BtnRetry.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnRetry.ForeColor = System.Drawing.Color.White;
-            this.BtnRetry.Location = new System.Drawing.Point(711, 441);
+            this.BtnRetry.Location = new System.Drawing.Point(714, 436);
             this.BtnRetry.Name = "BtnRetry";
             this.BtnRetry.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnRetry.Size = new System.Drawing.Size(113, 35);
@@ -118,11 +118,12 @@
             // 
             // BtnHelp
             // 
+            this.BtnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnHelp.BorderColor = System.Drawing.Color.White;
             this.BtnHelp.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnHelp.ForeColor = System.Drawing.Color.White;
-            this.BtnHelp.Location = new System.Drawing.Point(3, 210);
+            this.BtnHelp.Location = new System.Drawing.Point(595, 436);
             this.BtnHelp.Name = "BtnHelp";
             this.BtnHelp.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnHelp.Size = new System.Drawing.Size(113, 35);
@@ -142,7 +143,7 @@
             this.Controls.Add(this.LblError);
             this.Controls.Add(this.PnlTitle);
             this.Name = "ErrorFrame";
-            this.Size = new System.Drawing.Size(842, 499);
+            this.Size = new System.Drawing.Size(845, 489);
             this.PnlTitle.ResumeLayout(false);
             this.PnlTitle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

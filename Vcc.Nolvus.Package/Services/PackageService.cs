@@ -31,7 +31,8 @@ namespace Vcc.Nolvus.Package.Services
         List<InstallableElement> Elements = new List<InstallableElement>();
         SemaphoreSlim SemaphoreSlim;
         SemaphoreSlim SemaphoreSlimBeforeDownload;
-        QueueWatcher QueueWatcher;        
+        QueueWatcher QueueWatcher;
+        bool _Processing = false;
 
         #endregion
 
@@ -246,6 +247,14 @@ namespace Vcc.Nolvus.Package.Services
                 {
                     return 0;
                 }
+            }
+        }
+
+        public bool Processing
+        {
+            get
+            {
+                return _Processing;
             }
         }
 
@@ -533,80 +542,89 @@ namespace Vcc.Nolvus.Package.Services
 
         public async Task InstallModList(ModInstallSettings Settings)
         {
-            SemaphoreSlim = new SemaphoreSlim(ServiceSingleton.Settings.ProcessCount);
-            SemaphoreSlimBeforeDownload = new SemaphoreSlim(1);
-
-            _ErrorHandler = new ErrorHandler(ServiceSingleton.Settings.ErrorsThreshold);            
-            _ErrorHandler.CancelTasks = new TaskCompletionSource<object>();
-            _ErrorHandler.CancelTokenSource = new CancellationTokenSource();
-
-            QueueWatcher = new QueueWatcher(InstallingModsQueue);
-                          
-            foreach (var Category in GetCategoriesToInstall())
+            try
             {
-                await Category.Install(_ErrorHandler.Token);
-            }
+                _Processing = true;
 
-            Settings.OnStartInstalling();  
+                SemaphoreSlim = new SemaphoreSlim(ServiceSingleton.Settings.ProcessCount);
+                SemaphoreSlimBeforeDownload = new SemaphoreSlim(1);
 
-            var Tasks = GetModsToInstall().Where(x => !ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Any(y => y == x.Name)).ToList().Select(async Mod =>
-            {                    
-                await SemaphoreSlim.WaitAsync();                
+                _ErrorHandler = new ErrorHandler(ServiceSingleton.Settings.ErrorsThreshold);
+                _ErrorHandler.CancelTasks = new TaskCompletionSource<object>();
+                _ErrorHandler.CancelTokenSource = new CancellationTokenSource();
 
-                try
-                {                    
-                    if (!_ErrorHandler.Cancelling)
+                QueueWatcher = new QueueWatcher(InstallingModsQueue);
+
+                foreach (var Category in GetCategoriesToInstall())
+                {
+                    await Category.Install(_ErrorHandler.Token);
+                }
+
+                Settings.OnStartInstalling();
+
+                var Tasks = GetModsToInstall().Where(x => !ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Any(y => y == x.Name)).ToList().Select(async Mod =>
+                {
+                    await SemaphoreSlim.WaitAsync();
+
+                    try
                     {
-                        await RequestManualDownloadLinkIfAny(Mod, Settings);
-                            
-                        await AddModToQueue(Mod);
+                        if (!_ErrorHandler.Cancelling)
+                        {
+                            await RequestManualDownloadLinkIfAny(Mod, Settings);
 
-                        await Mod.Install(_ErrorHandler.Token, Settings);
+                            await AddModToQueue(Mod);
 
-                        SaveInstance(Mod);                           
+                            await Mod.Install(_ErrorHandler.Token, Settings);
 
+                            SaveInstance(Mod);
+
+                            RemoveModFromQueue(Mod);
+
+                            Settings.OnModInstalled(Mod);
+
+                            SemaphoreSlim.Release();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
                         RemoveModFromQueue(Mod);
 
-                        Settings.OnModInstalled(Mod);
-
                         SemaphoreSlim.Release();
-                    }                                            
-                }
-                catch (Exception ex)
-                {
-                    RemoveModFromQueue(Mod);                    
 
-                    SemaphoreSlim.Release();
-
-                    if (!_ErrorHandler.Cancelling)
-                    {                        
-                        _ErrorHandler.AddFaultyMod(Mod, ex);
-
-                        Settings.OnModError(_ErrorHandler.ErrorsCount);
-
-                        if (_ErrorHandler.ThresholdEnabled && _ErrorHandler.ThresholdReached)
+                        if (!_ErrorHandler.Cancelling)
                         {
-                            Settings.OnMaxErrors();
+                            _ErrorHandler.AddFaultyMod(Mod, ex);
 
-                            _ErrorHandler.CancelInstall();
+                            Settings.OnModError(_ErrorHandler.ErrorsCount);
 
-                            await QueueWatcher.WaitingForCompletion();
+                            if (_ErrorHandler.ThresholdEnabled && _ErrorHandler.ThresholdReached)
+                            {
+                                Settings.OnMaxErrors();
 
-                            _ErrorHandler.Exit();
+                                _ErrorHandler.CancelInstall();
+
+                                await QueueWatcher.WaitingForCompletion();
+
+                                _ErrorHandler.Exit();
+                            }
                         }
-                    }                    
-                }                                                               
-            }).ToList();
-                
-            await Task.WhenAny(Task.WhenAll(Tasks), _ErrorHandler.CancelTasks.Task);                
+                    }
+                }).ToList();
 
-            if (_ErrorHandler.HasErrors)
+                await Task.WhenAny(Task.WhenAll(Tasks), _ErrorHandler.CancelTasks.Task);                
+
+                if (_ErrorHandler.HasErrors)
+                {
+                    ProgressQueue.Clear();
+                    _ErrorHandler.ThrowException();
+                }
+
+                ServiceSingleton.Logger.Log("List is installed");
+            }
+            finally
             {
-                ProgressQueue.Clear();
-                _ErrorHandler.ThrowException();
-            }     
-
-            ServiceSingleton.Logger.Log("List is installed");
+                _Processing = false;
+            }
         }        
     }
 }

@@ -244,6 +244,14 @@ namespace Vcc.Nolvus.Instance.Services
             }
         }
 
+        public bool WorkingOnInstance
+        {
+            get
+            {
+                return WorkingInstance != null && (WorkingInstance.Status.InstallStatus == InstanceInstallStatus.Installing || WorkingInstance.Status.InstallStatus == InstanceInstallStatus.Updating);
+            }            
+        }
+
         public void FinalizeInstance()
         {
             WorkingInstance.Status.InstallStatus = InstanceInstallStatus.Installed;

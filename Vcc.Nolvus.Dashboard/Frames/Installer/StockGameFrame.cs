@@ -161,11 +161,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                     ServiceSingleton.Dashboard.AdditionalInfo(string.Format("Patching game files ({0}%)", Percent));
                     break;
                 case StockGameProcessStep.PatchGameFile:
-                    ServiceSingleton.Dashboard.Status(string.Format("Patching game files {0} ({1}%)...", e.ItemName, Percent));
+                    ServiceSingleton.Dashboard.Status(string.Format("Patching game files {0}...", e.ItemName));
                     ServiceSingleton.Dashboard.Progress(System.Convert.ToInt16(Percent));
                     break;
                 case StockGameProcessStep.CheckPatchedGameFile:
-                    ServiceSingleton.Dashboard.Status(string.Format("Checking patched game files {0} ({1}%)...", e.ItemName, Percent));
+                    ServiceSingleton.Dashboard.Status(string.Format("Checking patched game files {0}...", e.ItemName));
                     ServiceSingleton.Dashboard.Progress(System.Convert.ToInt16(Percent));
                     break;
 

@@ -590,7 +590,8 @@
             // 
             // GrpBxDownScaling
             // 
-            this.GrpBxDownScaling.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.GrpBxDownScaling.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GrpBxDownScaling.Controls.Add(this.DrpDwnLstScreenRes);
             this.GrpBxDownScaling.Controls.Add(this.label11);
@@ -610,7 +611,7 @@
             // 
             this.DrpDwnLstScreenRes.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.DrpDwnLstScreenRes.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
-            this.DrpDwnLstScreenRes.Location = new System.Drawing.Point(130, 157);
+            this.DrpDwnLstScreenRes.Location = new System.Drawing.Point(130, 142);
             this.DrpDwnLstScreenRes.Name = "DrpDwnLstScreenRes";
             this.DrpDwnLstScreenRes.Size = new System.Drawing.Size(152, 28);
             this.DrpDwnLstScreenRes.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -622,7 +623,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(10, 165);
+            this.label11.Location = new System.Drawing.Point(10, 149);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(114, 13);
             this.label11.TabIndex = 34;
@@ -642,7 +643,7 @@
             inactiveStateCollection3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             inactiveStateCollection3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.TglBtnDownScale.InactiveState = inactiveStateCollection3;
-            this.TglBtnDownScale.Location = new System.Drawing.Point(10, 119);
+            this.TglBtnDownScale.Location = new System.Drawing.Point(9, 111);
             this.TglBtnDownScale.MinimumSize = new System.Drawing.Size(52, 20);
             this.TglBtnDownScale.Name = "TglBtnDownScale";
             this.TglBtnDownScale.Size = new System.Drawing.Size(63, 24);

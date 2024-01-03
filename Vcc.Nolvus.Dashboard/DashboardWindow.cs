@@ -14,6 +14,7 @@ using Vcc.Nolvus.Core.Events;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Dashboard.Frames;
+using Vcc.Nolvus.Dashboard.Forms;
 using Vcc.Nolvus.Dashboard.Frames.Installer;
 
 
@@ -466,11 +467,15 @@ namespace Vcc.Nolvus.Dashboard
         }        
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            if (ServiceSingleton.Packages.Processing)
+            {
+                e.Cancel = NolvusMessageBox.ShowConfirmation("Stop Installation", "Are you sure you want to stop the installation? You will be able to resume where it left off") == DialogResult.No;               
+            }                        
         }
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {            
         }
+
         private void DashboardWindow_Load(object sender, EventArgs e)
         {            
             ServiceSingleton.Dashboard.LoadFrameAsync<StartFrame>();

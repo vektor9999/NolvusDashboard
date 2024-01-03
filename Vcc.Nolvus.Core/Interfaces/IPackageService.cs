@@ -27,5 +27,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         double InstallProgression { get; }
         IErrorHandler ErrorHandler { get; }
         double DownloadSpeed { get; }
+        bool Processing { get; }
     }
 }
