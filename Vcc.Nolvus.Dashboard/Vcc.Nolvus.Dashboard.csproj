@@ -296,7 +296,7 @@
     <Compile Include="Controls\InstancesPanel.Designer.cs">
       <DependentUpon>InstancesPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\ENBs.cs" />
+    <Compile Include="Core\Statics.cs" />
     <Compile Include="Core\GridModObject.cs" />
     <Compile Include="Core\LgCode.cs" />
     <Compile Include="Core\SettingsCache.cs" />

@@ -138,41 +138,18 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                 return 0;
             }
         }
-
-        private List<string> DownloadLocations()
-        {
-            List<string> Result = new List<string>();
-
-            Result.Add("Paris");
-            Result.Add("Nexus CDN");
-            Result.Add("Amsterdam");
-            Result.Add("Prague");
-            Result.Add("Chicago");
-            Result.Add("Los Angeles");
-            Result.Add("Miami");
-            Result.Add("Singapore");
-
-            return Result;
-        }
+       
 
         private int DownloadLocationIndex(List<string> Locations)
         {
-            int Index = 0;
-
             if (ServiceSingleton.Instances.WorkingInstance.Settings.CDN != string.Empty)
             {
-                foreach (var Location in Locations)
-                {
-                    if (Location == ServiceSingleton.Instances.WorkingInstance.Settings.CDN)
-                    {
-                        break;
-                    }
+                var Index = Locations.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Settings.CDN);
 
-                    Index++;
-                }
+                return Index == -1 ? 0 : Index;
             }
 
-            return Index;
+            return 0;
         }
 
         private int AntiAliasingIndex(List<string> AntiAliasing)
@@ -307,8 +284,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                     DrpDwnLstDownRes.Enabled = this.TglBtnDownScale.ToggleState == ToggleButtonState.Active;
                 }
 
-                DrpDwnLstDownLoc.DataSource = DownloadLocations();
-                DrpDwnLstDownLoc.SelectedIndex = DownloadLocationIndex(DownloadLocations());
+                DrpDwnLstDownLoc.DataSource = CDN.Get();
+                DrpDwnLstDownLoc.SelectedIndex = DownloadLocationIndex(CDN.Get());
 
                 EnableFlatButton(BtnApplyRes, false);
                 EnableFlatButton(BtnApplyDownScaling, false);

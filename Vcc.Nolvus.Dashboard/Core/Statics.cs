@@ -35,4 +35,21 @@ namespace Vcc.Nolvus.Dashboard.Core
             return ENBs.GetAvailableENBs().Where(x => x.Code == Code).Select(x => x.Name).FirstOrDefault();
         }
     }
+
+    public static class CDN
+    {
+        public static List<string> Get()
+        {
+            List<string> Result = new List<string>();
+
+            Result.Add("Nexus CDN");
+            Result.Add("Amsterdam");
+            Result.Add("Prague");
+            Result.Add("Chicago");
+            Result.Add("Los Angeles");
+            Result.Add("Miami");
+
+            return Result;
+        }
+    }
 }

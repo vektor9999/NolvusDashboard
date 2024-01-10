@@ -15,6 +15,7 @@ using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Core.Enums;
+using Vcc.Nolvus.Dashboard.Core;
 using Vcc.Nolvus.Dashboard.Forms;
 using Vcc.Nolvus.NexusApi;
 
@@ -34,40 +35,16 @@ namespace Vcc.Nolvus.Dashboard.Frames
         }
 
         private int DownloadLocationIndex(List<string> Locations)
-        {
-            int Index = 0;
-
+        {            
             if (ServiceSingleton.Instances.WorkingInstance.Settings.CDN != string.Empty)
-            {
-                foreach (var Location in Locations)
-                {
-                    if (Location == ServiceSingleton.Instances.WorkingInstance.Settings.CDN)
-                    {
-                        break;
-                    }
+            {                
+                var Index = Locations.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Settings.CDN);
 
-                    Index++;
-                }
+                return Index == -1 ? 0 : Index;                    
             }
 
-            return Index;
-        }
-
-        private List<string> GetDownloadLocations()
-        {
-            List<string> Result = new List<string>();
-
-            Result.Add("Paris");
-            Result.Add("Nexus CDN");
-            Result.Add("Amsterdam");
-            Result.Add("Prague");
-            Result.Add("Chicago");
-            Result.Add("Los Angeles");
-            Result.Add("Miami");
-            Result.Add("Singapore");
-
-            return Result;
-        }
+            return 0;
+        }       
 
         protected override void OnLoad()
         {
@@ -108,8 +85,8 @@ namespace Vcc.Nolvus.Dashboard.Frames
 
             if (ApiManager.AccountInfo.IsPremium)
             {
-                DrpDwnLstDownLoc.DataSource = GetDownloadLocations();
-                DrpDwnLstDownLoc.SelectedIndex = DownloadLocationIndex(GetDownloadLocations());
+                DrpDwnLstDownLoc.DataSource = CDN.Get();
+                DrpDwnLstDownLoc.SelectedIndex = DownloadLocationIndex(CDN.Get());
             }
         }
 
@@ -157,7 +134,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                         {
                             Key ="Action", Value=InstanceAction.Cancel
                         }
-                        ));               
+                    ));               
             }
         }
     }
