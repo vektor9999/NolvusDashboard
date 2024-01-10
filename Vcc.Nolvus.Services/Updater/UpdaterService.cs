@@ -59,11 +59,11 @@ namespace Vcc.Nolvus.Services.Updater
         {
             var Tsk = Task.Run(() => 
             {                
-                Process DashboardProcess = new Process();
-                DashboardProcess.StartInfo.WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                DashboardProcess.StartInfo.FileName = UpdaterExe;
-                DashboardProcess.StartInfo.Arguments = "1";
-                DashboardProcess.Start();
+                Process UpdaterProcess = new Process();
+                UpdaterProcess.StartInfo.WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                UpdaterProcess.StartInfo.FileName = UpdaterExe;
+                UpdaterProcess.StartInfo.Arguments = "1";
+                UpdaterProcess.Start();
             });
 
             await Tsk;

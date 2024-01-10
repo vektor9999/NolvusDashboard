@@ -401,7 +401,7 @@ namespace Vcc.Nolvus.Dashboard
                 return;
             }
 
-            this.Close();
+            Close();
         }
 
         #endregion
