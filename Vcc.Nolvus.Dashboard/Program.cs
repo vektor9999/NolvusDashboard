@@ -34,6 +34,12 @@ namespace Vcc.Nolvus.Dashboard
         static void Main()
         {
             ServiceSingleton.RegisterService<ILogService>(new LogService());
+            ServiceSingleton.Logger.LineBreak();
+            ServiceSingleton.Logger.Log("***Nolvus Dashboard Initialization***");
+            ServiceSingleton.Logger.Log("Starting new session : " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString());
+            ServiceSingleton.Logger.Log("Architecture : " + (Environment.Is64BitProcess ? "x64" : "x86"));
+
+            
             ServiceSingleton.RegisterService<IGlobalsService>(new GlobalsService());
             ServiceSingleton.RegisterService<ISettingsService>(new SettingsService());
             ServiceSingleton.RegisterService<IFolderService>(new FolderService());            

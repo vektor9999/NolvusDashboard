@@ -411,32 +411,28 @@ namespace Vcc.Nolvus.Dashboard
             InitializeComponent();
             
             ServiceSingleton.RegisterService<IDashboard>(this);
+            ServiceSingleton.Logger.Log(string.Format("Nolvus Dashboard Installer v{0} loaded", ServiceSingleton.Dashboard.Version));
 
-            ServiceSingleton.Logger.LineBreak();
-            ServiceSingleton.Logger.Log("***Nolvus Dashboard Installer v" + ServiceSingleton.Dashboard.Version + "***");
-            ServiceSingleton.Logger.Log("Starting new session : " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString());
-            ServiceSingleton.Logger.Log("Architecture : " + (Environment.Is64BitProcess ? "x64" : "x86"));
-
-            this.StStripLblInfo.Text = string.Empty;
-            this.StStripLblAdditionalInfo.Text = string.Empty;
-            this.StStripLblAdditionalInfo2.Text = string.Empty;
-            this.StStripLblAdditionalInfo3.Text = string.Empty;
-            this.StripLblAccountType.Text = string.Empty;
-            this.StripLblNexus.Text = string.Empty;
+            StStripLblInfo.Text = string.Empty;
+            StStripLblAdditionalInfo.Text = string.Empty;
+            StStripLblAdditionalInfo2.Text = string.Empty;
+            StStripLblAdditionalInfo3.Text = string.Empty;
+            StripLblAccountType.Text = string.Empty;
+            StripLblNexus.Text = string.Empty;
 
             SkinManager.SetVisualStyle(this, "Office2016Black");
-            this.Style.TitleBar.MaximizeButtonHoverBackColor = Color.DarkOrange;
-            this.Style.TitleBar.MinimizeButtonHoverBackColor = Color.DarkOrange;
-            this.Style.TitleBar.HelpButtonHoverBackColor = Color.DarkOrange;
-            this.Style.TitleBar.CloseButtonHoverBackColor = Color.DarkOrange;
-            this.Style.TitleBar.MaximizeButtonPressedBackColor = Color.DarkOrange;
-            this.Style.TitleBar.MinimizeButtonPressedBackColor = Color.DarkOrange;
-            this.Style.TitleBar.HelpButtonPressedBackColor = Color.DarkOrange;
-            this.Style.TitleBar.CloseButtonPressedBackColor = Color.DarkOrange;
+            Style.TitleBar.MaximizeButtonHoverBackColor = Color.DarkOrange;
+            Style.TitleBar.MinimizeButtonHoverBackColor = Color.DarkOrange;
+            Style.TitleBar.HelpButtonHoverBackColor = Color.DarkOrange;
+            Style.TitleBar.CloseButtonHoverBackColor = Color.DarkOrange;
+            Style.TitleBar.MaximizeButtonPressedBackColor = Color.DarkOrange;
+            Style.TitleBar.MinimizeButtonPressedBackColor = Color.DarkOrange;
+            Style.TitleBar.HelpButtonPressedBackColor = Color.DarkOrange;
+            Style.TitleBar.CloseButtonPressedBackColor = Color.DarkOrange;
 
-            this.Style.TitleBar.BackColor = Color.FromArgb(54, 54, 54);
-            this.Style.TitleBar.IconBackColor = Color.FromArgb(54, 54, 54);
-            this.Style.TitleBar.Height = 50;            
+            Style.TitleBar.BackColor = Color.FromArgb(54, 54, 54);
+            Style.TitleBar.IconBackColor = Color.FromArgb(54, 54, 54);
+            Style.TitleBar.Height = 50;            
 
             Padding = new Padding(0, 50, 0, 0);
             Style.BackColor = Color.FromArgb(54, 54, 54);            
@@ -444,12 +440,12 @@ namespace Vcc.Nolvus.Dashboard
             TitleBarControl = new TitleBarControl();
             TitleBarControl.Width = 3000;
             TitleBarControl.MouseDown += TitleBarControl_MouseDown;
-            this.TitleBarTextControl = TitleBarControl;            
+            TitleBarTextControl = TitleBarControl;            
 
-            this.TitleBarControl.Title = "Nolvus Dashboard";
-            this.TitleBarControl.InfoCaption = "v" + ServiceSingleton.Dashboard.Version + " | Not logged";
+            TitleBarControl.Title = "Nolvus Dashboard";
+            TitleBarControl.InfoCaption = string.Format("v{0} | Not logged", ServiceSingleton.Dashboard.Version);
 
-            this.LoadAccountImage("https://www.nolvus.net/assets/images/account/user-profile.png");                      
+            LoadAccountImage("https://www.nolvus.net/assets/images/account/user-profile.png");                      
 
             ProgressBar.Value = 0;
             ProgressBar.Maximum = 100;

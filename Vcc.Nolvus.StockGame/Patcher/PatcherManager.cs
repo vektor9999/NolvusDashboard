@@ -366,7 +366,7 @@ namespace Vcc.Nolvus.StockGame.Patcher
 
                         if (CommandOutput.Contains("The screen cannot be set to the number of lines and columns specified"))
                         {
-                            throw new GameFilePatchingException("Failed to patch game file  [CMD Error]: " + new FileInfo(DestinationFile).Name + " (" + String.Join(Environment.NewLine, Output.ToArray()) + ")", string.Join(Environment.NewLine, Output.ToArray()));
+                            throw new GameFilePatchingException("Failed to patch game file [CMD Error]: " + new FileInfo(DestinationFile).Name + " (" + String.Join(Environment.NewLine, Output.ToArray()) + ")", string.Join(Environment.NewLine, Output.ToArray()));
                         }                                             
                     }
                     else

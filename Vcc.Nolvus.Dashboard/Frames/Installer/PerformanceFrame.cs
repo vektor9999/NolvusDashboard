@@ -101,90 +101,29 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
        
         private int ResolutionIndex(List<string> Resolutions)
         {
-            int Index = 0;
-            bool Found = false;
-
             INolvusInstance WorkingInstance = ServiceSingleton.Instances.WorkingInstance;
 
-            if (WorkingInstance.Performance.DownHeight != string.Empty && WorkingInstance.Performance.DownWidth != string.Empty)
-            {
-                string Resolution = WorkingInstance.Performance.DownWidth + "x" + WorkingInstance.Performance.DownHeight;
+            var Index = Resolutions.FindIndex(x => x == WorkingInstance.Performance.DownWidth + "x" + WorkingInstance.Performance.DownHeight);
 
-                foreach (var Reso in Resolutions)
-                {
-                    if (Resolution == Reso)
-                    {
-                        Found = true;
-                        break;
-                    }
-
-                    Index++;
-                }
-            }
-
-            if (!Found)
-            {
-                Index = 0;
-            }
-
-            return Index;
+            return Index == -1 ? 0 : Index;           
         }
+
         private int AntiAliasingIndex(List<string> AntiAliasing)
-        {
-            int Index = 0;
-
-            if (ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing != string.Empty)
-            {
-                foreach (var AA in AntiAliasing)
-                {
-                    if (AA == ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing)
-                    {
-                        break;
-                    }
-
-                    Index++;
-                }
-            }
-
-            return Index;
+        {            
+            var Index = AntiAliasing.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing);
+            return Index == -1 ? 0 : Index;            
         }
+
         private int VariantIndex(List<string> Variants)
-        {
-            int Index = 0;
-
-            if (ServiceSingleton.Instances.WorkingInstance.Performance.Variant != string.Empty)
-            {
-                foreach (var Variant in Variants)
-                {
-                    if (Variant == ServiceSingleton.Instances.WorkingInstance.Performance.Variant)
-                    {
-                        break;
-                    }
-
-                    Index++;
-                }
-            }
-
-            return Index;
+        {            
+            var Index = Variants.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Performance.Variant);
+            return Index == -1 ? 0 : Index;                          
         }
+
         private int LODsIndex(List<string> LODs)
-        {
-            int Index = 0;
-
-            if (ServiceSingleton.Instances.WorkingInstance.Performance.LODs != string.Empty)
-            {
-                foreach (var LOD in LODs)
-                {
-                    if (LOD == ServiceSingleton.Instances.WorkingInstance.Performance.LODs)
-                    {
-                        break;
-                    }
-
-                    Index++;
-                }
-            }
-
-            return Index;
+        {            
+            var Index = LODs.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Performance.LODs);
+            return Index == -1 ? 0 : Index;               
         }
 
         private bool IsNvidiaRTX()
@@ -197,6 +136,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             var Instance = ServiceSingleton.Instances.WorkingInstance;            
 
             DrpDwnLstScreenRes.DataSource = ServiceSingleton.Globals.WindowsResolutions;
+            DrpDwnLstScreenRes.SelectedIndex = ResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);
             DrpDwnLstScreenRes.Enabled = false;
 
             this.TglBtnPhysics.ToggleState = ToggleButtonState.Inactive;
@@ -299,11 +239,12 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             {
                 DrpDwnLstScreenRes.Enabled = e.ToggleState == ToggleButtonState.Active;
                 ServiceSingleton.Instances.WorkingInstance.Performance.DownScaling = "TRUE";
+                DrpDwnLstScreenRes.SelectedIndex = ResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);
             }
             else
             {
                 DrpDwnLstScreenRes.Enabled = e.ToggleState == ToggleButtonState.Active;
-                ServiceSingleton.Instances.WorkingInstance.Performance.DownScaling = "FALSE";
+                ServiceSingleton.Instances.WorkingInstance.Performance.DownScaling = "FALSE";                
             }                                         
         }
 
@@ -345,12 +286,15 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
         private void DrpDwnLstScreenRes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string Resolution = DrpDwnLstScreenRes.SelectedValue.ToString();
+            if (DrpDwnLstScreenRes.SelectedValue != null)
+            {
+                string Resolution = DrpDwnLstScreenRes.SelectedValue.ToString();
 
-            string[] Reso = Resolution.Split(new char[] { 'x' });
+                string[] Reso = Resolution.Split(new char[] { 'x' });
 
-            ServiceSingleton.Instances.WorkingInstance.Performance.DownWidth = Reso[0];
-            ServiceSingleton.Instances.WorkingInstance.Performance.DownHeight = Reso[1];
+                ServiceSingleton.Instances.WorkingInstance.Performance.DownWidth = Reso[0];
+                ServiceSingleton.Instances.WorkingInstance.Performance.DownHeight = Reso[1];
+            }
         }
 
         private void DrpDwnLstIni_SelectedIndexChanged(object sender, EventArgs e)

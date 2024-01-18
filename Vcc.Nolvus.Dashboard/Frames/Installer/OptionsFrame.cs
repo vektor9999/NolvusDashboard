@@ -93,23 +93,10 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         }
 
         private int SkinTypeIndex(List<string> SkinTypes)
-        {
-            int Index = 0;
+        {            
+            var Index = SkinTypes.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Options.SkinType);
 
-            if (ServiceSingleton.Instances.WorkingInstance.Options.SkinType != string.Empty)
-            {
-                foreach (var Skin in SkinTypes)
-                {
-                    if (Skin == ServiceSingleton.Instances.WorkingInstance.Options.SkinType)
-                    {
-                        break;
-                    }
-
-                    Index++;
-                }
-            }
-
-            return Index;
+            return Index == -1 ? 0 : Index;                            
         }
 
         protected override void OnLoad()

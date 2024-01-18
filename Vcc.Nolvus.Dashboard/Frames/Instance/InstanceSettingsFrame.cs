@@ -142,34 +142,15 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
         private int DownloadLocationIndex(List<string> Locations)
         {
-            if (ServiceSingleton.Instances.WorkingInstance.Settings.CDN != string.Empty)
-            {
-                var Index = Locations.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Settings.CDN);
+            var Index = Locations.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Settings.CDN);
 
-                return Index == -1 ? 0 : Index;
-            }
-
-            return 0;
+            return Index == -1 ? 0 : Index;            
         }
 
         private int AntiAliasingIndex(List<string> AntiAliasing)
         {
-            int Index = 0;
-
-            if (ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing != string.Empty)
-            {
-                foreach (var AA in AntiAliasing)
-                {
-                    if (AA == ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing)
-                    {
-                        break;
-                    }
-
-                    Index++;
-                }
-            }
-
-            return Index;
+            var Index = AntiAliasing.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing);
+            return Index == -1 ? 0 : Index;            
         }
 
         private void EnableFlatButton(FlatButton Button, bool Enabled)

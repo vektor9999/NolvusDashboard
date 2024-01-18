@@ -30,98 +30,40 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         }
 
         private int InstanceIndex(IEnumerable<INolvusVersionDTO> Versions)
-        {
-            int Index = Versions.ToList().Count - 1;                       
-
+        {           
             INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
             if (Instance != null)
             {
-                Index = 0;
+                var Index = Versions.ToList().FindIndex(x => x.Name == Instance.Name);
 
-                foreach (var Version in Versions)
-                {
-                    if (Version.Name == Instance.Name)
-                    {
-                        break;
-                    }
-
-                    Index++;
-                }
+                return Index == -1 ? Versions.ToList().Count - 1 : Index;
             }
 
-            return Index;
+            return Versions.ToList().Count - 1;
         }
 
         private int ResolutionIndex(List<string> Resolutions)
-        {
-            int Index = 0;
-            bool Found = false;
-
+        {            
             INolvusInstance WorkingInstance = ServiceSingleton.Instances.WorkingInstance;
+           
+            var Index = Resolutions.FindIndex(x => x == WorkingInstance.Settings.Width + "x" + WorkingInstance.Settings.Height);
 
-            if (WorkingInstance.Settings.Height != string.Empty && WorkingInstance.Settings.Width != string.Empty)
-            {
-                string Resolution = WorkingInstance.Settings.Width + "x" + WorkingInstance.Settings.Height;
-
-                foreach (var Reso in Resolutions)
-                {
-                    if (Resolution == Reso)
-                    {
-                        Found = true;
-                        break;
-                    }
-
-                    Index++;
-                }
-            }
-
-            if (!Found)
-            {
-                Index = 0;
-            }
-
-            return Index;
+            return Index == -1 ? 0 : Index;            
         }
 
         private int RatioIndex(List<string> Ratios)
-        {
-            int Index = 0;
+        {            
+            var Index = Ratios.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Settings.Ratio);
 
-            if (ServiceSingleton.Instances.WorkingInstance.Settings.Ratio != string.Empty)
-            {
-                foreach (var Ratio in Ratios)
-                {
-                    if (Ratio == ServiceSingleton.Instances.WorkingInstance.Settings.Ratio)
-                    {
-                        break;
-                    }
-
-                    Index++;
-                }
-            }
-
-            return Index;
+            return Index == -1 ? 0 : Index;            
         }
 
         private int LgIndex(List<LgCode> Lgs)
-        {
-            int Index = 0;
+        {            
+            var Index = Lgs.FindIndex(x => x.Code == ServiceSingleton.Instances.WorkingInstance.Settings.LgCode);
 
-            if (ServiceSingleton.Instances.WorkingInstance.Settings.LgCode != string.Empty)
-            {
-                foreach (var Lg in Lgs)
-                {
-                    if (Lg.Code == ServiceSingleton.Instances.WorkingInstance.Settings.LgCode)
-                    {
-                        break;
-                    }
-
-                    Index++;
-                }
-            }
-
-            return Index;
+            return Index == -1 ? 0 : Index;                          
         }
 
         protected override async Task OnLoadAsync()
