@@ -42,8 +42,7 @@ namespace Vcc.Nolvus.Api.Installer.Token
                     }
                 }
 
-                return false;
-                //return !String.IsNullOrEmpty(this.AccessToken) && this.ExpiresAt > DateTime.UtcNow.AddSeconds(30);
+                return false;                
             }
         }
     }

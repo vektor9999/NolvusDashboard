@@ -14,8 +14,8 @@ namespace Vcc.Nolvus.Api.Installer.Controllers
 
         public BaseController(IApiService Service, string Api)
         {
-            this._Service = Service;
-            this._Api = Api;
+            _Service = Service;
+            _Api = Api;
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
         {
             get
             {
-                return this.GetController<IInstallerController>();
+                return GetController<IInstallerController>();
             }
         }
 
@@ -36,35 +36,35 @@ namespace Vcc.Nolvus.Api.Installer.Services
 
         public ApiService(ITokenService TokenService, string Version)
         {
-            this._TokenService = TokenService;
-            this._Version = Version;
+            _TokenService = TokenService;
+            _Version = Version;
             
-            this.RegisterController<IInstallerController>(new InstallerController(this, "api/" + this._Version + "/installer"));
+            RegisterController<IInstallerController>(new InstallerController(this, string.Format("api/{0}/installer", Version)));
 
 
-            Client.BaseAddress = new Uri(this._TokenService.Url);
-            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Client.BaseAddress = new Uri(_TokenService.Url);
+            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));            
         }
 
         public ApiService(string Url, string Version)
         {
-            this._Version = Version;
+            _Version = Version;
 
-            this.RegisterController<IInstallerController>(new InstallerController(this, "api/" + this._Version + "/installer"));
+            RegisterController<IInstallerController>(new InstallerController(this, string.Format("api/{0}/installer", Version)));
 
             Client.BaseAddress = new Uri(Url);
-            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));            
         }
         
         public void RegisterController<T>(T Controller) where T : class
         {            
-            this._Services[typeof(T)] = Controller;
+            _Services[typeof(T)] = Controller;
         }
 
         public T GetController<T>() where T : class
         {
             object Result = null;
-            this._Services.TryGetValue(typeof(T), out Result);
+            _Services.TryGetValue(typeof(T), out Result);
             return (T)Result;
         }
         
@@ -114,7 +114,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
         {
             T Result = default(T);
 
-            var token = await this._TokenService.GetAuthenticationToken();
+            var token = await _TokenService.GetAuthenticationToken();
            
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -138,7 +138,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
         {
             T Result = default(T);
 
-            var token = await this._TokenService.GetAuthenticationToken();
+            var token = await _TokenService.GetAuthenticationToken();
 
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -169,7 +169,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
         {
             T Result = default(T);
 
-            var token = await this._TokenService.GetAuthenticationToken();
+            var token = await _TokenService.GetAuthenticationToken();
             
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -193,7 +193,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
         {
             T Result = default(T);
 
-            var token = await this._TokenService.GetAuthenticationToken();
+            var token = await _TokenService.GetAuthenticationToken();
 
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -224,7 +224,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
         {
             T Result = default(T);
 
-            var token = await this._TokenService.GetAuthenticationToken();
+            var token = await _TokenService.GetAuthenticationToken();
                                         
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -249,7 +249,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
         {
             T Result = default(T);
 
-            var token = await this._TokenService.GetAuthenticationToken();
+            var token = await _TokenService.GetAuthenticationToken();
 
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -281,7 +281,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
         {
             T Result = default(T);
 
-            var token = await this._TokenService.GetAuthenticationToken();
+            var token = await _TokenService.GetAuthenticationToken();
            
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -306,7 +306,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
         {
             T Result = default(T);
 
-            var token = await this._TokenService.GetAuthenticationToken();
+            var token = await _TokenService.GetAuthenticationToken();
 
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -343,7 +343,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
         {
             T Result = default(T);
 
-            var token = await this._TokenService.GetAuthenticationToken();
+            var token = await _TokenService.GetAuthenticationToken();
 
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -369,7 +369,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
         {
             T Result = default(T);
 
-            var token = await this._TokenService.GetAuthenticationToken();
+            var token = await _TokenService.GetAuthenticationToken();
 
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -407,7 +407,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
         {
             T2 Result = default(T2);
 
-            var token = await this._TokenService.GetAuthenticationToken();
+            var token = await _TokenService.GetAuthenticationToken();
 
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -432,7 +432,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
         {
             T2 Result = default(T2);
 
-            var token = await this._TokenService.GetAuthenticationToken();
+            var token = await _TokenService.GetAuthenticationToken();
 
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -472,7 +472,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
         {
             T2 Result = default(T2);
 
-            var token = await this._TokenService.GetAuthenticationToken();
+            var token = await _TokenService.GetAuthenticationToken();
 
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -507,7 +507,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
 
         public async Task<HttpResponseMessage> PostPolyMorphic(string ApiMethod, Dictionary<string, object> Parameters)
         {            
-            var token = await this._TokenService.GetAuthenticationToken();
+            var token = await _TokenService.GetAuthenticationToken();
 
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -527,7 +527,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
         {
             T2 Result = default(T2);
 
-            var token = await this._TokenService.GetAuthenticationToken();
+            var token = await _TokenService.GetAuthenticationToken();
 
             
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -554,7 +554,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
         {
             T2 Result = default(T2);
 
-            var token = await this._TokenService.GetAuthenticationToken();
+            var token = await _TokenService.GetAuthenticationToken();
 
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 

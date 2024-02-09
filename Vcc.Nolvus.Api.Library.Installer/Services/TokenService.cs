@@ -20,11 +20,6 @@ namespace Vcc.Nolvus.Api.Installer.Services
         private string _UserName;
         private string _Password;
 
-        //public string Url
-        //{
-        //    get { return $"{_BaseUrl}/rest/"; }
-        //}
-
         public string Url
         {
             get { return $"{_BaseUrl}"; }
@@ -36,19 +31,19 @@ namespace Vcc.Nolvus.Api.Installer.Services
             _UserName = UserName;
             _Password = Password;
 
-            Client.BaseAddress = new Uri(this.Url);
+            Client.BaseAddress = new Uri(Url);
 
             Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public async Task<string> GetAuthenticationToken()
         {
-            if (!this.Token.IsValidAndNotExpiring)
+            if (!Token.IsValidAndNotExpiring)
             {
-                this.Token = await this.GetNewAuthenticationToken();
+                Token = await GetNewAuthenticationToken();
             }
 
-            return this.Token.AccessToken;
+            return Token.AccessToken;
         }
 
         public async Task<bool> Authenticate()
@@ -57,7 +52,7 @@ namespace Vcc.Nolvus.Api.Installer.Services
 
             try
             {
-                await this.GetNewAuthenticationToken();
+                await GetNewAuthenticationToken();
             }
             catch
             {
