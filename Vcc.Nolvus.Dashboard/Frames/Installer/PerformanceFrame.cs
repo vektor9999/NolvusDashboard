@@ -210,9 +210,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             var Instance = ServiceSingleton.Instances.WorkingInstance;
             var Performance = Instance.Performance;            
 
-            if (Performance.DownScaling == "TRUE" && (Instance.Settings.Height == Performance.DownHeight || System.Convert.ToInt32(Performance.DownHeight) > System.Convert.ToInt32(Instance.Settings.Height)) && (Instance.Settings.Width == Performance.DownWidth || System.Convert.ToInt32(Performance.DownWidth) > System.Convert.ToInt32(Instance.Settings.Width)))
+            if (Performance.DownScaling == "TRUE" && (Performance.DownScaling == "TRUE" && (Instance.Settings.Height == Performance.DownHeight || System.Convert.ToInt32(Performance.DownHeight) > System.Convert.ToInt32(Instance.Settings.Height)) && (Instance.Settings.Width == Performance.DownWidth || System.Convert.ToInt32(Performance.DownWidth) > System.Convert.ToInt32(Instance.Settings.Width))))
             {
-                NolvusMessageBox.ShowMessage("Invalid Downscaling setting", "If downscaling is enabled, downscaled resolution must be less than the monitor resolution!", MessageBoxType.Error);
+                NolvusMessageBox.ShowMessage("Invalid Downscaling setting", "If downscaling is enabled, the downscaled resolution must be less than the monitor resolution!", MessageBoxType.Error);
             }
             else
             {
@@ -329,21 +329,22 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 if (ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing == "DLAA")
                 {
                     GrpBxDownScaling.Enabled = false;
+                    TglBtnDownScale.ToggleState = ToggleButtonState.Inactive;
                 }
                 else
                 {
-                    GrpBxDownScaling.Enabled = true;
+                    GrpBxDownScaling.Enabled = true;                    
                 }
             }
 
-            this.DisplayHardwareRequirement();
+            DisplayHardwareRequirement();
         }
 
         private void DrpDwnLstLODs_SelectedIndexChanged(object sender, EventArgs e)
         {
             ServiceSingleton.Instances.WorkingInstance.Performance.LODs = DrpDwnLstLODs.SelectedValue.ToString();
 
-            this.DisplayHardwareRequirement();
+            DisplayHardwareRequirement();
         }
 
         private void DisplayHardwareRequirement()

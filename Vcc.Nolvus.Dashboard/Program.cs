@@ -54,7 +54,7 @@ namespace Vcc.Nolvus.Dashboard
             AppDomain.CurrentDomain.AssemblyLoad += Loader;
             AppDomain.CurrentDomain.UnhandledException += ExceptionHandler;
 
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("xxx");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzM2MTU4QDMxMzgyZTMzMmUzMFBiTkxiV0dEMEhlWnowK3IxVUFsYkdGM2VnR0d6RDVBdGNYOEVFK2VqNVk9");
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;            
 
