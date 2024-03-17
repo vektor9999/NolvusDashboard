@@ -21,16 +21,35 @@ using Vcc.Nolvus.Dashboard.Frames;
 using Vcc.Nolvus.Dashboard.Frames.Installer;
 using Vcc.Nolvus.Dashboard.Frames.Instance;
 using Vcc.Nolvus.Package.Mods;
+using Vcc.Nolvus.Api.Installer.Services;
 
 namespace Vcc.Nolvus.Dashboard.Controls
 {
     public partial class InstancePanel : UserControl
     {
-        INolvusInstance _Instance;               
+        INolvusInstance _Instance;
+        InstancesPanel _Panel;        
 
-        public InstancePanel()
+        public InstancePanel(InstancesPanel Panel)
         {
-            InitializeComponent();            
+            InitializeComponent();
+            _Panel = Panel;
+        }
+
+        private void LockButtons()
+        {
+            BtnPlay.Enabled = false;
+            BtnUpdate.Enabled = false;
+            BtnView.Enabled = false;
+            (_Panel.ContainerFrame as InstancesFrame).LockButtons();
+        }
+
+        private void UnLockButtons()
+        {
+            BtnPlay.Enabled = true;
+            BtnUpdate.Enabled = true;
+            BtnView.Enabled = true;
+            (_Panel.ContainerFrame as InstancesFrame).UnLockButtons();
         }
 
         private void InstancePane_Paint(object sender, PaintEventArgs e)
@@ -53,7 +72,6 @@ namespace Vcc.Nolvus.Dashboard.Controls
             this.BtnPlay.Text = Text;
             this.BtnPlay.Enabled = true;
         }
-
         public async void LoadInstance(INolvusInstance Instance)
         {
             _Instance = Instance;            
@@ -86,7 +104,6 @@ namespace Vcc.Nolvus.Dashboard.Controls
                 BtnUpdate.Visible = true;
             }
         }
-
         private void BtnPlay_Click(object sender, EventArgs e)
         {            
 
@@ -112,7 +129,6 @@ namespace Vcc.Nolvus.Dashboard.Controls
                 NolvusMessageBox.ShowMessage("Mod Organizer 2", "An instance of Mod Organizer 2 is already running!", MessageBoxType.Error);
             }                       
         }
-
         private void BtnUpdate_Click(object sender, EventArgs e)
         {            
             if (!ModOrganizer.IsRunning)
@@ -124,23 +140,88 @@ namespace Vcc.Nolvus.Dashboard.Controls
                 NolvusMessageBox.ShowMessage("Mod Organizer 2", "An instance of Mod Organizer 2 is running! Please close it before updating.", MessageBoxType.Error);
             }
         }
-
         private void BtnView_Click(object sender, EventArgs e)
         {            
             popupMenu1.Show(BtnView, new Point(0, BtnView.Height));
         }
-
         private async void BrItmMods_Click(object sender, EventArgs e)
         {            
             ServiceSingleton.Instances.WorkingInstance = _Instance;
             await ServiceSingleton.Dashboard.LoadFrameAsync<PackageFrame>();
         }
+        private async void BrItmReport_Click(object sender, EventArgs e)
+        {
+            ServiceSingleton.Instances.WorkingInstance = _Instance;
+            IDashboard Dashboard = ServiceSingleton.Dashboard;
 
+            LockButtons();
+
+            await ServiceSingleton.Packages.Load(await ApiManager.Service.Installer.GetPackage(_Instance.Id, _Instance.Version), (s, p) =>
+            {
+                Dashboard.Status(string.Format("{0} ({1}%)", s, p));
+                Dashboard.Progress(p);
+            })
+            .ContinueWith(async T=> {
+                if (T.IsFaulted)
+                {
+                    UnLockButtons();
+                    NolvusMessageBox.ShowMessage("Error during package loading", T.Exception.InnerException.Message, MessageBoxType.Error);
+                }
+                else
+                {
+                    try
+                    {
+                        try
+                        {
+                            await ServiceSingleton.Report.GenerateReportToPdf(await ServiceSingleton.CheckerService.CheckModList(
+                                await ServiceSingleton.Packages.ModOrganizer2.GetMods((s, p) =>
+                                {
+                                    Dashboard.Status(string.Format("{0} ({1}%)", s, p));
+                                    Dashboard.Progress(p);
+                                }),
+                                await ServiceSingleton.Packages.GetMods((s, p) =>
+                                {
+                                    Dashboard.Status(string.Format("{0} ({1}%)", s, p));
+                                    Dashboard.Progress(p);
+                                }),
+                                (s) =>
+                                {
+                                    Dashboard.Status(s);
+                                }
+                            ), Properties.Resources.background_nolvus,
+                            (s, p) =>
+                            {
+                                Dashboard.Status(string.Format("{0} ({1}%)", s, p));
+                                Dashboard.Progress(p);
+                            });
+
+                            Dashboard.NoStatus();
+                            Dashboard.ProgressCompleted();
+
+                            NolvusMessageBox.ShowMessage("Information", string.Format("PDF report has been generated in {0}", ServiceSingleton.Folders.ReportDirectory), MessageBoxType.Info);
+                        }
+                        catch (Exception ex)
+                        {
+                            Dashboard.NoStatus();
+                            Dashboard.ProgressCompleted();
+
+
+                            NolvusMessageBox.ShowMessage("Error during report generation", ex.Message, MessageBoxType.Error);
+                        }
+                    }
+                    finally
+                    {
+                        UnLockButtons();
+                        ServiceSingleton.Instances.UnloadWorkingIntance();
+                    }
+                }
+                
+            }, TaskScheduler.FromCurrentSynchronizationContext());                                    
+        }
         private void BrItmDelete_Click(object sender, EventArgs e)
         {
             ServiceSingleton.Dashboard.LoadFrame<DeleteFrame>(new FrameParameters(new FrameParameter() { Key = "Instance", Value = _Instance as INolvusInstance }, new FrameParameter() { Key = "Action", Value = InstanceAction.Delete }));
         }
-
         private void BrItmShortCut_Click(object sender, EventArgs e)
         {
             try
@@ -165,5 +246,7 @@ namespace Vcc.Nolvus.Dashboard.Controls
                 NolvusMessageBox.ShowMessage("Error", ex.Message, MessageBoxType.Error);
             }
         }
+
+       
     }
 }

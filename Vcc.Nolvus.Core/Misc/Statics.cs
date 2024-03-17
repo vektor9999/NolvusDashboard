@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vcc.Nolvus.Dashboard.Core
+namespace Vcc.Nolvus.Core.Misc
 {
     public class ENBs
     {

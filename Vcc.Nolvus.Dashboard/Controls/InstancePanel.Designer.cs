@@ -42,10 +42,12 @@
             this.popupMenu1 = new Syncfusion.Windows.Forms.Tools.XPMenus.PopupMenu(this.components);
             this.parentBarItem1 = new Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem();
             this.BrItmMods = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.BrItmShortCut = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.barItem1 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.BrItmDelete = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.LblBeta = new System.Windows.Forms.Label();
-            this.BrItmShortCut = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.BrItmReport = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.barItem2 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             ((System.ComponentModel.ISupportInitialize)(this.PicInstanceImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -167,6 +169,8 @@
             this.BrItmMods,
             this.BrItmShortCut,
             this.barItem1,
+            this.BrItmReport,
+            this.barItem2,
             this.BrItmDelete});
             this.parentBarItem1.MetroColor = System.Drawing.Color.LightSkyBlue;
             this.parentBarItem1.ShowToolTipInPopUp = false;
@@ -182,6 +186,16 @@
             this.BrItmMods.SizeToFit = true;
             this.BrItmMods.Text = "Instance";
             this.BrItmMods.Click += new System.EventHandler(this.BrItmMods_Click);
+            // 
+            // BrItmShortCut
+            // 
+            this.BrItmShortCut.BarName = "BrItmShortCut";
+            this.BrItmShortCut.ID = "Add a desktop shortcut for this instance";
+            this.BrItmShortCut.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmShortCut.Image")));
+            this.BrItmShortCut.ShowToolTipInPopUp = false;
+            this.BrItmShortCut.SizeToFit = true;
+            this.BrItmShortCut.Text = "Add a desktop shortcut for this instance";
+            this.BrItmShortCut.Click += new System.EventHandler(this.BrItmShortCut_Click);
             // 
             // barItem1
             // 
@@ -212,15 +226,23 @@
             this.LblBeta.TabIndex = 8;
             this.LblBeta.Text = "[Beta]";
             // 
-            // BrItmShortCut
+            // BrItmReport
             // 
-            this.BrItmShortCut.BarName = "BrItmShortCut";
-            this.BrItmShortCut.ID = "Add a desktop shortcut for this instance";
-            this.BrItmShortCut.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmShortCut.Image")));
-            this.BrItmShortCut.ShowToolTipInPopUp = false;
-            this.BrItmShortCut.SizeToFit = true;
-            this.BrItmShortCut.Text = "Add a desktop shortcut for this instance";
-            this.BrItmShortCut.Click += new System.EventHandler(this.BrItmShortCut_Click);
+            this.BrItmReport.BarName = "BrItmReport";
+            this.BrItmReport.ID = "Report to PDF";
+            this.BrItmReport.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmReport.Image")));
+            this.BrItmReport.ShowToolTipInPopUp = false;
+            this.BrItmReport.SizeToFit = true;
+            this.BrItmReport.Text = "Report to PDF";
+            this.BrItmReport.Click += new System.EventHandler(this.BrItmReport_Click);
+            // 
+            // barItem2
+            // 
+            this.barItem2.BarName = "barItem2";
+            this.barItem2.ID = "-";
+            this.barItem2.ShowToolTipInPopUp = false;
+            this.barItem2.SizeToFit = true;
+            this.barItem2.Text = "-";
             // 
             // InstancePanel
             // 
@@ -265,5 +287,7 @@
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmDelete;
         private System.Windows.Forms.Label LblBeta;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmShortCut;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmReport;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem barItem2;
     }
 }

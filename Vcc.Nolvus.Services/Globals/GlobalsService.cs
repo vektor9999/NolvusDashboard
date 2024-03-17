@@ -63,8 +63,8 @@ namespace Vcc.Nolvus.Services.Globals
         public const string NolvusApi = "https://www.nolvus.net/rest/";
         public const string NexusSection = "Nexus";
         public const string ApiKey = "ApiKey";
-        public const string UserAgent = "UserAgent";        
-                
+        public const string UserAgent = "UserAgent";
+
 
         public string ApiVersion
         {
@@ -161,30 +161,57 @@ namespace Vcc.Nolvus.Services.Globals
 
                 return Result;
             }
-           
+
         }
 
         public List<string> GetVideoAdapters()
-        {            
+        {
             ManagementObjectCollection GPUs = new ManagementObjectSearcher("SELECT * FROM Win32_VideoController").Get();
 
-            var Result = new List<string>();            
+            var Result = new List<string>();
 
             foreach (ManagementObject GPU in GPUs)
             {
-                //PropertyData CurrentBitsPerPixel = GPU.Properties["CurrentBitsPerPixel"];
                 PropertyData MinRefreshRate = GPU.Properties["MinRefreshRate"];
                 PropertyData Description = GPU.Properties["Description"];
 
-                //if (CurrentBitsPerPixel != null && Description != null)
                 if (MinRefreshRate != null && Description != null)
                 {
-                    //if (CurrentBitsPerPixel.Value != null) Result.Add(Description.Value.ToString().ToUpper());
                     if (MinRefreshRate.Value != null) Result.Add(Description.Value.ToString().ToUpper());
-                }                              
+                }
             }
 
             return Result;
         }
+
+        public string GetCPUInfo()
+        {
+            string Result = string.Empty;
+            using (ManagementObjectSearcher Win32Proc = new ManagementObjectSearcher("select * from Win32_Processor"))
+            {
+                foreach (ManagementObject Obj in Win32Proc.Get())
+                {                    
+                    Result = Obj["Name"].ToString();
+                    break;                
+                }
+            };
+
+            return Result;
+        }
+
+        public int GetRamCount()
+        {
+            int Result = 0;
+
+            using (ManagementObjectSearcher Win32Proc = new ManagementObjectSearcher("SELECT * FROM Win32_OperatingSystem"))
+            {
+                foreach (ManagementObject Obj in Win32Proc.Get())
+                {                    
+                    Result = System.Convert.ToInt32(Math.Ceiling(System.Convert.ToDouble(Obj["TotalVisibleMemorySize"]) / 1024 / 1024));
+                }
+            }
+
+            return Result;            
+        }
     }
-}
+}        

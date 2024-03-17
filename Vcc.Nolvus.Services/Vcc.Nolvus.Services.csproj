@@ -56,6 +56,8 @@
       <HintPath>..\packages\Squid-Box.SevenZipSharp.1.5.0.366\lib\net45\SevenZipSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.Pdf.Base, Version=20.2460.0.36, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -73,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Checker\CheckerService.cs" />
     <Compile Include="Files\Downloaders\BaseFileDownloader.cs" />
     <Compile Include="Files\Downloaders\CookieAwareWebClient.cs">
       <SubType>Component</SubType>
@@ -86,6 +89,7 @@
     <Compile Include="Game\GameService.cs" />
     <Compile Include="Globals\GlobalsService.cs" />
     <Compile Include="Logger\LogService.cs" />
+    <Compile Include="Report\ReportService.cs" />
     <Compile Include="Settings\SettingsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Updater\UpdaterService.cs" />

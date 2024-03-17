@@ -130,6 +130,7 @@
             this.BtnHelp.TabIndex = 5;
             this.BtnHelp.Text = "Click here to fix";
             this.BtnHelp.UseVisualStyleBackColor = false;
+            this.BtnHelp.Visible = false;
             this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
             // 
             // ErrorFrame

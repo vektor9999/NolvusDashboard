@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn1 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn2 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn3 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn4 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn5 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            this.components = new System.ComponentModel.Container();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn6 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn7 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn8 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn9 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn10 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstanceDetailFrame));
             this.ModsGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.BtnBack = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.PnlHeader = new System.Windows.Forms.Panel();
@@ -44,6 +46,12 @@
             this.BtnPlay = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnSettings = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnLoadOrder = new Vcc.Nolvus.Components.Controls.FlatButton();
+            this.BtnReport = new Vcc.Nolvus.Components.Controls.FlatButton();
+            this.popupMenusManager1 = new Syncfusion.Windows.Forms.Tools.XPMenus.PopupMenusManager(this.components);
+            this.popupMenu1 = new Syncfusion.Windows.Forms.Tools.XPMenus.PopupMenu(this.components);
+            this.parentBarItem1 = new Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem();
+            this.BrItmClipboardReport = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.BrItmPDFReport = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             ((System.ComponentModel.ISupportInitialize)(this.ModsGrid)).BeginInit();
             this.PnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
@@ -58,30 +66,30 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ModsGrid.AutoGenerateColumns = false;
-            gridTextColumn1.AllowResizing = true;
-            gridTextColumn1.HeaderText = "Priority";
-            gridTextColumn1.MappingName = "Priority";
-            gridTextColumn1.Width = 75D;
-            gridTextColumn2.AllowResizing = true;
-            gridTextColumn2.HeaderText = "Mod";
-            gridTextColumn2.MappingName = "Name";
-            gridTextColumn2.Width = 400D;
-            gridTextColumn3.AllowResizing = true;
-            gridTextColumn3.HeaderText = "Version";
-            gridTextColumn3.MappingName = "Version";
-            gridTextColumn4.AllowResizing = true;
-            gridTextColumn4.HeaderText = "Category";
-            gridTextColumn4.MappingName = "Category";
-            gridTextColumn4.Visible = false;
-            gridTextColumn5.AllowResizing = true;
-            gridTextColumn5.HeaderText = "Status";
-            gridTextColumn5.MappingName = "StatusText";
-            gridTextColumn5.Width = 200D;
-            this.ModsGrid.Columns.Add(gridTextColumn1);
-            this.ModsGrid.Columns.Add(gridTextColumn2);
-            this.ModsGrid.Columns.Add(gridTextColumn3);
-            this.ModsGrid.Columns.Add(gridTextColumn4);
-            this.ModsGrid.Columns.Add(gridTextColumn5);
+            gridTextColumn6.AllowResizing = true;
+            gridTextColumn6.HeaderText = "Priority";
+            gridTextColumn6.MappingName = "Priority";
+            gridTextColumn6.Width = 75D;
+            gridTextColumn7.AllowResizing = true;
+            gridTextColumn7.HeaderText = "Mod";
+            gridTextColumn7.MappingName = "Name";
+            gridTextColumn7.Width = 400D;
+            gridTextColumn8.AllowResizing = true;
+            gridTextColumn8.HeaderText = "Version";
+            gridTextColumn8.MappingName = "Version";
+            gridTextColumn9.AllowResizing = true;
+            gridTextColumn9.HeaderText = "Category";
+            gridTextColumn9.MappingName = "Category";
+            gridTextColumn9.Visible = false;
+            gridTextColumn10.AllowResizing = true;
+            gridTextColumn10.HeaderText = "Status";
+            gridTextColumn10.MappingName = "StatusText";
+            gridTextColumn10.Width = 200D;
+            this.ModsGrid.Columns.Add(gridTextColumn6);
+            this.ModsGrid.Columns.Add(gridTextColumn7);
+            this.ModsGrid.Columns.Add(gridTextColumn8);
+            this.ModsGrid.Columns.Add(gridTextColumn9);
+            this.ModsGrid.Columns.Add(gridTextColumn10);
             this.ModsGrid.Location = new System.Drawing.Point(7, 76);
             this.ModsGrid.Name = "ModsGrid";
             this.ModsGrid.Size = new System.Drawing.Size(889, 347);
@@ -97,7 +105,7 @@
             this.BtnBack.BorderColor = System.Drawing.Color.Gray;
             this.BtnBack.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnBack.ForeColor = System.Drawing.Color.Orange;
-            this.BtnBack.Location = new System.Drawing.Point(907, 306);
+            this.BtnBack.Location = new System.Drawing.Point(907, 355);
             this.BtnBack.Name = "BtnBack";
             this.BtnBack.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnBack.Size = new System.Drawing.Size(127, 40);
@@ -225,7 +233,7 @@
             this.BtnLoadOrder.BorderColor = System.Drawing.Color.Gray;
             this.BtnLoadOrder.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnLoadOrder.ForeColor = System.Drawing.Color.Orange;
-            this.BtnLoadOrder.Location = new System.Drawing.Point(907, 260);
+            this.BtnLoadOrder.Location = new System.Drawing.Point(907, 309);
             this.BtnLoadOrder.Name = "BtnLoadOrder";
             this.BtnLoadOrder.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnLoadOrder.Size = new System.Drawing.Size(127, 40);
@@ -233,6 +241,58 @@
             this.BtnLoadOrder.Text = "Apply Order";
             this.BtnLoadOrder.UseVisualStyleBackColor = false;
             this.BtnLoadOrder.Click += new System.EventHandler(this.BtnLoadOrder_Click);
+            // 
+            // BtnReport
+            // 
+            this.BtnReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.BtnReport.BorderColor = System.Drawing.Color.Gray;
+            this.BtnReport.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnReport.ForeColor = System.Drawing.Color.Orange;
+            this.BtnReport.Location = new System.Drawing.Point(907, 260);
+            this.BtnReport.Name = "BtnReport";
+            this.BtnReport.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
+            this.BtnReport.Size = new System.Drawing.Size(127, 40);
+            this.BtnReport.TabIndex = 30;
+            this.BtnReport.Text = "Report";
+            this.BtnReport.UseVisualStyleBackColor = false;
+            this.BtnReport.Click += new System.EventHandler(this.BtnReport_Click);
+            // 
+            // popupMenu1
+            // 
+            this.popupMenu1.ParentBarItem = this.parentBarItem1;
+            this.popupMenu1.ThemeName = "Office2016Black";
+            // 
+            // parentBarItem1
+            // 
+            this.parentBarItem1.BarName = "parentBarItem1";
+            this.parentBarItem1.Items.AddRange(new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem[] {
+            this.BrItmClipboardReport,
+            this.BrItmPDFReport});
+            this.parentBarItem1.MetroColor = System.Drawing.Color.LightSkyBlue;
+            this.parentBarItem1.ShowToolTipInPopUp = false;
+            this.parentBarItem1.SizeToFit = true;
+            this.parentBarItem1.WrapLength = 20;
+            // 
+            // BrItmClipboardReport
+            // 
+            this.BrItmClipboardReport.BarName = "BrItmClipboardReport";
+            this.BrItmClipboardReport.ID = "Report to Clipboard";
+            this.BrItmClipboardReport.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmClipboardReport.Image")));
+            this.BrItmClipboardReport.ShowToolTipInPopUp = false;
+            this.BrItmClipboardReport.SizeToFit = true;
+            this.BrItmClipboardReport.Text = "Report to Clipboard";
+            this.BrItmClipboardReport.Click += new System.EventHandler(this.BrItmClipboardReport_Click);
+            // 
+            // BrItmPDFReport
+            // 
+            this.BrItmPDFReport.BarName = "BrItmPDFReport";
+            this.BrItmPDFReport.ID = "Report to PDF";
+            this.BrItmPDFReport.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmPDFReport.Image")));
+            this.BrItmPDFReport.ShowToolTipInPopUp = false;
+            this.BrItmPDFReport.SizeToFit = true;
+            this.BrItmPDFReport.Text = "Report to PDF";
+            this.BrItmPDFReport.Click += new System.EventHandler(this.BrItmPDFReport_Click);
             // 
             // InstanceDetailFrame
             // 
@@ -248,6 +308,7 @@
             this.Controls.Add(this.BtnBack);
             this.Controls.Add(this.ModsGrid);
             this.Controls.Add(this.BtnLoadOrder);
+            this.Controls.Add(this.BtnReport);
             this.Name = "InstanceDetailFrame";
             this.Size = new System.Drawing.Size(1042, 448);
             ((System.ComponentModel.ISupportInitialize)(this.ModsGrid)).EndInit();
@@ -272,5 +333,11 @@
         private Components.Controls.FlatButton BtnPlay;
         private Components.Controls.FlatButton BtnSettings;
         private Components.Controls.FlatButton BtnLoadOrder;
+        private Components.Controls.FlatButton BtnReport;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.PopupMenusManager popupMenusManager1;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.PopupMenu popupMenu1;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem parentBarItem1;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmClipboardReport;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmPDFReport;
     }
 }

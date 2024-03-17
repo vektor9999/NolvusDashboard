@@ -14,6 +14,7 @@ using Syncfusion.Windows.Forms.Tools;
 using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Core.Enums;
+using Vcc.Nolvus.Core.Misc;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Instance.Core;
 using Vcc.Nolvus.Dashboard.Core;

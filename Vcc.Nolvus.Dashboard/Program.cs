@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using System.Collections.Generic;
 using System.Net;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -19,6 +21,8 @@ using Vcc.Nolvus.Services.Lib;
 using Vcc.Nolvus.Services.Logger;
 using Vcc.Nolvus.Services.Game;
 using Vcc.Nolvus.Services.Files;
+using Vcc.Nolvus.Services.Report;
+using Vcc.Nolvus.Services.Checker;
 using Vcc.Nolvus.Instance.Services;
 using Vcc.Nolvus.Package.Services;
 using Vcc.Nolvus.Dashboard.Forms;
@@ -32,7 +36,7 @@ namespace Vcc.Nolvus.Dashboard
         /// </summary>
         [STAThread]
         static void Main()
-        {
+        {          
             ServiceSingleton.RegisterService<ILogService>(new LogService());
             ServiceSingleton.Logger.LineBreak();
             ServiceSingleton.Logger.Log("***Nolvus Dashboard Initialization***");
@@ -45,10 +49,12 @@ namespace Vcc.Nolvus.Dashboard
             ServiceSingleton.RegisterService<IFolderService>(new FolderService());            
             ServiceSingleton.RegisterService<IInstanceService>(new InstanceService());
             ServiceSingleton.RegisterService<IUpdaterService>(new UpdaterService());
-            ServiceSingleton.RegisterService<IPackageService>(new PackageService());
+            ServiceSingleton.RegisterService<IPackageService>(new PackageService());            
             ServiceSingleton.RegisterService<ILibService>(new LibService());
             ServiceSingleton.RegisterService<IGameService>(new GameService());
             ServiceSingleton.RegisterService<IFileService>(new FileService());
+            ServiceSingleton.RegisterService<IReportService>(new ReportService());
+            ServiceSingleton.RegisterService<ICheckerService>(new CheckerService());
 
             AppDomain.CurrentDomain.AssemblyResolve += Resolver;
             AppDomain.CurrentDomain.AssemblyLoad += Loader;

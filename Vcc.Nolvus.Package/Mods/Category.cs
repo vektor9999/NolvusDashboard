@@ -5,12 +5,13 @@ using System.Linq;
 using System.Threading;
 using System.IO;
 using System.Threading.Tasks;
+using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Events;
 using Vcc.Nolvus.Core.Services;
 
 namespace Vcc.Nolvus.Package.Mods
 {
-    public class Category : MOElement
+    public class Category : MOElement, ICategory
     {
         #region Fields
 

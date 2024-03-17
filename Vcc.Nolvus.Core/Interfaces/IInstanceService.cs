@@ -25,5 +25,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         void FinalizeInstance();
         string GetValueFromKey(string Key);
         bool WorkingOnInstance { get; }
+        void UnloadWorkingIntance();
     }
 }

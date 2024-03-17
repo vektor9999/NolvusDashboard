@@ -169,9 +169,14 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
             DrpDwnLstAntiAliasing.DataSource = AntiAliasing;
 
+            LblCPU.Text = ServiceSingleton.Globals.GetCPUInfo();
+            LblRAM.Text = ServiceSingleton.Globals.GetRamCount().ToString() + " GB";
+
+            var GPU = string.Join(Environment.NewLine, ServiceSingleton.Globals.GetVideoAdapters().ToArray());           
+
             if (!ServiceSingleton.Settings.ForceAA)
             {
-                LblGPUs.Text = string.Join(Environment.NewLine, ServiceSingleton.Globals.GetVideoAdapters().ToArray());
+                LblGPUs.Text = GPU;
 
                 if (!IsNvidiaRTX())
                 {
@@ -181,7 +186,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             }
             else
             {
-                LblGPUs.Text = "NOT LISTED (CHECK BYPASSED)";
+                LblGPUs.Text = GPU + " (CHECK BYPASSED)";
             }
             
             DrpDwnLstAntiAliasing.SelectedIndex = AntiAliasingIndex(AntiAliasing);

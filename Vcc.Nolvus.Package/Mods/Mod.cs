@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Enums;
+using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Package.Rules;
 using Vcc.Nolvus.Package.Conditions;
@@ -12,12 +13,12 @@ using System.Xml;
 
 namespace Vcc.Nolvus.Package.Mods
 {
-    public class Mod : MOElement
+    public class Mod : MOElement, IMod
     {
         #region Fields
         
         public List<InstallCondition> InstallConditions = new List<InstallCondition>();
-        public Category Category;
+        protected ICategory _Category;
         public Patcher Patcher;
         public List<Rule> Rules = new List<Rule>();
         public List<BsaUnPacking> Bsas = new List<BsaUnPacking>();
@@ -26,6 +27,8 @@ namespace Vcc.Nolvus.Package.Mods
         #endregion
 
         #region Properties              
+
+        public ICategory Category { get; set; }        
 
         public override string MoDirectoryName
         {
@@ -50,7 +53,7 @@ namespace Vcc.Nolvus.Package.Mods
             Action = ElementAction.None;
         }
 
-        #region Methods
+        #region Methods        
 
         public override void Load(XmlNode Node, List<InstallableElement> Elements)
         {

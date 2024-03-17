@@ -6,12 +6,13 @@ using System.Net;
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml;
+using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Package.Rules;
 
 namespace Vcc.Nolvus.Package.Mods
 {
-    public abstract class Software : InstallableElement
+    public abstract class Software : InstallableElement, ISoftware
     {
         public List<Rule> Rules = new List<Rule>();
 

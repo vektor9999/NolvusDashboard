@@ -18,6 +18,8 @@ namespace Vcc.Nolvus.Dashboard.Controls
             InitializeComponent();            
         }
 
+        public IDashboardFrame ContainerFrame { get; set; }
+
         public void LoadInstances(List<INolvusInstance> Instances)
         {
             int Top = 5;
@@ -25,12 +27,7 @@ namespace Vcc.Nolvus.Dashboard.Controls
                     
             foreach (INolvusInstance Instance in Instances)
             {
-                InstancePanel InstancePanel = new InstancePanel();
-
-                //InstancePane.OnInstanceUpdateClicked += InstancePane_OnInstanceUpdateClicked;
-                //InstancePane.OnInstanceView += InstancePane_OnInstanceView;
-                //InstancePane.OnInstanceDelete += InstancePane_OnInstanceDelete;
-                //InstancePane.OnInstanceReinstall += InstancePane_OnInstanceReinstall;
+                InstancePanel InstancePanel = new InstancePanel(this);                
 
                 InstancePanel.LoadInstance(Instance);
 
@@ -39,7 +36,7 @@ namespace Vcc.Nolvus.Dashboard.Controls
 
                 Top += 175;
 
-                this.Controls.Add(InstancePanel);
+                Controls.Add(InstancePanel);
             }            
         }                
     }

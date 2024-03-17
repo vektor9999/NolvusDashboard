@@ -7,13 +7,14 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Vcc.Nolvus.Core.Interfaces;
+using Vcc.Nolvus.Core.Misc;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Package.Rules;
 
 namespace Vcc.Nolvus.Package.Mods
 {
     public enum IniLevel { IniLow, IniMedium, IniHigh }
-    public class ModOrganizer : Software
+    public class ModOrganizer : Software, IModOrganizer
     {
         #region Constants
 
@@ -2312,7 +2313,12 @@ ccafdsse001-dwesanctuary.esm";
 
         #endregion
 
-        #region Methods
+        public static string SoftwareId
+        {
+            get { return "Mod Organizer 2"; }
+        }
+
+        #region Methods        
 
         private static void CreateModOrganizerIni(string InstallDir, string Profile, string GameDir, string DataDir)
         {
@@ -2519,7 +2525,62 @@ ccafdsse001-dwesanctuary.esm";
             await Tsk;
         }
 
-        #endregion
+        private string GetModListFile()
+        {
+            return Path.Combine(ServiceSingleton.Instances.WorkingInstance.InstallDir, "MODS", "profiles", ServiceSingleton.Instances.WorkingInstance.Name, "modlist.txt");
+        }
+
+        public async Task<List<ModObject>> GetMods(Action<string, int> Progress = null)
+        {
+            return await Task.Run(() =>
+            {                
+                var Mods = File.ReadAllLines(GetModListFile()).ToList();
+
+                Mods.RemoveAt(0);
+                Mods.Reverse();
+
+                var Category = string.Empty;
+                var Counter = 0;
+                var Result = new List<ModObject>();
+
+                foreach (var Line in Mods)
+                {
+                    var Selected = Line.Substring(0, 1);
+                    var Mod = Line.Substring(1);
+
+                    if (Mod.Contains("_separator"))
+                    {
+                        Category = Mod.Replace("_separator", string.Empty);
+                    }
+                    else
+                    {
+                        var ModObject = new ModObject {
+                            Selected = Selected == "+" || Selected == "*",
+                            Priority = Result.Count,
+                            Name = Mod,
+                            Category = Category,
+                            Version = "NA",
+                            StatusText = "OK"
+                        };
+                        
+                        var MetaIniFile = Path.Combine(ServiceSingleton.Instances.WorkingInstance.InstallDir, "MODS", "mods", Mod, "meta.ini");
+
+                        if (File.Exists(MetaIniFile))
+                        {
+                            ModObject.Version = ServiceSingleton.Settings.GetIniValue(MetaIniFile, "General", "version");
+                        }
+
+                        Result.Add(ModObject);
+                    }
+
+                    Progress("Loading Mod Organizer data file", System.Convert.ToInt16(Math.Round(((double)++Counter / Mods.Count * 100))));                    
+                }
+
+                return Result;
+            });
+        }
+
+        #endregion                       
     }
 }
 

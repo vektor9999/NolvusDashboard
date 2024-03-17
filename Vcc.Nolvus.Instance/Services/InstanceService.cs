@@ -263,6 +263,11 @@ namespace Vcc.Nolvus.Instance.Services
             WorkingInstance = null;
         }
 
+        public void UnloadWorkingIntance()
+        {
+            WorkingInstance = null;
+        }
+
         public bool Empty
         {
             get { return Instances.Count == 0; }

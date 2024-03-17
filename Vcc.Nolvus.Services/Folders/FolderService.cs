@@ -115,6 +115,11 @@ namespace Vcc.Nolvus.Services.Folders
             get { return ServiceSingleton.Settings.GetIniValue(PathSection, GamePath); }
         }        
 
+        public string ReportDirectory
+        {
+            get { return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "reports");}
+        }
+
         public FolderService()
         {            
             Directory.CreateDirectory(CacheDirectory);
@@ -122,7 +127,8 @@ namespace Vcc.Nolvus.Services.Folders
             Directory.CreateDirectory(ExtractDirectory);
             Directory.CreateDirectory(NexusCacheDirectory);
             Directory.CreateDirectory(WebCacheDirectory);
-            Directory.CreateDirectory(InstancesDirectory);                       
+            Directory.CreateDirectory(InstancesDirectory);
+            Directory.CreateDirectory(ReportDirectory);                      
         }        
     }
 }

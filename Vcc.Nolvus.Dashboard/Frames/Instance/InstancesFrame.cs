@@ -32,11 +32,30 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
             InitializeComponent();            
         }
 
+        public void LockButtons()
+        {
+            BtnDiscord.Enabled = false;
+            BtnDonate.Enabled = false;
+            BtnKeyBind.Enabled = false;
+            BtnNewInstance.Enabled = false;
+            BtnPatreon.Enabled = false;            
+        }
+
+        public void UnLockButtons()
+        {
+            BtnDiscord.Enabled = true;
+            BtnDonate.Enabled = true;
+            BtnKeyBind.Enabled = true;
+            BtnNewInstance.Enabled = true;
+            BtnPatreon.Enabled = true;
+        }
+
         protected override void OnLoad()
         {            
             ServiceSingleton.Dashboard.Title("Nolvus Dashboard");
             ServiceSingleton.Dashboard.Info("Manage your Nolvus instances");
 
+            InstancesPanel.ContainerFrame = this;
             InstancesPanel.LoadInstances(ServiceSingleton.Instances.InstanceList);
         }
 
