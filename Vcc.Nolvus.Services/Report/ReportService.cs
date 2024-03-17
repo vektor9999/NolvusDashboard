@@ -247,6 +247,17 @@ namespace Vcc.Nolvus.Services.Report
 
                 Result += Environment.NewLine;
 
+                if (Instance.Options.Nudity == "TRUE")
+                {
+                    Result += "Nudity : Yes";
+                }
+                else
+                {
+                    Result += "Nudity : No";
+                }
+
+                Result += Environment.NewLine;
+
                 Result += string.Format("Skin type : {0}", Instance.Options.SkinType);
 
                 Result += Environment.NewLine;
@@ -541,6 +552,15 @@ namespace Vcc.Nolvus.Services.Report
                 else
                 {
                     CurrentLine += DrawString("Fantasy mode : ", "No", Graphics, Report.PageSettings, CurrentLine);
+                }
+
+                if (Instance.Options.Nudity == "TRUE")
+                {
+                    CurrentLine += DrawString("Nudity : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
+                }
+                else
+                {
+                    CurrentLine += DrawString("Nudity : ", "No", Graphics, Report.PageSettings, CurrentLine);
                 }
 
                 CurrentLine += DrawString("Skin type : ", Instance.Options.SkinType, Graphics, Report.PageSettings, CurrentLine);
