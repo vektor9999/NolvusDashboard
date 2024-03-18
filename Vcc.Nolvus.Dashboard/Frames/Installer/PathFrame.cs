@@ -99,7 +99,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
         private void BtnContinue_Click(object sender, EventArgs e)
         {            
-            ServiceSingleton.Dashboard.LoadFrame<PerformanceFrame>();
+            ServiceSingleton.Dashboard.LoadFrameAsync<PerformanceFrame>();
         }
 
         private void BtnPrevious_Click(object sender, EventArgs e)

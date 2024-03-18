@@ -82,30 +82,77 @@ namespace Vcc.Nolvus.Package.Services
         {
             get
             {
-                return GetSoftware(ModOrganizer.SoftwareId) as IModOrganizer;
+                return Softwares.Where(x => x.Name == ModOrganizer.SoftwareId).FirstOrDefault() as IModOrganizer;
             }            
         }
+
+        private List<InstallableElement> ModsToInstall
+        {
+            get
+            {
+                return Elements.Where(x => x.IsInstallable() && (x is Mod || x is Software)).ToList();
+            }
+
+        }
+
+        private List<InstallableElement> CategoriesToInstall
+        {
+            get
+            {
+                return Elements.Where(x => x.IsInstallable() && x is Category).ToList();
+            }
+
+        }
+
+        private List<ISoftware> Softwares
+        {
+            get
+            {
+                return Elements.Where(x => x.IsInstallable() && x is Software).Cast<ISoftware>().ToList();
+            }
+        }
+
+        public List<IMOElement> InstallList
+        {
+            get
+            {
+                return Elements.Where(x => x.IsInstallable() && (x is MOElement) && (x as MOElement).Display).Cast<IMOElement>().ToList();
+            }
+
+        }        
+
+        public List<string> OptionalEsps
+        {
+            get
+            {
+                return Elements.Where(x => !x.IsInstallable() && x is Mod).Cast<Mod>().SelectMany(x => x.Esps).Select(x => x.FileName).ToList();
+            }
+            
+        }
+
+        public int ModsCount
+        {
+            get
+            {
+                return ModsToInstall.Count;
+            }
+        }
+
+        public double InstallProgression
+        {
+            get
+            {
+                return Math.Floor(((double)ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Count / ModsCount) * 100);
+            }
+        }
+
         #endregion
 
         public PackageService()
         {            
         }
 
-        #region Methods
-
-        public ISoftware RegisterSoftware(ISoftware Software)
-        {
-            _Softwares[Software.Name] = Software;
-
-            return GetSoftware(Software.Name);
-        }
-
-        public ISoftware GetSoftware(string Software)
-        {
-            object Result = null;
-            _Softwares.TryGetValue(Software, out Result);
-            return (ISoftware)Result;
-        }                      
+        #region Methods               
 
         private async Task<string> DownloadPackage(IInstallPackageDTO Package, bool Install, Action<string, int> Progress = null)
         {
@@ -198,7 +245,7 @@ namespace Vcc.Nolvus.Package.Services
 
                         Soft.Load(SoftNode, Elements);
 
-                        RegisterSoftware(Soft);
+                        //RegisterSoftware(Soft);
 
                         Progress(string.Format("Loading softwares for version {0}", Storage.SelectSingleNode(VersionKey).InnerText), System.Convert.ToInt16(Math.Round(((double)++Counter / Total * 100))));
                     }
@@ -310,43 +357,7 @@ namespace Vcc.Nolvus.Package.Services
             });
 
             await Tsk;            
-        }        
-
-        public List<InstallableElement> GetModsToInstall()
-        {
-            return Elements.Where(x => x.IsInstallable() && (x is Mod || x is Software)).ToList();            
-        }
-
-        public List<InstallableElement> GetCategoriesToInstall()
-        {
-            return Elements.Where(x => x.IsInstallable() && x is Category).ToList();
-        }
-
-        public List<IMod> GetInstallList()
-        {
-            return Elements.Where(x => x.IsInstallable() && (x is Mod) && (x as Mod).Display).Cast<IMod>().ToList();
-        }        
-
-        public List<string> GetOptionalEsps()
-        {
-            return Elements.Where(x => !x.IsInstallable() && x is Mod).Cast<Mod>().SelectMany(x => x.Esps).Select(x => x.FileName).ToList();
-        }
-
-        public int ModsCount
-        {
-            get
-            {
-                return GetModsToInstall().Count;
-            }
-        }                                              
-
-        public double InstallProgression
-        {
-            get
-            {
-                return Math.Floor(((double)ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Count / ModsCount) * 100);
-            }
-        }
+        }                
 
         private async Task AddModToQueue(InstallableElement Mod)
         {
@@ -400,14 +411,14 @@ namespace Vcc.Nolvus.Package.Services
 
                 QueueWatcher = new QueueWatcher(InstallingModsQueue);
 
-                foreach (var Category in GetCategoriesToInstall())
+                foreach (var Category in CategoriesToInstall)
                 {
                     await Category.Install(_ErrorHandler.Token);
                 }
 
-                Settings.OnStartInstalling();
+                Settings.OnStartInstalling();                
 
-                var Tasks = GetModsToInstall().Where(x => !ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Any(y => y == x.Name)).ToList().Select(async Mod =>
+                var Tasks = ModsToInstall.Where(x => !ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Any(y => y == x.Name)).ToList().Select(async Mod =>
                 {
                     await SemaphoreSlim.WaitAsync();
 
@@ -472,16 +483,17 @@ namespace Vcc.Nolvus.Package.Services
             }
         }        
 
-        public async Task<List<ModObject>> GetMods(Action<string, int> Progress = null)
+        public async Task<List<ModObject>> GetModsMetaData(Action<string, int> Progress = null)
         {
             return await Task.Run(() =>
             {                
                 var Counter = 0;
 
                 var Result = ServiceSingleton.Game.GamePluginAsObjects();
+                var InstallList = Elements.Where(x => x.IsInstallable() && (x is Mod) && (x as Mod).Display).Cast<IMod>().ToList();
 
                 Result.AddRange(
-                    GetInstallList().Select(x =>
+                    InstallList.Select(x =>
                     {
                         var Mod = new ModObject
                         {
@@ -494,7 +506,7 @@ namespace Vcc.Nolvus.Package.Services
                             StatusText = "OK"
                         };
 
-                        Progress("Loading mods from nolvus package", System.Convert.ToInt16(Math.Round(((double)++Counter / GetInstallList().Count * 100))));
+                        Progress("Loading mods from nolvus package", System.Convert.ToInt16(Math.Round(((double)++Counter / InstallList.Count * 100))));
 
                         return Mod;
 

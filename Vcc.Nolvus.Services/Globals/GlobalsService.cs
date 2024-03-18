@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Management;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -184,34 +185,41 @@ namespace Vcc.Nolvus.Services.Globals
             return Result;
         }
 
-        public string GetCPUInfo()
+        public async Task<string> GetCPUInfo()
         {
-            string Result = string.Empty;
-            using (ManagementObjectSearcher Win32Proc = new ManagementObjectSearcher("select * from Win32_Processor"))
+            return await Task.Run(() =>
             {
-                foreach (ManagementObject Obj in Win32Proc.Get())
-                {                    
-                    Result = Obj["Name"].ToString();
-                    break;                
-                }
-            };
+                string Result = string.Empty;
 
-            return Result;
+                using (ManagementObjectSearcher Win32Proc = new ManagementObjectSearcher("select * from Win32_Processor"))
+                {
+                    foreach (ManagementObject Obj in Win32Proc.Get())
+                    {
+                        Result = Obj["Name"].ToString();
+                        break;
+                    }
+                };
+
+                return Result;
+            });                     
         }
 
-        public int GetRamCount()
+        public async Task<string> GetRamCount()
         {
-            int Result = 0;
-
-            using (ManagementObjectSearcher Win32Proc = new ManagementObjectSearcher("SELECT * FROM Win32_OperatingSystem"))
+            return await Task.Run(() =>
             {
-                foreach (ManagementObject Obj in Win32Proc.Get())
-                {                    
-                    Result = System.Convert.ToInt32(Math.Ceiling(System.Convert.ToDouble(Obj["TotalVisibleMemorySize"]) / 1024 / 1024));
-                }
-            }
+                int Result = 0;
 
-            return Result;            
+                using (ManagementObjectSearcher Win32Proc = new ManagementObjectSearcher("SELECT * FROM Win32_OperatingSystem"))
+                {
+                    foreach (ManagementObject Obj in Win32Proc.Get())
+                    {
+                        Result = System.Convert.ToInt32(Math.Ceiling(System.Convert.ToDouble(Obj["TotalVisibleMemorySize"]) / 1024 / 1024));
+                    }
+                }
+
+                return Result.ToString();
+            });        
         }
     }
 }        

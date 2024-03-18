@@ -174,12 +174,12 @@ namespace Vcc.Nolvus.Dashboard.Controls
                         try
                         {
                             await ServiceSingleton.Report.GenerateReportToPdf(await ServiceSingleton.CheckerService.CheckModList(
-                                await ServiceSingleton.Packages.ModOrganizer2.GetMods((s, p) =>
+                                await ServiceSingleton.SoftwareProvider.ModOrganizer2.GetModsMetaData((s, p) =>
                                 {
                                     Dashboard.Status(string.Format("{0} ({1}%)", s, p));
                                     Dashboard.Progress(p);
                                 }),
-                                await ServiceSingleton.Packages.GetMods((s, p) =>
+                                await ServiceSingleton.Packages.GetModsMetaData((s, p) =>
                                 {
                                     Dashboard.Status(string.Format("{0} ({1}%)", s, p));
                                     Dashboard.Progress(p);
@@ -199,6 +199,8 @@ namespace Vcc.Nolvus.Dashboard.Controls
                             Dashboard.ProgressCompleted();
 
                             NolvusMessageBox.ShowMessage("Information", string.Format("PDF report has been generated in {0}", ServiceSingleton.Folders.ReportDirectory), MessageBoxType.Info);
+
+                            Process.Start(ServiceSingleton.Folders.ReportDirectory);
                         }
                         catch (Exception ex)
                         {

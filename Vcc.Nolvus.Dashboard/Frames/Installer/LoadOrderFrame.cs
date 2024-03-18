@@ -44,7 +44,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 try
                 {
                     var Instance = ServiceSingleton.Instances.WorkingInstance;
-                    var InstallList = ServiceSingleton.Packages.GetInstallList();
+                    var InstallList = ServiceSingleton.Packages.InstallList;
                     var Lines = ServiceSingleton.Game.GamePlugins;                    
 
                     string ModListFile = Path.Combine(Instance.InstallDir, "MODS", "profiles", Instance.Name, "modlist.txt");
@@ -99,7 +99,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
                     var Counter = 0;                    
                     
-                    var OptionalEsps = Package.GetOptionalEsps();
+                    var OptionalEsps = Package.OptionalEsps;
 
                     foreach (string Esp in Package.LoadOrder)
                     {

@@ -131,7 +131,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             return ServiceSingleton.Globals.GetVideoAdapters().Where(x => x.Contains("NVIDIA") && x.Contains("RTX")).FirstOrDefault() != null;
         }
 
-        protected override void OnLoad()
+        protected override async Task OnLoadAsync()
         {           
             var Instance = ServiceSingleton.Instances.WorkingInstance;            
 
@@ -169,8 +169,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
             DrpDwnLstAntiAliasing.DataSource = AntiAliasing;
 
-            LblCPU.Text = ServiceSingleton.Globals.GetCPUInfo();
-            LblRAM.Text = ServiceSingleton.Globals.GetRamCount().ToString() + " GB";
+            LblCPU.Text = await ServiceSingleton.Globals.GetCPUInfo();
+            LblRAM.Text = await ServiceSingleton.Globals.GetRamCount() + " GB";
 
             var GPU = string.Join(Environment.NewLine, ServiceSingleton.Globals.GetVideoAdapters().ToArray());           
 

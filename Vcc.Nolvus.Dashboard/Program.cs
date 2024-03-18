@@ -43,16 +43,18 @@ namespace Vcc.Nolvus.Dashboard
             ServiceSingleton.Logger.Log("Starting new session : " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString());
             ServiceSingleton.Logger.Log("Architecture : " + (Environment.Is64BitProcess ? "x64" : "x86"));
 
-            
+            var PackageService = new PackageService();
+
             ServiceSingleton.RegisterService<IGlobalsService>(new GlobalsService());
             ServiceSingleton.RegisterService<ISettingsService>(new SettingsService());
             ServiceSingleton.RegisterService<IFolderService>(new FolderService());            
             ServiceSingleton.RegisterService<IInstanceService>(new InstanceService());
             ServiceSingleton.RegisterService<IUpdaterService>(new UpdaterService());
-            ServiceSingleton.RegisterService<IPackageService>(new PackageService());            
+            ServiceSingleton.RegisterService<IPackageService>(PackageService);            
             ServiceSingleton.RegisterService<ILibService>(new LibService());
             ServiceSingleton.RegisterService<IGameService>(new GameService());
             ServiceSingleton.RegisterService<IFileService>(new FileService());
+            ServiceSingleton.RegisterService<ISoftwareProvider>(PackageService);
             ServiceSingleton.RegisterService<IReportService>(new ReportService());
             ServiceSingleton.RegisterService<ICheckerService>(new CheckerService());
 

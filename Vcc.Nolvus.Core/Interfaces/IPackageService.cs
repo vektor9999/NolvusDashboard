@@ -16,8 +16,8 @@ namespace Vcc.Nolvus.Core.Interfaces
         Task Merge(IEnumerable<IInstallPackageDTO> Packages, Action<string, int> Progress = null);
         Task InstallModList(ModInstallSettings Settings = null);
         int ModsCount { get; }
-        List<IMod> GetInstallList();        
-        List<string> GetOptionalEsps();
+        List<IMOElement> InstallList { get; }
+        List<string> OptionalEsps { get; }
         List<string> LoadOrder { get; }
         List<IInstallableElement> InstallingModsQueue { get; }
         List<ModProgress> ProgressQueue { get; }

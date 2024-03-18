@@ -18,7 +18,7 @@ namespace Vcc.Nolvus.Services.Report
     {
         public Task<string> GenerateReportToClipBoard(ModObjectList ModObjects, Action<string, int> Progress)
         {
-            return Task.Run(() =>
+            return Task.Run(async () =>
             {                
                 var Instance = ServiceSingleton.Instances.WorkingInstance;
 
@@ -30,11 +30,11 @@ namespace Vcc.Nolvus.Services.Report
                 Result += Environment.NewLine;
                 Result += Environment.NewLine;
 
-                Result += "CPU : " + ServiceSingleton.Globals.GetCPUInfo();
+                Result += "CPU : " + await ServiceSingleton.Globals.GetCPUInfo();
                 Result += Environment.NewLine;
                 Result += "GPU : " + string.Join(Environment.NewLine, ServiceSingleton.Globals.GetVideoAdapters().ToArray());
                 Result += Environment.NewLine;
-                Result += "RAM : " + ServiceSingleton.Globals.GetRamCount() + " GB";
+                Result += "RAM : " + await ServiceSingleton.Globals.GetRamCount() + " GB";
                 Result += Environment.NewLine;
                 Result += Environment.NewLine;
 
@@ -345,7 +345,7 @@ namespace Vcc.Nolvus.Services.Report
 
         public Task<PdfDocument> GenerateReportToPdf(ModObjectList ModObjects, Image Image, Action<string, int> Progress)
         {
-            return Task.Run(() =>
+            return Task.Run(async () =>
             {                
                 var Instance = ServiceSingleton.Instances.WorkingInstance;
 
@@ -381,9 +381,9 @@ namespace Vcc.Nolvus.Services.Report
 
                 CurrentLine += DrawHeader("HARDWARE CONFIGURATION", Graphics, Report.PageSettings, CurrentLine);                
 
-                CurrentLine += DrawString("CPU : ", ServiceSingleton.Globals.GetCPUInfo(), Graphics, Report.PageSettings, CurrentLine);
+                CurrentLine += DrawString("CPU : ", await ServiceSingleton.Globals.GetCPUInfo(), Graphics, Report.PageSettings, CurrentLine);
                 CurrentLine += DrawString("GPU : ", string.Join(Environment.NewLine, ServiceSingleton.Globals.GetVideoAdapters().ToArray()), Graphics, Report.PageSettings, CurrentLine);
-                CurrentLine += DrawString("RAM : ", string.Format("{0} GB", ServiceSingleton.Globals.GetRamCount()), Graphics, Report.PageSettings, CurrentLine);
+                CurrentLine += DrawString("RAM : ", string.Format("{0} GB", await ServiceSingleton.Globals.GetRamCount()), Graphics, Report.PageSettings, CurrentLine);
 
                 #endregion
 
@@ -625,7 +625,7 @@ namespace Vcc.Nolvus.Services.Report
 
                 #region RemovedMods
 
-                if (AddedMods > 0)
+                if (RemovedMods > 0)
                 {
                     Graphics = PageBreak(Report, ref CurrentLine).Graphics;
 
@@ -650,7 +650,7 @@ namespace Vcc.Nolvus.Services.Report
 
                 #region Version Mismatch
 
-                if (AddedMods > 0)
+                if (VersionMismatch > 0)
                 {
                     Graphics = PageBreak(Report, ref CurrentLine).Graphics;
 

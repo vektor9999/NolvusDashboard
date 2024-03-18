@@ -169,12 +169,12 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                         ServiceSingleton.Dashboard.Status("Loading mods...");
 
                         ModListStatus = await ServiceSingleton.CheckerService.CheckModList(                            
-                            await ServiceSingleton.Packages.ModOrganizer2.GetMods((s, p) =>
+                            await ServiceSingleton.SoftwareProvider.ModOrganizer2.GetModsMetaData((s, p) =>
                             {
                                 ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
                                 ServiceSingleton.Dashboard.Progress(p);
                             }),
-                            await ServiceSingleton.Packages.GetMods((s, p) =>
+                            await ServiceSingleton.Packages.GetModsMetaData((s, p) =>
                             {
                                 ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
                                 ServiceSingleton.Dashboard.Progress(p);
@@ -375,6 +375,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                     ServiceSingleton.Dashboard.ProgressCompleted();
 
                     NolvusMessageBox.ShowMessage("Information", string.Format("PDF report has been generated in {0}", ServiceSingleton.Folders.ReportDirectory), MessageBoxType.Info);
+
+                    Process.Start(ServiceSingleton.Folders.ReportDirectory);
                 }
                 catch (Exception ex)
                 {

@@ -112,6 +112,14 @@ namespace Vcc.Nolvus.Core.Services
             }
         }
 
+        public static ISoftwareProvider SoftwareProvider
+        {
+            get
+            {
+                return ServiceSingleton.GetService<ISoftwareProvider>();
+            }
+        }
+
         public static IReportService Report
         {
             get
