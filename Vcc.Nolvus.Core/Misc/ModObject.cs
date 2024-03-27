@@ -78,7 +78,7 @@ namespace Vcc.Nolvus.Core.Misc
     public class ModObjectList
     {
         private List<ModObject> _List = new List<ModObject>();
-
+        public string Profile { get; set; }
         public int AddedModsCount
         {
             get { return _List.Where(x => x.Status == ModObjectStatus.CustomInstalled).ToList().Count; }

@@ -47,7 +47,7 @@ namespace Vcc.Nolvus.Services.Report
                 Result += Environment.NewLine;
                 Result += Environment.NewLine;
 
-                Result += string.Format("Name : {0}", Instance.Name);
+                Result += string.Format("Name : {0}, selected profile : {1}", Instance.Name, ModObjects.Profile);
                 Result += Environment.NewLine;
                 Result += string.Format("Version : {0}", Instance.Version);
                 Result += Environment.NewLine;
@@ -395,7 +395,7 @@ namespace Vcc.Nolvus.Services.Report
 
                 CurrentLine += DrawHeader("INSTANCE CONFIGURATION", Graphics, Report.PageSettings, CurrentLine);
 
-                CurrentLine += DrawString("Name : ", Instance.Name, Graphics, Report.PageSettings, CurrentLine);
+                CurrentLine += DrawString("Name : ", string.Format("{0}, selected profile : {1}", Instance.Name, ModObjects.Profile != null? ModObjects.Profile : "Default"), Graphics, Report.PageSettings, CurrentLine);
 
                 CurrentLine += DrawString("Version : ", Instance.Version, Graphics, Report.PageSettings, CurrentLine);
 

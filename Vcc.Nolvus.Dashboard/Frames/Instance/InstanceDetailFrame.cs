@@ -33,6 +33,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
     public partial class InstanceDetailFrame : DashboardFrame
     {
         private ModObjectList ModListStatus = new ModObjectList();
+        private string _CurrentProfile;
 
         public InstanceDetailFrame()
         {
@@ -66,6 +67,14 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
         }
 
+        private string SelectedProfile
+        {
+            get
+            {
+                return DrpDwnLstProfiles.SelectedValue.ToString();
+            }
+        }
+
         protected override async Task OnLoadedAsync()
         {
             try
@@ -75,23 +84,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                 LblHeader.Text = Instance.Name + " v" + Instance.Version;
                 ServiceSingleton.Dashboard.Info("Instance mods for " + Instance.Name + " v" + Instance.Version);
 
-                LoadGrids(await LoadModStatus());
-
-                if (ModListStatus.HasMods)
-                {
-                    if (ModListStatus.AddedModsCount > 0 || ModListStatus.RemovedModsCount > 0)
-                    {
-                        PnlHeader.BackColor = Color.FromArgb(255, 0, 0);
-                        LblHeader.Text += " - Errors Detected";
-                    }
-                    else if (ModListStatus.VersionMismatchCount > 0)
-                    {
-                        PnlHeader.BackColor = Color.FromArgb(255, 128, 0);
-                        LblHeader.Text += " - Warning Detected";
-                    }
-                }
-
-                
+                DrpDwnLstProfiles.Visible = false;
+                DrpDwnLstProfiles.DataSource = ServiceSingleton.Packages.ModOrganizer2.GetProfiles();
+                DrpDwnLstProfiles.SelectedIndex = 0;                
             }
             catch(Exception ex)
             {
@@ -169,7 +164,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                         ServiceSingleton.Dashboard.Status("Loading mods...");
 
                         ModListStatus = await ServiceSingleton.CheckerService.CheckModList(                            
-                            await ServiceSingleton.SoftwareProvider.ModOrganizer2.GetModsMetaData((s, p) =>
+                            await ServiceSingleton.SoftwareProvider.ModOrganizer2.GetModsMetaData(SelectedProfile, (s, p) =>
                             {
                                 ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
                                 ServiceSingleton.Dashboard.Progress(p);
@@ -183,7 +178,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                             {
                                 ServiceSingleton.Dashboard.Status(s);
                             }
-                        );                                                                                             
+                        );
+
+                        ModListStatus.Profile = SelectedProfile;
 
                         return ModListStatus;
                     }
@@ -388,6 +385,32 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
             }
             finally
             {                                
+            }
+        }
+
+        private async void DrpDwnLstProfiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_CurrentProfile != SelectedProfile)
+            {
+                _CurrentProfile = SelectedProfile;
+
+                LoadGrids(await LoadModStatus());
+
+                if (ModListStatus.HasMods)
+                {
+                    if (ModListStatus.AddedModsCount > 0 || ModListStatus.RemovedModsCount > 0)
+                    {
+                        PnlHeader.BackColor = Color.FromArgb(255, 0, 0);
+                        LblHeader.Text += " - Errors Detected";
+                    }
+                    else if (ModListStatus.VersionMismatchCount > 0)
+                    {
+                        PnlHeader.BackColor = Color.FromArgb(255, 128, 0);
+                        LblHeader.Text += " - Warning Detected";
+                    }
+                }
+
+                DrpDwnLstProfiles.Visible = true;
             }
         }
     }

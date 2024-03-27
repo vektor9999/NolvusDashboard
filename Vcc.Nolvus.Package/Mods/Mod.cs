@@ -174,7 +174,7 @@ namespace Vcc.Nolvus.Package.Mods
         }
         protected override void CreateElementIni()
         {
-            if (this.Display)
+            if (Display)
             {
                 File.WriteAllText(Path.Combine(MoDirectoryFullName, "meta.ini"), string.Format(MetaIni, "0", Version, GetInstallFileName().Replace("\\", "/"), "0"));
             }            
@@ -265,7 +265,7 @@ namespace Vcc.Nolvus.Package.Mods
                         ServiceSingleton.Logger.Log(string.Format("Unpacking mod {0}", Name));
                         var Counter = 0;
 
-                        foreach (BsaUnPacking BSA in this.Bsas)
+                        foreach (BsaUnPacking BSA in Bsas)
                         {
                             await BSA.UnPack(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir));
 
@@ -333,7 +333,12 @@ namespace Vcc.Nolvus.Package.Mods
                     if (Patcher != null)
                     {
                         ServiceSingleton.Logger.Log(string.Format("Patching mod {0}", Name));
-                        await Patcher.PatchFiles(MoDirectoryFullName, ServiceSingleton.Instances.WorkingInstance.StockGame, DownloadingProgress, ExtractingProgress, PatchingProgress);
+
+                        await Patcher.PatchFiles(MoDirectoryFullName, 
+                            ServiceSingleton.Instances.WorkingInstance.StockGame, 
+                            DownloadingProgress, 
+                            ExtractingProgress, 
+                            PatchingProgress);
                     }                                        
                 }
                 catch (Exception ex)

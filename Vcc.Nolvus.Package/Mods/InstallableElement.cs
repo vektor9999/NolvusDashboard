@@ -67,12 +67,12 @@ namespace Vcc.Nolvus.Package.Mods
             {
                 if (_p == null)
                 {
-                    _p = new ModProgress();
-
-                    _p.Name = Name + " by " + Author + " (v " + Version + ")";
-                    _p.Status = "Initializing";
-                    _p.Mbs = 0;
-                    _p.Image = FormatImage();
+                    _p = new ModProgress() {
+                        Name = Name + " by " + Author + " (v " + Version + ")",
+                        Status = "Initializing",
+                        Mbs = 0,
+                        Image = FormatImage()
+                    };                   
                 }
 
                 return _p;

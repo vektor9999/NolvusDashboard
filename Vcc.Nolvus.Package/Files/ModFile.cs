@@ -162,7 +162,7 @@ namespace Vcc.Nolvus.Package.Files
             try
             {
                 ServiceSingleton.Logger.Log(string.Format("Downloading file {0}", FileName));
-                await ServiceSingleton.Files.DownloadFile(Link, Path.Combine(ServiceSingleton.Folders.DownloadDirectory, this.FileName), OnProgress);
+                await ServiceSingleton.Files.DownloadFile(Link, Path.Combine(ServiceSingleton.Folders.DownloadDirectory, FileName), OnProgress);
             }
             catch (Exception ex)
             {                

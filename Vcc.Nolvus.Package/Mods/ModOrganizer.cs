@@ -2530,11 +2530,12 @@ ccafdsse001-dwesanctuary.esm";
             return Path.Combine(ServiceSingleton.Instances.WorkingInstance.InstallDir, "MODS", "profiles", ServiceSingleton.Instances.WorkingInstance.Name, "modlist.txt");
         }
 
-        public async Task<List<ModObject>> GetModsMetaData(Action<string, int> Progress = null)
+        private async Task<List<ModObject>> DoGetModsMetaData(string Profile, Action<string, int> Progress = null)
         {
             return await Task.Run(() =>
-            {                
-                var Mods = File.ReadAllLines(GetModListFile()).ToList();
+            {
+                var ProfilePath = Path.Combine(ServiceSingleton.Instances.WorkingInstance.InstallDir, "MODS", "profiles", Profile, "modlist.txt");
+                var Mods = File.ReadAllLines(ProfilePath).ToList();
 
                 Mods.RemoveAt(0);
                 Mods.Reverse();
@@ -2554,7 +2555,8 @@ ccafdsse001-dwesanctuary.esm";
                     }
                     else
                     {
-                        var ModObject = new ModObject {
+                        var ModObject = new ModObject
+                        {
                             Selected = Selected == "+" || Selected == "*",
                             Priority = Result.Count,
                             Name = Mod,
@@ -2562,7 +2564,7 @@ ccafdsse001-dwesanctuary.esm";
                             Version = "NA",
                             StatusText = "OK"
                         };
-                        
+
                         var MetaIniFile = Path.Combine(ServiceSingleton.Instances.WorkingInstance.InstallDir, "MODS", "mods", Mod, "meta.ini");
 
                         if (File.Exists(MetaIniFile))
@@ -2573,11 +2575,28 @@ ccafdsse001-dwesanctuary.esm";
                         Result.Add(ModObject);
                     }
 
-                    Progress("Loading Mod Organizer data file", System.Convert.ToInt16(Math.Round(((double)++Counter / Mods.Count * 100))));                    
+                    Progress("Loading Mod Organizer data file", System.Convert.ToInt16(Math.Round(((double)++Counter / Mods.Count * 100))));
                 }
 
                 return Result;
             });
+        }
+
+        public List<string> GetProfiles()
+        {
+            return new DirectoryInfo(Path.Combine(ServiceSingleton.Instances.WorkingInstance.InstallDir, "MODS", "profiles")).GetDirectories().Where(x => x.GetFiles().Any(y => y.Name == "modlist.txt")).Select(d => {
+                return d.Name;
+            }).ToList();                                        
+        }
+
+        public async Task<List<ModObject>> GetModsMetaData(Action<string, int> Progress = null)
+        {
+            return await DoGetModsMetaData(ServiceSingleton.Instances.WorkingInstance.Name, Progress);
+        }
+
+        public async Task<List<ModObject>> GetModsMetaData(string Profile, Action<string, int> Progress = null)
+        {
+            return await DoGetModsMetaData(Profile, Progress);
         }
 
         #endregion                       

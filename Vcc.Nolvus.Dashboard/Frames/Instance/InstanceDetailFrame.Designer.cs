@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn6 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn7 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn8 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn9 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn10 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn1 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn2 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn3 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn4 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn5 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstanceDetailFrame));
             this.ModsGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.BtnBack = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.PnlHeader = new System.Windows.Forms.Panel();
+            this.DrpDwnLstProfiles = new Syncfusion.WinForms.ListView.SfComboBox();
             this.LblHeader = new System.Windows.Forms.Label();
             this.PicBox = new System.Windows.Forms.PictureBox();
             this.PicBoxLoading = new System.Windows.Forms.PictureBox();
@@ -54,6 +55,7 @@
             this.BrItmPDFReport = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             ((System.ComponentModel.ISupportInitialize)(this.ModsGrid)).BeginInit();
             this.PnlHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstProfiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxLoading)).BeginInit();
             this.SuspendLayout();
@@ -66,30 +68,30 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ModsGrid.AutoGenerateColumns = false;
-            gridTextColumn6.AllowResizing = true;
-            gridTextColumn6.HeaderText = "Priority";
-            gridTextColumn6.MappingName = "Priority";
-            gridTextColumn6.Width = 75D;
-            gridTextColumn7.AllowResizing = true;
-            gridTextColumn7.HeaderText = "Mod";
-            gridTextColumn7.MappingName = "Name";
-            gridTextColumn7.Width = 400D;
-            gridTextColumn8.AllowResizing = true;
-            gridTextColumn8.HeaderText = "Version";
-            gridTextColumn8.MappingName = "Version";
-            gridTextColumn9.AllowResizing = true;
-            gridTextColumn9.HeaderText = "Category";
-            gridTextColumn9.MappingName = "Category";
-            gridTextColumn9.Visible = false;
-            gridTextColumn10.AllowResizing = true;
-            gridTextColumn10.HeaderText = "Status";
-            gridTextColumn10.MappingName = "StatusText";
-            gridTextColumn10.Width = 200D;
-            this.ModsGrid.Columns.Add(gridTextColumn6);
-            this.ModsGrid.Columns.Add(gridTextColumn7);
-            this.ModsGrid.Columns.Add(gridTextColumn8);
-            this.ModsGrid.Columns.Add(gridTextColumn9);
-            this.ModsGrid.Columns.Add(gridTextColumn10);
+            gridTextColumn1.AllowResizing = true;
+            gridTextColumn1.HeaderText = "Priority";
+            gridTextColumn1.MappingName = "Priority";
+            gridTextColumn1.Width = 75D;
+            gridTextColumn2.AllowResizing = true;
+            gridTextColumn2.HeaderText = "Mod";
+            gridTextColumn2.MappingName = "Name";
+            gridTextColumn2.Width = 400D;
+            gridTextColumn3.AllowResizing = true;
+            gridTextColumn3.HeaderText = "Version";
+            gridTextColumn3.MappingName = "Version";
+            gridTextColumn4.AllowResizing = true;
+            gridTextColumn4.HeaderText = "Category";
+            gridTextColumn4.MappingName = "Category";
+            gridTextColumn4.Visible = false;
+            gridTextColumn5.AllowResizing = true;
+            gridTextColumn5.HeaderText = "Status";
+            gridTextColumn5.MappingName = "StatusText";
+            gridTextColumn5.Width = 200D;
+            this.ModsGrid.Columns.Add(gridTextColumn1);
+            this.ModsGrid.Columns.Add(gridTextColumn2);
+            this.ModsGrid.Columns.Add(gridTextColumn3);
+            this.ModsGrid.Columns.Add(gridTextColumn4);
+            this.ModsGrid.Columns.Add(gridTextColumn5);
             this.ModsGrid.Location = new System.Drawing.Point(7, 76);
             this.ModsGrid.Name = "ModsGrid";
             this.ModsGrid.Size = new System.Drawing.Size(889, 347);
@@ -119,6 +121,7 @@
             this.PnlHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.PnlHeader.Controls.Add(this.DrpDwnLstProfiles);
             this.PnlHeader.Controls.Add(this.LblHeader);
             this.PnlHeader.Controls.Add(this.PicBox);
             this.PnlHeader.Location = new System.Drawing.Point(7, 5);
@@ -126,15 +129,29 @@
             this.PnlHeader.Size = new System.Drawing.Size(1027, 45);
             this.PnlHeader.TabIndex = 21;
             // 
+            // DrpDwnLstProfiles
+            // 
+            this.DrpDwnLstProfiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DrpDwnLstProfiles.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.DrpDwnLstProfiles.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
+            this.DrpDwnLstProfiles.Location = new System.Drawing.Point(821, 8);
+            this.DrpDwnLstProfiles.Name = "DrpDwnLstProfiles";
+            this.DrpDwnLstProfiles.Size = new System.Drawing.Size(192, 28);
+            this.DrpDwnLstProfiles.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.DrpDwnLstProfiles.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.DrpDwnLstProfiles.TabIndex = 21;
+            this.DrpDwnLstProfiles.ThemeName = "Office2016Black";
+            this.DrpDwnLstProfiles.SelectedIndexChanged += new System.EventHandler(this.DrpDwnLstProfiles_SelectedIndexChanged);
+            // 
             // LblHeader
             // 
             this.LblHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LblHeader.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblHeader.ForeColor = System.Drawing.Color.White;
-            this.LblHeader.Location = new System.Drawing.Point(44, 5);
+            this.LblHeader.Location = new System.Drawing.Point(44, 7);
             this.LblHeader.Name = "LblHeader";
-            this.LblHeader.Size = new System.Drawing.Size(976, 32);
+            this.LblHeader.Size = new System.Drawing.Size(771, 32);
             this.LblHeader.TabIndex = 1;
             this.LblHeader.Text = "Instance";
             this.LblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -314,6 +331,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ModsGrid)).EndInit();
             this.PnlHeader.ResumeLayout(false);
             this.PnlHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstProfiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxLoading)).EndInit();
             this.ResumeLayout(false);
@@ -339,5 +357,6 @@
         private Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem parentBarItem1;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmClipboardReport;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmPDFReport;
+        private Syncfusion.WinForms.ListView.SfComboBox DrpDwnLstProfiles;
     }
 }

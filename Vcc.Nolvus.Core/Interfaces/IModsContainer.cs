@@ -9,6 +9,6 @@ namespace Vcc.Nolvus.Core.Interfaces
 {
     public interface IModsContainer
     {
-        Task<List<ModObject>> GetModsMetaData(Action<string, int> Progress = null);
+        Task<List<ModObject>> GetModsMetaData(Action<string, int> Progress = null);        
     }
 }

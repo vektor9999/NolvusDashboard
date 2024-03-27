@@ -243,9 +243,7 @@ namespace Vcc.Nolvus.Package.Services
                     {
                         Software Soft = Activator.CreateInstance(Type.GetType("Vcc.Nolvus.Package.Mods." + SoftNode["Type"].InnerText)) as Software;
 
-                        Soft.Load(SoftNode, Elements);
-
-                        //RegisterSoftware(Soft);
+                        Soft.Load(SoftNode, Elements);                        
 
                         Progress(string.Format("Loading softwares for version {0}", Storage.SelectSingleNode(VersionKey).InnerText), System.Convert.ToInt16(Math.Round(((double)++Counter / Total * 100))));
                     }
@@ -405,9 +403,10 @@ namespace Vcc.Nolvus.Package.Services
                 SemaphoreSlim = new SemaphoreSlim(ServiceSingleton.Settings.ProcessCount);
                 SemaphoreSlimBeforeDownload = new SemaphoreSlim(1);
 
-                _ErrorHandler = new ErrorHandler(ServiceSingleton.Settings.ErrorsThreshold);
-                _ErrorHandler.CancelTasks = new TaskCompletionSource<object>();
-                _ErrorHandler.CancelTokenSource = new CancellationTokenSource();
+                _ErrorHandler = new ErrorHandler(ServiceSingleton.Settings.ErrorsThreshold) {
+                    CancelTasks = new TaskCompletionSource<object>(),
+                    CancelTokenSource = new CancellationTokenSource()
+                };               
 
                 QueueWatcher = new QueueWatcher(InstallingModsQueue);
 
