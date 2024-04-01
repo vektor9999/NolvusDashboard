@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vcc.Nolvus.Core.Misc
 {
-    public enum ModObjectStatus { OK, NotInstalled, Error, VersionMisMatch, CustomInstalled, InstalledIniMissing }
+    public enum ModObjectStatus { OK, NotInstalled, Error, VersionMisMatch, CustomInstalled, InstalledIniMissing, MetaIniError }
 
     internal class NameComparer : EqualityComparer<ModObject>
     {
@@ -94,6 +94,16 @@ namespace Vcc.Nolvus.Core.Misc
             get { return _List.Where(x => x.Status == ModObjectStatus.VersionMisMatch).ToList().Count; }
         }
 
+        public int IniParsingErrorCount
+        {
+            get { return _List.Where(x => x.Status == ModObjectStatus.MetaIniError).ToList().Count; }
+        }
+
+        public int InstalledIniMissingCount
+        {
+            get { return _List.Where(x => x.Status == ModObjectStatus.InstalledIniMissing).ToList().Count; }
+        }
+
         public List<ModObject> AddedMods
         {
             get { return _List.Where(x => x.Status == ModObjectStatus.CustomInstalled).ToList(); }
@@ -107,6 +117,16 @@ namespace Vcc.Nolvus.Core.Misc
         public List<ModObject> VersionMismatchMods
         {
             get { return _List.Where(x => x.Status == ModObjectStatus.VersionMisMatch).ToList(); }
+        }
+
+        public List<ModObject> IniParsingErrorMods
+        {
+            get { return _List.Where(x => x.Status == ModObjectStatus.MetaIniError).ToList(); }
+        }
+
+        public List<ModObject> InstalledIniMissingMods
+        {
+            get { return _List.Where(x => x.Status == ModObjectStatus.InstalledIniMissing).ToList(); }
         }
 
         public bool HasMods
@@ -139,8 +159,12 @@ namespace Vcc.Nolvus.Core.Misc
                 {
                     if (Mo2Mod.Version != NolvusMod.Version)
                     {
-                        Mo2Mod.Status = ModObjectStatus.VersionMisMatch;
-                        Mo2Mod.StatusText = string.Format("Expected version : {0}", NolvusMod.Version);
+                        if (Mo2Mod.Status != ModObjectStatus.MetaIniError && Mo2Mod.Status != ModObjectStatus.InstalledIniMissing)
+                        {
+                            Mo2Mod.Status = ModObjectStatus.VersionMisMatch;
+                            Mo2Mod.StatusText = string.Format("Expected version : {0}", NolvusMod.Version);
+                        }
+                        
                     }
                 }
 

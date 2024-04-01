@@ -68,7 +68,6 @@
             // 
             // ContentPanel
             // 
-            this.ContentPanel.BackgroundImage = global::Vcc.Nolvus.Dashboard.Properties.Resources.cog_loader_alpha;
             this.ContentPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContentPanel.Location = new System.Drawing.Point(2, 45);

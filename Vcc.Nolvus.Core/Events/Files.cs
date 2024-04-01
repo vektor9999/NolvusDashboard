@@ -4,28 +4,29 @@ using System.Linq;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using ZetaLongPaths;
 
 namespace Vcc.Nolvus.Core.Events
 {
     public static class FileInfoExtension
     {
-        public static void CopyTo(this FileInfo file, FileInfo destination, Action<string, int> progressCallback)
+        public static void CopyTo(this ZlpFileInfo File, ZlpFileInfo Destination, Action<string, int> progressCallback)
         {
             const int bufferSize = 1024 * 1024;
             byte[] buffer = new byte[bufferSize], buffer2 = new byte[bufferSize];
             bool swap = false;
             int progress = 0, reportedProgress = 0, read = 0;
-            long len = file.Length;
+            long len = File.Length;
             float flen = len;
             Task writer = null;
-            using (var source = file.OpenRead())
-            using (var dest = destination.OpenWrite())
+            using (var source = File.OpenRead())
+            using (var dest = Destination.OpenWrite())
             {
                 dest.SetLength(source.Length);
                 for (long size = 0; size < len; size += read)
                 {
                     if ((progress = ((int)((size / flen) * 100))) != reportedProgress)
-                        progressCallback(file.Name, reportedProgress = progress);
+                        progressCallback(File.Name, reportedProgress = progress);
                     read = source.Read(swap ? buffer : buffer2, 0, bufferSize);
                     writer?.Wait();
                     writer = dest.WriteAsync(swap ? buffer : buffer2, 0, read);

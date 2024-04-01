@@ -217,5 +217,6 @@ namespace Vcc.Nolvus.Core.Events
         public bool HasError { get; set; }
         public double Mbs { get; set; }        
         public string Action { get; set; }
+        public int Index { get; set; }
     }    
 }

@@ -19,6 +19,8 @@ namespace Vcc.Nolvus.Services.Settings
         public const string MiscSection = "Misc";
         public const string ForceAntiAliasing = "ForceAA";
         public const string Interval = "RefreshInterval";
+        public const string Browser = "Browser";
+        public const string LogSeverity = "LogSeverity";
 
         public void StoreIniValue(string Section, string Parameter, string Value)
         {
@@ -154,6 +156,23 @@ namespace Vcc.Nolvus.Services.Settings
                 catch
                 {
                     return 50;
+                }
+            }
+        }
+
+        public string BrowserLogSeverity
+        {
+            get
+            {
+                try
+                {
+                    var l = GetIniValue(Browser, LogSeverity);
+
+                    return l == null ? "Error" : l;
+                }
+                catch
+                {
+                    return "Error";
                 }
             }
         }

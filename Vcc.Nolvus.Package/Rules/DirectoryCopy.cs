@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Services;
 using System.Xml;
+using ZetaLongPaths;
 
 namespace Vcc.Nolvus.Package.Rules
 {
@@ -33,20 +34,20 @@ namespace Vcc.Nolvus.Package.Rules
         {
             var Rules = new List<Rule>();
 
-            if (this.CanExecute(GamePath, ModDir))
+            if (CanExecute(GamePath, ModDir))
             {
-                foreach (var File in ServiceSingleton.Files.GetFiles(Path.Combine(ExtactDir, this.Source)))
+                foreach (var File in ServiceSingleton.Files.GetFiles(Path.Combine(ExtactDir, Source)))
                 {
-                    var SourceDir = File.FullName.Replace(ExtactDir, string.Empty).Substring(1);
-                    var DestDirectory = File.Directory.FullName.Replace(ExtactDir, string.Empty);
+                    var SourceDir = File.FullName.Replace(ExtactDir, string.Empty).Replace(@"\\?\\", "\\").Substring(1);
+                    var DestDirectory = File.Directory.FullName.Replace(ExtactDir, string.Empty).Replace(@"\\?\\", "\\");
 
-                    if (this.Source != string.Empty)
+                    if (Source != string.Empty)
                     {
                         var Dir = Source;
 
                         if (IncludeRootDirectory)
                         {
-                            Dir = Source.Replace(new DirectoryInfo(this.Source).Name, string.Empty);
+                            Dir = Source.Replace(new ZlpDirectoryInfo(Source).Name, string.Empty);
                         }
 
                         if (Dir != string.Empty)
@@ -56,7 +57,7 @@ namespace Vcc.Nolvus.Package.Rules
                         }
                     }
 
-                    DestDirectory = DestDirectory + DestinationDirectory;
+                    DestDirectory = DestDirectory + DestinationDirectory;                    
 
                     Rules.Add(CreateFileCopyRule(Destination, SourceDir, DestDirectory.TrimStart('\\')));
                 }
@@ -67,7 +68,7 @@ namespace Vcc.Nolvus.Package.Rules
 
         public override void Execute(string GamePath, string ExtractDir, string ModDir, string InstanceDir)
         {
-            if (this.CanExecute(GamePath, ModDir))
+            if (CanExecute(GamePath, ModDir))
             {
                 string Destination = InstanceDir;
 
@@ -84,18 +85,18 @@ namespace Vcc.Nolvus.Package.Rules
                 {
                     Destination = Path.Combine(Destination, DestinationDirectory);
 
-                    Directory.CreateDirectory(Destination);
+                    ZlpIOHelper.CreateDirectory(Destination);
                 }
 
-                if (!this.IncludeRootDirectory)
+                if (!IncludeRootDirectory)
                 {
-                    ServiceSingleton.Files.CopyFiles(Path.Combine(ExtractDir , this.Source), Destination, false);
+                    ServiceSingleton.Files.CopyFiles(Path.Combine(ExtractDir , Source), Destination, false);
                 }
                 else
                 {
-                    DirectoryInfo DirInfo = new DirectoryInfo(Path.Combine(ExtractDir, this.Source));
+                    ZlpDirectoryInfo DirInfo = new ZlpDirectoryInfo(Path.Combine(ExtractDir, Source));
 
-                    ServiceSingleton.Files.CopyFiles(Path.Combine(ExtractDir, this.Source), Path.Combine(Destination, DirInfo.Name), true);
+                    ServiceSingleton.Files.CopyFiles(Path.Combine(ExtractDir, Source), Path.Combine(Destination, DirInfo.Name), true);
                 }
             }                                   
         }        

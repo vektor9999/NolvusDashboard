@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Xml;
 using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Enums;
 using Vcc.Nolvus.Core.Interfaces;
@@ -9,7 +10,7 @@ using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Package.Rules;
 using Vcc.Nolvus.Package.Conditions;
 using Vcc.Nolvus.Package.Patchers;
-using System.Xml;
+using ZetaLongPaths;
 
 namespace Vcc.Nolvus.Package.Mods
 {
@@ -42,7 +43,7 @@ namespace Vcc.Nolvus.Package.Mods
         {
             get
             {
-                return Path.Combine(ServiceSingleton.Instances.WorkingInstance.ArchiveDir, this.Category.Name);
+                return Path.Combine(ServiceSingleton.Instances.WorkingInstance.ArchiveDir, Category.Name);
             }
         }
 
@@ -57,7 +58,7 @@ namespace Vcc.Nolvus.Package.Mods
 
         public override void Load(XmlNode Node, List<InstallableElement> Elements)
         {
-            base.Load(Node, Elements);
+            base.Load(Node, Elements);            
 
             ElementAction ElementAction = (ElementAction)Enum.Parse(typeof(ElementAction), Node["Action"].InnerText);
 
@@ -170,7 +171,7 @@ namespace Vcc.Nolvus.Package.Mods
 
         public override string ToString()
         {
-            return this.Name + " v" + this.Version;
+            return string.Format("{0} v{1}", Name, Version);
         }
         protected override void CreateElementIni()
         {
@@ -195,19 +196,19 @@ namespace Vcc.Nolvus.Package.Mods
         {
             if (Display)
             {
-                if (Directory.Exists(MoDirectoryFullName))
+                if (ZlpIOHelper.DirectoryExists(MoDirectoryFullName))
                 {
                     ServiceSingleton.Files.RemoveDirectory(MoDirectoryFullName, true);
                 }
 
-                Directory.CreateDirectory(MoDirectoryFullName);
+                ZlpIOHelper.CreateDirectory(MoDirectoryFullName);
             }
         }
         protected string GetInstallFileName()
         {
             if (ServiceSingleton.Instances.WorkingInstance.Settings.EnableArchiving)
             {
-                return Path.Combine(ArchiveFolder, this.Files.First().FileName);
+                return Path.Combine(ArchiveFolder, Files.First().FileName);
             }
 
             return string.Empty;
@@ -296,6 +297,7 @@ namespace Vcc.Nolvus.Package.Mods
                         CopyingProgress(0, 0);
 
                         PrepareDirectrory();
+
                         var Rules = FetchRules();
                         var Counter = 0;                        
 
@@ -355,7 +357,7 @@ namespace Vcc.Nolvus.Package.Mods
             {
                 try
                 {
-                    if (Directory.Exists(MoDirectoryFullName))
+                    if (ZlpIOHelper.DirectoryExists(MoDirectoryFullName))
                     {
                         ServiceSingleton.Files.RemoveDirectory(MoDirectoryFullName, true);
                     }

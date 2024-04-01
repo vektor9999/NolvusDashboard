@@ -28,15 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection3 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection3 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection3 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
+            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection1 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection1 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection1 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PathFrame));
             this.LblStepText = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.PnlMessage = new System.Windows.Forms.Panel();
-            this.LblMessage = new System.Windows.Forms.Label();
-            this.PicBox = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TglBtnEnableArchive = new Syncfusion.Windows.Forms.Tools.ToggleButton();
             this.BtnBrowseArchivePath = new Vcc.Nolvus.Components.Controls.FlatButton();
@@ -53,8 +50,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.panel2.SuspendLayout();
-            this.PnlMessage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnEnableArchive)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -79,7 +74,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.PnlMessage);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.TglBtnEnableArchive);
             this.panel2.Controls.Add(this.BtnBrowseArchivePath);
@@ -93,41 +87,6 @@
             this.panel2.Size = new System.Drawing.Size(484, 374);
             this.panel2.TabIndex = 14;
             // 
-            // PnlMessage
-            // 
-            this.PnlMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnlMessage.BackColor = System.Drawing.Color.Orange;
-            this.PnlMessage.Controls.Add(this.LblMessage);
-            this.PnlMessage.Controls.Add(this.PicBox);
-            this.PnlMessage.Location = new System.Drawing.Point(16, 154);
-            this.PnlMessage.Name = "PnlMessage";
-            this.PnlMessage.Size = new System.Drawing.Size(439, 45);
-            this.PnlMessage.TabIndex = 31;
-            // 
-            // LblMessage
-            // 
-            this.LblMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblMessage.ForeColor = System.Drawing.Color.White;
-            this.LblMessage.Location = new System.Drawing.Point(44, 7);
-            this.LblMessage.Name = "LblMessage";
-            this.LblMessage.Size = new System.Drawing.Size(388, 32);
-            this.LblMessage.TabIndex = 1;
-            this.LblMessage.Text = "Be sure the installation path is not too long to avoid issues (ex D:\\Nolvus)";
-            this.LblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // PicBox
-            // 
-            this.PicBox.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.Warning_Message;
-            this.PicBox.Location = new System.Drawing.Point(6, 7);
-            this.PicBox.Name = "PicBox";
-            this.PicBox.Size = new System.Drawing.Size(32, 32);
-            this.PicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.PicBox.TabIndex = 0;
-            this.PicBox.TabStop = false;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -140,28 +99,28 @@
             // 
             // TglBtnEnableArchive
             // 
-            activeStateCollection3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            activeStateCollection3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
-            this.TglBtnEnableArchive.ActiveState = activeStateCollection3;
+            activeStateCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            activeStateCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
+            this.TglBtnEnableArchive.ActiveState = activeStateCollection1;
             this.TglBtnEnableArchive.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.TglBtnEnableArchive.ForeColor = System.Drawing.Color.Black;
-            inactiveStateCollection3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            inactiveStateCollection3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            inactiveStateCollection3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            inactiveStateCollection3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.TglBtnEnableArchive.InactiveState = inactiveStateCollection3;
+            inactiveStateCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            inactiveStateCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            inactiveStateCollection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            inactiveStateCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.TglBtnEnableArchive.InactiveState = inactiveStateCollection1;
             this.TglBtnEnableArchive.Location = new System.Drawing.Point(128, 99);
             this.TglBtnEnableArchive.MinimumSize = new System.Drawing.Size(52, 20);
             this.TglBtnEnableArchive.Name = "TglBtnEnableArchive";
             this.TglBtnEnableArchive.Size = new System.Drawing.Size(63, 24);
-            sliderCollection3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            sliderCollection3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection3.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            sliderCollection3.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.TglBtnEnableArchive.Slider = sliderCollection3;
+            sliderCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            sliderCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection1.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            sliderCollection1.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.TglBtnEnableArchive.Slider = sliderCollection1;
             this.TglBtnEnableArchive.TabIndex = 27;
             this.TglBtnEnableArchive.Text = "toggleButton1";
             this.TglBtnEnableArchive.ThemeName = "Office2016Black";
@@ -336,9 +295,6 @@
             this.Size = new System.Drawing.Size(810, 409);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.PnlMessage.ResumeLayout(false);
-            this.PnlMessage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnEnableArchive)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -363,9 +319,6 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label label6;
         private Components.Controls.FlatButton BtnPrevious;
-        private System.Windows.Forms.Panel PnlMessage;
-        private System.Windows.Forms.Label LblMessage;
-        private System.Windows.Forms.PictureBox PicBox;
         private System.Windows.Forms.Label label5;
     }
 }

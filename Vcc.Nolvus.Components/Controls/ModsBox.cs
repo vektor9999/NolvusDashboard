@@ -82,10 +82,10 @@ namespace Vcc.Nolvus.Components.Controls
                 IFont = new Font(FamilyTitle, (float)(9 * ScalingFactor), FontStyle.Bold, GraphicsUnit.Pixel);
                 InfoFont = new Font(FontFamily.GenericSansSerif, (float)(7 * ScalingFactor), FontStyle.Regular, GraphicsUnit.Pixel);
                 StatusFont = new Font(e.Font.FontFamily, (float)(e.Font.Size * ScalingFactor), GraphicsUnit.Pixel);
-            }           
+            }            
 
             if (e.Index != -1 && !DesignMode)
-            {
+            {                
                 var Top = 0;
 
                 if (e.Index > 0)

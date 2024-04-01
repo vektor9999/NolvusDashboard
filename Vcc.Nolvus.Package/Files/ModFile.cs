@@ -7,6 +7,7 @@ using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Events;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Package.Mods;
+using ZetaLongPaths;
 
 namespace Vcc.Nolvus.Package.Files
 {
@@ -51,9 +52,9 @@ namespace Vcc.Nolvus.Package.Files
         {
             get
             {
-                return (this.Element.Name + "-v" + this.Element.Version + new FileInfo(this.FileName).Extension);
+                return (Element.Name + "-v" + Element.Version + new FileInfo(FileName).Extension);
             }
-        }
+        }              
 
         #endregion
 
@@ -77,7 +78,7 @@ namespace Vcc.Nolvus.Package.Files
 
         public override string ToString()
         {
-            return this.FileName;
+            return FileName;
         }
 
         private bool Found(string Dir, out string FullPath)
@@ -89,7 +90,7 @@ namespace Vcc.Nolvus.Package.Files
                 return false;
             }
 
-            if (!ServiceSingleton.Files.FileExists(Dir, this.FileName, out FullPath) && !ServiceSingleton.Files.FileExists(Dir, this.VersionedFileName, out FullPath))
+            if (!ServiceSingleton.Files.FileExists(Dir, FileName, out FullPath) && !ServiceSingleton.Files.FileExists(Dir, VersionedFileName, out FullPath))
             {
                 return false;
             }
@@ -106,7 +107,7 @@ namespace Vcc.Nolvus.Package.Files
                 return false;
             }
 
-            if (!ServiceSingleton.Files.FileExists(Dir, this.FileName, out FullPath) && !ServiceSingleton.Files.FileExists(Dir, this.VersionedFileName, out FullPath))
+            if (!ServiceSingleton.Files.FileExists(Dir, FileName, out FullPath) && !ServiceSingleton.Files.FileExists(Dir, VersionedFileName, out FullPath))
             {
                 return false;
             }
@@ -119,9 +120,9 @@ namespace Vcc.Nolvus.Package.Files
             return Found(ServiceSingleton.Folders.DownloadDirectory) || Found(ServiceSingleton.Instances.WorkingInstance.ArchiveDir);
         }
 
-        public FileInfo GetFileInfo()
+        public ZlpFileInfo GetFileInfo()
         {
-            return new FileInfo(this.LocationFileName);
+            return new ZlpFileInfo(LocationFileName);
         }
 
         public void Delete()
@@ -134,19 +135,14 @@ namespace Vcc.Nolvus.Package.Files
             }
         }
 
-        public void Copy(string DestinationFileName)
-        {
-            GetFileInfo().CopyTo(DestinationFileName, true);
-        }
-
         public async Task Move(string DestinationDirectory, Action<string, int> Progress)
         {
             var Tsk = Task.Run(() => 
             {
                 var SourceFile = GetFileInfo();
-                var ArchivedFile = new FileInfo(Path.Combine(DestinationDirectory, SourceFile.Name));
+                var ArchivedFile = new ZlpFileInfo(Path.Combine(DestinationDirectory, SourceFile.Name));
 
-                if (!File.Exists(ArchivedFile.FullName))
+                if (!ZlpIOHelper.FileExists(ArchivedFile.FullName))
                 {
                     SourceFile.CopyTo(ArchivedFile, Progress);
                 }
@@ -291,9 +287,9 @@ namespace Vcc.Nolvus.Package.Files
         {
             var Tsk = Task.Run(async () => 
             {
-                if (!Directory.Exists(ArchivePath))
+                if (!ZlpIOHelper.DirectoryExists(ArchivePath))
                 {
-                    Directory.CreateDirectory(ArchivePath);
+                    ZlpIOHelper.CreateDirectory(ArchivePath);
                 }                
 
                 if (!TakenFromArchive)

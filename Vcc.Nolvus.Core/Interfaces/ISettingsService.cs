@@ -17,5 +17,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         bool ForceAA { get; }
         int RefreshInterval { get; }
         int ErrorsThreshold { get; }
+        string BrowserLogSeverity { get; }
     }
 }

@@ -95,16 +95,22 @@ namespace Vcc.Nolvus.Dashboard
         {                                                         
             ServicePointManager.DefaultConnectionLimit = 100;
 
-            var settings = new CefSettings();
+            var CefSettings = new CefSettings();
 
-            settings.CachePath = ServiceSingleton.Folders.WebCacheDirectory;
+            CefSettings.CachePath = ServiceSingleton.Folders.WebCacheDirectory;
+            CefSettings.LogFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CefSharpLog.txt");
 
+            LogSeverity LogSeverity;
 
-            settings.BrowserSubprocessPath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase,
+            Enum.TryParse<LogSeverity>(ServiceSingleton.Settings.BrowserLogSeverity, out LogSeverity);
+
+            CefSettings.LogSeverity = LogSeverity;
+
+            CefSettings.BrowserSubprocessPath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase,
                                                    System.Environment.Is64BitProcess ? "x64" : "x86",
                                                    "CefSharp.BrowserSubprocess.exe");
             
-            Cef.Initialize(settings, performDependencyCheck: false, browserProcessHandler: null);
+            Cef.Initialize(CefSettings, performDependencyCheck: false, browserProcessHandler: null);
 
             
             Application.Run(new DashboardWindow());            

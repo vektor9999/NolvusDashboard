@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml;
+using ZetaLongPaths;
 
 namespace Vcc.Nolvus.Package.Rules
 {
@@ -22,10 +23,10 @@ namespace Vcc.Nolvus.Package.Rules
         {
             if (CanExecute(GamePath, ModDir))
             {
-                Directory.CreateDirectory(Path.Combine(ModDir, "optional"));
+                ZlpIOHelper.CreateDirectory(Path.Combine(ModDir, "optional"));
 
-                FileInfo FileSource = new FileInfo(Path.Combine(ModDir, EspName));
-                FileInfo FileDest = new FileInfo(Path.Combine(ModDir, "optional", EspName));
+                ZlpFileInfo FileSource = new ZlpFileInfo(Path.Combine(ModDir, EspName));
+                ZlpFileInfo FileDest = new ZlpFileInfo(Path.Combine(ModDir, "optional", EspName));
 
                 FileSource.CopyTo(FileDest.FullName, true);
 

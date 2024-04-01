@@ -103,7 +103,7 @@ namespace Vcc.Nolvus.Core.Frames
             DashBoardInstance.OnFrameLoaded -= OnFrameLoaded;
             DashBoardInstance.OnFrameLoadedAsync -= OnFrameLoadedSync;
 
-            this.Dispose();
+            Dispose();
         }
 
     }

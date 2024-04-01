@@ -17,7 +17,7 @@ namespace Vcc.Nolvus.Package.Rules
             {               
                 string EnvValue = ServiceSingleton.Instances.GetValueFromKey(Value);
 
-                if (this.IsIni)
+                if (IsIni)
                 {                    
                     ServiceSingleton.Settings.StoreIniValue(Path.Combine(ModDir, FileName), Section, Key, EnvValue);
                 }

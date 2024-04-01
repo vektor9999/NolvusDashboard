@@ -17,6 +17,7 @@ using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Core.Enums;
 using Vcc.Nolvus.Package.Mods;
+using ZetaLongPaths;
 
 namespace Vcc.Nolvus.Dashboard.Frames
 {
@@ -89,7 +90,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
             LblDeleteInfo.Text = "Deleting instance (" + Value.ToString() + "%)";
         }
 
-        private async Task DeleteInstance(string[] Files)
+        private async Task DeleteInstance(List<ZlpFileInfo> Files)
         {
             LblDeleteInfo.Visible = true;
             BtnAction.Enabled = false;
@@ -101,9 +102,10 @@ namespace Vcc.Nolvus.Dashboard.Frames
 
                 foreach (var _File in Files)
                 {
-                    File.Delete(_File);
+                    _File.Attributes = ZetaLongPaths.Native.FileAttributes.Normal;
+                    _File.Delete();
 
-                    int PercentDone = System.Convert.ToInt16(((double)++Counter / Files.Length) * 100);
+                    int PercentDone = System.Convert.ToInt16(((double)++Counter / Files.Count) * 100);
 
                     UpdateProgress(PercentDone);
 
@@ -135,7 +137,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 {
                     try
                     {                        
-                        await DeleteInstance(Directory.GetFiles(Instance.InstallDir, "*.*", SearchOption.AllDirectories));
+                        await DeleteInstance(ServiceSingleton.Files.GetFiles(Instance.InstallDir));
 
                         ServiceSingleton.Instances.RemoveInstance(Instance);
 

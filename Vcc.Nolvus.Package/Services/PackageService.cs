@@ -46,7 +46,7 @@ namespace Vcc.Nolvus.Package.Services
             get { return _Storage; }
         }
         public List<IInstallableElement> InstallingModsQueue { get; set; } = new List<IInstallableElement>();
-        public List<ModProgress> ProgressQueue { get; set; } = new List<ModProgress>();
+        public IProgressQueue ProgressQueue { get; set; } = new ProgressQueue();
         private ErrorHandler _ErrorHandler { get; set; }
         public string LoadedVersion { get; set; }        
         public IErrorHandler ErrorHandler
@@ -63,7 +63,7 @@ namespace Vcc.Nolvus.Package.Services
                 try
 
                 {
-                    return ServiceSingleton.Packages.ProgressQueue.Sum(x => x.Mbs);
+                    return ServiceSingleton.Packages.ProgressQueue.Sum();
                 }
                 catch
                 {
@@ -417,7 +417,7 @@ namespace Vcc.Nolvus.Package.Services
 
                 Settings.OnStartInstalling();                
 
-                var Tasks = ModsToInstall.Where(x => !ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Any(y => y == x.Name)).ToList().Select(async Mod =>
+                var Tasks = ModsToInstall.Where(x => !ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Any(y => y == x.Name)).OrderBy(i => i.Index).ToList().Select(async Mod =>
                 {
                     await SemaphoreSlim.WaitAsync();
 

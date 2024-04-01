@@ -5,20 +5,14 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml;
+using Vcc.Nolvus.Core.Services;
+using ZetaLongPaths;
 
 namespace Vcc.Nolvus.Package.Rules
 {
     public class FileCopy : CopyRule
     {
         public string NewFileName { get; set; }       
-
-        public string FileName
-        {
-            get
-            {
-                return new FileInfo(Source).Name;
-            }
-        }
 
         public override void Load(XmlNode Node)
         {
@@ -45,20 +39,21 @@ namespace Vcc.Nolvus.Package.Rules
                     Destination = InstanceDir;
                 }
 
-                FileInfo FileSource = new FileInfo(Path.Combine(ExtractDir,this.Source));
+                ZlpFileInfo FileSource = new ZlpFileInfo(Path.Combine(ExtractDir, Source));
 
                 if (!CopyToRoot)
                 {
                     Destination = Path.Combine(Destination, DestinationDirectory);
 
-                    Directory.CreateDirectory(Destination);
+                    ZlpIOHelper.CreateDirectory(Destination);                    
                 }
 
-                FileInfo FileDest = new FileInfo(Path.Combine(Destination, (NewFileName != string.Empty) ? NewFileName : FileSource.Name));                
-                
-                FileSource.CopyTo(FileDest.FullName, true);
+                ZlpFileInfo FileDest = new ZlpFileInfo(Path.Combine(Destination, (NewFileName != string.Empty) ? NewFileName : FileSource.Name));
 
-            }            
+                FileSource.CopyTo(FileDest.FullName, true);                
+
+
+            }
         }
     }
 }

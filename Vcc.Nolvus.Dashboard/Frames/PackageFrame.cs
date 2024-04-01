@@ -89,7 +89,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
 
             ServiceSingleton.Logger.Log(string.Format("Viewing {0} - v {1}...", Instance.Name, Instance.Version));
 
-            await ServiceSingleton.Dashboard.LoadFrameAsync<InstanceDetailFrame>();
+            ServiceSingleton.Dashboard.LoadFrame<InstanceDetailFrame>();
         }
 
         protected override async Task OnLoadedAsync()        

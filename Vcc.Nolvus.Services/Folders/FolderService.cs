@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Services;
+using ZetaLongPaths;
 
 namespace Vcc.Nolvus.Services.Folders
 {
@@ -119,7 +120,7 @@ namespace Vcc.Nolvus.Services.Folders
         {
             get { return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "reports");}
         }
-
+               
         public FolderService()
         {            
             Directory.CreateDirectory(CacheDirectory);

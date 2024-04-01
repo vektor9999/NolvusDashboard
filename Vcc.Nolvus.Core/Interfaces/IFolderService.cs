@@ -19,7 +19,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         string InstancesDirectory { get; }
         string GameDirectory { get; }
         string ReportDirectory { get; }
-        string UpdaterExe { get; }
-
+        string UpdaterExe { get; }       
     }
 }

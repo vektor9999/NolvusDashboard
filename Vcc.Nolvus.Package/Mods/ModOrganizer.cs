@@ -2534,9 +2534,10 @@ ccafdsse001-dwesanctuary.esm";
         {
             return await Task.Run(() =>
             {
-                var ProfilePath = Path.Combine(ServiceSingleton.Instances.WorkingInstance.InstallDir, "MODS", "profiles", Profile, "modlist.txt");
+                var Instance = ServiceSingleton.Instances.WorkingInstance;
+                var ProfilePath = Path.Combine(Instance.InstallDir, "MODS", "profiles", Profile, "modlist.txt");
                 var Mods = File.ReadAllLines(ProfilePath).ToList();
-
+                                
                 Mods.RemoveAt(0);
                 Mods.Reverse();
 
@@ -2565,12 +2566,37 @@ ccafdsse001-dwesanctuary.esm";
                             StatusText = "OK"
                         };
 
-                        var MetaIniFile = Path.Combine(ServiceSingleton.Instances.WorkingInstance.InstallDir, "MODS", "mods", Mod, "meta.ini");
+                        var MetaIniFile = Path.Combine(Instance.InstallDir, "MODS", "mods", Mod, "meta.ini");
 
                         if (File.Exists(MetaIniFile))
                         {
-                            ModObject.Version = ServiceSingleton.Settings.GetIniValue(MetaIniFile, "General", "version");
+                            try
+                            {
+                                ModObject.Version = ServiceSingleton.Settings.GetIniValue(MetaIniFile, "General", "version");
+
+                                if (ModObject.Version == null)
+                                {
+                                    ModObject.Version = "NA";
+                                    ModObject.Status = ModObjectStatus.MetaIniError;
+                                    ModObject.StatusText = string.Format("Unable to parse meta.ini data for {0}", Mod);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                ModObject.Version = "NA";
+                                ModObject.Status = ModObjectStatus.MetaIniError;
+                                ModObject.StatusText = string.Format("Unable to parse meta.ini data for {0} - {1}", Mod, ex.Message);
+                            }
                         }
+                        else
+                        {
+                            if (Directory.Exists(Path.Combine(Instance.InstallDir, "MODS", "mods", Mod)))
+                            {
+                                ModObject.Version = "NA";
+                                ModObject.Status = ModObjectStatus.InstalledIniMissing;
+                                ModObject.StatusText = "Installed but meta.ini file is missing";
+                            }                           
+                        }                       
 
                         Result.Add(ModObject);
                     }

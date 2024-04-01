@@ -27,7 +27,8 @@ namespace Vcc.Nolvus.Dashboard
         private TitleBarControl TitleBarControl;
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
-        
+        private PictureBox PicBox;
+
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
@@ -109,6 +110,39 @@ namespace Vcc.Nolvus.Dashboard
 
         #region UI Methods
 
+        private void ShowLoadingIndicator()
+        {
+            if (InvokeRequired)
+            {
+                Invoke((System.Action)ShowLoadingIndicator);
+                return;
+            }
+
+            PicBox = new PictureBox();
+            PicBox.Image = Properties.Resources.cog_loader_alpha;
+            PicBox.SizeMode = PictureBoxSizeMode.CenterImage;
+
+            PicBox.Height = ContentPanel.Height;
+            PicBox.Width = ContentPanel.Width;
+            PicBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                   | System.Windows.Forms.AnchorStyles.Left)
+                   | System.Windows.Forms.AnchorStyles.Right)));
+
+            ContentPanel.Controls.Add(PicBox);            
+        }
+
+        private void UnloadLoadingIndicator()
+        {
+            if (InvokeRequired)
+            {
+                Invoke((System.Action)UnloadLoadingIndicator);
+                return;
+            }
+
+            ContentPanel.Controls.Remove(PicBox);
+            PicBox = null;            
+        }
+
         private void AddFrame(DashboardFrame Frame)
         {
             if (InvokeRequired)
@@ -119,6 +153,17 @@ namespace Vcc.Nolvus.Dashboard
 
             ContentPanel.Controls.Add(Frame);
             LoadedFrame = Frame;
+        }
+
+        private void DoLoad(DashboardFrame Frame)
+        {
+            Frame.Height = ContentPanel.Height;
+            Frame.Width = ContentPanel.Width;
+            Frame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                   | System.Windows.Forms.AnchorStyles.Left)
+                   | System.Windows.Forms.AnchorStyles.Right)));
+
+            AddFrame(Frame);
         }
 
         private void RemoveLoadedFrame()
@@ -156,34 +201,12 @@ namespace Vcc.Nolvus.Dashboard
 
 
             this.TitleBarControl.Title = Value;
-        }
-               
-        private void ShowLoading()
-        {
-            if (InvokeRequired)
-            {
-                Invoke((System.Action)ShowLoading);
-                return;
-            }
-
-            //this.PicBoxLoading.Show();
-        }
-
-        private void HideLoading()
-        {
-            if (InvokeRequired)
-            {
-                Invoke((System.Action)ShowLoading);
-                return;
-            }
-
-            //this.PicBoxLoading.Hide();
-        }
+        }       
 
         #endregion
 
         #region Interface Implementation
-        
+
         public bool IsOlder(string LatestVersion)
         {
             string[] v1List = LatestVersion.Split(new char[] { '.' });
@@ -350,22 +373,16 @@ namespace Vcc.Nolvus.Dashboard
 
             StatusStripEx.Visible = true;
             StripLblAccountType.Text = Value;
-        }
-        private void DoLoad(DashboardFrame Frame)
-        {
-            Frame.Height = this.ContentPanel.Height;
-            Frame.Width = this.ContentPanel.Width;
-            Frame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                   | System.Windows.Forms.AnchorStyles.Left)
-                   | System.Windows.Forms.AnchorStyles.Right)));            
-
-            AddFrame(Frame);
-        }
+        }       
         public async Task<T> LoadFrameAsync<T>(FrameParameters Parameters = null) where T : DashboardFrame
         {            
             RemoveLoadedFrame();
 
+            ShowLoadingIndicator();
+
             var Frame = await DashboardFrame.CreateAsync<T>(new object[] { this, Parameters });
+
+            UnloadLoadingIndicator();
 
             DoLoad(Frame);
 
@@ -377,7 +394,11 @@ namespace Vcc.Nolvus.Dashboard
         {            
             RemoveLoadedFrame();
 
+            ShowLoadingIndicator();
+
             var Frame = DashboardFrame.Create<T>(new object[] { this, Parameters });
+
+            UnloadLoadingIndicator();
 
             DoLoad(Frame);
 

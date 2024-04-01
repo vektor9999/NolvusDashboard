@@ -209,6 +209,8 @@ namespace Vcc.Nolvus.Instance.Services
             Instances.Remove(Instance as NolvusInstance);
 
             Save();
+
+            UnloadWorkingIntance();
         }
 
         public void PrepareInstanceForInstall()

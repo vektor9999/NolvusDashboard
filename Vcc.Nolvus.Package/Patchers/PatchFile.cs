@@ -7,6 +7,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.StockGame.Patcher;
+using ZetaLongPaths;
 
 namespace Vcc.Nolvus.Package.Patchers
 {
@@ -27,17 +28,19 @@ namespace Vcc.Nolvus.Package.Patchers
             HashAfter = Node["HashAfter"].InnerText;
         }
 
-        private FileInfo CopyPatchedFile(FileInfo Source, FileInfo Destination)
+        private ZlpFileInfo CopyPatchedFile(ZlpFileInfo Source, ZlpFileInfo Destination)
         {
-            FileInfo Result;
+            ZlpFileInfo Result;
 
             if (Source.Name == Destination.Name)
             {
-                Result = Destination.CopyTo(Source.FullName, true);
+                Destination.CopyTo(Source.FullName, true);
+                Result = new ZlpFileInfo(Source.FullName);
             }
             else
             {
-                Result = Destination.CopyTo(Path.Combine(Source.DirectoryName, DestinationFileName), true);
+                Destination.CopyTo(Path.Combine(Source.DirectoryName, DestinationFileName), true);
+                Result = new ZlpFileInfo(Path.Combine(Source.DirectoryName, DestinationFileName));
             }
 
             return Result;
@@ -52,7 +55,7 @@ namespace Vcc.Nolvus.Package.Patchers
 
                     var Dir = ModDir;
 
-                    if (!Directory.Exists(ModDir))
+                    if (!ZlpIOHelper.DirectoryExists(ModDir))
                     {
                         Dir = GameDir;
                     }
@@ -63,7 +66,7 @@ namespace Vcc.Nolvus.Package.Patchers
                     {
                         ServiceSingleton.Logger.Log(string.Format("Patching file {0}", SourceFileToPatch.Name));
 
-                        var DestinationFileToPatch = new FileInfo(Path.Combine(ExtractDir, DestinationFileName));
+                        var DestinationFileToPatch = new ZlpFileInfo(Path.Combine(ExtractDir, DestinationFileName));
 
                         await PatcherManager.PatchFile(SourceFileToPatch.FullName, DestinationFileToPatch.FullName, Path.Combine(ExtractDir, PatchFileName));
 

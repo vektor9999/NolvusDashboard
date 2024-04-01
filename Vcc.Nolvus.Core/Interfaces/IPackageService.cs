@@ -20,7 +20,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         List<string> OptionalEsps { get; }
         List<string> LoadOrder { get; }
         List<IInstallableElement> InstallingModsQueue { get; }
-        List<ModProgress> ProgressQueue { get; }
+        IProgressQueue ProgressQueue { get; }
         string LoadedVersion { get; }        
         double InstallProgression { get; }
         IErrorHandler ErrorHandler { get; }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Diagnostics;
 using Vcc.Nolvus.Core.Services;
 using System.Threading.Tasks;
+using ZetaLongPaths;
 
 namespace Vcc.Nolvus.Package.Mods
 {
@@ -12,7 +13,7 @@ namespace Vcc.Nolvus.Package.Mods
     {
         public string FileName { get; set; }
 
-        private FileInfo GetBsaToUnpack(string ExtractDir, string BSAFile)
+        private ZlpFileInfo GetBsaToUnpack(string ExtractDir, string BSAFile)
         {            
             return  ServiceSingleton.Files.GetFiles(ExtractDir).Where(x => x.Name == BSAFile).FirstOrDefault();
         }

@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml;
+using ZetaLongPaths;
 
 namespace Vcc.Nolvus.Package.Rules
 {
@@ -28,32 +29,32 @@ namespace Vcc.Nolvus.Package.Rules
         {
             if (CanExecute(GamePath, ModDir))
             {
-                string Source;
+                string Src;
                 string Destination;
 
-                if (this.Source == 0)
+                if (Source == 0)
                 {
-                    Source = Path.Combine(ModDir, OldName);
+                    Src = Path.Combine(ModDir, OldName);
                     Destination = Path.Combine(ModDir, NewName);
                 }
                 else
                 {
-                    Source = Path.Combine(GamePath, OldName);
+                    Src = Path.Combine(GamePath, OldName);
                     Destination = Path.Combine(GamePath, NewName);
                 }
 
                 if (!IsDirectory)
                 {
-                    if (System.IO.File.Exists(Destination))
+                    if (ZlpIOHelper.FileExists(Destination))
                     {
-                        System.IO.File.Delete(Destination);
+                        ZlpIOHelper.DeleteFile(Destination);
                     }
 
-                    System.IO.File.Move(Source, Destination);
+                    ZlpIOHelper.MoveFile(Src, Destination);
                 }
                 else
                 {
-                    System.IO.Directory.Move(Source, Destination);
+                    ZlpIOHelper.MoveDirectory(Src, Destination);
                 }
             }            
         }

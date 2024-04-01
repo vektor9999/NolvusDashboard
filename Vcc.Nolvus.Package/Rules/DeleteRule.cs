@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Services;
 using System.Xml;
+using ZetaLongPaths;
 
 namespace Vcc.Nolvus.Package.Rules
 {
@@ -33,33 +34,33 @@ namespace Vcc.Nolvus.Package.Rules
         {
             if (this.CanExecute(GamePath, ModDir))
             {
-                string Destination = string.Empty;
+                string Dest = string.Empty;
 
-                if (this.Destination == 0)
+                if (Destination == 0)
                 {
-                    Destination = ModDir;
+                    Dest = ModDir;
                 }
-                else if (this.Destination == 1)
+                else if (Destination == 1)
                 {
-                    Destination = GamePath;
+                    Dest = GamePath;
                 }
                 else
                 {
-                    Destination = InstanceDir;
+                    Dest = InstanceDir;
                 }
 
                 if (!IsDirectory)
                 {
-                    if (File.Exists(Path.Combine(Destination, Source)))
+                    if (ZlpIOHelper.FileExists(Path.Combine(Dest, Source)))
                     {
-                        File.Delete(Path.Combine(Destination, Source));
+                        ZlpIOHelper.DeleteFile(Path.Combine(Dest, Source));
                     }                    
                 }
                 else
                 {
-                    if (Directory.Exists((Path.Combine(Destination, Source))))
+                    if (ZlpIOHelper.DirectoryExists((Path.Combine(Dest, Source))))
                     {
-                        ServiceSingleton.Files.RemoveDirectory(Path.Combine(Destination, Source), true);
+                        ServiceSingleton.Files.RemoveDirectory(Path.Combine(Dest, Source), true);
                     }                    
                 }
             }

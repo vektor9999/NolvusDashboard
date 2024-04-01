@@ -30,7 +30,7 @@ namespace Vcc.Nolvus.Package.Mods
         public ElementAction Action { get; set; }
         public List<ModFile> Files = new List<ModFile>();
         public abstract string ArchiveFolder { get; }
-      
+        public int Index { get; set; }
         private System.Drawing.Image FormatImage()
         {
             float Opacity = 0.30F;
@@ -71,7 +71,8 @@ namespace Vcc.Nolvus.Package.Mods
                         Name = Name + " by " + Author + " (v " + Version + ")",
                         Status = "Initializing",
                         Mbs = 0,
-                        Image = FormatImage()
+                        Image = FormatImage(),
+                        Index = Index
                     };                   
                 }
 
@@ -101,7 +102,8 @@ namespace Vcc.Nolvus.Package.Mods
             Version = Node["Version"].InnerText;
             ImagePath = Node["ImagePath"].InnerText;
             Author = Node["Author"].InnerText;
-            Action = ElementAction.Add;                       
+            Action = ElementAction.Add;
+            Index = Elements.Count;
 
             foreach (XmlNode FileNode in Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Files").FirstOrDefault().ChildNodes.Cast<XmlNode>().ToList())
             {

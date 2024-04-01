@@ -7,6 +7,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Core.Events;
+using ZetaLongPaths;
 
 namespace Vcc.Nolvus.Package.Patchers
 {
@@ -55,9 +56,9 @@ namespace Vcc.Nolvus.Package.Patchers
                     ServiceSingleton.Logger.Log(string.Format("Downloading patch file {0}", PatchArchive));
                     var PatchFilePath = Path.Combine(ServiceSingleton.Folders.DownloadDirectory, PatchArchive);
 
-                    if (File.Exists(PatchFilePath))
+                    if (ZlpIOHelper.FileExists(PatchFilePath))
                     {
-                        File.Delete(PatchFilePath);
+                        ZlpIOHelper.DeleteFile(PatchFilePath);
                     }
 
                     await ServiceSingleton.Files.DownloadFile(DownloadLink, PatchFilePath, OnProgress);                    
@@ -139,7 +140,7 @@ namespace Vcc.Nolvus.Package.Patchers
                     }
                     finally
                     {
-                        File.Delete(Path.Combine(ServiceSingleton.Folders.DownloadDirectory, PatchArchive));
+                        ZlpIOHelper.DeleteFile(Path.Combine(ServiceSingleton.Folders.DownloadDirectory, PatchArchive));
                         ServiceSingleton.Files.RemoveDirectory(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, PatcherFileDir), true);
                     }
                 }

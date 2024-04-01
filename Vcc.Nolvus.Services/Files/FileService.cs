@@ -10,6 +10,7 @@ using Vcc.Nolvus.Core.Events;
 using Vcc.Nolvus.Services.Files.Downloaders;
 using Vcc.Nolvus.Services.Files.Extractor;
 using Force.Crc32;
+using ZetaLongPaths;
 
 namespace Vcc.Nolvus.Services.Files
 {    
@@ -46,37 +47,54 @@ namespace Vcc.Nolvus.Services.Files
         }
 
         public void CopyFiles(string SourcePath, string TargetPath, bool IncludeRoot)
-        {            
+        {
             if (IncludeRoot)
             {
-                Directory.CreateDirectory(TargetPath);
+                ZlpIOHelper.CreateDirectory(TargetPath);
             }
 
-            foreach (string dirPath in Directory.GetDirectories(SourcePath, "*", SearchOption.AllDirectories))
+            foreach (var DirPath in ZlpIOHelper.GetDirectories(SourcePath, "*", SearchOption.AllDirectories))
             {
-                Directory.CreateDirectory(dirPath.Replace(SourcePath, TargetPath));
-            }            
-
-            foreach (string newPath in Directory.GetFiles(SourcePath, "*.*", SearchOption.AllDirectories))
-            {
-                FileInfo FileSource = new FileInfo(newPath);
-                FileInfo FileDest = new FileInfo(newPath.Replace(SourcePath, TargetPath));
-                FileSource.CopyTo(FileDest.FullName, true);               
+                ZlpIOHelper.CreateDirectory(DirPath.FullName.Replace(SourcePath, TargetPath));
             }
+
+            foreach (var NewPath in ZlpIOHelper.GetFiles(SourcePath, "*.*", SearchOption.AllDirectories))
+            {
+                ZlpFileInfo FileSource = new ZlpFileInfo(NewPath.FullName);
+                ZlpFileInfo FileDest = new ZlpFileInfo(NewPath.FullName.Replace(SourcePath, TargetPath));
+                FileSource.CopyTo(FileDest.FullName, true);
+            }
+        }
+
+        private void SetAttributesNormal(ZlpDirectoryInfo Directory)
+        {
+            foreach(var SubDir in Directory.GetDirectories())
+            {
+                SetAttributesNormal(SubDir);
+            }
+
+            foreach(var File in Directory.GetFiles())
+            {
+                File.Attributes = ZetaLongPaths.Native.FileAttributes.Normal;
+            }
+
+            Directory.Attributes = ZetaLongPaths.Native.FileAttributes.Normal;
         }
 
         public void RemoveDirectory(string DirectoryPath, bool RemoveDirectory)
         {
-            DirectoryInfo _Directory = new DirectoryInfo(DirectoryPath);
+            ZlpDirectoryInfo _Directory = new ZlpDirectoryInfo(DirectoryPath);
 
             if (_Directory.Exists)
             {
-                foreach (FileInfo File in _Directory.GetFiles())
+                SetAttributesNormal(_Directory);
+
+                foreach (ZlpFileInfo File in _Directory.GetFiles())
                 {
                     File.Delete();
                 }
 
-                foreach (DirectoryInfo Directory in _Directory.GetDirectories())
+                foreach (ZlpDirectoryInfo Directory in _Directory.GetDirectories())
                 {
                     Directory.Delete(true);
                 }
@@ -88,7 +106,7 @@ namespace Vcc.Nolvus.Services.Files
             }            
         }
 
-        public async Task<string> GetCRC32(FileInfo File, Action<string, int> Progress)
+        public async Task<string> GetCRC32(ZlpFileInfo File, Action<string, int> Progress)
         {
             return await Task.Run(() =>
             {
@@ -124,16 +142,23 @@ namespace Vcc.Nolvus.Services.Files
 
         }
 
-        public FileInfo GetFileFromDirectory(string Directory, string FileName)
+        public ZlpFileInfo GetFileFromDirectory(string Directory, string FileName)
         {
-            DirectoryInfo Di = new DirectoryInfo(Directory);
+            ZlpDirectoryInfo Di = new ZlpDirectoryInfo(Directory);
 
-            return Di.EnumerateFiles("*.*", SearchOption.AllDirectories).Where(x => x.Name == FileName).FirstOrDefault();
+            return Di.GetFiles("*.*", SearchOption.AllDirectories).Where(x => x.Name == FileName).FirstOrDefault();
         }
-        public List<FileInfo> GetFiles(string Directory)
+
+        public List<ZlpFileInfo> GetFiles(string Directory)
+        {            
+            return new ZlpDirectoryInfo(Directory).GetFiles("*.*", SearchOption.AllDirectories).ToList();
+        }
+
+        public List<string> GetFilesPath(string Directory)
         {
-            return new DirectoryInfo(Directory).GetFiles(".", SearchOption.AllDirectories).ToList();
+            return GetFiles(Directory).Select(x=>x.FullName).ToList();
         }
+
         public bool FileExists(string Directory, string FileName)
         {
             return GetFileFromDirectory(Directory, FileName) != null;
@@ -141,13 +166,16 @@ namespace Vcc.Nolvus.Services.Files
 
         public bool FileExists(string Directory, string FileName, out string FullPath)
         {
-            FileInfo FileFromDirectory = GetFileFromDirectory(Directory, FileName);
+            ZlpFileInfo FileFromDirectory = GetFileFromDirectory(Directory, FileName);
+
             if (FileFromDirectory != null)
             {
                 FullPath = FileFromDirectory.FullName;
                 return true;
             }
+
             FullPath = string.Empty;
+
             return false;
         }
 
@@ -165,7 +193,7 @@ namespace Vcc.Nolvus.Services.Files
 
         public bool IsDirectoryEmpty(string Dir)
         {
-            return Directory.GetFiles(Dir, "*.*", SearchOption.AllDirectories).Length == 0;
-        }
+            return ZlpIOHelper.GetFiles(Dir, "*.*", SearchOption.AllDirectories).Length == 0;            
+        }        
     }
 }

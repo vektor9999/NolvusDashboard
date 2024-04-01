@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn1 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn2 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn3 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn4 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn5 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn6 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn7 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn8 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn9 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn10 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstanceDetailFrame));
             this.ModsGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.BtnBack = new Vcc.Nolvus.Components.Controls.FlatButton();
@@ -63,35 +63,41 @@
             // ModsGrid
             // 
             this.ModsGrid.AccessibleName = "Table";
+            this.ModsGrid.AllowEditing = false;
             this.ModsGrid.AllowResizingColumns = true;
             this.ModsGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ModsGrid.AutoGenerateColumns = false;
-            gridTextColumn1.AllowResizing = true;
-            gridTextColumn1.HeaderText = "Priority";
-            gridTextColumn1.MappingName = "Priority";
-            gridTextColumn1.Width = 75D;
-            gridTextColumn2.AllowResizing = true;
-            gridTextColumn2.HeaderText = "Mod";
-            gridTextColumn2.MappingName = "Name";
-            gridTextColumn2.Width = 400D;
-            gridTextColumn3.AllowResizing = true;
-            gridTextColumn3.HeaderText = "Version";
-            gridTextColumn3.MappingName = "Version";
-            gridTextColumn4.AllowResizing = true;
-            gridTextColumn4.HeaderText = "Category";
-            gridTextColumn4.MappingName = "Category";
-            gridTextColumn4.Visible = false;
-            gridTextColumn5.AllowResizing = true;
-            gridTextColumn5.HeaderText = "Status";
-            gridTextColumn5.MappingName = "StatusText";
-            gridTextColumn5.Width = 200D;
-            this.ModsGrid.Columns.Add(gridTextColumn1);
-            this.ModsGrid.Columns.Add(gridTextColumn2);
-            this.ModsGrid.Columns.Add(gridTextColumn3);
-            this.ModsGrid.Columns.Add(gridTextColumn4);
-            this.ModsGrid.Columns.Add(gridTextColumn5);
+            gridTextColumn6.AllowEditing = false;
+            gridTextColumn6.AllowResizing = true;
+            gridTextColumn6.HeaderText = "Priority";
+            gridTextColumn6.MappingName = "Priority";
+            gridTextColumn6.Width = 75D;
+            gridTextColumn7.AllowEditing = false;
+            gridTextColumn7.AllowResizing = true;
+            gridTextColumn7.HeaderText = "Mod";
+            gridTextColumn7.MappingName = "Name";
+            gridTextColumn7.Width = 400D;
+            gridTextColumn8.AllowEditing = false;
+            gridTextColumn8.AllowResizing = true;
+            gridTextColumn8.HeaderText = "Version";
+            gridTextColumn8.MappingName = "Version";
+            gridTextColumn9.AllowEditing = false;
+            gridTextColumn9.AllowResizing = true;
+            gridTextColumn9.HeaderText = "Category";
+            gridTextColumn9.MappingName = "Category";
+            gridTextColumn9.Visible = false;
+            gridTextColumn10.AllowEditing = false;
+            gridTextColumn10.AllowResizing = true;
+            gridTextColumn10.HeaderText = "Status";
+            gridTextColumn10.MappingName = "StatusText";
+            gridTextColumn10.Width = 200D;
+            this.ModsGrid.Columns.Add(gridTextColumn6);
+            this.ModsGrid.Columns.Add(gridTextColumn7);
+            this.ModsGrid.Columns.Add(gridTextColumn8);
+            this.ModsGrid.Columns.Add(gridTextColumn9);
+            this.ModsGrid.Columns.Add(gridTextColumn10);
             this.ModsGrid.Location = new System.Drawing.Point(7, 76);
             this.ModsGrid.Name = "ModsGrid";
             this.ModsGrid.Size = new System.Drawing.Size(889, 347);
@@ -99,6 +105,7 @@
             this.ModsGrid.Text = "sfDataGrid1";
             this.ModsGrid.QueryCellStyle += new Syncfusion.WinForms.DataGrid.Events.QueryCellStyleEventHandler(this.ModsGrid_QueryCellStyle);
             this.ModsGrid.DrawCell += new Syncfusion.WinForms.DataGrid.Events.DrawCellEventHandler(this.ModsGrid_DrawCell);
+            this.ModsGrid.CellDoubleClick += new Syncfusion.WinForms.DataGrid.Events.CellClickEventHandler(this.ModsGrid_CellDoubleClick);
             // 
             // BtnBack
             // 

@@ -55,8 +55,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 Invoke((Action)RefreshBox);
                 return;
             }
-            
-            ModsBox.DataSource = ServiceSingleton.Packages.ProgressQueue.ToList();
+
+            ModsBox.DataSource = null;
+            ModsBox.DataSource = ServiceSingleton.Packages.ProgressQueue.GetList();
             
             ServiceSingleton.Dashboard.AdditionalTertiaryInfo(string.Format("Download : {0}MB/s", ServiceSingleton.Packages.DownloadSpeed.ToString("0.0")));
 

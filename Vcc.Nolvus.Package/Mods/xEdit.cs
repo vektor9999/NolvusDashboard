@@ -24,7 +24,7 @@ namespace Vcc.Nolvus.Package.Mods
                     {
                         var Instance = ServiceSingleton.Instances.WorkingInstance;
 
-                        var InstallDirectory = Path.Combine(Instance.InstallDir, "TOOLS", this.Name);
+                        var InstallDirectory = Path.Combine(Instance.InstallDir, "TOOLS", Name);
                         var CacheDir = Path.Combine(InstallDirectory, "Cache");                        
 
                         Directory.CreateDirectory(InstallDirectory);

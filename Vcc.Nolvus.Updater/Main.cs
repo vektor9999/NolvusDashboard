@@ -11,8 +11,11 @@ using Syncfusion.Windows.Forms;
 using Vcc.Nolvus.Components.Controls;
 using Vcc.Nolvus.Api.Installer.Services;
 using Vcc.Nolvus.Core;
+using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Events;
+using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Services.Files;
+using Vcc.Nolvus.Services.Globals;
 
 namespace Vcc.Nolvus.Updater
 {    
@@ -217,6 +220,8 @@ namespace Vcc.Nolvus.Updater
         public Main()
         {
             InitializeComponent();
+            
+            ServiceSingleton.RegisterService<IGlobalsService>(new GlobalsService());
 
             SkinManager.SetVisualStyle(this, "Office2016Black");
             this.Style.TitleBar.MaximizeButtonHoverBackColor = Color.DarkOrange;
@@ -231,8 +236,7 @@ namespace Vcc.Nolvus.Updater
             this.Style.TitleBar.BackColor = Color.FromArgb(54, 54, 54);
             this.Style.TitleBar.IconBackColor = Color.FromArgb(54, 54, 54);
             this.Style.TitleBar.Height = 50;
-            this.Style.BackColor = Color.FromArgb(54, 54, 54);
-
+            this.Style.BackColor = Color.FromArgb(54, 54, 54);            
 
             MessageBar = new MessageBar();
             MessageBar.Width = 3000;
@@ -255,11 +259,6 @@ namespace Vcc.Nolvus.Updater
             else if (new DirectoryInfo(BaseFolder).Parent == null)
             {
                 SetError("Nolvus Dashboard can not be installed on a root drive, please copy the updater.exe into an other folder (like D:\\Nolvus).");
-                ShowButton(true);
-            }
-            else if (BaseFolder.Length > 10)
-            {
-                SetError("Your Installation path (" + BaseFolder + ") is too long, please copy the updater.exe into a shorter path like (D:\\Nolvus). Your installation path will be automatically the path you are starting this program from.");
                 ShowButton(true);
             }
             else

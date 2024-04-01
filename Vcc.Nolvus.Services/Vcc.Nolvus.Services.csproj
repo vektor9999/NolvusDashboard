@@ -73,6 +73,10 @@
     <Reference Include="Vcc.Nolvus.Core">
       <HintPath>..\Assemblies\Vcc.Nolvus.Core.dll</HintPath>
     </Reference>
+    <Reference Include="ZetaLongPaths, Version=1.0.17.0, Culture=neutral, PublicKeyToken=b764f59068f31f38, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZetaLongPaths.1.0.17\lib\net452-full\ZetaLongPaths.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Checker\CheckerService.cs" />

@@ -75,23 +75,16 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
             }
         }
 
-        protected override async Task OnLoadedAsync()
-        {
-            try
-            {
-                INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
+        protected override void OnLoaded()
+        {            
+            INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
-                LblHeader.Text = Instance.Name + " v" + Instance.Version;
-                ServiceSingleton.Dashboard.Info("Instance mods for " + Instance.Name + " v" + Instance.Version);
+            LblHeader.Text = Instance.Name + " v" + Instance.Version;
+            ServiceSingleton.Dashboard.Info("Instance mods for " + Instance.Name + " v" + Instance.Version);
 
-                DrpDwnLstProfiles.Visible = false;
-                DrpDwnLstProfiles.DataSource = ServiceSingleton.Packages.ModOrganizer2.GetProfiles();
-                DrpDwnLstProfiles.SelectedIndex = 0;                
-            }
-            catch(Exception ex)
-            {
-                await ServiceSingleton.Dashboard.Error("Error during instance detail loading", ex.Message);
-            }
+            DrpDwnLstProfiles.Visible = false;
+            DrpDwnLstProfiles.DataSource = ServiceSingleton.Packages.ModOrganizer2.GetProfiles();
+            DrpDwnLstProfiles.SelectedIndex = 0;                
         }
 
         private void PnlHeader_Paint(object sender, PaintEventArgs e)
@@ -186,7 +179,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                     }
                     catch (Exception ex)
                     {
-                        throw ex;
+                        throw ex;                        
                     }
                 }
                 finally
@@ -390,28 +383,49 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
         private async void DrpDwnLstProfiles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_CurrentProfile != SelectedProfile)
+            try
             {
-                _CurrentProfile = SelectedProfile;
-
-                LoadGrids(await LoadModStatus());
-
-                if (ModListStatus.HasMods)
+                if (_CurrentProfile != SelectedProfile)
                 {
-                    if (ModListStatus.AddedModsCount > 0 || ModListStatus.RemovedModsCount > 0)
-                    {
-                        PnlHeader.BackColor = Color.FromArgb(255, 0, 0);
-                        LblHeader.Text += " - Errors Detected";
-                    }
-                    else if (ModListStatus.VersionMismatchCount > 0)
-                    {
-                        PnlHeader.BackColor = Color.FromArgb(255, 128, 0);
-                        LblHeader.Text += " - Warning Detected";
-                    }
-                }
+                    _CurrentProfile = SelectedProfile;
 
-                DrpDwnLstProfiles.Visible = true;
+                    LoadGrids(await LoadModStatus());
+
+                    if (ModListStatus.HasMods)
+                    {
+                        if (ModListStatus.AddedModsCount > 0 || ModListStatus.RemovedModsCount > 0 || ModListStatus.IniParsingErrorCount > 0)
+                        {
+                            PnlHeader.BackColor = Color.FromArgb(255, 0, 0);
+                            LblHeader.Text += " - Errors Detected";
+                        }
+                        else if (ModListStatus.VersionMismatchCount > 0 || ModListStatus.InstalledIniMissingCount > 0)
+                        {
+                            PnlHeader.BackColor = Color.FromArgb(255, 128, 0);
+                            LblHeader.Text += " - Warning Detected";
+                        }
+                    }
+
+                    DrpDwnLstProfiles.Visible = true;
+                }
             }
+            catch (Exception ex)
+            {
+                await ServiceSingleton.Dashboard.Error("Error during instance detail loading", ex.Message);
+            }   
+        }
+
+        private void ModsGrid_CellDoubleClick(object sender, Syncfusion.WinForms.DataGrid.Events.CellClickEventArgs e)
+        {
+            var Mod = e.DataRow.RowData as ModObject;
+
+            var Info = string.Format("Mod : {0}", Mod.Name, Mod.Version);
+
+            Info += Environment.NewLine;
+            Info += string.Format("Version : {0}", Mod.Version);
+            Info += Environment.NewLine;
+            Info += string.Format("Status : {0}", Mod.StatusText);
+
+            NolvusMessageBox.ShowMessage("Mod information", Info, MessageBoxType.Info);
         }
     }
 }

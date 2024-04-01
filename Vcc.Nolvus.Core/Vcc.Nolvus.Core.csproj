@@ -47,6 +47,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assemblies\Vcc.Nolvus.Api.Installer.dll</HintPath>
     </Reference>
+    <Reference Include="ZetaLongPaths, Version=1.0.17.0, Culture=neutral, PublicKeyToken=b764f59068f31f38, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZetaLongPaths.1.0.17\lib\net452-full\ZetaLongPaths.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\Enums.cs" />
@@ -85,6 +89,7 @@
     <Compile Include="Interfaces\IModsContainer.cs" />
     <Compile Include="Interfaces\IMOElement.cs" />
     <Compile Include="Interfaces\IPackageService.cs" />
+    <Compile Include="Interfaces\IProgressQueue.cs" />
     <Compile Include="Interfaces\IReportService.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Interfaces\INolvusInstance.cs" />
@@ -102,6 +107,9 @@
     <EmbeddedResource Include="Frames\DashboardFrame.resx">
       <DependentUpon>DashboardFrame.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
