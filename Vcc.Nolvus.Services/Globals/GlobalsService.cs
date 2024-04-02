@@ -168,40 +168,58 @@ namespace Vcc.Nolvus.Services.Globals
 
         public List<string> GetVideoAdapters()
         {
-            ManagementObjectCollection GPUs = new ManagementObjectSearcher("SELECT * FROM Win32_VideoController").Get();
+            try
+            {                
+                ManagementObjectCollection GPUs = new ManagementObjectSearcher("SELECT * FROM Win32_VideoController").Get();
 
-            var Result = new List<string>();
+                var Result = new List<string>();
 
-            foreach (ManagementObject GPU in GPUs)
-            {
-                PropertyData MinRefreshRate = GPU.Properties["MinRefreshRate"];
-                PropertyData Description = GPU.Properties["Description"];
-
-                if (MinRefreshRate != null && Description != null)
+                foreach (ManagementObject GPU in GPUs)
                 {
-                    if (MinRefreshRate.Value != null) Result.Add(Description.Value.ToString().ToUpper());
-                }
-            }
+                    PropertyData MinRefreshRate = GPU.Properties["MinRefreshRate"];
+                    PropertyData Description = GPU.Properties["Description"];
 
-            return Result;
+                    if (MinRefreshRate != null && Description != null)
+                    {
+                        if (MinRefreshRate.Value != null) Result.Add(Description.Value.ToString().ToUpper());
+                    }
+                }
+
+                return Result;
+            }
+            catch
+            {
+                var List = new List<string>();
+
+                List.Add("GPU info not found");
+
+                return List;
+            }            
         }
 
         public async Task<string> GetCPUInfo()
         {
             return await Task.Run(() =>
             {
-                string Result = string.Empty;
+                try
+                {                    
+                    string Result = string.Empty;
 
-                using (ManagementObjectSearcher Win32Proc = new ManagementObjectSearcher("select * from Win32_Processor"))
-                {
-                    foreach (ManagementObject Obj in Win32Proc.Get())
+                    using (ManagementObjectSearcher Win32Proc = new ManagementObjectSearcher("select * from Win32_Processor"))
                     {
-                        Result = Obj["Name"].ToString();
-                        break;
-                    }
-                };
+                        foreach (ManagementObject Obj in Win32Proc.Get())
+                        {
+                            Result = Obj["Name"].ToString();
+                            break;
+                        }
+                    };
 
-                return Result;
+                    return Result;
+                }
+                catch
+                {
+                    return "CPU info not found";
+                }
             });                     
         }
 
@@ -209,17 +227,24 @@ namespace Vcc.Nolvus.Services.Globals
         {
             return await Task.Run(() =>
             {
-                int Result = 0;
+                try
+                {                    
+                    int Result = 0;
 
-                using (ManagementObjectSearcher Win32Proc = new ManagementObjectSearcher("SELECT * FROM Win32_OperatingSystem"))
-                {
-                    foreach (ManagementObject Obj in Win32Proc.Get())
+                    using (ManagementObjectSearcher Win32Proc = new ManagementObjectSearcher("SELECT * FROM Win32_OperatingSystem"))
                     {
-                        Result = System.Convert.ToInt32(Math.Ceiling(System.Convert.ToDouble(Obj["TotalVisibleMemorySize"]) / 1024 / 1024));
+                        foreach (ManagementObject Obj in Win32Proc.Get())
+                        {
+                            Result = System.Convert.ToInt32(Math.Ceiling(System.Convert.ToDouble(Obj["TotalVisibleMemorySize"]) / 1024 / 1024));
+                        }
                     }
-                }
 
-                return Result.ToString();
+                    return Result.ToString();
+                }
+                catch
+                {
+                    return "RAM count not found";
+                }
             });        
         }
 

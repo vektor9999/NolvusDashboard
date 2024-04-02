@@ -172,7 +172,17 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 DrpDwnLstAntiAliasing.DataSource = AntiAliasing;
 
                 LblCPU.Text = await ServiceSingleton.Globals.GetCPUInfo();
-                LblRAM.Text = await ServiceSingleton.Globals.GetRamCount() + " GB";
+
+                var Ram = await ServiceSingleton.Globals.GetRamCount();
+
+                if ( Ram != "RAM count not found")
+                {
+                    LblRAM.Text = Ram + " GB";
+                }
+                else
+                {
+                    LblRAM.Text = Ram;
+                }                
 
                 var GPU = string.Join(Environment.NewLine, ServiceSingleton.Globals.GetVideoAdapters().ToArray());
 

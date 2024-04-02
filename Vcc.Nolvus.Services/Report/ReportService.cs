@@ -34,7 +34,18 @@ namespace Vcc.Nolvus.Services.Report
                 Result += Environment.NewLine;
                 Result += "GPU : " + string.Join(Environment.NewLine, ServiceSingleton.Globals.GetVideoAdapters().ToArray());
                 Result += Environment.NewLine;
-                Result += "RAM : " + await ServiceSingleton.Globals.GetRamCount() + " GB";
+
+                var Ram = await ServiceSingleton.Globals.GetRamCount();
+
+                if (Ram != "RAM count not found")
+                {
+                    Result += "RAM : " + Ram + " GB";
+                }
+                else
+                {
+                    Result += Ram;
+                }
+                
                 Result += Environment.NewLine;
                 Result += Environment.NewLine;
 
@@ -383,7 +394,18 @@ namespace Vcc.Nolvus.Services.Report
 
                 CurrentLine += DrawString("CPU : ", await ServiceSingleton.Globals.GetCPUInfo(), Graphics, Report.PageSettings, CurrentLine);
                 CurrentLine += DrawString("GPU : ", string.Join(Environment.NewLine, ServiceSingleton.Globals.GetVideoAdapters().ToArray()), Graphics, Report.PageSettings, CurrentLine);
-                CurrentLine += DrawString("RAM : ", string.Format("{0} GB", await ServiceSingleton.Globals.GetRamCount()), Graphics, Report.PageSettings, CurrentLine);
+
+                var Ram = await ServiceSingleton.Globals.GetRamCount();
+
+                if ( Ram != "RAM count not found")
+                {
+                    CurrentLine += DrawString("RAM : ", string.Format("{0} GB", Ram), Graphics, Report.PageSettings, CurrentLine);
+                }
+                else
+                {
+                    CurrentLine += DrawString("RAM : ", string.Format("{0}", Ram), Graphics, Report.PageSettings, CurrentLine);
+                }
+                
 
                 #endregion
 
