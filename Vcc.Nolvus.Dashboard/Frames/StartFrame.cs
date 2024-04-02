@@ -191,16 +191,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                     ServiceSingleton.Logger.Log(string.Format("Server Dashboard updater version : {0}", LatestDashboard.UpdaterVersion));
                     ServiceSingleton.Logger.Log(string.Format("Server Dashboard link : {0}", LatestDashboard.DownloadLink));
                     ServiceSingleton.Logger.Log(string.Format("Server Dashboard updater link : {0}", LatestDashboard.UpdaterLink));
-
-                    if (ServiceSingleton.Updater.Installed)
-                    {
-                        ServiceSingleton.Logger.Log("Nolvus Updater is installed");
-                        ServiceSingleton.Logger.Log(string.Format("Current Nolvus Updater version : {0}", ServiceSingleton.Updater.Version));
-                    }
-                    else
-                    {
-                        ServiceSingleton.Logger.Log("Nolvus Updater is not installed");
-                    }
+                    ServiceSingleton.Logger.Log(string.Format("Server Dashboard updater crc : {0}", LatestDashboard.UpdaterHash));                    
 
                     ServiceSingleton.Dashboard.Progress(50);                    
 
@@ -208,8 +199,8 @@ namespace Vcc.Nolvus.Dashboard.Frames
                     {                        
                         ServiceSingleton.Logger.Log(string.Format("New Dashboard version available : {0}", LatestDashboard.Version));
 
-                        if (!ServiceSingleton.Updater.Installed || ServiceSingleton.Updater.IsOlder(LatestDashboard.UpdaterVersion))
-                        {
+                        if (!ServiceSingleton.Updater.Installed || !await ServiceSingleton.Updater.IsValid(LatestDashboard.UpdaterHash) || ServiceSingleton.Updater.IsOlder(LatestDashboard.UpdaterVersion))
+                        {                            
                             ServiceSingleton.Logger.Log(string.Format("Downloading Nolvus Updater v{0}", LatestDashboard.UpdaterVersion));
 
                             await ServiceSingleton.Files.DownloadFile(LatestDashboard.UpdaterLink, ServiceSingleton.Updater.UpdaterExe, (s, e) =>
@@ -244,7 +235,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                         CaughtException = ex.InnerException;
                     }
 
-                    throw new Exception("Error during Nolvus updates checking. The Nolvus web site may have issues currently. (Original message : " + CaughtException.Message + ")");
+                    throw new Exception("Error during Nolvus updates checking with message : " + CaughtException.Message + ")");
                 }
             });
 

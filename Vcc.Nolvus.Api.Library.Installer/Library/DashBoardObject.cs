@@ -12,6 +12,7 @@ namespace Vcc.Nolvus.Api.Installer.Library
         string DownloadLink { get; }            
         string UpdaterVersion { get;}
         string UpdaterLink { get; }
+        string UpdaterHash { get; }
     }
 
     public class DashBoardObject : InstallerApiObject
@@ -20,6 +21,7 @@ namespace Vcc.Nolvus.Api.Installer.Library
         public string DownloadLink { get; set; }
         public string UpdaterVersion { get; set; }
         public string UpdaterLink { get; set; }
+        public string UpdaterHash { get; set; }
     }
 
     public class DashBoardDTO : DashBoardObject, IDashBoardDTO

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Services;
+using ZetaLongPaths;
 
 namespace Vcc.Nolvus.Services.Updater
 {
@@ -55,6 +56,12 @@ namespace Vcc.Nolvus.Services.Updater
                 return File.Exists(UpdaterExe);
             }
         }
+
+        public async Task<bool> IsValid(string UpdaterCRC)
+        {            
+            return await ServiceSingleton.Files.GetCRC32(new ZlpFileInfo(UpdaterExe), null) == UpdaterCRC;            
+        }
+
         public async Task Launch()
         {
             var Tsk = Task.Run(() => 

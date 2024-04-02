@@ -12,6 +12,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         string UpdaterExe { get; }
         bool IsOlder(string LatestVersion);
         bool Installed { get; }
+        Task<bool> IsValid(string UpdaterCRC);
         Task Launch();
     }
 }
