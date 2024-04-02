@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Management;
+using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 using System.Windows.Forms;
 using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Services;
@@ -219,6 +221,12 @@ namespace Vcc.Nolvus.Services.Globals
 
                 return Result.ToString();
             });        
+        }
+
+        public string GetVersion(string FilePath)
+        {
+            string v = FileVersionInfo.GetVersionInfo(FilePath).ProductVersion;
+            return v.Substring(0, v.LastIndexOf('.'));
         }
     }
 }        

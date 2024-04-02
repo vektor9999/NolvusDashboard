@@ -57,6 +57,8 @@ namespace Vcc.Nolvus.Dashboard.Frames
                     }
 
                     ServiceSingleton.Dashboard.Progress(25);
+
+                    ServiceSingleton.Logger.Log("Connected to Nolvus...");
                 }
                 catch (Exception ex)
                 {

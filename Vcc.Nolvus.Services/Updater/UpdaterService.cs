@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Interfaces;
+using Vcc.Nolvus.Core.Services;
 
 namespace Vcc.Nolvus.Services.Updater
 {
@@ -22,8 +23,7 @@ namespace Vcc.Nolvus.Services.Updater
         {
             get
             {
-                string Version = FileVersionInfo.GetVersionInfo(UpdaterExe).ProductVersion;
-                return Version.Substring(0, Version.LastIndexOf('.'));
+                return ServiceSingleton.Globals.GetVersion(UpdaterExe);
             }
         }
         public bool IsOlder(string LatestVersion)

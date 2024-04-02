@@ -106,6 +106,14 @@ namespace Vcc.Nolvus.Dashboard
             }
         }
 
+        private string DashboardExe
+        {
+            get
+            {
+                return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NolvusDashboard.exe");
+            }            
+        }
+
         #endregion
 
         #region UI Methods
@@ -232,12 +240,8 @@ namespace Vcc.Nolvus.Dashboard
         public string Version
         {
             get
-            {
-                Assembly CurrentAssembly = Assembly.GetEntryAssembly();
-                if (CurrentAssembly == null) CurrentAssembly = Assembly.GetCallingAssembly();
-                System.Version VersionNumber = CurrentAssembly.GetName().Version;
-
-                return string.Format("{0}.{1}.{2}", VersionNumber.Major, VersionNumber.Minor, VersionNumber.Build);
+            {                               
+                return ServiceSingleton.Globals.GetVersion(DashboardExe);              
             }
         }        
         public void LoadAccountImage(string Url)

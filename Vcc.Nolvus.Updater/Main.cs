@@ -75,9 +75,7 @@ namespace Vcc.Nolvus.Updater
 
         private string GetDashboardVersion()
         {
-            string Version = FileVersionInfo.GetVersionInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NolvusDashBoard.exe")).ProductVersion;
-
-            return Version.Substring(0, Version.LastIndexOf('.'));
+            return ServiceSingleton.Globals.GetVersion(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NolvusDashBoard.exe"));            
         }
 
         private bool IsNewerVersion(string v1, string v2)
