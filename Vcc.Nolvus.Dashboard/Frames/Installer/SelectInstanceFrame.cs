@@ -68,54 +68,61 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
         protected override async Task OnLoadAsync()
         {
-            ServiceSingleton.Dashboard.Title("Nolvus Dashboard - [Instance Auto Installer]");
-            ServiceSingleton.Dashboard.Info("Instance Prerequisites");
+            try
+            {
+                ServiceSingleton.Dashboard.Title("Nolvus Dashboard - [Instance Auto Installer]");
+                ServiceSingleton.Dashboard.Info("Instance Prerequisites");
 
-            BtnCancel.Visible = !Parameters.IsEmpty && Parameters["Cancel"] != null;
+                BtnCancel.Visible = !Parameters.IsEmpty && Parameters["Cancel"] != null;
 
-            var Versions = await ApiManager.Service.Installer.GetNolvusVersions();
+                var Versions = await ApiManager.Service.Installer.GetNolvusVersions();
 
-            DrpDwnLstGuides.DataSource = Versions;
-            DrpDwnLstGuides.DisplayMember = "Name";
-            DrpDwnLstGuides.ValueMember = "Id";            
+                DrpDwnLstGuides.DataSource = Versions;
+                DrpDwnLstGuides.DisplayMember = "Name";
+                DrpDwnLstGuides.ValueMember = "Id";
 
-            DrpDwnLstGuides.SelectedIndex = InstanceIndex(Versions);            
-            DrpDwnLstScreenRes.DataSource = ServiceSingleton.Globals.WindowsResolutions;            
+                DrpDwnLstGuides.SelectedIndex = InstanceIndex(Versions);
+                DrpDwnLstScreenRes.DataSource = ServiceSingleton.Globals.WindowsResolutions;
 
-            DrpDwnLstScreenRes.SelectedIndex = ResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);
+                DrpDwnLstScreenRes.SelectedIndex = ResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);
 
-            List<string> Ratios = new List<string>();
+                List<string> Ratios = new List<string>();
 
-            Ratios.Add("16:9");            
-            Ratios.Add("21:9");
+                Ratios.Add("16:9");
+                Ratios.Add("21:9");
 
-            DrpDwnLstRatios.DataSource = Ratios;
+                DrpDwnLstRatios.DataSource = Ratios;
 
-            DrpDwnLstRatios.SelectedIndex = RatioIndex(Ratios);
+                DrpDwnLstRatios.SelectedIndex = RatioIndex(Ratios);
 
-            List<LgCode> LgList = new List<LgCode>();
+                List<LgCode> LgList = new List<LgCode>();
 
-            LgCode Lg1 = new LgCode { Code = "EN", Name = "English" };
-            LgCode Lg2 = new LgCode { Code = "FR", Name = "French" };
-            LgCode Lg3 = new LgCode { Code = "IT", Name = "Italian" };
-            LgCode Lg4 = new LgCode { Code = "DE", Name = "German" };
-            LgCode Lg5 = new LgCode { Code = "ES", Name = "Spanish" };
-            LgCode Lg6 = new LgCode { Code = "RU", Name = "Russian" };
-            LgCode Lg7 = new LgCode { Code = "PL", Name = "Polish" };
+                LgCode Lg1 = new LgCode { Code = "EN", Name = "English" };
+                LgCode Lg2 = new LgCode { Code = "FR", Name = "French" };
+                LgCode Lg3 = new LgCode { Code = "IT", Name = "Italian" };
+                LgCode Lg4 = new LgCode { Code = "DE", Name = "German" };
+                LgCode Lg5 = new LgCode { Code = "ES", Name = "Spanish" };
+                LgCode Lg6 = new LgCode { Code = "RU", Name = "Russian" };
+                LgCode Lg7 = new LgCode { Code = "PL", Name = "Polish" };
 
-            LgList.Add(Lg1);
-            LgList.Add(Lg2);
-            LgList.Add(Lg3);
-            LgList.Add(Lg4);
-            LgList.Add(Lg5);
-            LgList.Add(Lg6);
-            LgList.Add(Lg7);
+                LgList.Add(Lg1);
+                LgList.Add(Lg2);
+                LgList.Add(Lg3);
+                LgList.Add(Lg4);
+                LgList.Add(Lg5);
+                LgList.Add(Lg6);
+                LgList.Add(Lg7);
 
-            DrpDwnLg.DataSource = LgList;
-            DrpDwnLg.DisplayMember = "Name";
-            DrpDwnLg.ValueMember = "Code";
+                DrpDwnLg.DataSource = LgList;
+                DrpDwnLg.DisplayMember = "Name";
+                DrpDwnLg.ValueMember = "Code";
 
-            DrpDwnLg.SelectedIndex = LgIndex(LgList);
+                DrpDwnLg.SelectedIndex = LgIndex(LgList);
+            }
+            catch (Exception ex)
+            {
+                await ServiceSingleton.Dashboard.Error("Error during instance selection loading", ex.Message, ex.StackTrace);
+            }
         }                                
 
         private void BtnContinue_Click(object sender, EventArgs e)

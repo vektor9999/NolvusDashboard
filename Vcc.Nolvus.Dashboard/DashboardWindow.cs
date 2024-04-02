@@ -390,9 +390,9 @@ namespace Vcc.Nolvus.Dashboard
 
             DoLoad(Frame);
 
-            OnFrameLoadedAsyncEvent(this, new EventArgs());            
+            OnFrameLoadedAsyncEvent(this, new EventArgs());
 
-            return Frame;
+            return Frame;                        
         }
         public T LoadFrame<T>(FrameParameters Parameters = null) where T : DashboardFrame
         {            
@@ -412,6 +412,8 @@ namespace Vcc.Nolvus.Dashboard
         }
         public async Task Error(string Title, string Message, string Trace = null, bool Retry = false)
         {
+            UnloadLoadingIndicator();
+
             ServiceSingleton.Dashboard.NoStatus();
             ServiceSingleton.Dashboard.ProgressCompleted();
             ServiceSingleton.Logger.Log("Error Form => " + Message);

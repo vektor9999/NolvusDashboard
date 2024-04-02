@@ -36,79 +36,86 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             InitializeComponent();            
         }
 
-        protected override void OnLoad()
+        protected override async void OnLoad()
         {
-            INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
-
-            LblName.Text = Instance.Name;            
-            LblResolution.Text = Instance.Settings.Width + "x" + Instance.Settings.Height;
-            LblRatio.Text = Instance.Settings.Ratio;
-            LblInstallDir.Text = Instance.InstallDir;
-            LblArchiveDir.Text = Instance.ArchiveDir;
-
-            LblEnableArchiving.Text = Instance.Settings.EnableArchiving ? "Yes" : "No";
-
-            LblDownscaling.Text = Instance.Performance.DownScaling == "TRUE" ? "Yes (" + Instance.Performance.DownScaledResolution + ")" : "No";
-            LblVariant.Text = Instance.Performance.Variant;
-            LblAA.Text = Instance.Performance.AntiAliasing;
-
-            switch(Instance.Performance.IniSettings)
+            try
             {
-                case "0": LblIni.Text = "Low";
-                    break;
-                case "1":
-                    LblIni.Text = "Medium";
-                    break;
-                case "2":
-                    LblIni.Text = "High";
-                    break;
+                INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
+
+                LblName.Text = Instance.Name;
+                LblResolution.Text = Instance.Settings.Width + "x" + Instance.Settings.Height;
+                LblRatio.Text = Instance.Settings.Ratio;
+                LblInstallDir.Text = Instance.InstallDir;
+                LblArchiveDir.Text = Instance.ArchiveDir;
+
+                LblEnableArchiving.Text = Instance.Settings.EnableArchiving ? "Yes" : "No";
+
+                LblDownscaling.Text = Instance.Performance.DownScaling == "TRUE" ? "Yes (" + Instance.Performance.DownScaledResolution + ")" : "No";
+                LblVariant.Text = Instance.Performance.Variant;
+                LblAA.Text = Instance.Performance.AntiAliasing;
+
+                switch (Instance.Performance.IniSettings)
+                {
+                    case "0": LblIni.Text = "Low";
+                        break;
+                    case "1":
+                        LblIni.Text = "Medium";
+                        break;
+                    case "2":
+                        LblIni.Text = "High";
+                        break;
+                }
+
+                LblPhysics.Text = Instance.Performance.AdvancedPhysics == "TRUE" ? "Yes" : "No";
+                LblLODs.Text = Instance.Performance.LODs;
+                LblRayTracing.Text = Instance.Performance.RayTracing == "TRUE" ? "Yes" : "No";
+                LblFPS.Text = Instance.Performance.FPSStabilizer == "TRUE" ? "Yes" : "No";
+
+                LblNudity.Text = Instance.Options.Nudity == "TRUE" ? "Yes" : "No";
+                LblHC.Text = Instance.Options.HardcoreMode == "TRUE" ? "Yes" : "No";
+                LblLeveling.Text = Instance.Options.AlternateLeveling == "TRUE" ? "Yes" : "No";
+                LblAltStart.Text = Instance.Options.AlternateStart == "TRUE" ? "Yes" : "No";
+                LblFantasyMode.Text = Instance.Options.FantasyMode == "TRUE" ? "Yes" : "No";
+                LblSkinType.Text = Instance.Options.SkinType;
+                LblENB.Text = ENBs.GetENBByCode(Instance.Options.AlternateENB);
+
+                if (!ApiManager.AccountInfo.IsPremium)
+                {
+                    PnlMessage.BackColor = Color.Orange;
+                    PicBox.Image = Properties.Resources.Warning_Message;
+                    LblMessage.Text = "You are not a Nexus Premium user. Download will not be automatic (you will have to click the download button for each mods) and bandwidth will be limited to 2 MB/s.";
+                }
+                else
+                {
+                    PnlMessage.BackColor = Color.FromArgb(92, 184, 92);
+                    PicBox.Image = Properties.Resources.Info;
+                    LblMessage.Text = "You are a Nexus Premium user. Download will be automatic and bandwidth will be unlimited.";
+                }
+
+                PnlMessage.Paint += PnlMessage_Paint;
+
+                if (ServiceSingleton.Settings.ErrorsThreshold == 1 || !NexusApi.ApiManager.AccountInfo.IsPremium)
+                {
+                    RdBtnOneError.Checked = true;
+                    RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages (max errors can be set up in the Nolvus Dashboard.ini file)", 50);
+                }
+                else if (ServiceSingleton.Settings.ErrorsThreshold == 0)
+                {
+                    RdBtnNoThreshold.Checked = true;
+                    RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages (max errors can be set up in the Nolvus Dashboard.ini file)", 50);
+                }
+                else
+                {
+                    RdBtnThreshold.Checked = true;
+                    RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages (max errors can be set up in the Nolvus Dashboard.ini file)", ServiceSingleton.Settings.ErrorsThreshold);
+                }
+
+                ServiceSingleton.Dashboard.Info("Review your selections");
             }
-            
-            LblPhysics.Text = Instance.Performance.AdvancedPhysics == "TRUE" ? "Yes" : "No";
-            LblLODs.Text = Instance.Performance.LODs;
-            LblRayTracing.Text = Instance.Performance.RayTracing == "TRUE" ? "Yes" : "No";
-            LblFPS.Text = Instance.Performance.FPSStabilizer == "TRUE" ? "Yes" : "No";
-
-            LblNudity.Text = Instance.Options.Nudity == "TRUE" ? "Yes" : "No";
-            LblHC.Text = Instance.Options.HardcoreMode == "TRUE" ? "Yes" : "No";
-            LblLeveling.Text = Instance.Options.AlternateLeveling == "TRUE" ? "Yes" : "No";
-            LblAltStart.Text = Instance.Options.AlternateStart == "TRUE" ? "Yes" : "No";
-            LblFantasyMode.Text = Instance.Options.FantasyMode == "TRUE" ? "Yes" : "No";
-            LblSkinType.Text = Instance.Options.SkinType;
-            LblENB.Text = ENBs.GetENBByCode(Instance.Options.AlternateENB);
-
-            if (!ApiManager.AccountInfo.IsPremium)
+            catch (Exception ex)
             {
-                PnlMessage.BackColor = Color.Orange;
-                PicBox.Image = Properties.Resources.Warning_Message;
-                LblMessage.Text = "You are not a Nexus Premium user. Download will not be automatic (you will have to click the download button for each mods) and bandwidth will be limited to 2 MB/s.";
+                await ServiceSingleton.Dashboard.Error("Error during summary checking", ex.Message, ex.StackTrace);
             }
-            else
-            {
-                PnlMessage.BackColor = Color.FromArgb(92, 184, 92);
-                PicBox.Image = Properties.Resources.Info;
-                LblMessage.Text = "You are a Nexus Premium user. Download will be automatic and bandwidth will be unlimited.";
-            }
-
-            PnlMessage.Paint += PnlMessage_Paint;
-
-            if (ServiceSingleton.Settings.ErrorsThreshold == 1 || !NexusApi.ApiManager.AccountInfo.IsPremium)
-            {
-                RdBtnOneError.Checked = true;
-                RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages (max errors can be set up in the Nolvus Dashboard.ini file)", 50);
-            }
-            else if (ServiceSingleton.Settings.ErrorsThreshold == 0)
-            {
-                RdBtnNoThreshold.Checked = true;
-                RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages (max errors can be set up in the Nolvus Dashboard.ini file)", 50);
-            }
-            else
-            {
-                RdBtnThreshold.Checked = true;
-                RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages (max errors can be set up in the Nolvus Dashboard.ini file)", ServiceSingleton.Settings.ErrorsThreshold);
-            }                      
-
-            ServiceSingleton.Dashboard.Info("Review your selections");
         }         
 
         private void PnlMessage_Paint(object sender, PaintEventArgs e)

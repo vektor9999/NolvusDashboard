@@ -132,78 +132,85 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         }
 
         protected override async Task OnLoadAsync()
-        {           
-            var Instance = ServiceSingleton.Instances.WorkingInstance;            
+        {
+            try
+            {                
+                var Instance = ServiceSingleton.Instances.WorkingInstance;
 
-            DrpDwnLstScreenRes.DataSource = ServiceSingleton.Globals.WindowsResolutions;
-            DrpDwnLstScreenRes.SelectedIndex = ResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);
-            DrpDwnLstScreenRes.Enabled = false;
+                DrpDwnLstScreenRes.DataSource = ServiceSingleton.Globals.WindowsResolutions;
+                DrpDwnLstScreenRes.SelectedIndex = ResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);
+                DrpDwnLstScreenRes.Enabled = false;
 
-            this.TglBtnPhysics.ToggleState = ToggleButtonState.Inactive;
+                this.TglBtnPhysics.ToggleState = ToggleButtonState.Inactive;
 
-            if (Instance.Performance.AdvancedPhysics == "TRUE")
-            {
-                this.TglBtnPhysics.ToggleState = ToggleButtonState.Active;
-            }
-
-            this.TglBtnRayTracing.ToggleState = ToggleButtonState.Inactive;
-
-            if (Instance.Performance.RayTracing == "TRUE")
-            {
-                this.TglBtnRayTracing.ToggleState = ToggleButtonState.Active;
-            }
-
-            this.TglBtnDownScale.ToggleState = ToggleButtonState.Inactive;
-
-            if (Instance.Performance.DownScaling == "TRUE")
-            {
-                this.TglBtnDownScale.ToggleState = ToggleButtonState.Active;
-            }
-
-            this.TglBtnFPSStabilizer.ToggleState = ToggleButtonState.Inactive;
-
-            if (Instance.Performance.FPSStabilizer == "TRUE")
-            {
-                this.TglBtnFPSStabilizer.ToggleState = ToggleButtonState.Active;
-            }
-
-            DrpDwnLstAntiAliasing.DataSource = AntiAliasing;
-
-            LblCPU.Text = await ServiceSingleton.Globals.GetCPUInfo();
-            LblRAM.Text = await ServiceSingleton.Globals.GetRamCount() + " GB";
-
-            var GPU = string.Join(Environment.NewLine, ServiceSingleton.Globals.GetVideoAdapters().ToArray());           
-
-            if (!ServiceSingleton.Settings.ForceAA)
-            {
-                LblGPUs.Text = GPU;
-
-                if (!IsNvidiaRTX())
+                if (Instance.Performance.AdvancedPhysics == "TRUE")
                 {
-                    ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing = "TAA";
-                    DrpDwnLstAntiAliasing.Enabled = false;
+                    this.TglBtnPhysics.ToggleState = ToggleButtonState.Active;
                 }
+
+                this.TglBtnRayTracing.ToggleState = ToggleButtonState.Inactive;
+
+                if (Instance.Performance.RayTracing == "TRUE")
+                {
+                    this.TglBtnRayTracing.ToggleState = ToggleButtonState.Active;
+                }
+
+                this.TglBtnDownScale.ToggleState = ToggleButtonState.Inactive;
+
+                if (Instance.Performance.DownScaling == "TRUE")
+                {
+                    this.TglBtnDownScale.ToggleState = ToggleButtonState.Active;
+                }
+
+                this.TglBtnFPSStabilizer.ToggleState = ToggleButtonState.Inactive;
+
+                if (Instance.Performance.FPSStabilizer == "TRUE")
+                {
+                    this.TglBtnFPSStabilizer.ToggleState = ToggleButtonState.Active;
+                }
+
+                DrpDwnLstAntiAliasing.DataSource = AntiAliasing;
+
+                LblCPU.Text = await ServiceSingleton.Globals.GetCPUInfo();
+                LblRAM.Text = await ServiceSingleton.Globals.GetRamCount() + " GB";
+
+                var GPU = string.Join(Environment.NewLine, ServiceSingleton.Globals.GetVideoAdapters().ToArray());
+
+                if (!ServiceSingleton.Settings.ForceAA)
+                {
+                    LblGPUs.Text = GPU;
+
+                    if (!IsNvidiaRTX())
+                    {
+                        ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing = "TAA";
+                        DrpDwnLstAntiAliasing.Enabled = false;
+                    }
+                }
+                else
+                {
+                    LblGPUs.Text = GPU + " (CHECK BYPASSED)";
+                }
+
+                DrpDwnLstAntiAliasing.SelectedIndex = AntiAliasingIndex(AntiAliasing);
+
+                DrpDwnLstIni.DataSource = IniSettings;
+
+                DrpDwnLstIni.SelectedIndex = System.Convert.ToInt16(Instance.Performance.IniSettings);
+
+                DrpDwnLstVariant.DataSource = Variants;
+
+                DrpDwnLstVariant.SelectedIndex = VariantIndex(Variants);
+
+                DrpDwnLstLODs.DataSource = LODs;
+
+                DrpDwnLstLODs.SelectedIndex = LODsIndex(LODs);
+
+                ServiceSingleton.Dashboard.Info("Performance Settings");
             }
-            else
+            catch(Exception ex)
             {
-                LblGPUs.Text = GPU + " (CHECK BYPASSED)";
-            }
-            
-            DrpDwnLstAntiAliasing.SelectedIndex = AntiAliasingIndex(AntiAliasing);
-
-            DrpDwnLstIni.DataSource = IniSettings;
-
-            DrpDwnLstIni.SelectedIndex = System.Convert.ToInt16(Instance.Performance.IniSettings);
-
-            DrpDwnLstVariant.DataSource = Variants;
-
-            DrpDwnLstVariant.SelectedIndex = VariantIndex(Variants);
-
-            DrpDwnLstLODs.DataSource = LODs;
-
-            DrpDwnLstLODs.SelectedIndex = LODsIndex(LODs);
-
-            ServiceSingleton.Dashboard.Info("Performance Settings");            
+                await ServiceSingleton.Dashboard.Error("Error during performance options loading", ex.Message, ex.StackTrace);
+            }    
         }        
         private void BtnPrevious_Click(object sender, EventArgs e)
         {

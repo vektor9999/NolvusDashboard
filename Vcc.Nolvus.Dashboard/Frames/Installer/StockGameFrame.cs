@@ -55,7 +55,14 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
             LstBxOutput.ItemHeight = (int)Math.Round(LstBxOutput.ItemHeight * ServiceSingleton.Dashboard.ScalingFactor);
 
-            var StockGameManager = new StockGameManager(Folders.DownloadDirectory, Folders.LibDirectory, Folders.PatchDirectory, Folders.GameDirectory, Instance, await ApiManager.Service.Installer.GetGamePackage(Instance.Version), true);
+            var StockGameManager = new StockGameManager(
+                Folders.DownloadDirectory, 
+                Folders.LibDirectory, 
+                Folders.PatchDirectory, 
+                Folders.GameDirectory, 
+                Instance, 
+                await ApiManager.Service.Installer.GetGamePackage(Instance.Version), 
+                true);
 
             StockGameManager.OnDownload += StockGameManager_OnDownload;
             StockGameManager.OnExtract += StockGameManager_OnExtract;
