@@ -150,9 +150,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             ServiceSingleton.Dashboard.Info("Additional Options");
         }
         
-        private void BtnPrevious_Click(object sender, EventArgs e)
+        private async void BtnPrevious_Click(object sender, EventArgs e)
         {
-            ServiceSingleton.Dashboard.LoadFrame<PerformanceFrame>();
+            await ServiceSingleton.Dashboard.LoadFrameAsync<PerformanceFrame>();
         }
 
         private void BtnContinue_Click(object sender, EventArgs e)

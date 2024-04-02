@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameFrame));
             this.LblError = new System.Windows.Forms.Label();
             this.BtnDetect = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnBrowse = new Vcc.Nolvus.Components.Controls.FlatButton();
@@ -35,13 +36,18 @@
             this.LblCheck = new System.Windows.Forms.Label();
             this.BtnContinue = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.PnlMessage = new System.Windows.Forms.Panel();
+            this.LblMessage = new System.Windows.Forms.Label();
+            this.PicBox = new System.Windows.Forms.PictureBox();
+            this.PnlMessage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
             this.SuspendLayout();
             // 
             // LblError
             // 
             this.LblError.AutoSize = true;
             this.LblError.ForeColor = System.Drawing.Color.White;
-            this.LblError.Location = new System.Drawing.Point(13, 139);
+            this.LblError.Location = new System.Drawing.Point(19, 239);
             this.LblError.Name = "LblError";
             this.LblError.Size = new System.Drawing.Size(38, 13);
             this.LblError.TabIndex = 12;
@@ -70,7 +76,7 @@
             this.BtnBrowse.BorderColor = System.Drawing.Color.White;
             this.BtnBrowse.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnBrowse.ForeColor = System.Drawing.Color.White;
-            this.BtnBrowse.Location = new System.Drawing.Point(486, 55);
+            this.BtnBrowse.Location = new System.Drawing.Point(486, 47);
             this.BtnBrowse.Name = "BtnBrowse";
             this.BtnBrowse.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnBrowse.Size = new System.Drawing.Size(20, 20);
@@ -84,7 +90,7 @@
             this.TxtBxGamePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.TxtBxGamePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtBxGamePath.ForeColor = System.Drawing.Color.White;
-            this.TxtBxGamePath.Location = new System.Drawing.Point(16, 55);
+            this.TxtBxGamePath.Location = new System.Drawing.Point(16, 47);
             this.TxtBxGamePath.Name = "TxtBxGamePath";
             this.TxtBxGamePath.Size = new System.Drawing.Size(464, 20);
             this.TxtBxGamePath.TabIndex = 9;
@@ -106,7 +112,7 @@
             this.BtnContinue.BorderColor = System.Drawing.Color.White;
             this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnContinue.ForeColor = System.Drawing.Color.White;
-            this.BtnContinue.Location = new System.Drawing.Point(504, 221);
+            this.BtnContinue.Location = new System.Drawing.Point(817, 428);
             this.BtnContinue.Name = "BtnContinue";
             this.BtnContinue.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnContinue.Size = new System.Drawing.Size(94, 42);
@@ -116,11 +122,48 @@
             this.BtnContinue.UseVisualStyleBackColor = false;
             this.BtnContinue.Click += new System.EventHandler(this.BtnContinue_Click);
             // 
+            // PnlMessage
+            // 
+            this.PnlMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PnlMessage.BackColor = System.Drawing.Color.Orange;
+            this.PnlMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PnlMessage.Controls.Add(this.LblMessage);
+            this.PnlMessage.Controls.Add(this.PicBox);
+            this.PnlMessage.Location = new System.Drawing.Point(16, 139);
+            this.PnlMessage.Name = "PnlMessage";
+            this.PnlMessage.Size = new System.Drawing.Size(895, 75);
+            this.PnlMessage.TabIndex = 21;
+            // 
+            // LblMessage
+            // 
+            this.LblMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblMessage.ForeColor = System.Drawing.Color.White;
+            this.LblMessage.Location = new System.Drawing.Point(44, 7);
+            this.LblMessage.Name = "LblMessage";
+            this.LblMessage.Size = new System.Drawing.Size(842, 53);
+            this.LblMessage.TabIndex = 1;
+            this.LblMessage.Text = resources.GetString("LblMessage.Text");
+            this.LblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // PicBox
+            // 
+            this.PicBox.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.Warning_Message;
+            this.PicBox.Location = new System.Drawing.Point(6, 16);
+            this.PicBox.Name = "PicBox";
+            this.PicBox.Size = new System.Drawing.Size(32, 32);
+            this.PicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.PicBox.TabIndex = 0;
+            this.PicBox.TabStop = false;
+            // 
             // GameFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.Controls.Add(this.PnlMessage);
             this.Controls.Add(this.LblError);
             this.Controls.Add(this.BtnDetect);
             this.Controls.Add(this.BtnBrowse);
@@ -128,7 +171,10 @@
             this.Controls.Add(this.LblCheck);
             this.Controls.Add(this.BtnContinue);
             this.Name = "GameFrame";
-            this.Size = new System.Drawing.Size(612, 277);
+            this.Size = new System.Drawing.Size(925, 484);
+            this.PnlMessage.ResumeLayout(false);
+            this.PnlMessage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,5 +189,8 @@
         private System.Windows.Forms.Label LblCheck;
         private Components.Controls.FlatButton BtnContinue;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Panel PnlMessage;
+        private System.Windows.Forms.Label LblMessage;
+        private System.Windows.Forms.PictureBox PicBox;
     }
 }

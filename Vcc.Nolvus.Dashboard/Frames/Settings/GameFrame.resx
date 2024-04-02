@@ -120,4 +120,7 @@
   <metadata name="folderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="LblMessage.Text" xml:space="preserve">
+    <value>if you click on auto detect and have several different Skyrim installations, the installer will only use the one that is referenced in your Windows registry which could not be the right one. So be aware of that. If you are not sure, browse manually to the steam directory where the latest version of Skyrim with the AE content is installed</value>
+  </data>
 </root>
