@@ -12,7 +12,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         void Add(ModProgress ModProgress);
         void Remove(ModProgress ModProgress);
         void Clear();
-        List<ModProgress> GetList();
-        double Sum();
+        List<ModProgress> ToList();
+        double DownloadSpeed { get; }
     }
 }

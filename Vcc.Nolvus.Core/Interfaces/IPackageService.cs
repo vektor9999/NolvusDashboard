@@ -23,8 +23,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         IProgressQueue ProgressQueue { get; }
         string LoadedVersion { get; }        
         double InstallProgression { get; }
-        IErrorHandler ErrorHandler { get; }
-        double DownloadSpeed { get; }
+        IErrorHandler ErrorHandler { get; }        
         bool Processing { get; }                  
     }
 }

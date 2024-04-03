@@ -58,7 +58,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
 
                     ServiceSingleton.Dashboard.Progress(25);
 
-                    ServiceSingleton.Logger.Log("Connected to Nolvus...");
+                    ServiceSingleton.Logger.Log("Connected to Nolvus");
                 }
                 catch (Exception ex)
                 {
@@ -262,13 +262,16 @@ namespace Vcc.Nolvus.Dashboard.Frames
                         switch (InstancesCheck)
                         {
                             case InstanceCheck.NoInstance:
-                                await ServiceSingleton.Dashboard.LoadFrameAsync<SelectInstanceFrame>();
+                                ServiceSingleton.Logger.Log("Dashboard is ready to install");
+                                await ServiceSingleton.Dashboard.LoadFrameAsync<SelectInstanceFrame>();                                
                                 break;
                             case InstanceCheck.InstancesToResume:
-                                ServiceSingleton.Dashboard.LoadFrame<ResumeFrame>();
+                                ServiceSingleton.Logger.Log("Dashboard is ready to resume");
+                                ServiceSingleton.Dashboard.LoadFrame<ResumeFrame>();                                
                                 break;
                             case InstanceCheck.InstalledInstances:
-                                ServiceSingleton.Dashboard.LoadFrame<InstancesFrame>();
+                                ServiceSingleton.Logger.Log("Dashboard ready to play");
+                                ServiceSingleton.Dashboard.LoadFrame<InstancesFrame>();                                
                                 break;
                         }
                     }                   

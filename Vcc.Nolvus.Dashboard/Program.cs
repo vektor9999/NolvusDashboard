@@ -36,7 +36,7 @@ namespace Vcc.Nolvus.Dashboard
         /// </summary>
         [STAThread]
         static void Main()
-        {          
+        {            
             ServiceSingleton.RegisterService<ILogService>(new LogService());
             ServiceSingleton.Logger.LineBreak();
             ServiceSingleton.Logger.Log("***Nolvus Dashboard Initialization***");
@@ -56,7 +56,7 @@ namespace Vcc.Nolvus.Dashboard
             ServiceSingleton.RegisterService<IFileService>(new FileService());
             ServiceSingleton.RegisterService<ISoftwareProvider>(PackageService);
             ServiceSingleton.RegisterService<IReportService>(new ReportService());
-            ServiceSingleton.RegisterService<ICheckerService>(new CheckerService());
+            ServiceSingleton.RegisterService<ICheckerService>(new CheckerService());            
 
             AppDomain.CurrentDomain.AssemblyResolve += Resolver;
             AppDomain.CurrentDomain.AssemblyLoad += Loader;

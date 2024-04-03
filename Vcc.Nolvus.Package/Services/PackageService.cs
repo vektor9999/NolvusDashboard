@@ -55,22 +55,7 @@ namespace Vcc.Nolvus.Package.Services
             {
                 return _ErrorHandler;
             }
-        }
-        public double DownloadSpeed
-        {
-            get
-            {
-                try
-
-                {
-                    return ServiceSingleton.Packages.ProgressQueue.Sum();
-                }
-                catch
-                {
-                    return 0;
-                }
-            }
-        }
+        }       
         public bool Processing
         {
             get

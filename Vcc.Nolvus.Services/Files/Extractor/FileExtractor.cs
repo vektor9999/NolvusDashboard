@@ -79,7 +79,7 @@ namespace Vcc.Nolvus.Services.Files.Extractor
 
                     if (SevenZipProcess.ExitCode != 0)
                     {
-                        throw new Exception(string.Format("Error during file extraction {0} with error {1}!", FileName, string.Join(Environment.NewLine, Output.ToArray())));
+                        throw new Exception(string.Format("Error during file extraction {0} with error {1}!", FileName, string.Join(" ", ErrorOutput.ToArray())));
                     }
                     else
                     {
