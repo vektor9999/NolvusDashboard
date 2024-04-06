@@ -439,9 +439,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
             }
         }        
 
-        private async void BtnBack_Click(object sender, EventArgs e)
+        private void BtnBack_Click(object sender, EventArgs e)
         {
-            await ServiceSingleton.Dashboard.LoadFrameAsync<InstanceDetailFrame>();
+            ServiceSingleton.Dashboard.LoadFrame<InstanceDetailFrame>();
         }
 
         private void ApplyResolution()

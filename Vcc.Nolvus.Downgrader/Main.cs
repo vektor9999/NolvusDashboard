@@ -14,6 +14,7 @@ using Vcc.Nolvus.Api.Installer.Services;
 using Vcc.Nolvus.StockGame.Core;
 using Vcc.Nolvus.StockGame.Patcher;
 using Vcc.Nolvus.Core.Services;
+using Vcc.Nolvus.Core.Enums;
 using Vcc.Nolvus.Services.Files;
 using Vcc.Nolvus.Services.Game;
 
@@ -210,12 +211,48 @@ namespace Vcc.Nolvus.Downgrader
 
         private void StockGameManager_OnItemProcessed(object sender, ItemProcessedEventArgs e)
         {
+            //double Percent = ((double)e.Value / (double)e.Total) * 100;
+
+            //Percent = Math.Round(Percent, 0);
+
+            //Status(e.Step + " (" + Percent.ToString() + "%)...", false);
+            //Progress(System.Convert.ToInt16(Percent));
+
             double Percent = ((double)e.Value / (double)e.Total) * 100;
 
             Percent = Math.Round(Percent, 0);
 
-            Status(e.Step + " (" + Percent.ToString() + "%)...", false);
-            Progress(System.Convert.ToInt16(Percent));
+            switch (e.Step)
+            {
+                case StockGameProcessStep.GameFileInfoLoading:
+                    Status(string.Format("Loading game files info for {0}...", e.ItemName), false);                    
+                    Progress(System.Convert.ToInt16(Percent));
+                    break;
+                case StockGameProcessStep.PatchingInfoLoading:
+                    Status(string.Format("Loading patching info for {0}...", e.ItemName), false);
+                    Progress(System.Convert.ToInt16(Percent));
+                    break;
+                case StockGameProcessStep.GameFilesChecking:
+                    Status(string.Format("Checking game file {0}...", e.ItemName), false);
+                    Progress(System.Convert.ToInt16(Percent));
+                    break;
+                case StockGameProcessStep.GameFilesCopy:
+                    Status(string.Format("Copying game file {0}...", e.ItemName), false);
+                    Progress(System.Convert.ToInt16(Percent));
+                    break;
+                case StockGameProcessStep.GameFilesPatching:
+                    Status("Awaiting game file to patch...", false);                    
+                    break;
+                case StockGameProcessStep.PatchGameFile:
+                    Status(string.Format("Patching game files {0}...", e.ItemName), false);
+                    Progress(System.Convert.ToInt16(Percent));
+                    break;
+                case StockGameProcessStep.CheckPatchedGameFile:
+                    Status(string.Format("Checking patched game files {0}...", e.ItemName), false);
+                    Progress(System.Convert.ToInt16(Percent));
+                    break;
+
+            }
         }
 
         private void StockGameManager_OnExtract(object sender, Core.Events.ExtractProgress e)

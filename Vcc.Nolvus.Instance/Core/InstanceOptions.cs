@@ -42,6 +42,7 @@ namespace Vcc.Nolvus.Instance.Core
 
             ServiceSingleton.Logger.Log(string.Format("Instance nudity : {0}", Nudity));
             ServiceSingleton.Logger.Log(string.Format("Instance enb : {0}", AlternateENB));
+            ServiceSingleton.Logger.Log(string.Format("Instance fantasy mode : {0}", FantasyMode));
             ServiceSingleton.Logger.Log(string.Format("Instance hardcore mode : {0}", HardcoreMode));
             ServiceSingleton.Logger.Log(string.Format("Instance alternate levelling : {0}", AlternateLeveling));
             ServiceSingleton.Logger.Log(string.Format("Instance alternate start : {0}", AlternateStart));

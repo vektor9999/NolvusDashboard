@@ -8,7 +8,9 @@ using Syncfusion.WinForms.Controls;
 using Syncfusion.WinForms.Themes;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Core.Interfaces;
+using Vcc.Nolvus.Services.Globals;
 using Vcc.Nolvus.Services.Game;
+using Vcc.Nolvus.Services.Folders;
 using Vcc.Nolvus.Services.Files;
 using Vcc.Nolvus.Services.Logger;
 
@@ -29,9 +31,12 @@ namespace Vcc.Nolvus.Downgrader
             SfSkinManager.LoadAssembly(typeof(Office2016Theme).Assembly);
             SfSkinManager.LoadAssembly(typeof(Office2019Theme).Assembly);
 
+            ServiceSingleton.RegisterService<IGlobalsService>(new GlobalsService());
             ServiceSingleton.RegisterService<IGameService>(new GameService());
             ServiceSingleton.RegisterService<IFileService>(new FileService());
+            ServiceSingleton.RegisterService<IFolderService>(new FolderService());
             ServiceSingleton.RegisterService<ILogService>(new LogService());
+
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

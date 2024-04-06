@@ -65,6 +65,22 @@ namespace Vcc.Nolvus.Updater
             }
         }
 
+        private string WindowsProgramFilesX86Folder
+        {
+            get
+            {
+                return Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
+            }
+        }
+
+        private string WindowsMyDocumentFolder
+        {
+            get
+            {
+                return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            }
+        }
+
         private string BaseFolder
         {
             get
@@ -244,19 +260,29 @@ namespace Vcc.Nolvus.Updater
 
             this.LblInfo.Text = "Initializing...";
 
-            if (BaseFolder == WindowsDownloadFolder)
+            if (BaseFolder == WindowsDownloadFolder || BaseFolder.Contains(WindowsDownloadFolder))
             {
-                SetError("Nolvus Dashboard can not be installed inside Windows download folder, please copy the updater.exe into an other folder (like D:\\Nolvus).");
+                SetError("Nolvus Dashboard can not be installed inside Windows download folder, please copy the updater.exe into an other folder");
                 ShowButton(true);
             }
-            else if (BaseFolder == WindowsDesktopFolder)
+            else if (BaseFolder == WindowsDesktopFolder || BaseFolder.Contains(WindowsDesktopFolder))
             {
-                SetError("Nolvus Dashboard can not be installed on your desktop, please copy the updater.exe into an other folder (like D:\\Nolvus).");
+                SetError("Nolvus Dashboard can not be installed on your desktop, please copy the updater.exe into an other folder.");
+                ShowButton(true);
+            }
+            else if (BaseFolder == WindowsProgramFilesX86Folder || BaseFolder.Contains(WindowsProgramFilesX86Folder))
+            {
+                SetError("Nolvus Dashboard can not be installed on your Program Files folder, please copy the updater.exe into an other folder.");
+                ShowButton(true);
+            }
+            else if (BaseFolder == WindowsMyDocumentFolder || BaseFolder.Contains(WindowsMyDocumentFolder))
+            {
+                SetError("Nolvus Dashboard can not be installed on your My Document folder, please copy the updater.exe into an other folder.");
                 ShowButton(true);
             }
             else if (new DirectoryInfo(BaseFolder).Parent == null)
             {
-                SetError("Nolvus Dashboard can not be installed on a root drive, please copy the updater.exe into an other folder (like D:\\Nolvus).");
+                SetError("Nolvus Dashboard can not be installed on a root drive, please copy the updater.exe into an other folder.");
                 ShowButton(true);
             }
             else

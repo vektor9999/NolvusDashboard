@@ -103,7 +103,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 }
                 else
                 {
-                    await ServiceSingleton.Dashboard.Error("Error during stock game installation", ex.Message);
+                    await ServiceSingleton.Dashboard.Error("Error during stock game installation", ex.Message, ex.StackTrace);
                 }
             }
         }   
