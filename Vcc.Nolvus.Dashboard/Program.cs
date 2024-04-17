@@ -43,6 +43,8 @@ namespace Vcc.Nolvus.Dashboard
             ServiceSingleton.Logger.Log("Starting new session : " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString());
             ServiceSingleton.Logger.Log("Architecture : " + (Environment.Is64BitProcess ? "x64" : "x86"));
 
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             var PackageService = new PackageService();
 
             ServiceSingleton.RegisterService<IGlobalsService>(new GlobalsService());
@@ -62,9 +64,7 @@ namespace Vcc.Nolvus.Dashboard
             AppDomain.CurrentDomain.AssemblyLoad += Loader;
             AppDomain.CurrentDomain.UnhandledException += ExceptionHandler;
 
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzM2MTU4QDMxMzgyZTMzMmUzMFBiTkxiV0dEMEhlWnowK3IxVUFsYkdGM2VnR0d6RDVBdGNYOEVFK2VqNVk9");
-
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;            
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzM2MTU4QDMxMzgyZTMzMmUzMFBiTkxiV0dEMEhlWnowK3IxVUFsYkdGM2VnR0d6RDVBdGNYOEVFK2VqNVk9");                       
 
             SfSkinManager.LoadAssembly(typeof(Office2016Theme).Assembly);
             SfSkinManager.LoadAssembly(typeof(Office2019Theme).Assembly);

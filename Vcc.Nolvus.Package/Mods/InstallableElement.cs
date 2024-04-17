@@ -193,6 +193,10 @@ namespace Vcc.Nolvus.Package.Mods
                     Progress.Status = "Unpacking files...";
                     Progress.PercentDone = Event.UnPackInfo.PercentDone;
                     break;
+                case ModInstallStatus.Patching:
+                    Progress.Status = "Patching files...";
+                    Progress.PercentDone = Event.PatchingInfo.PercentDone;
+                    break;
                 case ModInstallStatus.Archiving:                    
                     Progress.Status = string.Format("Archiving {0}", Event.ArchivingInfo.FileName);
                     Progress.PercentDone = Event.ArchivingInfo.PercentDone;

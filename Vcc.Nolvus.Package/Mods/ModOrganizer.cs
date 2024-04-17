@@ -2534,9 +2534,8 @@ ccafdsse001-dwesanctuary.esm";
         {
             return await Task.Run(() =>
             {
-                var Instance = ServiceSingleton.Instances.WorkingInstance;
-                var ProfilePath = Path.Combine(Instance.InstallDir, "MODS", "profiles", Profile, "modlist.txt");
-                var Mods = File.ReadAllLines(ProfilePath).ToList();
+                var Instance = ServiceSingleton.Instances.WorkingInstance;                
+                var Mods = File.ReadAllLines(Path.Combine(Instance.InstallDir, "MODS", "profiles", Profile, "modlist.txt")).ToList();
                                 
                 Mods.RemoveAt(0);
                 Mods.Reverse();

@@ -336,6 +336,8 @@ namespace Vcc.Nolvus.Package.Mods
                     {
                         ServiceSingleton.Logger.Log(string.Format("Patching mod {0}", Name));
 
+                        PatchingProgress(string.Empty, 0, 0);
+
                         await Patcher.PatchFiles(MoDirectoryFullName, 
                             ServiceSingleton.Instances.WorkingInstance.StockGame, 
                             DownloadingProgress, 

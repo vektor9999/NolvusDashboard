@@ -17,8 +17,8 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
 
         public MegaFileDownloader()
         {
-            MegaApiClient = new MegaApiClient();
-            MegaApiClient.ApiRequestFailed += MegaApiClient_ApiRequestFailed;  
+            MegaApiClient = new MegaApiClient();            
+            MegaApiClient.ApiRequestFailed += MegaApiClient_ApiRequestFailed;              
         }
 
         private void MegaApiClient_ApiRequestFailed(object sender, ApiRequestFailedEventArgs e)
@@ -30,62 +30,58 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
         {
             var Tsk = Task.Run(async () => 
             {
+                
                 try
                 {
-
-                    try
+                    if (!MegaApiClient.IsLoggedIn)
                     {
                         await MegaApiClient.LoginAnonymousAsync();
+                    }                       
 
-                        Uri FileLink = new Uri(UrlAddress);
-                        FileName = new FileInfo(Location).Name;
+                    Uri FileLink = new Uri(UrlAddress);
+                    FileName = new FileInfo(Location).Name;
 
-                        INode FileNode = await MegaApiClient.GetNodeFromLinkAsync(FileLink);
+                    INode FileNode = await MegaApiClient.GetNodeFromLinkAsync(FileLink);
 
-                        SW.Start();
+                    SW.Start();
 
-                        await MegaApiClient.DownloadFileAsync(FileLink, Location, new Progress<double>(x =>
-                        {
-                            Progress.ProgressPercentage = System.Convert.ToInt16(Math.Round(x, 0));
-                            Progress.TotalBytesToReceive = FileNode.Size;
-
-                            if (Progress.ProgressPercentage != 0)
-                            {
-                                Progress.BytesReceived = (Progress.TotalBytesToReceive / 100) * Progress.ProgressPercentage;
-                            }
-
-                            Progress.Speed = Progress.BytesReceived / 1024d / 1024d / SW.Elapsed.TotalSeconds;
-
-                            Progress.BytesReceivedAsString = (Progress.BytesReceived / 1024d / 1024d).ToString("0.00");
-                            Progress.TotalBytesToReceiveAsString = (Progress.TotalBytesToReceive / 1024d / 1024d).ToString("0.00");
-
-                            Progress.FileName = FileName;
-
-                            NotifyProgress();
-                        }));
-
-                        SW.Stop();
-                    }
-                    catch(Exception ex)
+                    await MegaApiClient.DownloadFileAsync(FileLink, Location, new Progress<double>(x =>
                     {
-                        var CaughtException = ex;
+                        Progress.ProgressPercentage = System.Convert.ToInt16(Math.Round(x, 0));
+                        Progress.TotalBytesToReceive = FileNode.Size;
 
-                        if (ex.InnerException != null) CaughtException = ex.InnerException;
+                        if (Progress.ProgressPercentage != 0)
+                        {
+                            Progress.BytesReceived = (Progress.TotalBytesToReceive / 100) * Progress.ProgressPercentage;
+                        }
 
-                        if (CaughtException.Message.Contains("509"))
-                        {
-                            throw new Exception("Your daily mega.nz limit of 5gb by day has been reached. Wait until the limit (24 hours) has been reset or use a VPN to bypass this limit");
-                        }
-                        else
-                        {
-                            throw ex;
-                        }
-                    }                  
+                        Progress.Speed = Progress.BytesReceived / 1024d / 1024d / SW.Elapsed.TotalSeconds;
+
+                        Progress.BytesReceivedAsString = (Progress.BytesReceived / 1024d / 1024d).ToString("0.00");
+                        Progress.TotalBytesToReceiveAsString = (Progress.TotalBytesToReceive / 1024d / 1024d).ToString("0.00");
+
+                        Progress.FileName = FileName;
+
+                        NotifyProgress();
+                    }));
+
+                    SW.Stop();
                 }
-                finally
+                catch(Exception ex)
                 {
-                    await MegaApiClient.LogoutAsync();
-                }
+                    var CaughtException = ex;
+
+                    if (ex.InnerException != null) CaughtException = ex.InnerException;
+
+                    if (CaughtException.Message.Contains("509"))
+                    {
+                        throw new Exception("Your daily mega.nz limit of 5gb by day has been reached. Wait until the limit (24 hours) has been reset or use a VPN to bypass this limit");
+                    }
+                    else
+                    {
+                        throw ex;
+                    }
+                }                                 
             });
 
             await Tsk;            

@@ -15,7 +15,14 @@ using ZetaLongPaths;
 namespace Vcc.Nolvus.Services.Files
 {    
     public class FileService : IFileService
-    {        
+    {
+        private MegaFileDownloader MegaDownloader;
+         
+        public FileService()
+        {
+            MegaDownloader = new MegaFileDownloader();
+
+        }
         private BaseFileDownloader CreateDownloader(string Url)
         {
             if (Url.Contains("drive.google.com"))
@@ -24,7 +31,7 @@ namespace Vcc.Nolvus.Services.Files
             }
             else if (Url.Contains("mega.nz"))
             {
-                return new MegaFileDownloader();
+                return MegaDownloader;
             }
             else
             {
