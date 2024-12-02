@@ -84,7 +84,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 var Instance = ServiceSingleton.Instances.WorkingInstance;
                 
                 ServiceSingleton.Dashboard.Title("Nolvus Dashboard - [Instance Auto Installer]");
-                ServiceSingleton.Dashboard.Status(string.Format("Installing {0} (v{1})", Instance.Name, ServiceSingleton.Packages.LoadedVersion));
+                ServiceSingleton.Dashboard.Status(string.Format("Installing {0} - {1} (v{2})", Instance.Name, Instance.Performance.Variant, ServiceSingleton.Packages.LoadedVersion));
                 ServiceSingleton.Dashboard.AdditionalSecondaryInfo("Error(s) : 0");
 
                 GlobalProgress();

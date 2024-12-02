@@ -1,4 +1,4 @@
-﻿namespace Vcc.Nolvus.Dashboard.Frames.Installer
+﻿namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 {
     partial class OptionsFrame
     {
@@ -50,32 +50,32 @@
             this.BtnContinue = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.TglBtnFantasyMode = new Syncfusion.Windows.Forms.Tools.ToggleButton();
             this.label14 = new System.Windows.Forms.Label();
+            this.TglBtnGore = new Syncfusion.Windows.Forms.Tools.ToggleButton();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TglBtnStancesPerksTree = new Syncfusion.Windows.Forms.Tools.ToggleButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.DrpDwnLstCombatAnims = new Syncfusion.WinForms.ListView.SfComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.TglBtnAltStart = new Syncfusion.Windows.Forms.Tools.ToggleButton();
             this.label11 = new System.Windows.Forms.Label();
-            this.DrpDwnLstSkin = new Syncfusion.WinForms.ListView.SfComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.TglBtnLeveling = new Syncfusion.Windows.Forms.Tools.ToggleButton();
             this.label9 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.TglBtnHardcore = new Syncfusion.Windows.Forms.Tools.ToggleButton();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.TglBtnNudity = new Syncfusion.Windows.Forms.Tools.ToggleButton();
             this.label1 = new System.Windows.Forms.Label();
             this.LblStepText = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TglBtnFantasyMode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TglBtnGore)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TglBtnStancesPerksTree)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstCombatAnims)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnAltStart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstSkin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnLeveling)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TglBtnHardcore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnNudity)).BeginInit();
             this.SuspendLayout();
             // 
@@ -151,21 +151,21 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.label13);
-            this.panel2.Controls.Add(this.TglBtnFantasyMode);
             this.panel2.Controls.Add(this.label14);
+            this.panel2.Controls.Add(this.TglBtnGore);
+            this.panel2.Controls.Add(this.label13);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.TglBtnStancesPerksTree);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.DrpDwnLstCombatAnims);
+            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.TglBtnAltStart);
             this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.DrpDwnLstSkin);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.TglBtnLeveling);
             this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.TglBtnHardcore);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.TglBtnNudity);
             this.panel2.Controls.Add(this.label1);
@@ -174,152 +174,223 @@
             this.panel2.Size = new System.Drawing.Size(565, 547);
             this.panel2.TabIndex = 20;
             // 
-            // label13
+            // label14
             // 
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Orange;
-            this.label13.Location = new System.Drawing.Point(13, 467);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(511, 47);
-            this.label13.TabIndex = 47;
-            this.label13.Text = "With the fantasy mode, you will perform some fantasy combat animations and jumps." +
-    " This option provides more JARPG features";
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Orange;
+            this.label14.Location = new System.Drawing.Point(14, 470);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(511, 47);
+            this.label14.TabIndex = 59;
+            this.label14.Text = "Dismember your enemies";
             // 
-            // TglBtnFantasyMode
+            // TglBtnGore
             // 
             activeStateCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             activeStateCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             activeStateCollection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             activeStateCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
-            this.TglBtnFantasyMode.ActiveState = activeStateCollection1;
-            this.TglBtnFantasyMode.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.TglBtnFantasyMode.ForeColor = System.Drawing.Color.Black;
+            this.TglBtnGore.ActiveState = activeStateCollection1;
+            this.TglBtnGore.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.TglBtnGore.ForeColor = System.Drawing.Color.Black;
             inactiveStateCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             inactiveStateCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
             inactiveStateCollection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             inactiveStateCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.TglBtnFantasyMode.InactiveState = inactiveStateCollection1;
-            this.TglBtnFantasyMode.Location = new System.Drawing.Point(113, 431);
-            this.TglBtnFantasyMode.MinimumSize = new System.Drawing.Size(52, 20);
-            this.TglBtnFantasyMode.Name = "TglBtnFantasyMode";
-            this.TglBtnFantasyMode.Size = new System.Drawing.Size(63, 24);
+            this.TglBtnGore.InactiveState = inactiveStateCollection1;
+            this.TglBtnGore.Location = new System.Drawing.Point(116, 435);
+            this.TglBtnGore.MinimumSize = new System.Drawing.Size(52, 20);
+            this.TglBtnGore.Name = "TglBtnGore";
+            this.TglBtnGore.Size = new System.Drawing.Size(63, 24);
             sliderCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             sliderCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
             sliderCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             sliderCollection1.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             sliderCollection1.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.TglBtnFantasyMode.Slider = sliderCollection1;
-            this.TglBtnFantasyMode.TabIndex = 46;
-            this.TglBtnFantasyMode.Text = "toggleButton1";
-            this.TglBtnFantasyMode.ThemeName = "Office2016Black";
-            this.TglBtnFantasyMode.ToggleStateChanged += new Syncfusion.Windows.Forms.Tools.ToggleStateChangedEventHandler(this.TglBtnFantasyMode_ToggleStateChanged);
+            this.TglBtnGore.Slider = sliderCollection1;
+            this.TglBtnGore.TabIndex = 58;
+            this.TglBtnGore.Text = "toggleButton1";
+            this.TglBtnGore.ThemeName = "Office2016Black";
+            this.TglBtnGore.ToggleStateChanged += new Syncfusion.Windows.Forms.Tools.ToggleStateChangedEventHandler(this.TglBtnGore_ToggleStateChanged);
             // 
-            // label14
+            // label13
             // 
-            this.label14.AutoSize = true;
-            this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(13, 436);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(74, 13);
-            this.label14.TabIndex = 45;
-            this.label14.Text = "Fantasy Mode";
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(14, 441);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(30, 13);
+            this.label13.TabIndex = 57;
+            this.label13.Text = "Gore";
             // 
-            // label12
+            // label7
             // 
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.Orange;
-            this.label12.Location = new System.Drawing.Point(13, 377);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(511, 47);
-            this.label12.TabIndex = 44;
-            this.label12.Text = resources.GetString("label12.Text");
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Orange;
+            this.label7.Location = new System.Drawing.Point(14, 378);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(511, 47);
+            this.label7.TabIndex = 56;
+            this.label7.Text = resources.GetString("label7.Text");
             // 
-            // TglBtnAltStart
+            // TglBtnStancesPerksTree
             // 
             activeStateCollection2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             activeStateCollection2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             activeStateCollection2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             activeStateCollection2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
-            this.TglBtnAltStart.ActiveState = activeStateCollection2;
-            this.TglBtnAltStart.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.TglBtnAltStart.ForeColor = System.Drawing.Color.Black;
+            this.TglBtnStancesPerksTree.ActiveState = activeStateCollection2;
+            this.TglBtnStancesPerksTree.Enabled = false;
+            this.TglBtnStancesPerksTree.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.TglBtnStancesPerksTree.ForeColor = System.Drawing.Color.Black;
             inactiveStateCollection2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             inactiveStateCollection2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
             inactiveStateCollection2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             inactiveStateCollection2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.TglBtnAltStart.InactiveState = inactiveStateCollection2;
-            this.TglBtnAltStart.Location = new System.Drawing.Point(113, 341);
-            this.TglBtnAltStart.MinimumSize = new System.Drawing.Size(52, 20);
-            this.TglBtnAltStart.Name = "TglBtnAltStart";
-            this.TglBtnAltStart.Size = new System.Drawing.Size(63, 24);
+            this.TglBtnStancesPerksTree.InactiveState = inactiveStateCollection2;
+            this.TglBtnStancesPerksTree.Location = new System.Drawing.Point(116, 340);
+            this.TglBtnStancesPerksTree.MinimumSize = new System.Drawing.Size(52, 20);
+            this.TglBtnStancesPerksTree.Name = "TglBtnStancesPerksTree";
+            this.TglBtnStancesPerksTree.Size = new System.Drawing.Size(63, 24);
             sliderCollection2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             sliderCollection2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
             sliderCollection2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             sliderCollection2.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             sliderCollection2.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.TglBtnAltStart.Slider = sliderCollection2;
-            this.TglBtnAltStart.TabIndex = 43;
-            this.TglBtnAltStart.Text = "toggleButton1";
-            this.TglBtnAltStart.ThemeName = "Office2016Black";
-            this.TglBtnAltStart.ToggleStateChanged += new Syncfusion.Windows.Forms.Tools.ToggleStateChangedEventHandler(this.TglBtnAltStart_ToggleStateChanged);
+            this.TglBtnStancesPerksTree.Slider = sliderCollection2;
+            this.TglBtnStancesPerksTree.TabIndex = 55;
+            this.TglBtnStancesPerksTree.Text = "toggleButton1";
+            this.TglBtnStancesPerksTree.ThemeName = "Office2016Black";
+            this.TglBtnStancesPerksTree.ToggleStateChanged += new Syncfusion.Windows.Forms.Tools.ToggleStateChangedEventHandler(this.TglBtnStancesPerksTree_ToggleStateChanged);
             // 
-            // label11
+            // label6
             // 
-            this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(13, 346);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(74, 13);
-            this.label11.TabIndex = 42;
-            this.label11.Text = "Alternate Start";
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(14, 346);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(96, 13);
+            this.label6.TabIndex = 54;
+            this.label6.Text = "Stances perks tree";
             // 
-            // DrpDwnLstSkin
+            // label5
             // 
-            this.DrpDwnLstSkin.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.DrpDwnLstSkin.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
-            this.DrpDwnLstSkin.Location = new System.Drawing.Point(113, 93);
-            this.DrpDwnLstSkin.Name = "DrpDwnLstSkin";
-            this.DrpDwnLstSkin.Size = new System.Drawing.Size(107, 28);
-            this.DrpDwnLstSkin.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.DrpDwnLstSkin.TabIndex = 41;
-            this.DrpDwnLstSkin.ThemeName = "Office2016Black";
-            this.DrpDwnLstSkin.SelectedIndexChanged += new System.EventHandler(this.DrpDwnLstSkin_SelectedIndexChanged);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Orange;
+            this.label5.Location = new System.Drawing.Point(14, 311);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(511, 38);
+            this.label5.TabIndex = 53;
+            this.label5.Text = "Select between more flashy movesets or more conventional movesets for combat";
             // 
-            // label8
+            // DrpDwnLstCombatAnims
             // 
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Orange;
-            this.label8.Location = new System.Drawing.Point(13, 283);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(511, 47);
-            this.label8.TabIndex = 40;
-            this.label8.Text = resources.GetString("label8.Text");
+            this.DrpDwnLstCombatAnims.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.DrpDwnLstCombatAnims.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
+            this.DrpDwnLstCombatAnims.Location = new System.Drawing.Point(116, 276);
+            this.DrpDwnLstCombatAnims.Name = "DrpDwnLstCombatAnims";
+            this.DrpDwnLstCombatAnims.Size = new System.Drawing.Size(184, 28);
+            this.DrpDwnLstCombatAnims.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.DrpDwnLstCombatAnims.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.DrpDwnLstCombatAnims.TabIndex = 52;
+            this.DrpDwnLstCombatAnims.ThemeName = "Office2016Black";
+            this.DrpDwnLstCombatAnims.SelectedIndexChanged += new System.EventHandler(this.DrpDwnLstCombatAnims_SelectedIndexChanged);
             // 
-            // TglBtnLeveling
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(14, 283);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 13);
+            this.label3.TabIndex = 51;
+            this.label3.Text = "Combat animations";
+            // 
+            // label12
+            // 
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Orange;
+            this.label12.Location = new System.Drawing.Point(14, 224);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(511, 47);
+            this.label12.TabIndex = 50;
+            this.label12.Text = resources.GetString("label12.Text");
+            // 
+            // TglBtnAltStart
             // 
             activeStateCollection3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             activeStateCollection3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             activeStateCollection3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             activeStateCollection3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
-            this.TglBtnLeveling.ActiveState = activeStateCollection3;
-            this.TglBtnLeveling.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.TglBtnLeveling.ForeColor = System.Drawing.Color.Black;
+            this.TglBtnAltStart.ActiveState = activeStateCollection3;
+            this.TglBtnAltStart.Enabled = false;
+            this.TglBtnAltStart.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.TglBtnAltStart.ForeColor = System.Drawing.Color.Black;
             inactiveStateCollection3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             inactiveStateCollection3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
             inactiveStateCollection3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             inactiveStateCollection3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.TglBtnLeveling.InactiveState = inactiveStateCollection3;
-            this.TglBtnLeveling.Location = new System.Drawing.Point(113, 245);
-            this.TglBtnLeveling.MinimumSize = new System.Drawing.Size(52, 20);
-            this.TglBtnLeveling.Name = "TglBtnLeveling";
-            this.TglBtnLeveling.Size = new System.Drawing.Size(63, 24);
+            this.TglBtnAltStart.InactiveState = inactiveStateCollection3;
+            this.TglBtnAltStart.Location = new System.Drawing.Point(116, 189);
+            this.TglBtnAltStart.MinimumSize = new System.Drawing.Size(52, 20);
+            this.TglBtnAltStart.Name = "TglBtnAltStart";
+            this.TglBtnAltStart.Size = new System.Drawing.Size(63, 24);
             sliderCollection3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             sliderCollection3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
             sliderCollection3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             sliderCollection3.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             sliderCollection3.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.TglBtnLeveling.Slider = sliderCollection3;
-            this.TglBtnLeveling.TabIndex = 39;
+            this.TglBtnAltStart.Slider = sliderCollection3;
+            this.TglBtnAltStart.TabIndex = 49;
+            this.TglBtnAltStart.Text = "toggleButton1";
+            this.TglBtnAltStart.ThemeName = "Office2016Black";
+            this.TglBtnAltStart.ToggleStateChanged += new Syncfusion.Windows.Forms.Tools.ToggleStateChangedEventHandler(this.TglBtnLeveling_ToggleStateChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(14, 193);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(74, 13);
+            this.label11.TabIndex = 48;
+            this.label11.Text = "Alternate Start";
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Orange;
+            this.label8.Location = new System.Drawing.Point(14, 130);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(511, 47);
+            this.label8.TabIndex = 47;
+            this.label8.Text = resources.GetString("label8.Text");
+            // 
+            // TglBtnLeveling
+            // 
+            activeStateCollection4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            activeStateCollection4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
+            this.TglBtnLeveling.ActiveState = activeStateCollection4;
+            this.TglBtnLeveling.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.TglBtnLeveling.ForeColor = System.Drawing.Color.Black;
+            inactiveStateCollection4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            inactiveStateCollection4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            inactiveStateCollection4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            inactiveStateCollection4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.TglBtnLeveling.InactiveState = inactiveStateCollection4;
+            this.TglBtnLeveling.Location = new System.Drawing.Point(116, 92);
+            this.TglBtnLeveling.MinimumSize = new System.Drawing.Size(52, 20);
+            this.TglBtnLeveling.Name = "TglBtnLeveling";
+            this.TglBtnLeveling.Size = new System.Drawing.Size(63, 24);
+            sliderCollection4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            sliderCollection4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection4.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            sliderCollection4.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.TglBtnLeveling.Slider = sliderCollection4;
+            this.TglBtnLeveling.TabIndex = 46;
             this.TglBtnLeveling.Text = "toggleButton1";
             this.TglBtnLeveling.ThemeName = "Office2016Black";
             this.TglBtnLeveling.ToggleStateChanged += new Syncfusion.Windows.Forms.Tools.ToggleStateChangedEventHandler(this.TglBtnLeveling_ToggleStateChanged);
@@ -328,90 +399,20 @@
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(13, 250);
+            this.label9.Location = new System.Drawing.Point(14, 97);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(92, 13);
-            this.label9.TabIndex = 38;
+            this.label9.TabIndex = 45;
             this.label9.Text = "Alternate Leveling";
-            // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Orange;
-            this.label6.Location = new System.Drawing.Point(13, 204);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(511, 35);
-            this.label6.TabIndex = 37;
-            this.label6.Text = "With hardcore mode, the dungeons will be unleveled, enemies will be more aggresiv" +
-    "e and use poise to stagger you, sneaking is more difficult";
-            // 
-            // TglBtnHardcore
-            // 
-            activeStateCollection4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            activeStateCollection4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
-            this.TglBtnHardcore.ActiveState = activeStateCollection4;
-            this.TglBtnHardcore.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.TglBtnHardcore.ForeColor = System.Drawing.Color.Black;
-            inactiveStateCollection4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            inactiveStateCollection4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            inactiveStateCollection4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            inactiveStateCollection4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.TglBtnHardcore.InactiveState = inactiveStateCollection4;
-            this.TglBtnHardcore.Location = new System.Drawing.Point(113, 166);
-            this.TglBtnHardcore.MinimumSize = new System.Drawing.Size(52, 20);
-            this.TglBtnHardcore.Name = "TglBtnHardcore";
-            this.TglBtnHardcore.Size = new System.Drawing.Size(63, 24);
-            sliderCollection4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            sliderCollection4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection4.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            sliderCollection4.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.TglBtnHardcore.Slider = sliderCollection4;
-            this.TglBtnHardcore.TabIndex = 36;
-            this.TglBtnHardcore.Text = "toggleButton1";
-            this.TglBtnHardcore.ThemeName = "Office2016Black";
-            this.TglBtnHardcore.ToggleStateChanged += new Syncfusion.Windows.Forms.Tools.ToggleStateChangedEventHandler(this.TglBtnHardcore_ToggleStateChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(13, 171);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(81, 13);
-            this.label7.TabIndex = 35;
-            this.label7.Text = "Hardcore Mode";
-            // 
-            // label5
-            // 
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Orange;
-            this.label5.Location = new System.Drawing.Point(13, 134);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(511, 35);
-            this.label5.TabIndex = 34;
-            this.label5.Text = "Babe skin type or muscular skin type";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(13, 101);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 13);
-            this.label3.TabIndex = 32;
-            this.label3.Text = "Female skin type";
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Orange;
-            this.label2.Location = new System.Drawing.Point(13, 64);
+            this.label2.Location = new System.Drawing.Point(14, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(511, 35);
-            this.label2.TabIndex = 31;
+            this.label2.TabIndex = 34;
             this.label2.Text = "When nudity is enabled all npc\'s will be nude when undressed.";
             // 
             // TglBtnNudity
@@ -428,7 +429,7 @@
             inactiveStateCollection5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             inactiveStateCollection5.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.TglBtnNudity.InactiveState = inactiveStateCollection5;
-            this.TglBtnNudity.Location = new System.Drawing.Point(113, 19);
+            this.TglBtnNudity.Location = new System.Drawing.Point(116, 17);
             this.TglBtnNudity.MinimumSize = new System.Drawing.Size(52, 20);
             this.TglBtnNudity.Name = "TglBtnNudity";
             this.TglBtnNudity.Size = new System.Drawing.Size(63, 24);
@@ -438,7 +439,7 @@
             sliderCollection5.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             sliderCollection5.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.TglBtnNudity.Slider = sliderCollection5;
-            this.TglBtnNudity.TabIndex = 30;
+            this.TglBtnNudity.TabIndex = 33;
             this.TglBtnNudity.Text = "toggleButton1";
             this.TglBtnNudity.ThemeName = "Office2016Black";
             this.TglBtnNudity.ToggleStateChanged += new Syncfusion.Windows.Forms.Tools.ToggleStateChangedEventHandler(this.TglBtnNudity_ToggleStateChanged);
@@ -447,10 +448,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(13, 24);
+            this.label1.Location = new System.Drawing.Point(14, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 13);
-            this.label1.TabIndex = 29;
+            this.label1.TabIndex = 32;
             this.label1.Text = "Enable nudity";
             // 
             // LblStepText
@@ -480,11 +481,11 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TglBtnFantasyMode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TglBtnGore)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TglBtnStancesPerksTree)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstCombatAnims)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnAltStart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstSkin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnLeveling)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TglBtnHardcore)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnNudity)).EndInit();
             this.ResumeLayout(false);
 
@@ -498,24 +499,24 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label LblStepText;
-        private Syncfusion.Windows.Forms.Tools.ToggleButton TglBtnNudity;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label6;
-        private Syncfusion.Windows.Forms.Tools.ToggleButton TglBtnHardcore;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label8;
-        private Syncfusion.Windows.Forms.Tools.ToggleButton TglBtnLeveling;
+        private System.Windows.Forms.Label label1;
+        private Syncfusion.Windows.Forms.Tools.ToggleButton TglBtnNudity;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label9;
-        private Syncfusion.WinForms.ListView.SfComboBox DrpDwnLstSkin;
-        private System.Windows.Forms.Label label12;
-        private Syncfusion.Windows.Forms.Tools.ToggleButton TglBtnAltStart;
+        private Syncfusion.Windows.Forms.Tools.ToggleButton TglBtnLeveling;
+        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label11;
+        private Syncfusion.Windows.Forms.Tools.ToggleButton TglBtnAltStart;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label3;
+        private Syncfusion.WinForms.ListView.SfComboBox DrpDwnLstCombatAnims;
+        private System.Windows.Forms.Label label5;
+        private Syncfusion.Windows.Forms.Tools.ToggleButton TglBtnStancesPerksTree;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private Syncfusion.Windows.Forms.Tools.ToggleButton TglBtnGore;
         private System.Windows.Forms.Label label13;
-        private Syncfusion.Windows.Forms.Tools.ToggleButton TglBtnFantasyMode;
         private System.Windows.Forms.Label label14;
     }
 }

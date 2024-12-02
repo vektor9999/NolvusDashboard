@@ -7,31 +7,42 @@ using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Interfaces;
 using System.Security.Cryptography;
 using Vcc.Nolvus.Core.Events;
+using Vcc.Nolvus.Core.Misc;
 using Vcc.Nolvus.Services.Files.Downloaders;
 using Vcc.Nolvus.Services.Files.Extractor;
 using Force.Crc32;
 using ZetaLongPaths;
+using CG.Web.MegaApiClient;
 
 namespace Vcc.Nolvus.Services.Files
 {    
     public class FileService : IFileService
-    {
-        private MegaFileDownloader MegaDownloader;
-         
-        public FileService()
-        {
-            MegaDownloader = new MegaFileDownloader();
+    {        
+        private MegaApiClient MegaApi = null;
 
+        private MegaApiClient CreateMegaApi()
+        {
+            if (MegaApi == null)
+            {
+                MegaApi = new MegaApiClient();                
+            }
+
+            return MegaApi;
         }
+
+        public FileService()
+        {            
+        }
+
         private BaseFileDownloader CreateDownloader(string Url)
         {
-            if (Url.Contains("drive.google.com"))
+            if (Url.Contains(Strings.GoogleDrive))
             {
                 return new GoogleDriveFileDownloader();
             }
-            else if (Url.Contains("mega.nz"))
+            else if (Url.Contains(Strings.Mega))
             {
-                return MegaDownloader;
+                return new MegaFileDownloader(CreateMegaApi());
             }
             else
             {

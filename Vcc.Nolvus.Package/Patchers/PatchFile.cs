@@ -18,6 +18,7 @@ namespace Vcc.Nolvus.Package.Patchers
         public string PatchFileName { get; set; }
         public string HashBefore { get; set; }
         public string HashAfter { get; set; }
+        public string Directory { get; set; }
 
         public void Load(XmlNode Node)
         {
@@ -26,6 +27,13 @@ namespace Vcc.Nolvus.Package.Patchers
             PatchFileName = Node["PatchFileName"].InnerText;
             HashBefore = Node["HashBefore"].InnerText;
             HashAfter = Node["HashAfter"].InnerText;
+
+            Directory = string.Empty;
+
+            if (Node["Directory"] != null)
+            {
+                Directory = Node["Directory"].InnerText;
+            }            
         }
 
         private ZlpFileInfo CopyPatchedFile(ZlpFileInfo Source, ZlpFileInfo Destination)
@@ -60,7 +68,16 @@ namespace Vcc.Nolvus.Package.Patchers
                         Dir = GameDir;
                     }
 
-                    var SourceFileToPatch = ServiceSingleton.Files.GetFiles(Dir).Where(x => x.Name == OriginFileName).Where(y => ServiceSingleton.Files.GetHash(y.FullName) == HashBefore).FirstOrDefault();                    
+                    ZlpFileInfo SourceFileToPatch = null;
+
+                    if (Directory == string.Empty)
+                    {
+                        SourceFileToPatch = ServiceSingleton.Files.GetFiles(Dir).Where(x => x.Name == DestinationFileName).Where(y => ServiceSingleton.Files.GetHash(y.FullName) == HashBefore).FirstOrDefault();
+                    }
+                    else
+                    {
+                        SourceFileToPatch = ServiceSingleton.Files.GetFiles(Dir).Where(x => x.FullName == Path.Combine(Dir, Directory, DestinationFileName)).Where(y => ServiceSingleton.Files.GetHash(y.FullName) == HashBefore).FirstOrDefault();
+                    }                    
 
                     if (SourceFileToPatch != null)
                     {
@@ -77,7 +94,7 @@ namespace Vcc.Nolvus.Package.Patchers
                     }
                     else
                     {
-                        throw new Exception("File name to patch does not exist (" + OriginFileName + ") hash : " + HashBefore + " in " + Dir);
+                        throw new Exception("File name to patch does not exist (" + DestinationFileName + ") hash : " + HashBefore + " in " + Dir);
                     }
                 }
                 catch(Exception ex)

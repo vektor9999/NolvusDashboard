@@ -15,5 +15,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         string EncryptString(string value);
         string DecryptString(string value);
         Image GetImageFromWebStream(string ImageUrl);
+        Image GetImageFromUrl(string ImageUrl);
+        byte[] ImageToByteArray(Image Image);
     }
 }

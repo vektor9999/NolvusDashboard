@@ -139,6 +139,14 @@ namespace Vcc.Nolvus.Package.Mods
                     BsaUnPacking Bsa = new BsaUnPacking();
 
                     Bsa.FileName = BsaNode["FileName"].InnerText;
+
+                    Bsa.DirectoryName = string.Empty;
+
+                    if (BsaNode["DirectoryName"] != null)
+                    {
+                        Bsa.DirectoryName = BsaNode["DirectoryName"].InnerText;
+                    }                    
+                    
                     Bsas.Add(Bsa);
                 }
             }
@@ -263,7 +271,8 @@ namespace Vcc.Nolvus.Package.Mods
                 {
                     if (Bsas.Count > 0)
                     {
-                        ServiceSingleton.Logger.Log(string.Format("Unpacking mod {0}", Name));
+                        ServiceSingleton.Logger.Log(string.Format("Unpacking mod {0}", Name));                        
+
                         var Counter = 0;
 
                         foreach (BsaUnPacking BSA in Bsas)
@@ -339,10 +348,10 @@ namespace Vcc.Nolvus.Package.Mods
                         PatchingProgress(string.Empty, 0, 0);
 
                         await Patcher.PatchFiles(MoDirectoryFullName, 
-                            ServiceSingleton.Instances.WorkingInstance.StockGame, 
-                            DownloadingProgress, 
-                            ExtractingProgress, 
-                            PatchingProgress);
+                                                 ServiceSingleton.Instances.WorkingInstance.StockGame, 
+                                                 DownloadingProgress, 
+                                                 ExtractingProgress, 
+                                                 PatchingProgress);
                     }                                        
                 }
                 catch (Exception ex)

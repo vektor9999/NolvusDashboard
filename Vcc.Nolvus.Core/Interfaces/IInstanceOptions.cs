@@ -15,5 +15,14 @@ namespace Vcc.Nolvus.Core.Interfaces
         string AlternateLeveling { get; set; }
         string SkinType { get; set; }
         string AlternateStart { get; set; }
+        string CombatAnimation { get; set; }
+        string StancesPerksTree { get; set; }
+        string DeleveledEnemies { get; set; }
+        string Exhaustion { get; set; }
+        string NerfPA { get; set; }
+        string EnemiesResistance { get; set; }
+        string Boss { get; set; }
+        string Poise { get; set; }
+        string Gore { get; set; }
     }
 }

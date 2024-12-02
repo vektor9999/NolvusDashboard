@@ -15,9 +15,9 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
     {
         private MegaApiClient MegaApiClient;
 
-        public MegaFileDownloader()
+        public MegaFileDownloader(MegaApiClient MegaApi)
         {
-            MegaApiClient = new MegaApiClient();            
+            MegaApiClient = MegaApi;
             MegaApiClient.ApiRequestFailed += MegaApiClient_ApiRequestFailed;              
         }
 

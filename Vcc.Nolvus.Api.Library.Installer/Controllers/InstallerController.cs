@@ -33,6 +33,34 @@ namespace Vcc.Nolvus.Api.Installer.Controllers
             return await this._Service.GetPolyMorphic<List<NolvusVersionDTO>>($"{_Api}/getnolvusversions");
         }
 
+        public async Task<IEnumerable<INolvusVariantDTO>> GetNolvusVariants()
+        {
+            return await this._Service.GetPolyMorphic<List<NolvusVariantDTO>>($"{_Api}/getnolvusvariants");
+        }
+
+        public async Task<IEnumerable<INolvusGPUDTO>> GetGPUs()
+        {
+            return await this._Service.GetPolyMorphic<List<NolvusGPUDTO>>($"{_Api}/getgpus");
+        }
+
+        public async Task<IEnumerable<INolvusVariantRequirementDTO>> GetNolvusVariantMinimumRequirements(string VariantId)
+        {
+            Dictionary<string, object> Params = new Dictionary<string, object>();
+
+            Params.Add("VariantId", VariantId);
+
+            return await this._Service.GetPolyMorphic<List<NolvusVariantRequirementDTO>>($"{_Api}/getnolvusvariantminrequirement", Params);
+        }
+
+        public async Task<IEnumerable<INolvusVariantRequirementDTO>> GetNolvusVariantRecommendedRequirements(string VariantId)
+        {
+            Dictionary<string, object> Params = new Dictionary<string, object>();
+
+            Params.Add("VariantId", VariantId);
+
+            return await this._Service.GetPolyMorphic<List<NolvusVariantRequirementDTO>>($"{_Api}/getnolvusvarianttecrequirement", Params);
+        }
+
         public async Task<IEnumerable<INolvusVersionDTO>> GetDebugNolvusVersions()
         {
             return await this._Service.GetPolyMorphic<List<NolvusVersionDTO>>($"{_Api}/getdebugnolvusversions");

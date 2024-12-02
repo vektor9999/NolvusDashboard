@@ -19,5 +19,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         string RayTracing { get; set; }
         string DownScaledResolution { get; }
         string FPSStabilizer { get; set; }
+        string SREX { get; set; }
     }
 }

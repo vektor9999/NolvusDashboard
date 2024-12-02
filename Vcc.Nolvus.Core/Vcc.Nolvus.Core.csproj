@@ -97,8 +97,10 @@
     <Compile Include="Interfaces\ISoftware.cs" />
     <Compile Include="Interfaces\ISoftwareProvider.cs" />
     <Compile Include="Interfaces\IUpdaterService.cs" />
+    <Compile Include="Misc\GPUObject.cs" />
     <Compile Include="Misc\ModObject.cs" />
     <Compile Include="Misc\Statics.cs" />
+    <Compile Include="Misc\Strings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\INolvusService.cs" />
     <Compile Include="Services\ServiceSingleton.cs" />

@@ -9,7 +9,7 @@ namespace Vcc.Nolvus.Core.Interfaces
 {
     public interface INolvusInstance
     {             
-        string Id { get; set; }
+        string Id { get; set; }        
         string Name { get; set; }
         string Version { get; set; }
         string Description { get;}
@@ -28,5 +28,8 @@ namespace Vcc.Nolvus.Core.Interfaces
         Task<string> GetLatestVersion();
         Task<IInstallPackageDTO> GetLatestPackage();
         Task<bool> LatestPackageRequireNewGame();
+        string GetSelectedResolution();
+        string GetSelectedHeight();
+        string GetSelectedWidth();
     }
 }

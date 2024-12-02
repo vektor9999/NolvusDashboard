@@ -73,6 +73,46 @@ namespace Vcc.Nolvus.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Cabbage_ENB_01 {
+            get {
+                object obj = ResourceManager.GetObject("Cabbage_ENB_01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Cabbaval_ENB {
+            get {
+                object obj = ResourceManager.GetObject("Cabbaval_ENB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Check_01 {
+            get {
+                object obj = ResourceManager.GetObject("Check_01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Check_01_24 {
+            get {
+                object obj = ResourceManager.GetObject("Check_01_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cog_loader_alpha {
             get {
                 object obj = ResourceManager.GetObject("cog-loader-alpha", resourceCulture);
@@ -93,9 +133,39 @@ namespace Vcc.Nolvus.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Cross_Close {
+            get {
+                object obj = ResourceManager.GetObject("Cross_Close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Cross_Close_24 {
+            get {
+                object obj = ResourceManager.GetObject("Cross_Close_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DefaultKeyboardKeys {
             get {
                 object obj = ResourceManager.GetObject("DefaultKeyboardKeys", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DefaultKeyboardKeys_V6 {
+            get {
+                object obj = ResourceManager.GetObject("DefaultKeyboardKeys_V6", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -186,6 +256,16 @@ namespace Vcc.Nolvus.Dashboard.Properties {
         internal static System.Drawing.Bitmap Journal_Main_Quest {
             get {
                 object obj = ResourceManager.GetObject("Journal Main Quest", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Kauz_ENB {
+            get {
+                object obj = ResourceManager.GetObject("Kauz_ENB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -296,6 +376,16 @@ namespace Vcc.Nolvus.Dashboard.Properties {
         internal static System.Drawing.Bitmap Nolvus_V5 {
             get {
                 object obj = ResourceManager.GetObject("Nolvus_V5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Nolvus_V6 {
+            get {
+                object obj = ResourceManager.GetObject("Nolvus_V6", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

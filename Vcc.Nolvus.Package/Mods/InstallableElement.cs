@@ -86,7 +86,7 @@ namespace Vcc.Nolvus.Package.Mods
         {
             get
             {
-                return this.Files.First().CRC32;
+                return Files.First().CRC32;
             }
         }
 

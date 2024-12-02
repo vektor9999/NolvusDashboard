@@ -16,7 +16,7 @@ namespace Vcc.Nolvus.Instance.Core
     {
         #region Properties
 
-        public string Id { get; set; } = string.Empty;
+        public string Id { get; set; } = string.Empty;        
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; }        
         public string Version { get; set; } = string.Empty;        
@@ -56,7 +56,7 @@ namespace Vcc.Nolvus.Instance.Core
         }
         public NolvusInstance(INolvusVersionDTO DTO)
         {
-            Id = DTO.Id;
+            Id = DTO.Id;            
             Name = DTO.Name;
             Description = DTO.Description;
 
@@ -104,7 +104,36 @@ namespace Vcc.Nolvus.Instance.Core
         {
             return await ApiManager.Service.Installer.LatestPackageRequireNewGame(Id, Version);
         }
-              
+
+        public string GetSelectedResolution()
+        {
+            return string.Format("{0}x{1}", GetSelectedWidth(), GetSelectedHeight());
+        }
+
+        public string GetSelectedHeight()
+        {
+            if (Performance.DownScaling == "TRUE")
+            {
+                return Performance.DownHeight;
+            }
+            else
+            {
+                return Settings.Height;
+            }
+        }
+
+        public string GetSelectedWidth()
+        {
+            if (Performance.DownScaling == "TRUE")
+            {
+                return Performance.DownWidth;
+            }
+            else
+            {
+                return Settings.Width;
+            }
+        }
+
         public InstanceCheckStatus Check()
         {
             if (Version == string.Empty)

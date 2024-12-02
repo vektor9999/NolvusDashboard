@@ -18,7 +18,7 @@ using Vcc.Nolvus.Dashboard.Forms;
 using Syncfusion.Windows.Forms.Tools;
 
 
-namespace Vcc.Nolvus.Dashboard.Frames.Installer
+namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
 {
     public partial class OptionsFrame : DashboardFrame
     {
@@ -152,14 +152,14 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         
         private async void BtnPrevious_Click(object sender, EventArgs e)
         {
-            await ServiceSingleton.Dashboard.LoadFrameAsync<PerformanceFrame>();
+            await ServiceSingleton.Dashboard.LoadFrameAsync<v5.PerformanceFrame>();
         }
 
         private void BtnContinue_Click(object sender, EventArgs e)
         {
             if (NolvusMessageBox.ShowConfirmation("Confirmation", "The options you selected can not be changed after installation. Are you sure you want to continue?") == DialogResult.Yes)
             {
-                ServiceSingleton.Dashboard.LoadFrame<ENBFrame>();
+                ServiceSingleton.Dashboard.LoadFrame<v5.ENBFrame>();
             }
         }
 

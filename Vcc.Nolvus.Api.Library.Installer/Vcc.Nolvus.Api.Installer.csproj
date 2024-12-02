@@ -39,6 +39,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http">
       <Private>True</Private>
     </Reference>
@@ -61,6 +62,9 @@
     <Compile Include="Library\GamePackageObject.cs" />
     <Compile Include="Library\InstalledInstanceObject.cs" />
     <Compile Include="Library\DashBoardObject.cs" />
+    <Compile Include="Library\NolvusVariantRequirementObject.cs" />
+    <Compile Include="Library\NolvusVariantObject.cs" />
+    <Compile Include="Library\NolvusGPUObject.cs" />
     <Compile Include="Services\ApiManager.cs" />
     <Compile Include="Services\ApiService.cs" />
     <Compile Include="Services\IApiService.cs" />

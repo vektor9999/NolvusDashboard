@@ -12,6 +12,10 @@ namespace Vcc.Nolvus.Api.Installer.Controllers
     {        
         string LoggedUser { get; }
         Task<IEnumerable<INolvusVersionDTO>> GetNolvusVersions();
+        Task<IEnumerable<INolvusVariantDTO>> GetNolvusVariants();
+        Task<IEnumerable<INolvusGPUDTO>> GetGPUs();
+        Task<IEnumerable<INolvusVariantRequirementDTO>> GetNolvusVariantMinimumRequirements(string VariantId);
+        Task<IEnumerable<INolvusVariantRequirementDTO>> GetNolvusVariantRecommendedRequirements(string VariantId);
         Task<IEnumerable<INolvusVersionDTO>> GetDebugNolvusVersions();
         Task<IInstallPackageDTO> GetLatestPackage(string GuideId);
         Task<string> GetLatestPackageVersion(string GuideId);

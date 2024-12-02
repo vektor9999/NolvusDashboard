@@ -1,4 +1,4 @@
-﻿namespace Vcc.Nolvus.Dashboard.Frames.Installer
+﻿namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
 {
     partial class SummaryFrame
     {

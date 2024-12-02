@@ -44,10 +44,14 @@
             this.BrItmMods = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.BrItmShortCut = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.barItem1 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
-            this.BrItmDelete = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
-            this.LblBeta = new System.Windows.Forms.Label();
             this.BrItmReport = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.barItem2 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.BrItmKeyBinds = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.barItem3 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.BrItmManual = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.barItem4 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.BrItmDelete = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.LblImageLoading = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PicInstanceImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,8 +126,8 @@
             // 
             // PicInstanceImage
             // 
+            this.PicInstanceImage.BackColor = System.Drawing.Color.Black;
             this.PicInstanceImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PicInstanceImage.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.Nolvus_V5;
             this.PicInstanceImage.Location = new System.Drawing.Point(46, 20);
             this.PicInstanceImage.Name = "PicInstanceImage";
             this.PicInstanceImage.Size = new System.Drawing.Size(206, 128);
@@ -133,6 +137,7 @@
             // 
             // LblDesc
             // 
+            this.LblDesc.AutoEllipsis = true;
             this.LblDesc.BackColor = System.Drawing.Color.Transparent;
             this.LblDesc.ForeColor = System.Drawing.Color.White;
             this.LblDesc.Location = new System.Drawing.Point(261, 42);
@@ -171,6 +176,10 @@
             this.barItem1,
             this.BrItmReport,
             this.barItem2,
+            this.BrItmKeyBinds,
+            this.barItem3,
+            this.BrItmManual,
+            this.barItem4,
             this.BrItmDelete});
             this.parentBarItem1.MetroColor = System.Drawing.Color.LightSkyBlue;
             this.parentBarItem1.ShowToolTipInPopUp = false;
@@ -205,27 +214,6 @@
             this.barItem1.SizeToFit = true;
             this.barItem1.Text = "-";
             // 
-            // BrItmDelete
-            // 
-            this.BrItmDelete.BarName = "BrItmDelete";
-            this.BrItmDelete.ID = "Delete Instance";
-            this.BrItmDelete.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmDelete.Image")));
-            this.BrItmDelete.ShowToolTipInPopUp = false;
-            this.BrItmDelete.SizeToFit = true;
-            this.BrItmDelete.Text = "Delete Instance";
-            this.BrItmDelete.Click += new System.EventHandler(this.BrItmDelete_Click);
-            // 
-            // LblBeta
-            // 
-            this.LblBeta.AutoSize = true;
-            this.LblBeta.BackColor = System.Drawing.Color.Transparent;
-            this.LblBeta.ForeColor = System.Drawing.Color.Orange;
-            this.LblBeta.Location = new System.Drawing.Point(296, 75);
-            this.LblBeta.Name = "LblBeta";
-            this.LblBeta.Size = new System.Drawing.Size(35, 13);
-            this.LblBeta.TabIndex = 8;
-            this.LblBeta.Text = "[Beta]";
-            // 
             // BrItmReport
             // 
             this.BrItmReport.BarName = "BrItmReport";
@@ -244,6 +232,65 @@
             this.barItem2.SizeToFit = true;
             this.barItem2.Text = "-";
             // 
+            // BrItmKeyBinds
+            // 
+            this.BrItmKeyBinds.BarName = "BrItmKeyBinds";
+            this.BrItmKeyBinds.ID = "Key Binds";
+            this.BrItmKeyBinds.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmKeyBinds.Image")));
+            this.BrItmKeyBinds.ShowToolTipInPopUp = false;
+            this.BrItmKeyBinds.SizeToFit = true;
+            this.BrItmKeyBinds.Text = "Key Binds";
+            this.BrItmKeyBinds.Click += new System.EventHandler(this.BrItmKeyBinds_Click);
+            // 
+            // barItem3
+            // 
+            this.barItem3.BarName = "barItem3";
+            this.barItem3.ID = "-";
+            this.barItem3.ShowToolTipInPopUp = false;
+            this.barItem3.SizeToFit = true;
+            this.barItem3.Text = "-";
+            // 
+            // BrItmManual
+            // 
+            this.BrItmManual.BarName = "BrItmManual";
+            this.BrItmManual.ID = "Manual";
+            this.BrItmManual.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmManual.Image")));
+            this.BrItmManual.ImageSize = new System.Drawing.Size(24, 24);
+            this.BrItmManual.ShowToolTipInPopUp = false;
+            this.BrItmManual.SizeToFit = true;
+            this.BrItmManual.Text = "User Manual";
+            this.BrItmManual.Click += new System.EventHandler(this.BrItmManual_Click);
+            // 
+            // barItem4
+            // 
+            this.barItem4.BarName = "barItem4";
+            this.barItem4.ID = "-";
+            this.barItem4.ShowToolTipInPopUp = false;
+            this.barItem4.SizeToFit = true;
+            this.barItem4.Text = "-";
+            // 
+            // BrItmDelete
+            // 
+            this.BrItmDelete.BarName = "BrItmDelete";
+            this.BrItmDelete.ID = "Delete Instance";
+            this.BrItmDelete.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmDelete.Image")));
+            this.BrItmDelete.ShowToolTipInPopUp = false;
+            this.BrItmDelete.SizeToFit = true;
+            this.BrItmDelete.Text = "Delete Instance";
+            this.BrItmDelete.Click += new System.EventHandler(this.BrItmDelete_Click);
+            // 
+            // LblImageLoading
+            // 
+            this.LblImageLoading.BackColor = System.Drawing.Color.Black;
+            this.LblImageLoading.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LblImageLoading.ForeColor = System.Drawing.Color.White;
+            this.LblImageLoading.Location = new System.Drawing.Point(43, 20);
+            this.LblImageLoading.Name = "LblImageLoading";
+            this.LblImageLoading.Size = new System.Drawing.Size(209, 130);
+            this.LblImageLoading.TabIndex = 8;
+            this.LblImageLoading.Text = "Loading...";
+            this.LblImageLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // InstancePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -251,7 +298,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BackgroundImage = global::Vcc.Nolvus.Dashboard.Properties.Resources.InstanceBoard;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Controls.Add(this.LblBeta);
+            this.Controls.Add(this.LblImageLoading);
             this.Controls.Add(this.BtnView);
             this.Controls.Add(this.LblDesc);
             this.Controls.Add(this.BtnUpdate);
@@ -285,9 +332,13 @@
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmMods;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem barItem1;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmDelete;
-        private System.Windows.Forms.Label LblBeta;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmShortCut;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmReport;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem barItem2;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmKeyBinds;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem barItem3;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmManual;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem barItem4;
+        private System.Windows.Forms.Label LblImageLoading;
     }
 }

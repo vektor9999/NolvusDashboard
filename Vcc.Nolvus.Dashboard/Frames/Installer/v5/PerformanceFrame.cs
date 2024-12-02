@@ -17,7 +17,7 @@ using Vcc.Nolvus.Dashboard.Core;
 using Vcc.Nolvus.Dashboard.Forms;
 using Syncfusion.Windows.Forms.Tools;
 
-namespace Vcc.Nolvus.Dashboard.Frames.Installer
+namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
 {
     public partial class PerformanceFrame : DashboardFrame
     {
@@ -98,8 +98,24 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             this.TglBtnFPSStabilizer.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
             this.TglBtnFPSStabilizer.InactiveState.HoverColor = Color.White;
         }
-       
+
+        private int RatioIndex(List<string> Ratios)
+        {
+            var Index = Ratios.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Settings.Ratio);
+
+            return Index == -1 ? 0 : Index;
+        }
+
         private int ResolutionIndex(List<string> Resolutions)
+        {
+            INolvusInstance WorkingInstance = ServiceSingleton.Instances.WorkingInstance;
+
+            var Index = Resolutions.FindIndex(x => x == WorkingInstance.Settings.Width + "x" + WorkingInstance.Settings.Height);
+
+            return Index == -1 ? 0 : Index;
+        }
+
+        private int DownResolutionIndex(List<string> Resolutions)
         {
             INolvusInstance WorkingInstance = ServiceSingleton.Instances.WorkingInstance;
 
@@ -137,8 +153,35 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             {                
                 var Instance = ServiceSingleton.Instances.WorkingInstance;
 
+                #region Resolution
+
+                List<string> Ratios = new List<string>();
+
+                Ratios.Add("16:9");
+                Ratios.Add("21:9");
+
+                DrpDwnLstRatios.DataSource = Ratios;
+
+                DrpDwnLstRatios.SelectedIndex = RatioIndex(Ratios);
+
+                Instance.Settings.Height = Screen.PrimaryScreen.Bounds.Height.ToString();
+                Instance.Settings.Width = Screen.PrimaryScreen.Bounds.Width.ToString();
+
+                DrpDwnLstResolution.DataSource = ServiceSingleton.Globals.WindowsResolutions;
+
+                DrpDwnLstResolution.SelectedIndex = ResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);                
+
+                TglBtnDownScale.ToggleState = ToggleButtonState.Inactive;
+
+                if (Instance.Performance.DownScaling == "TRUE")
+                {
+                    TglBtnDownScale.ToggleState = ToggleButtonState.Active;
+                }
+
+                #endregion
+
                 DrpDwnLstScreenRes.DataSource = ServiceSingleton.Globals.WindowsResolutions;
-                DrpDwnLstScreenRes.SelectedIndex = ResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);
+                DrpDwnLstScreenRes.SelectedIndex = DownResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);
                 DrpDwnLstScreenRes.Enabled = false;
 
                 this.TglBtnPhysics.ToggleState = ToggleButtonState.Inactive;
@@ -244,12 +287,12 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                     {
                         if (NolvusMessageBox.ShowConfirmation("Confirmation", "You selected the Redux variant with other effects that are normally disabled by default with this variant. Be sure you have more than the minimum requirement. Are you sure you want to continue?") == DialogResult.Yes)
                         {
-                            ServiceSingleton.Dashboard.LoadFrame<OptionsFrame>();
+                            ServiceSingleton.Dashboard.LoadFrame<v5.OptionsFrame>();
                         }
                     }
                     else
                     {                        
-                        ServiceSingleton.Dashboard.LoadFrame<OptionsFrame>();
+                        ServiceSingleton.Dashboard.LoadFrame<v5.OptionsFrame>();
                     }                                      
                 }                
             }
@@ -369,6 +412,23 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             DisplayHardwareRequirement();
         }
 
+        private void DrpDwnLstRatios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ServiceSingleton.Instances.WorkingInstance.Settings.Ratio = DrpDwnLstRatios.SelectedValue.ToString();
+        }
+
+        private void DrpDwnLstResolution_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            INolvusInstance WorkingInstance = ServiceSingleton.Instances.WorkingInstance;
+
+            string Resolution = DrpDwnLstResolution.SelectedValue.ToString();
+
+            string[] Reso = Resolution.Split(new char[] { 'x' });
+
+            WorkingInstance.Settings.Width = Reso[0];
+            WorkingInstance.Settings.Height = Reso[1];
+        }
+
         private void DisplayHardwareRequirement()
         {
             if (ServiceSingleton.Instances.WorkingInstance.Performance.Variant == "Ultra")
@@ -398,8 +458,6 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 LblVRAM.Text = "Recommended : 8Gb @1080p (HIGHER GPU with HIGHER VRAM needed beyond 1080p)";
                 LblSTORAGE.Text = "Mods: 240 Gb, Archives: 105Gb, Total: 345Gb";
             }
-        }
-
-       
+        }       
     }
 }

@@ -19,7 +19,7 @@ using Vcc.Nolvus.Dashboard.Core;
 using Vcc.Nolvus.Dashboard.Forms;
 using Syncfusion.Windows.Forms.Tools;
 
-namespace Vcc.Nolvus.Dashboard.Frames.Installer
+namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 {
     public partial class ENBFrame : DashboardFrame
     {
@@ -38,7 +38,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         {            
             DrpDwnLstENB.ValueMember = "Code";
             DrpDwnLstENB.DisplayMember = "Name";
-            DrpDwnLstENB.DataSource = ENBs.GetAvailableENBs();
+            DrpDwnLstENB.DataSource = ENBs.GetAvailableENBsForV6();
 
             DrpDwnLstENB.SelectedIndex = 0;
 
@@ -47,7 +47,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                
         private void BtnPrevious_Click(object sender, EventArgs e)
         {
-            ServiceSingleton.Dashboard.LoadFrame<OptionsFrame>();
+            ServiceSingleton.Dashboard.LoadFrame<v6.DifficultyFrame>();
         }
 
         private void BtnContinue_Click(object sender, EventArgs e)
@@ -58,11 +58,28 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         private void DrpDwnLstENB_SelectedIndexChanged(object sender, EventArgs e)
         {        
             ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB = DrpDwnLstENB.SelectedValue.ToString();
-        }
 
-        private void LnkLblENB_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://www.nolvus.net/guide/asc/enb");
+            var ENB = ENBs.GetAvailableENBsForV6().Where(x => x.Code == DrpDwnLstENB.SelectedValue.ToString()).FirstOrDefault();
+
+            LblENBDesc.Text = ENB.Description;
+
+            switch (ENB.Code)
+            {
+                case "CABBAGE":
+                    PicBoxENB.Image = Properties.Resources.Cabbage_ENB_01;
+                    break;
+                case "CABBAVAL":
+                    PicBoxENB.Image = Properties.Resources.Cabbaval_ENB;
+                    break;
+                case "KAUZ":
+                    PicBoxENB.Image = Properties.Resources.Kauz_ENB;
+                    break;
+
+            }
+
+            
+
+
         }
     }
 }

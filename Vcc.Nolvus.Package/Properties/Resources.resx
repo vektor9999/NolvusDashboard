@@ -124,7 +124,10 @@
   <data name="NolvusLauncher" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NolvusLauncher.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\splash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="splash_v5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\splash_v5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="splash_v6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\splash_v6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

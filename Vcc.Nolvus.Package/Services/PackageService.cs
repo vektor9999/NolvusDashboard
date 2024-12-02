@@ -25,7 +25,7 @@ namespace Vcc.Nolvus.Package.Services
         private const string CategoryKey = "InstallationManifest/Categories/Category";        
         private const string VersionKey = "InstallationManifest/Settings/Guide/Version";
         private const string LoadOrderKey = "InstallationManifest/LoadOrder/Esp";
-        
+
         #region Fields
 
         XmlDocument _Storage = new XmlDocument();        

@@ -35,8 +35,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
         public void LockButtons()
         {
             BtnDiscord.Enabled = false;
-            BtnDonate.Enabled = false;
-            BtnKeyBind.Enabled = false;
+            BtnDonate.Enabled = false;            
             BtnNewInstance.Enabled = false;
             BtnPatreon.Enabled = false;            
         }
@@ -44,8 +43,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
         public void UnLockButtons()
         {
             BtnDiscord.Enabled = true;
-            BtnDonate.Enabled = true;
-            BtnKeyBind.Enabled = true;
+            BtnDonate.Enabled = true;            
             BtnNewInstance.Enabled = true;
             BtnPatreon.Enabled = true;
         }
@@ -77,12 +75,6 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
         private void BtnPatreon_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.patreon.com/nolvus");
-        }
-
-
-        private void BtnKeyBind_Click(object sender, EventArgs e)
-        {
-            ServiceSingleton.Dashboard.LoadFrame<KeysBindingFrame>();
-        }
+        }        
     }
 }

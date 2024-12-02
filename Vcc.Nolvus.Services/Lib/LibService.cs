@@ -19,6 +19,10 @@ namespace Vcc.Nolvus.Services.Lib
 {
     public class LibService : ILibService
     {
+        public System.Drawing.Image GetImageFromUrl(string Url)
+        {
+            return new Bitmap(new WebClient().OpenRead(Url));
+        }
         public System.Drawing.Image ResizeKeepAspectRatio(System.Drawing.Image source, int width, int height)
         {
             System.Drawing.Image result = null;
@@ -221,6 +225,13 @@ namespace Vcc.Nolvus.Services.Lib
             }            
 
             return Result;
+        }
+
+        public byte[] ImageToByteArray(System.Drawing.Image Image)
+        {
+            MemoryStream ms = new MemoryStream();
+            Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            return ms.ToArray();
         }
     }
 }

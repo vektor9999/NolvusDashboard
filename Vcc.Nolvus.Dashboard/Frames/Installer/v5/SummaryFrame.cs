@@ -21,7 +21,7 @@ using Vcc.Nolvus.Dashboard.Core;
 using Vcc.Nolvus.Dashboard.Forms;
 using Vcc.Nolvus.NexusApi;
 
-namespace Vcc.Nolvus.Dashboard.Frames.Installer
+namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
 {
     public partial class SummaryFrame : DashboardFrame
     {

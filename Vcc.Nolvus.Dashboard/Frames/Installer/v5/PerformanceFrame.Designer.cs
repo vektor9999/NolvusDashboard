@@ -1,4 +1,4 @@
-﻿namespace Vcc.Nolvus.Dashboard.Frames.Installer
+﻿namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
 {
     partial class PerformanceFrame
     {
@@ -35,13 +35,15 @@
             Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection10 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
             Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection10 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
             Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection10 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
-            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection11 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection11 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection11 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
             Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection12 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
             Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection12 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
             Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection12 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
+            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection11 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection11 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection11 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.LblRAM = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
             this.LblCPU = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -92,8 +94,10 @@
             this.TglBtnPhysics = new Syncfusion.Windows.Forms.Tools.ToggleButton();
             this.label3 = new System.Windows.Forms.Label();
             this.LblStepText = new System.Windows.Forms.Label();
-            this.LblRAM = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
+            this.DrpDwnLstRatios = new Syncfusion.WinForms.ListView.SfComboBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.DrpDwnLstResolution = new Syncfusion.WinForms.ListView.SfComboBox();
+            this.label32 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnFPSStabilizer)).BeginInit();
@@ -107,6 +111,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstScreenRes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnDownScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnPhysics)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstRatios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstResolution)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -132,8 +138,28 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Location = new System.Drawing.Point(730, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(310, 583);
+            this.panel1.Size = new System.Drawing.Size(310, 709);
             this.panel1.TabIndex = 18;
+            // 
+            // LblRAM
+            // 
+            this.LblRAM.AutoSize = true;
+            this.LblRAM.ForeColor = System.Drawing.Color.Orange;
+            this.LblRAM.Location = new System.Drawing.Point(48, 474);
+            this.LblRAM.Name = "LblRAM";
+            this.LblRAM.Size = new System.Drawing.Size(37, 13);
+            this.LblRAM.TabIndex = 52;
+            this.LblRAM.Text = "[RAM]";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.ForeColor = System.Drawing.Color.White;
+            this.label31.Location = new System.Drawing.Point(9, 474);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(40, 13);
+            this.label31.TabIndex = 51;
+            this.label31.Text = "RAM : ";
             // 
             // LblCPU
             // 
@@ -235,7 +261,7 @@
             this.BtnPrevious.BorderColor = System.Drawing.Color.White;
             this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPrevious.ForeColor = System.Drawing.Color.White;
-            this.BtnPrevious.Location = new System.Drawing.Point(114, 528);
+            this.BtnPrevious.Location = new System.Drawing.Point(114, 654);
             this.BtnPrevious.Name = "BtnPrevious";
             this.BtnPrevious.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnPrevious.Size = new System.Drawing.Size(88, 40);
@@ -273,7 +299,7 @@
             this.BtnContinue.BorderColor = System.Drawing.Color.White;
             this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnContinue.ForeColor = System.Drawing.Color.White;
-            this.BtnContinue.Location = new System.Drawing.Point(208, 528);
+            this.BtnContinue.Location = new System.Drawing.Point(208, 654);
             this.BtnContinue.Name = "BtnContinue";
             this.BtnContinue.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnContinue.Size = new System.Drawing.Size(88, 40);
@@ -298,6 +324,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.DrpDwnLstRatios);
+            this.panel2.Controls.Add(this.label30);
+            this.panel2.Controls.Add(this.DrpDwnLstResolution);
+            this.panel2.Controls.Add(this.label32);
             this.panel2.Controls.Add(this.label25);
             this.panel2.Controls.Add(this.TglBtnFPSStabilizer);
             this.panel2.Controls.Add(this.label14);
@@ -320,7 +350,7 @@
             this.panel2.Controls.Add(this.label3);
             this.panel2.Location = new System.Drawing.Point(7, 30);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(717, 583);
+            this.panel2.Size = new System.Drawing.Size(717, 709);
             this.panel2.TabIndex = 17;
             // 
             // label25
@@ -640,9 +670,9 @@
             this.GrpBxDownScaling.Controls.Add(this.label9);
             this.GrpBxDownScaling.Controls.Add(this.label8);
             this.GrpBxDownScaling.ForeColor = System.Drawing.Color.White;
-            this.GrpBxDownScaling.Location = new System.Drawing.Point(16, 339);
+            this.GrpBxDownScaling.Location = new System.Drawing.Point(16, 432);
             this.GrpBxDownScaling.Name = "GrpBxDownScaling";
-            this.GrpBxDownScaling.Size = new System.Drawing.Size(683, 229);
+            this.GrpBxDownScaling.Size = new System.Drawing.Size(683, 262);
             this.GrpBxDownScaling.TabIndex = 34;
             this.GrpBxDownScaling.TabStop = false;
             this.GrpBxDownScaling.Text = "Resolution Downscaling (Not Compatible with DLAA)";
@@ -671,28 +701,28 @@
             // 
             // TglBtnDownScale
             // 
-            activeStateCollection11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection11.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            activeStateCollection11.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
-            this.TglBtnDownScale.ActiveState = activeStateCollection11;
+            activeStateCollection12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection12.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            activeStateCollection12.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
+            this.TglBtnDownScale.ActiveState = activeStateCollection12;
             this.TglBtnDownScale.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.TglBtnDownScale.ForeColor = System.Drawing.Color.Black;
-            inactiveStateCollection11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            inactiveStateCollection11.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            inactiveStateCollection11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            inactiveStateCollection11.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.TglBtnDownScale.InactiveState = inactiveStateCollection11;
+            inactiveStateCollection12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            inactiveStateCollection12.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            inactiveStateCollection12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            inactiveStateCollection12.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.TglBtnDownScale.InactiveState = inactiveStateCollection12;
             this.TglBtnDownScale.Location = new System.Drawing.Point(9, 111);
             this.TglBtnDownScale.MinimumSize = new System.Drawing.Size(52, 20);
             this.TglBtnDownScale.Name = "TglBtnDownScale";
             this.TglBtnDownScale.Size = new System.Drawing.Size(63, 24);
-            sliderCollection11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection11.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            sliderCollection11.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection11.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            sliderCollection11.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.TglBtnDownScale.Slider = sliderCollection11;
+            sliderCollection12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection12.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            sliderCollection12.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection12.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            sliderCollection12.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.TglBtnDownScale.Slider = sliderCollection12;
             this.TglBtnDownScale.TabIndex = 33;
             this.TglBtnDownScale.Text = "toggleButton1";
             this.TglBtnDownScale.ThemeName = "Office2016Black";
@@ -743,28 +773,28 @@
             // 
             // TglBtnPhysics
             // 
-            activeStateCollection12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection12.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            activeStateCollection12.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
-            this.TglBtnPhysics.ActiveState = activeStateCollection12;
+            activeStateCollection11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection11.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            activeStateCollection11.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
+            this.TglBtnPhysics.ActiveState = activeStateCollection11;
             this.TglBtnPhysics.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.TglBtnPhysics.ForeColor = System.Drawing.Color.Black;
-            inactiveStateCollection12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            inactiveStateCollection12.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            inactiveStateCollection12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            inactiveStateCollection12.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.TglBtnPhysics.InactiveState = inactiveStateCollection12;
+            inactiveStateCollection11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            inactiveStateCollection11.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            inactiveStateCollection11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            inactiveStateCollection11.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.TglBtnPhysics.InactiveState = inactiveStateCollection11;
             this.TglBtnPhysics.Location = new System.Drawing.Point(113, 218);
             this.TglBtnPhysics.MinimumSize = new System.Drawing.Size(52, 20);
             this.TglBtnPhysics.Name = "TglBtnPhysics";
             this.TglBtnPhysics.Size = new System.Drawing.Size(63, 24);
-            sliderCollection12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection12.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            sliderCollection12.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection12.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            sliderCollection12.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.TglBtnPhysics.Slider = sliderCollection12;
+            sliderCollection11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection11.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            sliderCollection11.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection11.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            sliderCollection11.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.TglBtnPhysics.Slider = sliderCollection11;
             this.TglBtnPhysics.TabIndex = 32;
             this.TglBtnPhysics.Text = "toggleButton1";
             this.TglBtnPhysics.ThemeName = "Office2016Black";
@@ -794,25 +824,51 @@
             this.LblStepText.Text = "Performance Options";
             this.LblStepText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // LblRAM
+            // DrpDwnLstRatios
             // 
-            this.LblRAM.AutoSize = true;
-            this.LblRAM.ForeColor = System.Drawing.Color.Orange;
-            this.LblRAM.Location = new System.Drawing.Point(48, 474);
-            this.LblRAM.Name = "LblRAM";
-            this.LblRAM.Size = new System.Drawing.Size(37, 13);
-            this.LblRAM.TabIndex = 52;
-            this.LblRAM.Text = "[RAM]";
+            this.DrpDwnLstRatios.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.DrpDwnLstRatios.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
+            this.DrpDwnLstRatios.Location = new System.Drawing.Point(113, 343);
+            this.DrpDwnLstRatios.Name = "DrpDwnLstRatios";
+            this.DrpDwnLstRatios.Size = new System.Drawing.Size(152, 28);
+            this.DrpDwnLstRatios.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.DrpDwnLstRatios.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.DrpDwnLstRatios.TabIndex = 54;
+            this.DrpDwnLstRatios.ThemeName = "Office2016Black";
+            this.DrpDwnLstRatios.SelectedIndexChanged += new System.EventHandler(this.DrpDwnLstRatios_SelectedIndexChanged);
             // 
-            // label31
+            // label30
             // 
-            this.label31.AutoSize = true;
-            this.label31.ForeColor = System.Drawing.Color.White;
-            this.label31.Location = new System.Drawing.Point(9, 474);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(40, 13);
-            this.label31.TabIndex = 51;
-            this.label31.Text = "RAM : ";
+            this.label30.AutoSize = true;
+            this.label30.ForeColor = System.Drawing.Color.White;
+            this.label30.Location = new System.Drawing.Point(13, 349);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(64, 13);
+            this.label30.TabIndex = 53;
+            this.label30.Text = "Screen ratio";
+            // 
+            // DrpDwnLstResolution
+            // 
+            this.DrpDwnLstResolution.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.DrpDwnLstResolution.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
+            this.DrpDwnLstResolution.Location = new System.Drawing.Point(113, 377);
+            this.DrpDwnLstResolution.Name = "DrpDwnLstResolution";
+            this.DrpDwnLstResolution.Size = new System.Drawing.Size(154, 28);
+            this.DrpDwnLstResolution.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.DrpDwnLstResolution.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.DrpDwnLstResolution.TabIndex = 52;
+            this.DrpDwnLstResolution.ThemeName = "Office2016Black";
+            this.DrpDwnLstResolution.SelectedIndexChanged += new System.EventHandler(this.DrpDwnLstResolution_SelectedIndexChanged);
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.ForeColor = System.Drawing.Color.White;
+            this.label32.Location = new System.Drawing.Point(13, 383);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(57, 13);
+            this.label32.TabIndex = 51;
+            this.label32.Text = "Resolution";
             // 
             // PerformanceFrame
             // 
@@ -823,7 +879,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.LblStepText);
             this.Name = "PerformanceFrame";
-            this.Size = new System.Drawing.Size(1043, 618);
+            this.Size = new System.Drawing.Size(1043, 744);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -841,6 +897,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstScreenRes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnDownScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnPhysics)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstRatios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstResolution)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -900,5 +958,9 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label LblRAM;
         private System.Windows.Forms.Label label31;
+        private Syncfusion.WinForms.ListView.SfComboBox DrpDwnLstRatios;
+        private System.Windows.Forms.Label label30;
+        private Syncfusion.WinForms.ListView.SfComboBox DrpDwnLstResolution;
+        private System.Windows.Forms.Label label32;
     }
 }

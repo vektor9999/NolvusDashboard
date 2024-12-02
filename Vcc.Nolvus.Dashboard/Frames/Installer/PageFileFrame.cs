@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Core.Enums;
+using Vcc.Nolvus.Core.Misc;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Instance.Core;
 using Vcc.Nolvus.Dashboard.Core;
@@ -38,26 +39,18 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             ServiceSingleton.Dashboard.Info("Page file size configuration");
         }
         
-
-        private void BtnMegaLogin_Click(object sender, EventArgs e)
-        {
-            //InstallerEnvironment.MegaLogin = string.Empty;
-            //InstallerEnvironment.MegaPassword = string.Empty;
-
-            //FrmMegaAccount MegaLogin = new FrmMegaAccount();
-
-            //if (MegaLogin.ShowDialog() == DialogResult.OK)
-            //{
-            //    InstallerEnvironment.MegaLogin = MegaLogin.UserName;
-            //    InstallerEnvironment.MegaPassword = MegaLogin.Password;
-
-            //    NolvusMessageBox.ShowMessage("Mega API", "Connection successfull", MessageBoxType.Info);
-            //}
-        }
                
         private void BtnPrevious_Click(object sender, EventArgs e)
         {
-            ServiceSingleton.Dashboard.LoadFrame<ENBFrame>();
+            switch (ServiceSingleton.Instances.WorkingInstance.Name)
+            {
+                case Strings.NolvusAscension:
+                    ServiceSingleton.Dashboard.LoadFrame<v5.ENBFrame>();
+                    break;
+                case Strings.NolvusAwakening:
+                    ServiceSingleton.Dashboard.LoadFrame<v6.ENBFrame>();
+                    break;
+            }            
         }
 
         private void BtnContinue_Click(object sender, EventArgs e)
@@ -70,7 +63,15 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 }
                 else
                 {
-                    ServiceSingleton.Dashboard.LoadFrame<SummaryFrame>();
+                    switch (ServiceSingleton.Instances.WorkingInstance.Name)
+                    {
+                        case Strings.NolvusAscension:
+                            ServiceSingleton.Dashboard.LoadFrame<v5.SummaryFrame>();
+                            break;
+                        case Strings.NolvusAwakening:
+                            ServiceSingleton.Dashboard.LoadFrame<v6.SummaryFrame>();
+                            break;
+                    }
                 }
             }
         }

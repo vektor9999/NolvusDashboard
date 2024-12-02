@@ -677,6 +677,7 @@ sTestFile2=HearthFires.esm
 sTestFile3=Dragonborn.esm
 uExterior Cell Buffer=36
 uGridsToLoad=5
+uInterior Cell Buffer=0
 
 [GeneralWarnings]
 SGeneralMasterMismatchWarning=One or more plugins could not find the correct versions of the master files they depend on. Errors may occur during load or game play. Check the 'Warnings.txt' file for more information.
@@ -828,6 +829,7 @@ sTestFile2=HearthFires.esm
 sTestFile3=Dragonborn.esm
 uExterior Cell Buffer=36
 uGridsToLoad=5
+uInterior Cell Buffer=0
 
 [GeneralWarnings]
 SGeneralMasterMismatchWarning=One or more plugins could not find the correct versions of the master files they depend on. Errors may occur during load or game play. Check the 'Warnings.txt' file for more information.
@@ -979,6 +981,7 @@ sTestFile2=HearthFires.esm
 sTestFile3=Dragonborn.esm
 uExterior Cell Buffer=36
 uGridsToLoad=5
+uInterior Cell Buffer=0
 
 [GeneralWarnings]
 SGeneralMasterMismatchWarning=One or more plugins could not find the correct versions of the master files they depend on. Errors may occur during load or game play. Check the 'Warnings.txt' file for more information.
@@ -1792,7 +1795,7 @@ bEnableProjecteUVDiffuseNormals=1
 bForceCreateTarget=0
 bFull Screen=0
 bFXAAEnabled=0
-bIBLFEnable=1
+bIBLFEnable=0
 bIndEnable=0
 bSAO_CS_Enable=0
 bSAOEnable=0
@@ -1859,7 +1862,7 @@ fGrassStartFadeDistance=1381
 
 [Imagespace]
 bDoDepthOfField=1
-bLensFlare=1
+bLensFlare=0
 
 [Interface]
 bDialogueSubtitles=1
@@ -1982,7 +1985,7 @@ bEnableProjecteUVDiffuseNormals=1
 bForceCreateTarget=0
 bFull Screen=0
 bFXAAEnabled=0
-bIBLFEnable=1
+bIBLFEnable=0
 bIndEnable=0
 bSAO_CS_Enable=0
 bSAOEnable=0
@@ -2049,7 +2052,7 @@ fGrassStartFadeDistance=6144.0000
 
 [Imagespace]
 bDoDepthOfField=1
-bLensFlare=1
+bLensFlare=0
 
 [Interface]
 bDialogueSubtitles=1
@@ -2481,8 +2484,18 @@ ccafdsse001-dwesanctuary.esm";
         }
 
         private void AddSplash()
-        {                        
-            Properties.Resources.splash.Save(Path.Combine(ServiceSingleton.Instances.WorkingInstance.InstallDir, "MO2", "splash.png"));
+        {
+            string SplashPath = Path.Combine(ServiceSingleton.Instances.WorkingInstance.InstallDir, "MO2", "splash.png");
+
+            switch (ServiceSingleton.Instances.WorkingInstance.Name)
+            {
+                case Strings.NolvusAscension:
+                    Properties.Resources.splash_v5.Save(SplashPath);
+                    break;
+                case Strings.NolvusAwakening:
+                    Properties.Resources.splash_v6.Save(SplashPath);
+                    break;
+            }            
         }
 
         protected override async Task DoCopy()

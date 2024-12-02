@@ -20,7 +20,7 @@ namespace Vcc.Nolvus.Package.Rules
         public override void Load(XmlNode Node)
         {
             base.Load(Node);
-            Source = Node["Source"].InnerText;
+            Source = Encoding.UTF8.GetString(Encoding.GetEncoding("Windows-1252").GetBytes(Node["Source"].InnerText));
             Destination = System.Convert.ToInt16(Node["Destination"].InnerText);
             DestinationDirectory = Node["DestinationDirectory"].InnerText;
         }

@@ -40,33 +40,84 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 return Index == -1 ? Versions.ToList().Count - 1 : Index;
             }
 
-            return Versions.ToList().Count - 1;
-        }
-
-        private int ResolutionIndex(List<string> Resolutions)
-        {            
-            INolvusInstance WorkingInstance = ServiceSingleton.Instances.WorkingInstance;
-           
-            var Index = Resolutions.FindIndex(x => x == WorkingInstance.Settings.Width + "x" + WorkingInstance.Settings.Height);
-
-            return Index == -1 ? 0 : Index;            
-        }
-
-        private int RatioIndex(List<string> Ratios)
-        {            
-            var Index = Ratios.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Settings.Ratio);
-
-            return Index == -1 ? 0 : Index;            
+            return 0;
         }
 
         private int LgIndex(List<LgCode> Lgs)
-        {            
-            var Index = Lgs.FindIndex(x => x.Code == ServiceSingleton.Instances.WorkingInstance.Settings.LgCode);
+        {
+            INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
-            return Index == -1 ? 0 : Index;                          
+            if (Instance != null)
+            {
+                var Index = Lgs.FindIndex(x => x.Code == Instance.Settings.LgCode);
+
+                return Index == -1 ? 0 : Index;
+            }
+
+            return 0;            
         }
 
-        protected override async Task OnLoadAsync()
+        private void SetDataSource(IEnumerable<INolvusVersionDTO> Source)
+        {
+            if (InvokeRequired)
+            {
+                Invoke((System.Action<IEnumerable<INolvusVersionDTO>>)SetDataSource, Source);
+                return;
+            }
+            
+            NolvusListBox.DataSource = Source;            
+            NolvusListBox.SelectedIndex = InstanceIndex(Source);
+            PicLoading.Hide();
+            NolvusListBox.Show();
+        }
+
+        private async Task LoadAvailableLists(IEnumerable<INolvusVersionDTO> Lists)
+        {
+            await Task.Run(() =>
+            {
+                SetDataSource(Lists.Select(x => {
+                    x.ImageObject = ServiceSingleton.Lib.SetImageOpacity(ServiceSingleton.Lib.GetImageFromUrl(x.Image), 0.50F);
+                    return x;
+                }).ToList());
+            });
+        }
+
+        private void SwitchInstance(INolvusVersionDTO NolvusInstance)
+        {
+            if (ServiceSingleton.Instances.WorkingInstance == null || ServiceSingleton.Instances.WorkingInstance.Name != NolvusInstance.Name)
+            {
+                ServiceSingleton.Instances.WorkingInstance = new NolvusInstance(NolvusInstance);                
+            }
+        }
+
+        private void LoadLanguages()
+        {           
+            List<LgCode> LgList = new List<LgCode>();
+
+            LgCode Lg1 = new LgCode { Code = "EN", Name = "English" };
+            LgCode Lg2 = new LgCode { Code = "FR", Name = "French" };
+            LgCode Lg3 = new LgCode { Code = "IT", Name = "Italian" };
+            LgCode Lg4 = new LgCode { Code = "DE", Name = "German" };
+            LgCode Lg5 = new LgCode { Code = "ES", Name = "Spanish" };
+            LgCode Lg6 = new LgCode { Code = "RU", Name = "Russian" };
+            LgCode Lg7 = new LgCode { Code = "PL", Name = "Polish" };
+
+            LgList.Add(Lg1);
+            LgList.Add(Lg2);
+            LgList.Add(Lg3);
+            LgList.Add(Lg4);
+            LgList.Add(Lg5);
+            LgList.Add(Lg6);
+            LgList.Add(Lg7);
+
+            DrpDwnLg.DataSource = LgList;
+            DrpDwnLg.DisplayMember = "Name";
+            DrpDwnLg.ValueMember = "Code";
+
+            DrpDwnLg.SelectedIndex = LgIndex(LgList);            
+        }
+
+        protected override async Task OnLoadedAsync()
         {
             try
             {
@@ -75,126 +126,54 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
                 BtnCancel.Visible = !Parameters.IsEmpty && Parameters["Cancel"] != null;
 
-                var Versions = await ApiManager.Service.Installer.GetNolvusVersions();
+                LoadLanguages();
 
-                DrpDwnLstGuides.DataSource = Versions;
-                DrpDwnLstGuides.DisplayMember = "Name";
-                DrpDwnLstGuides.ValueMember = "Id";
+                await LoadAvailableLists(await ApiManager.Service.Installer.GetNolvusVersions());
 
-                DrpDwnLstGuides.SelectedIndex = InstanceIndex(Versions);
-                DrpDwnLstScreenRes.DataSource = ServiceSingleton.Globals.WindowsResolutions;
+                SwitchInstance(NolvusListBox.SelectedItem as INolvusVersionDTO);
 
-                DrpDwnLstScreenRes.SelectedIndex = ResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);
-
-                List<string> Ratios = new List<string>();
-
-                Ratios.Add("16:9");
-                Ratios.Add("21:9");
-
-                DrpDwnLstRatios.DataSource = Ratios;
-
-                DrpDwnLstRatios.SelectedIndex = RatioIndex(Ratios);
-
-                List<LgCode> LgList = new List<LgCode>();
-
-                LgCode Lg1 = new LgCode { Code = "EN", Name = "English" };
-                LgCode Lg2 = new LgCode { Code = "FR", Name = "French" };
-                LgCode Lg3 = new LgCode { Code = "IT", Name = "Italian" };
-                LgCode Lg4 = new LgCode { Code = "DE", Name = "German" };
-                LgCode Lg5 = new LgCode { Code = "ES", Name = "Spanish" };
-                LgCode Lg6 = new LgCode { Code = "RU", Name = "Russian" };
-                LgCode Lg7 = new LgCode { Code = "PL", Name = "Polish" };
-
-                LgList.Add(Lg1);
-                LgList.Add(Lg2);
-                LgList.Add(Lg3);
-                LgList.Add(Lg4);
-                LgList.Add(Lg5);
-                LgList.Add(Lg6);
-                LgList.Add(Lg7);
-
-                DrpDwnLg.DataSource = LgList;
-                DrpDwnLg.DisplayMember = "Name";
-                DrpDwnLg.ValueMember = "Code";
-
-                DrpDwnLg.SelectedIndex = LgIndex(LgList);
+                NolvusListBox.SelectedIndexChanged += NolvusListBox_SelectedIndexChanged;                
             }
             catch (Exception ex)
             {
                 await ServiceSingleton.Dashboard.Error("Error during instance selection loading", ex.Message, ex.StackTrace);
             }
-        }                                
+        }        
 
         private void BtnContinue_Click(object sender, EventArgs e)
         {
-            INolvusVersionDTO InstanceToInstall = DrpDwnLstGuides.SelectedItem as INolvusVersionDTO;
+            INolvusVersionDTO InstanceToInstall = NolvusListBox.SelectedItem as INolvusVersionDTO;
 
-            if (ServiceSingleton.Instances.InstanceExists(InstanceToInstall.Name))
+            if (InstanceToInstall.Maintenance)
             {
-                NolvusMessageBox.ShowMessage("Invalid Instance", "The nolvus instance " + InstanceToInstall.Name + " is already installed!", MessageBoxType.Error);
+                NolvusMessageBox.ShowMessage("Maintenance", "The nolvus instance " + InstanceToInstall.Name + " is under maintenance. Unable to install.", MessageBoxType.Error);
             }
             else
             {
-                INolvusInstance WorkingInstance = ServiceSingleton.Instances.WorkingInstance;
+                if (ServiceSingleton.Instances.InstanceExists(InstanceToInstall.Name))
+                {
+                    NolvusMessageBox.ShowMessage("Invalid Instance", "The nolvus instance " + InstanceToInstall.Name + " is already installed!", MessageBoxType.Error);
+                }
+                else
+                {
+                    INolvusInstance WorkingInstance = ServiceSingleton.Instances.WorkingInstance;
 
-                WorkingInstance.Settings.Ratio = DrpDwnLstRatios.SelectedValue.ToString();
+                    WorkingInstance.Settings.LgCode = (DrpDwnLg.SelectedItem as LgCode).Code;
+                    WorkingInstance.Settings.LgName = (DrpDwnLg.SelectedItem as LgCode).Name;
 
-                string Resolution = DrpDwnLstScreenRes.SelectedValue.ToString();
-
-                string[] Reso = Resolution.Split(new char[] { 'x' });
-
-                WorkingInstance.Settings.Width = Reso[0];                
-                WorkingInstance.Settings.Height = Reso[1];                
-
-                WorkingInstance.Settings.LgCode = (DrpDwnLg.SelectedItem as LgCode).Code;
-                WorkingInstance.Settings.LgName = (DrpDwnLg.SelectedItem as LgCode).Name;
-
-                ServiceSingleton.Dashboard.LoadFrame<PathFrame>();
-            }                                     
-        }
-
-        private int GetTotalStorage(INolvusVersionDTO NolvusVersion)
-        {
-            int Mods = System.Convert.ToInt32(NolvusVersion.ModsStorageSpace);
-            int Archives = System.Convert.ToInt32(NolvusVersion.ArchiveStorageSpace);
-
-            return Mods + Archives;                 
-        }
-
-        private void DrpDwnLstGuides_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            INolvusVersionDTO NolvusVersion = DrpDwnLstGuides.SelectedItem as INolvusVersionDTO;
-
-            if (ServiceSingleton.Instances.WorkingInstance == null || ServiceSingleton.Instances.WorkingInstance.Name != NolvusVersion.Name)
-            {                                                
-                ServiceSingleton.Instances.WorkingInstance = new NolvusInstance(NolvusVersion);
-
-                ServiceSingleton.Instances.WorkingInstance.Settings.Height = Screen.PrimaryScreen.Bounds.Height.ToString();
-                ServiceSingleton.Instances.WorkingInstance.Settings.Width = Screen.PrimaryScreen.Bounds.Width.ToString();
-            }
-            
-            LblCPU.Text = "Minimum : " + NolvusVersion.MinCPU + ", Recommended : " + NolvusVersion.MaxCPU;
-            LblGPU.Text = "Minimum : " + NolvusVersion.MinGPU + ", Recommended : " + NolvusVersion.MaxGPU;
-            LblRAM.Text = "Minimum : " + NolvusVersion.MinRAM + ", Recommended : " + NolvusVersion.MaxRAM;
-            LblVRAM.Text = "Minimum : " + NolvusVersion.MinVRAM + ", Recommended : " + NolvusVersion.MaxVRAM;
-            LblStorage.Text = "Mods : " + NolvusVersion.ModsStorageSpace + " Gb, Archive : " + NolvusVersion.ArchiveStorageSpace + " Gb, Total : " + GetTotalStorage(NolvusVersion) + " Gb";
-
-            LblDesc.Text = NolvusVersion.Description;
-            
-            switch (NolvusVersion.Code)
-            {               
-                case "ASC":
-                    LblGPU.Text = "Depends of the selected options";
-                    LblVRAM.Text = "Depends of the selected options";
-                    LblStorage.Text = "Depends of the selected options";
-                    PicBox.Image = Properties.Resources.Nolvus_V5;
-                    break;              
-            }
+                    ServiceSingleton.Dashboard.LoadFrame<PathFrame>();
+                }
+            }            
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             ServiceSingleton.Dashboard.LoadFrame<InstancesFrame>();
         }
+
+        private void NolvusListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SwitchInstance(NolvusListBox.SelectedItem as INolvusVersionDTO);            
+        }       
     }
 }

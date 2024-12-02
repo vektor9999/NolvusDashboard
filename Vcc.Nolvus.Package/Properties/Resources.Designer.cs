@@ -83,9 +83,19 @@ namespace Vcc.Nolvus.Package.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap splash {
+        internal static System.Drawing.Bitmap splash_v5 {
             get {
-                object obj = ResourceManager.GetObject("splash", resourceCulture);
+                object obj = ResourceManager.GetObject("splash_v5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap splash_v6 {
+            get {
+                object obj = ResourceManager.GetObject("splash_v6", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

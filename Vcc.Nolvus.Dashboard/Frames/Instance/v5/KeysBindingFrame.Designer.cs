@@ -1,4 +1,4 @@
-﻿namespace Vcc.Nolvus.Dashboard.Frames.Instance
+﻿namespace Vcc.Nolvus.Dashboard.Frames.Instance.v5
 {
     partial class KeysBindingFrame
     {

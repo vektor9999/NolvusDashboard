@@ -17,7 +17,7 @@ using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Dashboard.Controls;
 using Vcc.Nolvus.Dashboard.Frames.Installer;
 
-namespace Vcc.Nolvus.Dashboard.Frames.Instance
+namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 {
     public partial class KeysBindingFrame : DashboardFrame
     {        

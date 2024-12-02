@@ -11,6 +11,7 @@ using Syncfusion.Windows.Forms.Tools;
 using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Core.Enums;
+using Vcc.Nolvus.Core.Misc;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Instance.Core;
 using Vcc.Nolvus.Dashboard.Core;
@@ -99,7 +100,16 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
         private void BtnContinue_Click(object sender, EventArgs e)
         {            
-            ServiceSingleton.Dashboard.LoadFrameAsync<PerformanceFrame>();
+
+            switch (ServiceSingleton.Instances.WorkingInstance.Name)
+            {
+                case Strings.NolvusAscension:
+                    ServiceSingleton.Dashboard.LoadFrameAsync<v5.PerformanceFrame>();
+                    break;
+                case Strings.NolvusAwakening:
+                    ServiceSingleton.Dashboard.LoadFrameAsync<v6.PerformanceFrame>();
+                    break;
+            }                        
         }
 
         private void BtnPrevious_Click(object sender, EventArgs e)

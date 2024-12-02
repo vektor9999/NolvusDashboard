@@ -12,10 +12,18 @@ namespace Vcc.Nolvus.Package.Mods
     public class BsaUnPacking
     {
         public string FileName { get; set; }
+        public string DirectoryName { get; set; }
 
-        private ZlpFileInfo GetBsaToUnpack(string ExtractDir, string BSAFile)
+        private ZlpFileInfo GetBsaToUnpack(string ExtractDir)
         {            
-            return  ServiceSingleton.Files.GetFiles(ExtractDir).Where(x => x.Name == BSAFile).FirstOrDefault();
+            if (DirectoryName == string.Empty)
+            {
+                return ServiceSingleton.Files.GetFiles(ExtractDir).Where(x => x.Name == FileName).FirstOrDefault();
+            }
+            else
+            {
+                return ServiceSingleton.Files.GetFiles(ExtractDir).Where(x => x.Name == FileName && x.Directory.FullName.Contains(DirectoryName)).FirstOrDefault();
+            }            
         }
 
         public async Task UnPack(string ExtractDir)
@@ -24,7 +32,7 @@ namespace Vcc.Nolvus.Package.Mods
             {
                 Process UnPackingProcess = new Process();
                 var BSArchDir = Path.Combine(ServiceSingleton.Instances.WorkingInstance.InstallDir, "TOOLS", "BSArch");
-                var BSAFile = GetBsaToUnpack(ExtractDir, FileName);
+                var BSAFile = GetBsaToUnpack(ExtractDir);
 
                 if (BSAFile != null)
                 {

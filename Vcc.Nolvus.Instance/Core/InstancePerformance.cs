@@ -22,6 +22,7 @@ namespace Vcc.Nolvus.Instance.Core
         public string Variant { get; set; } = "Ultra";
         public string LODs { get; set; } = "Ultra";
         public string RayTracing { get; set; } = "TRUE";
+        public string SREX { get; set; } = "FALSE";
         public string DownScaledResolution
         {
             get
@@ -51,6 +52,11 @@ namespace Vcc.Nolvus.Instance.Core
                 FPSStabilizer = Node["FPSStabilizer"].InnerText.Trim();
             }
 
+            if ( Node["SREX"] != null)
+            {
+                SREX = Node["SREX"].InnerText.Trim();
+            }
+
             ServiceSingleton.Logger.Log(string.Format("Instance advanced physics : {0}", AdvancedPhysics));
             ServiceSingleton.Logger.Log(string.Format("Instance downscaling : {0}", DownScaling));
             ServiceSingleton.Logger.Log(string.Format("Instance downscaling height : {0}", DownHeight));
@@ -61,6 +67,7 @@ namespace Vcc.Nolvus.Instance.Core
             ServiceSingleton.Logger.Log(string.Format("Instance lods : {0}", LODs));
             ServiceSingleton.Logger.Log(string.Format("Instance ray tracing : {0}", RayTracing));
             ServiceSingleton.Logger.Log(string.Format("Instance fps stabilizer : {0}", FPSStabilizer));
+            ServiceSingleton.Logger.Log(string.Format("Instance SREX : {0}", SREX));
         }        
 
         public void Save(XmlWriter XMLWriter)
@@ -105,6 +112,10 @@ namespace Vcc.Nolvus.Instance.Core
 
             XMLWriter.WriteStartElement("FPSStabilizer");
             XMLWriter.WriteString(FPSStabilizer.Trim());
+            XMLWriter.WriteEndElement();
+
+            XMLWriter.WriteStartElement("SREX");
+            XMLWriter.WriteString(SREX.Trim());
             XMLWriter.WriteEndElement();
 
             XMLWriter.WriteEndElement();

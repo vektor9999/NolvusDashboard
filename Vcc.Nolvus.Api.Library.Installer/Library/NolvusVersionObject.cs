@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
+using System.Drawing;
 
 namespace Vcc.Nolvus.Api.Installer.Library
 {
@@ -26,6 +28,12 @@ namespace Vcc.Nolvus.Api.Installer.Library
         string ModsStorageSpace { get; }
         string ArchiveStorageSpace { get; }
         string Description { get;}
+        string Version { get; }
+        bool IsBeta { get;}
+        string Image { get; }
+        Image ImageObject { get; set; }
+
+        bool Maintenance { get; set; }
     }
 
     public class NolvusVersionObject : InstallerApiObject
@@ -48,11 +56,16 @@ namespace Vcc.Nolvus.Api.Installer.Library
         public string ModsStorageSpace { get; set; }
         public string ArchiveStorageSpace { get; set; }
         public string Description { get; set; }
+        public string Version { get; set; }
+        public bool IsBeta { get; set; }
+        public string Image { get; set; }
+
+        public bool Maintenance { get; set; }
     }
 
     public class NolvusVersionDTO : NolvusVersionObject, INolvusVersionDTO
-    {
-        public string Id { get; set; }    
-                                      
+    {        
+        public string Id { get; set; }
+        public Image ImageObject { get; set; }
     }
 }

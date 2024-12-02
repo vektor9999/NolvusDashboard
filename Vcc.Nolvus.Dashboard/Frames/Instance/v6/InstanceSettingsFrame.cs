@@ -29,7 +29,7 @@ using Vcc.Nolvus.Dashboard.Controls;
 using Vcc.Nolvus.Dashboard.Forms;
 using Vcc.Nolvus.Dashboard.Frames.Installer;
 
-namespace Vcc.Nolvus.Dashboard.Frames.Instance
+namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 {
     public partial class InstanceSettingsFrame : DashboardFrame
     {
@@ -284,60 +284,26 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                     LblLODs.Text = Instance.Performance.LODs;
                 }
 
-                LblPhysics.Text = "No";
-                LblRayTracing.Text = "No";
-                LblFPS.Text = "No";
+                LblSREX.Text = Instance.Performance.SREX == "TRUE" ? "Yes" : "No";
+                LblCombatAnims.Text = Instance.Options.CombatAnimation;
 
 
-                LblHC.Text = "No";
-                LblLeveling.Text = "No";
-                LblAltStart.Text = "No";
-                LblFantasyMode.Text = "No";
-                LblNude.Text = "No";
-                LblSkinType.Text = Instance.Options.SkinType;
+                LblStances.Text = Instance.Options.StancesPerksTree == "TRUE" ? "Yes" : "No";
+                LblLeveling.Text = Instance.Options.AlternateLeveling == "TRUE" ? "Yes" : "No";
+                LblNude.Text = Instance.Options.Nudity == "TRUE" ? "Yes" : "No";
+                LblGore.Text = Instance.Options.Gore == "TRUE" ? "Yes" : "No";
+                LblAltStart.Text = Instance.Options.AlternateStart == "TRUE" ? "Yes" : "No";
 
-                if (Instance.Performance.AdvancedPhysics == "TRUE")
-                {
-                    LblPhysics.Text = "Yes";
-                }
+                LblENB.Text = ENBs.GetENBByCode(Instance.Options.AlternateENB);  
+                              
+                LblDeleveledEnemies.Text = Instance.Options.DeleveledEnemies == "TRUE" ? "Yes" : "No";
+                LblExhaustion.Text = Instance.Options.Exhaustion == "TRUE" ? "Yes" : "No";
+                LblNerfPA.Text = Instance.Options.NerfPA == "TRUE" ? "Yes" : "No";
+                LblEnemiesResistance.Text = Instance.Options.EnemiesResistance == "TRUE" ? "Yes" : "No";
+                LblBoss.Text = Instance.Options.Boss == "TRUE" ? "Yes" : "No";
+                LblPoise.Text = Instance.Options.Poise == "TRUE" ? "Yes" : "No";
 
-                if (Instance.Performance.RayTracing == "TRUE")
-                {
-                    LblRayTracing.Text = "Yes";
-                }
-
-                if (Instance.Performance.FPSStabilizer == "TRUE")
-                {
-                    LblFPS.Text = "Yes";
-                }
-
-                if (Instance.Options.HardcoreMode == "TRUE")
-                {
-                    LblHC.Text = "Yes";
-                }
-
-                if (Instance.Options.AlternateLeveling == "TRUE")
-                {
-                    LblLeveling.Text = "Yes";
-                }
-
-                if (Instance.Options.AlternateStart == "TRUE")
-                {
-                    LblAltStart.Text = "Yes";
-                }
-
-                if (Instance.Options.FantasyMode == "TRUE")
-                {
-                    LblFantasyMode.Text = "Yes";
-                }
-
-                if (Instance.Options.Nudity == "TRUE")
-                {
-                    LblNude.Text = "Yes";
-                }
-
-                LblENB.Text = ENBs.GetENBByCode(Instance.Options.AlternateENB);
-
+               
                 List<string> IniSettings = new List<string>();
 
                 IniSettings.Add("Low");

@@ -301,7 +301,15 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
         private async void BtnSettings_Click(object sender, EventArgs e)
         {
-            await ServiceSingleton.Dashboard.LoadFrameAsync<InstanceSettingsFrame>();      
+            switch (ServiceSingleton.Instances.WorkingInstance.Name)
+            {
+                case Strings.NolvusAscension:
+                    await ServiceSingleton.Dashboard.LoadFrameAsync<v5.InstanceSettingsFrame>();
+                    break;
+                case Strings.NolvusAwakening:
+                    await ServiceSingleton.Dashboard.LoadFrameAsync<v6.InstanceSettingsFrame>();
+                    break;
+            }            
         }
 
         private async void BtnLoadOrder_Click(object sender, EventArgs e)

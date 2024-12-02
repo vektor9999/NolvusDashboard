@@ -129,7 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Resources\splash.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\mod-def-22.png" />
@@ -139,6 +138,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash_v5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash_v6.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
