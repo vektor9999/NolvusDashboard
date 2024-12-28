@@ -174,7 +174,7 @@ namespace Vcc.Nolvus.Package.Files
                 {
                     var FileInfo = GetFileInfo();
 
-                    ServiceSingleton.Logger.Log(string.Format("Checking CRC for file {0}", FileName));
+                    ServiceSingleton.Logger.Log(string.Format("Checking CRC for file {0}", FileName));                    
 
                     if (CRC32 == string.Empty || !FileInfo.Exists || FileInfo.Length == 0 || (CRC32 != string.Empty && CRC32 != await ServiceSingleton.Files.GetCRC32(FileInfo, HashProgress)))
                     {

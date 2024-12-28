@@ -70,35 +70,6 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
         }
 
-        //private string GetSelectedResolution()
-        //{
-        //    return string.Format("{0}x{1}", GetSelectedHeight(), GetSelectedWidth());
-        //}
-
-        //private string GetSelectedHeight()
-        //{
-        //    if (ServiceSingleton.Instances.WorkingInstance.Performance.DownScaling == "TRUE")
-        //    {
-        //        return ServiceSingleton.Instances.WorkingInstance.Performance.DownHeight;
-        //    }
-        //    else
-        //    {
-        //        return ServiceSingleton.Instances.WorkingInstance.Settings.Height;
-        //    }
-        //}
-
-        //private string GetSelectedWidth()
-        //{
-        //    if (ServiceSingleton.Instances.WorkingInstance.Performance.DownScaling == "TRUE")
-        //    {
-        //        return ServiceSingleton.Instances.WorkingInstance.Performance.DownWidth;
-        //    }
-        //    else
-        //    {
-        //        return ServiceSingleton.Instances.WorkingInstance.Settings.Width;
-        //    }
-        //}
-
         private int RatioIndex(List<string> Ratios)
         {
             var Index = Ratios.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Settings.Ratio);
@@ -291,13 +262,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             else
             {
                 if (NolvusMessageBox.ShowConfirmation("Confirmation", "Some of the options you selected can not be changed after installation. Are you sure you want to continue?") == DialogResult.Yes)
-                {
-                    if (Performance.SREX == "TRUE")
-                    {
-                        NolvusMessageBox.ShowMessage("Information", "You have selected SR Exterior Cities, be sure to not select to spawn in a city if you are using the alternate start option", MessageBoxType.Info);
-                    }
-
-                    ServiceSingleton.Dashboard.LoadFrame<v6.OptionsFrame>();
+                {                    
+                    if (Performance.AntiAliasing == "TAA" || (Performance.AntiAliasing == "DLAA" && NolvusMessageBox.ShowConfirmation("Warning", "DLAA is not compatible with the latest Windows 11 24H2 version.\n\nDo you want to continue?") == DialogResult.Yes))
+                    {                    
+                        ServiceSingleton.Dashboard.LoadFrame<v6.OptionsFrame>();
+                    }                    
                 }                
             }
         }
@@ -336,7 +305,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         {
             if (TglBtnSREX.ToggleState == ToggleButtonState.Inactive)
             {
-                e.Cancel = NolvusMessageBox.ShowConfirmation("Warning", "The SR Exterior Cities option is very performance heavy. Are you sure?") == DialogResult.No;
+                e.Cancel = NolvusMessageBox.ShowConfirmation("Warning", "The SR Exterior Cities option is very performance heavy Don't try to run it at 4K without any tools like Framegen or Loseless Scaling. Are you sure?") == DialogResult.No;
             }            
         }
 
@@ -529,10 +498,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 new FrameParameters(new FrameParameter()
                 {
                     Key = "VariantRequirement",
-                    Value = MinRequirements.Where(
-                                            x => x.SREX.ToString().ToUpper() == WorkingInstance.Performance.SREX &&
-                                            x.Lods == WorkingInstance.Performance.LODs
-                                        ).OrderBy(x => Math.Abs(System.Convert.ToInt32(WorkingInstance.GetSelectedWidth()) - x.Width)).FirstOrDefault()
+                    Value = MinRequirements.Where(x => x.SREX.ToString().ToUpper() == WorkingInstance.Performance.SREX &&
+                                                  x.Lods == WorkingInstance.Performance.LODs
+                                                 ).OrderBy(x => Math.Abs(System.Convert.ToInt32(WorkingInstance.GetSelectedWidth()) - x.Width)).FirstOrDefault()
                 })
             );
         }

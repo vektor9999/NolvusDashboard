@@ -8,6 +8,8 @@ using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Events;
 using Vcc.Nolvus.Components.Controls;
 using Vcc.Nolvus.Browser.Core;
+using CefSharp;
+using CefSharp.WinForms;
 
 namespace Vcc.Nolvus.Browser.Forms
 {
@@ -17,7 +19,7 @@ namespace Vcc.Nolvus.Browser.Forms
         public const int HT_CAPTION = 0x2;            
        
         private BrowserTitleControl TitleBarControl;
-        private ChromiumDownloader ChromiumDownloader;
+        private ChromiumWebBrowser ChromiumDownloader;
 
         private bool CanClose = false;
 
@@ -53,6 +55,39 @@ namespace Vcc.Nolvus.Browser.Forms
             Show();
             ShowLoading();
         }
+
+        #region Events
+
+        event OnBrowserClosedHandler OnBrowserClosedEvent;
+        public event OnBrowserClosedHandler OnBrowserClosed
+        {
+            add
+            {
+                if (OnBrowserClosedEvent != null)
+                {
+                    lock (OnBrowserClosedEvent)
+                    {
+                        OnBrowserClosedEvent += value;
+                    }
+                }
+                else
+                {
+                    OnBrowserClosedEvent = value;
+                }
+            }
+            remove
+            {
+                if (OnBrowserClosedEvent != null)
+                {
+                    lock (OnBrowserClosedEvent)
+                    {
+                        OnBrowserClosedEvent -= value;
+                    }
+                }
+            }
+        }
+
+        #endregion
 
         #region Base Methods
 
@@ -105,21 +140,24 @@ namespace Vcc.Nolvus.Browser.Forms
             Hide();
         }
 
-        private void CloseBrowserWindow()
+        public void CloseBrowser()
         {
             if (InvokeRequired)
             {
-                Invoke((Action)CloseBrowserWindow);
+                Invoke((Action)CloseBrowser);
                 return;
             }
 
-            ChromiumDownloader.OnFileDownloadRequest -= Downloader_OnFileDownloadRequest;           
-
+            if (ChromiumDownloader is ChromiumDownloader)
+            {
+                (ChromiumDownloader as ChromiumDownloader).OnFileDownloadRequest -= Downloader_OnFileDownloadRequest;                
+            }
+            
             ChromiumDownloader = null;
             BrowserPanel.Controls.Remove(ChromiumDownloader);
 
             Close();
-        }
+        }        
 
         private void TitleBarControl_MouseDown(object sender, MouseEventArgs e)
         {
@@ -142,34 +180,60 @@ namespace Vcc.Nolvus.Browser.Forms
             TitleBarControl.Title = Value;
         }
 
-        #endregion
-                             
-        public ChromiumDownloader LoadBrowser(string Url, DownloadProgressChangedHandler Progress = null)
+        public void SetInfo(string Value)
         {
             if (InvokeRequired)
             {
-                return Invoke((Func<string, DownloadProgressChangedHandler, ChromiumDownloader>)LoadBrowser, Url, Progress) as ChromiumDownloader;                
+                Invoke((System.Action<string>)SetInfo, Value);
+                return;
+            }
+
+
+            StStripLblInfo.Text = Value;
+        }
+
+        #endregion
+
+        public ChromiumWebBrowser LoadBrowser(string Url, DownloadProgressChangedHandler Progress = null)
+        {
+            if (InvokeRequired)
+            {
+                return Invoke((Func<string, DownloadProgressChangedHandler, ChromiumWebBrowser>)LoadBrowser, Url, Progress) as ChromiumWebBrowser;                
             }
 
             ChromiumDownloader = new ChromiumDownloader(this, Url, false, Progress);
 
-            ChromiumDownloader.OnFileDownloadRequest += Downloader_OnFileDownloadRequest;
+            (ChromiumDownloader as ChromiumDownloader).OnFileDownloadRequest += Downloader_OnFileDownloadRequest;
 
             BrowserPanel.Controls.Add(ChromiumDownloader);
 
             return ChromiumDownloader;
         }
 
-        public ChromiumDownloader LoadBrowser(string Url, bool LinkOnly)
+        public ChromiumWebBrowser LoadBrowser(string Url, bool LinkOnly)
         {
             if (InvokeRequired)
             {
-                return Invoke((Func<string, bool, ChromiumDownloader>)LoadBrowser, Url, LinkOnly) as ChromiumDownloader;
+                return Invoke((Func<string, bool, ChromiumWebBrowser>)LoadBrowser, Url, LinkOnly) as ChromiumWebBrowser;
             }
 
             ChromiumDownloader = new ChromiumDownloader(this, Url, LinkOnly, null);
 
-            ChromiumDownloader.OnFileDownloadRequest += Downloader_OnFileDownloadLinkRequest;
+            (ChromiumDownloader as ChromiumDownloader).OnFileDownloadRequest += Downloader_OnFileDownloadLinkRequest;
+
+            BrowserPanel.Controls.Add(ChromiumDownloader);
+
+            return ChromiumDownloader;
+        }
+
+        public ChromiumWebBrowser LoadBrowser(string Url)
+        {
+            if (InvokeRequired)
+            {
+                return Invoke((Func<string, ChromiumWebBrowser>)LoadBrowser, Url) as ChromiumWebBrowser;
+            }
+
+            ChromiumDownloader = new ChromiumWebBrowser(Url);            
 
             BrowserPanel.Controls.Add(ChromiumDownloader);
 
@@ -185,12 +249,14 @@ namespace Vcc.Nolvus.Browser.Forms
         private void Downloader_OnFileDownloadLinkRequest(object sender, FileDownloadRequestEvent EventArgs)
         {
             CanClose = true;
-            CloseBrowserWindow();
+            CloseBrowser();
         }
 
         private void BrowserWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            
+            OnBrowserClosedHandler Handler = this.OnBrowserClosedEvent;
+            EventArgs Event = new EventArgs();
+            if (Handler != null) Handler(this, Event);
         }
 
         private void BrowserWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -200,15 +266,29 @@ namespace Vcc.Nolvus.Browser.Forms
 
         public async Task AwaitUserDownload(string Link, string FileName, DownloadProgressChangedHandler Progress)
         {            
-            await LoadBrowser(Link, Progress).AwaitDownLoad(FileName);
-            CloseBrowserWindow();            
+            await (LoadBrowser(Link, Progress) as ChromiumDownloader).AwaitDownLoad(FileName);
+            CloseBrowser();            
         }
 
         public async Task<string> GetNexusManualDownloadLink(string ModName, string Link, string NexusModId)
         {
-            TitleBarControl.Title = "Manual download [" + ModName + "]";
-
-            return await LoadBrowser(Link, true).AwaitDownloadLink(NexusModId);            
+            SetTitle("Manual download [" + ModName + "]");
+            return await (LoadBrowser(Link, true) as ChromiumDownloader).AwaitDownloadLink(NexusModId);            
         } 
+
+        public void Navigate(string Link, string Title)
+        {
+            CanClose = true;
+            SetTitle(Title);                        
+            HideLoading();
+            LoadBrowser(Link);
+        }
+
+        public async Task NexusSSOAuthentication(string Id, string Slug)
+        {
+            CanClose = true;
+            SetTitle("Nexus SSO Authentication");
+            await (LoadBrowser(string.Format("https://www.nexusmods.com/sso?id={0}&application={1}", Id, Slug), false) as ChromiumDownloader).AwaitNexusSSOAuthentication();                        
+        }
     }
 }

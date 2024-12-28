@@ -12,5 +12,6 @@ namespace Vcc.Nolvus.Core.Misc
         public const string NolvusAwakening = "Nolvus Awakening";
         public const string GoogleDrive = "drive.google.com";
         public const string Mega = "mega.nz";
+        public const string NolvusSlug = "nolvus";
     }
 }

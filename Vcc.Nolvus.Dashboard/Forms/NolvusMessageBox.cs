@@ -103,6 +103,16 @@ namespace Vcc.Nolvus.Dashboard.Forms
             return MessageBox.ShowDialog();
         }
 
+        public static DialogResult ShowConfirmation(string Title, string Message, int Height, int Width)
+        {
+            NolvusMessageBox MessageBox = new NolvusMessageBox(Title, Message, MessageBoxType.Question);
+
+            MessageBox.Height = Height;
+            MessageBox.Width = Width;
+
+            return MessageBox.ShowDialog();
+        }
+
         private void BtnOK_Click(object sender, EventArgs e)
         {
             this.Close();

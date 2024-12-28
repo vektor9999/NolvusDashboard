@@ -18,6 +18,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcc.Nolvus.Updater", "Vcc.N
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcc.Nolvus.NexusApi", "Vcc.Nolvus.NexusApi\Vcc.Nolvus.NexusApi.csproj", "{20FE1A06-C4D4-4C4F-9CA8-281AC604E334}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C0C909F1-C446-43E7-A2D3-7016A7B6E8D5} = {C0C909F1-C446-43E7-A2D3-7016A7B6E8D5}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcc.Nolvus.StockGame", "Vcc.Nolvus.StockGame\Vcc.Nolvus.StockGame.csproj", "{9A168F9F-260B-40E4-AAB5-65B989953714}"
 	ProjectSection(ProjectDependencies) = postProject

@@ -23,5 +23,8 @@ namespace Vcc.Nolvus.Core.Events
             _DownloadUrl = Url;
         }
     }
+
     public delegate void OnFileDownloadRequestedHandler(object sender, FileDownloadRequestEvent EventArgs);
+    public delegate void OnBrowserClosedHandler(object sender, EventArgs EventArgs);
+
 }

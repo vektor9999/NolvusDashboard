@@ -117,16 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label15.Text" xml:space="preserve">
-    <value>Your character and enemies start with a predifined Poise health amount. Each time you get damages or deal damages to your enemies the poise health decreases. The amount of poise damage dealt or taken depends on the weapons you use and your armor rating. Once the poise health reaches a certain threshold, you or your enmies can be staggered.</value>
-  </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>Face new boss encounters. These bosses can be very hard to beat and don't scale with your level wether you selected the Deleveled Enemies option or not. You can even encounter some of them early game, be warned!!!</value>
-  </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>When you reach 30% of your remaining stamina, your character will start to be out of breath. When you are exhausted (stamina reaches 0), you will do 25% less damages (you can still do normal attacks), your character will be slowed down by 20% and you loose 10% on damage resistance . Your stamina regeneration rate will be slower until you reach 30% of your stamina again.</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>When deleveled option is enabled, enemies don't scale with your level. You can then encounter higher level enemies than you at the beginning of the game or lower level enemies when you are at a higher level</value>
+  <data name="label5.Text" xml:space="preserve">
+    <value>The listed GPU's marked as supported are only validated in terms of VRAM amount they have regarding the Nolvus requirements. They MAY be less performant than the ones recommended on the Graphics and Performance Options screen.</value>
   </data>
 </root>

@@ -168,12 +168,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         private void BtnContinue_Click(object sender, EventArgs e)
         {
             if (NolvusMessageBox.ShowConfirmation("Confirmation", "The options you selected can not be changed after installation. Are you sure you want to continue?") == DialogResult.Yes)
-            {
-                if (ServiceSingleton.Instances.WorkingInstance.Performance.SREX == "TRUE" && ServiceSingleton.Instances.WorkingInstance.Options.AlternateStart == "TRUE")
-                {
-                    NolvusMessageBox.ShowMessage("Information", "You have selected SR Exterior Cities and alternate start, be sure to not select to spawn in a city when configuring your alternate start to avoid ending up in an emtpy city!", MessageBoxType.Info);
-                }
-
+            {                
                 ServiceSingleton.Dashboard.LoadFrame<v6.DifficultyFrame>();
             }
         }
@@ -241,7 +236,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
         private void DrpDwnLstCombatAnims_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ServiceSingleton.Instances.WorkingInstance.Options.CombatAnimation = DrpDwnLstCombatAnims.SelectedValue.ToString();
         }
     }
 }

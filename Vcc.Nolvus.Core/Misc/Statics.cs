@@ -38,10 +38,13 @@ namespace Vcc.Nolvus.Core.Misc
             ENBs CABBAGE = new ENBs { Code = "CABBAGE", Name = "Cabbage", Description = "The famous Cabbage ENB from Nexus. Its visual design aims to provide you with a vibrant, unique, and diverse Skyrim experience. Comes with the Nolvus Reshade preset designed for it. This is the version used in the Nolvus v6 showcase videos." };
             ENBs CABBAVAL = new ENBs { Code = "CABBAVAL", Name = "CabbaVal", Description = "An edit of cabbage ENB (ini files only) done by Val with a custom reshade preset."};
             ENBs KAUZ = new ENBs { Code = "KAUZ", Name = "Kauz", Description = "An ENB preset that utilizes the Silent Horizons 2 Shader Core. This ENB stands out with dramatic lighting and atmospheric color schemes while preserving playablity." };
+            ENBs PICHO = new ENBs { Code = "PICHO", Name = "PiCho", Description = "Based on Silent Horizon. It is an ambitious project that aims to bring modern game graphics to Skyrim. Character, environment, and gameplay were all well-balanced. There are various customizations that are either the same as or different from the original." };
+
 
             ENBList.Add(CABBAGE);
             ENBList.Add(CABBAVAL);
             ENBList.Add(KAUZ);
+            ENBList.Add(PICHO);
 
             return ENBList;
         }

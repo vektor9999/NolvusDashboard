@@ -188,6 +188,8 @@ namespace Vcc.Nolvus.Browser.Core
         private string ModId;
         private TaskCompletionSource<object> TaskCompletionDownload = new TaskCompletionSource<object>();
         private TaskCompletionSource<string> TaskCompletionDownloadLink = new TaskCompletionSource<string>();
+        private TaskCompletionSource<object> TaskCompletionNexusSSO = new TaskCompletionSource<object>();
+
         event OnFileDownloadRequestedHandler OnFileDownloadRequestEvent;
         public event OnFileDownloadRequestedHandler OnFileDownloadRequest
         {
@@ -226,9 +228,13 @@ namespace Vcc.Nolvus.Browser.Core
             _Url = address;
             Browser = Window;
 
-            Dock = DockStyle.Fill;
+            Dock = DockStyle.Fill;            
 
-            if (_Url.Contains("nexusmods.com"))
+            if (_Url.Contains("www.nexusmods.com/sso"))
+            {
+                WebSite = WebSite.NexusSSO;
+            }
+            else if (_Url.Contains("nexusmods.com"))
             {
                 WebSite = WebSite.Nexus;
             }           
@@ -250,6 +256,7 @@ namespace Vcc.Nolvus.Browser.Core
 
             TaskCompletionDownload = new TaskCompletionSource<object>();
             TaskCompletionDownloadLink = new TaskCompletionSource<string>();
+            TaskCompletionNexusSSO = new TaskCompletionSource<object>();
         }       
 
         private void Browser_FrameLoadEnd(object sender, CefSharp.FrameLoadEndEventArgs e)
@@ -260,22 +267,24 @@ namespace Vcc.Nolvus.Browser.Core
                 {
                     case WebSite.Nexus:
                         HandleNexusLoadEnd(e.Url);
-                        break;                    
+                        break;
+                    case WebSite.NexusSSO:
+                        HandleNexusSSOLoadEnd(e.Url);
+                        break;
                 }
             }
         }
 
         private void Browser_LoadingStateChanged(object sender, CefSharp.LoadingStateChangedEventArgs e)
-        {
+        {            
             if (!e.IsLoading)
             {
-                UnRegisterLoadingStateEvent();
-
+                UnRegisterLoadingStateEvent();                
                 switch (WebSite)
                 {
                     case WebSite.Nexus:
                         HandleNexusLoadState();
-                        break;                  
+                        break;       
                     case WebSite.EnbDev:
                         HandleEnbDev();
                         break;
@@ -335,6 +344,11 @@ namespace Vcc.Nolvus.Browser.Core
         {
             ModId = NexusModId;
             return TaskCompletionDownloadLink.Task;
+        }
+
+        public Task AwaitNexusSSOAuthentication()
+        {
+            return TaskCompletionNexusSSO.Task;
         }
 
         #region Scripts
@@ -404,6 +418,8 @@ namespace Vcc.Nolvus.Browser.Core
 
         private void HandleNexusLoadEnd(string Url)
         {
+            Browser.SetInfo(Url);
+
             if (Url == "https://users.nexusmods.com/auth/sign_in")
             {
                 Browser.HideLoading();                
@@ -423,6 +439,26 @@ namespace Vcc.Nolvus.Browser.Core
             }
         }
 
+
+        #endregion
+
+        #region Nexus SSO
+        
+        private void HandleNexusSSOLoadEnd(string Url)
+        {
+            Browser.HideLoading();
+            Browser.SetInfo(Url);
+
+            if (Url.Contains("https://www.nexusmods.com/oauth/callback?"))
+            {
+                Browser.ShowLoading();
+                LoadUrl(_Url);
+            }
+            else if (Url.Contains("https://www.nexusmods.com/SSOauthorised?"))
+            {
+                TaskCompletionNexusSSO.SetResult(null);
+            }
+        }
 
         #endregion
 

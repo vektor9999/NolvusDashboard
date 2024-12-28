@@ -57,6 +57,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Vcc.Nolvus.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assemblies\Vcc.Nolvus.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiManager.cs" />
@@ -87,6 +91,10 @@
     <Compile Include="Responses\UserTrackedMod.cs" />
     <Compile Include="Responses\Validate.cs" />
     <Compile Include="RestEaseClientFactory.cs" />
+    <Compile Include="SSO\Events\Events.cs" />
+    <Compile Include="SSO\NexusData.cs" />
+    <Compile Include="SSO\NexusSSOManager.cs" />
+    <Compile Include="SSO\Responses\NexusResponse.cs" />
     <Compile Include="Throttle.cs" />
   </ItemGroup>
   <ItemGroup>

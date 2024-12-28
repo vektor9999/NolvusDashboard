@@ -74,12 +74,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 case "KAUZ":
                     PicBoxENB.Image = Properties.Resources.Kauz_ENB;
                     break;
+                case "PICHO":
+                    PicBoxENB.Image = Properties.Resources.PiCho_ENB;
+                    break;
 
-            }
-
-            
-
-
+            }           
         }
     }
 }

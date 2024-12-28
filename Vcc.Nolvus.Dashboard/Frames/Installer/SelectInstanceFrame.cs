@@ -156,12 +156,15 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 }
                 else
                 {
-                    INolvusInstance WorkingInstance = ServiceSingleton.Instances.WorkingInstance;
+                    if (InstanceToInstall.IsBeta && NolvusMessageBox.ShowConfirmation("Disclaimer", string.Format("{0} is in BETA state.\n\n\nDon't Install it if :\n\n- You are expecting the full polished version.\n\n- You want to do a full playthrough.\n\n\nInstall it only if :\n\n- You want to help us reporting bugs.\n\n- You want to give us some feedbacks.\n\n\nDo you want to continue?", InstanceToInstall.Name), 390, 470)  == DialogResult.Yes)
+                    {
+                        INolvusInstance WorkingInstance = ServiceSingleton.Instances.WorkingInstance;
 
-                    WorkingInstance.Settings.LgCode = (DrpDwnLg.SelectedItem as LgCode).Code;
-                    WorkingInstance.Settings.LgName = (DrpDwnLg.SelectedItem as LgCode).Name;
+                        WorkingInstance.Settings.LgCode = (DrpDwnLg.SelectedItem as LgCode).Code;
+                        WorkingInstance.Settings.LgName = (DrpDwnLg.SelectedItem as LgCode).Name;
 
-                    ServiceSingleton.Dashboard.LoadFrame<PathFrame>();
+                        ServiceSingleton.Dashboard.LoadFrame<PathFrame>();
+                    }                    
                 }
             }            
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vcc.Nolvus.Core.Enums
 {
-    public enum WebSite { Nexus, Nolvus, Vector, EnbDev, Mega, AFK, Loverslab, Other };
+    public enum WebSite { Nexus, NexusSSO, Nolvus, Vector, EnbDev, Mega, AFK, Loverslab, Other };
     public enum InstanceCheck { NoInstance, InstancesToResume, InstalledInstances, ErrorInInstances };
     public enum InstallMode { Install, Resume, ResumeInstall, ResumeUpdate, Update, ResumeAndUpdateInstall, ResumeAndUpdateUpdate, View };
     public enum MessageBoxType { Info, Warning, Error, Question };

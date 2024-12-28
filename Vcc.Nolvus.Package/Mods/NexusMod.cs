@@ -25,7 +25,7 @@ namespace Vcc.Nolvus.Package.Mods
         protected override void CreateElementIni()
         {
             if (Display)
-            {
+            {                
                 File.WriteAllText(Path.Combine(MoDirectoryFullName, "meta.ini"), string.Format(MetaIni, NexusId, Version, GetInstallFileName().Replace("\\", "/"), (Files.First() as NexusModFile).NexusId));
             }            
         }        

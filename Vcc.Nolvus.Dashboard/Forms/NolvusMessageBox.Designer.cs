@@ -45,7 +45,7 @@
             this.LblMessage.ForeColor = System.Drawing.Color.White;
             this.LblMessage.Location = new System.Drawing.Point(52, 75);
             this.LblMessage.Name = "LblMessage";
-            this.LblMessage.Size = new System.Drawing.Size(396, 104);
+            this.LblMessage.Size = new System.Drawing.Size(396, 98);
             this.LblMessage.TabIndex = 0;
             this.LblMessage.Text = "[Message]";
             // 
@@ -56,7 +56,7 @@
             this.BtnOK.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.BtnOK.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnOK.ForeColor = System.Drawing.Color.White;
-            this.BtnOK.Location = new System.Drawing.Point(373, 187);
+            this.BtnOK.Location = new System.Drawing.Point(373, 181);
             this.BtnOK.Name = "BtnOK";
             this.BtnOK.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnOK.Size = new System.Drawing.Size(75, 39);
@@ -82,7 +82,7 @@
             this.BtnYes.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.BtnYes.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnYes.ForeColor = System.Drawing.Color.White;
-            this.BtnYes.Location = new System.Drawing.Point(292, 187);
+            this.BtnYes.Location = new System.Drawing.Point(292, 181);
             this.BtnYes.Name = "BtnYes";
             this.BtnYes.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnYes.Size = new System.Drawing.Size(75, 39);
@@ -98,7 +98,7 @@
             this.BtnNo.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.BtnNo.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnNo.ForeColor = System.Drawing.Color.White;
-            this.BtnNo.Location = new System.Drawing.Point(373, 187);
+            this.BtnNo.Location = new System.Drawing.Point(373, 181);
             this.BtnNo.Name = "BtnNo";
             this.BtnNo.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnNo.Size = new System.Drawing.Size(75, 39);
@@ -112,7 +112,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.ClientSize = new System.Drawing.Size(453, 236);
+            this.ClientSize = new System.Drawing.Size(453, 230);
             this.Controls.Add(this.BtnNo);
             this.Controls.Add(this.BtnYes);
             this.Controls.Add(this.BtnOK);

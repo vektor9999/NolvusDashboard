@@ -648,6 +648,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="bin\Cache\000003.log" />
     <None Include="bin\Cache\Cache\data_0" />
@@ -1034,6 +1035,7 @@
     <None Include="Resources\Cabbage_ENB_01.jpg" />
     <None Include="Resources\Cabbaval-ENB.jpg" />
     <None Include="Resources\Kauz-ENB.jpg" />
+    <None Include="Resources\PiCho-ENB.jpg" />
     <Content Include="Scripts\HandleENBDev.js" />
     <Content Include="Scripts\IsDownloadAvailable.js" />
     <Content Include="Scripts\IsFileDeleted.js" />

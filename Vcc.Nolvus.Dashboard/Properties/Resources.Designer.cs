@@ -463,6 +463,16 @@ namespace Vcc.Nolvus.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PiCho_ENB {
+            get {
+                object obj = ResourceManager.GetObject("PiCho_ENB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Quest_Journal_Card {
             get {
                 object obj = ResourceManager.GetObject("Quest Journal Card", resourceCulture);
