@@ -133,6 +133,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
                 Ratios.Add("16:9");
                 Ratios.Add("21:9");
+                Ratios.Add("32:9");
 
                 DrpDwnLstRatios.DataSource = Ratios;
 
@@ -341,6 +342,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             else
             {
                 LblLods.ForeColor = Color.Gray;
+                DrpDwnLstLODs.SelectedIndex = 0;
                 DrpDwnLstLODs.Enabled = false;
             }
 
