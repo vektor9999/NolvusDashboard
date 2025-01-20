@@ -344,7 +344,7 @@
             this.TglBtnAltStart.TabIndex = 49;
             this.TglBtnAltStart.Text = "toggleButton1";
             this.TglBtnAltStart.ThemeName = "Office2016Black";
-            this.TglBtnAltStart.ToggleStateChanged += new Syncfusion.Windows.Forms.Tools.ToggleStateChangedEventHandler(this.TglBtnLeveling_ToggleStateChanged);
+            this.TglBtnAltStart.ToggleStateChanged += new Syncfusion.Windows.Forms.Tools.ToggleStateChangedEventHandler(this.TglBtnAltStart_ToggleStateChanged);
             // 
             // label11
             // 

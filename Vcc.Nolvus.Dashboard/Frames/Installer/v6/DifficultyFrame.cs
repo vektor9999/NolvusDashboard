@@ -31,19 +31,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         {
             InitializeComponent();
 
-            #region Toggle Buttons
-
-            TglBtnDeleveled.ActiveState.Text = "ON";
-            TglBtnDeleveled.ActiveState.BackColor = Color.Orange;
-            TglBtnDeleveled.ActiveState.BorderColor = Color.Orange;
-            TglBtnDeleveled.ActiveState.ForeColor = Color.White;
-            TglBtnDeleveled.ActiveState.HoverColor = Color.Orange;
-
-            TglBtnDeleveled.InactiveState.Text = "OFF";
-            TglBtnDeleveled.InactiveState.BackColor = Color.White;
-            TglBtnDeleveled.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
-            TglBtnDeleveled.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
-            TglBtnDeleveled.InactiveState.HoverColor = Color.White;
+            #region Toggle Buttons            
 
             TglBtnExhaustion.ActiveState.Text = "ON";
             TglBtnExhaustion.ActiveState.BackColor = Color.Orange;
@@ -108,16 +96,17 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             #endregion
         }
 
-        private int AnimsIndex(List<string> Anims)
+        private int ScalingsIndex(List<string> Scalings)
         {            
-            var Index = Anims.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Options.CombatAnimation);
+            var Index = Scalings.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling);
 
             return Index == -1 ? 0 : Index;                            
-        }       
+        }
+                
 
         private bool CheckIfPrepareToDie()
         {            
-            if (ServiceSingleton.Instances.WorkingInstance.Options.DeleveledEnemies == "TRUE" &&
+            if (ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling == "Hard" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.Exhaustion == "TRUE" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.NerfPA == "TRUE" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.EnemiesResistance == "TRUE" &&
@@ -133,7 +122,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
         private bool CheckIfHackAndSash()
         {
-            if (ServiceSingleton.Instances.WorkingInstance.Options.DeleveledEnemies == "FALSE" &&
+            if (ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling == "Easy" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.Exhaustion == "FALSE" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.NerfPA == "FALSE" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.EnemiesResistance == "FALSE" &&
@@ -150,7 +139,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         private bool CheckIfModerate()
         {
 
-            if (ServiceSingleton.Instances.WorkingInstance.Options.DeleveledEnemies == "FALSE" &&
+            if (ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling == "Medium" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.Exhaustion == "TRUE" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.NerfPA == "FALSE" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.EnemiesResistance == "TRUE" &&
@@ -201,12 +190,16 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             
             DrpDwnLstPreset.SelectedIndexChanged += DrpDwnLstPreset_SelectedIndexChanged;
 
-            TglBtnDeleveled.ToggleState = ToggleButtonState.Inactive;
 
-            if (Instance.Options.DeleveledEnemies == "TRUE")
-            {
-                TglBtnDeleveled.ToggleState = ToggleButtonState.Active;
-            }
+            List<string> CombatScalings = new List<string>();
+
+            CombatScalings.Add("Easy");
+            CombatScalings.Add("Medium");
+            CombatScalings.Add("Hard");
+
+            DrpDwnLstCombatScaling.DataSource = CombatScalings;
+
+            DrpDwnLstCombatScaling.SelectedIndex = ScalingsIndex(CombatScalings);
 
             TglBtnExhaustion.ToggleState = ToggleButtonState.Inactive;
 
@@ -262,8 +255,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         private void DrpDwnLstPreset_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (DrpDwnLstPreset.SelectedIndex == 2)
-            {
-                TglBtnDeleveled.ToggleState = ToggleButtonState.Active;
+            {                
+                DrpDwnLstCombatScaling.SelectedIndex = 2;
                 TglBtnExhaustion.ToggleState = ToggleButtonState.Active;
                 TglBtnNerf.ToggleState = ToggleButtonState.Active;
                 TglBtnResistance.ToggleState = ToggleButtonState.Active;
@@ -272,7 +265,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             }
             else if (DrpDwnLstPreset.SelectedIndex == 1)
             {
-                TglBtnDeleveled.ToggleState = ToggleButtonState.Inactive;
+                DrpDwnLstCombatScaling.SelectedIndex = 1;
                 TglBtnExhaustion.ToggleState = ToggleButtonState.Active;
                 TglBtnNerf.ToggleState = ToggleButtonState.Inactive;
                 TglBtnResistance.ToggleState = ToggleButtonState.Active;
@@ -281,7 +274,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             }
             else
             {
-                TglBtnDeleveled.ToggleState = ToggleButtonState.Inactive;
+                DrpDwnLstCombatScaling.SelectedIndex = 0;
                 TglBtnExhaustion.ToggleState = ToggleButtonState.Inactive;
                 TglBtnNerf.ToggleState = ToggleButtonState.Inactive;
                 TglBtnResistance.ToggleState = ToggleButtonState.Inactive;
@@ -289,19 +282,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 TglBtnPoise.ToggleState = ToggleButtonState.Inactive;
             }
             
-        }
-
-        private void TglBtnDeleveled_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
-        {
-            if (e.ToggleState == ToggleButtonState.Active)
-            {                
-                ServiceSingleton.Instances.WorkingInstance.Options.DeleveledEnemies = "TRUE";                
-            }
-            else
-            {                
-                ServiceSingleton.Instances.WorkingInstance.Options.DeleveledEnemies = "FALSE";                
-            }
-        }
+        }        
 
         private void TglBtnExhaustion_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
         {
@@ -372,6 +353,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             Presets.Add("Prepare to Die");
 
             DrpDwnLstPreset.DataSource = Presets;
+        }
+
+        private void DrpDwnLstCombatScaling_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling = DrpDwnLstCombatScaling.SelectedValue.ToString();
         }
     }
 }

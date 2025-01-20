@@ -79,7 +79,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 LblStancesPerksTree.Text = Instance.Options.StancesPerksTree == "TRUE" ? "Yes" : "No";
                 LblENB.Text = ENBs.GetENBByCode(Instance.Options.AlternateENB);
 
-                LblDeleveledEnemies.Text = Instance.Options.DeleveledEnemies == "TRUE" ? "Yes" : "No";
+                LblCombatScaling.Text = Instance.Options.CombatScaling;
                 LblExhaustion.Text = Instance.Options.Exhaustion == "TRUE" ? "Yes" : "No";
                 LblNerfPA.Text = Instance.Options.NerfPA == "TRUE" ? "Yes" : "No";
                 LblEnemiesResistance.Text = Instance.Options.EnemiesResistance == "TRUE" ? "Yes" : "No";

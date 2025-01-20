@@ -506,5 +506,10 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 })
             );
         }
+
+        private void BtnVariantPreviex_Click(object sender, EventArgs e)
+        {
+            NolvusMessageBox.ShowMessage("Info", "Showcase will come", MessageBoxType.Info);
+        }
     }
 }

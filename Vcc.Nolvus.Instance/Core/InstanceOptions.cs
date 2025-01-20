@@ -27,6 +27,7 @@ namespace Vcc.Nolvus.Instance.Core
         public string Boss { get; set; } = "TRUE";
         public string Poise { get; set; } = "TRUE";
         public string Gore { get; set; } = "FALSE";
+        public string CombatScaling { get; set; } = "Hard";
 
 
         public void Load(XmlNode Node)
@@ -95,6 +96,11 @@ namespace Vcc.Nolvus.Instance.Core
                 Gore = Node["Gore"].InnerText.Trim();
             }
 
+            if (Node["CombatScaling"] != null)
+            {
+                CombatScaling = Node["CombatScaling"].InnerText.Trim();
+            }
+
             ServiceSingleton.Logger.Log(string.Format("Instance nudity : {0}", Nudity));
             ServiceSingleton.Logger.Log(string.Format("Instance enb : {0}", AlternateENB));
             ServiceSingleton.Logger.Log(string.Format("Instance fantasy mode : {0}", FantasyMode));
@@ -111,6 +117,7 @@ namespace Vcc.Nolvus.Instance.Core
             ServiceSingleton.Logger.Log(string.Format("Boss encounter : {0}", Boss));
             ServiceSingleton.Logger.Log(string.Format("Poise : {0}", Poise));
             ServiceSingleton.Logger.Log(string.Format("Gore : {0}", Gore));
+            ServiceSingleton.Logger.Log(string.Format("Combat Scaling : {0}", CombatScaling));
         }      
 
         public void Save(XmlWriter XMLWriter)
@@ -179,6 +186,10 @@ namespace Vcc.Nolvus.Instance.Core
 
             XMLWriter.WriteStartElement("Gore");
             XMLWriter.WriteString(Gore.Trim());
+            XMLWriter.WriteEndElement();
+
+            XMLWriter.WriteStartElement("CombatScaling");
+            XMLWriter.WriteString(CombatScaling.Trim());
             XMLWriter.WriteEndElement();
 
             XMLWriter.WriteEndElement();

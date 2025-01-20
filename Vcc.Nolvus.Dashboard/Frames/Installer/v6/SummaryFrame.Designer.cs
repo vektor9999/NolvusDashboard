@@ -40,7 +40,7 @@
             this.LblNerfPA = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.LblEnemiesResistance = new System.Windows.Forms.Label();
-            this.LblDeleveledEnemies = new System.Windows.Forms.Label();
+            this.LblCombatScaling = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -150,7 +150,7 @@
             this.groupBox5.Controls.Add(this.LblNerfPA);
             this.groupBox5.Controls.Add(this.label29);
             this.groupBox5.Controls.Add(this.LblEnemiesResistance);
-            this.groupBox5.Controls.Add(this.LblDeleveledEnemies);
+            this.groupBox5.Controls.Add(this.LblCombatScaling);
             this.groupBox5.Controls.Add(this.label32);
             this.groupBox5.Controls.Add(this.label33);
             this.groupBox5.ForeColor = System.Drawing.Color.White;
@@ -251,15 +251,15 @@
             this.LblEnemiesResistance.TabIndex = 51;
             this.LblEnemiesResistance.Text = "[EnemiesResistance]";
             // 
-            // LblDeleveledEnemies
+            // LblCombatScaling
             // 
-            this.LblDeleveledEnemies.AutoSize = true;
-            this.LblDeleveledEnemies.ForeColor = System.Drawing.Color.Orange;
-            this.LblDeleveledEnemies.Location = new System.Drawing.Point(146, 25);
-            this.LblDeleveledEnemies.Name = "LblDeleveledEnemies";
-            this.LblDeleveledEnemies.Size = new System.Drawing.Size(93, 13);
-            this.LblDeleveledEnemies.TabIndex = 50;
-            this.LblDeleveledEnemies.Text = "[DelevedEnemeis]";
+            this.LblCombatScaling.AutoSize = true;
+            this.LblCombatScaling.ForeColor = System.Drawing.Color.Orange;
+            this.LblCombatScaling.Location = new System.Drawing.Point(146, 25);
+            this.LblCombatScaling.Name = "LblCombatScaling";
+            this.LblCombatScaling.Size = new System.Drawing.Size(87, 13);
+            this.LblCombatScaling.TabIndex = 50;
+            this.LblCombatScaling.Text = "[Combat Scaling]";
             // 
             // label32
             // 
@@ -277,9 +277,9 @@
             this.label33.ForeColor = System.Drawing.Color.White;
             this.label33.Location = new System.Drawing.Point(16, 25);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(98, 13);
+            this.label33.Size = new System.Drawing.Size(81, 13);
             this.label33.TabIndex = 48;
-            this.label33.Text = "Deleveled Enemies";
+            this.label33.Text = "Combat Scaling";
             // 
             // groupBox4
             // 
@@ -949,7 +949,7 @@
         private System.Windows.Forms.Label LblNerfPA;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label LblEnemiesResistance;
-        private System.Windows.Forms.Label LblDeleveledEnemies;
+        private System.Windows.Forms.Label LblCombatScaling;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label16;

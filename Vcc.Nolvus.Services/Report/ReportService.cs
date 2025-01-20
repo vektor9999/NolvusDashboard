@@ -419,14 +419,7 @@ namespace Vcc.Nolvus.Services.Report
 
                     Result += Environment.NewLine;
 
-                    if (Instance.Options.DeleveledEnemies == "TRUE")
-                    {
-                        Result += "Deleveled Enemies : Yes";
-                    }
-                    else
-                    {
-                        Result += "Deleveled Enemies : No";
-                    }
+                    Result += "Combat Scaling : " + Instance.Options.CombatScaling;                    
 
                     Result += Environment.NewLine;
 
@@ -936,14 +929,7 @@ namespace Vcc.Nolvus.Services.Report
                         CurrentLine += DrawString("Gore : ", "No", Graphics, Report.PageSettings, CurrentLine);
                     }
 
-                    if (Instance.Options.DeleveledEnemies == "TRUE")
-                    {
-                        CurrentLine += DrawString("Deleveled enemies : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Deleveled enemies : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
+                    CurrentLine += DrawString("Combat Scaling : ", Instance.Options.CombatScaling, Graphics, Report.PageSettings, CurrentLine);
 
                     if (Instance.Options.Exhaustion == "TRUE")
                     {

@@ -44,9 +44,6 @@
             Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection5 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
             Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection5 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
             Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection5 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
-            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection6 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection6 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection6 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.BtnPrevious = new Vcc.Nolvus.Components.Controls.FlatButton();
@@ -54,6 +51,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.DrpDwnLstCombatScaling = new Syncfusion.WinForms.ListView.SfComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -70,7 +68,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.TglBtnExhaustion = new Syncfusion.Windows.Forms.Tools.ToggleButton();
             this.label2 = new System.Windows.Forms.Label();
-            this.TglBtnDeleveled = new Syncfusion.Windows.Forms.Tools.ToggleButton();
             this.label1 = new System.Windows.Forms.Label();
             this.DrpDwnLstPreset = new Syncfusion.WinForms.ListView.SfComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -78,12 +75,12 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstCombatScaling)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnPoise)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnBoss)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnResistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnNerf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnExhaustion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TglBtnDeleveled)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstPreset)).BeginInit();
             this.SuspendLayout();
             // 
@@ -173,6 +170,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.DrpDwnLstCombatScaling);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label13);
@@ -189,7 +187,6 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.TglBtnExhaustion);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.TglBtnDeleveled);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(17, 73);
@@ -198,6 +195,19 @@
             this.groupBox1.TabIndex = 57;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Options";
+            // 
+            // DrpDwnLstCombatScaling
+            // 
+            this.DrpDwnLstCombatScaling.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.DrpDwnLstCombatScaling.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
+            this.DrpDwnLstCombatScaling.Location = new System.Drawing.Point(123, 24);
+            this.DrpDwnLstCombatScaling.Name = "DrpDwnLstCombatScaling";
+            this.DrpDwnLstCombatScaling.Size = new System.Drawing.Size(184, 28);
+            this.DrpDwnLstCombatScaling.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.DrpDwnLstCombatScaling.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.DrpDwnLstCombatScaling.TabIndex = 75;
+            this.DrpDwnLstCombatScaling.ThemeName = "Office2016Black";
+            this.DrpDwnLstCombatScaling.SelectedIndexChanged += new System.EventHandler(this.DrpDwnLstCombatScaling_SelectedIndexChanged);
             // 
             // label15
             // 
@@ -255,9 +265,9 @@
             // 
             this.label9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Orange;
-            this.label9.Location = new System.Drawing.Point(19, 55);
+            this.label9.Location = new System.Drawing.Point(19, 61);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(501, 43);
+            this.label9.Size = new System.Drawing.Size(501, 41);
             this.label9.TabIndex = 69;
             this.label9.Text = resources.GetString("label9.Text");
             // 
@@ -431,7 +441,7 @@
             inactiveStateCollection5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             inactiveStateCollection5.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.TglBtnExhaustion.InactiveState = inactiveStateCollection5;
-            this.TglBtnExhaustion.Location = new System.Drawing.Point(120, 103);
+            this.TglBtnExhaustion.Location = new System.Drawing.Point(120, 107);
             this.TglBtnExhaustion.MinimumSize = new System.Drawing.Size(52, 20);
             this.TglBtnExhaustion.Name = "TglBtnExhaustion";
             this.TglBtnExhaustion.Size = new System.Drawing.Size(63, 24);
@@ -450,40 +460,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(17, 108);
+            this.label2.Location = new System.Drawing.Point(17, 113);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 13);
             this.label2.TabIndex = 59;
             this.label2.Text = "Exhaustion System";
-            // 
-            // TglBtnDeleveled
-            // 
-            activeStateCollection6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            activeStateCollection6.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
-            this.TglBtnDeleveled.ActiveState = activeStateCollection6;
-            this.TglBtnDeleveled.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.TglBtnDeleveled.ForeColor = System.Drawing.Color.Black;
-            inactiveStateCollection6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            inactiveStateCollection6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            inactiveStateCollection6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            inactiveStateCollection6.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.TglBtnDeleveled.InactiveState = inactiveStateCollection6;
-            this.TglBtnDeleveled.Location = new System.Drawing.Point(121, 24);
-            this.TglBtnDeleveled.MinimumSize = new System.Drawing.Size(52, 20);
-            this.TglBtnDeleveled.Name = "TglBtnDeleveled";
-            this.TglBtnDeleveled.Size = new System.Drawing.Size(63, 24);
-            sliderCollection6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            sliderCollection6.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection6.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            sliderCollection6.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.TglBtnDeleveled.Slider = sliderCollection6;
-            this.TglBtnDeleveled.TabIndex = 58;
-            this.TglBtnDeleveled.Text = "toggleButton1";
-            this.TglBtnDeleveled.ThemeName = "Office2016Black";
-            this.TglBtnDeleveled.ToggleStateChanged += new Syncfusion.Windows.Forms.Tools.ToggleStateChangedEventHandler(this.TglBtnDeleveled_ToggleStateChanged);
             // 
             // label1
             // 
@@ -491,9 +472,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(19, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 13);
+            this.label1.Size = new System.Drawing.Size(81, 13);
             this.label1.TabIndex = 57;
-            this.label1.Text = "Deleveled Enemies";
+            this.label1.Text = "Combat Scaling";
             // 
             // DrpDwnLstPreset
             // 
@@ -548,12 +529,12 @@
             this.panel2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstCombatScaling)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnPoise)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnBoss)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnResistance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnNerf)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnExhaustion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TglBtnDeleveled)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstPreset)).EndInit();
             this.ResumeLayout(false);
 
@@ -573,7 +554,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private Syncfusion.Windows.Forms.Tools.ToggleButton TglBtnExhaustion;
         private System.Windows.Forms.Label label2;
-        private Syncfusion.Windows.Forms.Tools.ToggleButton TglBtnDeleveled;
         private System.Windows.Forms.Label label1;
         private Syncfusion.Windows.Forms.Tools.ToggleButton TglBtnNerf;
         private System.Windows.Forms.Label label5;
@@ -589,5 +569,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
+        private Syncfusion.WinForms.ListView.SfComboBox DrpDwnLstCombatScaling;
     }
 }

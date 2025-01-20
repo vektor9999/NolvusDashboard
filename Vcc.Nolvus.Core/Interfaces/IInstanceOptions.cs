@@ -24,5 +24,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         string Boss { get; set; }
         string Poise { get; set; }
         string Gore { get; set; }
+        string CombatScaling { get; set; }
     }
 }

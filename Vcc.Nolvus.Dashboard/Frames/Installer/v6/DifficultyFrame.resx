@@ -127,6 +127,6 @@
     <value>When you reach 30% of your remaining stamina, your character will start to be out of breath. When you are exhausted (stamina reaches 0), you will do 25% less damages (you can still do normal attacks), your character will be slowed down by 20% and you loose 10% on damage resistance . Your stamina regeneration rate will be slower until you reach 30% of your stamina again.</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>When deleveled option is enabled, enemies don't scale with your level. You can then encounter higher level enemies than you at the beginning of the game or lower level enemies when you are at a higher level</value>
+    <value>Combat scaling dictates how enemy levels will be scaled in relation to the player level. The easiest difficulty will allow the player to out level enemy factions earlier on, while the hardest will require substantially more time. Moderate is in between these two.</value>
   </data>
 </root>

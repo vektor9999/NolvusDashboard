@@ -731,6 +731,7 @@
             this.BtnVariantPreviex.TabIndex = 65;
             this.BtnVariantPreviex.Text = "View variant differences";
             this.BtnVariantPreviex.UseVisualStyleBackColor = false;
+            this.BtnVariantPreviex.Click += new System.EventHandler(this.BtnVariantPreviex_Click);
             // 
             // label24
             // 
