@@ -22,6 +22,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         bool FileExists(string Directory, string FileName);
         bool FileExists(string Directory, string FileName, out string FullPath);
         string GetHash(string FileName);
-        bool IsDirectoryEmpty(string Dir);        
+        bool IsDirectoryEmpty(string Dir);
+        Task AuthenticateToMegaApi(string Username, string password);
     }
 }

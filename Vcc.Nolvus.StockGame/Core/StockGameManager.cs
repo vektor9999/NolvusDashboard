@@ -37,6 +37,7 @@ namespace Vcc.Nolvus.StockGame.Core
         bool _KeepPatches = false;
         GameManifest _Package;
         PatcherManager _Patcher;
+        bool _Processing = false;
 
         #endregion
 
@@ -68,6 +69,14 @@ namespace Vcc.Nolvus.StockGame.Core
             get
             {
                 return _Package;
+            }
+        }
+
+        public bool Processing
+        {
+            get
+            {
+                return _Processing;
             }
         }
 

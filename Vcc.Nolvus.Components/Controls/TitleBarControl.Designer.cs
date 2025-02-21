@@ -30,10 +30,10 @@
         {
             this.LblTitle = new System.Windows.Forms.Label();
             this.LblInfo = new System.Windows.Forms.Label();
+            this.SettingsBox = new System.Windows.Forms.PictureBox();
             this.AccountImage = new System.Windows.Forms.PictureBox();
-            this.LoadingBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.SettingsBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccountImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LoadingBox)).BeginInit();
             this.SuspendLayout();
             // 
             // LblTitle
@@ -64,6 +64,21 @@
             this.LblInfo.Text = "| ?";
             this.LblInfo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // SettingsBox
+            // 
+            this.SettingsBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SettingsBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SettingsBox.Image = global::Vcc.Nolvus.Components.Properties.Resources.Gear__03WF1;
+            this.SettingsBox.Location = new System.Drawing.Point(575, 3);
+            this.SettingsBox.Name = "SettingsBox";
+            this.SettingsBox.Size = new System.Drawing.Size(34, 34);
+            this.SettingsBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.SettingsBox.TabIndex = 11;
+            this.SettingsBox.TabStop = false;
+            this.SettingsBox.Click += new System.EventHandler(this.SettingsBox_Click);
+            this.SettingsBox.MouseHover += new System.EventHandler(this.SettingsBox_MouseHover);
+            // 
             // AccountImage
             // 
             this.AccountImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -76,33 +91,20 @@
             this.AccountImage.TabStop = false;
             this.AccountImage.Visible = false;
             // 
-            // LoadingBox
-            // 
-            this.LoadingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LoadingBox.Image = global::Vcc.Nolvus.Components.Properties.Resources.cog_loader_alpha;
-            this.LoadingBox.Location = new System.Drawing.Point(575, 3);
-            this.LoadingBox.Name = "LoadingBox";
-            this.LoadingBox.Size = new System.Drawing.Size(34, 34);
-            this.LoadingBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.LoadingBox.TabIndex = 11;
-            this.LoadingBox.TabStop = false;
-            this.LoadingBox.Visible = false;
-            // 
             // TitleBarControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.Controls.Add(this.LoadingBox);
+            this.Controls.Add(this.SettingsBox);
             this.Controls.Add(this.AccountImage);
             this.Controls.Add(this.LblInfo);
             this.Controls.Add(this.LblTitle);
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "TitleBarControl";
             this.Size = new System.Drawing.Size(612, 40);
+            ((System.ComponentModel.ISupportInitialize)(this.SettingsBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AccountImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LoadingBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -113,6 +115,6 @@
         private System.Windows.Forms.Label LblTitle;
         private System.Windows.Forms.Label LblInfo;
         private System.Windows.Forms.PictureBox AccountImage;
-        private System.Windows.Forms.PictureBox LoadingBox;
+        private System.Windows.Forms.PictureBox SettingsBox;
     }
 }

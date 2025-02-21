@@ -15,6 +15,7 @@ namespace Vcc.Nolvus.Package.Patchers
     {
         public string PatchArchive { get; set; }
         public string DownloadLink { get; set; }
+        public string MirrorDownloadLink { get; set; }
 
         public List<PatchFile> Files = new List<PatchFile>();
 
@@ -38,7 +39,16 @@ namespace Vcc.Nolvus.Package.Patchers
         {
             PatchArchive = Node["PatchArchive"].InnerText;
             DownloadLink = Node["DownloadLink"].InnerText;
-            
+
+            if (Node["MirrorDownloadLink"] != null)
+            {
+                MirrorDownloadLink = Node["MirrorDownloadLink"].InnerText;
+            }
+            else
+            {
+                MirrorDownloadLink = string.Empty;
+            }
+
             foreach (XmlNode PatchFileNode in Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "PatchFiles").FirstOrDefault().ChildNodes.Cast<XmlNode>().ToList())
             {
                 PatchFile PatchFile = new PatchFile();
@@ -49,34 +59,71 @@ namespace Vcc.Nolvus.Package.Patchers
 
         public async Task DownloadPatch(DownloadProgressChangedHandler OnProgress)
         {
-            var Tsk = Task.Run(async () => 
+            var Tsk = Task.Run(async () =>
             {
                 try
                 {
-                    ServiceSingleton.Logger.Log(string.Format("Downloading patch file {0}", PatchArchive));
-                    var PatchFilePath = Path.Combine(ServiceSingleton.Folders.DownloadDirectory, PatchArchive);
-
-                    if (ZlpIOHelper.FileExists(PatchFilePath))
-                    {
-                        ZlpIOHelper.DeleteFile(PatchFilePath);
-                    }
-
-                    await ServiceSingleton.Files.DownloadFile(DownloadLink, PatchFilePath, OnProgress);                    
+                    await InternalDownloadPatch(DownloadLink, OnProgress);
                 }
                 catch(Exception ex)
                 {
-                    var CaughtException = ex;
-
-                    if (ex.InnerException != null) CaughtException = ex.InnerException;
-
-                    ServiceSingleton.Logger.Log(string.Format("Error during patching file download {0} with error {1}", PatchArchive, CaughtException.Message));
-
-                    throw CaughtException;
+                    if (MirrorDownloadLink != string.Empty)
+                    {
+                        await InternalDownloadPatch(MirrorDownloadLink, OnProgress);
+                    }
+                    else
+                    {
+                        throw ex;
+                    }       
                 }
             });
 
-            await Tsk;           
+            await Tsk;
         }
+
+        private async Task InternalDownloadPatch(string Link, DownloadProgressChangedHandler OnProgress)
+        {
+            var Tsk = Task.Run(async () =>
+            {                
+                var Tries = 0;
+
+                while (true)
+                {
+                    try
+                    {
+                        ServiceSingleton.Logger.Log(string.Format("Trying to downloading patch file {0} ({1}/{2})", PatchArchive, Tries.ToString(), ServiceSingleton.Settings.RetryCount.ToString()));                        
+
+                        var PatchFilePath = Path.Combine(ServiceSingleton.Folders.DownloadDirectory, PatchArchive);
+
+                        if (ZlpIOHelper.FileExists(PatchFilePath))
+                        {
+                            ZlpIOHelper.DeleteFile(PatchFilePath);
+                        }
+
+                        await ServiceSingleton.Files.DownloadFile(Link, PatchFilePath, OnProgress);
+
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        var CaughtException = ex;
+
+                        if (ex.InnerException != null) CaughtException = ex.InnerException;
+
+                        ServiceSingleton.Logger.Log(string.Format("Error during patching file download {0} with error {1}", PatchArchive, CaughtException.Message));
+
+                        if (Tries == ServiceSingleton.Settings.RetryCount)
+                        {                            
+                            throw new Exception(string.Format("Unable to download file {0} after {1} retries with error {2}!", PatchArchive, ServiceSingleton.Settings.RetryCount.ToString(), CaughtException.Message));
+                        }
+
+                        Tries++;
+                    }
+                }                
+            });
+
+            await Tsk;
+        }        
 
         public async Task ExtractPatch(ExtractProgressChangedHandler OnProgress)
         {
@@ -107,31 +154,10 @@ namespace Vcc.Nolvus.Package.Patchers
                     try
                     {
                         var Counter = 0;
-                        var Tries = 0;
 
-                        while (true)
-                        {
-                            try
-                            {
-                                await DownloadPatch(DownloadProgress);
-                                await ExtractPatch(ExtractProgress);
-                                break;
-                            }
-                            catch(Exception ex)
-                            {
-                                if (Tries == ServiceSingleton.Settings.RetryCount)
-                                {
-                                    var CaughtException = ex;
+                        await DownloadPatch(DownloadProgress);
+                        await ExtractPatch(ExtractProgress);                                          
 
-                                    if (ex.InnerException != null) CaughtException = ex.InnerException;                                
-
-                                    throw new Exception(string.Format("Unable to download file {0} after {1} retries with error {2}!", PatchArchive, ServiceSingleton.Settings.RetryCount.ToString(), CaughtException.Message));
-                                }
-
-                                Tries++;
-                            }
-                        }                        
-                        
                         foreach (var File in Files)
                         {
                             await File.Patch(ModDir, GameDir, Path.Combine(ServiceSingleton.Folders.ExtractDirectory, PatcherFileDir));

@@ -30,6 +30,25 @@ namespace Vcc.Nolvus.Services.Files
             return MegaApi;
         }
 
+        public async Task AuthenticateToMegaApi(string Username, string password)
+        {
+            var Tsk = Task.Run(async () => {
+                
+                try
+                {
+                    await CreateMegaApi().LoginAsync(Username, password);
+                    await CreateMegaApi().LogoutAsync();
+                }
+                catch (Exception Ex)
+                {
+                    throw Ex;
+                }
+                
+            });
+
+            await Tsk;
+        }
+
         public FileService()
         {            
         }

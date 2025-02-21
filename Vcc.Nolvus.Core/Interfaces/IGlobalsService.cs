@@ -20,5 +20,8 @@ namespace Vcc.Nolvus.Core.Interfaces
         Task<string> GetCPUInfo();
         Task<string> GetRamCount();
         string GetVersion(string FilePath);
+        bool MegaAnonymousConnection { get; set; }
+        string MegaEmail { get; set; }
+        string MegaPassword { get; set; }
     }
 }

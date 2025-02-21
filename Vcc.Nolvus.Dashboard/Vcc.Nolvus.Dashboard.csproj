@@ -490,6 +490,12 @@
     <Compile Include="Frames\ResumeFrame.Designer.cs">
       <DependentUpon>ResumeFrame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frames\Settings\GlobalSettingsFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Settings\GlobalSettingsFrame.Designer.cs">
+      <DependentUpon>GlobalSettingsFrame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frames\Settings\GameFrame.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -629,6 +635,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\ResumeFrame.resx">
       <DependentUpon>ResumeFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Settings\GlobalSettingsFrame.resx">
+      <DependentUpon>GlobalSettingsFrame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\Settings\GameFrame.resx">
       <DependentUpon>GameFrame.cs</DependentUpon>

@@ -44,6 +44,7 @@ namespace Vcc.Nolvus.Package.Files
         }
         public int Size { get; set; }
         public string DownloadLink { get; set; }
+        public string MirrorDownloadLink { get; set; }
         public string CRC32 { get; set; }
         public bool ExtractInSubdirectory { get; set; }
         public InstallableElement Element { get; set; }
@@ -72,6 +73,15 @@ namespace Vcc.Nolvus.Package.Files
             if (Node["RequireManualDownload"] != null)
             {
                 RequireManualDownload = System.Convert.ToBoolean(Node["RequireManualDownload"].InnerText);
+            }
+
+            if (Node["MirrorDownloadLink"] != null)
+            {
+                MirrorDownloadLink = Node["MirrorDownloadLink"].InnerText;
+            }
+            else
+            {
+                MirrorDownloadLink = string.Empty;
             }
             
         }
@@ -200,7 +210,31 @@ namespace Vcc.Nolvus.Package.Files
         public async Task Download(DownloadProgressChangedHandler OnProgress, Action<string, int> HashProgress, int RetryCount, Func<IBrowserInstance> Browser)
         {
             var Tsk = Task.Run(async () =>
-            {                
+            {
+                try
+                {
+                    await InternalDownload(DownloadLink, OnProgress, HashProgress, RetryCount, Browser);
+                }
+                catch(Exception ex)
+                {
+                    if (MirrorDownloadLink != string.Empty)
+                    {
+                        await InternalDownload(MirrorDownloadLink, OnProgress, HashProgress, RetryCount, Browser);
+                    }
+                    else
+                    {
+                        throw ex;
+                    }                  
+                }
+            });
+
+            await Tsk;
+        }
+
+        private async Task InternalDownload(string Link, DownloadProgressChangedHandler OnProgress, Action<string, int> HashProgress, int RetryCount, Func<IBrowserInstance> Browser)
+        {
+            var Tsk = Task.Run(async () =>
+            {
                 var Tries = 0;
                 Exception CaughtException = null;
 
@@ -217,14 +251,14 @@ namespace Vcc.Nolvus.Package.Files
                         {
                             if (RequireManualDownload)
                             {
-                                await Browser().AwaitUserDownload(DownloadLink, FileName, OnProgress);
+                                await Browser().AwaitUserDownload(Link, FileName, OnProgress);
                             }
                             else
                             {
-                                await DoDownload(DownloadLink, OnProgress);
+                                await DoDownload(Link, OnProgress);
                             }
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             CaughtException = ex;
 
@@ -254,7 +288,7 @@ namespace Vcc.Nolvus.Package.Files
                         {
                             throw new Exception(string.Format("Unable to download file {0} after {1} retries!", FileName, RetryCount.ToString()));
                         }
-                        
+
                     }
 
                     Tries++;
@@ -262,7 +296,7 @@ namespace Vcc.Nolvus.Package.Files
             });
 
             await Tsk;
-        }
+        }       
 
         public async Task Extract(ExtractProgressChangedHandler OnProgress)
         {

@@ -11,9 +11,39 @@ using Vcc.Nolvus.Core.Services;
 
 namespace Vcc.Nolvus.Components.Controls
 {
+    public delegate void SettingsHandler(object sender, EventArgs e);
+
     public partial class TitleBarControl : UserControl
     {
-       
+        event SettingsHandler OnSettingsClickedEvent;
+
+        public event SettingsHandler OnSettingsClicked
+        {
+            add
+            {
+                if (OnSettingsClickedEvent != null)
+                {
+                    lock (OnSettingsClickedEvent)
+                    {
+                        OnSettingsClickedEvent += value;
+                    }
+                }
+                else
+                {
+                    OnSettingsClickedEvent = value;
+                }
+            }
+            remove
+            {
+                if (OnSettingsClickedEvent != null)
+                {
+                    lock (OnSettingsClickedEvent)
+                    {
+                        OnSettingsClickedEvent -= value;
+                    }
+                }
+            }
+        }
 
         public string Title
         {
@@ -59,17 +89,29 @@ namespace Vcc.Nolvus.Components.Controls
 
         public void ShowLoading()
         {
-            LoadingBox.Show();
+            SettingsBox.Show();
         }
 
         public void HideLoading()
         {
-            LoadingBox.Hide();
+            SettingsBox.Hide();
         }
 
         private void LabelMouseDown(object sender, MouseEventArgs e)
         {
             OnMouseDown(e);
+        }
+
+        private void SettingsBox_Click(object sender, EventArgs e)
+        {
+            SettingsHandler Handler = OnSettingsClickedEvent;            
+            if (Handler != null) Handler(this, e);
+        }
+
+        private void SettingsBox_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip ToolTip = new ToolTip();
+            ToolTip.SetToolTip(SettingsBox, "Global settings");
         }
     }
 }

@@ -144,7 +144,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         {
             INolvusVersionDTO InstanceToInstall = NolvusListBox.SelectedItem as INolvusVersionDTO;
 
-            if (InstanceToInstall.Maintenance)
+            if (!InstanceToInstall.Maintenance)
             {
                 NolvusMessageBox.ShowMessage("Maintenance", "The nolvus instance " + InstanceToInstall.Name + " is under maintenance. Unable to install.", MessageBoxType.Error);
             }

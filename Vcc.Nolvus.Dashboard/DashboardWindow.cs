@@ -16,6 +16,7 @@ using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Dashboard.Frames;
 using Vcc.Nolvus.Dashboard.Forms;
 using Vcc.Nolvus.Dashboard.Frames.Installer;
+using Vcc.Nolvus.Dashboard.Frames.Settings;
 
 
 namespace Vcc.Nolvus.Dashboard
@@ -467,7 +468,8 @@ namespace Vcc.Nolvus.Dashboard
             TitleBarControl = new TitleBarControl();
             TitleBarControl.Width = 3000;
             TitleBarControl.MouseDown += TitleBarControl_MouseDown;
-            TitleBarTextControl = TitleBarControl;            
+            TitleBarTextControl = TitleBarControl;
+            TitleBarControl.OnSettingsClicked += TitleBarControl_OnSettingsClicked;            
 
             TitleBarControl.Title = "Nolvus Dashboard";
             TitleBarControl.InfoCaption = string.Format("v{0} | Not logged", ServiceSingleton.Dashboard.Version);
@@ -479,7 +481,20 @@ namespace Vcc.Nolvus.Dashboard
 
             IconSize = new Size((int)Math.Round(IconSize.Width * ScalingFactor), (int)Math.Round(IconSize.Height * ScalingFactor));
             StripLblScaling.Text = "[DPI:" + this.ScalingFactor * 100 + "%" + "]";
-        }        
+        }
+
+        private void TitleBarControl_OnSettingsClicked(object sender, EventArgs e)
+        {
+            if (!ServiceSingleton.Packages.Processing)
+            {
+                ServiceSingleton.Dashboard.LoadFrame<GlobalSettingsFrame>();
+            }
+            else
+            {
+                NolvusMessageBox.ShowMessage("Settings", "This action is not allowed during mod list installation!", Nolvus.Core.Enums.MessageBoxType.Error);
+            }                
+        }
+
         private void TitleBarControl_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)

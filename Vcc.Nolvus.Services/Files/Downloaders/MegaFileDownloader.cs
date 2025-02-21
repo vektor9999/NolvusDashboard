@@ -35,7 +35,14 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
                 {
                     if (!MegaApiClient.IsLoggedIn)
                     {
-                        await MegaApiClient.LoginAnonymousAsync();
+                        if (ServiceSingleton.Globals.MegaAnonymousConnection)
+                        {
+                            await MegaApiClient.LoginAnonymousAsync();
+                        }
+                        else
+                        {
+                            await MegaApiClient.LoginAsync(ServiceSingleton.Globals.MegaEmail, ServiceSingleton.Globals.MegaPassword);
+                        }                        
                     }                       
 
                     Uri FileLink = new Uri(UrlAddress);
@@ -76,6 +83,10 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
                     if (CaughtException.Message.Contains("509"))
                     {
                         throw new Exception("Your daily mega.nz limit of 5gb by day has been reached. Wait until the limit (24 hours) has been reset or use a VPN to bypass this limit");
+                    }
+                    else if (CaughtException.Message.Contains("402"))
+                    {
+                        throw new Exception("Unable to connect to mega.nz with error code 402. You need to create a free mega.ne account. Click on the top right settings button to configure your mega.nz account");
                     }
                     else
                     {

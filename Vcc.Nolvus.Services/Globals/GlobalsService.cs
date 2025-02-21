@@ -63,11 +63,15 @@ namespace Vcc.Nolvus.Services.Globals
         public const string UserName = "UserName";
         public const string Password = "Password";
         public const string Version = "Version";
-        public const string NolvusApi = "https://www.nolvus.net/rest/";        
-        //public const string NolvusApi = "http://localhost:62325/";
+        public const string NolvusApi = "https://www.nolvus.net/rest/";                
         public const string NexusSection = "Nexus";
         public const string ApiKey = "ApiKey";
         public const string UserAgent = "UserAgent";
+        public const string MegaSection = "Mega";
+        public const string MegaUserName = "Email";
+        public const string MegaPswd = "Password";
+        public const string MegaAnonymous = "AnonymousConnection";
+
 
 
         public string ApiVersion
@@ -99,6 +103,46 @@ namespace Vcc.Nolvus.Services.Globals
             get
             {
                 return ServiceSingleton.Settings.GetIniValue(NolvusSection, Password);
+            }            
+        }
+
+        public bool MegaAnonymousConnection
+        {
+            get
+            {
+                var Anonymous = ServiceSingleton.Settings.GetIniValue(MegaSection, MegaAnonymous);
+                return Anonymous == null ? true : System.Convert.ToBoolean(Anonymous);                
+            }
+            set
+            {
+                ServiceSingleton.Settings.StoreIniValue(MegaSection, MegaAnonymous, value.ToString());
+            }
+        }
+
+        public string MegaEmail
+        {
+            get
+            {
+                var Email = ServiceSingleton.Settings.GetIniValue(MegaSection, MegaUserName);
+                return Email == null ? string.Empty : Email;                
+            }
+            set
+            {
+                ServiceSingleton.Settings.StoreIniValue(MegaSection, MegaUserName, value);
+            }
+        }        
+
+        public string MegaPassword
+        {
+            get
+            {
+                var Password = ServiceSingleton.Settings.GetIniValue(MegaSection, MegaPswd);
+
+                return Password == null ? string.Empty : ServiceSingleton.Lib.DecryptString(Password);
+            }
+            set
+            {
+                ServiceSingleton.Settings.StoreIniValue(MegaSection, MegaPswd, ServiceSingleton.Lib.EncryptString(value));
             }
         }
 

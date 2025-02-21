@@ -262,7 +262,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             }
             else
             {
-                if (NolvusMessageBox.ShowConfirmation("Confirmation", "Some of the options you selected can not be changed after installation. Are you sure you want to continue?") == DialogResult.Yes)
+                if (NolvusMessageBox.ShowConfirmation("Confirmation", "Remember, running the list without the right hardware requirement for the variant you choose can make the game instable. The variant can not be changed after installation. Are you sure you want to continue?") == DialogResult.Yes)
                 {                    
                     if (Performance.AntiAliasing == "TAA" || (Performance.AntiAliasing == "DLAA" && NolvusMessageBox.ShowConfirmation("Warning", "DLAA is not compatible with the latest Windows 11 24H2 version.\n\nDo you want to continue?") == DialogResult.Yes))
                     {                    
