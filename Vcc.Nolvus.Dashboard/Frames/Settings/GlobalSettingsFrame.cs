@@ -47,20 +47,28 @@ namespace Vcc.Nolvus.Dashboard.Frames.Settings
 
         protected override void OnLoad()
         {
-            ServiceSingleton.Dashboard.Title("Nolvus Dashboard - [Settings]");
-            ServiceSingleton.Dashboard.Info("Global Settings");
+            try
 
-            TxtBxUserName.Text = ServiceSingleton.Globals.MegaEmail;
-            TxtBxPassword.Text = ServiceSingleton.Globals.MegaPassword;
-
-            PnlMessage.BackColor = Color.FromArgb(92, 184, 92);
-            PicBox.Image = Properties.Resources.Info;
-
-            TglBtnAnonymous.ToggleState = ToggleButtonState.Active;
-
-            if (!ServiceSingleton.Globals.MegaAnonymousConnection)
             {
-                TglBtnAnonymous.ToggleState = ToggleButtonState.Inactive;
+                ServiceSingleton.Dashboard.Title("Nolvus Dashboard - [Settings]");
+                ServiceSingleton.Dashboard.Info("Global Settings");
+
+                TxtBxUserName.Text = ServiceSingleton.Globals.MegaEmail;
+                TxtBxPassword.Text = ServiceSingleton.Globals.MegaPassword;
+
+                PnlMessage.BackColor = Color.FromArgb(92, 184, 92);
+                PicBox.Image = Properties.Resources.Info;
+
+                TglBtnAnonymous.ToggleState = ToggleButtonState.Active;
+
+                if (!ServiceSingleton.Globals.MegaAnonymousConnection)
+                {
+                    TglBtnAnonymous.ToggleState = ToggleButtonState.Inactive;
+                }                
+            }
+            catch(Exception ex)
+            {
+                ServiceSingleton.Dashboard.Error("Error during global settings loading", ex.Message, ex.StackTrace);
             }
         }
 
@@ -87,21 +95,29 @@ namespace Vcc.Nolvus.Dashboard.Frames.Settings
 
         private async void BtnSaveMegaInfo_Click(object sender, EventArgs e)
         {
-            if (TglBtnAnonymous.ToggleState == ToggleButtonState.Inactive && TxtBxUserName.Text == string.Empty && TxtBxPassword.Text == string.Empty)
+            if (TglBtnAnonymous.ToggleState == ToggleButtonState.Inactive && TxtBxUserName.Text.Trim() == string.Empty && TxtBxPassword.Text.Trim() == string.Empty)
             {
                 NolvusMessageBox.ShowMessage("Error", "Please enter your credentials!", MessageBoxType.Error);
             }
             else
-            {
+            {                
                 try
                 {
                     if (TglBtnAnonymous.ToggleState == ToggleButtonState.Inactive)
                     {
                         UpdateButton("Validating...");
-                        await ServiceSingleton.Files.AuthenticateToMegaApi(TxtBxUserName.Text, TxtBxPassword.Text);
-                        UpdateButton("Save");
-                    }
+                        await ServiceSingleton.Files.AuthenticateToMegaApi(TxtBxUserName.Text, TxtBxPassword.Text);                                              
+                    }                    
+                }
+                catch
+                {
+                    UpdateButton("Save");
+                    NolvusMessageBox.ShowMessage("Error", "Unable to connect to mega.nz! Please review your credentials", MessageBoxType.Error);
+                    return;
+                }
 
+                try
+                {
                     ServiceSingleton.Globals.MegaAnonymousConnection = TglBtnAnonymous.ToggleState == ToggleButtonState.Active;
 
                     if (TxtBxUserName.Text != string.Empty)
@@ -112,15 +128,14 @@ namespace Vcc.Nolvus.Dashboard.Frames.Settings
                     if ( TxtBxPassword.Text != string.Empty)
                     {
                         ServiceSingleton.Globals.MegaPassword = TxtBxPassword.Text;
-                    }
-                    
+                    }                    
 
                     NolvusMessageBox.ShowMessage("Information", "Your mega.nz configuration has been valiated and saved", MessageBoxType.Info);
                 }
-                catch (Exception Ex)
+                catch(Exception ex)
                 {
                     UpdateButton("Save");
-                    NolvusMessageBox.ShowMessage("Error", "Unable to connect to mega.nz! Please review your credentials", MessageBoxType.Error);
+                    NolvusMessageBox.ShowMessage("Error", string.Format("Unexpected error ocurred with message : {0}", ex.Message), MessageBoxType.Error);                                            
                 }                    
             }
         }

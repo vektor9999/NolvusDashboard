@@ -67,7 +67,9 @@ namespace Vcc.Nolvus.Dashboard.Frames
             LblTitle.Text = Title;
             LblError.Text = Message;
             LblTrace.Text = Trace;
-            BtnRetry.Visible = Retry;               
+            BtnRetry.Visible = Retry;
+            ServiceSingleton.Dashboard.Title("Nolvus Dashboard - [Error]");
+            ServiceSingleton.Dashboard.Info("Error");
         }                 
                      
         private void BtnRetry_Click(object sender, EventArgs e)
