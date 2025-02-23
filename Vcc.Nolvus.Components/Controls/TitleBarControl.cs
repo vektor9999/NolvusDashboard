@@ -15,6 +15,8 @@ namespace Vcc.Nolvus.Components.Controls
 
     public partial class TitleBarControl : UserControl
     {
+        private bool _SettingsEnabled;
+
         event SettingsHandler OnSettingsClickedEvent;
 
         public event SettingsHandler OnSettingsClicked
@@ -112,6 +114,24 @@ namespace Vcc.Nolvus.Components.Controls
         {
             ToolTip ToolTip = new ToolTip();
             ToolTip.SetToolTip(SettingsBox, "Global settings");
+        }
+
+        public void EnableSettings()
+        {
+            _SettingsEnabled = true;
+        }
+
+        public void DisableSettings()
+        {
+            _SettingsEnabled = false;
+        }
+
+        public bool SettingsEnabled
+        {
+            get
+            {
+                return _SettingsEnabled;
+            }            
         }
     }
 }

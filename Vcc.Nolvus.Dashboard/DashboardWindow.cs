@@ -432,6 +432,16 @@ namespace Vcc.Nolvus.Dashboard
             Close();
         }
 
+        public void EnableSettings()
+        {
+            TitleBarControl.EnableSettings();
+        }
+
+        public void DisableSettings()
+        {
+            TitleBarControl.DisableSettings();
+        }
+
         #endregion
 
         public DashboardWindow()
@@ -469,7 +479,7 @@ namespace Vcc.Nolvus.Dashboard
             TitleBarControl.Width = 3000;
             TitleBarControl.MouseDown += TitleBarControl_MouseDown;
             TitleBarTextControl = TitleBarControl;
-            TitleBarControl.OnSettingsClicked += TitleBarControl_OnSettingsClicked;            
+            TitleBarControl.OnSettingsClicked += TitleBarControl_OnSettingsClicked;                 
 
             TitleBarControl.Title = "Nolvus Dashboard";
             TitleBarControl.InfoCaption = string.Format("v{0} | Not logged", ServiceSingleton.Dashboard.Version);
@@ -487,7 +497,15 @@ namespace Vcc.Nolvus.Dashboard
         {
             if (!ServiceSingleton.Packages.Processing)
             {
-                ServiceSingleton.Dashboard.LoadFrame<GlobalSettingsFrame>();
+                if (TitleBarControl.SettingsEnabled)
+                {
+                    ServiceSingleton.Dashboard.LoadFrame<GlobalSettingsFrame>();
+                }
+                else
+                {
+                    NolvusMessageBox.ShowMessage("Error", "This action can not be done now, please finish the Dashboard pre setup (Game path, Nexus and Nolvus connection)", Nolvus.Core.Enums.MessageBoxType.Error);
+                }
+                
             }
             else
             {

@@ -259,6 +259,8 @@ namespace Vcc.Nolvus.Dashboard.Frames
 
                         var InstancesCheck = await CheckInstances();
 
+                        ServiceSingleton.Dashboard.EnableSettings();
+
                         switch (InstancesCheck)
                         {
                             case InstanceCheck.NoInstance:

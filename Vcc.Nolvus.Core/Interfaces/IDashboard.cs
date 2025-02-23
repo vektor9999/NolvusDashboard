@@ -39,5 +39,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         void LoadAccountImage(string Url);
         void LoadAccountImage(System.Drawing.Image Image);
         void ClearInfo();
+        void EnableSettings();
+        void DisableSettings();
     }
 }
