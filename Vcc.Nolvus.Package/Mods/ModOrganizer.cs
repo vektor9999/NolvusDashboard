@@ -2358,13 +2358,13 @@ ccafdsse001-dwesanctuary.esm";
                 switch (Level)
                 {
                     case IniLevel.IniLow:
-                        Result = string.Format(ModOrganizer.SkyrimPrefIniLowAE, Instance.Settings.Height, Instance.Settings.Width, System.Convert.ToInt16(Instance.Performance.AntiAliasing == "TAA"));
+                        Result = string.Format(ModOrganizer.SkyrimPrefIniLowAE, Instance.Settings.Height, Instance.Settings.Width, 1);
                         break;
                     case IniLevel.IniMedium:
-                        Result = string.Format(ModOrganizer.SkyrimPrefIniMediumAE, Instance.Settings.Height, Instance.Settings.Width, System.Convert.ToInt16(Instance.Performance.AntiAliasing == "TAA"));
+                        Result = string.Format(ModOrganizer.SkyrimPrefIniMediumAE, Instance.Settings.Height, Instance.Settings.Width, 1);
                         break;
                     case IniLevel.IniHigh:
-                        Result = string.Format(ModOrganizer.SkyrimPrefIniHighAE, Instance.Settings.Height, Instance.Settings.Width, System.Convert.ToInt16(Instance.Performance.AntiAliasing == "TAA"));
+                        Result = string.Format(ModOrganizer.SkyrimPrefIniHighAE, Instance.Settings.Height, Instance.Settings.Width, 1);
                         break;
                 }
             }

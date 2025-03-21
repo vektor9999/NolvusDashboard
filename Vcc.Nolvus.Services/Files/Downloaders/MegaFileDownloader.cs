@@ -86,7 +86,7 @@ namespace Vcc.Nolvus.Services.Files.Downloaders
                     }
                     else if (CaughtException.Message.Contains("402"))
                     {
-                        throw new Exception("Unable to connect to mega.nz with error code 402. You need to create a free mega.ne account. Click on the top right settings button to configure your mega.nz account");
+                        throw new Exception("Unable to connect to mega.nz with error code 402. You need to create a free mega.nz account. Click on the top right settings button to configure your mega.nz account");
                     }
                     else
                     {

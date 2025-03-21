@@ -165,6 +165,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
                 AntiAliasing.Add("TAA");
                 AntiAliasing.Add("DLAA");
+                AntiAliasing.Add("FSR");
 
                 LODs.Add("Ultra");
                 LODs.Add("Performance");
@@ -198,17 +199,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
                 var GPU = string.Join(Environment.NewLine, ServiceSingleton.Globals.GetVideoAdapters().ToArray());
 
-                if (!ServiceSingleton.Settings.ForceAA)
-                {
-                    LblGPUs.Text = GPU;
+                LblGPUs.Text = GPU;
 
-                    if (!IsNvidiaRTX())
-                    {
-                        ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing = "TAA";
-                        DrpDwnLstAntiAliasing.Enabled = false;
-                    }
-                }
-                else
+                if (ServiceSingleton.Settings.ForceAA)
                 {
                     LblGPUs.Text = GPU + " (CHECK BYPASSED)";
                 }
@@ -264,17 +257,14 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             {
                 if (NolvusMessageBox.ShowConfirmation("Confirmation", "Remember, running the list without the right hardware requirement for the variant you choose can make the game instable. The variant can not be changed after installation. Are you sure you want to continue?") == DialogResult.Yes)
                 {                    
-                    if (Performance.AntiAliasing == "TAA" || (Performance.AntiAliasing == "DLAA" && NolvusMessageBox.ShowConfirmation("Warning", "DLAA is not compatible with the latest Windows 11 24H2 version.\n\nDo you want to continue?") == DialogResult.Yes))
-                    {                    
-                        ServiceSingleton.Dashboard.LoadFrame<v6.OptionsFrame>();
-                    }                    
+                    ServiceSingleton.Dashboard.LoadFrame<v6.OptionsFrame>();                    
                 }                
             }
         }
 
         private void TglBtnDownScale_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
         {
-            if (ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing != "DLAA")
+            if (ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing != "DLAA" && ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing != "FSR")
             {
                 if (e.ToggleState == ToggleButtonState.Active)
                 {
@@ -293,7 +283,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             {                
                 DrpDwnLstAntiAliasing.SelectedIndex = 0;
                 DrpDwnLstAntiAliasing.Enabled = false;
-                NolvusMessageBox.ShowMessage("Antialiasing", "This option is not compatible with DLAA. Antialiasing has been forced to TAA.", MessageBoxType.Info);
+                NolvusMessageBox.ShowMessage("Antialiasing", "This option is not compatible with DLAA/FSR. Antialiasing has been forced to TAA.", MessageBoxType.Info);
                 DrpDwnLstDownscalingScreenRes.Enabled = true;
                 ServiceSingleton.Instances.WorkingInstance.Performance.DownScaling = "TRUE";
                 DrpDwnLstDownscalingScreenRes.SelectedIndex = DownscalingResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);
@@ -356,7 +346,19 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         {
             if (DrpDwnLstAntiAliasing.SelectedValue != null)
             {
-                ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing = DrpDwnLstAntiAliasing.SelectedValue.ToString();                
+                ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing = DrpDwnLstAntiAliasing.SelectedValue.ToString();
+
+                if (DrpDwnLstAntiAliasing.SelectedValue.ToString() == "DLAA")
+                {
+                    if (!IsNvidiaRTX() && !ServiceSingleton.Settings.ForceAA)
+                    {
+                        NolvusMessageBox.ShowMessage("Anti Alisasing", "DLAA is only compatible with NVIDIA graphics cards!", MessageBoxType.Error);
+                        DrpDwnLstAntiAliasing.SelectedIndexChanged -= DrpDwnLstAntiAliasing_SelectedIndexChanged;
+                        DrpDwnLstAntiAliasing.SelectedIndex = 0;
+                        ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing = "TAA";
+                        DrpDwnLstAntiAliasing.SelectedIndexChanged += DrpDwnLstAntiAliasing_SelectedIndexChanged;
+                    }
+                }                                
             }
         }        
 
@@ -398,7 +400,6 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         {
             ServiceSingleton.Instances.WorkingInstance.Performance.IniSettings = DrpDwnLstIni.SelectedIndex.ToString();
         }
-
 
         private void DrpDwnLstLODs_SelectedIndexChanged(object sender, EventArgs e)
         {

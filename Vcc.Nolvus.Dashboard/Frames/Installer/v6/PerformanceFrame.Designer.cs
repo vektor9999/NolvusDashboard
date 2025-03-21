@@ -252,16 +252,15 @@
             this.label25.ForeColor = System.Drawing.Color.White;
             this.label25.Location = new System.Drawing.Point(12, 51);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(293, 54);
+            this.label25.Size = new System.Drawing.Size(293, 29);
             this.label25.TabIndex = 56;
-            this.label25.Text = "DLAA anti aliasing is only available for Nvidia RTX cards. The option will be gre" +
-    "yed out and set to TAA if you don\'t have an Nvdia RTX card.";
+            this.label25.Text = "DLAA anti aliasing is only available for Nvidia RTX cards.";
             // 
             // label26
             // 
             this.label26.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(12, 167);
+            this.label26.Location = new System.Drawing.Point(12, 146);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(293, 54);
             this.label26.TabIndex = 55;
@@ -273,9 +272,9 @@
             // 
             this.label30.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.ForeColor = System.Drawing.Color.White;
-            this.label30.Location = new System.Drawing.Point(12, 113);
+            this.label30.Location = new System.Drawing.Point(12, 90);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(293, 54);
+            this.label30.Size = new System.Drawing.Size(293, 45);
             this.label30.TabIndex = 54;
             this.label30.Text = "Select your ini profile (based on Bethini recommended settings)";
             // 

@@ -18,7 +18,7 @@ namespace Vcc.Nolvus.Instance.Core
         public string DownWidth { get; set; } = string.Empty;
         public string AdvancedPhysics { get; set; } = "TRUE";
         public string IniSettings { get; set; } = "2";
-        public string AntiAliasing { get; set; } = "DLAA";
+        public string AntiAliasing { get; set; } = "TAA";
         public string Variant { get; set; } = "Ultra";
         public string LODs { get; set; } = "Ultra";
         public string RayTracing { get; set; } = "TRUE";

@@ -314,7 +314,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 
                 DrpDwnLstIni.SelectedIndex = System.Convert.ToInt16(Instance.Performance.IniSettings);
 
-                GrpBxDownscaling.Enabled = Instance.Performance.AntiAliasing != "DLAA";
+                GrpBxDownscaling.Enabled = Instance.Performance.AntiAliasing != "DLAA" && Instance.Performance.AntiAliasing != "FSR";
 
                 Initializing = false;                
             }
