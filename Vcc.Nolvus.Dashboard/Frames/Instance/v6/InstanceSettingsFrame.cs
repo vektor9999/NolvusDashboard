@@ -298,7 +298,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 
                 LblCombatScaling.Text = Instance.Options.CombatScaling;
                 LblExhaustion.Text = Instance.Options.Exhaustion == "TRUE" ? "Yes" : "No";
-                LblNerfPA.Text = Instance.Options.NerfPA == "TRUE" ? "Yes" : "No";
+                LblNerfPA.Text = Instance.Options.NerfPA;
                 LblEnemiesResistance.Text = Instance.Options.EnemiesResistance == "TRUE" ? "Yes" : "No";
                 LblBoss.Text = Instance.Options.Boss == "TRUE" ? "Yes" : "No";
                 LblPoise.Text = Instance.Options.Poise == "TRUE" ? "Yes" : "No";

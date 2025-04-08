@@ -22,7 +22,7 @@ namespace Vcc.Nolvus.Instance.Core
         public string StancesPerksTree { get; set; } = "TRUE";
         public string DeleveledEnemies { get; set; } = "TRUE";
         public string Exhaustion { get; set; } = "TRUE";
-        public string NerfPA { get; set; } = "TRUE";
+        public string NerfPA { get; set; } = "Player Only";
         public string EnemiesResistance { get; set; } = "TRUE";
         public string Boss { get; set; } = "TRUE";
         public string Poise { get; set; } = "TRUE";
@@ -73,7 +73,18 @@ namespace Vcc.Nolvus.Instance.Core
 
             if (Node["NerfPA"] != null)
             {
-                NerfPA = Node["NerfPA"].InnerText.Trim();
+                if (Node["NerfPA"].InnerText == "TRUE")
+                {
+                    NerfPA = "Player Only";
+                }
+                else if (Node["NerfPA"].InnerText == "FALSE")
+                {
+                    NerfPA = "None";
+                }
+                else 
+                {
+                    NerfPA = Node["NerfPA"].InnerText.Trim();
+                }                
             }
 
             if (Node["EnemiesResistance"] != null)

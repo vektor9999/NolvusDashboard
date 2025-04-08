@@ -434,15 +434,8 @@ namespace Vcc.Nolvus.Services.Report
 
                     Result += Environment.NewLine;
 
-                    if (Instance.Options.NerfPA == "TRUE")
-                    {
-                        Result += "Nerf Power Attacks : Yes";
-                    }
-                    else
-                    {
-                        Result += "Nerf Power Attacks : No";
-                    }
-                    
+                    Result += "Nerf Power Attacks : " + Instance.Options.NerfPA;
+
                     Result += Environment.NewLine;
 
                     if (Instance.Options.EnemiesResistance == "TRUE")
@@ -940,14 +933,7 @@ namespace Vcc.Nolvus.Services.Report
                         CurrentLine += DrawString("Exhaustion : ", "No", Graphics, Report.PageSettings, CurrentLine);
                     }
 
-                    if (Instance.Options.NerfPA == "TRUE")
-                    {
-                        CurrentLine += DrawString("Nerf popwer attacks : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Nerf power attacks : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
+                    CurrentLine += DrawString("Nerf power attacks : ", Instance.Options.NerfPA, Graphics, Report.PageSettings, CurrentLine);
 
                     if (Instance.Options.EnemiesResistance == "TRUE")
                     {
@@ -998,6 +984,13 @@ namespace Vcc.Nolvus.Services.Report
                 {
                     CurrentLine += DrawString("List status : ", "List has been modified", Graphics, Report.PageSettings, CurrentLine);
                 }
+                else if (ServiceSingleton.Packages.ModOrganizer2.GetProfiles().Count > 1)
+                {
+                    CurrentLine += DrawString("List status : ", string.Format("List might be modified ({0} profiles found)", ServiceSingleton.Packages.ModOrganizer2.GetProfiles().Count), Graphics, Report.PageSettings, CurrentLine);
+
+                    CurrentLine += DrawString("New profile(s) added : ", string.Join(",", ServiceSingleton.Packages.ModOrganizer2.GetProfiles().ToArray()), Graphics, Report.PageSettings, CurrentLine);
+
+                }
                 else
                 {
                     CurrentLine += DrawString("List status : ", "Vanilla Nolvus", Graphics, Report.PageSettings, CurrentLine);
@@ -1025,7 +1018,7 @@ namespace Vcc.Nolvus.Services.Report
 
                     foreach (var Mod in ModObjects.AddedMods)
                     {
-                        CurrentLine += DrawStringTextOnly(Mod.Name, Graphics, Report.PageSettings, CurrentLine);
+                        CurrentLine += DrawStringTextOnly(Mod.Name + string.Format("({0})", Mod.Selected ? "v" : "x"), Graphics, Report.PageSettings, CurrentLine);
 
                         if (CurrentLine + 20 > Page.Graphics.ClientSize.Height)
                         {

@@ -43,19 +43,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             TglBtnExhaustion.InactiveState.BackColor = Color.White;
             TglBtnExhaustion.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
             TglBtnExhaustion.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
-            TglBtnExhaustion.InactiveState.HoverColor = Color.White;
-
-            TglBtnNerf.ActiveState.Text = "ON";
-            TglBtnNerf.ActiveState.BackColor = Color.Orange;
-            TglBtnNerf.ActiveState.BorderColor = Color.Orange;
-            TglBtnNerf.ActiveState.ForeColor = Color.White;
-            TglBtnNerf.ActiveState.HoverColor = Color.Orange;
-
-            TglBtnNerf.InactiveState.Text = "OFF";
-            TglBtnNerf.InactiveState.BackColor = Color.White;
-            TglBtnNerf.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
-            TglBtnNerf.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
-            TglBtnNerf.InactiveState.HoverColor = Color.White;
+            TglBtnExhaustion.InactiveState.HoverColor = Color.White;            
 
             TglBtnResistance.ActiveState.Text = "ON";
             TglBtnResistance.ActiveState.BackColor = Color.Orange;
@@ -102,13 +90,20 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
             return Index == -1 ? 0 : Index;                            
         }
-                
+
+        private int NerfPAIndex(List<string> NerfPAs)
+        {
+            var Index = NerfPAs.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Options.NerfPA);
+
+            return Index == -1 ? 0 : Index;
+        }
+
 
         private bool CheckIfPrepareToDie()
         {            
             if (ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling == "Hard" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.Exhaustion == "TRUE" &&
-                ServiceSingleton.Instances.WorkingInstance.Options.NerfPA == "TRUE" &&
+                ServiceSingleton.Instances.WorkingInstance.Options.NerfPA == "Player Only" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.EnemiesResistance == "TRUE" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.Boss == "TRUE" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.Poise == "TRUE")
@@ -124,7 +119,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         {
             if (ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling == "Easy" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.Exhaustion == "FALSE" &&
-                ServiceSingleton.Instances.WorkingInstance.Options.NerfPA == "FALSE" &&
+                ServiceSingleton.Instances.WorkingInstance.Options.NerfPA == "NPCs Only" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.EnemiesResistance == "FALSE" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.Boss == "FALSE" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.Poise == "FALSE")
@@ -141,7 +136,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
             if (ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling == "Medium" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.Exhaustion == "TRUE" &&
-                ServiceSingleton.Instances.WorkingInstance.Options.NerfPA == "FALSE" &&
+                ServiceSingleton.Instances.WorkingInstance.Options.NerfPA == "Both" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.EnemiesResistance == "TRUE" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.Boss == "TRUE" &&
                 ServiceSingleton.Instances.WorkingInstance.Options.Poise == "FALSE")                
@@ -164,22 +159,21 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             Presets.Add("Prepare to Die");            
 
             DrpDwnLstPreset.SelectedIndexChanged -= DrpDwnLstPreset_SelectedIndexChanged;
-
-
+            
             if (CheckIfPrepareToDie())
             {
                 DrpDwnLstPreset.DataSource = Presets;
-                DrpDwnLstPreset.SelectedIndex = 2;
+                DrpDwnLstPreset.SelectedIndex = 2;                
             }
             else if (CheckIfModerate())
             {
                 DrpDwnLstPreset.DataSource = Presets;
-                DrpDwnLstPreset.SelectedIndex = 1;
+                DrpDwnLstPreset.SelectedIndex = 1;                
             }
             else if (CheckIfHackAndSash())
             {
                 DrpDwnLstPreset.DataSource = Presets;
-                DrpDwnLstPreset.SelectedIndex = 0;
+                DrpDwnLstPreset.SelectedIndex = 0;                
             }
             else
             {
@@ -206,14 +200,18 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             if (Instance.Options.Exhaustion == "TRUE")
             {
                 TglBtnExhaustion.ToggleState = ToggleButtonState.Active;
-            }
+            }      
 
-            TglBtnNerf.ToggleState = ToggleButtonState.Inactive;
+            List<string> NerfPAs = new List<string>();
 
-            if (Instance.Options.NerfPA == "TRUE")
-            {
-                TglBtnNerf.ToggleState = ToggleButtonState.Active;
-            }
+            NerfPAs.Add("None");
+            NerfPAs.Add("Player Only");
+            NerfPAs.Add("NPCs Only");
+            NerfPAs.Add("Both");
+
+            DrpDwnLstNerfPA.DataSource = NerfPAs;
+
+            DrpDwnLstNerfPA.SelectedIndex = NerfPAIndex(NerfPAs);
 
             TglBtnResistance.ToggleState = ToggleButtonState.Inactive;
 
@@ -258,7 +256,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             {                
                 DrpDwnLstCombatScaling.SelectedIndex = 2;
                 TglBtnExhaustion.ToggleState = ToggleButtonState.Active;
-                TglBtnNerf.ToggleState = ToggleButtonState.Active;
+                //TglBtnNerf.ToggleState = ToggleButtonState.Active;
+                DrpDwnLstNerfPA.SelectedIndex = 1;
                 TglBtnResistance.ToggleState = ToggleButtonState.Active;
                 TglBtnBoss.ToggleState = ToggleButtonState.Active;
                 TglBtnPoise.ToggleState = ToggleButtonState.Active;                
@@ -267,7 +266,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             {
                 DrpDwnLstCombatScaling.SelectedIndex = 1;
                 TglBtnExhaustion.ToggleState = ToggleButtonState.Active;
-                TglBtnNerf.ToggleState = ToggleButtonState.Inactive;
+                //TglBtnNerf.ToggleState = ToggleButtonState.Inactive;
+                DrpDwnLstNerfPA.SelectedIndex = 3;
                 TglBtnResistance.ToggleState = ToggleButtonState.Active;
                 TglBtnBoss.ToggleState = ToggleButtonState.Active;
                 TglBtnPoise.ToggleState = ToggleButtonState.Inactive;
@@ -276,7 +276,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             {
                 DrpDwnLstCombatScaling.SelectedIndex = 0;
                 TglBtnExhaustion.ToggleState = ToggleButtonState.Inactive;
-                TglBtnNerf.ToggleState = ToggleButtonState.Inactive;
+                //TglBtnNerf.ToggleState = ToggleButtonState.Inactive;
+                DrpDwnLstNerfPA.SelectedIndex = 2;
                 TglBtnResistance.ToggleState = ToggleButtonState.Inactive;
                 TglBtnBoss.ToggleState = ToggleButtonState.Inactive;
                 TglBtnPoise.ToggleState = ToggleButtonState.Inactive;
@@ -296,17 +297,17 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             }
         }
 
-        private void TglBtnNerf_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
-        {
-            if (e.ToggleState == ToggleButtonState.Active)
-            {
-                ServiceSingleton.Instances.WorkingInstance.Options.NerfPA = "TRUE";
-            }
-            else
-            {
-                ServiceSingleton.Instances.WorkingInstance.Options.NerfPA = "FALSE";
-            }
-        }
+        //private void TglBtnNerf_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
+        //{
+        //    if (e.ToggleState == ToggleButtonState.Active)
+        //    {
+        //        ServiceSingleton.Instances.WorkingInstance.Options.NerfPA = "TRUE";
+        //    }
+        //    else
+        //    {
+        //        ServiceSingleton.Instances.WorkingInstance.Options.NerfPA = "FALSE";
+        //    }
+        //}
 
         private void TglBtnResistance_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
         {
@@ -358,6 +359,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         private void DrpDwnLstCombatScaling_SelectedIndexChanged(object sender, EventArgs e)
         {
             ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling = DrpDwnLstCombatScaling.SelectedValue.ToString();
+        }
+
+        private void DrpDwnLstNerfPA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ServiceSingleton.Instances.WorkingInstance.Options.NerfPA = DrpDwnLstNerfPA.SelectedValue.ToString();
         }
     }
 }

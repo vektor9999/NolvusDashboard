@@ -323,7 +323,6 @@
             activeStateCollection3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             activeStateCollection3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
             this.TglBtnAltStart.ActiveState = activeStateCollection3;
-            this.TglBtnAltStart.Enabled = false;
             this.TglBtnAltStart.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.TglBtnAltStart.ForeColor = System.Drawing.Color.Black;
             inactiveStateCollection3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));

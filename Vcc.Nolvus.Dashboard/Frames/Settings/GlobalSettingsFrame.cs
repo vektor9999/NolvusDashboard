@@ -131,6 +131,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Settings
                     }                    
 
                     NolvusMessageBox.ShowMessage("Information", "Your mega.nz configuration has been valiated and saved", MessageBoxType.Info);
+
+                    UpdateButton("Save");
                 }
                 catch(Exception ex)
                 {

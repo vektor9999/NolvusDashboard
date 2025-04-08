@@ -107,12 +107,6 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         {
             var Instance = ServiceSingleton.Instances.WorkingInstance;
 
-            #region Temporary
-
-            Instance.Options.AlternateStart = "TRUE";
-
-            #endregion
-
             TglBtnNudity.ToggleState = ToggleButtonState.Inactive;
 
             if (Instance.Options.Nudity == "TRUE")
