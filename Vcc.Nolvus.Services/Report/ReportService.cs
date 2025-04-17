@@ -979,8 +979,9 @@ namespace Vcc.Nolvus.Services.Report
                 var AddedMods = ModObjects.AddedModsCount;
                 var RemovedMods = ModObjects.RemovedModsCount;
                 var VersionMismatch = ModObjects.VersionMismatchCount;
+                var DisabledMods = ModObjects.DisabledModsCount;
 
-                if (AddedMods > 0 || RemovedMods > 0)
+                if (AddedMods > 0 || RemovedMods > 0 || DisabledMods > 0)
                 {
                     CurrentLine += DrawString("List status : ", "List has been modified", Graphics, Report.PageSettings, CurrentLine);
                 }
@@ -1001,6 +1002,7 @@ namespace Vcc.Nolvus.Services.Report
                 CurrentLine += DrawString("Added mods : ", AddedMods.ToString(), Graphics, Report.PageSettings, CurrentLine);
                 CurrentLine += DrawString("Removed mods : ", RemovedMods.ToString(), Graphics, Report.PageSettings, CurrentLine);
                 CurrentLine += DrawString("Version changed : ", VersionMismatch.ToString(), Graphics, Report.PageSettings, CurrentLine);
+                CurrentLine += DrawString("Disabled mods : ", DisabledMods.ToString(), Graphics, Report.PageSettings, CurrentLine);
 
                 #endregion
 
@@ -1018,7 +1020,7 @@ namespace Vcc.Nolvus.Services.Report
 
                     foreach (var Mod in ModObjects.AddedMods)
                     {
-                        CurrentLine += DrawStringTextOnly(Mod.Name + string.Format("({0})", Mod.Selected ? "v" : "x"), Graphics, Report.PageSettings, CurrentLine);
+                        CurrentLine += DrawStringTextOnly(Mod.Name + string.Format(" [{0}]", Mod.Selected ? "v" : "x"), Graphics, Report.PageSettings, CurrentLine);
 
                         if (CurrentLine + 20 > Page.Graphics.ClientSize.Height)
                         {
@@ -1054,7 +1056,7 @@ namespace Vcc.Nolvus.Services.Report
 
                 #endregion
 
-                Progress("Generating report", 90);
+                Progress("Generating report", 85);
 
                 #region Version Mismatch
 
@@ -1069,6 +1071,31 @@ namespace Vcc.Nolvus.Services.Report
                     foreach (var Mod in ModObjects.VersionMismatchMods)
                     {
                         CurrentLine += DrawStringTextOnly(string.Format("{0} , {1}", Mod.Name, Mod.StatusText), Graphics, Report.PageSettings, CurrentLine);
+
+                        if (CurrentLine + 20 > Page.Graphics.ClientSize.Height)
+                        {
+                            Graphics = PageBreak(Report, ref CurrentLine).Graphics;
+                        }
+                    }
+                }
+
+                #endregion
+
+                Progress("Generating report", 90);
+
+                #region Disabled Mods
+
+                if (DisabledMods > 0)
+                {
+                    Graphics = PageBreak(Report, ref CurrentLine).Graphics;
+
+                    CurrentLine += 20;
+
+                    CurrentLine += DrawHeader("DISABLED MODS", Graphics, Report.PageSettings, CurrentLine);
+
+                    foreach (var Mod in ModObjects.DisabledMods)
+                    {
+                        CurrentLine += DrawStringTextOnly(Mod.Name, Graphics, Report.PageSettings, CurrentLine);
 
                         if (CurrentLine + 20 > Page.Graphics.ClientSize.Height)
                         {

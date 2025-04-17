@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vcc.Nolvus.Core.Misc
 {
-    public enum ModObjectStatus { OK, NotInstalled, Error, VersionMisMatch, CustomInstalled, InstalledIniMissing, MetaIniError }
+    public enum ModObjectStatus { OK, NotInstalled, Error, VersionMisMatch, CustomInstalled, InstalledIniMissing, MetaIniError, Disabled }
 
     internal class NameComparer : EqualityComparer<ModObject>
     {
@@ -15,14 +15,14 @@ namespace Vcc.Nolvus.Core.Misc
             if (Object.ReferenceEquals(Obj1, Obj2)) return true;
             if (Object.ReferenceEquals(Obj1, null) || Object.ReferenceEquals(Obj2, null))
                 return false;
-
-            return String.Equals(Obj1.Name, Obj2.Name, StringComparison.OrdinalIgnoreCase) && Obj1.Selected == Obj2.Selected;
+            
+            return String.Equals(Obj1.Name, Obj2.Name, StringComparison.OrdinalIgnoreCase);
         }
 
         public override int GetHashCode(ModObject Obj)
         {
-            if (Object.ReferenceEquals(Obj, null)) return 0;
-            int HashName = Obj.Name == null ? 0 : Obj.Name.ToLower().GetHashCode() ^ Obj.Selected.GetHashCode();
+            if (Object.ReferenceEquals(Obj, null)) return 0;            
+            int HashName = Obj.Name == null ? 0 : Obj.Name.ToLower().GetHashCode();
             return HashName;
         }
     }
@@ -104,6 +104,11 @@ namespace Vcc.Nolvus.Core.Misc
             get { return _List.Where(x => x.Status == ModObjectStatus.InstalledIniMissing).ToList().Count; }
         }
 
+        public int DisabledModsCount
+        {
+            get { return _List.Where(x => x.Status == ModObjectStatus.Disabled).ToList().Count; }
+        }
+
         public List<ModObject> AddedMods
         {
             get { return _List.Where(x => x.Status == ModObjectStatus.CustomInstalled).ToList(); }
@@ -127,6 +132,11 @@ namespace Vcc.Nolvus.Core.Misc
         public List<ModObject> InstalledIniMissingMods
         {
             get { return _List.Where(x => x.Status == ModObjectStatus.InstalledIniMissing).ToList(); }
+        }
+
+        public List<ModObject> DisabledMods
+        {
+            get { return _List.Where(x => x.Status == ModObjectStatus.Disabled).ToList(); }
         }
 
         public bool HasMods
@@ -157,7 +167,12 @@ namespace Vcc.Nolvus.Core.Misc
                 }
                 else
                 {
-                    if (Mo2Mod.Version != NolvusMod.Version)
+                    if (!Mo2Mod.Selected)
+                    {
+                        Mo2Mod.Status = ModObjectStatus.Disabled;
+                        Mo2Mod.StatusText = "Mod is disabled";
+                    }
+                    else if (Mo2Mod.Version != NolvusMod.Version)
                     {
                         if (Mo2Mod.Status != ModObjectStatus.MetaIniError && Mo2Mod.Status != ModObjectStatus.InstalledIniMissing)
                         {
