@@ -94,6 +94,8 @@
             this.PicBox = new System.Windows.Forms.PictureBox();
             this.BtnPrevious = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnStart = new Vcc.Nolvus.Components.Controls.FlatButton();
+            this.LblController = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -345,6 +347,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.LblController);
+            this.groupBox3.Controls.Add(this.label20);
             this.groupBox3.Controls.Add(this.LblGore);
             this.groupBox3.Controls.Add(this.label18);
             this.groupBox3.Controls.Add(this.LblENB);
@@ -391,7 +395,7 @@
             // 
             this.LblENB.AutoSize = true;
             this.LblENB.ForeColor = System.Drawing.Color.Orange;
-            this.LblENB.Location = new System.Drawing.Point(140, 175);
+            this.LblENB.Location = new System.Drawing.Point(140, 196);
             this.LblENB.Name = "LblENB";
             this.LblENB.Size = new System.Drawing.Size(35, 13);
             this.LblENB.TabIndex = 45;
@@ -401,7 +405,7 @@
             // 
             this.LblEN.AutoSize = true;
             this.LblEN.ForeColor = System.Drawing.Color.White;
-            this.LblEN.Location = new System.Drawing.Point(10, 175);
+            this.LblEN.Location = new System.Drawing.Point(10, 196);
             this.LblEN.Name = "LblEN";
             this.LblEN.Size = new System.Drawing.Size(29, 13);
             this.LblEN.TabIndex = 44;
@@ -859,6 +863,26 @@
             this.BtnStart.UseVisualStyleBackColor = false;
             this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
+            // LblController
+            // 
+            this.LblController.AutoSize = true;
+            this.LblController.ForeColor = System.Drawing.Color.Orange;
+            this.LblController.Location = new System.Drawing.Point(140, 173);
+            this.LblController.Name = "LblController";
+            this.LblController.Size = new System.Drawing.Size(57, 13);
+            this.LblController.TabIndex = 49;
+            this.LblController.Text = "[Controller]";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.Color.White;
+            this.label20.Location = new System.Drawing.Point(10, 173);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(51, 13);
+            this.label20.TabIndex = 48;
+            this.label20.Text = "Controller";
+            // 
             // SummaryFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -954,5 +978,7 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label LblPoise;
+        private System.Windows.Forms.Label LblController;
+        private System.Windows.Forms.Label label20;
     }
 }

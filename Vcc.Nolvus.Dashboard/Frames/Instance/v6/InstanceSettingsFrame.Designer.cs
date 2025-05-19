@@ -99,6 +99,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.LblController = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.PnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -377,7 +379,7 @@
             this.BtnBack.BorderColor = System.Drawing.Color.White;
             this.BtnBack.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnBack.ForeColor = System.Drawing.Color.White;
-            this.BtnBack.Location = new System.Drawing.Point(902, 584);
+            this.BtnBack.Location = new System.Drawing.Point(902, 623);
             this.BtnBack.Name = "BtnBack";
             this.BtnBack.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnBack.Size = new System.Drawing.Size(88, 43);
@@ -401,7 +403,7 @@
             this.GrpBxDownscaling.ForeColor = System.Drawing.Color.White;
             this.GrpBxDownscaling.Location = new System.Drawing.Point(7, 354);
             this.GrpBxDownscaling.Name = "GrpBxDownscaling";
-            this.GrpBxDownscaling.Size = new System.Drawing.Size(656, 224);
+            this.GrpBxDownscaling.Size = new System.Drawing.Size(656, 263);
             this.GrpBxDownscaling.TabIndex = 35;
             this.GrpBxDownscaling.TabStop = false;
             this.GrpBxDownscaling.Text = "Resolution Downscaling";
@@ -414,7 +416,7 @@
             this.BtnApplyDownScaling.Enabled = false;
             this.BtnApplyDownScaling.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnApplyDownScaling.ForeColor = System.Drawing.Color.Orange;
-            this.BtnApplyDownScaling.Location = new System.Drawing.Point(574, 184);
+            this.BtnApplyDownScaling.Location = new System.Drawing.Point(574, 223);
             this.BtnApplyDownScaling.Name = "BtnApplyDownScaling";
             this.BtnApplyDownScaling.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnApplyDownScaling.Size = new System.Drawing.Size(75, 31);
@@ -513,6 +515,8 @@
             // 
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox6.Controls.Add(this.LblController);
+            this.groupBox6.Controls.Add(this.label26);
             this.groupBox6.Controls.Add(this.LblPoise);
             this.groupBox6.Controls.Add(this.label20);
             this.groupBox6.Controls.Add(this.LblBoss);
@@ -552,7 +556,7 @@
             this.groupBox6.ForeColor = System.Drawing.Color.White;
             this.groupBox6.Location = new System.Drawing.Point(669, 61);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(319, 517);
+            this.groupBox6.Size = new System.Drawing.Size(319, 556);
             this.groupBox6.TabIndex = 36;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Options (Can not be changed after installation)";
@@ -781,7 +785,7 @@
             // 
             this.DrpDwnLstIni.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.DrpDwnLstIni.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
-            this.DrpDwnLstIni.Location = new System.Drawing.Point(118, 458);
+            this.DrpDwnLstIni.Location = new System.Drawing.Point(118, 482);
             this.DrpDwnLstIni.Name = "DrpDwnLstIni";
             this.DrpDwnLstIni.Size = new System.Drawing.Size(152, 28);
             this.DrpDwnLstIni.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -793,7 +797,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(7, 465);
+            this.label16.Location = new System.Drawing.Point(7, 489);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(83, 13);
             this.label16.TabIndex = 39;
@@ -919,6 +923,26 @@
             this.label7.TabIndex = 27;
             this.label7.Text = "Variant";
             // 
+            // LblController
+            // 
+            this.LblController.AutoSize = true;
+            this.LblController.ForeColor = System.Drawing.Color.Orange;
+            this.LblController.Location = new System.Drawing.Point(115, 452);
+            this.LblController.Name = "LblController";
+            this.LblController.Size = new System.Drawing.Size(57, 13);
+            this.LblController.TabIndex = 75;
+            this.LblController.Text = "[Controller]";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.ForeColor = System.Drawing.Color.White;
+            this.label26.Location = new System.Drawing.Point(7, 454);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(51, 13);
+            this.label26.TabIndex = 74;
+            this.label26.Text = "Controller";
+            // 
             // InstanceSettingsFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -932,7 +956,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.PnlHeader);
             this.Name = "InstanceSettingsFrame";
-            this.Size = new System.Drawing.Size(998, 640);
+            this.Size = new System.Drawing.Size(998, 679);
             this.PnlHeader.ResumeLayout(false);
             this.PnlHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).EndInit();
@@ -1024,5 +1048,7 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label LblController;
+        private System.Windows.Forms.Label label26;
     }
 }

@@ -131,7 +131,23 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             return false;
         }
 
-        private bool CheckIfModerate()
+        private bool CheckIfHMilkDrinker()
+        {
+            if (ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling == "Very Easy" &&
+                ServiceSingleton.Instances.WorkingInstance.Options.Exhaustion == "FALSE" &&
+                ServiceSingleton.Instances.WorkingInstance.Options.NerfPA == "NPCs Only" &&
+                ServiceSingleton.Instances.WorkingInstance.Options.EnemiesResistance == "FALSE" &&
+                ServiceSingleton.Instances.WorkingInstance.Options.Boss == "FALSE" &&
+                ServiceSingleton.Instances.WorkingInstance.Options.Poise == "FALSE")
+            {
+
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool CheckIfTrueNord()
         {
 
             if (ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling == "Medium" &&
@@ -154,8 +170,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
             List<string> Presets = new List<string>();
 
+            Presets.Add("Milk Drinker");
             Presets.Add("Hack and Slash");
-            Presets.Add("Moderate");
+            Presets.Add("True Nord");
             Presets.Add("Prepare to Die");            
 
             DrpDwnLstPreset.SelectedIndexChanged -= DrpDwnLstPreset_SelectedIndexChanged;
@@ -163,23 +180,28 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             if (CheckIfPrepareToDie())
             {
                 DrpDwnLstPreset.DataSource = Presets;
-                DrpDwnLstPreset.SelectedIndex = 2;                
+                DrpDwnLstPreset.SelectedIndex = 3;                
             }
-            else if (CheckIfModerate())
+            else if (CheckIfTrueNord())
             {
                 DrpDwnLstPreset.DataSource = Presets;
-                DrpDwnLstPreset.SelectedIndex = 1;                
+                DrpDwnLstPreset.SelectedIndex = 2;                
             }
             else if (CheckIfHackAndSash())
             {
                 DrpDwnLstPreset.DataSource = Presets;
-                DrpDwnLstPreset.SelectedIndex = 0;                
+                DrpDwnLstPreset.SelectedIndex = 1;                
+            }
+            else if (CheckIfHMilkDrinker())
+            {
+                DrpDwnLstPreset.DataSource = Presets;
+                DrpDwnLstPreset.SelectedIndex = 0;
             }
             else
             {
                 Presets.Add("Customized");
                 DrpDwnLstPreset.DataSource = Presets;
-                DrpDwnLstPreset.SelectedIndex = 3;
+                DrpDwnLstPreset.SelectedIndex = 4;
             }
             
             DrpDwnLstPreset.SelectedIndexChanged += DrpDwnLstPreset_SelectedIndexChanged;
@@ -187,6 +209,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
             List<string> CombatScalings = new List<string>();
 
+            CombatScalings.Add("Very Easy");
             CombatScalings.Add("Easy");
             CombatScalings.Add("Medium");
             CombatScalings.Add("Hard");
@@ -252,37 +275,43 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
         private void DrpDwnLstPreset_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (DrpDwnLstPreset.SelectedIndex == 2)
+            if (DrpDwnLstPreset.SelectedIndex == 3)
             {                
-                DrpDwnLstCombatScaling.SelectedIndex = 2;
-                TglBtnExhaustion.ToggleState = ToggleButtonState.Active;
-                //TglBtnNerf.ToggleState = ToggleButtonState.Active;
+                DrpDwnLstCombatScaling.SelectedIndex = 3;
+                TglBtnExhaustion.ToggleState = ToggleButtonState.Active;                
                 DrpDwnLstNerfPA.SelectedIndex = 1;
                 TglBtnResistance.ToggleState = ToggleButtonState.Active;
                 TglBtnBoss.ToggleState = ToggleButtonState.Active;
                 TglBtnPoise.ToggleState = ToggleButtonState.Active;                
             }
-            else if (DrpDwnLstPreset.SelectedIndex == 1)
+            else if (DrpDwnLstPreset.SelectedIndex == 2)
             {
-                DrpDwnLstCombatScaling.SelectedIndex = 1;
-                TglBtnExhaustion.ToggleState = ToggleButtonState.Active;
-                //TglBtnNerf.ToggleState = ToggleButtonState.Inactive;
+                DrpDwnLstCombatScaling.SelectedIndex = 2;
+                TglBtnExhaustion.ToggleState = ToggleButtonState.Active;                
                 DrpDwnLstNerfPA.SelectedIndex = 3;
                 TglBtnResistance.ToggleState = ToggleButtonState.Active;
                 TglBtnBoss.ToggleState = ToggleButtonState.Active;
+                TglBtnPoise.ToggleState = ToggleButtonState.Inactive;
+            }
+            else if (DrpDwnLstPreset.SelectedIndex == 1)
+            {
+                DrpDwnLstCombatScaling.SelectedIndex = 1;
+                TglBtnExhaustion.ToggleState = ToggleButtonState.Inactive;                
+                DrpDwnLstNerfPA.SelectedIndex = 2;
+                TglBtnResistance.ToggleState = ToggleButtonState.Inactive;
+                TglBtnBoss.ToggleState = ToggleButtonState.Inactive;
                 TglBtnPoise.ToggleState = ToggleButtonState.Inactive;
             }
             else
             {
                 DrpDwnLstCombatScaling.SelectedIndex = 0;
                 TglBtnExhaustion.ToggleState = ToggleButtonState.Inactive;
-                //TglBtnNerf.ToggleState = ToggleButtonState.Inactive;
                 DrpDwnLstNerfPA.SelectedIndex = 2;
                 TglBtnResistance.ToggleState = ToggleButtonState.Inactive;
                 TglBtnBoss.ToggleState = ToggleButtonState.Inactive;
                 TglBtnPoise.ToggleState = ToggleButtonState.Inactive;
             }
-            
+
         }        
 
         private void TglBtnExhaustion_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
@@ -296,18 +325,6 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 ServiceSingleton.Instances.WorkingInstance.Options.Exhaustion = "FALSE";
             }
         }
-
-        //private void TglBtnNerf_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
-        //{
-        //    if (e.ToggleState == ToggleButtonState.Active)
-        //    {
-        //        ServiceSingleton.Instances.WorkingInstance.Options.NerfPA = "TRUE";
-        //    }
-        //    else
-        //    {
-        //        ServiceSingleton.Instances.WorkingInstance.Options.NerfPA = "FALSE";
-        //    }
-        //}
 
         private void TglBtnResistance_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
         {
@@ -349,8 +366,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         {
             List<string> Presets = new List<string>();
 
+            Presets.Add("Milk Drinker");
             Presets.Add("Hack and Slash");
-            Presets.Add("Moderate");
+            Presets.Add("True Nord");
             Presets.Add("Prepare to Die");
 
             DrpDwnLstPreset.DataSource = Presets;

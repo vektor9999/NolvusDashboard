@@ -50,6 +50,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnBack = new Vcc.Nolvus.Components.Controls.FlatButton();
+            this.BtnController = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -289,9 +290,26 @@
             this.BtnBack.UseVisualStyleBackColor = false;
             this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
             // 
+            // BtnController
+            // 
+            this.BtnController.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnController.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.BtnController.BorderColor = System.Drawing.Color.White;
+            this.BtnController.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnController.ForeColor = System.Drawing.Color.White;
+            this.BtnController.Location = new System.Drawing.Point(808, 660);
+            this.BtnController.Name = "BtnController";
+            this.BtnController.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
+            this.BtnController.Size = new System.Drawing.Size(114, 40);
+            this.BtnController.TabIndex = 6;
+            this.BtnController.Text = "Controller";
+            this.BtnController.UseVisualStyleBackColor = false;
+            this.BtnController.Click += new System.EventHandler(this.BtnController_Click);
+            // 
             // KeysBindingFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Controls.Add(this.BtnController);
             this.Controls.Add(this.BtnBack);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -331,5 +349,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private Components.Controls.FlatButton BtnBack;
+        private Components.Controls.FlatButton BtnController;
     }
 }

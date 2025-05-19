@@ -19,14 +19,14 @@ using Vcc.Nolvus.Dashboard.Frames.Installer;
 
 namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 {
-    public partial class KeysBindingFrame : DashboardFrame
+    public partial class ControllerBindingFrame : DashboardFrame
     {        
-        public KeysBindingFrame()
+        public ControllerBindingFrame()
         {
             InitializeComponent();
         }
 
-        public KeysBindingFrame(IDashboard Dashboard, FrameParameters Params)
+        public ControllerBindingFrame(IDashboard Dashboard, FrameParameters Params)
             : base(Dashboard, Params)            
         {
             InitializeComponent();            
@@ -41,9 +41,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
             ServiceSingleton.Dashboard.LoadFrame<InstancesFrame>();
         }
 
-        private void BtnController_Click(object sender, EventArgs e)
+        private void BtnKeyboard_Click(object sender, EventArgs e)
         {
-            ServiceSingleton.Dashboard.LoadFrame<ControllerBindingFrame>();
+            ServiceSingleton.Dashboard.LoadFrame<v6.KeysBindingFrame>();
         }
     }
 }

@@ -302,8 +302,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
                 LblEnemiesResistance.Text = Instance.Options.EnemiesResistance == "TRUE" ? "Yes" : "No";
                 LblBoss.Text = Instance.Options.Boss == "TRUE" ? "Yes" : "No";
                 LblPoise.Text = Instance.Options.Poise == "TRUE" ? "Yes" : "No";
+                LblController.Text = Instance.Options.Controller == "TRUE" ? "Yes" : "No";
 
-               
+
                 List<string> IniSettings = new List<string>();
 
                 IniSettings.Add("Low");

@@ -962,6 +962,15 @@ namespace Vcc.Nolvus.Services.Report
                         CurrentLine += DrawString("Poise System : ", "No", Graphics, Report.PageSettings, CurrentLine);
                     }
 
+                    if (Instance.Options.Controller == "TRUE")
+                    {
+                        CurrentLine += DrawString("Controller : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
+                    }
+                    else
+                    {
+                        CurrentLine += DrawString("Controller : ", "No", Graphics, Report.PageSettings, CurrentLine);
+                    }
+
                     #endregion
                 }
 

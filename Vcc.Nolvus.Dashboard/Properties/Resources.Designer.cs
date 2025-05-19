@@ -391,6 +391,16 @@ namespace Vcc.Nolvus.Dashboard.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Nolvus_v6_controller_setup {
+            get {
+                object obj = ResourceManager.GetObject("Nolvus-v6-controller-setup", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] NolvusLauncher {

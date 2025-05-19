@@ -93,6 +93,18 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             TglBtnGore.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
             TglBtnGore.InactiveState.HoverColor = Color.White;
 
+            TglBtnController.ActiveState.Text = "ON";
+            TglBtnController.ActiveState.BackColor = Color.Orange;
+            TglBtnController.ActiveState.BorderColor = Color.Orange;
+            TglBtnController.ActiveState.ForeColor = Color.White;
+            TglBtnController.ActiveState.HoverColor = Color.Orange;
+
+            TglBtnController.InactiveState.Text = "OFF";
+            TglBtnController.InactiveState.BackColor = Color.White;
+            TglBtnController.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
+            TglBtnController.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
+            TglBtnController.InactiveState.HoverColor = Color.White;
+
             #endregion
         }
 
@@ -140,6 +152,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             if (Instance.Options.Gore == "TRUE")
             {
                 TglBtnGore.ToggleState = ToggleButtonState.Active;
+            }
+
+            if (Instance.Options.Controller == "TRUE")
+            {
+                TglBtnController.ToggleState = ToggleButtonState.Active;
             }
 
             List<string> CombatAnims = new List<string>();
@@ -231,6 +248,18 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         private void DrpDwnLstCombatAnims_SelectedIndexChanged(object sender, EventArgs e)
         {
             ServiceSingleton.Instances.WorkingInstance.Options.CombatAnimation = DrpDwnLstCombatAnims.SelectedValue.ToString();
+        }
+
+        private void TglBtnController_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
+        {
+            if (e.ToggleState == ToggleButtonState.Active)
+            {
+                ServiceSingleton.Instances.WorkingInstance.Options.Controller = "TRUE";
+            }
+            else
+            {
+                ServiceSingleton.Instances.WorkingInstance.Options.Controller = "FALSE";
+            }
         }
     }
 }
