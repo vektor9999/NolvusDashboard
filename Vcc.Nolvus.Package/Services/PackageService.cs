@@ -382,7 +382,7 @@ namespace Vcc.Nolvus.Package.Services
         public async Task InstallModList(ModInstallSettings Settings)
         {
             try
-            {
+            {                
                 _Processing = true;
 
                 SemaphoreSlim = new SemaphoreSlim(ServiceSingleton.Settings.ProcessCount);

@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection1 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection1 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection1 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
             Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection2 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
             Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection2 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
             Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection2 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
@@ -44,15 +47,15 @@
             Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection6 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
             Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection6 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
             Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection6 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
-            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection1 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection1 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection1 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.BtnPrevious = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnContinue = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.TglBtnController = new Syncfusion.Windows.Forms.Tools.ToggleButton();
+            this.label16 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.TglBtnGore = new Syncfusion.Windows.Forms.Tools.ToggleButton();
             this.label13 = new System.Windows.Forms.Label();
@@ -72,18 +75,15 @@
             this.TglBtnNudity = new Syncfusion.Windows.Forms.Tools.ToggleButton();
             this.label1 = new System.Windows.Forms.Label();
             this.LblStepText = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.TglBtnController = new Syncfusion.Windows.Forms.Tools.ToggleButton();
-            this.label16 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TglBtnController)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnGore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnStancesPerksTree)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstCombatAnims)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnAltStart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnLeveling)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnNudity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TglBtnController)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -183,6 +183,57 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(565, 610);
             this.panel2.TabIndex = 20;
+            // 
+            // label15
+            // 
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Orange;
+            this.label15.Location = new System.Drawing.Point(14, 533);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(511, 47);
+            this.label15.TabIndex = 62;
+            this.label15.Text = "Enable controller support. You can view the controller layout in the MCM menu whe" +
+    "n the list is installed. It is not recommended to play with mouse and keyboard w" +
+    "hen the controller mods are installed.";
+            // 
+            // TglBtnController
+            // 
+            activeStateCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            activeStateCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
+            this.TglBtnController.ActiveState = activeStateCollection1;
+            this.TglBtnController.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.TglBtnController.ForeColor = System.Drawing.Color.Black;
+            inactiveStateCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            inactiveStateCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            inactiveStateCollection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            inactiveStateCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.TglBtnController.InactiveState = inactiveStateCollection1;
+            this.TglBtnController.Location = new System.Drawing.Point(116, 498);
+            this.TglBtnController.MinimumSize = new System.Drawing.Size(52, 20);
+            this.TglBtnController.Name = "TglBtnController";
+            this.TglBtnController.Size = new System.Drawing.Size(63, 24);
+            sliderCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            sliderCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection1.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            sliderCollection1.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.TglBtnController.Slider = sliderCollection1;
+            this.TglBtnController.TabIndex = 61;
+            this.TglBtnController.Text = "toggleButton1";
+            this.TglBtnController.ThemeName = "Office2016Black";
+            this.TglBtnController.ToggleStateChanged += new Syncfusion.Windows.Forms.Tools.ToggleStateChangedEventHandler(this.TglBtnController_ToggleStateChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.Color.White;
+            this.label16.Location = new System.Drawing.Point(14, 504);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(91, 13);
+            this.label16.TabIndex = 60;
+            this.label16.Text = "Controller Support";
             // 
             // label14
             // 
@@ -477,56 +528,6 @@
             this.LblStepText.Text = "Additional Options";
             this.LblStepText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label15
-            // 
-            this.label15.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.Orange;
-            this.label15.Location = new System.Drawing.Point(14, 533);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(511, 47);
-            this.label15.TabIndex = 62;
-            this.label15.Text = "Enable controller support. Don\'t forget to check the MCM menu to tailor the contr" +
-    "oller settings to your liking";
-            // 
-            // TglBtnController
-            // 
-            activeStateCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            activeStateCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
-            this.TglBtnController.ActiveState = activeStateCollection1;
-            this.TglBtnController.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.TglBtnController.ForeColor = System.Drawing.Color.Black;
-            inactiveStateCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            inactiveStateCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            inactiveStateCollection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            inactiveStateCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.TglBtnController.InactiveState = inactiveStateCollection1;
-            this.TglBtnController.Location = new System.Drawing.Point(116, 498);
-            this.TglBtnController.MinimumSize = new System.Drawing.Size(52, 20);
-            this.TglBtnController.Name = "TglBtnController";
-            this.TglBtnController.Size = new System.Drawing.Size(63, 24);
-            sliderCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            sliderCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection1.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            sliderCollection1.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.TglBtnController.Slider = sliderCollection1;
-            this.TglBtnController.TabIndex = 61;
-            this.TglBtnController.Text = "toggleButton1";
-            this.TglBtnController.ThemeName = "Office2016Black";
-            this.TglBtnController.ToggleStateChanged += new Syncfusion.Windows.Forms.Tools.ToggleStateChangedEventHandler(this.TglBtnController_ToggleStateChanged);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(14, 504);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(91, 13);
-            this.label16.TabIndex = 60;
-            this.label16.Text = "Controller Support";
-            // 
             // OptionsFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -540,13 +541,13 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TglBtnController)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnGore)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnStancesPerksTree)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstCombatAnims)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnAltStart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnLeveling)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnNudity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TglBtnController)).EndInit();
             this.ResumeLayout(false);
 
         }
