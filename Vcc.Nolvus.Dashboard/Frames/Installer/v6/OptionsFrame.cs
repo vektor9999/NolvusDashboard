@@ -115,6 +115,13 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             return Index == -1 ? 0 : Index;                            
         }
 
+        private int UIsIndex(List<string> UIs)
+        {
+            var Index = UIs.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Options.UI);
+
+            return Index == -1 ? 0 : Index;
+        }
+
         protected override void OnLoad()
         {
             var Instance = ServiceSingleton.Instances.WorkingInstance;
@@ -167,6 +174,15 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             DrpDwnLstCombatAnims.DataSource = CombatAnims;
 
             DrpDwnLstCombatAnims.SelectedIndex = AnimsIndex(CombatAnims);
+
+            List<string> UIs = new List<string>();
+
+            UIs.Add("Untarnished UI");
+            UIs.Add("Edge UI");
+
+            DrpDwnLstUI.DataSource = UIs;
+
+            DrpDwnLstUI.SelectedIndex = UIsIndex(UIs);
 
             ServiceSingleton.Dashboard.Info("Options");
         }
@@ -260,6 +276,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             {
                 ServiceSingleton.Instances.WorkingInstance.Options.Controller = "FALSE";
             }
+        }
+
+        private void DrpDwnLstUI_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ServiceSingleton.Instances.WorkingInstance.Options.UI = DrpDwnLstUI.SelectedValue.ToString();
         }
     }
 }

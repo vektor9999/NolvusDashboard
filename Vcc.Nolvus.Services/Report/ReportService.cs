@@ -971,6 +971,8 @@ namespace Vcc.Nolvus.Services.Report
                         CurrentLine += DrawString("Controller : ", "No", Graphics, Report.PageSettings, CurrentLine);
                     }
 
+                    CurrentLine += DrawString("User Interface : ", Instance.Options.UI, Graphics, Report.PageSettings, CurrentLine);
+
                     #endregion
                 }
 

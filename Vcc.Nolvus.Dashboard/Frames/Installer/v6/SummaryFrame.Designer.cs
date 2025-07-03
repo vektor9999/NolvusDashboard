@@ -49,6 +49,8 @@
             this.RdBtnThreshold = new System.Windows.Forms.RadioButton();
             this.RdBtnOneError = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.LblController = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.LblGore = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.LblENB = new System.Windows.Forms.Label();
@@ -94,8 +96,8 @@
             this.PicBox = new System.Windows.Forms.PictureBox();
             this.BtnPrevious = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnStart = new Vcc.Nolvus.Components.Controls.FlatButton();
-            this.LblController = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
+            this.LblUI = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -136,7 +138,7 @@
             this.panel1.Controls.Add(this.BtnStart);
             this.panel1.Location = new System.Drawing.Point(7, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(901, 732);
+            this.panel1.Size = new System.Drawing.Size(901, 814);
             this.panel1.TabIndex = 9;
             // 
             // groupBox5
@@ -158,7 +160,7 @@
             this.groupBox5.ForeColor = System.Drawing.Color.White;
             this.groupBox5.Location = new System.Drawing.Point(602, 217);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(286, 227);
+            this.groupBox5.Size = new System.Drawing.Size(286, 253);
             this.groupBox5.TabIndex = 33;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Difficulty";
@@ -293,9 +295,9 @@
             this.groupBox4.Controls.Add(this.RdBtnThreshold);
             this.groupBox4.Controls.Add(this.RdBtnOneError);
             this.groupBox4.ForeColor = System.Drawing.Color.White;
-            this.groupBox4.Location = new System.Drawing.Point(15, 506);
+            this.groupBox4.Location = new System.Drawing.Point(15, 559);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(872, 169);
+            this.groupBox4.Size = new System.Drawing.Size(872, 198);
             this.groupBox4.TabIndex = 32;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Errors Management";
@@ -347,6 +349,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.LblUI);
+            this.groupBox3.Controls.Add(this.label21);
             this.groupBox3.Controls.Add(this.LblController);
             this.groupBox3.Controls.Add(this.label20);
             this.groupBox3.Controls.Add(this.LblGore);
@@ -366,10 +370,30 @@
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(305, 217);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(289, 227);
+            this.groupBox3.Size = new System.Drawing.Size(289, 253);
             this.groupBox3.TabIndex = 31;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Options";
+            // 
+            // LblController
+            // 
+            this.LblController.AutoSize = true;
+            this.LblController.ForeColor = System.Drawing.Color.Orange;
+            this.LblController.Location = new System.Drawing.Point(140, 173);
+            this.LblController.Name = "LblController";
+            this.LblController.Size = new System.Drawing.Size(57, 13);
+            this.LblController.TabIndex = 49;
+            this.LblController.Text = "[Controller]";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.Color.White;
+            this.label20.Location = new System.Drawing.Point(10, 173);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(51, 13);
+            this.label20.TabIndex = 48;
+            this.label20.Text = "Controller";
             // 
             // LblGore
             // 
@@ -672,7 +696,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(15, 217);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(278, 227);
+            this.groupBox1.Size = new System.Drawing.Size(278, 253);
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Performance";
@@ -804,7 +828,7 @@
             this.PnlMessage.BackColor = System.Drawing.Color.Orange;
             this.PnlMessage.Controls.Add(this.LblMessage);
             this.PnlMessage.Controls.Add(this.PicBox);
-            this.PnlMessage.Location = new System.Drawing.Point(15, 452);
+            this.PnlMessage.Location = new System.Drawing.Point(16, 492);
             this.PnlMessage.Name = "PnlMessage";
             this.PnlMessage.Size = new System.Drawing.Size(872, 45);
             this.PnlMessage.TabIndex = 20;
@@ -838,7 +862,7 @@
             this.BtnPrevious.BorderColor = System.Drawing.Color.White;
             this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPrevious.ForeColor = System.Drawing.Color.White;
-            this.BtnPrevious.Location = new System.Drawing.Point(706, 682);
+            this.BtnPrevious.Location = new System.Drawing.Point(706, 764);
             this.BtnPrevious.Name = "BtnPrevious";
             this.BtnPrevious.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnPrevious.Size = new System.Drawing.Size(88, 40);
@@ -854,7 +878,7 @@
             this.BtnStart.BorderColor = System.Drawing.Color.White;
             this.BtnStart.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnStart.ForeColor = System.Drawing.Color.White;
-            this.BtnStart.Location = new System.Drawing.Point(799, 682);
+            this.BtnStart.Location = new System.Drawing.Point(799, 764);
             this.BtnStart.Name = "BtnStart";
             this.BtnStart.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnStart.Size = new System.Drawing.Size(88, 40);
@@ -863,25 +887,25 @@
             this.BtnStart.UseVisualStyleBackColor = false;
             this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
-            // LblController
+            // LblUI
             // 
-            this.LblController.AutoSize = true;
-            this.LblController.ForeColor = System.Drawing.Color.Orange;
-            this.LblController.Location = new System.Drawing.Point(140, 173);
-            this.LblController.Name = "LblController";
-            this.LblController.Size = new System.Drawing.Size(57, 13);
-            this.LblController.TabIndex = 49;
-            this.LblController.Text = "[Controller]";
+            this.LblUI.AutoSize = true;
+            this.LblUI.ForeColor = System.Drawing.Color.Orange;
+            this.LblUI.Location = new System.Drawing.Point(141, 221);
+            this.LblUI.Name = "LblUI";
+            this.LblUI.Size = new System.Drawing.Size(80, 13);
+            this.LblUI.TabIndex = 51;
+            this.LblUI.Text = "[User Interface]";
             // 
-            // label20
+            // label21
             // 
-            this.label20.AutoSize = true;
-            this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(10, 173);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(51, 13);
-            this.label20.TabIndex = 48;
-            this.label20.Text = "Controller";
+            this.label21.AutoSize = true;
+            this.label21.ForeColor = System.Drawing.Color.White;
+            this.label21.Location = new System.Drawing.Point(11, 221);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(74, 13);
+            this.label21.TabIndex = 50;
+            this.label21.Text = "User Interface";
             // 
             // SummaryFrame
             // 
@@ -891,7 +915,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.LblStepText);
             this.Name = "SummaryFrame";
-            this.Size = new System.Drawing.Size(908, 767);
+            this.Size = new System.Drawing.Size(908, 849);
             this.panel1.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
@@ -980,5 +1004,7 @@
         private System.Windows.Forms.Label LblPoise;
         private System.Windows.Forms.Label LblController;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label LblUI;
+        private System.Windows.Forms.Label label21;
     }
 }

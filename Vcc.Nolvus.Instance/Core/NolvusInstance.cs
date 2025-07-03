@@ -16,7 +16,8 @@ namespace Vcc.Nolvus.Instance.Core
     {
         #region Properties
 
-        public string Id { get; set; } = string.Empty;        
+        public string Id { get; set; } = string.Empty;
+        public string Code { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; }        
         public string Version { get; set; } = string.Empty;        
@@ -56,7 +57,8 @@ namespace Vcc.Nolvus.Instance.Core
         }
         public NolvusInstance(INolvusVersionDTO DTO)
         {
-            Id = DTO.Id;            
+            Id = DTO.Id;
+            Code = DTO.Code;                   
             Name = DTO.Name;
             Description = DTO.Description;
 
@@ -149,7 +151,7 @@ namespace Vcc.Nolvus.Instance.Core
         }
         public void Load(XmlNode Node)
         {
-            Id = Node["Id"].InnerText.Trim();
+            Id = Node["Id"].InnerText.Trim();            
             Name = Node["Name"].InnerText.Trim();
             Description = Node["Description"].InnerText.Trim();
             Version = Node["Version"].InnerText.Trim();            
@@ -175,7 +177,7 @@ namespace Vcc.Nolvus.Instance.Core
 
             XMLWriter.WriteStartElement("Id");
             XMLWriter.WriteString(Id.Trim());
-            XMLWriter.WriteEndElement();
+            XMLWriter.WriteEndElement();           
 
             XMLWriter.WriteStartElement("Name");
             XMLWriter.WriteString(Name.Trim());

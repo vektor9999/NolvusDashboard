@@ -29,6 +29,7 @@ namespace Vcc.Nolvus.Instance.Core
         public string Gore { get; set; } = "FALSE";
         public string CombatScaling { get; set; } = "Hard";
         public string Controller { get; set; } = "FALSE";
+        public string UI { get; set; } = "Untarnished UI";
 
 
         public void Load(XmlNode Node)
@@ -118,6 +119,11 @@ namespace Vcc.Nolvus.Instance.Core
                 Controller = Node["Controller"].InnerText.Trim();
             }
 
+            if (Node["UI"] != null)
+            {
+                UI = Node["UI"].InnerText.Trim();
+            }
+
             ServiceSingleton.Logger.Log(string.Format("Instance nudity : {0}", Nudity));
             ServiceSingleton.Logger.Log(string.Format("Instance enb : {0}", AlternateENB));
             ServiceSingleton.Logger.Log(string.Format("Instance fantasy mode : {0}", FantasyMode));
@@ -136,6 +142,7 @@ namespace Vcc.Nolvus.Instance.Core
             ServiceSingleton.Logger.Log(string.Format("Gore : {0}", Gore));
             ServiceSingleton.Logger.Log(string.Format("Combat Scaling : {0}", CombatScaling));
             ServiceSingleton.Logger.Log(string.Format("Controller : {0}", Controller));
+            ServiceSingleton.Logger.Log(string.Format("UI : {0}", UI));
         }      
 
         public void Save(XmlWriter XMLWriter)
@@ -212,6 +219,10 @@ namespace Vcc.Nolvus.Instance.Core
 
             XMLWriter.WriteStartElement("Controller");
             XMLWriter.WriteString(Controller.Trim());
+            XMLWriter.WriteEndElement();
+
+            XMLWriter.WriteStartElement("UI");
+            XMLWriter.WriteString(UI.Trim());
             XMLWriter.WriteEndElement();
 
             XMLWriter.WriteEndElement();

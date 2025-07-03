@@ -53,6 +53,9 @@
             this.BtnContinue = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.DrpDwnLstUI = new Syncfusion.WinForms.ListView.SfComboBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.TglBtnController = new Syncfusion.Windows.Forms.Tools.ToggleButton();
             this.label16 = new System.Windows.Forms.Label();
@@ -77,6 +80,7 @@
             this.LblStepText = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstUI)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnController)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnGore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnStancesPerksTree)).BeginInit();
@@ -97,7 +101,7 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Location = new System.Drawing.Point(578, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(310, 610);
+            this.panel1.Size = new System.Drawing.Size(310, 693);
             this.panel1.TabIndex = 21;
             // 
             // label10
@@ -117,7 +121,7 @@
             this.BtnPrevious.BorderColor = System.Drawing.Color.White;
             this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPrevious.ForeColor = System.Drawing.Color.White;
-            this.BtnPrevious.Location = new System.Drawing.Point(114, 555);
+            this.BtnPrevious.Location = new System.Drawing.Point(114, 638);
             this.BtnPrevious.Name = "BtnPrevious";
             this.BtnPrevious.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnPrevious.Size = new System.Drawing.Size(88, 40);
@@ -133,7 +137,7 @@
             this.BtnContinue.BorderColor = System.Drawing.Color.White;
             this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnContinue.ForeColor = System.Drawing.Color.White;
-            this.BtnContinue.Location = new System.Drawing.Point(208, 555);
+            this.BtnContinue.Location = new System.Drawing.Point(208, 638);
             this.BtnContinue.Name = "BtnContinue";
             this.BtnContinue.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnContinue.Size = new System.Drawing.Size(88, 40);
@@ -158,6 +162,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label17);
+            this.panel2.Controls.Add(this.DrpDwnLstUI);
+            this.panel2.Controls.Add(this.label18);
             this.panel2.Controls.Add(this.label15);
             this.panel2.Controls.Add(this.TglBtnController);
             this.panel2.Controls.Add(this.label16);
@@ -181,8 +188,41 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(7, 30);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(565, 610);
+            this.panel2.Size = new System.Drawing.Size(565, 693);
             this.panel2.TabIndex = 20;
+            // 
+            // label17
+            // 
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.Orange;
+            this.label17.Location = new System.Drawing.Point(14, 622);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(511, 38);
+            this.label17.TabIndex = 65;
+            this.label17.Text = "Select between Untarnished UI or Edge UI.";
+            // 
+            // DrpDwnLstUI
+            // 
+            this.DrpDwnLstUI.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.DrpDwnLstUI.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
+            this.DrpDwnLstUI.Location = new System.Drawing.Point(116, 587);
+            this.DrpDwnLstUI.Name = "DrpDwnLstUI";
+            this.DrpDwnLstUI.Size = new System.Drawing.Size(184, 28);
+            this.DrpDwnLstUI.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.DrpDwnLstUI.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.DrpDwnLstUI.TabIndex = 64;
+            this.DrpDwnLstUI.ThemeName = "Office2016Black";
+            this.DrpDwnLstUI.SelectedIndexChanged += new System.EventHandler(this.DrpDwnLstUI_SelectedIndexChanged);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.Color.White;
+            this.label18.Location = new System.Drawing.Point(14, 594);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(74, 13);
+            this.label18.TabIndex = 63;
+            this.label18.Text = "User Interface";
             // 
             // label15
             // 
@@ -537,10 +577,11 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.LblStepText);
             this.Name = "OptionsFrame";
-            this.Size = new System.Drawing.Size(891, 645);
+            this.Size = new System.Drawing.Size(891, 728);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstUI)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnController)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnGore)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnStancesPerksTree)).EndInit();
@@ -582,5 +623,8 @@
         private System.Windows.Forms.Label label15;
         private Syncfusion.Windows.Forms.Tools.ToggleButton TglBtnController;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private Syncfusion.WinForms.ListView.SfComboBox DrpDwnLstUI;
+        private System.Windows.Forms.Label label18;
     }
 }

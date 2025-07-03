@@ -303,7 +303,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
                 LblBoss.Text = Instance.Options.Boss == "TRUE" ? "Yes" : "No";
                 LblPoise.Text = Instance.Options.Poise == "TRUE" ? "Yes" : "No";
                 LblController.Text = Instance.Options.Controller == "TRUE" ? "Yes" : "No";
-
+                LblUI.Text = Instance.Options.UI;
 
                 List<string> IniSettings = new List<string>();
 

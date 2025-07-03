@@ -86,6 +86,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 LblBoss.Text = Instance.Options.Boss == "TRUE" ? "Yes" : "No";
                 LblPoise.Text = Instance.Options.Poise == "TRUE" ? "Yes" : "No";
                 LblController.Text = Instance.Options.Controller == "TRUE" ? "Yes" : "No";
+                LblUI.Text = Instance.Options.UI;
 
                 if (!ApiManager.AccountInfo.IsPremium)
                 {

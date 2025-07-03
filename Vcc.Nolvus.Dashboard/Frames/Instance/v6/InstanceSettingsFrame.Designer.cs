@@ -63,6 +63,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.LblController = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.LblPoise = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.LblBoss = new System.Windows.Forms.Label();
@@ -99,8 +101,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.LblController = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
+            this.LblUI = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
             this.PnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -515,6 +517,8 @@
             // 
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox6.Controls.Add(this.LblUI);
+            this.groupBox6.Controls.Add(this.label27);
             this.groupBox6.Controls.Add(this.LblController);
             this.groupBox6.Controls.Add(this.label26);
             this.groupBox6.Controls.Add(this.LblPoise);
@@ -560,6 +564,26 @@
             this.groupBox6.TabIndex = 36;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Options (Can not be changed after installation)";
+            // 
+            // LblController
+            // 
+            this.LblController.AutoSize = true;
+            this.LblController.ForeColor = System.Drawing.Color.Orange;
+            this.LblController.Location = new System.Drawing.Point(115, 452);
+            this.LblController.Name = "LblController";
+            this.LblController.Size = new System.Drawing.Size(57, 13);
+            this.LblController.TabIndex = 75;
+            this.LblController.Text = "[Controller]";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.ForeColor = System.Drawing.Color.White;
+            this.label26.Location = new System.Drawing.Point(7, 454);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(51, 13);
+            this.label26.TabIndex = 74;
+            this.label26.Text = "Controller";
             // 
             // LblPoise
             // 
@@ -785,7 +809,7 @@
             // 
             this.DrpDwnLstIni.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.DrpDwnLstIni.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
-            this.DrpDwnLstIni.Location = new System.Drawing.Point(118, 482);
+            this.DrpDwnLstIni.Location = new System.Drawing.Point(118, 505);
             this.DrpDwnLstIni.Name = "DrpDwnLstIni";
             this.DrpDwnLstIni.Size = new System.Drawing.Size(152, 28);
             this.DrpDwnLstIni.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -797,7 +821,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(7, 489);
+            this.label16.Location = new System.Drawing.Point(7, 512);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(83, 13);
             this.label16.TabIndex = 39;
@@ -923,25 +947,25 @@
             this.label7.TabIndex = 27;
             this.label7.Text = "Variant";
             // 
-            // LblController
+            // LblUI
             // 
-            this.LblController.AutoSize = true;
-            this.LblController.ForeColor = System.Drawing.Color.Orange;
-            this.LblController.Location = new System.Drawing.Point(115, 452);
-            this.LblController.Name = "LblController";
-            this.LblController.Size = new System.Drawing.Size(57, 13);
-            this.LblController.TabIndex = 75;
-            this.LblController.Text = "[Controller]";
+            this.LblUI.AutoSize = true;
+            this.LblUI.ForeColor = System.Drawing.Color.Orange;
+            this.LblUI.Location = new System.Drawing.Point(114, 477);
+            this.LblUI.Name = "LblUI";
+            this.LblUI.Size = new System.Drawing.Size(80, 13);
+            this.LblUI.TabIndex = 77;
+            this.LblUI.Text = "[User Interface]";
             // 
-            // label26
+            // label27
             // 
-            this.label26.AutoSize = true;
-            this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(7, 454);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(51, 13);
-            this.label26.TabIndex = 74;
-            this.label26.Text = "Controller";
+            this.label27.AutoSize = true;
+            this.label27.ForeColor = System.Drawing.Color.White;
+            this.label27.Location = new System.Drawing.Point(6, 479);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(74, 13);
+            this.label27.TabIndex = 76;
+            this.label27.Text = "User Interface";
             // 
             // InstanceSettingsFrame
             // 
@@ -1050,5 +1074,7 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label LblController;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label LblUI;
+        private System.Windows.Forms.Label label27;
     }
 }

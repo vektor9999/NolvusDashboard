@@ -255,7 +255,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             }
             else
             {
-                if (NolvusMessageBox.ShowConfirmation("Confirmation", "Remember, running the list without the right hardware requirement for the variant you choose can make the game instable. The variant can not be changed after installation. Are you sure you want to continue?") == DialogResult.Yes)
+                if (NolvusMessageBox.ShowConfirmation("Confirmation", "Remember, running the list without the right hardware requirement for the variant you choose can make the game unstable. The variant can not be changed after installation. Are you sure you want to continue?") == DialogResult.Yes)
                 {                    
                     ServiceSingleton.Dashboard.LoadFrame<v6.OptionsFrame>();                    
                 }                
@@ -342,23 +342,39 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             UpdateHardwareConfiguration();
         }
 
+        private void ForceTAA(string Message)
+        {
+            NolvusMessageBox.ShowMessage("Anti Alisasing", Message, MessageBoxType.Error);
+            DrpDwnLstAntiAliasing.SelectedIndexChanged -= DrpDwnLstAntiAliasing_SelectedIndexChanged;
+            DrpDwnLstAntiAliasing.SelectedIndex = 0;
+            ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing = "TAA";
+            DrpDwnLstAntiAliasing.SelectedIndexChanged += DrpDwnLstAntiAliasing_SelectedIndexChanged;
+        }
+
         private void DrpDwnLstAntiAliasing_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (DrpDwnLstAntiAliasing.SelectedValue != null)
             {
-                ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing = DrpDwnLstAntiAliasing.SelectedValue.ToString();
+                ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing = DrpDwnLstAntiAliasing.SelectedValue.ToString();                
 
                 if (DrpDwnLstAntiAliasing.SelectedValue.ToString() == "DLAA")
                 {
                     if (!IsNvidiaRTX() && !ServiceSingleton.Settings.ForceAA)
                     {
-                        NolvusMessageBox.ShowMessage("Anti Alisasing", "DLAA is only compatible with NVIDIA graphics cards!", MessageBoxType.Error);
-                        DrpDwnLstAntiAliasing.SelectedIndexChanged -= DrpDwnLstAntiAliasing_SelectedIndexChanged;
-                        DrpDwnLstAntiAliasing.SelectedIndex = 0;
-                        ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing = "TAA";
-                        DrpDwnLstAntiAliasing.SelectedIndexChanged += DrpDwnLstAntiAliasing_SelectedIndexChanged;
+                        ForceTAA("DLAA is only compatible with NVIDIA graphics cards!");                        
                     }
-                }                                
+                    else if (ServiceSingleton.Instances.WorkingInstance.Performance.DownScaling == "TRUE")
+                    {
+                        ForceTAA("DLAA is not compatible with downscaling");
+                    }                  
+                }
+                else if (DrpDwnLstAntiAliasing.SelectedValue.ToString() == "FSR")
+                {
+                    if (ServiceSingleton.Instances.WorkingInstance.Performance.DownScaling == "TRUE")
+                    {
+                        ForceTAA("FSR is not compatible with downscaling");
+                    }                    
+                }                                                
             }
         }        
 
