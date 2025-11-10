@@ -63,6 +63,16 @@ namespace Vcc.Nolvus.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Amon_ENB {
+            get {
+                object obj = ResourceManager.GetObject("Amon_ENB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap background_nolvus {
             get {
                 object obj = ResourceManager.GetObject("background-nolvus", resourceCulture);

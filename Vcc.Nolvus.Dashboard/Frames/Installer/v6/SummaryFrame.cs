@@ -68,23 +68,21 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
                 LblSREX.Text = Instance.Performance.SREX == "TRUE" ? "Yes" : "No";
                 LblLODs.Text = Instance.Performance.LODs;
-                
-                
+                LblFrameGen.Text = Instance.Performance.FrameGeneration == "TRUE" ? "Yes" : "No";
+
 
                 LblNudity.Text = Instance.Options.Nudity == "TRUE" ? "Yes" : "No";
                 LblCombatAnims.Text = Instance.Options.CombatAnimation;
                 LblLeveling.Text = Instance.Options.AlternateLeveling == "TRUE" ? "Yes" : "No";
-                LblAltStart.Text = Instance.Options.AlternateStart == "TRUE" ? "Yes" : "No";
+                
                 LblGore.Text = Instance.Options.Gore == "TRUE" ? "Yes" : "No";
-                LblStancesPerksTree.Text = Instance.Options.StancesPerksTree == "TRUE" ? "Yes" : "No";
+                
                 LblENB.Text = ENBs.GetENBByCode(Instance.Options.AlternateENB);
 
                 LblCombatScaling.Text = Instance.Options.CombatScaling;
                 LblExhaustion.Text = Instance.Options.Exhaustion == "TRUE" ? "Yes" : "No";
-                LblNerfPA.Text = Instance.Options.NerfPA;
-                LblEnemiesResistance.Text = Instance.Options.EnemiesResistance == "TRUE" ? "Yes" : "No";
-                LblBoss.Text = Instance.Options.Boss == "TRUE" ? "Yes" : "No";
-                LblPoise.Text = Instance.Options.Poise == "TRUE" ? "Yes" : "No";
+                LblNerfPA.Text = Instance.Options.NerfPA;                
+                LblBoss.Text = Instance.Options.Boss == "TRUE" ? "Yes" : "No";                
                 LblController.Text = Instance.Options.Controller == "TRUE" ? "Yes" : "No";
                 LblUI.Text = Instance.Options.UI;
 

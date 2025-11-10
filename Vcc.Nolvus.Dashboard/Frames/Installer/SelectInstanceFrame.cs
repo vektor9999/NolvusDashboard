@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Linq;
+using System.Drawing;
 using Vcc.Nolvus.Api.Installer.Services;
 using Vcc.Nolvus.Api.Installer.Library;
 using Vcc.Nolvus.Core.Interfaces;
@@ -145,8 +146,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             INolvusVersionDTO InstanceToInstall = NolvusListBox.SelectedItem as INolvusVersionDTO;
 
             if (InstanceToInstall.Maintenance)
-            {
-                NolvusMessageBox.ShowMessage("Maintenance", "The nolvus instance " + InstanceToInstall.Name + " is under maintenance. Unable to install.", MessageBoxType.Error);
+            {                
+                NolvusMessageBox.ShowMessage("Maintenance", string.Format("The nolvus instance {0} is under maintenance for the following reason : \n\n{1}\n\n Unable to install.", InstanceToInstall.Name, InstanceToInstall.MaintenanceReason), MessageBoxType.Error, 390, 470, Color.White);
             }
             else
             {

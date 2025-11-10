@@ -63,6 +63,14 @@ namespace Vcc.Nolvus.Services.Folders
             }
         }
 
+        public string BinPatchDirectory
+        {
+            get
+            {
+                return Path.Combine(CacheDirectory, "Patch");
+            }
+        }
+
         public string NexusCacheDirectory
         {
             get
@@ -129,7 +137,8 @@ namespace Vcc.Nolvus.Services.Folders
             Directory.CreateDirectory(NexusCacheDirectory);
             Directory.CreateDirectory(WebCacheDirectory);
             Directory.CreateDirectory(InstancesDirectory);
-            Directory.CreateDirectory(ReportDirectory);                      
+            Directory.CreateDirectory(ReportDirectory);
+            Directory.CreateDirectory(BinPatchDirectory);
         }        
     }
 }

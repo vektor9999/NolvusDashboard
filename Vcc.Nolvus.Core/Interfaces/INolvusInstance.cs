@@ -29,6 +29,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         Task<string> GetLatestVersion();
         Task<IInstallPackageDTO> GetLatestPackage();
         Task<bool> LatestPackageRequireNewGame();
+        Task<bool> LatestPackageRequireReInstall();
         string GetSelectedResolution();
         string GetSelectedHeight();
         string GetSelectedWidth();

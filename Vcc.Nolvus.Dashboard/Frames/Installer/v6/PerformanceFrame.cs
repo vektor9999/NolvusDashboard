@@ -66,6 +66,18 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             TglBtnSREX.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
             TglBtnSREX.InactiveState.HoverColor = Color.White;
 
+            TglBtnFrameGen.ActiveState.Text = "ON";
+            TglBtnFrameGen.ActiveState.BackColor = Color.Orange;
+            TglBtnFrameGen.ActiveState.BorderColor = Color.Orange;
+            TglBtnFrameGen.ActiveState.ForeColor = Color.White;
+            TglBtnFrameGen.ActiveState.HoverColor = Color.Orange;
+
+            TglBtnFrameGen.InactiveState.Text = "OFF";
+            TglBtnFrameGen.InactiveState.BackColor = Color.White;
+            TglBtnFrameGen.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
+            TglBtnFrameGen.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
+            TglBtnFrameGen.InactiveState.HoverColor = Color.White;
+
             #endregion
 
         }
@@ -229,6 +241,13 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
                 TglBtnSREX.ToggleStateChanging += TglBtnSREX_ToggleStateChanging;
 
+                TglBtnFrameGen.ToggleState = ToggleButtonState.Inactive;
+
+                if (Instance.Performance.FrameGeneration == "TRUE")
+                {
+                    TglBtnFrameGen.ToggleState = ToggleButtonState.Active;
+                }                
+
                 #endregion
 
                 ServiceSingleton.Dashboard.Info("Graphics and Performance Settings");
@@ -264,7 +283,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
         private void TglBtnDownScale_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
         {
-            if (ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing != "DLAA" && ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing != "FSR")
+            if (ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing != "DLAA" && ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing != "FSR" && ServiceSingleton.Instances.WorkingInstance.Performance.FrameGeneration != "TRUE")
             {
                 if (e.ToggleState == ToggleButtonState.Active)
                 {
@@ -277,13 +296,16 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                     DrpDwnLstDownscalingScreenRes.Enabled = e.ToggleState == ToggleButtonState.Active;
                     ServiceSingleton.Instances.WorkingInstance.Performance.DownScaling = "FALSE";
                     DrpDwnLstAntiAliasing.Enabled = true;
+                    TglBtnFrameGen.Enabled = true;
                 }
             }
             else
             {                
                 DrpDwnLstAntiAliasing.SelectedIndex = 0;
                 DrpDwnLstAntiAliasing.Enabled = false;
-                NolvusMessageBox.ShowMessage("Antialiasing", "This option is not compatible with DLAA/FSR. Antialiasing has been forced to TAA.", MessageBoxType.Info);
+                TglBtnFrameGen.ToggleState = ToggleButtonState.Inactive;
+                TglBtnFrameGen.Enabled = false;
+                NolvusMessageBox.ShowMessage("Antialiasing", "This option is not compatible with DLAA/FSR/Frame Generation. Antialiasing has been forced to TAA and Frame Generation has been disabled.", MessageBoxType.Info);
                 DrpDwnLstDownscalingScreenRes.Enabled = true;
                 ServiceSingleton.Instances.WorkingInstance.Performance.DownScaling = "TRUE";
                 DrpDwnLstDownscalingScreenRes.SelectedIndex = DownscalingResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);
@@ -312,6 +334,28 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             }
 
             UpdateHardwareConfiguration();
+        }
+
+        private void TglBtnFrameGen_ToggleStateChanging(object sender, CancelEventArgs e)
+        {
+            if (ServiceSingleton.Instances.WorkingInstance.Performance.DownScaling == "TRUE")
+            {
+                NolvusMessageBox.ShowMessage("Frame Generation", "Frame Generation is not compatible with downscaling, Frame Generation has been disabled.", MessageBoxType.Info);
+                e.Cancel = true;
+            }
+        }
+
+        private void TglBtnFrameGen_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
+        {
+            if (e.ToggleState == ToggleButtonState.Active)
+            {
+                NolvusMessageBox.ShowMessage("Frame Generation", "Warning, the ENB FPS counter will still show the normal FPS, to see the interpolated FPS, please use the NVIDIA or AMD integrated overlay.\n\nFramegen will not work out of the box if your monitor doesn't handle 120hz minimum.\n\nTo bypass that in game, open the ENB ui (shift+enter), on the left panel go under performance and check Force Framegen. Hit apply settings then save settings and restart the game.", MessageBoxType.Info);
+                ServiceSingleton.Instances.WorkingInstance.Performance.FrameGeneration = "TRUE";
+            }
+            else
+            {
+                ServiceSingleton.Instances.WorkingInstance.Performance.FrameGeneration = "FALSE";
+            }
         }
 
         private async void DrpDwnLstVariant_SelectedIndexChanged(object sender, EventArgs e)
@@ -444,7 +488,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                     LblMinGPU.Text = string.Format("{0} {1}", MinRequirement.GPUVendor, MinRequirement.GPUName);
                     LblMinVRAM.Text = string.Format("{0} GB", MinRequirement.VRAM.ToString());
                     LblMinInstallSize.Text = string.Format("{0} GB", MinRequirement.InstallationSize.ToString());
-                    LblMinDownloadSize.Text = string.Format("{0} GB (Optional)", MinRequirement.DownloadSize.ToString());
+                    LblMinDownloadSize.Text = string.Format("{0} GB (Optional, if you don't want to keep archives, disable them in the previous screen)", MinRequirement.DownloadSize.ToString());
                 }
                 else
                 {
@@ -457,7 +501,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                         LblMinGPU.Text = string.Format("{0} {1}", MinRequirement.GPUVendor, MinRequirement.GPUName);
                         LblMinVRAM.Text = string.Format("{0} GB", MinRequirement.VRAM.ToString());
                         LblMinInstallSize.Text = string.Format("{0} GB", MinRequirement.InstallationSize.ToString());
-                        LblMinDownloadSize.Text = string.Format("{0} GB (Optional)", MinRequirement.DownloadSize.ToString());
+                        LblMinDownloadSize.Text = string.Format("{0} GB (Optional, if you don't want to keep archives, disable them in the previous screen)", MinRequirement.DownloadSize.ToString());
                     }
                     else
                     {
@@ -483,7 +527,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                     LblMaxGPU.Text = string.Format("{0} {1}", RecRequirement.GPUVendor, RecRequirement.GPUName);
                     LblMaxVRAM.Text = string.Format("{0} GB", RecRequirement.VRAM.ToString());
                     LblMinInstallSize.Text = string.Format("{0} GB", RecRequirement.InstallationSize.ToString());
-                    LblMinDownloadSize.Text = string.Format("{0} GB (Optional)", RecRequirement.DownloadSize.ToString());
+                    LblMinDownloadSize.Text = string.Format("{0} GB (Optional, if you don't want to keep archives, disable them in the previous screen)", RecRequirement.DownloadSize.ToString());
                 }
                 else
                 {
@@ -495,7 +539,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                         LblMaxGPU.Text = string.Format("{0} {1}", RecRequirement.GPUVendor, RecRequirement.GPUName);
                         LblMaxVRAM.Text = string.Format("{0} GB", RecRequirement.VRAM.ToString());
                         LblMinInstallSize.Text = string.Format("{0} GB", RecRequirement.InstallationSize.ToString());
-                        LblMinDownloadSize.Text = string.Format("{0} GB (Optional)", RecRequirement.DownloadSize.ToString());
+                        LblMinDownloadSize.Text = string.Format("{0} GB (Optional, if you don't want to keep archives, disable them in the previous screen)", RecRequirement.DownloadSize.ToString());
                     }
                     else
                     {
@@ -527,6 +571,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         private void BtnVariantPreviex_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=y-Xis9XuETk");
+        }
+
+        private void LnkLblInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.nolvus.net/appendix/installer/tech");
         }
     }
 }

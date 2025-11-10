@@ -131,14 +131,10 @@ namespace Vcc.Nolvus.Instance.Core
             ServiceSingleton.Logger.Log(string.Format("Instance alternate levelling : {0}", AlternateLeveling));
             ServiceSingleton.Logger.Log(string.Format("Instance alternate start : {0}", AlternateStart));
             ServiceSingleton.Logger.Log(string.Format("Instance skin type : {0}", SkinType));
-            ServiceSingleton.Logger.Log(string.Format("Combat animation : {0}", CombatAnimation));
-            ServiceSingleton.Logger.Log(string.Format("Stances perks tree : {0}", StancesPerksTree));
-            ServiceSingleton.Logger.Log(string.Format("Deleveled enemies : {0}", DeleveledEnemies));
+            ServiceSingleton.Logger.Log(string.Format("Combat animation : {0}", CombatAnimation));                        
             ServiceSingleton.Logger.Log(string.Format("Exhaustion : {0}", Exhaustion));
-            ServiceSingleton.Logger.Log(string.Format("Nerf power attacks : {0}", NerfPA));
-            ServiceSingleton.Logger.Log(string.Format("Enemies resistance : {0}", EnemiesResistance));
-            ServiceSingleton.Logger.Log(string.Format("Boss encounter : {0}", Boss));
-            ServiceSingleton.Logger.Log(string.Format("Poise : {0}", Poise));
+            ServiceSingleton.Logger.Log(string.Format("Nerf power attacks : {0}", NerfPA));            
+            ServiceSingleton.Logger.Log(string.Format("Boss encounter : {0}", Boss));            
             ServiceSingleton.Logger.Log(string.Format("Gore : {0}", Gore));
             ServiceSingleton.Logger.Log(string.Format("Combat Scaling : {0}", CombatScaling));
             ServiceSingleton.Logger.Log(string.Format("Controller : {0}", Controller));

@@ -236,6 +236,17 @@ namespace Vcc.Nolvus.Services.Report
 
                     Result += Environment.NewLine;
 
+                    if (Instance.Performance.FrameGeneration == "TRUE")
+                    {
+                        Result += "Frame Generation : Yes";
+                    }
+                    else
+                    {
+                        Result += "Frame Generation : No";
+                    }
+
+                    Result += Environment.NewLine;                    
+
                     if (Instance.Performance.SREX == "TRUE")
                     {
                         Result += "SR Exterior Cities : Yes";
@@ -371,29 +382,7 @@ namespace Vcc.Nolvus.Services.Report
                     else
                     {
                         Result += "Alternate leveling : No";
-                    }
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Options.AlternateStart == "TRUE")
-                    {
-                        Result += "Alternate start : Yes";
-                    }
-                    else
-                    {
-                        Result += "Alternate start : No";
-                    }
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Options.StancesPerksTree == "TRUE")
-                    {
-                        Result += "Stances Perks Tree : Yes";
-                    }
-                    else
-                    {
-                        Result += "Stances Perks Tree : No";
-                    }
+                    }                                        
 
                     Result += Environment.NewLine;
 
@@ -438,17 +427,6 @@ namespace Vcc.Nolvus.Services.Report
 
                     Result += Environment.NewLine;
 
-                    if (Instance.Options.EnemiesResistance == "TRUE")
-                    {
-                        Result += "Enemies Resistance : Yes";
-                    }
-                    else
-                    {
-                        Result += "Enemies Resistance : No";
-                    }
-
-                    Result += Environment.NewLine;
-
                     if (Instance.Options.Boss == "TRUE")
                     {
                         Result += "Boss : Yes";
@@ -456,17 +434,6 @@ namespace Vcc.Nolvus.Services.Report
                     else
                     {
                         Result += "Boss : No";
-                    }
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Options.Poise == "TRUE")
-                    {
-                        Result += "Poise : Yes";
-                    }
-                    else
-                    {
-                        Result += "Poise : No";
                     }
 
                     Result += Environment.NewLine;
@@ -766,6 +733,15 @@ namespace Vcc.Nolvus.Services.Report
                             break;
                     }
 
+                    if (Instance.Performance.FrameGeneration == "TRUE")
+                    {
+                        CurrentLine += DrawString("Frame Generation : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
+                    }
+                    else
+                    {
+                        CurrentLine += DrawString("Frame Generation : ", "No", Graphics, Report.PageSettings, CurrentLine);
+                    }
+
 
                     if (Instance.Performance.SREX == "TRUE")
                     {
@@ -880,16 +856,7 @@ namespace Vcc.Nolvus.Services.Report
                     else
                     {
                         CurrentLine += DrawString("Alternate leveling : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-                    if (Instance.Options.AlternateStart == "TRUE")
-                    {
-                        CurrentLine += DrawString("Alternate start : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Alternate start : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
+                    }                   
 
                     
                     CurrentLine += DrawString("Combat animations : ", Instance.Options.CombatAnimation, Graphics, Report.PageSettings, CurrentLine);
@@ -902,15 +869,6 @@ namespace Vcc.Nolvus.Services.Report
                     else
                     {
                         CurrentLine += DrawString("Nudity : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-                    if (Instance.Options.StancesPerksTree == "TRUE")
-                    {
-                        CurrentLine += DrawString("Stances perks tree : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Stances perks tree : ", "No", Graphics, Report.PageSettings, CurrentLine);
                     }
 
                     if (Instance.Options.Gore == "TRUE")
@@ -935,15 +893,6 @@ namespace Vcc.Nolvus.Services.Report
 
                     CurrentLine += DrawString("Nerf power attacks : ", Instance.Options.NerfPA, Graphics, Report.PageSettings, CurrentLine);
 
-                    if (Instance.Options.EnemiesResistance == "TRUE")
-                    {
-                        CurrentLine += DrawString("Enemies resistance : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Enemies resistance : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
-
                     if (Instance.Options.Boss == "TRUE")
                     {
                         CurrentLine += DrawString("Boss : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
@@ -951,15 +900,6 @@ namespace Vcc.Nolvus.Services.Report
                     else
                     {
                         CurrentLine += DrawString("Boss : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-                    if (Instance.Options.Poise == "TRUE")
-                    {
-                        CurrentLine += DrawString("Poise system : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Poise System : ", "No", Graphics, Report.PageSettings, CurrentLine);
                     }
 
                     if (Instance.Options.Controller == "TRUE")

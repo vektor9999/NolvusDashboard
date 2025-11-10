@@ -26,28 +26,27 @@ namespace Vcc.Nolvus.Package.Mods
         #region Reshade Ini
 
         private const string ReshadeIni = @"[APP]
-Force10BitFormat=0
+ForceDefaultRefreshRate=0
 ForceFullscreen=0
-ForceResolution=0,0
 ForceVsync=0
 ForceWindowed=0
 
 [GENERAL]
-EffectSearchPaths=.\reshade-shaders\Shaders,.\reshade-shaders\Shaders\qUINT,.\reshade-shaders\Shaders\PD80,.\reshade-shaders\Shaders\Depth3D,.\reshade-shaders\Shaders\AstrayFX,.\reshade-shaders\Shaders\OtisFX,.\reshade-shaders\Shaders\Daodan,.\reshade-shaders\Shaders\Fubax,.\reshade-shaders\Shaders\CorgiFX
+EffectSearchPaths=.\reshade-shaders\Shaders\**
 IntermediateCachePath={0}
 NoDebugInfo=0
 NoEffectCache=0
 NoReloadOnInit=0
-NoReloadOnInitForNonVR=0
 PerformanceMode=0
 PreprocessorDefinitions=RESHADE_DEPTH_LINEARIZATION_FAR_PLANE=1000.0,RESHADE_DEPTH_INPUT_IS_UPSIDE_DOWN=0,RESHADE_DEPTH_INPUT_IS_REVERSED=1,RESHADE_DEPTH_INPUT_IS_LOGARITHMIC=0
 PresetPath=.\{1}
 PresetTransitionDuration=1000
 SkipLoadingDisabledEffects=0
-TextureSearchPaths=.\reshade-shaders\Textures
+TextureSearchPaths=.\reshade-shaders\Textures\**
 
 [INPUT]
 ForceShortcutModifiers=1
+GamepadNavigation=0
 InputProcessing=2
 KeyEffects=46,0,0,0
 KeyNextPreset=0,0,0,0
@@ -58,14 +57,15 @@ KeyReload=0,0,0,0
 KeyScreenshot=123,0,0,0
 
 [OVERLAY]
+AutoSavePreset=10
 ClockFormat=0
 FPSPosition=1
-NoFontScaling=1
-SaveWindowState=0
+Language=en-US
 ShowClock=0
 ShowForceLoadEffectsButton=1
 ShowFPS=0
 ShowFrameTime=0
+ShowPresetTransitionMessage=1
 ShowScreenshotMessage=1
 TutorialProgress=4
 VariableListHeight=656.000000

@@ -219,11 +219,14 @@ namespace Vcc.Nolvus.Services.Files
         public string GetHash(string FileName)
         {
             using (var md5 = MD5.Create())
-            {
-                using (var stream = File.OpenRead(FileName))
+            {                
+                using (var fileHandle = ZlpIOHelper.CreateFileHandle(FileName, ZetaLongPaths.Native.CreationDisposition.OpenExisting, ZetaLongPaths.Native.FileAccess.GenericRead, ZetaLongPaths.Native.FileShare.Read))
                 {
-                    var hash = md5.ComputeHash(stream);
-                    return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                    using (var stream = new System.IO.FileStream(fileHandle, System.IO.FileAccess.Read))
+                    {
+                        var hash = md5.ComputeHash(stream);
+                        return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                    }
                 }
             }
         }

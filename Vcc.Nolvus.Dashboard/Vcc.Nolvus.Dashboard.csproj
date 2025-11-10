@@ -1055,6 +1055,8 @@
     <None Include="Resources\Kauz-ENB.jpg" />
     <None Include="Resources\PiCho-ENB.jpg" />
     <None Include="Resources\Nolvus-v6-controller-setup.png" />
+    <None Include="Resources\Amon_ENB.bmp" />
+    <None Include="Resources\Amon-ENB.jpg" />
     <Content Include="Scripts\HandleENBDev.js" />
     <Content Include="Scripts\IsDownloadAvailable.js" />
     <Content Include="Scripts\IsFileDeleted.js" />

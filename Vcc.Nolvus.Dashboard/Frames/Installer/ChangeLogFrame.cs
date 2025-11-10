@@ -15,6 +15,7 @@ using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Tools;
 using Syncfusion.WinForms.ListView.Enums;
 using Vcc.Nolvus.Core.Interfaces;
+using Vcc.Nolvus.Core.Enums;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Api.Installer.Services;
@@ -127,8 +128,15 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         }
 
         private async void BtnContinue_Click(object sender, EventArgs e)
-        {            
-            if (await (Parameters["Instance"] as INolvusInstance).LatestPackageRequireNewGame())
+        {
+            if (await (Parameters["Instance"] as INolvusInstance).LatestPackageRequireReInstall())
+            {
+                if (NolvusMessageBox.ShowConfirmation("Warning", "Exceptionally this new Nolvus version requires a new game and a new installation of the list. Are you really sure you want to proceed with the installation? Clicking yes will first delete your instance then proceed to the new installation.") == DialogResult.Yes)
+                {
+                    ServiceSingleton.Dashboard.LoadFrame<DeleteFrame>(new FrameParameters(new FrameParameter() { Key = "Instance", Value = Parameters["Instance"] as INolvusInstance }, new FrameParameter() { Key = "Action", Value = InstanceAction.Delete }));
+                }                
+            }
+            else if (await (Parameters["Instance"] as INolvusInstance).LatestPackageRequireNewGame())
             {
                 if (NolvusMessageBox.ShowConfirmation("Warning", "This new Nolvus version requires a new game. Your current saves will not work with it. Are you really sure you want to proceed with the installation?") == DialogResult.Yes)
                 {

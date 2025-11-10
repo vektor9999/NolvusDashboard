@@ -23,6 +23,7 @@ namespace Vcc.Nolvus.Instance.Core
         public string LODs { get; set; } = "Ultra";
         public string RayTracing { get; set; } = "TRUE";
         public string SREX { get; set; } = "FALSE";
+        public string FrameGeneration { get; set; } = "FALSE";
         public string DownScaledResolution
         {
             get
@@ -52,9 +53,14 @@ namespace Vcc.Nolvus.Instance.Core
                 FPSStabilizer = Node["FPSStabilizer"].InnerText.Trim();
             }
 
-            if ( Node["SREX"] != null)
+            if (Node["SREX"] != null)
             {
                 SREX = Node["SREX"].InnerText.Trim();
+            }
+
+            if (Node["FrameGeneration"] != null)
+            {
+                FrameGeneration = Node["FrameGeneration"].InnerText.Trim();
             }
 
             ServiceSingleton.Logger.Log(string.Format("Instance advanced physics : {0}", AdvancedPhysics));
@@ -68,6 +74,7 @@ namespace Vcc.Nolvus.Instance.Core
             ServiceSingleton.Logger.Log(string.Format("Instance ray tracing : {0}", RayTracing));
             ServiceSingleton.Logger.Log(string.Format("Instance fps stabilizer : {0}", FPSStabilizer));
             ServiceSingleton.Logger.Log(string.Format("Instance SREX : {0}", SREX));
+            ServiceSingleton.Logger.Log(string.Format("Instance FrameGeneration : {0}", FrameGeneration));
         }        
 
         public void Save(XmlWriter XMLWriter)
@@ -116,6 +123,10 @@ namespace Vcc.Nolvus.Instance.Core
 
             XMLWriter.WriteStartElement("SREX");
             XMLWriter.WriteString(SREX.Trim());
+            XMLWriter.WriteEndElement();
+
+            XMLWriter.WriteStartElement("FrameGeneration");
+            XMLWriter.WriteString(FrameGeneration.Trim());
             XMLWriter.WriteEndElement();
 
             XMLWriter.WriteEndElement();

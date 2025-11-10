@@ -31,17 +31,13 @@
             this.LblStepText = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.LblPoise = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
             this.LblBoss = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.LblExhaustion = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.LblNerfPA = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.LblEnemiesResistance = new System.Windows.Forms.Label();
             this.LblCombatScaling = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,21 +45,19 @@
             this.RdBtnThreshold = new System.Windows.Forms.RadioButton();
             this.RdBtnOneError = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.LblUI = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.LblController = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.LblGore = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.LblENB = new System.Windows.Forms.Label();
             this.LblEN = new System.Windows.Forms.Label();
-            this.LblAltStart = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.LblCombatAnims = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.LblLeveling = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.LblStancesPerksTree = new System.Windows.Forms.Label();
             this.LblNudity = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.LblRatio = new System.Windows.Forms.Label();
@@ -79,6 +73,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LblFrameGen = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.LblLODs = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.LblSREX = new System.Windows.Forms.Label();
@@ -96,8 +92,6 @@
             this.PicBox = new System.Windows.Forms.PictureBox();
             this.BtnPrevious = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnStart = new Vcc.Nolvus.Components.Controls.FlatButton();
-            this.LblUI = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -145,17 +139,13 @@
             // 
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox5.Controls.Add(this.LblPoise);
-            this.groupBox5.Controls.Add(this.label16);
             this.groupBox5.Controls.Add(this.LblBoss);
             this.groupBox5.Controls.Add(this.label23);
             this.groupBox5.Controls.Add(this.LblExhaustion);
             this.groupBox5.Controls.Add(this.label25);
             this.groupBox5.Controls.Add(this.LblNerfPA);
             this.groupBox5.Controls.Add(this.label29);
-            this.groupBox5.Controls.Add(this.LblEnemiesResistance);
             this.groupBox5.Controls.Add(this.LblCombatScaling);
-            this.groupBox5.Controls.Add(this.label32);
             this.groupBox5.Controls.Add(this.label33);
             this.groupBox5.ForeColor = System.Drawing.Color.White;
             this.groupBox5.Location = new System.Drawing.Point(602, 217);
@@ -165,31 +155,11 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Difficulty";
             // 
-            // LblPoise
-            // 
-            this.LblPoise.AutoSize = true;
-            this.LblPoise.ForeColor = System.Drawing.Color.Orange;
-            this.LblPoise.Location = new System.Drawing.Point(146, 150);
-            this.LblPoise.Name = "LblPoise";
-            this.LblPoise.Size = new System.Drawing.Size(39, 13);
-            this.LblPoise.TabIndex = 61;
-            this.LblPoise.Text = "[Poise]";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(16, 150);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(70, 13);
-            this.label16.TabIndex = 60;
-            this.label16.Text = "Poise System";
-            // 
             // LblBoss
             // 
             this.LblBoss.AutoSize = true;
             this.LblBoss.ForeColor = System.Drawing.Color.Orange;
-            this.LblBoss.Location = new System.Drawing.Point(146, 125);
+            this.LblBoss.Location = new System.Drawing.Point(145, 100);
             this.LblBoss.Name = "LblBoss";
             this.LblBoss.Size = new System.Drawing.Size(36, 13);
             this.LblBoss.TabIndex = 57;
@@ -199,7 +169,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.ForeColor = System.Drawing.Color.White;
-            this.label23.Location = new System.Drawing.Point(16, 125);
+            this.label23.Location = new System.Drawing.Point(15, 100);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(82, 13);
             this.label23.TabIndex = 56;
@@ -245,16 +215,6 @@
             this.label29.TabIndex = 52;
             this.label29.Text = "Nerf Power Attacks";
             // 
-            // LblEnemiesResistance
-            // 
-            this.LblEnemiesResistance.AutoSize = true;
-            this.LblEnemiesResistance.ForeColor = System.Drawing.Color.Orange;
-            this.LblEnemiesResistance.Location = new System.Drawing.Point(146, 100);
-            this.LblEnemiesResistance.Name = "LblEnemiesResistance";
-            this.LblEnemiesResistance.Size = new System.Drawing.Size(106, 13);
-            this.LblEnemiesResistance.TabIndex = 51;
-            this.LblEnemiesResistance.Text = "[EnemiesResistance]";
-            // 
             // LblCombatScaling
             // 
             this.LblCombatScaling.AutoSize = true;
@@ -264,16 +224,6 @@
             this.LblCombatScaling.Size = new System.Drawing.Size(87, 13);
             this.LblCombatScaling.TabIndex = 50;
             this.LblCombatScaling.Text = "[Combat Scaling]";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.ForeColor = System.Drawing.Color.White;
-            this.label32.Location = new System.Drawing.Point(16, 100);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(103, 13);
-            this.label32.TabIndex = 49;
-            this.label32.Text = "Enemies Resistance";
             // 
             // label33
             // 
@@ -357,15 +307,11 @@
             this.groupBox3.Controls.Add(this.label18);
             this.groupBox3.Controls.Add(this.LblENB);
             this.groupBox3.Controls.Add(this.LblEN);
-            this.groupBox3.Controls.Add(this.LblAltStart);
-            this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.LblCombatAnims);
             this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Controls.Add(this.LblLeveling);
             this.groupBox3.Controls.Add(this.label19);
-            this.groupBox3.Controls.Add(this.LblStancesPerksTree);
             this.groupBox3.Controls.Add(this.LblNudity);
-            this.groupBox3.Controls.Add(this.label26);
             this.groupBox3.Controls.Add(this.label27);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(305, 217);
@@ -375,11 +321,31 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Options";
             // 
+            // LblUI
+            // 
+            this.LblUI.AutoSize = true;
+            this.LblUI.ForeColor = System.Drawing.Color.Orange;
+            this.LblUI.Location = new System.Drawing.Point(140, 171);
+            this.LblUI.Name = "LblUI";
+            this.LblUI.Size = new System.Drawing.Size(80, 13);
+            this.LblUI.TabIndex = 51;
+            this.LblUI.Text = "[User Interface]";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.ForeColor = System.Drawing.Color.White;
+            this.label21.Location = new System.Drawing.Point(10, 171);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(74, 13);
+            this.label21.TabIndex = 50;
+            this.label21.Text = "User Interface";
+            // 
             // LblController
             // 
             this.LblController.AutoSize = true;
             this.LblController.ForeColor = System.Drawing.Color.Orange;
-            this.LblController.Location = new System.Drawing.Point(140, 173);
+            this.LblController.Location = new System.Drawing.Point(140, 123);
             this.LblController.Name = "LblController";
             this.LblController.Size = new System.Drawing.Size(57, 13);
             this.LblController.TabIndex = 49;
@@ -389,7 +355,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(10, 173);
+            this.label20.Location = new System.Drawing.Point(10, 123);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(51, 13);
             this.label20.TabIndex = 48;
@@ -399,7 +365,7 @@
             // 
             this.LblGore.AutoSize = true;
             this.LblGore.ForeColor = System.Drawing.Color.Orange;
-            this.LblGore.Location = new System.Drawing.Point(140, 150);
+            this.LblGore.Location = new System.Drawing.Point(140, 100);
             this.LblGore.Name = "LblGore";
             this.LblGore.Size = new System.Drawing.Size(36, 13);
             this.LblGore.TabIndex = 47;
@@ -409,7 +375,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(10, 150);
+            this.label18.Location = new System.Drawing.Point(10, 100);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(30, 13);
             this.label18.TabIndex = 46;
@@ -419,7 +385,7 @@
             // 
             this.LblENB.AutoSize = true;
             this.LblENB.ForeColor = System.Drawing.Color.Orange;
-            this.LblENB.Location = new System.Drawing.Point(140, 196);
+            this.LblENB.Location = new System.Drawing.Point(140, 146);
             this.LblENB.Name = "LblENB";
             this.LblENB.Size = new System.Drawing.Size(35, 13);
             this.LblENB.TabIndex = 45;
@@ -429,31 +395,11 @@
             // 
             this.LblEN.AutoSize = true;
             this.LblEN.ForeColor = System.Drawing.Color.White;
-            this.LblEN.Location = new System.Drawing.Point(10, 196);
+            this.LblEN.Location = new System.Drawing.Point(10, 146);
             this.LblEN.Name = "LblEN";
             this.LblEN.Size = new System.Drawing.Size(29, 13);
             this.LblEN.TabIndex = 44;
             this.LblEN.Text = "ENB";
-            // 
-            // LblAltStart
-            // 
-            this.LblAltStart.AutoSize = true;
-            this.LblAltStart.ForeColor = System.Drawing.Color.Orange;
-            this.LblAltStart.Location = new System.Drawing.Point(140, 125);
-            this.LblAltStart.Name = "LblAltStart";
-            this.LblAltStart.Size = new System.Drawing.Size(35, 13);
-            this.LblAltStart.TabIndex = 43;
-            this.LblAltStart.Text = "[Start]";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(10, 125);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(74, 13);
-            this.label13.TabIndex = 42;
-            this.label13.Text = "Alternate Start";
             // 
             // LblCombatAnims
             // 
@@ -495,16 +441,6 @@
             this.label19.TabIndex = 38;
             this.label19.Text = "Alternate Leveling";
             // 
-            // LblStancesPerksTree
-            // 
-            this.LblStancesPerksTree.AutoSize = true;
-            this.LblStancesPerksTree.ForeColor = System.Drawing.Color.Orange;
-            this.LblStancesPerksTree.Location = new System.Drawing.Point(140, 100);
-            this.LblStancesPerksTree.Name = "LblStancesPerksTree";
-            this.LblStancesPerksTree.Size = new System.Drawing.Size(52, 13);
-            this.LblStancesPerksTree.TabIndex = 35;
-            this.LblStancesPerksTree.Text = "[Stances]";
-            // 
             // LblNudity
             // 
             this.LblNudity.AutoSize = true;
@@ -514,16 +450,6 @@
             this.LblNudity.Size = new System.Drawing.Size(43, 13);
             this.LblNudity.TabIndex = 34;
             this.LblNudity.Text = "[Nudity]";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(10, 100);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(96, 13);
-            this.label26.TabIndex = 31;
-            this.label26.Text = "Stances perks tree";
             // 
             // label27
             // 
@@ -681,6 +607,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.LblFrameGen);
+            this.groupBox1.Controls.Add(this.label22);
             this.groupBox1.Controls.Add(this.LblLODs);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.LblSREX);
@@ -700,6 +628,26 @@
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Performance";
+            // 
+            // LblFrameGen
+            // 
+            this.LblFrameGen.AutoSize = true;
+            this.LblFrameGen.ForeColor = System.Drawing.Color.Orange;
+            this.LblFrameGen.Location = new System.Drawing.Point(140, 175);
+            this.LblFrameGen.Name = "LblFrameGen";
+            this.LblFrameGen.Size = new System.Drawing.Size(94, 13);
+            this.LblFrameGen.TabIndex = 42;
+            this.LblFrameGen.Text = "[FrameGeneration]";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.ForeColor = System.Drawing.Color.White;
+            this.label22.Location = new System.Drawing.Point(10, 175);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(91, 13);
+            this.label22.TabIndex = 41;
+            this.label22.Text = "Frame Generation";
             // 
             // LblLODs
             // 
@@ -887,26 +835,6 @@
             this.BtnStart.UseVisualStyleBackColor = false;
             this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
-            // LblUI
-            // 
-            this.LblUI.AutoSize = true;
-            this.LblUI.ForeColor = System.Drawing.Color.Orange;
-            this.LblUI.Location = new System.Drawing.Point(141, 221);
-            this.LblUI.Name = "LblUI";
-            this.LblUI.Size = new System.Drawing.Size(80, 13);
-            this.LblUI.TabIndex = 51;
-            this.LblUI.Text = "[User Interface]";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(11, 221);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(74, 13);
-            this.label21.TabIndex = 50;
-            this.label21.Text = "User Interface";
-            // 
             // SummaryFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -974,12 +902,8 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label LblLeveling;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label LblStancesPerksTree;
         private System.Windows.Forms.Label LblNudity;
-        private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label LblAltStart;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label LblENB;
         private System.Windows.Forms.Label LblEN;
         private System.Windows.Forms.Label LblGore;
@@ -996,15 +920,13 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label LblNerfPA;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label LblEnemiesResistance;
         private System.Windows.Forms.Label LblCombatScaling;
-        private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label LblPoise;
         private System.Windows.Forms.Label LblController;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label LblUI;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label LblFrameGen;
+        private System.Windows.Forms.Label label22;
     }
 }

@@ -77,6 +77,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 case "PICHO":
                     PicBoxENB.Image = Properties.Resources.PiCho_ENB;
                     break;
+                case "AMON":
+                    PicBoxENB.Image = Properties.Resources.Amon_ENB;
+                    break;
 
             }           
         }

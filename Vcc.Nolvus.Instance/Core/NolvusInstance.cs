@@ -107,6 +107,11 @@ namespace Vcc.Nolvus.Instance.Core
             return await ApiManager.Service.Installer.LatestPackageRequireNewGame(Id, Version);
         }
 
+        public async Task<bool> LatestPackageRequireReInstall()
+        {
+            return await ApiManager.Service.Installer.LatestPackageRequireReInstall(Id, Version);
+        }
+
         public string GetSelectedResolution()
         {
             return string.Format("{0}x{1}", GetSelectedWidth(), GetSelectedHeight());

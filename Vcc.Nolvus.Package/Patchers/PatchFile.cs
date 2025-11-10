@@ -18,7 +18,9 @@ namespace Vcc.Nolvus.Package.Patchers
         public string PatchFileName { get; set; }
         public string HashBefore { get; set; }
         public string HashAfter { get; set; }
-        public string Directory { get; set; }
+        public string Directory { get; set; }             
+
+        
 
         public void Load(XmlNode Node)
         {
@@ -53,13 +55,23 @@ namespace Vcc.Nolvus.Package.Patchers
 
             return Result;
         }
-        public async Task Patch(string ModDir, string GameDir, string ExtractDir)
+
+        private ZlpFileInfo CopyFileToPatch(ZlpFileInfo Source, string Destination)
+        {            
+            Source.CopyTo(Path.Combine(Destination, Source.Name), true);
+
+            return new ZlpFileInfo(Path.Combine(Destination, Source.Name));
+        }
+
+        public async Task Patch(string ModDir, string GameDir, string ExtractDir, string BinPatchDir)
         {            
             var Tsk = Task.Run(async ()=>
             {
                 try
                 {
                     var PatcherManager = new PatcherManager(ServiceSingleton.Folders.DownloadDirectory, ServiceSingleton.Folders.LibDirectory, ServiceSingleton.Folders.PatchDirectory);
+
+                    ServiceSingleton.Files.RemoveDirectory(BinPatchDir, false);
 
                     var Dir = ModDir;
 
@@ -76,7 +88,7 @@ namespace Vcc.Nolvus.Package.Patchers
                     }
                     else
                     {
-                        SourceFileToPatch = ServiceSingleton.Files.GetFiles(Dir).Where(x => x.FullName == Path.Combine(Dir, Directory, DestinationFileName)).Where(y => ServiceSingleton.Files.GetHash(y.FullName) == HashBefore).FirstOrDefault();
+                        SourceFileToPatch = ServiceSingleton.Files.GetFiles(Dir).Where(x => x.FullName == ZlpPathHelper.Combine(Dir, Directory, DestinationFileName)).Where(y => ServiceSingleton.Files.GetHash(y.FullName) == HashBefore).FirstOrDefault();                        
                     }                    
 
                     if (SourceFileToPatch != null)
@@ -85,7 +97,9 @@ namespace Vcc.Nolvus.Package.Patchers
 
                         var DestinationFileToPatch = new ZlpFileInfo(Path.Combine(ExtractDir, DestinationFileName));
 
-                        await PatcherManager.PatchFile(SourceFileToPatch.FullName, DestinationFileToPatch.FullName, Path.Combine(ExtractDir, PatchFileName));
+                        var BinarySourceFileToPatch = CopyFileToPatch(SourceFileToPatch, BinPatchDir);
+
+                        await PatcherManager.PatchFile(BinarySourceFileToPatch.FullName, DestinationFileToPatch.FullName, Path.Combine(ExtractDir, PatchFileName));
 
                         if (ServiceSingleton.Files.GetHash(CopyPatchedFile(SourceFileToPatch, DestinationFileToPatch).FullName) != HashAfter)
                         {

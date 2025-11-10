@@ -27,13 +27,28 @@ namespace Vcc.Nolvus.Package.Patchers
             }
         }
 
-        private string PatcherFileDir
+        public string PatcherFileDir
         {
             get
             {
                 return FileInfo.Name.Replace(FileInfo.Extension, string.Empty);                
             }
-        }        
+        }
+
+        public string BinPatchFolder
+        {
+            get
+            {
+                var Result = new ZlpDirectoryInfo(Path.Combine(ServiceSingleton.Folders.BinPatchDirectory, PatcherFileDir));
+
+                if (!Result.Exists)
+                {
+                    ZlpIOHelper.CreateDirectory(Result.FullName);
+                }
+
+                return Result.FullName;
+            }
+        }
 
         public void Load(XmlNode Node)
         {
@@ -51,7 +66,7 @@ namespace Vcc.Nolvus.Package.Patchers
 
             foreach (XmlNode PatchFileNode in Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "PatchFiles").FirstOrDefault().ChildNodes.Cast<XmlNode>().ToList())
             {
-                PatchFile PatchFile = new PatchFile();
+                PatchFile PatchFile = new PatchFile();                
                 PatchFile.Load(PatchFileNode);                
                 Files.Add(PatchFile);
             }
@@ -160,7 +175,7 @@ namespace Vcc.Nolvus.Package.Patchers
 
                         foreach (var File in Files)
                         {
-                            await File.Patch(ModDir, GameDir, Path.Combine(ServiceSingleton.Folders.ExtractDirectory, PatcherFileDir));
+                            await File.Patch(ModDir, GameDir, Path.Combine(ServiceSingleton.Folders.ExtractDirectory, PatcherFileDir), BinPatchFolder);
                             PatchProgress(File.OriginFileName, ++Counter, Files.Count);
                         }
                     }
@@ -168,6 +183,7 @@ namespace Vcc.Nolvus.Package.Patchers
                     {
                         ZlpIOHelper.DeleteFile(Path.Combine(ServiceSingleton.Folders.DownloadDirectory, PatchArchive));
                         ServiceSingleton.Files.RemoveDirectory(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, PatcherFileDir), true);
+                        ServiceSingleton.Files.RemoveDirectory(Path.Combine(ServiceSingleton.Folders.BinPatchDirectory, PatcherFileDir), true);
                     }
                 }
                 catch (Exception ex)

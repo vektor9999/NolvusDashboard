@@ -274,4 +274,7 @@
   <data name="Nolvus-v6-controller-setup" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Nolvus-v6-controller-setup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Amon_ENB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Amon-ENB.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

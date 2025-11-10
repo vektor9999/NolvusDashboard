@@ -55,31 +55,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             TglBtnLeveling.InactiveState.BackColor = Color.White;
             TglBtnLeveling.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
             TglBtnLeveling.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
-            TglBtnLeveling.InactiveState.HoverColor = Color.White;
-
-            TglBtnAltStart.ActiveState.Text = "ON";
-            TglBtnAltStart.ActiveState.BackColor = Color.Orange;
-            TglBtnAltStart.ActiveState.BorderColor = Color.Orange;
-            TglBtnAltStart.ActiveState.ForeColor = Color.White;
-            TglBtnAltStart.ActiveState.HoverColor = Color.Orange;
-
-            TglBtnAltStart.InactiveState.Text = "OFF";
-            TglBtnAltStart.InactiveState.BackColor = Color.White;
-            TglBtnAltStart.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
-            TglBtnAltStart.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
-            TglBtnAltStart.InactiveState.HoverColor = Color.White;
-
-            TglBtnStancesPerksTree.ActiveState.Text = "ON";
-            TglBtnStancesPerksTree.ActiveState.BackColor = Color.Orange;
-            TglBtnStancesPerksTree.ActiveState.BorderColor = Color.Orange;
-            TglBtnStancesPerksTree.ActiveState.ForeColor = Color.White;
-            TglBtnStancesPerksTree.ActiveState.HoverColor = Color.Orange;
-
-            TglBtnStancesPerksTree.InactiveState.Text = "OFF";
-            TglBtnStancesPerksTree.InactiveState.BackColor = Color.White;
-            TglBtnStancesPerksTree.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
-            TglBtnStancesPerksTree.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
-            TglBtnStancesPerksTree.InactiveState.HoverColor = Color.White;
+            TglBtnLeveling.InactiveState.HoverColor = Color.White;          
 
             TglBtnGore.ActiveState.Text = "ON";
             TglBtnGore.ActiveState.BackColor = Color.Orange;
@@ -138,21 +114,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             if (Instance.Options.AlternateLeveling == "TRUE")
             {
                 TglBtnLeveling.ToggleState = ToggleButtonState.Active;
-            }
-
-            TglBtnAltStart.ToggleState = ToggleButtonState.Inactive;
-
-            if (Instance.Options.AlternateStart == "TRUE")
-            {
-                TglBtnAltStart.ToggleState = ToggleButtonState.Active;
-            }
-
-            TglBtnStancesPerksTree.ToggleState = ToggleButtonState.Inactive;
-
-            if (Instance.Options.StancesPerksTree == "TRUE")
-            {
-                TglBtnStancesPerksTree.ToggleState = ToggleButtonState.Active;
-            }
+            }                        
 
             TglBtnGore.ToggleState = ToggleButtonState.Inactive;
 
@@ -234,18 +196,6 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             else
             {
                 ServiceSingleton.Instances.WorkingInstance.Options.AlternateStart = "FALSE";
-            }
-        }
-
-        private void TglBtnStancesPerksTree_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
-        {
-            if (e.ToggleState == ToggleButtonState.Active)
-            {
-                ServiceSingleton.Instances.WorkingInstance.Options.StancesPerksTree = "TRUE";
-            }
-            else
-            {
-                ServiceSingleton.Instances.WorkingInstance.Options.StancesPerksTree = "FALSE";
             }
         }
 
