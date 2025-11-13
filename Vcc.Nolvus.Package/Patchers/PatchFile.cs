@@ -97,7 +97,11 @@ namespace Vcc.Nolvus.Package.Patchers
 
                         var DestinationFileToPatch = new ZlpFileInfo(Path.Combine(ExtractDir, DestinationFileName));
 
+                        ServiceSingleton.Logger.Log(string.Format("Copying file to patch {0}", SourceFileToPatch.FullName));
+
                         var BinarySourceFileToPatch = CopyFileToPatch(SourceFileToPatch, BinPatchDir);
+
+                        ServiceSingleton.Logger.Log(string.Format("File to patch copied to {0}", BinarySourceFileToPatch.FullName));
 
                         await PatcherManager.PatchFile(BinarySourceFileToPatch.FullName, DestinationFileToPatch.FullName, Path.Combine(ExtractDir, PatchFileName));
 

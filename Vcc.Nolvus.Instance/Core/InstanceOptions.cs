@@ -17,7 +17,7 @@ namespace Vcc.Nolvus.Instance.Core
         public string HardcoreMode { get; set; } = "FALSE";
         public string AlternateLeveling { get; set; } = "FALSE";
         public string SkinType { get; set; } = "Smooth";
-        public string AlternateStart { get; set; } = "FALSE";
+        public string AlternateStart { get; set; } = "FALSE";   
         public string CombatAnimation { get; set; } = "Fantasy";
         public string StancesPerksTree { get; set; } = "TRUE";
         public string DeleveledEnemies { get; set; } = "TRUE";

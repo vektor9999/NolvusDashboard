@@ -185,19 +185,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             {
                 ServiceSingleton.Instances.WorkingInstance.Options.AlternateLeveling = "FALSE";
             }
-        }
-
-        private void TglBtnAltStart_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
-        {
-            if (e.ToggleState == ToggleButtonState.Active)
-            {
-                ServiceSingleton.Instances.WorkingInstance.Options.AlternateStart = "TRUE";
-            }
-            else
-            {
-                ServiceSingleton.Instances.WorkingInstance.Options.AlternateStart = "FALSE";
-            }
-        }
+        }       
 
         private void TglBtnGore_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
         {
