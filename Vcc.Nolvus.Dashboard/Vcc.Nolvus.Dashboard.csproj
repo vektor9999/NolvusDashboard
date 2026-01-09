@@ -484,6 +484,12 @@
     <Compile Include="Frames\Instance\v6\KeysBindingFrame.Designer.cs">
       <DependentUpon>KeysBindingFrame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frames\Manager\ENB\v6\ENBManagerFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Manager\ENB\v6\ENBManagerFrame.Designer.cs">
+      <DependentUpon>ENBManagerFrame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frames\PackageFrame.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -638,6 +644,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\Instance\v6\KeysBindingFrame.resx">
       <DependentUpon>KeysBindingFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Manager\ENB\v6\ENBManagerFrame.resx">
+      <DependentUpon>ENBManagerFrame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\PackageFrame.resx">
       <DependentUpon>PackageFrame.cs</DependentUpon>

@@ -13,5 +13,8 @@ namespace Vcc.Nolvus.Core.Interfaces
         InstanceInstallStatus InstallStatus { get; set; }
         int TotalMods { get; set; }
         List<string> InstalledMods { get;}
+        List<IInstanceStatusField> Fields { get; }
+        void AddField(string Key, string Value);
+        IInstanceStatusField GetFieldByKey(string Key);
     }
 }

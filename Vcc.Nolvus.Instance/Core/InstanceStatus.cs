@@ -17,6 +17,7 @@ namespace Vcc.Nolvus.Instance.Core
         public InstanceInstallStatus InstallStatus { get; set; } = InstanceInstallStatus.None;
         public int TotalMods { get; set; }
         public List<string> InstalledMods { get; set; } = new List<string>();
+        public List<IInstanceStatusField> Fields { get; set; } = new List<IInstanceStatusField>();
 
         #endregion
 
@@ -30,6 +31,21 @@ namespace Vcc.Nolvus.Instance.Core
             foreach (XmlNode InstalledModNode in InstalledModsNode.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "InstalledMod"))
             {
                 InstalledMods.Add(InstalledModNode.InnerText);
+            }
+
+            var FieldsNode = Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Fields").FirstOrDefault();
+
+            if (FieldsNode != null)
+            {
+                foreach (XmlNode FieldNode in FieldsNode.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Field"))
+                {
+                    InstanceStatusField Field = new InstanceStatusField();
+
+                    Field.Key = FieldNode["Key"].InnerText;
+                    Field.Value = FieldNode["Value"].InnerText;
+
+                    Fields.Add(Field);
+                }
             }
         }       
 
@@ -56,7 +72,37 @@ namespace Vcc.Nolvus.Instance.Core
 
             XMLWriter.WriteEndElement();
 
+            XMLWriter.WriteStartElement("Fields");
+
+            foreach (var Field in Fields)
+            {
+                XMLWriter.WriteStartElement("Field");                
+
+                XMLWriter.WriteStartElement("Key");
+                XMLWriter.WriteString(Field.Key.Trim());
+                XMLWriter.WriteEndElement();
+
+                XMLWriter.WriteStartElement("Value");
+                XMLWriter.WriteString(Field.Value.Trim());
+                XMLWriter.WriteEndElement();
+
+                XMLWriter.WriteEndElement();
+            }
+
             XMLWriter.WriteEndElement();
+
+
+            XMLWriter.WriteEndElement();
+        }
+
+        public void AddField(string Key, string Value)
+        {
+            Fields.Add(new InstanceStatusField(){Key = Key, Value = Value });
+        }
+
+        public IInstanceStatusField GetFieldByKey(string Key)
+        {
+            return Fields.Where(x => x.Key == Key).FirstOrDefault();
         }
     }
 }

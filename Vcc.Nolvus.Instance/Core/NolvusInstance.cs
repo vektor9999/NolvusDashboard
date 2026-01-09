@@ -28,7 +28,7 @@ namespace Vcc.Nolvus.Instance.Core
         public IInstanceSettings Settings { get; }
         public IInstancePerformance Performance { get; }
         public IInstanceOptions Options { get; }
-        public IInstanceStatus Status { get;}
+        public IInstanceStatus Status { get; }        
 
         public string Overwrite
         {
@@ -53,7 +53,7 @@ namespace Vcc.Nolvus.Instance.Core
             Settings = new InstanceSettings();            
             Performance = new InstancePerformance();
             Options = new InstanceOptions();
-            Status = new InstanceStatus();
+            Status = new InstanceStatus();            
         }
         public NolvusInstance(INolvusVersionDTO DTO)
         {
@@ -172,8 +172,7 @@ namespace Vcc.Nolvus.Instance.Core
             (Settings as InstanceSettings).Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Settings").FirstOrDefault());
             (Performance as InstancePerformance).Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Performance").FirstOrDefault());
             (Options as InstanceOptions).Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Options").FirstOrDefault());                                                                                   
-            (Status as InstanceStatus).Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Status").FirstOrDefault());
-            
+            (Status as InstanceStatus).Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Status").FirstOrDefault());                        
         }       
 
         public void Save(XmlWriter XMLWriter)
@@ -211,11 +210,11 @@ namespace Vcc.Nolvus.Instance.Core
             (Settings as InstanceSettings).Save(XMLWriter);
             (Performance as InstancePerformance).Save(XMLWriter);
             (Options as InstanceOptions).Save(XMLWriter);
-            (Status as InstanceStatus).Save(XMLWriter);
+            (Status as InstanceStatus).Save(XMLWriter);            
 
 
             XMLWriter.WriteEndElement();
-        }
+        }        
     }
 }
 

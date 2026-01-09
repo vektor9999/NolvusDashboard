@@ -58,6 +58,11 @@ namespace Vcc.Nolvus.Package.Mods
             return true;
         }
 
+        public override bool IsInstallable(string Value)
+        {
+            return true;
+        }
+
         protected override void CreateElementIni()
         {
             File.WriteAllText(Path.Combine(MoDirectoryFullName, "meta.ini"), string.Format(MetaIni, "0", Version, string.Empty, "0"));

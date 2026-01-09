@@ -5,12 +5,13 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
+using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Package.Files;
 using System.Xml;
 
 namespace Vcc.Nolvus.Package.Mods
 {
-    public class NexusMod : Mod
+    public class NexusMod : Mod, INexusMod
     {
         public string NexusId { get; set; }
         public string Domain { get; set; }

@@ -35,7 +35,7 @@ namespace Vcc.Nolvus.Package.Services
         QueueWatcher QueueWatcher;
         bool _Processing = false;
         private Dictionary<string, object> _Softwares = new Dictionary<string, object>();
-
+        List<InstallableElement> ModsToProcess = new List<InstallableElement>();
         #endregion
 
         #region Properties
@@ -71,6 +71,14 @@ namespace Vcc.Nolvus.Package.Services
             }            
         }
 
+        public List<IMod> AllMods
+        {
+            get
+            {
+                return Elements.Where(x => x is Mod).Cast<IMod>().ToList();
+            }
+        }
+
         private List<InstallableElement> ModsToInstall
         {
             get
@@ -97,14 +105,14 @@ namespace Vcc.Nolvus.Package.Services
             }
         }
 
-        public List<IMOElement> InstallList
+        public List<IMOElement> MO2List
         {
             get
             {
                 return Elements.Where(x => x.IsInstallable() && (x is MOElement) && (x as MOElement).Display).Cast<IMOElement>().ToList();
             }
 
-        }        
+        }
 
         public List<string> OptionalEsps
         {
@@ -119,7 +127,7 @@ namespace Vcc.Nolvus.Package.Services
         {
             get
             {
-                return ModsToInstall.Count;
+                return ModsToProcess.Count;
             }
         }
 
@@ -146,6 +154,11 @@ namespace Vcc.Nolvus.Package.Services
                 var DownloadedFile = Path.Combine(ServiceSingleton.Folders.DownloadDirectory, "InstallPackage.zip");
                 var ExtractedFile = Path.Combine(ServiceSingleton.Folders.ExtractDirectory, "InstallPackage.xml");
                 var Link = Package.InstallLink;
+
+                if (ServiceSingleton.Settings.DevDebug && Package.DevLink != string.Empty)
+                {
+                    Link = Package.DevLink;
+                }
 
                 if (!Install)
                 {                    
@@ -379,19 +392,20 @@ namespace Vcc.Nolvus.Package.Services
             ServiceSingleton.Instances.Save();
         }
 
-        public async Task InstallModList(ModInstallSettings Settings)
+        public async Task InstallModList(List<IInstallableElement> Mods, ModInstallSettings Settings)
         {
             try
-            {                
+            {
                 _Processing = true;
 
                 SemaphoreSlim = new SemaphoreSlim(ServiceSingleton.Settings.ProcessCount);
                 SemaphoreSlimBeforeDownload = new SemaphoreSlim(1);
 
-                _ErrorHandler = new ErrorHandler(ServiceSingleton.Settings.ErrorsThreshold) {
+                _ErrorHandler = new ErrorHandler(ServiceSingleton.Settings.ErrorsThreshold)
+                {
                     CancelTasks = new TaskCompletionSource<object>(),
                     CancelTokenSource = new CancellationTokenSource()
-                };               
+                };
 
                 QueueWatcher = new QueueWatcher(InstallingModsQueue);
 
@@ -400,9 +414,16 @@ namespace Vcc.Nolvus.Package.Services
                     await Category.Install(_ErrorHandler.Token);
                 }
 
-                Settings.OnStartInstalling();                
+                Settings.OnStartInstalling();
 
-                var Tasks = ModsToInstall.Where(x => !ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Any(y => y == x.Name)).OrderBy(i => i.Index).ToList().Select(async Mod =>
+                ModsToProcess = ModsToInstall;
+
+                if (Mods != null)
+                {
+                    ModsToProcess = Mods.Cast<InstallableElement>().ToList();
+                }                
+
+                var Tasks = ModsToProcess.Where(x => !ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Any(y => y == x.Name)).OrderBy(i => i.Index).ToList().Select(async Mod =>
                 {
                     await SemaphoreSlim.WaitAsync();
 
@@ -499,6 +520,11 @@ namespace Vcc.Nolvus.Package.Services
 
                 return Result;                        
             });
+        }        
+
+        public IMod GetModByName(string Name)
+        {
+            return AllMods.Where(x => x.Name == Name).FirstOrDefault();
         }
 
         #endregion

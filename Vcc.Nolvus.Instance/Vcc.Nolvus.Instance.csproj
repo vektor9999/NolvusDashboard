@@ -52,6 +52,7 @@
     <Compile Include="Core\InstancePerformance.cs" />
     <Compile Include="Core\InstanceSettings.cs" />
     <Compile Include="Core\InstanceStatus.cs" />
+    <Compile Include="Core\InstanceStatusField.cs" />
     <Compile Include="Core\NolvusInstance.cs" />
     <Compile Include="Core\InstanceOptions.cs" />
     <Compile Include="Services\InstanceService.cs" />

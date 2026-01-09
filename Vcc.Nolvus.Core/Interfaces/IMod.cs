@@ -9,5 +9,8 @@ namespace Vcc.Nolvus.Core.Interfaces
     public interface IMod : IMOElement
     {
         ICategory Category { get; }
+        bool HasTag(string Tag);
+        string GetFieldValueByKey(string Key);
+        List<IEnvironmentCondition> Conditions { get; }
     }
 }

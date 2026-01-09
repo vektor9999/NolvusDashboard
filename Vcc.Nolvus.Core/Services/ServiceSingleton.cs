@@ -135,5 +135,13 @@ namespace Vcc.Nolvus.Core.Services
                 return ServiceSingleton.GetService<ICheckerService>();
             }
         }
+
+        public static IENBService EnbManager
+        {
+            get
+            {
+                return ServiceSingleton.GetService<IENBService>();
+            }
+        }
     }
 }

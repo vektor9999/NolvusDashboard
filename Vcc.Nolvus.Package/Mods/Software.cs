@@ -21,6 +21,11 @@ namespace Vcc.Nolvus.Package.Mods
             return true;
         }
 
+        public override bool IsInstallable(string Value)
+        {
+            return true;
+        }
+
         public override void Load(XmlNode Node, List<InstallableElement> Elements)
         {
             base.Load(Node, Elements);

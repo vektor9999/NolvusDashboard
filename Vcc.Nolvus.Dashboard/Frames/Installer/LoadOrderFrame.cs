@@ -44,7 +44,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 try
                 {
                     var Instance = ServiceSingleton.Instances.WorkingInstance;
-                    var InstallList = ServiceSingleton.Packages.InstallList;
+                    var InstallList = ServiceSingleton.Packages.MO2List;
                     var Lines = ServiceSingleton.Game.GamePlugins;                    
 
                     string ModListFile = Path.Combine(Instance.InstallDir, "MODS", "profiles", Instance.Name, "modlist.txt");
@@ -129,8 +129,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             {
                 INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
-                ServiceSingleton.Dashboard.ClearInfo();
-                ServiceSingleton.Dashboard.Info("Applying install and load order");                
+                ServiceSingleton.Dashboard.ClearInfo();                
+                ServiceSingleton.Dashboard.Info("Applying install and load order...");                
 
                 ServiceSingleton.Logger.Log("Applying load order");
 

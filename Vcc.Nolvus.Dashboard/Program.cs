@@ -23,6 +23,7 @@ using Vcc.Nolvus.Services.Game;
 using Vcc.Nolvus.Services.Files;
 using Vcc.Nolvus.Services.Report;
 using Vcc.Nolvus.Services.Checker;
+using Vcc.Nolvus.Services.ENB;
 using Vcc.Nolvus.Instance.Services;
 using Vcc.Nolvus.Package.Services;
 using Vcc.Nolvus.Dashboard.Forms;
@@ -58,7 +59,8 @@ namespace Vcc.Nolvus.Dashboard
             ServiceSingleton.RegisterService<IFileService>(new FileService());
             ServiceSingleton.RegisterService<ISoftwareProvider>(PackageService);
             ServiceSingleton.RegisterService<IReportService>(new ReportService());
-            ServiceSingleton.RegisterService<ICheckerService>(new CheckerService());            
+            ServiceSingleton.RegisterService<ICheckerService>(new CheckerService());
+            ServiceSingleton.RegisterService<IENBService>(new ENBService());
 
             AppDomain.CurrentDomain.AssemblyResolve += Resolver;
             AppDomain.CurrentDomain.AssemblyLoad += Loader;

@@ -205,7 +205,7 @@ namespace Vcc.Nolvus.Core.Events
         public Action<IInstallableElement> OnModInstalled { get; set; }
         public Action<int> OnModError { get; set; }
         public Action OnMaxErrors { get; set; }
-        public Action OnStartInstalling { get; set; }
+        public Action OnStartInstalling { get; set; }        
     }    
     public class ModProgress
     {

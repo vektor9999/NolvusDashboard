@@ -15,6 +15,7 @@ using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Core.Enums;
 using Vcc.Nolvus.Api.Installer.Library;
 using Vcc.Nolvus.Api.Installer.Services;
+using Vcc.Nolvus.Dashboard.Frames.Manager.ENB.v6;
 using Vcc.Nolvus.Dashboard.Frames.Installer;
 using Vcc.Nolvus.Dashboard.Frames.Instance;
 
@@ -32,6 +33,11 @@ namespace Vcc.Nolvus.Dashboard.Frames
             :base(Dashboard, Params)            
         {
             InitializeComponent();
+        }
+
+        public InstanceMode Mode
+        {
+            get { return (InstanceMode)Parameters["Mode"]; }
         }
 
         protected async Task Install(INolvusInstance Instance)
@@ -79,6 +85,21 @@ namespace Vcc.Nolvus.Dashboard.Frames
             await ServiceSingleton.Dashboard.LoadFrameAsync<InstallFrame>();
         }
 
+        protected async Task ChangeEnb(INolvusInstance Instance)
+        {
+            await ServiceSingleton.Packages.Load(await ApiManager.Service.Installer.GetPackage(Instance.Id, Instance.Version), (s, p) =>
+            {
+                ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
+                ServiceSingleton.Dashboard.Progress(p);
+            });
+
+            ServiceSingleton.Logger.Log(string.Format("Changing ENB for {0} from {1} to {2}...", Instance.Name, Instance.Status.GetFieldByKey("OldENB").Value, Instance.Status.GetFieldByKey("NewENB").Value));
+
+            var Mods = await ServiceSingleton.EnbManager.PrepareModsToUpdate(Instance.Status.GetFieldByKey("OldENB").Value, Instance.Status.GetFieldByKey("NewENB").Value);
+
+            await ServiceSingleton.Dashboard.LoadFrameAsync<InstallFrame>(new FrameParameters(new FrameParameter() { Key = "ModsToInstall", Value = Mods.Cast<IInstallableElement>().ToList() }));
+        }
+
         protected async Task View(INolvusInstance Instance)
         {
             await ServiceSingleton.Packages.Load(await ApiManager.Service.Installer.GetPackage(Instance.Id, Instance.Version), (s, p) =>
@@ -90,6 +111,17 @@ namespace Vcc.Nolvus.Dashboard.Frames
             ServiceSingleton.Logger.Log(string.Format("Viewing {0} - v {1}...", Instance.Name, Instance.Version));
 
             ServiceSingleton.Dashboard.LoadFrame<InstanceDetailFrame>();
+        }
+
+        protected async Task LoadEnbManager(INolvusInstance Instance)
+        {
+            await ServiceSingleton.Packages.Load(await ApiManager.Service.Installer.GetPackage(Instance.Id, Instance.Version), (s, p) =>
+            {
+                ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
+                ServiceSingleton.Dashboard.Progress(p);
+            });            
+
+            await ServiceSingleton.Dashboard.LoadFrameAsync<ENBManagerFrame>();
         }
 
         protected override async Task OnLoadedAsync()        
@@ -115,9 +147,20 @@ namespace Vcc.Nolvus.Dashboard.Frames
                         case InstanceInstallStatus.Updating:                            
                             await Update(Instance);
                             break;
+                        case InstanceInstallStatus.ChangingEnb:
+                            await ChangeEnb(Instance);
+                            break;
 
                         default:
-                            await View(Instance);
+                            if (Mode == InstanceMode.View)
+                            {
+                                await View(Instance);
+                            }
+                            else if (Mode == InstanceMode.ENB)
+                            {
+                                await LoadEnbManager(Instance);
+                            }
+                            
                             break;
 
                     }                  

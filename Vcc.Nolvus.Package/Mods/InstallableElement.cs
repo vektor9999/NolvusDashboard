@@ -19,7 +19,8 @@ namespace Vcc.Nolvus.Package.Mods
 {
     public abstract class InstallableElement : IInstallableElement
     {
-        ModProgress _p = null;        
+        ModProgress _p = null;
+        Image _Image = null;  
 
         #region Properties
 
@@ -30,36 +31,9 @@ namespace Vcc.Nolvus.Package.Mods
         public ElementAction Action { get; set; }
         public List<ModFile> Files = new List<ModFile>();
         public abstract string ArchiveFolder { get; }
-        public int Index { get; set; }
-        private System.Drawing.Image FormatImage()
-        {
-            float Opacity = 0.30F;
-            ILibService Lib = ServiceSingleton.Lib;
-
-            System.Drawing.Image Result;
-            
-            try
-            {                
-                if (ImagePath != string.Empty)
-                {
-                    Result = Lib.GetImageFromWebStream(ImagePath);
-                }
-                else
-                {
-                    Result = Properties.Resources.mod_def_22;
-                }
-
-                Result = Lib.SetImageOpacity(Lib.SetImageGradient(Lib.ResizeKeepAspectRatio(Result, 100, 30)), Opacity);
-
-                return Result;
-                
-            }
-            catch
-            {                
-                return Lib.SetImageOpacity(Lib.SetImageGradient(Lib.ResizeKeepAspectRatio(Properties.Resources.mod_def_22, 100, 30)), Opacity);
-            }
-            
-        }
+        public int Index { get; set; }        
+        public Image Image { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         public ModProgress Progress
         {
@@ -95,6 +69,36 @@ namespace Vcc.Nolvus.Package.Mods
         }
 
         #region Methods        
+
+        private System.Drawing.Image FormatImage()
+        {
+            float Opacity = 0.30F;
+            ILibService Lib = ServiceSingleton.Lib;
+
+            System.Drawing.Image Result;
+
+            try
+            {
+                if (ImagePath != string.Empty)
+                {
+                    Result = Lib.GetImageFromWebStream(ImagePath);
+                }
+                else
+                {
+                    Result = Properties.Resources.mod_def_22;
+                }
+
+                Result = Lib.SetImageOpacity(Lib.SetImageGradient(Lib.ResizeKeepAspectRatio(Result, 100, 30)), Opacity);
+
+                return Result;
+
+            }
+            catch
+            {
+                return Lib.SetImageOpacity(Lib.SetImageGradient(Lib.ResizeKeepAspectRatio(Properties.Resources.mod_def_22, 100, 30)), Opacity);
+            }
+
+        }
 
         public virtual void Load(XmlNode Node, List<InstallableElement> Elements)
         {
@@ -205,7 +209,8 @@ namespace Vcc.Nolvus.Package.Mods
             }            
         }
 
-        public abstract bool IsInstallable();        
+        public abstract bool IsInstallable();
+        public abstract bool IsInstallable(string Value);
         protected virtual async Task DoDownload(Func<IBrowserInstance> Browser)
         {
             var Tsk = Task.Run(async () =>
@@ -353,8 +358,9 @@ namespace Vcc.Nolvus.Package.Mods
             });
         }
 
-        #endregion                                                                                          
-      
-        public abstract Task Remove();        
+        public abstract Task Remove();
+
+        #endregion
+
     }
 }

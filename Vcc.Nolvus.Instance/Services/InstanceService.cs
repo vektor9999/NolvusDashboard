@@ -246,6 +246,20 @@ namespace Vcc.Nolvus.Instance.Services
             }
         }
 
+        public void PrepareInstanceForEnb()
+        {
+            if (WorkingInstance != null)
+            {
+                WorkingInstance.Status.InstallStatus = InstanceInstallStatus.ChangingEnb;
+
+                Save();
+            }
+            else
+            {
+                throw new Exception("No working instance selected!");
+            }
+        }
+
         public bool WorkingOnInstance
         {
             get
@@ -258,7 +272,8 @@ namespace Vcc.Nolvus.Instance.Services
         {
             WorkingInstance.Status.InstallStatus = InstanceInstallStatus.Installed;
             WorkingInstance.Status.InstalledMods.Clear();
-            WorkingInstance.Version = ServiceSingleton.Packages.LoadedVersion;
+            WorkingInstance.Status.Fields.Clear();
+            WorkingInstance.Version = ServiceSingleton.Packages.LoadedVersion;            
 
             Save();
 
@@ -320,6 +335,11 @@ namespace Vcc.Nolvus.Instance.Services
 
             return EnvValue;   
         }
+
+        public void SetCurrenTask(string Key, string Value)
+        {
+            
+        }        
 
         #endregion
     }

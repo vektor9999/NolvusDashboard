@@ -185,7 +185,7 @@ namespace Vcc.Nolvus.Core.Misc
 
                 return Mo2Mod;
             })
-            .ToList().Concat(NolvusList.Except(Mo2List, new NameComparer()).ToList().Select(x =>
+            .Concat(NolvusList.Except(Mo2List, new NameComparer()).ToList().Select(x =>
             {
                 x.Status = ModObjectStatus.NotInstalled;
                 x.StatusText = "Not installed";

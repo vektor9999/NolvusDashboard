@@ -17,6 +17,7 @@ namespace Vcc.Nolvus.Api.Installer.Library
         bool Active { get; }
         bool IsBeta { get; }
         bool NewGame { get; }
+        string DevLink { get; }
     }
 
     public class InstallPackageObject : InstallerApiObject
@@ -30,6 +31,7 @@ namespace Vcc.Nolvus.Api.Installer.Library
         public bool Active { get; set; }
         public bool IsBeta { get; set; }
         public bool NewGame { get; set; }
+        public string DevLink { get; set; }
     }
 
     public class InstallPackageDTO : InstallPackageObject, IInstallPackageDTO

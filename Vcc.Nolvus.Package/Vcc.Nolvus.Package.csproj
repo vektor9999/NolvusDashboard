@@ -76,6 +76,8 @@
     <Compile Include="Mods\BsaUnPacking.cs" />
     <Compile Include="Mods\Category.cs" />
     <Compile Include="Conditions\CompareCondition.cs" />
+    <Compile Include="Mods\CustomField.cs" />
+    <Compile Include="Mods\ENBPreset.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

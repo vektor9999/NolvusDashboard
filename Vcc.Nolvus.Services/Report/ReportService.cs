@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using System.Drawing;
@@ -555,9 +556,11 @@ namespace Vcc.Nolvus.Services.Report
 
                 float HalfWidth = Report.PageSettings.Width / 2;
 
-                Graphics.DrawImage(new PdfBitmap(Image), HalfWidth - 225, 1, 450, 250);
+                Graphics.DrawImage(new PdfBitmap(Image), HalfWidth - 225, 1, 450, 250);                
 
-                float CurrentLine = 250;
+                float CurrentLine = 250;                
+
+                CurrentLine += DrawString("Report Date : ", string.Format("{0} at {1}", DateTime.Now.ToString("MMMM dd, yyyy", new CultureInfo("en-US")), DateTime.Now.ToShortTimeString()), Graphics, Report.PageSettings, CurrentLine);
 
                 Progress("Generating report", 10);
 

@@ -9,7 +9,7 @@ using Vcc.Nolvus.Core.Services;
 
 namespace Vcc.Nolvus.Package.Conditions
 {
-    public class EnvironmentCondition : InstallCondition
+    public class EnvironmentCondition : InstallCondition, IEnvironmentCondition
     {
         public string DataToCompare { get; set; }        
         public string ValueToCompare { get; set; }
@@ -38,6 +38,25 @@ namespace Vcc.Nolvus.Package.Conditions
 
                     break;
             }            
+
+            return Valid;
+        }
+
+        public override bool IsValid(string Value)
+        {            
+            bool Valid = false;
+
+            switch (this.Operator)
+            {
+                case 0:
+                    Valid = Value == ValueToCompare;
+
+                    break;
+                case 1:
+                    Valid = Value != ValueToCompare;
+
+                    break;
+            }
 
             return Valid;
         }

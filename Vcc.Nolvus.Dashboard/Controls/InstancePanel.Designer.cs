@@ -52,6 +52,8 @@
             this.barItem4 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.BrItmDelete = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.LblImageLoading = new System.Windows.Forms.Label();
+            this.BrItmENBManager = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.barItem6 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             ((System.ComponentModel.ISupportInitialize)(this.PicInstanceImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -180,6 +182,8 @@
             this.barItem3,
             this.BrItmManual,
             this.barItem4,
+            this.BrItmENBManager,
+            this.barItem6,
             this.BrItmDelete});
             this.parentBarItem1.MetroColor = System.Drawing.Color.LightSkyBlue;
             this.parentBarItem1.ShowToolTipInPopUp = false;
@@ -291,6 +295,25 @@
             this.LblImageLoading.Text = "Loading...";
             this.LblImageLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // BrItmENBManager
+            // 
+            this.BrItmENBManager.BarName = "BrItmENBManager";
+            this.BrItmENBManager.ID = "ENB Manager";
+            this.BrItmENBManager.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmENBManager.Image")));
+            this.BrItmENBManager.ImageSize = new System.Drawing.Size(24, 24);
+            this.BrItmENBManager.ShowToolTipInPopUp = false;
+            this.BrItmENBManager.SizeToFit = true;
+            this.BrItmENBManager.Text = "ENB Manager";
+            this.BrItmENBManager.Click += new System.EventHandler(this.BrItmENBManager_Click);
+            // 
+            // barItem6
+            // 
+            this.barItem6.BarName = "barItem6";
+            this.barItem6.ID = "-";
+            this.barItem6.ShowToolTipInPopUp = false;
+            this.barItem6.SizeToFit = true;
+            this.barItem6.Text = "-";
+            // 
             // InstancePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -340,5 +363,7 @@
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmManual;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem barItem4;
         private System.Windows.Forms.Label LblImageLoading;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmENBManager;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem barItem6;
     }
 }

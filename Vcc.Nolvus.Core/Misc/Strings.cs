@@ -13,5 +13,8 @@ namespace Vcc.Nolvus.Core.Misc
         public const string GoogleDrive = "drive.google.com";
         public const string Mega = "mega.nz";
         public const string NolvusSlug = "nolvus";
+        public const string EnbAntialiasingFile = "enbantialiasing.ini";
+        public const string EnbFrameGenFile = "enbframegeneration.ini";
+        public const string AlternateENB = "AlternateENB";
     }
 }

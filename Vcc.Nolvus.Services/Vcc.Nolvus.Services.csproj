@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Checker\CheckerService.cs" />
+    <Compile Include="ENB\ENBService.cs" />
     <Compile Include="Files\Downloaders\BaseFileDownloader.cs" />
     <Compile Include="Files\Downloaders\CookieAwareWebClient.cs">
       <SubType>Component</SubType>

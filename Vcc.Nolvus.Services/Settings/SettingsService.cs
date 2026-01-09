@@ -21,6 +21,8 @@ namespace Vcc.Nolvus.Services.Settings
         public const string Interval = "RefreshInterval";
         public const string Browser = "Browser";
         public const string LogSeverity = "LogSeverity";
+        public const string DevSection = "Dev";
+        public const string DebugEnabled = "Debug";
 
         public void StoreIniValue(string Section, string Parameter, string Value)
         {
@@ -119,7 +121,7 @@ namespace Vcc.Nolvus.Services.Settings
                 try
                 {
                     return System.Convert.ToBoolean(GetIniValue(MiscSection, ForceAntiAliasing));
-                    
+
                 }
                 catch
                 {
@@ -174,6 +176,21 @@ namespace Vcc.Nolvus.Services.Settings
                 {
                     return "Error";
                 }
+            }
+        }
+
+        public bool DevDebug
+        {
+            get
+            {
+                try
+                {
+                    return System.Convert.ToBoolean(GetIniValue(DevSection, DebugEnabled));
+                }
+                catch
+                {
+                    return false;
+                }               
             }
         }
     }

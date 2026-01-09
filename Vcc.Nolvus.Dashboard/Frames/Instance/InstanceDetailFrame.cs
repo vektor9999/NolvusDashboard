@@ -241,7 +241,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
-            ServiceSingleton.Instances.WorkingInstance = null;
+            ServiceSingleton.Instances.UnloadWorkingIntance();
             ServiceSingleton.Dashboard.LoadFrame<InstancesFrame>();
         }
 

@@ -13,10 +13,11 @@ namespace Vcc.Nolvus.Core.Interfaces
     public interface IPackageService : INolvusService, ISoftwareProvider, IModsContainer
     {        
         Task Load(IInstallPackageDTO Package, Action<string, int> Progress = null);
-        Task Merge(IEnumerable<IInstallPackageDTO> Packages, Action<string, int> Progress = null);
-        Task InstallModList(ModInstallSettings Settings = null);
+        Task Merge(IEnumerable<IInstallPackageDTO> Packages, Action<string, int> Progress = null);        
+        Task InstallModList(List<IInstallableElement> Mods = null, ModInstallSettings Settings = null);
         int ModsCount { get; }
-        List<IMOElement> InstallList { get; }
+        List<IMOElement> MO2List { get; }
+        List<IMod> AllMods { get; }
         List<string> OptionalEsps { get; }
         List<string> LoadOrder { get; }
         List<IInstallableElement> InstallingModsQueue { get; }
@@ -24,6 +25,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         string LoadedVersion { get; }        
         double InstallProgression { get; }
         IErrorHandler ErrorHandler { get; }        
-        bool Processing { get; }                  
+        bool Processing { get; }        
+        IMod GetModByName(string Name);
     }
 }

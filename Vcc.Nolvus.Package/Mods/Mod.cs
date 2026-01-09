@@ -24,6 +24,7 @@ namespace Vcc.Nolvus.Package.Mods
         public List<Rule> Rules = new List<Rule>();
         public List<BsaUnPacking> Bsas = new List<BsaUnPacking>();
         public List<Esp> Esps = new List<Esp>();
+        public List<CustomField> Fields = new List<CustomField>();
 
         #endregion
 
@@ -44,6 +45,16 @@ namespace Vcc.Nolvus.Package.Mods
             get
             {
                 return Path.Combine(ServiceSingleton.Instances.WorkingInstance.ArchiveDir, Category.Name);
+            }
+        }
+
+        public string Tag { get; set; }
+
+        public List<IEnvironmentCondition> Conditions
+        {
+            get
+            {
+                return InstallConditions.Cast<IEnvironmentCondition>().ToList();
             }
         }
 
@@ -70,6 +81,8 @@ namespace Vcc.Nolvus.Package.Mods
             }
             
             Action = ElementAction;
+
+            Tag = Node["Tag"].InnerText;
 
             #region Rules
 
@@ -174,6 +187,28 @@ namespace Vcc.Nolvus.Package.Mods
 
             #endregion
 
+            #region Custom Fields
+
+            Esps.Clear();
+
+            XmlNode FieldsNode = Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "CustomFields").FirstOrDefault();
+
+            if (FieldsNode != null)
+            {
+                List<XmlNode> FieldNodes = FieldsNode.ChildNodes.Cast<XmlNode>().ToList();
+
+                foreach (XmlNode FieldNode in FieldNodes)
+                {
+                    CustomField CustomField = new CustomField();
+
+                    CustomField.Key = FieldNode["Key"].InnerText;
+                    CustomField.Value = FieldNode["Value"].InnerText;
+                    Fields.Add(CustomField);
+                }
+            }
+
+            #endregion
+
             Elements.Add(this);                        
         }
 
@@ -200,17 +235,36 @@ namespace Vcc.Nolvus.Package.Mods
 
             return true;
         }
-        private void PrepareDirectrory()
-        {
-            if (Display)
-            {
-                if (ZlpIOHelper.DirectoryExists(MoDirectoryFullName))
-                {
-                    ServiceSingleton.Files.RemoveDirectory(MoDirectoryFullName, true);
-                }
 
-                ZlpIOHelper.CreateDirectory(MoDirectoryFullName);
+        public override bool IsInstallable(string Value)
+        {
+            foreach (var Condition in InstallConditions)
+            {
+                if (!Condition.IsValid(Value))
+                {
+                    return false;
+                }
             }
+
+            return true;
+        }
+
+        protected virtual async Task PrepareDirectrory()
+        {
+            var Tsk = Task.Run(() => {
+
+                if (Display)
+                {
+                    if (ZlpIOHelper.DirectoryExists(MoDirectoryFullName))
+                    {
+                        ServiceSingleton.Files.RemoveDirectory(MoDirectoryFullName, true);
+                    }
+
+                    ZlpIOHelper.CreateDirectory(MoDirectoryFullName);
+                }
+            });
+
+            await Tsk;
         }
         protected string GetInstallFileName()
         {
@@ -295,17 +349,17 @@ namespace Vcc.Nolvus.Package.Mods
         }
         protected override async Task DoCopy()
         {
-            var Tsk = Task.Run(() =>
+            var Tsk = Task.Run(async () =>
             {
                 try
                 {
                     try
-                    {
+                    {                        
                         ServiceSingleton.Logger.Log(string.Format("Installing mod {0}", Name));
 
                         CopyingProgress(0, 0);
 
-                        PrepareDirectrory();
+                        await PrepareDirectrory();
 
                         var Rules = FetchRules();
                         var Counter = 0;                        
@@ -380,6 +434,18 @@ namespace Vcc.Nolvus.Package.Mods
             });
 
             await Tsk;
+        }
+
+        public bool HasTag(string Value)
+        {
+            return Tag.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Where(x => x == Value).Count() > 0;
+        }
+
+        public string GetFieldValueByKey(string Key)
+        {
+            var Field = Fields.Where(x => x.Key == Key).FirstOrDefault();
+
+            return Field == null ? string.Empty : Field.Value;
         }
 
         #endregion
