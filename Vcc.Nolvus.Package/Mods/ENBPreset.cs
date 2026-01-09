@@ -42,39 +42,7 @@ namespace Vcc.Nolvus.Package.Mods
             var Tsk = Task.Run(() =>
             {
                 try
-                {
-                    //string EnbCacheFolder  = Path.Combine(ServiceSingleton.Instances.WorkingInstance.StockGame, "enbcache");
-                    //string EnbSeriesFolder = Path.Combine(ServiceSingleton.Instances.WorkingInstance.StockGame, "enbseries");
-                    //string EnbLocalIni = Path.Combine(ServiceSingleton.Instances.WorkingInstance.StockGame, "enblocal.ini");
-                    //string EnbSeriesIni = Path.Combine(ServiceSingleton.Instances.WorkingInstance.StockGame, "enbseries.ini");
-
-                    //if (ZlpIOHelper.DirectoryExists(EnbCacheFolder))
-                    //{
-                    //    ServiceSingleton.Files.RemoveDirectory(EnbCacheFolder, true);
-                    //}
-
-                    //if (ZlpIOHelper.DirectoryExists(EnbSeriesFolder))
-                    //{
-                    //    var Files = ServiceSingleton.Files.GetFiles(EnbSeriesFolder);
-
-                    //    foreach(var File in Files)
-                    //    {
-                    //        if (File.Name != Strings.EnbAntialiasingFile && File.Name != Strings.EnbFrameGenFile)
-                    //        {
-                    //            File.Delete();
-                    //        }
-                    //    }
-                    //}   
-                    
-                    //if (ZlpIOHelper.FileExists(EnbLocalIni))
-                    //{
-                    //    ZlpIOHelper.DeleteFile(EnbLocalIni);
-                    //}
-
-                    //if (ZlpIOHelper.FileExists(EnbSeriesIni))
-                    //{
-                    //    ZlpIOHelper.DeleteFile(EnbSeriesIni);
-                    //}
+                {                    
                 }
                 catch (Exception ex)
                 {
