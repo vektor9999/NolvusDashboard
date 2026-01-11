@@ -620,6 +620,8 @@ namespace Vcc.Nolvus.Services.Report
 
                 Progress("Generating report", 30);
 
+                Graphics = PageBreak(Report, ref CurrentLine).Graphics;
+
                 #region Performance
 
                 if (Instance.Name == Strings.NolvusAscension)
@@ -704,13 +706,11 @@ namespace Vcc.Nolvus.Services.Report
                 {
                     #region V6
 
-                    CurrentLine += 20;
+                    CurrentLine += 20;                    
 
-                    CurrentLine += DrawHeader("PERFORMANCE SETTINGS", Graphics, Report.PageSettings, CurrentLine);
+                    CurrentLine += DrawHeader("PERFORMANCE SETTINGS", Graphics, Report.PageSettings, CurrentLine);                    
 
-                    CurrentLine += DrawString("Variant : ", Instance.Performance.Variant, Graphics, Report.PageSettings, CurrentLine);
-
-                    Graphics = PageBreak(Report, ref CurrentLine).Graphics;
+                    CurrentLine += DrawString("Variant : ", Instance.Performance.Variant, Graphics, Report.PageSettings, CurrentLine);                    
 
                     CurrentLine += DrawString("Anti aliasing : ", Instance.Performance.AntiAliasing, Graphics, Report.PageSettings, CurrentLine);
 
@@ -919,12 +919,13 @@ namespace Vcc.Nolvus.Services.Report
                     #endregion
                 }
 
-
                 #endregion
 
                 Progress("Generating report", 60);
 
                 #region Status
+
+                Graphics = PageBreak(Report, ref CurrentLine).Graphics;
 
                 CurrentLine += 20;
 

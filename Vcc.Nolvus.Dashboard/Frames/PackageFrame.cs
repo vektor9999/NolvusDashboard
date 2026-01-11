@@ -80,7 +80,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 ServiceSingleton.Dashboard.Progress(p);
             });
 
-            ServiceSingleton.Logger.Log(string.Format("Updating {0} - v {1} to v {2}...", Instance.Name, Instance.Version, Packages.Last().Version));
+            ServiceSingleton.Logger.Log(string.Format("Updating {0} - v {1} to v {2}...", Instance.Name, Instance.Version, Packages.Last().Version));            
 
             await ServiceSingleton.Dashboard.LoadFrameAsync<InstallFrame>();
         }
@@ -119,7 +119,9 @@ namespace Vcc.Nolvus.Dashboard.Frames
             {
                 ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
                 ServiceSingleton.Dashboard.Progress(p);
-            });            
+            });
+
+            ServiceSingleton.Logger.Log(string.Format("Loading ENB Manager for {0} - v {1}...", Instance.Name, Instance.Version));
 
             await ServiceSingleton.Dashboard.LoadFrameAsync<ENBManagerFrame>();
         }

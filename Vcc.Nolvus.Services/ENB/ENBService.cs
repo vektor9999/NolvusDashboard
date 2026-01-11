@@ -35,6 +35,14 @@ namespace Vcc.Nolvus.Services.ENB
             return EnbPresets.Where(x => x.GetFieldValueByKey("EnbCode") == Preset).ToList();
         }
 
+        public bool EnbPresetsNeedUpdate
+        {
+            get
+            {
+                return EnbPresets.Count > 0;
+            }
+        }
+
         public IENBPreset CurrentPreset(string Preset)
         {
             return CurrentEnbPreset(Preset).FirstOrDefault();
