@@ -224,9 +224,10 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
                 var Variants = await ApiManager.Service.Installer.GetNolvusVariants();
 
+                Variants = Variants.Except(Variants.Where(x => !x.Display)).ToList();
+
                 DrpDwnLstVariant.DataSource = Variants;
-                DrpDwnLstVariant.DisplayMember = "Name";
-                DrpDwnLstVariant.ValueMember = "Id";
+                DrpDwnLstVariant.DisplayMember = "FullName";                             
 
                 DrpDwnLstVariant.SelectedIndex = VariantIndex(Variants);
 

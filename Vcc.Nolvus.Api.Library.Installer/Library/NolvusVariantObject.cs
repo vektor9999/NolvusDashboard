@@ -15,7 +15,11 @@ namespace Vcc.Nolvus.Api.Installer.Library
         string Textures { get; }
         string Trees { get; }
 
-        string Cities { get; }        
+        string Cities { get; }
+
+        bool Beta { get; }
+        bool Display { get; }
+        string FullName { get; }
     }
 
     public class NolvusVariantObject : InstallerApiObject
@@ -25,7 +29,11 @@ namespace Vcc.Nolvus.Api.Installer.Library
         public string Textures { get; set; }
         public string Trees { get; set; }
 
-        public string Cities { get; set; }       
+        public string Cities { get; set; }
+
+        public bool Beta { get; set; }
+        public bool Display { get; set; }
+        public string FullName { get; set; }
     }
 
     public class NolvusVariantDTO : NolvusVariantObject, INolvusVariantDTO
