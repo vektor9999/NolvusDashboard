@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Core.Enums;
+using Vcc.Nolvus.Core.Misc;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Instance.Core;
 using Vcc.Nolvus.Dashboard.Core;
@@ -102,6 +103,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         {
             var Instance = ServiceSingleton.Instances.WorkingInstance;
 
+            LblGOWarning.Visible = Instance.Performance.Variant == Strings.GO;
+
             TglBtnNudity.ToggleState = ToggleButtonState.Inactive;
 
             if (Instance.Options.Nudity == "TRUE")
@@ -114,7 +117,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             if (Instance.Options.AlternateLeveling == "TRUE")
             {
                 TglBtnLeveling.ToggleState = ToggleButtonState.Active;
-            }                        
+            }
+
+            TglBtnLeveling.Enabled = Instance.Performance.Variant != Strings.GO;                       
 
             TglBtnGore.ToggleState = ToggleButtonState.Inactive;
 
@@ -123,10 +128,14 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 TglBtnGore.ToggleState = ToggleButtonState.Active;
             }
 
+            TglBtnGore.Enabled = Instance.Performance.Variant != Strings.GO;
+
             if (Instance.Options.Controller == "TRUE")
             {
                 TglBtnController.ToggleState = ToggleButtonState.Active;
             }
+
+            TglBtnController.Enabled = Instance.Performance.Variant != Strings.GO;
 
             List<string> CombatAnims = new List<string>();
 
@@ -137,6 +146,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
             DrpDwnLstCombatAnims.SelectedIndex = AnimsIndex(CombatAnims);
 
+            DrpDwnLstCombatAnims.Enabled = Instance.Performance.Variant != Strings.GO;
+
             List<string> UIs = new List<string>();
 
             UIs.Add("Untarnished UI");
@@ -145,6 +156,12 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             DrpDwnLstUI.DataSource = UIs;
 
             DrpDwnLstUI.SelectedIndex = UIsIndex(UIs);
+
+            LblALNotUsed.Visible = Instance.Performance.Variant == Strings.GO;
+            LblCANotUsed.Visible = Instance.Performance.Variant == Strings.GO;
+            LblGoreNotUsed.Visible = Instance.Performance.Variant == Strings.GO;
+            LblCSNotUsed.Visible = Instance.Performance.Variant == Strings.GO;
+
 
             ServiceSingleton.Dashboard.Info("Options");
         }
@@ -157,7 +174,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         private void BtnContinue_Click(object sender, EventArgs e)
         {
             if (NolvusMessageBox.ShowConfirmation("Confirmation", "The options you selected can not be changed after installation. Are you sure you want to continue?") == DialogResult.Yes)
-            {                
+            {                                
                 ServiceSingleton.Dashboard.LoadFrame<v6.DifficultyFrame>();
             }
         }

@@ -77,22 +77,10 @@ namespace Vcc.Nolvus.Dashboard.Frames
             }
 
             LblInstance.Text = this.Instance.Name + " v" + Version;
-        }
-
-        public void UpdateProgress(int Value)
-        {
-            if (InvokeRequired)
-            {
-                Invoke((System.Action<int>)UpdateProgress, Value);
-                return;
-            }
-
-            LblDeleteInfo.Text = "Deleting instance (" + Value.ToString() + "%)";
-        }
+        }        
 
         private async Task DeleteInstance(List<ZlpFileInfo> Files)
-        {
-            LblDeleteInfo.Visible = true;
+        {            
             BtnAction.Enabled = false;
             BtnBack.Enabled = false;
 
@@ -105,11 +93,11 @@ namespace Vcc.Nolvus.Dashboard.Frames
                     _File.Attributes = ZetaLongPaths.Native.FileAttributes.Normal;
                     _File.Delete();
 
-                    int PercentDone = System.Convert.ToInt16(((double)++Counter / Files.Count) * 100);
-
-                    UpdateProgress(PercentDone);
+                    int PercentDone = System.Convert.ToInt16(((double)++Counter / Files.Count) * 100);                    
 
                     ServiceSingleton.Dashboard.Progress(PercentDone);
+                    ServiceSingleton.Dashboard.Status(string.Format("Deleting {0}...", _File.Name));
+                    ServiceSingleton.Dashboard.AdditionalInfo(string.Format("Deleting instance ({0}%)", PercentDone));
                 }
 
                 ServiceSingleton.Files.RemoveDirectory(Instance.InstallDir, false);
@@ -147,6 +135,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                     {
                         ServiceSingleton.Dashboard.NoStatus();
                         ServiceSingleton.Dashboard.ProgressCompleted();
+                        ServiceSingleton.Dashboard.ClearInfo();
                     }
                 }
                 catch(Exception ex)

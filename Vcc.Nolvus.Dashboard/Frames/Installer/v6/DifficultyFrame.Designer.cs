@@ -57,6 +57,7 @@
             this.DrpDwnLstPreset = new Syncfusion.WinForms.ListView.SfComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.LblStepText = new System.Windows.Forms.Label();
+            this.LblGOWarning = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -76,7 +77,7 @@
             this.panel1.Controls.Add(this.BtnPrevious);
             this.panel1.Controls.Add(this.BtnContinue);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Location = new System.Drawing.Point(617, 30);
+            this.panel1.Location = new System.Drawing.Point(681, 30);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(310, 660);
             this.panel1.TabIndex = 21;
@@ -140,12 +141,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.LblGOWarning);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.DrpDwnLstPreset);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Location = new System.Drawing.Point(7, 30);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(604, 660);
+            this.panel2.Size = new System.Drawing.Size(668, 660);
             this.panel2.TabIndex = 20;
             // 
             // groupBox1
@@ -168,7 +170,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(17, 73);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(565, 572);
+            this.groupBox1.Size = new System.Drawing.Size(629, 572);
             this.groupBox1.TabIndex = 57;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Options";
@@ -207,7 +209,7 @@
             this.label14.ForeColor = System.Drawing.Color.Orange;
             this.label14.Location = new System.Drawing.Point(18, 331);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(540, 42);
+            this.label14.Size = new System.Drawing.Size(604, 42);
             this.label14.TabIndex = 73;
             this.label14.Text = resources.GetString("label14.Text");
             // 
@@ -219,7 +221,7 @@
             this.label12.ForeColor = System.Drawing.Color.Orange;
             this.label12.Location = new System.Drawing.Point(19, 258);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(540, 28);
+            this.label12.Size = new System.Drawing.Size(604, 28);
             this.label12.TabIndex = 71;
             this.label12.Text = "Power attack, dual wield attacks and dual wield power attacks damages are reduced" +
     " by 30%";
@@ -232,7 +234,7 @@
             this.label11.ForeColor = System.Drawing.Color.Orange;
             this.label11.Location = new System.Drawing.Point(17, 137);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(540, 73);
+            this.label11.Size = new System.Drawing.Size(604, 73);
             this.label11.TabIndex = 70;
             this.label11.Text = resources.GetString("label11.Text");
             // 
@@ -244,7 +246,7 @@
             this.label9.ForeColor = System.Drawing.Color.Orange;
             this.label9.Location = new System.Drawing.Point(19, 61);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(540, 41);
+            this.label9.Size = new System.Drawing.Size(604, 41);
             this.label9.TabIndex = 69;
             this.label9.Text = resources.GetString("label9.Text");
             // 
@@ -379,10 +381,22 @@
             this.LblStepText.ForeColor = System.Drawing.Color.White;
             this.LblStepText.Location = new System.Drawing.Point(3, 0);
             this.LblStepText.Name = "LblStepText";
-            this.LblStepText.Size = new System.Drawing.Size(924, 20);
+            this.LblStepText.Size = new System.Drawing.Size(988, 20);
             this.LblStepText.TabIndex = 19;
             this.LblStepText.Text = "Difficulty Options";
             this.LblStepText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LblGOWarning
+            // 
+            this.LblGOWarning.AutoSize = true;
+            this.LblGOWarning.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblGOWarning.ForeColor = System.Drawing.Color.Orange;
+            this.LblGOWarning.Location = new System.Drawing.Point(306, 18);
+            this.LblGOWarning.Name = "LblGOWarning";
+            this.LblGOWarning.Size = new System.Drawing.Size(338, 13);
+            this.LblGOWarning.TabIndex = 58;
+            this.LblGOWarning.Text = "Disabled and not used when selecting the Graphics Only variant";
+            this.LblGOWarning.Visible = false;
             // 
             // DifficultyFrame
             // 
@@ -393,7 +407,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.LblStepText);
             this.Name = "DifficultyFrame";
-            this.Size = new System.Drawing.Size(930, 695);
+            this.Size = new System.Drawing.Size(994, 695);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -432,5 +446,6 @@
         private System.Windows.Forms.Label label14;
         private Syncfusion.WinForms.ListView.SfComboBox DrpDwnLstCombatScaling;
         private Syncfusion.WinForms.ListView.SfComboBox DrpDwnLstNerfPA;
+        private System.Windows.Forms.Label LblGOWarning;
     }
 }

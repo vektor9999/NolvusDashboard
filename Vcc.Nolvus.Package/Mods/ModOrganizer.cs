@@ -678,6 +678,7 @@ sTestFile3=Dragonborn.esm
 uExterior Cell Buffer=36
 uGridsToLoad=5
 uInterior Cell Buffer=0
+bBorderRegionsEnabled=0
 
 [GeneralWarnings]
 SGeneralMasterMismatchWarning=One or more plugins could not find the correct versions of the master files they depend on. Errors may occur during load or game play. Check the 'Warnings.txt' file for more information.
@@ -830,6 +831,7 @@ sTestFile3=Dragonborn.esm
 uExterior Cell Buffer=36
 uGridsToLoad=5
 uInterior Cell Buffer=0
+bBorderRegionsEnabled=0
 
 [GeneralWarnings]
 SGeneralMasterMismatchWarning=One or more plugins could not find the correct versions of the master files they depend on. Errors may occur during load or game play. Check the 'Warnings.txt' file for more information.
@@ -982,6 +984,7 @@ sTestFile3=Dragonborn.esm
 uExterior Cell Buffer=36
 uGridsToLoad=5
 uInterior Cell Buffer=0
+bBorderRegionsEnabled=0
 
 [GeneralWarnings]
 SGeneralMasterMismatchWarning=One or more plugins could not find the correct versions of the master files they depend on. Errors may occur during load or game play. Check the 'Warnings.txt' file for more information.

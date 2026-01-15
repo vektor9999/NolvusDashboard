@@ -222,12 +222,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
                 #region Variants
 
-                var Variants = await ApiManager.Service.Installer.GetNolvusVariants();
-
-                Variants = Variants.Except(Variants.Where(x => !x.Display)).ToList();
+                var Variants = await ApiManager.Service.Installer.GetNolvusVariants();                
 
                 DrpDwnLstVariant.DataSource = Variants;
-                DrpDwnLstVariant.DisplayMember = "FullName";                             
+                DrpDwnLstVariant.DisplayMember = "FullName";
+                DrpDwnLstVariant.ValueMember = "Id";
 
                 DrpDwnLstVariant.SelectedIndex = VariantIndex(Variants);
 
@@ -383,6 +382,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
             MinRequirements = await ApiManager.Service.Installer.GetNolvusVariantMinimumRequirements(DrpDwnLstVariant.SelectedValue.ToString());
             RecRequirements = await ApiManager.Service.Installer.GetNolvusVariantRecommendedRequirements(DrpDwnLstVariant.SelectedValue.ToString());
+
+            LblNote.Text = Variant.Note;
 
             UpdateHardwareConfiguration();
         }

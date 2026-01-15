@@ -16,5 +16,6 @@ namespace Vcc.Nolvus.Core.Misc
         public const string EnbAntialiasingFile = "enbantialiasing.ini";
         public const string EnbFrameGenFile = "enbframegeneration.ini";
         public const string AlternateENB = "AlternateENB";
+        public const string GO = "Graphics Only";
     }
 }

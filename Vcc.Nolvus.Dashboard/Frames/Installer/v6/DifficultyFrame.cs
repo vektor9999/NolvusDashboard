@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Core.Enums;
+using Vcc.Nolvus.Core.Misc;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Instance.Core;
 using Vcc.Nolvus.Dashboard.Core;
@@ -136,6 +137,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         {
             var Instance = ServiceSingleton.Instances.WorkingInstance;
 
+            LblGOWarning.Visible = Instance.Performance.Variant == Strings.GO;
+
             List<string> Presets = new List<string>();
 
             Presets.Add("Milk Drinker");
@@ -174,6 +177,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             
             DrpDwnLstPreset.SelectedIndexChanged += DrpDwnLstPreset_SelectedIndexChanged;
 
+            DrpDwnLstPreset.Enabled = Instance.Performance.Variant != Strings.GO;
 
             List<string> CombatScalings = new List<string>();
 
@@ -186,12 +190,16 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
             DrpDwnLstCombatScaling.SelectedIndex = ScalingsIndex(CombatScalings);
 
+            DrpDwnLstCombatScaling.Enabled = Instance.Performance.Variant != Strings.GO; ;
+
             TglBtnExhaustion.ToggleState = ToggleButtonState.Inactive;
 
             if (Instance.Options.Exhaustion == "TRUE")
             {
                 TglBtnExhaustion.ToggleState = ToggleButtonState.Active;
             }      
+
+            TglBtnExhaustion.Enabled = Instance.Performance.Variant != Strings.GO;
 
             List<string> NerfPAs = new List<string>();
 
@@ -204,12 +212,16 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
             DrpDwnLstNerfPA.SelectedIndex = NerfPAIndex(NerfPAs);
 
+            DrpDwnLstNerfPA.Enabled = Instance.Performance.Variant != Strings.GO;
+
             TglBtnBoss.ToggleState = ToggleButtonState.Inactive;
 
             if (Instance.Options.Boss == "TRUE")
             {
                 TglBtnBoss.ToggleState = ToggleButtonState.Active;
             }
+
+            TglBtnBoss.Enabled = Instance.Performance.Variant != Strings.GO; ;
 
             ServiceSingleton.Dashboard.Info("Difficulty options");
         }

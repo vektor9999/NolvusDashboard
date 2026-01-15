@@ -20,6 +20,7 @@ namespace Vcc.Nolvus.Api.Installer.Library
         bool Beta { get; }
         bool Display { get; }
         string FullName { get; }
+        string Note { get; }
     }
 
     public class NolvusVariantObject : InstallerApiObject
@@ -34,6 +35,7 @@ namespace Vcc.Nolvus.Api.Installer.Library
         public bool Beta { get; set; }
         public bool Display { get; set; }
         public string FullName { get; set; }
+        public string Note { get; set; }
     }
 
     public class NolvusVariantDTO : NolvusVariantObject, INolvusVariantDTO
