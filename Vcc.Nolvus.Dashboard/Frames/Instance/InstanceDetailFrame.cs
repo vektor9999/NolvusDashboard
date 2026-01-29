@@ -78,11 +78,12 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
         protected override void OnLoaded()
         {            
             INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
-
-            LblHeader.Text = Instance.Name + " v" + Instance.Version;
+            
+            LblHeader.Text = string.Format("{0} - {1} v{2}{3}", Instance.Name, Instance.Performance.Variant, Instance.Version, Instance.Tag != string.Empty ? string.Format(" - ({0})", Instance.Tag) : string.Empty);
             ServiceSingleton.Dashboard.Info("Instance mods for " + Instance.Name + " v" + Instance.Version);
 
             DrpDwnLstProfiles.Visible = false;
+            LblMO2Profile.Visible = false;
             DrpDwnLstProfiles.DataSource = ServiceSingleton.Packages.ModOrganizer2.GetProfiles();
             DrpDwnLstProfiles.SelectedIndex = 0;                
         }
@@ -413,6 +414,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                         }
                     }
 
+                    LblMO2Profile.Visible = true;
                     DrpDwnLstProfiles.Visible = true;
                 }
             }

@@ -151,23 +151,37 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             }
             else
             {
-                if (ServiceSingleton.Instances.InstanceExists(InstanceToInstall.Name))
+                if (!InstanceToInstall.IsBeta || NolvusMessageBox.ShowConfirmation("Disclaimer", string.Format("{0} is in BETA state.\n\n\nDon't Install it if :\n\n- You are expecting the full polished version.\n\n- You want to do a full playthrough.\n\n\nInstall it only if :\n\n- You want to help us reporting bugs.\n\n- You want to give us some feedbacks.\n\n\nDo you want to continue?", InstanceToInstall.Name), 390, 470) == DialogResult.Yes)
                 {
-                    NolvusMessageBox.ShowMessage("Invalid Instance", "The nolvus instance " + InstanceToInstall.Name + " is already installed!", MessageBoxType.Error);
-                }
-                else
-                {
-                    if (!InstanceToInstall.IsBeta || NolvusMessageBox.ShowConfirmation("Disclaimer", string.Format("{0} is in BETA state.\n\n\nDon't Install it if :\n\n- You are expecting the full polished version.\n\n- You want to do a full playthrough.\n\n\nInstall it only if :\n\n- You want to help us reporting bugs.\n\n- You want to give us some feedbacks.\n\n\nDo you want to continue?", InstanceToInstall.Name), 390, 470) == DialogResult.Yes)
-                    {
-                        INolvusInstance WorkingInstance = ServiceSingleton.Instances.WorkingInstance;
+                    if (ServiceSingleton.Instances.InstanceExists(InstanceToInstall.Name))
+                    {          
+                        if(NolvusMessageBox.ShowConfirmation("Confirmation", string.Format("The nolvus instance {0} already exists, Do you wan to proceed anyway?", InstanceToInstall.Name)) == DialogResult.Yes)
+                        {
+                            var TagSelection = NolvusInstanceTag.EnterTag("Instance Tag");
 
-                        WorkingInstance.Settings.LgCode = (DrpDwnLg.SelectedItem as LgCode).Code;
-                        WorkingInstance.Settings.LgName = (DrpDwnLg.SelectedItem as LgCode).Name;
-
-                        ServiceSingleton.Dashboard.LoadFrame<PathFrame>();
+                            if (TagSelection.ShowDialog() == DialogResult.OK)
+                            {
+                                ServiceSingleton.Instances.WorkingInstance.Tag = TagSelection.InstanceTag;                                
+                                Continue();
+                            }
+                        }                                                                                                        
                     }
-                }
+                    else
+                    {
+                        Continue();
+                    }
+                }                
             }
+        }
+
+        private void Continue()
+        {
+            INolvusInstance WorkingInstance = ServiceSingleton.Instances.WorkingInstance;
+
+            WorkingInstance.Settings.LgCode = (DrpDwnLg.SelectedItem as LgCode).Code;
+            WorkingInstance.Settings.LgName = (DrpDwnLg.SelectedItem as LgCode).Name;
+
+            ServiceSingleton.Dashboard.LoadFrame<PathFrame>();
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)

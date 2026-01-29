@@ -205,9 +205,6 @@
   <data name="DefaultKeyboardKeys" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DefaultKeyboardKeys.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DefaultKeyboardKeys_V6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DefaultKeyboardKeys_V61.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="NolvusLauncher" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\NolvusLauncher.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -276,5 +273,8 @@
   </data>
   <data name="Amon_ENB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Amon-ENB.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DefaultKeyboardKeys_V6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DefaultKeyboardKeys_V6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

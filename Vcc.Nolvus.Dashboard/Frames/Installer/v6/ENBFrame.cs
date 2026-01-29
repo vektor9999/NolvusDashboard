@@ -67,10 +67,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             {
                 case "CABBAGE":
                     PicBoxENB.Image = Properties.Resources.Cabbage_ENB_01;
-                    break;
-                case "CABBAVAL":
-                    PicBoxENB.Image = Properties.Resources.Cabbaval_ENB;
-                    break;
+                    break;                
                 case "KAUZ":
                     PicBoxENB.Image = Properties.Resources.Kauz_ENB;
                     break;

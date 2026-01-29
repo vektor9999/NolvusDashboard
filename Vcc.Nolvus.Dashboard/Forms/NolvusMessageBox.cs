@@ -25,27 +25,27 @@ namespace Vcc.Nolvus.Dashboard.Forms
             InitializeComponent();
 
             SkinManager.SetVisualStyle(this, "Office2016Black");
-            this.Style.TitleBar.MaximizeButtonHoverBackColor = Color.DarkOrange;
-            this.Style.TitleBar.MinimizeButtonHoverBackColor = Color.DarkOrange;
-            this.Style.TitleBar.HelpButtonHoverBackColor = Color.DarkOrange;
-            this.Style.TitleBar.CloseButtonHoverBackColor = Color.DarkOrange;
-            this.Style.TitleBar.MaximizeButtonPressedBackColor = Color.DarkOrange;
-            this.Style.TitleBar.MinimizeButtonPressedBackColor = Color.DarkOrange;
-            this.Style.TitleBar.HelpButtonPressedBackColor = Color.DarkOrange;
-            this.Style.TitleBar.CloseButtonPressedBackColor = Color.DarkOrange;
+            Style.TitleBar.MaximizeButtonHoverBackColor = Color.DarkOrange;
+            Style.TitleBar.MinimizeButtonHoverBackColor = Color.DarkOrange;
+            Style.TitleBar.HelpButtonHoverBackColor = Color.DarkOrange;
+            Style.TitleBar.CloseButtonHoverBackColor = Color.DarkOrange;
+            Style.TitleBar.MaximizeButtonPressedBackColor = Color.DarkOrange;
+            Style.TitleBar.MinimizeButtonPressedBackColor = Color.DarkOrange;
+            Style.TitleBar.HelpButtonPressedBackColor = Color.DarkOrange;
+            Style.TitleBar.CloseButtonPressedBackColor = Color.DarkOrange;
 
-            this.Style.TitleBar.BackColor = Color.FromArgb(54, 54, 54);
-            this.Style.TitleBar.IconBackColor = Color.FromArgb(54, 54, 54);
-            this.Style.TitleBar.Height = 50;
-            this.Style.BackColor = Color.FromArgb(54, 54, 54);
+            Style.TitleBar.BackColor = Color.FromArgb(54, 54, 54);
+            Style.TitleBar.IconBackColor = Color.FromArgb(54, 54, 54);
+            Style.TitleBar.Height = 50;
+            Style.BackColor = Color.FromArgb(54, 54, 54);
 
 
             MessageBar = new MessageBar();
             MessageBar.Width = 3000;            
-            this.TitleBarTextControl = MessageBar;
+            TitleBarTextControl = MessageBar;
 
-            this.MessageBar.Title = Title;
-            this.LblMessage.Text = Message;
+            MessageBar.Title = Title;
+            LblMessage.Text = Message;
 
             if (Type == MessageBoxType.Question)
             {
@@ -115,19 +115,19 @@ namespace Vcc.Nolvus.Dashboard.Forms
 
         private void BtnOK_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void BtnYes_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Yes;
-            this.Close();
+            DialogResult = DialogResult.Yes;
+            Close();
         }
 
         private void BtnNo_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.No;
-            this.Close();
+            DialogResult = DialogResult.No;
+            Close();
         }
     }
 }

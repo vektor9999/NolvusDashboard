@@ -75,8 +75,8 @@ namespace Vcc.Nolvus.Dashboard.Frames
             {
                 Version = Instance.Version;
             }
-
-            LblInstance.Text = this.Instance.Name + " v" + Version;
+            
+            LblInstance.Text = string.Format("{0} - {1} v{2}{3}", Instance.Name, Instance.Performance.Variant, Version, Instance.Tag != string.Empty ? string.Format(" - ({0})", Instance.Tag) : string.Empty);
         }        
 
         private async Task DeleteInstance(List<ZlpFileInfo> Files)
@@ -100,7 +100,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                     ServiceSingleton.Dashboard.AdditionalInfo(string.Format("Deleting instance ({0}%)", PercentDone));
                 }
 
-                ServiceSingleton.Files.RemoveDirectory(Instance.InstallDir, false);
+                ServiceSingleton.Files.RemoveDirectory(Instance.InstallDir, true);
             });
 
             await Tsk;

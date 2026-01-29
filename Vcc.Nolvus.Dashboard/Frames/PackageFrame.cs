@@ -80,6 +80,23 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 ServiceSingleton.Dashboard.Progress(p);
             });
 
+            if (ServiceSingleton.EnbManager.EnbPresetsNeedUpdate)
+            {
+                IInstanceStatusField EnbDeleted = ServiceSingleton.Instances.WorkingInstance.Status.GetFieldByKey("EnbDeleted");
+
+                if (EnbDeleted == null)
+                {                    
+                    await ServiceSingleton.EnbManager.DeleteENB((s, p) =>
+                    {
+                        ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
+                        ServiceSingleton.Dashboard.Progress(p);
+                    });
+
+                    ServiceSingleton.Instances.WorkingInstance.Status.AddField("EnbDeleted", "TRUE");
+                    ServiceSingleton.Instances.Save();
+                }
+            }
+
             ServiceSingleton.Logger.Log(string.Format("Updating {0} - v {1} to v {2}...", Instance.Name, Instance.Version, Packages.Last().Version));            
 
             await ServiceSingleton.Dashboard.LoadFrameAsync<InstallFrame>();

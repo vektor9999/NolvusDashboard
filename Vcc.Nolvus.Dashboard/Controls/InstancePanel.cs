@@ -75,9 +75,9 @@ namespace Vcc.Nolvus.Dashboard.Controls
         }
         public async void LoadInstance(INolvusInstance Instance)
         {
-            _Instance = Instance;            
+            _Instance = Instance;
 
-            LblInstanceName.Text = _Instance.Name;
+            LblInstanceName.Text = _Instance.Tag == string.Empty ? _Instance.Name : string.Format("{0} - {1}", _Instance.Name, _Instance.Tag);
             LblVersion.Text = string.Format("{0} v{1}", _Instance.Performance.Variant, _Instance.Version);
             LblDesc.Text = _Instance.Description;            
 

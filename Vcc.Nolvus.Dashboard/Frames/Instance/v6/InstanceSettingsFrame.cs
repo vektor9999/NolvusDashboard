@@ -33,27 +33,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 {
     public partial class InstanceSettingsFrame : DashboardFrame
     {
-        private bool Initializing = true;
-
-        private int RatioIndex(List<string> Ratios)
-        {
-            int Index = 0;
-
-            if (ServiceSingleton.Instances.WorkingInstance.Settings.Ratio != string.Empty)
-            {
-                foreach (var Ratio in Ratios)
-                {
-                    if (Ratio == ServiceSingleton.Instances.WorkingInstance.Settings.Ratio)
-                    {
-                        break;
-                    }
-
-                    Index++;
-                }
-            }
-
-            return Index;
-        }
+        private bool Initializing = true;        
 
         private int ResolutionIndex(List<string> Resolutions, out bool Error)
         {
@@ -221,7 +201,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 
                 INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
-                LblHeader.Text = "Settings for " + Instance.Name + " v" + Instance.Version;
+                LblHeader.Text = "Settings for " + string.Format("{0} - {1} v{2}{3}", Instance.Name, Instance.Performance.Variant, Instance.Version, Instance.Tag != string.Empty ? string.Format(" - ({0})", Instance.Tag) : string.Empty);
+
                 List<string> Resolutions = ServiceSingleton.Globals.WindowsResolutions;
                 DrpDwnLstScreenRes.DataSource = Resolutions;
                 DrpDwnLstScreenRes.SelectedIndex = ResolutionIndex(Resolutions, out ResError);
@@ -229,20 +210,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
                 if (ResError)
                 {
                     ApplyResolution();
-                }
+                }                
 
-                List<string> Ratios = new List<string>();
-
-                Ratios.Add("16:9");                
-                Ratios.Add("21:9");
-                Ratios.Add("32:9");
-
-                DrpDwnLstRatios.DataSource = Ratios;
-
-                DrpDwnLstRatios.SelectedIndex = RatioIndex(Ratios);
-
-                DrpDwnLstDownRes.DataSource = Resolutions;
-                DrpDwnLstDownRes.SelectedIndex = DownScaledResolutionIndex(Resolutions, out ResError);
+                LblRatio.Text = ServiceSingleton.Instances.WorkingInstance.Settings.Ratio;
 
                 if (ResError)
                 {
@@ -361,19 +331,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
             {
                 EnableFlatButton(BtnApplyDownScaling, true);
             }
-        }
-
-        private void DrpDwnLstRatios_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!Initializing)
-            {
-                EnableFlatButton(BtnApplyRes, true);
-
-                ServiceSingleton.Instances.WorkingInstance.Settings.Ratio = DrpDwnLstRatios.SelectedValue.ToString();
-
-                ServiceSingleton.Instances.Save();
-            }            
-        }
+        }        
 
         private void DrpDwnLstDownLoc_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -39,7 +39,7 @@ namespace Vcc.Nolvus.Services.ENB
         {
             get
             {
-                return EnbPresets.Count > 0;
+                return EnbPresets.Where(x => x.GetFieldValueByKey("EnbCode") == ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB && x.Action == ElementAction.Update).Count() > 0;
             }
         }
 

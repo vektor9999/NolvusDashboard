@@ -304,6 +304,12 @@
     </Compile>
     <Compile Include="Core\LgCode.cs" />
     <Compile Include="Core\SettingsCache.cs" />
+    <Compile Include="Forms\NolvusInstanceTag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NolvusInstanceTag.Designer.cs">
+      <DependentUpon>NolvusInstanceTag.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\NolvusMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -552,6 +558,9 @@
     <EmbeddedResource Include="Controls\InstancesPanel.resx">
       <DependentUpon>InstancesPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NolvusInstanceTag.resx">
+      <DependentUpon>NolvusInstanceTag.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\NolvusMessageBox.resx">
       <DependentUpon>NolvusMessageBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -674,8 +683,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="bin\Cache\000003.log" />
     <None Include="bin\Cache\Cache\data_0" />
@@ -1066,6 +1075,8 @@
     <None Include="Resources\Nolvus-v6-controller-setup.png" />
     <None Include="Resources\Amon_ENB.bmp" />
     <None Include="Resources\Amon-ENB.jpg" />
+    <None Include="Resources\se_dlc.jpg" />
+    <None Include="Resources\DefaultKeyboardKeys_V6.jpg" />
     <Content Include="Scripts\HandleENBDev.js" />
     <Content Include="Scripts\IsDownloadAvailable.js" />
     <Content Include="Scripts\IsFileDeleted.js" />

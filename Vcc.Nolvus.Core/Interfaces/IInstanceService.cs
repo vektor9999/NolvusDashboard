@@ -18,6 +18,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         string InstancesDirectory { get; }
         string ArchivesDirectory { get; }
         bool InstanceExists(string Name);
+        bool InstanceExists(string Name, string Tag);
         void RemoveInstance(INolvusInstance Instance);
         List<INolvusInstance> InstanceList { get; }
         void PrepareInstanceForInstall();

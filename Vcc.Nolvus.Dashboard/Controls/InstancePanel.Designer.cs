@@ -50,10 +50,10 @@
             this.barItem3 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.BrItmManual = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.barItem4 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
-            this.BrItmDelete = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
-            this.LblImageLoading = new System.Windows.Forms.Label();
             this.BrItmENBManager = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.barItem6 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.BrItmDelete = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.LblImageLoading = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PicInstanceImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +64,7 @@
             this.LblInstanceName.ForeColor = System.Drawing.Color.White;
             this.LblInstanceName.Location = new System.Drawing.Point(258, 12);
             this.LblInstanceName.Name = "LblInstanceName";
-            this.LblInstanceName.Size = new System.Drawing.Size(333, 28);
+            this.LblInstanceName.Size = new System.Drawing.Size(353, 28);
             this.LblInstanceName.TabIndex = 1;
             this.LblInstanceName.Text = "Nolvus Regular";
             // 
@@ -88,7 +88,7 @@
             this.LblStatus.ForeColor = System.Drawing.Color.White;
             this.LblStatus.Location = new System.Drawing.Point(260, 92);
             this.LblStatus.Name = "LblStatus";
-            this.LblStatus.Size = new System.Drawing.Size(252, 14);
+            this.LblStatus.Size = new System.Drawing.Size(257, 14);
             this.LblStatus.TabIndex = 3;
             this.LblStatus.Text = "Loading status...";
             this.LblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -100,7 +100,7 @@
             this.BtnUpdate.BorderColor = System.Drawing.Color.White;
             this.BtnUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnUpdate.ForeColor = System.Drawing.Color.White;
-            this.BtnUpdate.Location = new System.Drawing.Point(314, 115);
+            this.BtnUpdate.Location = new System.Drawing.Point(319, 115);
             this.BtnUpdate.Name = "BtnUpdate";
             this.BtnUpdate.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnUpdate.Size = new System.Drawing.Size(92, 35);
@@ -117,7 +117,7 @@
             this.BtnPlay.BorderColor = System.Drawing.Color.White;
             this.BtnPlay.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPlay.ForeColor = System.Drawing.Color.White;
-            this.BtnPlay.Location = new System.Drawing.Point(510, 115);
+            this.BtnPlay.Location = new System.Drawing.Point(515, 115);
             this.BtnPlay.Name = "BtnPlay";
             this.BtnPlay.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnPlay.Size = new System.Drawing.Size(92, 35);
@@ -155,7 +155,7 @@
             this.BtnView.BorderColor = System.Drawing.Color.White;
             this.BtnView.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnView.ForeColor = System.Drawing.Color.White;
-            this.BtnView.Location = new System.Drawing.Point(412, 115);
+            this.BtnView.Location = new System.Drawing.Point(417, 115);
             this.BtnView.Name = "BtnView";
             this.BtnView.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnView.Size = new System.Drawing.Size(92, 35);
@@ -273,6 +273,25 @@
             this.barItem4.SizeToFit = true;
             this.barItem4.Text = "-";
             // 
+            // BrItmENBManager
+            // 
+            this.BrItmENBManager.BarName = "BrItmENBManager";
+            this.BrItmENBManager.ID = "ENB Manager";
+            this.BrItmENBManager.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmENBManager.Image")));
+            this.BrItmENBManager.ImageSize = new System.Drawing.Size(24, 24);
+            this.BrItmENBManager.ShowToolTipInPopUp = false;
+            this.BrItmENBManager.SizeToFit = true;
+            this.BrItmENBManager.Text = "ENB Manager";
+            this.BrItmENBManager.Click += new System.EventHandler(this.BrItmENBManager_Click);
+            // 
+            // barItem6
+            // 
+            this.barItem6.BarName = "barItem6";
+            this.barItem6.ID = "-";
+            this.barItem6.ShowToolTipInPopUp = false;
+            this.barItem6.SizeToFit = true;
+            this.barItem6.Text = "-";
+            // 
             // BrItmDelete
             // 
             this.BrItmDelete.BarName = "BrItmDelete";
@@ -295,25 +314,6 @@
             this.LblImageLoading.Text = "Loading...";
             this.LblImageLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // BrItmENBManager
-            // 
-            this.BrItmENBManager.BarName = "BrItmENBManager";
-            this.BrItmENBManager.ID = "ENB Manager";
-            this.BrItmENBManager.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmENBManager.Image")));
-            this.BrItmENBManager.ImageSize = new System.Drawing.Size(24, 24);
-            this.BrItmENBManager.ShowToolTipInPopUp = false;
-            this.BrItmENBManager.SizeToFit = true;
-            this.BrItmENBManager.Text = "ENB Manager";
-            this.BrItmENBManager.Click += new System.EventHandler(this.BrItmENBManager_Click);
-            // 
-            // barItem6
-            // 
-            this.barItem6.BarName = "barItem6";
-            this.barItem6.ID = "-";
-            this.barItem6.ShowToolTipInPopUp = false;
-            this.barItem6.SizeToFit = true;
-            this.barItem6.Text = "-";
-            // 
             // InstancePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -332,7 +332,7 @@
             this.Controls.Add(this.PicInstanceImage);
             this.DoubleBuffered = true;
             this.Name = "InstancePanel";
-            this.Size = new System.Drawing.Size(654, 171);
+            this.Size = new System.Drawing.Size(659, 171);
             ((System.ComponentModel.ISupportInitialize)(this.PicInstanceImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

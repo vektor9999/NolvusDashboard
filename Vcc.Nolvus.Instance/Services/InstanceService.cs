@@ -204,6 +204,11 @@ namespace Vcc.Nolvus.Instance.Services
             return Instances.Where(x => x.Name == Name).FirstOrDefault() != null;
         }
 
+        public bool InstanceExists(string Name, string Tag)
+        {
+            return Instances.Where(x => x.Name == Name && x.Tag == Tag).FirstOrDefault() != null;
+        }
+
         public void RemoveInstance(INolvusInstance Instance)
         {
             Instances.Remove(Instance as NolvusInstance);
@@ -217,7 +222,7 @@ namespace Vcc.Nolvus.Instance.Services
         {
             if (WorkingInstance != null)
             {
-                if(!InstanceExists(WorkingInstance.Name))
+                if(!InstanceExists(WorkingInstance.Name, WorkingInstance.Tag))
                 {
                     Instances.Add(WorkingInstance as NolvusInstance);
                 }

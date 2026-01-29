@@ -12,6 +12,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         string Id { get; set; }
         string Code { get; set; }
         string Name { get; set; }
+        string Tag { get; set; }
         string Version { get; set; }
         string Description { get;}
         string InstallDir { get; set; }

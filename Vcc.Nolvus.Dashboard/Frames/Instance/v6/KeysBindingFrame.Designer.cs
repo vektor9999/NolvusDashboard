@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeysBindingFrame));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -76,7 +77,7 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.DefaultKeyboardKeys_V6;
             this.pictureBox1.Location = new System.Drawing.Point(6, 19);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1027, 321);
@@ -109,6 +110,8 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Controls.Add(this.label12);
@@ -132,11 +135,30 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Settings";
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.ForeColor = System.Drawing.Color.Orange;
+            this.label15.Location = new System.Drawing.Point(123, 227);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(129, 13);
+            this.label15.TabIndex = 18;
+            this.label15.Text = "Ashes of War MCM Menu";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 227);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(105, 13);
+            this.label14.TabIndex = 17;
+            this.label14.Text = "Ashes of War Attack";
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.ForeColor = System.Drawing.Color.Orange;
-            this.label16.Location = new System.Drawing.Point(100, 201);
+            this.label16.Location = new System.Drawing.Point(123, 201);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(114, 13);
             this.label16.TabIndex = 16;
@@ -155,30 +177,30 @@
             // 
             this.label12.AutoSize = true;
             this.label12.ForeColor = System.Drawing.Color.Orange;
-            this.label12.Location = new System.Drawing.Point(100, 175);
+            this.label12.Location = new System.Drawing.Point(123, 175);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(121, 13);
+            this.label12.Size = new System.Drawing.Size(245, 13);
             this.label12.TabIndex = 12;
-            this.label12.Text = "Widget mod MCM menu";
+            this.label12.Text = "Toggle Compass - Nolvus Settings ini file  (In MO2)";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(5, 175);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(18, 13);
+            this.label13.Size = new System.Drawing.Size(106, 13);
             this.label13.TabIndex = 11;
-            this.label13.Text = "UI";
+            this.label13.Text = "UI (Toggle Compass)";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.Color.Orange;
-            this.label10.Location = new System.Drawing.Point(100, 150);
+            this.label10.Location = new System.Drawing.Point(123, 150);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(103, 13);
+            this.label10.Size = new System.Drawing.Size(324, 13);
             this.label10.TabIndex = 10;
-            this.label10.Text = "Stances MCM menu";
+            this.label10.Text = "Stances - Dynamic Animation Sets - Nolvus Settings ini file (in MO2)";
             // 
             // label11
             // 
@@ -193,11 +215,11 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.Orange;
-            this.label8.Location = new System.Drawing.Point(100, 125);
+            this.label8.Location = new System.Drawing.Point(123, 125);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(95, 13);
+            this.label8.Size = new System.Drawing.Size(203, 13);
             this.label8.TabIndex = 8;
-            this.label8.Text = "Wheeler config file";
+            this.label8.Text = "Wheeler - Nolvus Settings ini file (In MO2)";
             // 
             // label9
             // 
@@ -212,11 +234,12 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.Orange;
-            this.label6.Location = new System.Drawing.Point(100, 100);
+            this.label6.Location = new System.Drawing.Point(123, 100);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(373, 13);
+            this.label6.Size = new System.Drawing.Size(414, 13);
             this.label6.TabIndex = 6;
-            this.label6.Text = "Valhalla Combat MCM menu + the same key in Dual Wield Parrying config file.";
+            this.label6.Text = "Valhalla Combat MCM menu + the same key in Dual Wield Parrying config file (In MO" +
+    "2)";
             // 
             // label7
             // 
@@ -231,11 +254,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.Orange;
-            this.label4.Location = new System.Drawing.Point(100, 75);
+            this.label4.Location = new System.Drawing.Point(123, 75);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(146, 13);
+            this.label4.Size = new System.Drawing.Size(229, 13);
             this.label4.TabIndex = 4;
-            this.label4.Text = "TK Dodge RE ini file (in MO2)";
+            this.label4.Text = "TK Dodge RE - Nolvus Settings ini file (in MO2)";
             // 
             // label5
             // 
@@ -250,11 +273,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Orange;
-            this.label3.Location = new System.Drawing.Point(100, 50);
+            this.label3.Location = new System.Drawing.Point(123, 50);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(192, 13);
+            this.label3.Size = new System.Drawing.Size(294, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "One Click Power Attack ini file (in MO2)";
+            this.label3.Text = "One Click Power Attack NG MCM Menu or its ini file (in MO2)";
             // 
             // label2
             // 
@@ -350,5 +373,7 @@
         private System.Windows.Forms.Label label17;
         private Components.Controls.FlatButton BtnBack;
         private Components.Controls.FlatButton BtnController;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
     }
 }
