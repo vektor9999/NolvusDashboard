@@ -20,6 +20,7 @@
     </NuGetPackageImportStamp>
     <CefSharpAnyCpuSupport>true</CefSharpAnyCpuSupport>
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -32,7 +33,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -91,6 +91,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <CodeAnalysisRuleSet />
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup />
@@ -502,6 +503,12 @@
     <Compile Include="Frames\PackageFrame.Designer.cs">
       <DependentUpon>PackageFrame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frames\Remap\v6\RemapInstanceFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Remap\v6\RemapInstanceFrame.Designer.cs">
+      <DependentUpon>RemapInstanceFrame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frames\ResumeFrame.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -612,6 +619,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\Installer\v5\PerformanceFrame.resx">
       <DependentUpon>PerformanceFrame.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\Installer\v6\DifficultyFrame.resx">
       <DependentUpon>DifficultyFrame.cs</DependentUpon>
@@ -659,6 +667,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\PackageFrame.resx">
       <DependentUpon>PackageFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Remap\v6\RemapInstanceFrame.resx">
+      <DependentUpon>RemapInstanceFrame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\ResumeFrame.resx">
       <DependentUpon>ResumeFrame.cs</DependentUpon>

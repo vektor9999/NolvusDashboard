@@ -16,9 +16,11 @@ namespace Vcc.Nolvus.Components.Controls
             ForeColor = Color.Orange;
             Font = new Font("Segoe UI Semibold", 9);
             CurrentBackColor = BackColor;
+            CurrentForeColor = ForeColor;
         }
 
         private Color CurrentBackColor;
+        private Color CurrentForeColor;
 
         private Color onHoverBackColor = Color.FromArgb(83, 83, 83);
         public Color OnHoverBackColor
@@ -32,6 +34,18 @@ namespace Vcc.Nolvus.Components.Controls
         {
             get { return _BorderColor; }
             set { _BorderColor = value; Invalidate(); }
+        }
+
+        private Color _ForeColor = Color.Orange;
+        public new Color ForeColor
+        {
+            get { return _ForeColor; }
+            set
+            {
+                _ForeColor = value; 
+                CurrentForeColor = value;
+                Invalidate();
+            }
         }
 
         protected override void OnMouseEnter(EventArgs e)
@@ -62,12 +76,27 @@ namespace Vcc.Nolvus.Components.Controls
             Invalidate();
         }
 
+        protected override void OnEnabledChanged(EventArgs e)
+        {            
+            if (!Enabled)
+            {
+                _ForeColor = Color.Gray;
+            }
+            else
+            {
+                _ForeColor = CurrentForeColor;
+            }
+
+            Invalidate();
+            base.OnEnabledChanged(e);
+        }
+
         protected override void OnPaint(PaintEventArgs pevent)
         {
             base.OnPaint(pevent);
             pevent.Graphics.FillRectangle(new SolidBrush(CurrentBackColor), 0, 0, Width, Height);
 
-            Pen blackPen = new Pen(BorderColor, 1);
+            Pen blackPen = new Pen(BorderColor, 1);            
 
             // Create rectangle.
             Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);

@@ -64,6 +64,11 @@ namespace Vcc.Nolvus.Services.Settings
             return Data[Section][Parameter];
         }
 
+        public FileIniDataParser GetIniParser()
+        {
+            return new FileIniDataParser();            
+        }
+
         public bool IniKeyExists(string Section, string Key)
         {
             var Parser = new FileIniDataParser();

@@ -14,6 +14,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         Task DownloadFile(string UrlAddress, string Location, DownloadProgressChangedHandler OnProgress);
         Task ExtractFile(string File, string Output, ExtractProgressChangedHandler OnProgress);
         void CopyFiles(string SourcePath, string TargetPath, bool IncludeRoot);
+        void MoveFile(string SourceFilePath, string TargetFilePath);
         List<ZlpFileInfo> GetFiles(string Directory);
         List<string> GetFilesPath(string Directory);
         void RemoveDirectory(string DirectoryPath, bool RemoveDirectory);

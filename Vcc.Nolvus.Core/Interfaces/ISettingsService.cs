@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IniParser;
 
 namespace Vcc.Nolvus.Core.Interfaces
 {
@@ -19,5 +20,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         int ErrorsThreshold { get; }
         string BrowserLogSeverity { get; }
         bool DevDebug { get; }
+        FileIniDataParser GetIniParser();
     }
 }

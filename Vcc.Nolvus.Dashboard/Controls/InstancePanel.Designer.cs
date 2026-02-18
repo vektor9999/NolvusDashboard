@@ -54,6 +54,8 @@
             this.barItem6 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.BrItmDelete = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.LblImageLoading = new System.Windows.Forms.Label();
+            this.BrItmRemap = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.barItem5 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             ((System.ComponentModel.ISupportInitialize)(this.PicInstanceImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -172,6 +174,7 @@
             // parentBarItem1
             // 
             this.parentBarItem1.BarName = "parentBarItem1";
+            this.parentBarItem1.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("parentBarItem1.Image")));
             this.parentBarItem1.Items.AddRange(new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem[] {
             this.BrItmMods,
             this.BrItmShortCut,
@@ -184,6 +187,8 @@
             this.barItem4,
             this.BrItmENBManager,
             this.barItem6,
+            this.BrItmRemap,
+            this.barItem5,
             this.BrItmDelete});
             this.parentBarItem1.MetroColor = System.Drawing.Color.LightSkyBlue;
             this.parentBarItem1.ShowToolTipInPopUp = false;
@@ -314,6 +319,24 @@
             this.LblImageLoading.Text = "Loading...";
             this.LblImageLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // BrItmRemap
+            // 
+            this.BrItmRemap.BarName = "BrItmRemap";
+            this.BrItmRemap.ID = "Remap Instance";
+            this.BrItmRemap.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmRemap.Image")));
+            this.BrItmRemap.ShowToolTipInPopUp = false;
+            this.BrItmRemap.SizeToFit = true;
+            this.BrItmRemap.Text = "Remap Instance";
+            this.BrItmRemap.Click += new System.EventHandler(this.BrItmRemap_Click);
+            // 
+            // barItem5
+            // 
+            this.barItem5.BarName = "barItem5";
+            this.barItem5.ID = "-";
+            this.barItem5.ShowToolTipInPopUp = false;
+            this.barItem5.SizeToFit = true;
+            this.barItem5.Text = "-";
+            // 
             // InstancePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -365,5 +388,7 @@
         private System.Windows.Forms.Label LblImageLoading;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmENBManager;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem barItem6;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmRemap;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem barItem5;
     }
 }

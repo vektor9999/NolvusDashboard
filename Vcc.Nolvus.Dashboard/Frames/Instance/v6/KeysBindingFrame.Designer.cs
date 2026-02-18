@@ -52,6 +52,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BtnBack = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnController = new Vcc.Nolvus.Components.Controls.FlatButton();
+            this.BtnFullGuide = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -302,8 +303,8 @@
             this.BtnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnBack.BorderColor = System.Drawing.Color.White;
-            this.BtnBack.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnBack.ForeColor = System.Drawing.Color.White;
+            this.BtnBack.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnBack.Location = new System.Drawing.Point(928, 660);
             this.BtnBack.Name = "BtnBack";
             this.BtnBack.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -318,8 +319,8 @@
             this.BtnController.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnController.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnController.BorderColor = System.Drawing.Color.White;
-            this.BtnController.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnController.ForeColor = System.Drawing.Color.White;
+            this.BtnController.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnController.Location = new System.Drawing.Point(808, 660);
             this.BtnController.Name = "BtnController";
             this.BtnController.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -329,9 +330,26 @@
             this.BtnController.UseVisualStyleBackColor = false;
             this.BtnController.Click += new System.EventHandler(this.BtnController_Click);
             // 
+            // BtnFullGuide
+            // 
+            this.BtnFullGuide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnFullGuide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.BtnFullGuide.BorderColor = System.Drawing.Color.White;
+            this.BtnFullGuide.ForeColor = System.Drawing.Color.White;
+            this.BtnFullGuide.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnFullGuide.Location = new System.Drawing.Point(685, 660);
+            this.BtnFullGuide.Name = "BtnFullGuide";
+            this.BtnFullGuide.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
+            this.BtnFullGuide.Size = new System.Drawing.Size(114, 40);
+            this.BtnFullGuide.TabIndex = 7;
+            this.BtnFullGuide.Text = "Full Guide";
+            this.BtnFullGuide.UseVisualStyleBackColor = false;
+            this.BtnFullGuide.Click += new System.EventHandler(this.BtnFullGuide_Click);
+            // 
             // KeysBindingFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Controls.Add(this.BtnFullGuide);
             this.Controls.Add(this.BtnController);
             this.Controls.Add(this.BtnBack);
             this.Controls.Add(this.groupBox3);
@@ -375,5 +393,6 @@
         private Components.Controls.FlatButton BtnController;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
+        private Components.Controls.FlatButton BtnFullGuide;
     }
 }

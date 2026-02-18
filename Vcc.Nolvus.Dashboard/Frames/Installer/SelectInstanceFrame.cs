@@ -155,7 +155,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 {
                     if (ServiceSingleton.Instances.InstanceExists(InstanceToInstall.Name))
                     {          
-                        if(NolvusMessageBox.ShowConfirmation("Confirmation", string.Format("The nolvus instance {0} already exists, Do you wan to proceed anyway?", InstanceToInstall.Name)) == DialogResult.Yes)
+                        if(NolvusMessageBox.ShowConfirmation("Confirmation", string.Format("The nolvus instance {0} already exists, Do you want to proceed anyway?", InstanceToInstall.Name)) == DialogResult.Yes)
                         {
                             var TagSelection = NolvusInstanceTag.EnterTag("Instance Tag");
 

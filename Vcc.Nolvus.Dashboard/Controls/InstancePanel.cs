@@ -21,6 +21,7 @@ using Vcc.Nolvus.Dashboard.Forms;
 using Vcc.Nolvus.Dashboard.Frames;
 using Vcc.Nolvus.Dashboard.Frames.Installer;
 using Vcc.Nolvus.Dashboard.Frames.Instance;
+using Vcc.Nolvus.Dashboard.Frames.Remap.v6;
 using Vcc.Nolvus.Package.Mods;
 using Vcc.Nolvus.Api.Installer.Services;
 
@@ -161,6 +162,8 @@ namespace Vcc.Nolvus.Dashboard.Controls
 
             LockButtons();
 
+            ServiceSingleton.Dashboard.DisableSettings();
+
             await ServiceSingleton.Packages.Load(await ApiManager.Service.Installer.GetPackage(_Instance.Id, _Instance.Version), (s, p) =>
             {
                 Dashboard.Status(string.Format("{0} ({1}%)", s, p));
@@ -219,6 +222,7 @@ namespace Vcc.Nolvus.Dashboard.Controls
                     finally
                     {
                         UnLockButtons();
+                        ServiceSingleton.Dashboard.EnableSettings();
                         ServiceSingleton.Instances.UnloadWorkingIntance();
                     }
                 }
@@ -275,11 +279,11 @@ namespace Vcc.Nolvus.Dashboard.Controls
             switch (_Instance.Name)
             {
                 case Strings.NolvusAscension:
-                    System.Diagnostics.Process.Start("https://www.nolvus.net/guide/asc/appendix/playerguide");
+                    System.Diagnostics.Process.Start("https://www.nolvus.net/guide/asc/appendix/player-guide");
                     break;
 
                 case Strings.NolvusAwakening:
-                    System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/playerguide");
+                    System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/player-guide");
                     break;
             }
         }
@@ -297,6 +301,28 @@ namespace Vcc.Nolvus.Dashboard.Controls
                     case Strings.NolvusAwakening:
                         ServiceSingleton.Instances.WorkingInstance = _Instance;
                         await ServiceSingleton.Dashboard.LoadFrameAsync<PackageFrame>(new FrameParameters(new FrameParameter() { Key = "Mode", Value = InstanceMode.ENB }));
+                        break;
+                }
+            }
+            else
+            {
+                NolvusMessageBox.ShowMessage("Mod Organizer 2", "An instance of Mod Organizer 2 is running! Close it first.", MessageBoxType.Error);
+            }
+        }
+
+        private void BrItmRemap_Click(object sender, EventArgs e)
+        {
+            if (!ModOrganizer.IsRunning)
+            {
+                switch (_Instance.Name)
+                {
+                    case Strings.NolvusAscension:
+                        NolvusMessageBox.ShowMessage("Remap Instance", string.Format("This feature is not available for {0}.", _Instance.Name), MessageBoxType.Info);
+                        break;
+
+                    case Strings.NolvusAwakening:
+                        ServiceSingleton.Instances.WorkingInstance = _Instance;
+                        ServiceSingleton.Dashboard.LoadFrame<RemapInstanceFrame>();
                         break;
                 }
             }

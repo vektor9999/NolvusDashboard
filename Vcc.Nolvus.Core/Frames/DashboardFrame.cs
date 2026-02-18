@@ -36,6 +36,52 @@ namespace Vcc.Nolvus.Core.Frames
             }
         }
 
+        private void DoEnableButtons(Control Control)
+        {
+            if (Control.Controls.Count > 0)
+            {
+                foreach(var SubControl in Control.Controls)
+                {
+                    DoEnableButtons(SubControl as Control);
+                }
+            }
+            else
+            {
+                if (Control is Button)
+                {
+                    Control.Enabled = true;
+                }
+            }
+        }
+
+        private void DoDisableButtons(Control Control)
+        {
+            if (Control.Controls.Count > 0)
+            {
+                foreach (var SubControl in Control.Controls)
+                {
+                    DoDisableButtons(SubControl as Control);
+                }
+            }
+            else
+            {
+                if (Control is Button)
+                {
+                    Control.Enabled = false;
+                }
+            }
+        }
+
+        public void EnableButtons()
+        {
+            DoEnableButtons(this);
+        }
+
+        public void DisableButtons()
+        {
+            DoDisableButtons(this);
+        }
+
         private void OnFrameLoadedSync(object sender, EventArgs e)
         {
             Task.CompletedTask.ContinueWith(async T => { await OnLoadedAsync(); }, TaskScheduler.FromCurrentSynchronizationContext());

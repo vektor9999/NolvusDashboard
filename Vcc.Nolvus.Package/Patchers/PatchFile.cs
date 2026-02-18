@@ -87,9 +87,9 @@ namespace Vcc.Nolvus.Package.Patchers
                         SourceFileToPatch = ServiceSingleton.Files.GetFiles(Dir).Where(x => x.Name == DestinationFileName).Where(y => ServiceSingleton.Files.GetHash(y.FullName) == HashBefore).FirstOrDefault();
                     }
                     else
-                    {
-                        SourceFileToPatch = ServiceSingleton.Files.GetFiles(Dir).Where(x => x.FullName == ZlpPathHelper.Combine(Dir, Directory, DestinationFileName)).Where(y => ServiceSingleton.Files.GetHash(y.FullName) == HashBefore).FirstOrDefault();                        
-                    }                    
+                    {                        
+                        SourceFileToPatch = ServiceSingleton.Files.GetFiles(Dir).Where(x => x.GetFullPath().FullName == new ZlpFileInfo(ZlpPathHelper.Combine(Dir, Directory, DestinationFileName)).GetFullPath().FullName).Where(y => ServiceSingleton.Files.GetHash(y.FullName) == HashBefore).FirstOrDefault();
+                    }
 
                     if (SourceFileToPatch != null)
                     {

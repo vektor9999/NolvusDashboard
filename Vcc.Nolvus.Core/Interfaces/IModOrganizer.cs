@@ -12,5 +12,6 @@ namespace Vcc.Nolvus.Core.Interfaces
     {
         Task<List<ModObject>> GetModsMetaData(string Profile, Action<string, int> Progress = null);
         List<string> GetProfiles();
+        Task<List<string>> GetProfilesAsync();
     }
 }

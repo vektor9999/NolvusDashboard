@@ -103,6 +103,20 @@ namespace Vcc.Nolvus.Services.Files
             }
         }
 
+        public void MoveFile(string SourceFilePath, string TargetFilePath)
+        {
+            ZlpFileInfo SourceFile = new ZlpFileInfo(SourceFilePath);
+
+            ZlpFileInfo TargetFile = new ZlpFileInfo(TargetFilePath);
+
+            if (!TargetFile.Directory.Exists)
+            {
+                ZlpIOHelper.CreateDirectory(TargetFile.Directory.FullName);
+            }
+
+            SourceFile.MoveTo(new ZlpFileInfo(TargetFilePath));
+        }
+
         private void SetAttributesNormal(ZlpDirectoryInfo Directory)
         {
             foreach(var SubDir in Directory.GetDirectories())

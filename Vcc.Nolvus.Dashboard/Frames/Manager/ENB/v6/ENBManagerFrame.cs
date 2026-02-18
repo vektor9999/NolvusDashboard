@@ -80,8 +80,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Manager.ENB.v6
                     {
                         try
                         {
-                            BtnCancel.Enabled = false;
-                            BtnInstall.Enabled = false;
+                            DisableButtons();
+                            ServiceSingleton.Dashboard.DisableSettings();
 
                             var ModsToUpdate = await ServiceSingleton.EnbManager.PrepareModsToUpdate(ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB, Preset.GetFieldValueByKey("EnbCode"));
 
@@ -107,6 +107,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Manager.ENB.v6
                     }
                     finally
                     {
+                        ServiceSingleton.Dashboard.EnableSettings();
                         ServiceSingleton.Dashboard.NoStatus();
                         ServiceSingleton.Dashboard.ProgressCompleted();
                     }                    

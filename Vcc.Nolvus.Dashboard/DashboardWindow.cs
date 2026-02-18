@@ -503,7 +503,7 @@ namespace Vcc.Nolvus.Dashboard
                 }
                 else
                 {
-                    NolvusMessageBox.ShowMessage("Error", "This action can not be done now, please finish the Dashboard pre setup (Game path, Nexus and Nolvus connection)", Nolvus.Core.Enums.MessageBoxType.Error);
+                    NolvusMessageBox.ShowMessage("Settings", "This action is not available currently!", Nolvus.Core.Enums.MessageBoxType.Error);
                 }
                 
             }

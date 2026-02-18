@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 namespace Vcc.Nolvus.Core.Interfaces
 {
     public interface IDashboardFrame
-    {        
+    {
+        void EnableButtons();
+        void DisableButtons();
     }
 }

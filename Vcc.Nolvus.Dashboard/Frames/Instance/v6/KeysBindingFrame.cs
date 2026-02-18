@@ -45,5 +45,10 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
         {
             ServiceSingleton.Dashboard.LoadFrame<ControllerBindingFrame>();
         }
+
+        private void BtnFullGuide_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/player-guide/keybinds/keyboard");
+        }
     }
 }

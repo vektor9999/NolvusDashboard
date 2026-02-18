@@ -79,14 +79,13 @@ namespace Vcc.Nolvus.Dashboard.Frames
             LblInstance.Text = string.Format("{0} - {1} v{2}{3}", Instance.Name, Instance.Performance.Variant, Version, Instance.Tag != string.Empty ? string.Format(" - ({0})", Instance.Tag) : string.Empty);
         }        
 
-        private async Task DeleteInstance(List<ZlpFileInfo> Files)
-        {            
-            BtnAction.Enabled = false;
-            BtnBack.Enabled = false;
-
+        private async Task DeleteInstance()
+        {                        
             var Tsk = Task.Run(() =>
             {
                 int Counter = 0;
+
+                var Files = ServiceSingleton.Files.GetFiles(Instance.InstallDir);
 
                 foreach (var _File in Files)
                 {
@@ -124,8 +123,11 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 try
                 {
                     try
-                    {                        
-                        await DeleteInstance(ServiceSingleton.Files.GetFiles(Instance.InstallDir));
+                    {
+                        DisableButtons();
+                        ServiceSingleton.Dashboard.DisableSettings();
+
+                        await DeleteInstance();
 
                         ServiceSingleton.Instances.RemoveInstance(Instance);
 
@@ -133,6 +135,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                     }
                     finally
                     {
+                        ServiceSingleton.Dashboard.EnableSettings();
                         ServiceSingleton.Dashboard.NoStatus();
                         ServiceSingleton.Dashboard.ProgressCompleted();
                         ServiceSingleton.Dashboard.ClearInfo();

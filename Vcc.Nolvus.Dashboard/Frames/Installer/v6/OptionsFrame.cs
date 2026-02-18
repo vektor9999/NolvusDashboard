@@ -238,5 +238,10 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         {
             ServiceSingleton.Instances.WorkingInstance.Options.UI = DrpDwnLstUI.SelectedValue.ToString();
         }
+
+        private void BtnShowUI_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/player-guide/ui/choices");
+        }
     }
 }

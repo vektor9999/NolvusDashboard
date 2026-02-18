@@ -34,18 +34,18 @@
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.PicBoxENB = new System.Windows.Forms.PictureBox();
             this.LblENBDesc = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.DrpDwnLstENB = new Syncfusion.WinForms.ListView.SfComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.LblStepText = new System.Windows.Forms.Label();
-            this.PicBoxENB = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstENB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxENB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstENB)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -66,8 +66,8 @@
             this.BtnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnPrevious.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnPrevious.BorderColor = System.Drawing.Color.White;
-            this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPrevious.ForeColor = System.Drawing.Color.White;
+            this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPrevious.Location = new System.Drawing.Point(114, 643);
             this.BtnPrevious.Name = "BtnPrevious";
             this.BtnPrevious.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -82,8 +82,8 @@
             this.BtnContinue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnContinue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnContinue.BorderColor = System.Drawing.Color.White;
-            this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnContinue.ForeColor = System.Drawing.Color.White;
+            this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnContinue.Location = new System.Drawing.Point(208, 643);
             this.BtnContinue.Name = "BtnContinue";
             this.BtnContinue.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -132,6 +132,19 @@
             this.label2.TabIndex = 45;
             this.label2.Text = "Preview";
             // 
+            // PicBoxENB
+            // 
+            this.PicBoxENB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PicBoxENB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PicBoxENB.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.Cabbage_ENB_01;
+            this.PicBoxENB.Location = new System.Drawing.Point(16, 290);
+            this.PicBoxENB.Name = "PicBoxENB";
+            this.PicBoxENB.Size = new System.Drawing.Size(666, 393);
+            this.PicBoxENB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicBoxENB.TabIndex = 44;
+            this.PicBoxENB.TabStop = false;
+            // 
             // LblENBDesc
             // 
             this.LblENBDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -156,6 +169,16 @@
             this.label3.TabIndex = 42;
             this.label3.Text = "This application will auto install ENB and Reshade. Don\'t change ENB and Reshade " +
     "presets if you want to keep the intended look.";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.Warning_Message;
+            this.pictureBox1.Location = new System.Drawing.Point(16, 70);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 41;
+            this.pictureBox1.TabStop = false;
             // 
             // DrpDwnLstENB
             // 
@@ -194,29 +217,6 @@
             this.LblStepText.Text = "Select your ENB";
             this.LblStepText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // PicBoxENB
-            // 
-            this.PicBoxENB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PicBoxENB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PicBoxENB.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.Cabbage_ENB_01;
-            this.PicBoxENB.Location = new System.Drawing.Point(16, 290);
-            this.PicBoxENB.Name = "PicBoxENB";
-            this.PicBoxENB.Size = new System.Drawing.Size(666, 393);
-            this.PicBoxENB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PicBoxENB.TabIndex = 44;
-            this.PicBoxENB.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.Warning_Message;
-            this.pictureBox1.Location = new System.Drawing.Point(16, 70);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 41;
-            this.pictureBox1.TabStop = false;
-            // 
             // ENBFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,9 +230,9 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstENB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxENB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstENB)).EndInit();
             this.ResumeLayout(false);
 
         }

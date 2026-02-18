@@ -127,7 +127,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
 
             ServiceSingleton.Logger.Log(string.Format("Viewing {0} - v {1}...", Instance.Name, Instance.Version));
 
-            ServiceSingleton.Dashboard.LoadFrame<InstanceDetailFrame>();
+            await ServiceSingleton.Dashboard.LoadFrameAsync<InstanceDetailFrame>();
         }
 
         protected async Task LoadEnbManager(INolvusInstance Instance)
@@ -152,6 +152,8 @@ namespace Vcc.Nolvus.Dashboard.Frames
                 try
                 {
                     INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
+
+                    ServiceSingleton.Dashboard.DisableSettings();
 
                     switch (Instance.Status.InstallStatus)
                     {
@@ -191,6 +193,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
             }
             finally
             {
+                ServiceSingleton.Dashboard.EnableSettings();
                 ServiceSingleton.Dashboard.NoStatus();
                 ServiceSingleton.Dashboard.ProgressCompleted();
             }

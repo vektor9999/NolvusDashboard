@@ -75,7 +75,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
             }
         }
 
-        protected override void OnLoaded()
+        protected override async Task OnLoadedAsync()
         {            
             INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
             
@@ -84,7 +84,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
             DrpDwnLstProfiles.Visible = false;
             LblMO2Profile.Visible = false;
-            DrpDwnLstProfiles.DataSource = ServiceSingleton.Packages.ModOrganizer2.GetProfiles();
+            DrpDwnLstProfiles.DataSource = await ServiceSingleton.Packages.ModOrganizer2.GetProfilesAsync();
             DrpDwnLstProfiles.SelectedIndex = 0;                
         }
 
@@ -396,6 +396,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
             {
                 if (_CurrentProfile != SelectedProfile)
                 {
+                    ServiceSingleton.Dashboard.DisableSettings();
+
                     _CurrentProfile = SelectedProfile;
 
                     LoadGrids(await LoadModStatus());
@@ -416,6 +418,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
                     LblMO2Profile.Visible = true;
                     DrpDwnLstProfiles.Visible = true;
+                    ServiceSingleton.Dashboard.EnableSettings();
                 }
             }
             catch (Exception ex)

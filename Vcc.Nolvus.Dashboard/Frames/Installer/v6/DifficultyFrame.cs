@@ -321,5 +321,15 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         {
             ServiceSingleton.Instances.WorkingInstance.Options.NerfPA = DrpDwnLstNerfPA.SelectedValue.ToString();
         }
+
+        private void BtnPresetsExplained_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/player-guide/combat/presets");
+        }
+
+        private void BtnScalingExplained_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/player-guide/combat/scaling");
+        }
     }
 }
