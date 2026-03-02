@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection1 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection1 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection1 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
+            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection2 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection2 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection2 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.GrpBxMega = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -49,14 +49,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.LblStepText = new System.Windows.Forms.Label();
             this.BtnBack = new Vcc.Nolvus.Components.Controls.FlatButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.DrpDwnLstProcessCount = new Syncfusion.WinForms.ListView.SfComboBox();
             this.GrpBxMega.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnAnonymous)).BeginInit();
             this.PnlMessage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstProcessCount)).BeginInit();
             this.SuspendLayout();
             // 
             // GrpBxMega
             // 
+            this.GrpBxMega.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GrpBxMega.Controls.Add(this.label6);
             this.GrpBxMega.Controls.Add(this.TglBtnAnonymous);
             this.GrpBxMega.Controls.Add(this.BtnSaveMegaInfo);
@@ -72,7 +79,7 @@
             this.GrpBxMega.ForeColor = System.Drawing.Color.White;
             this.GrpBxMega.Location = new System.Drawing.Point(12, 58);
             this.GrpBxMega.Name = "GrpBxMega";
-            this.GrpBxMega.Size = new System.Drawing.Size(518, 346);
+            this.GrpBxMega.Size = new System.Drawing.Size(572, 346);
             this.GrpBxMega.TabIndex = 9;
             this.GrpBxMega.TabStop = false;
             this.GrpBxMega.Text = "Mega Account";
@@ -88,28 +95,28 @@
             // 
             // TglBtnAnonymous
             // 
-            activeStateCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            activeStateCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
-            this.TglBtnAnonymous.ActiveState = activeStateCollection1;
+            activeStateCollection2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            activeStateCollection2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
+            this.TglBtnAnonymous.ActiveState = activeStateCollection2;
             this.TglBtnAnonymous.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.TglBtnAnonymous.ForeColor = System.Drawing.Color.Black;
-            inactiveStateCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            inactiveStateCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            inactiveStateCollection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            inactiveStateCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.TglBtnAnonymous.InactiveState = inactiveStateCollection1;
+            inactiveStateCollection2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            inactiveStateCollection2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            inactiveStateCollection2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            inactiveStateCollection2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.TglBtnAnonymous.InactiveState = inactiveStateCollection2;
             this.TglBtnAnonymous.Location = new System.Drawing.Point(142, 55);
             this.TglBtnAnonymous.MinimumSize = new System.Drawing.Size(52, 20);
             this.TglBtnAnonymous.Name = "TglBtnAnonymous";
             this.TglBtnAnonymous.Size = new System.Drawing.Size(63, 24);
-            sliderCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            sliderCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection1.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            sliderCollection1.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.TglBtnAnonymous.Slider = sliderCollection1;
+            sliderCollection2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            sliderCollection2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection2.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            sliderCollection2.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.TglBtnAnonymous.Slider = sliderCollection2;
             this.TglBtnAnonymous.TabIndex = 34;
             this.TglBtnAnonymous.Text = "toggleButton1";
             this.TglBtnAnonymous.ThemeName = "Office2016Black";
@@ -120,9 +127,9 @@
             this.BtnSaveMegaInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnSaveMegaInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnSaveMegaInfo.BorderColor = System.Drawing.Color.White;
-            this.BtnSaveMegaInfo.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnSaveMegaInfo.ForeColor = System.Drawing.Color.White;
-            this.BtnSaveMegaInfo.Location = new System.Drawing.Point(401, 286);
+            this.BtnSaveMegaInfo.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnSaveMegaInfo.Location = new System.Drawing.Point(455, 286);
             this.BtnSaveMegaInfo.Name = "BtnSaveMegaInfo";
             this.BtnSaveMegaInfo.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnSaveMegaInfo.Size = new System.Drawing.Size(94, 42);
@@ -141,7 +148,7 @@
             this.PnlMessage.Controls.Add(this.PicBox);
             this.PnlMessage.Location = new System.Drawing.Point(18, 211);
             this.PnlMessage.Name = "PnlMessage";
-            this.PnlMessage.Size = new System.Drawing.Size(477, 56);
+            this.PnlMessage.Size = new System.Drawing.Size(531, 56);
             this.PnlMessage.TabIndex = 23;
             // 
             // LblMessage
@@ -151,7 +158,7 @@
             this.LblMessage.ForeColor = System.Drawing.Color.White;
             this.LblMessage.Location = new System.Drawing.Point(44, 7);
             this.LblMessage.Name = "LblMessage";
-            this.LblMessage.Size = new System.Drawing.Size(426, 49);
+            this.LblMessage.Size = new System.Drawing.Size(480, 49);
             this.LblMessage.TabIndex = 1;
             this.LblMessage.Text = "Your credentials will be stored and encrypted in your local Dashboard config file" +
     ". Note that if you have a mega premium account, you will be able to download meg" +
@@ -258,7 +265,7 @@
             this.LblStepText.ForeColor = System.Drawing.Color.White;
             this.LblStepText.Location = new System.Drawing.Point(3, 1);
             this.LblStepText.Name = "LblStepText";
-            this.LblStepText.Size = new System.Drawing.Size(680, 37);
+            this.LblStepText.Size = new System.Drawing.Size(838, 37);
             this.LblStepText.TabIndex = 20;
             this.LblStepText.Text = "Global Settings";
             this.LblStepText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -268,9 +275,9 @@
             this.BtnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnBack.BorderColor = System.Drawing.Color.White;
-            this.BtnBack.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnBack.ForeColor = System.Drawing.Color.White;
-            this.BtnBack.Location = new System.Drawing.Point(573, 424);
+            this.BtnBack.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnBack.Location = new System.Drawing.Point(731, 424);
             this.BtnBack.Name = "BtnBack";
             this.BtnBack.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnBack.Size = new System.Drawing.Size(94, 42);
@@ -280,22 +287,59 @@
             this.BtnBack.UseVisualStyleBackColor = false;
             this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.DrpDwnLstProcessCount);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.Location = new System.Drawing.Point(590, 58);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(235, 346);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Process";
+            // 
+            // label7
+            // 
+            this.label7.Location = new System.Drawing.Point(12, 25);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(210, 31);
+            this.label7.TabIndex = 54;
+            this.label7.Text = "Number of simultaneus mods installation";
+            // 
+            // DrpDwnLstProcessCount
+            // 
+            this.DrpDwnLstProcessCount.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.DrpDwnLstProcessCount.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
+            this.DrpDwnLstProcessCount.Location = new System.Drawing.Point(15, 59);
+            this.DrpDwnLstProcessCount.Name = "DrpDwnLstProcessCount";
+            this.DrpDwnLstProcessCount.Size = new System.Drawing.Size(189, 28);
+            this.DrpDwnLstProcessCount.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.DrpDwnLstProcessCount.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.DrpDwnLstProcessCount.TabIndex = 53;
+            this.DrpDwnLstProcessCount.ThemeName = "Office2016Black";
+            this.DrpDwnLstProcessCount.SelectedIndexChanged += new System.EventHandler(this.DrpDwnLstProcessCount_SelectedIndexChanged);
+            // 
             // GlobalSettingsFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.LblStepText);
             this.Controls.Add(this.GrpBxMega);
             this.Controls.Add(this.BtnBack);
             this.Name = "GlobalSettingsFrame";
-            this.Size = new System.Drawing.Size(686, 484);
+            this.Size = new System.Drawing.Size(844, 484);
             this.GrpBxMega.ResumeLayout(false);
             this.GrpBxMega.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnAnonymous)).EndInit();
             this.PnlMessage.ResumeLayout(false);
             this.PnlMessage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstProcessCount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -319,5 +363,8 @@
         private Components.Controls.FlatButton BtnSaveMegaInfo;
         private Syncfusion.Windows.Forms.Tools.ToggleButton TglBtnAnonymous;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label7;
+        private Syncfusion.WinForms.ListView.SfComboBox DrpDwnLstProcessCount;
     }
 }

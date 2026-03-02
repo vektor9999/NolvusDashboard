@@ -243,5 +243,10 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         {
             System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/player-guide/ui/choices");
         }
+
+        private void BtnShowAlternateLeveling_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/player-guide/game/leveling");
+        }
     }
 }

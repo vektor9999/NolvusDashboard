@@ -129,6 +129,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             {
                 INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
+                var InstanceName = Instance.Name;
+
                 ServiceSingleton.Dashboard.ClearInfo();                
                 ServiceSingleton.Dashboard.Info("Applying install and load order...");                
 
@@ -158,7 +160,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
                 if (!Parameters.IsEmpty && Parameters["Mode"].ToString() == "Install")
                 {
-                    ServiceSingleton.Dashboard.LoadFrame<FinishFrame>();
+                    ServiceSingleton.Dashboard.LoadFrame<FinishFrame>(new FrameParameters(new FrameParameter() { Key = "Instance", Value = InstanceName }));
                 }
                 else
                 {

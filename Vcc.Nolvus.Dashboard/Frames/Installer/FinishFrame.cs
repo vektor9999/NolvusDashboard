@@ -19,7 +19,9 @@ using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Core.Enums;
 using Vcc.Nolvus.Core.Events;
 using Vcc.Nolvus.Core.Services;
+using Vcc.Nolvus.Core.Misc;
 using Vcc.Nolvus.Api.Installer;
+using Vcc.Nolvus.Dashboard.Forms;
 using Vcc.Nolvus.Dashboard.Frames.Instance;
 
 namespace Vcc.Nolvus.Dashboard.Frames.Installer
@@ -37,9 +39,22 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             InitializeComponent();
         }
 
+        public string InstanceName
+        {
+            get
+            {
+                if (!Parameters.IsEmpty && Parameters["Instance"] != null)
+                {
+                    return Parameters["Instance"].ToString();
+                }
+
+                return string.Empty;
+            }
+        }
+
         protected override void OnLoad()
         {
-            ServiceSingleton.Dashboard.Info("Installation completed");
+            ServiceSingleton.Dashboard.Info("Installation completed");            
         }        
 
         private void BtnDonate_Click(object sender, EventArgs e)
@@ -55,6 +70,23 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         private void BtnContinue_Click(object sender, EventArgs e)
         {
             ServiceSingleton.Dashboard.LoadFrame<InstancesFrame>();
-        }               
+        }
+
+        private void BtnGuide_Click(object sender, EventArgs e)
+        {
+            switch (InstanceName)
+            {
+                case Strings.NolvusAscension:
+                    System.Diagnostics.Process.Start("https://www.nolvus.net/guide/asc/appendix/player-guide");
+                    break;
+
+                case Strings.NolvusAwakening:
+                    System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/player-guide");
+                    break;
+                default:
+                    NolvusMessageBox.ShowMessage("User Guide", "An error occured while trying to access the user guide!", MessageBoxType.Error);
+                    break;
+            }            
+        }
     }
 }

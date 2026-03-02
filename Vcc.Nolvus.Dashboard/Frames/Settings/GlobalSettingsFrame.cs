@@ -45,6 +45,31 @@ namespace Vcc.Nolvus.Dashboard.Frames.Settings
             TglBtnAnonymous.InactiveState.HoverColor = Color.White;
         }
 
+        private int CoreIndex(List<int> Cores)
+        {
+            var Index = Cores.FindIndex(x => x == ServiceSingleton.Settings.ProcessCount);
+
+            return Index == -1 ? 0 : Index;
+        }
+
+        protected List<int> GetProcessorCores()
+        {
+            List<int> Result = new List<int>();
+
+            for (var i = 0; i < Environment.ProcessorCount; i++)
+            {
+                Result.Add(i + 1);
+            }
+
+            if (Result.Where(x => x == ServiceSingleton.Settings.ProcessCount).ToList().Count == 0)
+            {
+                Result.Add(ServiceSingleton.Settings.ProcessCount);
+            }
+           
+
+            return Result;
+        }
+
         protected override void OnLoad()
         {
             try
@@ -64,7 +89,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Settings
                 if (!ServiceSingleton.Globals.MegaAnonymousConnection)
                 {
                     TglBtnAnonymous.ToggleState = ToggleButtonState.Inactive;
-                }                
+                }
+
+                DrpDwnLstProcessCount.DataSource = GetProcessorCores();
+                DrpDwnLstProcessCount.SelectedIndex = CoreIndex(GetProcessorCores());
+
             }
             catch(Exception ex)
             {
@@ -150,6 +179,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Settings
             label4.Enabled = e.ToggleState == ToggleButtonState.Inactive;            
             label5.Enabled = e.ToggleState == ToggleButtonState.Inactive;
             PnlMessage.Enabled = e.ToggleState == ToggleButtonState.Inactive;                                                
+        }
+
+        private void DrpDwnLstProcessCount_SelectedIndexChanged(object sender, EventArgs e)
+        {            
+            ServiceSingleton.Settings.ProcessCount = (int)DrpDwnLstProcessCount.SelectedItem;
         }
     }
 }

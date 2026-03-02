@@ -30,6 +30,8 @@
         {
             this.LblStepText = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnGuide = new Vcc.Nolvus.Components.Controls.FlatButton();
+            this.LblGuide = new System.Windows.Forms.Label();
             this.BtnPatreon = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnDonate = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,6 +60,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.BtnGuide);
+            this.panel1.Controls.Add(this.LblGuide);
             this.panel1.Controls.Add(this.BtnPatreon);
             this.panel1.Controls.Add(this.BtnDonate);
             this.panel1.Controls.Add(this.label2);
@@ -68,12 +72,38 @@
             this.panel1.Size = new System.Drawing.Size(800, 376);
             this.panel1.TabIndex = 18;
             // 
+            // BtnGuide
+            // 
+            this.BtnGuide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.BtnGuide.BorderColor = System.Drawing.Color.White;
+            this.BtnGuide.ForeColor = System.Drawing.Color.White;
+            this.BtnGuide.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnGuide.Location = new System.Drawing.Point(15, 191);
+            this.BtnGuide.Name = "BtnGuide";
+            this.BtnGuide.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
+            this.BtnGuide.Size = new System.Drawing.Size(124, 40);
+            this.BtnGuide.TabIndex = 10;
+            this.BtnGuide.Text = "User Guide";
+            this.BtnGuide.UseVisualStyleBackColor = false;
+            this.BtnGuide.Click += new System.EventHandler(this.BtnGuide_Click);
+            // 
+            // LblGuide
+            // 
+            this.LblGuide.AutoSize = true;
+            this.LblGuide.ForeColor = System.Drawing.Color.Orange;
+            this.LblGuide.Location = new System.Drawing.Point(12, 154);
+            this.LblGuide.Name = "LblGuide";
+            this.LblGuide.Size = new System.Drawing.Size(547, 13);
+            this.LblGuide.TabIndex = 9;
+            this.LblGuide.Text = "We highly recommend to read the user guide to get the full potential of Nolvus an" +
+    "d to avoid issues and headaches.";
+            // 
             // BtnPatreon
             // 
             this.BtnPatreon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnPatreon.BorderColor = System.Drawing.Color.White;
-            this.BtnPatreon.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPatreon.ForeColor = System.Drawing.Color.White;
+            this.BtnPatreon.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPatreon.Location = new System.Drawing.Point(158, 92);
             this.BtnPatreon.Name = "BtnPatreon";
             this.BtnPatreon.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -87,8 +117,8 @@
             // 
             this.BtnDonate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnDonate.BorderColor = System.Drawing.Color.White;
-            this.BtnDonate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnDonate.ForeColor = System.Drawing.Color.White;
+            this.BtnDonate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnDonate.Location = new System.Drawing.Point(15, 92);
             this.BtnDonate.Name = "BtnDonate";
             this.BtnDonate.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -124,8 +154,8 @@
             this.BtnContinue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnContinue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnContinue.BorderColor = System.Drawing.Color.White;
-            this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnContinue.ForeColor = System.Drawing.Color.White;
+            this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnContinue.Location = new System.Drawing.Point(665, 321);
             this.BtnContinue.Name = "BtnContinue";
             this.BtnContinue.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -159,5 +189,7 @@
         private System.Windows.Forms.Label label2;
         private Components.Controls.FlatButton BtnDonate;
         private Components.Controls.FlatButton BtnPatreon;
+        private Components.Controls.FlatButton BtnGuide;
+        private System.Windows.Forms.Label LblGuide;
     }
 }

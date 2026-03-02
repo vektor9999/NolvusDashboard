@@ -80,6 +80,13 @@ namespace Vcc.Nolvus.Updater
                 return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             }
         }
+        private string WindowsSystemFolder
+        {
+            get
+            {
+                return Environment.GetFolderPath(Environment.SpecialFolder.System);
+            }
+        }
 
         private string BaseFolder
         {

@@ -13,7 +13,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         void StoreIniValue(string File, string Section, string Parameter, string Value);
         string GetIniValue(string Section, string Parameter);        
         string GetIniValue(string File, string Section, string Parameter);
-        int ProcessCount { get; }
+        int ProcessCount { get; set; }
         int RetryCount { get; }
         bool ForceAA { get; }
         int RefreshInterval { get; }

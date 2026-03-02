@@ -101,6 +101,11 @@ namespace Vcc.Nolvus.Services.Settings
                     return Environment.ProcessorCount;
                 }
             }
+
+            set
+            {
+                StoreIniValue(ProcessSection, Count, value.ToString());
+            }
         }
 
         public int RetryCount
