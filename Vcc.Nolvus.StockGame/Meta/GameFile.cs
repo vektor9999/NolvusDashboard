@@ -67,6 +67,23 @@ namespace Vcc.Nolvus.StockGame.Meta
             }
         }
 
+        public bool IsPatchingRequired(string LgCode)
+        {                        
+            if (FileSkip)
+            {
+                if (this.Name == string.Format("Skyrim - Voices_{0}0.bsa", LgCode.ToLower()))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return true;            
+        }
+
         public string GetFullName(string Dir)
         {
             return Path.Combine(this.GetGameDir(Dir), this.Name);

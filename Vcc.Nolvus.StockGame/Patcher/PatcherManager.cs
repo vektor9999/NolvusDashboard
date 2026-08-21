@@ -402,7 +402,7 @@ namespace Vcc.Nolvus.StockGame.Patcher
             }            
         }
 
-        public async Task PatchFile(PatchingInstruction Instruction, string SourceDir, string DestDir, bool KeepPatches)
+        public async Task PatchFile(PatchingInstruction Instruction, string SourceDir, string DestDir, bool KeepPatches, string LgCode)
         {            
             var Tsk = Task.Run(async ()=>
             {
@@ -418,9 +418,12 @@ namespace Vcc.Nolvus.StockGame.Patcher
                             DeleteFile(Instruction, DestDir);
                             StepProcessed("Game file : " + Instruction.DestFile.Name + " deleted");
                             break;
-                        case PatcherAction.Patch:                            
-                            await DoPatchFile(Instruction, SourceDir, DestDir, KeepPatches);                                                        
-                            CheckPatchedFile(Instruction, DestDir);                            
+                        case PatcherAction.Patch:
+                            if (Instruction.SourceFile.IsPatchingRequired(LgCode))
+                            {
+                                await DoPatchFile(Instruction, SourceDir, DestDir, KeepPatches);
+                                CheckPatchedFile(Instruction, DestDir);
+                            }
                             break;
                     }                    
                 }
