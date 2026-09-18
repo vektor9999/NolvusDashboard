@@ -184,6 +184,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v5
                 INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
                 LblHeader.Text = "Settings for " + Instance.Name + " v" + Instance.Version;
+
+                ServiceSingleton.Dashboard.Info("Instance settings for " + Instance.Name + " v" + Instance.Version);
+
                 List<string> Resolutions = ServiceSingleton.Globals.WindowsResolutions;
                 DrpDwnLstScreenRes.DataSource = Resolutions;
                 DrpDwnLstScreenRes.SelectedIndex = ResolutionIndex(Resolutions, out ResError);

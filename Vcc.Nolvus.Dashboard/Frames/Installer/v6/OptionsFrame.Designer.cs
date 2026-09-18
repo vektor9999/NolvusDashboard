@@ -48,6 +48,7 @@
             this.BtnContinue = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.BtnShowAlternateLeveling = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnShowUI = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.LblCSNotUsed = new System.Windows.Forms.Label();
             this.LblGoreNotUsed = new System.Windows.Forms.Label();
@@ -72,7 +73,6 @@
             this.TglBtnNudity = new Syncfusion.Windows.Forms.Tools.ToggleButton();
             this.label1 = new System.Windows.Forms.Label();
             this.LblStepText = new System.Windows.Forms.Label();
-            this.BtnShowAlternateLeveling = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstUI)).BeginInit();
@@ -124,7 +124,6 @@
             this.BtnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnPrevious.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnPrevious.BorderColor = System.Drawing.Color.White;
-            this.BtnPrevious.ForeColor = System.Drawing.Color.White;
             this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPrevious.Location = new System.Drawing.Point(114, 638);
             this.BtnPrevious.Name = "BtnPrevious";
@@ -140,7 +139,6 @@
             this.BtnContinue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnContinue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnContinue.BorderColor = System.Drawing.Color.White;
-            this.BtnContinue.ForeColor = System.Drawing.Color.White;
             this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnContinue.Location = new System.Drawing.Point(208, 638);
             this.BtnContinue.Name = "BtnContinue";
@@ -196,11 +194,24 @@
             this.panel2.Size = new System.Drawing.Size(565, 693);
             this.panel2.TabIndex = 20;
             // 
+            // BtnShowAlternateLeveling
+            // 
+            this.BtnShowAlternateLeveling.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.BtnShowAlternateLeveling.BorderColor = System.Drawing.Color.White;
+            this.BtnShowAlternateLeveling.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnShowAlternateLeveling.Location = new System.Drawing.Point(185, 88);
+            this.BtnShowAlternateLeveling.Name = "BtnShowAlternateLeveling";
+            this.BtnShowAlternateLeveling.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
+            this.BtnShowAlternateLeveling.Size = new System.Drawing.Size(28, 28);
+            this.BtnShowAlternateLeveling.TabIndex = 79;
+            this.BtnShowAlternateLeveling.Text = "?";
+            this.BtnShowAlternateLeveling.UseVisualStyleBackColor = false;
+            this.BtnShowAlternateLeveling.Click += new System.EventHandler(this.BtnShowAlternateLeveling_Click);
+            // 
             // BtnShowUI
             // 
             this.BtnShowUI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnShowUI.BorderColor = System.Drawing.Color.White;
-            this.BtnShowUI.ForeColor = System.Drawing.Color.White;
             this.BtnShowUI.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnShowUI.Location = new System.Drawing.Point(306, 411);
             this.BtnShowUI.Name = "BtnShowUI";
@@ -263,7 +274,7 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(511, 38);
             this.label17.TabIndex = 65;
-            this.label17.Text = "Select between Untarnished UI, Edge UI or Oathvein UI";
+            this.label17.Text = "Select between Untarnished UI, Edge UI, Oathvein UI, Norden UI or Vel\'dun UI";
             // 
             // DrpDwnLstUI
             // 
@@ -532,21 +543,6 @@
             this.LblStepText.TabIndex = 19;
             this.LblStepText.Text = "Additional Options";
             this.LblStepText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // BtnShowAlternateLeveling
-            // 
-            this.BtnShowAlternateLeveling.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnShowAlternateLeveling.BorderColor = System.Drawing.Color.White;
-            this.BtnShowAlternateLeveling.ForeColor = System.Drawing.Color.White;
-            this.BtnShowAlternateLeveling.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.BtnShowAlternateLeveling.Location = new System.Drawing.Point(185, 88);
-            this.BtnShowAlternateLeveling.Name = "BtnShowAlternateLeveling";
-            this.BtnShowAlternateLeveling.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
-            this.BtnShowAlternateLeveling.Size = new System.Drawing.Size(28, 28);
-            this.BtnShowAlternateLeveling.TabIndex = 79;
-            this.BtnShowAlternateLeveling.Text = "?";
-            this.BtnShowAlternateLeveling.UseVisualStyleBackColor = false;
-            this.BtnShowAlternateLeveling.Click += new System.EventHandler(this.BtnShowAlternateLeveling_Click);
             // 
             // OptionsFrame
             // 

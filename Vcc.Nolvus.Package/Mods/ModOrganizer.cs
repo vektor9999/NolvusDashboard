@@ -163,6 +163,7 @@ Python%20Proxy\python_dir=
 Simple%20Installer\silent=false
 Skyrim%20Special%20Edition%20Support%20Plugin\enderal_downloads=false
 Skyrim%20Support%20Plugin\sse_downloads=false
+CRDW%20Automatic%20Mode\ini_output_path={3}
 
 [pluginBlacklist]
 size=0";
@@ -2331,8 +2332,8 @@ ccafdsse001-dwesanctuary.esm";
             var FileName = Path.Combine(InstallDir, "ModOrganizer.ini");
 
             File.Create(FileName).Dispose();
-
-            File.WriteAllText(FileName, string.Format(IniFile, Profile, GameDir.Replace(@"\", @"\\"), DataDir));
+            
+            File.WriteAllText(FileName, string.Format(IniFile, Profile, GameDir.Replace(@"\", @"\\"), DataDir, Path.Combine(ServiceSingleton.Instances.WorkingInstance.InstallDir, "MODS", "mods", "CRDW - Cache").Replace(@"\", @"\\")));
         }
 
         public static string GetIni(bool Pref, IniLevel Level, INolvusInstance Instance)

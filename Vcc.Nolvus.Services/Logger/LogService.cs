@@ -24,5 +24,10 @@ namespace Vcc.Nolvus.Services.Logger
         {
             Log(Environment.NewLine);
         }
+
+        public void ClearLog()
+        {
+            File.Delete(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log.txt"));
+        }
     }
 }

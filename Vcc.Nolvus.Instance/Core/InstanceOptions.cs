@@ -29,7 +29,7 @@ namespace Vcc.Nolvus.Instance.Core
         public string Gore { get; set; } = "FALSE";
         public string CombatScaling { get; set; } = "Hard";
         public string Controller { get; set; } = "FALSE";
-        public string UI { get; set; } = "Untarnished UI";
+        public string UI { get; set; } = "Norden UI";
 
 
         public void Load(XmlNode Node)

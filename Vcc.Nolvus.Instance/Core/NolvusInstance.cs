@@ -97,12 +97,17 @@ namespace Vcc.Nolvus.Instance.Core
             }
             else
             {
+                if (Package.IsBeta)
+                {
+                    return "New version available (" + Package.Version + " - Beta)";
+                }
+
                 return "New version available (" + Package.Version + ")";
             }
         }
         public async Task<bool> IsBeta()
         {
-            var Package = await ApiManager.Service.Installer.GetLatestPackage(Id);
+            var Package = await ApiManager.Service.Installer.GetPackage(Id, Version);
 
             return Package.IsBeta;
         }

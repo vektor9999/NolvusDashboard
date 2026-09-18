@@ -153,6 +153,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             UIs.Add("Untarnished UI");
             UIs.Add("Edge UI");
             UIs.Add("Oathvein UI");
+            UIs.Add("Norden UI");
+            UIs.Add("Vel'dun UI");
 
             DrpDwnLstUI.DataSource = UIs;
 

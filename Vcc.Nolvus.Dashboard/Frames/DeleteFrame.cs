@@ -96,7 +96,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
 
                     ServiceSingleton.Dashboard.Progress(PercentDone);
                     ServiceSingleton.Dashboard.Status(string.Format("Deleting {0}...", _File.Name));
-                    ServiceSingleton.Dashboard.AdditionalInfo(string.Format("Deleting instance ({0}%)", PercentDone));
+                    ServiceSingleton.Dashboard.Info(string.Format("Deleting instance ({0}%)", PercentDone));
                 }
 
                 ServiceSingleton.Files.RemoveDirectory(Instance.InstallDir, true);

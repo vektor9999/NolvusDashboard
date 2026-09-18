@@ -433,7 +433,24 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             string[] Reso = Resolution.Split(new char[] { 'x' });
 
             WorkingInstance.Settings.Width = Reso[0];
-            WorkingInstance.Settings.Height = Reso[1];            
+            WorkingInstance.Settings.Height = Reso[1];
+
+            if (
+                    (WorkingInstance.Settings.Width == "2560" && WorkingInstance.Settings.Height == "1080") ||
+                    (WorkingInstance.Settings.Width == "3440" && WorkingInstance.Settings.Height == "1440") ||
+                    (WorkingInstance.Settings.Width == "5120" && WorkingInstance.Settings.Height == "2160")
+                )
+            {
+                DrpDwnLstRatios.SelectedIndex = 1;
+            }
+            else if (
+                        (WorkingInstance.Settings.Width == "3840" && WorkingInstance.Settings.Height == "1080") ||
+                        (WorkingInstance.Settings.Width == "5120" && WorkingInstance.Settings.Height == "1440") ||
+                        (WorkingInstance.Settings.Width == "7680" && WorkingInstance.Settings.Height == "2160")
+                    )
+            {
+                DrpDwnLstRatios.SelectedIndex = 2;
+            }
 
             UpdateHardwareConfiguration();
         }

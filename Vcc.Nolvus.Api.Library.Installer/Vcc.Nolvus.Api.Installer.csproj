@@ -65,6 +65,7 @@
     <Compile Include="Library\NolvusVariantRequirementObject.cs" />
     <Compile Include="Library\NolvusVariantObject.cs" />
     <Compile Include="Library\NolvusGPUObject.cs" />
+    <Compile Include="Library\NolvusOptionObject.cs" />
     <Compile Include="Services\ApiManager.cs" />
     <Compile Include="Services\ApiService.cs" />
     <Compile Include="Services\IApiService.cs" />

@@ -110,8 +110,15 @@ namespace Vcc.Nolvus.Services.Globals
         {
             get
             {
-                var Anonymous = ServiceSingleton.Settings.GetIniValue(MegaSection, MegaAnonymous);
-                return Anonymous == null ? true : System.Convert.ToBoolean(Anonymous);                
+                try
+                {
+                    var Anonymous = ServiceSingleton.Settings.GetIniValue(MegaSection, MegaAnonymous);
+                    return Anonymous == null ? true : System.Convert.ToBoolean(Anonymous);
+                }
+                catch
+                {
+                    return true;
+                }
             }
             set
             {

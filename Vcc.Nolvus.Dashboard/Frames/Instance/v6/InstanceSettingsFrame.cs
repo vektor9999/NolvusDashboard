@@ -185,6 +185,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 
                 LblHeader.Text = "Settings for " + string.Format("{0} - {1} v{2}{3}", Instance.Name, Instance.Performance.Variant, Instance.Version, Instance.Tag != string.Empty ? string.Format(" - ({0})", Instance.Tag) : string.Empty);
 
+                ServiceSingleton.Dashboard.Info("Instance settings for " + Instance.Name + " v" + Instance.Version);
+
                 List<string> Resolutions = ServiceSingleton.Globals.WindowsResolutions;
                 DrpDwnLstScreenRes.DataSource = Resolutions;
                 DrpDwnLstScreenRes.SelectedIndex = ResolutionIndex(Resolutions, out ResError);

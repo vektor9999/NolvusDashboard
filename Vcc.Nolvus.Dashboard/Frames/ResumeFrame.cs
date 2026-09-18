@@ -50,7 +50,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
         protected override void OnLoad()
         {
             ServiceSingleton.Dashboard.Title("Nolvus Dashboard - [Instance Auto Installer]");
-            ServiceSingleton.Dashboard.Status(string.Empty);
+            ServiceSingleton.Dashboard.Status("Resume your Nolvus installation");
 
             DrpDwnLstInstances.DataSource = ServiceSingleton.Instances.InstancesToResume;
             DrpDwnLstInstances.DisplayMember = "Name";
