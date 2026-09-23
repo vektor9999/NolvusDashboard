@@ -439,7 +439,20 @@ namespace Vcc.Nolvus.Services.Report
 
                     Result += Environment.NewLine;
 
+                    Result += "Zone Level Indicator : " + Instance.Options.ZoneLevelIndicator;
 
+                    Result += Environment.NewLine;
+
+                    if (Instance.Options.ZoneLevelIndicator == "TRUE")
+                    {
+                        Result += "Zone Level Indicator : Yes";
+                    }
+                    else
+                    {
+                        Result += "Zone Level Indicator : No";
+                    }
+
+                    Result += Environment.NewLine;
 
                     #endregion
                 }

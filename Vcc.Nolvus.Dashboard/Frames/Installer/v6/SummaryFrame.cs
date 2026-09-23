@@ -84,6 +84,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 LblExhaustion.Text = string.Format("{0} {1}", Instance.Options.Exhaustion == "TRUE" ? "Yes" : "No", Instance.Performance.Variant == Strings.GO ? " (Not used)" : string.Empty);
                 LblNerfPA.Text = string.Format("{0} {1}", Instance.Options.NerfPA, Instance.Performance.Variant == Strings.GO ? " (Not used)" : string.Empty);
                 LblBoss.Text = string.Format("{0} {1}", Instance.Options.Boss == "TRUE" ? "Yes" : "No", Instance.Performance.Variant == Strings.GO ? " (Not used)" : string.Empty);
+                LblZoneLevelIndicator.Text = string.Format("{0} {1}", Instance.Options.ZoneLevelIndicator == "TRUE" ? "Yes" : "No", Instance.Performance.Variant == Strings.GO ? " (Not used)" : string.Empty);
                 LblController.Text = string.Format("{0} {1}", Instance.Options.Controller == "TRUE" ? "Yes" : "No", Instance.Performance.Variant == Strings.GO ? " (Not used)" : string.Empty);
                 LblUI.Text = Instance.Options.UI;
 
@@ -94,6 +95,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 LblExhaustion.ForeColor = Instance.Performance.Variant == Strings.GO ? Color.Silver : Color.Orange;
                 LblNerfPA.ForeColor = Instance.Performance.Variant == Strings.GO ? Color.Silver : Color.Orange;
                 LblBoss.ForeColor = Instance.Performance.Variant == Strings.GO ? Color.Silver : Color.Orange;
+                LblZoneLevelIndicator.ForeColor = Instance.Performance.Variant == Strings.GO ? Color.Silver : Color.Orange;
                 LblController.ForeColor = Instance.Performance.Variant == Strings.GO ? Color.Silver : Color.Orange;                
 
                 if (!ApiManager.AccountInfo.IsPremium)

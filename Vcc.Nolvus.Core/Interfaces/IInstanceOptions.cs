@@ -27,5 +27,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         string CombatScaling { get; set; }
         string Controller { get; set; }
         string UI { get; set; }
+        string ZoneLevelIndicator { get; set; }
     }
 }

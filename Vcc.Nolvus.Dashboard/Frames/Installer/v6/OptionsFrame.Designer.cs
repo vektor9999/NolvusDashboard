@@ -124,6 +124,7 @@
             this.BtnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnPrevious.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnPrevious.BorderColor = System.Drawing.Color.White;
+            this.BtnPrevious.ForeColor = System.Drawing.Color.White;
             this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPrevious.Location = new System.Drawing.Point(114, 638);
             this.BtnPrevious.Name = "BtnPrevious";
@@ -139,6 +140,7 @@
             this.BtnContinue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnContinue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnContinue.BorderColor = System.Drawing.Color.White;
+            this.BtnContinue.ForeColor = System.Drawing.Color.White;
             this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnContinue.Location = new System.Drawing.Point(208, 638);
             this.BtnContinue.Name = "BtnContinue";
@@ -198,6 +200,7 @@
             // 
             this.BtnShowAlternateLeveling.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnShowAlternateLeveling.BorderColor = System.Drawing.Color.White;
+            this.BtnShowAlternateLeveling.ForeColor = System.Drawing.Color.White;
             this.BtnShowAlternateLeveling.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnShowAlternateLeveling.Location = new System.Drawing.Point(185, 88);
             this.BtnShowAlternateLeveling.Name = "BtnShowAlternateLeveling";
@@ -212,6 +215,7 @@
             // 
             this.BtnShowUI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnShowUI.BorderColor = System.Drawing.Color.White;
+            this.BtnShowUI.ForeColor = System.Drawing.Color.White;
             this.BtnShowUI.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnShowUI.Location = new System.Drawing.Point(306, 411);
             this.BtnShowUI.Name = "BtnShowUI";

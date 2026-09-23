@@ -92,6 +92,8 @@
             this.PicBox = new System.Windows.Forms.PictureBox();
             this.BtnPrevious = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnStart = new Vcc.Nolvus.Components.Controls.FlatButton();
+            this.LblZoneLevelIndicator = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -139,6 +141,8 @@
             // 
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.LblZoneLevelIndicator);
+            this.groupBox5.Controls.Add(this.label13);
             this.groupBox5.Controls.Add(this.LblBoss);
             this.groupBox5.Controls.Add(this.label23);
             this.groupBox5.Controls.Add(this.LblExhaustion);
@@ -808,8 +812,8 @@
             this.BtnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnPrevious.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnPrevious.BorderColor = System.Drawing.Color.White;
-            this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPrevious.ForeColor = System.Drawing.Color.White;
+            this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPrevious.Location = new System.Drawing.Point(706, 764);
             this.BtnPrevious.Name = "BtnPrevious";
             this.BtnPrevious.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -824,8 +828,8 @@
             this.BtnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnStart.BorderColor = System.Drawing.Color.White;
-            this.BtnStart.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnStart.ForeColor = System.Drawing.Color.White;
+            this.BtnStart.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnStart.Location = new System.Drawing.Point(799, 764);
             this.BtnStart.Name = "BtnStart";
             this.BtnStart.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -834,6 +838,26 @@
             this.BtnStart.Text = "Start";
             this.BtnStart.UseVisualStyleBackColor = false;
             this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
+            // 
+            // LblZoneLevelIndicator
+            // 
+            this.LblZoneLevelIndicator.AutoSize = true;
+            this.LblZoneLevelIndicator.ForeColor = System.Drawing.Color.Orange;
+            this.LblZoneLevelIndicator.Location = new System.Drawing.Point(145, 125);
+            this.LblZoneLevelIndicator.Name = "LblZoneLevelIndicator";
+            this.LblZoneLevelIndicator.Size = new System.Drawing.Size(105, 13);
+            this.LblZoneLevelIndicator.TabIndex = 59;
+            this.LblZoneLevelIndicator.Text = "[ZoneLevelIndicator]";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(15, 125);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(105, 13);
+            this.label13.TabIndex = 58;
+            this.label13.Text = "Zone Level Indicator";
             // 
             // SummaryFrame
             // 
@@ -928,5 +952,7 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label LblFrameGen;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label LblZoneLevelIndicator;
+        private System.Windows.Forms.Label label13;
     }
 }

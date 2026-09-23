@@ -256,7 +256,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
                 LblCombatScaling.Text = Instance.Options.CombatScaling;
                 LblExhaustion.Text = Instance.Options.Exhaustion == "TRUE" ? "Yes" : "No";
                 LblNerfPA.Text = Instance.Options.NerfPA;                
-                LblBoss.Text = Instance.Options.Boss == "TRUE" ? "Yes" : "No";                
+                LblBoss.Text = Instance.Options.Boss == "TRUE" ? "Yes" : "No";   
+                LblZoneLevelIndicator.Text = Instance.Options.ZoneLevelIndicator == "TRUE" ? "Yes" : "No";
                 LblController.Text = Instance.Options.Controller == "TRUE" ? "Yes" : "No";
                 LblUI.Text = Instance.Options.UI;
 

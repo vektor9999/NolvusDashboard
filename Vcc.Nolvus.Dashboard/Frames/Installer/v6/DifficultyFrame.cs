@@ -56,7 +56,19 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             TglBtnBoss.InactiveState.BackColor = Color.White;
             TglBtnBoss.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
             TglBtnBoss.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
-            TglBtnBoss.InactiveState.HoverColor = Color.White;           
+            TglBtnBoss.InactiveState.HoverColor = Color.White;
+
+            TglBtnZoneLevel.ActiveState.Text = "ON";
+            TglBtnZoneLevel.ActiveState.BackColor = Color.Orange;
+            TglBtnZoneLevel.ActiveState.BorderColor = Color.Orange;
+            TglBtnZoneLevel.ActiveState.ForeColor = Color.White;
+            TglBtnZoneLevel.ActiveState.HoverColor = Color.Orange;
+
+            TglBtnZoneLevel.InactiveState.Text = "OFF";
+            TglBtnZoneLevel.InactiveState.BackColor = Color.White;
+            TglBtnZoneLevel.InactiveState.BorderColor = Color.FromArgb(150, 150, 150);
+            TglBtnZoneLevel.InactiveState.ForeColor = Color.FromArgb(80, 80, 80);
+            TglBtnZoneLevel.InactiveState.HoverColor = Color.White;
 
             #endregion
         }
@@ -221,7 +233,16 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 TglBtnBoss.ToggleState = ToggleButtonState.Active;
             }
 
-            TglBtnBoss.Enabled = Instance.Performance.Variant != Strings.GO; ;
+            TglBtnBoss.Enabled = Instance.Performance.Variant != Strings.GO;
+
+            TglBtnZoneLevel.ToggleState = ToggleButtonState.Inactive;
+
+            if (Instance.Options.ZoneLevelIndicator == "TRUE")
+            {
+                TglBtnZoneLevel.ToggleState = ToggleButtonState.Active;
+            }
+
+            TglBtnZoneLevel.Enabled = Instance.Performance.Variant != Strings.GO;
 
             ServiceSingleton.Dashboard.Info("Difficulty options");
         }
@@ -330,6 +351,23 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         private void BtnScalingExplained_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/player-guide/combat/scaling");
+        }
+
+        private void BtnZoneLevelExplained_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TglBtnZoneLevel_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
+        {
+            if (e.ToggleState == ToggleButtonState.Active)
+            {
+                ServiceSingleton.Instances.WorkingInstance.Options.ZoneLevelIndicator = "TRUE";
+            }
+            else
+            {
+                ServiceSingleton.Instances.WorkingInstance.Options.ZoneLevelIndicator = "FALSE";
+            }
         }
     }
 }
