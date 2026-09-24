@@ -33,6 +33,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         Task<bool> LatestPackageRequireReInstall();
         string GetSelectedResolution();
         string GetSelectedHeight();
-        string GetSelectedWidth();        
+        string GetSelectedWidth();
+        string InstanceVersion { get; }
     }
 }

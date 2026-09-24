@@ -43,7 +43,14 @@ namespace Vcc.Nolvus.Instance.Core
         public IInstanceSettings Settings { get; }
         public IInstancePerformance Performance { get; }
         public IInstanceOptions Options { get; }
-        public IInstanceStatus Status { get; }        
+        public IInstanceStatus Status { get; } 
+        public string InstanceVersion
+        {
+            get
+            {
+                return string.Format("{0} v{1}", Performance.Variant, Version);
+            }
+        }       
 
         public string Overwrite
         {
