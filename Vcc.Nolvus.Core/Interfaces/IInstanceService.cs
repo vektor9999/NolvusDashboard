@@ -12,6 +12,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         IInstanceOptions Options { get; set; }        
         void Load();
         void Save();
+        void RecordInstalledMod(string name);
         bool Empty { get; }
         bool CheckInstances(out string Status);
         List<INolvusInstance> InstancesToResume { get; }
