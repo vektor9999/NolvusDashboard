@@ -599,7 +599,7 @@ namespace Vcc.Nolvus.Services.Report
                 #endregion
 
                 Progress("Generating report", 20);                
-
+                
                 #region Instance Settings
 
                 CurrentLine += 20;
@@ -928,6 +928,16 @@ namespace Vcc.Nolvus.Services.Report
                     }
 
                     CurrentLine += DrawString("User Interface : ", Instance.Options.UI, Graphics, Report.PageSettings, CurrentLine);
+                    
+
+                    if (Instance.Options.ZoneLevelIndicator == "TRUE")
+                    {
+                        CurrentLine += DrawString("Zone Level Indicator : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
+                    }
+                    else
+                    {
+                        CurrentLine += DrawString("Zone Level Indicator : ", "No", Graphics, Report.PageSettings, CurrentLine);
+                    }                    
 
                     #endregion
                 }

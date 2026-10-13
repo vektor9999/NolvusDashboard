@@ -24,8 +24,9 @@ namespace Vcc.Nolvus.Package.Mods
 gameName=Skyrim Special Edition
 selected_profile=@ByteArray({0})
 gamePath=@ByteArray({1})
-version=2.4.4
+version=2.5.2
 first_start=false
+game_edition=Steam
 
 [PluginPersistance]
 Python%20Proxy\tryInit=false
@@ -2505,7 +2506,7 @@ ccafdsse001-dwesanctuary.esm";
             AddExecutable(MO2Folder, string.Empty, Path.Combine(Instance.InstallDir, "MODS", "mods", "Nemesis Unlimited Behavior Engine", "Nemesis_Engine", "Nemesis Unlimited Behavior Engine.exe").Replace(@"\", @"/"), false, true, "Nemesis Unlimited Behavior Engine", true, Path.Combine(Instance.InstallDir, "MODS", "mods", "Nemesis Unlimited Behavior Engine", "Nemesis_Engine").Replace(@"\", @"/"));
 
             string Args = "-D:\\\"" + Path.Combine(Instance.StockGame, "Data").Replace("\\", "\\\\") + "\\\"" + " -c:\\\"" + Instance.InstallDir.Replace("\\", "\\\\") + "\\\\TOOLS\\\\SSE Edit\\\\Cache\\\\\\\"";
-            AddExecutable(Instance.InstallDir + "\\MO2", Args, Path.Combine(Instance.InstallDir + "\\TOOLS\\SSE Edit", "SSEEdit.exe").Replace(@"\", @"/"), false, true, "xEdit", true, Path.Combine(Instance.InstallDir + "\\TOOLS\\SSE Edit").Replace(@"\", @"/"));
+            AddExecutable(Instance.InstallDir + "\\MO2", Args, Path.Combine(Instance.InstallDir + "\\TOOLS\\SSE Edit", "SSEEdit64.exe").Replace(@"\", @"/"), false, true, "xEdit", true, Path.Combine(Instance.InstallDir + "\\TOOLS\\SSE Edit").Replace(@"\", @"/"));
 
             string ArgsAutoClean = "-DontCache -D:\\\"" + Path.Combine(Instance.StockGame, "Data").Replace("\\", "\\\\") + "\\\"";
             AddExecutable(Instance.InstallDir + "\\MO2", ArgsAutoClean, Path.Combine(Instance.InstallDir + "\\TOOLS\\SSE Edit", "SSEEditQuickAutoClean.exe").Replace(@"\", @"/"), false, true, "xEdit Cleaning", false, Path.Combine(Instance.InstallDir + "\\TOOLS\\SSE Edit").Replace(@"\", @"/"));

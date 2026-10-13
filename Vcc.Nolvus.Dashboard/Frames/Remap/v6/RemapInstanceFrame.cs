@@ -116,7 +116,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Remap.v6
 
             string Args = "-D:\\\"" + Path.Combine(StockGamePath, "Data").Replace("\\", "\\\\") + "\\\"" + " -c:\\\"" + NewInstallPath.Replace("\\", "\\\\") + "\\\\TOOLS\\\\SSE Edit\\\\Cache\\\\\\\"";
 
-            ModOrganizer.ModifyExecutable("xEdit", NewInstallPath, Path.Combine(NewInstallPath + "\\TOOLS\\SSE Edit", "SSEEdit.exe").Replace(@"\", @"/"), Args, Path.Combine(NewInstallPath + "\\TOOLS\\SSE Edit").Replace(@"\", @"/"));
+            ModOrganizer.ModifyExecutable("xEdit", NewInstallPath, Path.Combine(NewInstallPath + "\\TOOLS\\SSE Edit", "SSEEdit64.exe").Replace(@"\", @"/"), Args, Path.Combine(NewInstallPath + "\\TOOLS\\SSE Edit").Replace(@"\", @"/"));
             ServiceSingleton.Dashboard.Progress(70);
 
             string ArgsAutoClean = "-DontCache -D:\\\"" + Path.Combine(StockGamePath, "Data").Replace("\\", "\\\\") + "\\\"";

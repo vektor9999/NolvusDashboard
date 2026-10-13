@@ -36,5 +36,7 @@ namespace Vcc.Nolvus.Api.Installer.Controllers
         Task<IGamePackageDTO> GetLatestGamePackage();
         Task<bool> LatestPackageRequireNewGame(string GuideId, string CurrentVersion);
         Task<bool> LatestPackageRequireReInstall(string GuideId, string CurrentVersion);
+        Task<IEnumerable<INolvusOptionDTO>> GetVariantOptions(string Variant, bool Beta);
+        Task<IEnumerable<INolvusOptionChoiceDTO>> GetOptionChoices(string Option, bool Beta);
     }
 }
