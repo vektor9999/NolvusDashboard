@@ -183,6 +183,16 @@ namespace Vcc.Nolvus.Dashboard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DefaultKeyboardKeys_V6_0_21 {
+            get {
+                object obj = ResourceManager.GetObject("DefaultKeyboardKeys_V6.0.21", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DefaultMouseKey {
             get {
                 object obj = ResourceManager.GetObject("DefaultMouseKey", resourceCulture);

@@ -78,7 +78,7 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.DefaultKeyboardKeys_V6;
+            this.pictureBox1.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.DefaultKeyboardKeys_V6_0_21;
             this.pictureBox1.Location = new System.Drawing.Point(6, 19);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1027, 321);
@@ -303,7 +303,6 @@
             this.BtnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnBack.BorderColor = System.Drawing.Color.White;
-            this.BtnBack.ForeColor = System.Drawing.Color.White;
             this.BtnBack.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnBack.Location = new System.Drawing.Point(928, 660);
             this.BtnBack.Name = "BtnBack";
@@ -319,7 +318,6 @@
             this.BtnController.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnController.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnController.BorderColor = System.Drawing.Color.White;
-            this.BtnController.ForeColor = System.Drawing.Color.White;
             this.BtnController.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnController.Location = new System.Drawing.Point(808, 660);
             this.BtnController.Name = "BtnController";
@@ -335,7 +333,6 @@
             this.BtnFullGuide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnFullGuide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnFullGuide.BorderColor = System.Drawing.Color.White;
-            this.BtnFullGuide.ForeColor = System.Drawing.Color.White;
             this.BtnFullGuide.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnFullGuide.Location = new System.Drawing.Point(685, 660);
             this.BtnFullGuide.Name = "BtnFullGuide";
