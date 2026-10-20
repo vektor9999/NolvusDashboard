@@ -135,7 +135,14 @@ namespace Vcc.Nolvus.Package.Services
         {
             get
             {
-                return Math.Floor(((double)ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Count / ModsCount) * 100);
+                if (ModsCount != 0)
+                {
+                    return Math.Floor(((double)ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Count / ModsCount) * 100);
+                }
+                else
+                {
+                    return 0;
+                }
             }
         }
 

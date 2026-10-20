@@ -48,7 +48,7 @@ namespace Vcc.Nolvus.Instance.Core
         {
             get
             {
-                return string.Format("{0} v{1}", Performance.Variant, Version);
+                return string.Format("{0} v{1}", Performance.Variant, ServiceSingleton.Packages.LoadedVersion);
             }
         }       
 
