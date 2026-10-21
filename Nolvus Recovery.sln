@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcc.Nolvus.Recovery", "Vcc.Nolvus.Recovery\Vcc.Nolvus.Recovery.csproj", "{74567358-BEF1-469E-A75F-9C9CD5619316}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcc.Nolvus.Recovery.Cli", "Vcc.Nolvus.Recovery.Cli\Vcc.Nolvus.Recovery.Cli.csproj", "{87480F12-A0A1-4220-AE4A-F743AC89B774}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcc.Nolvus.Recovery.Tests", "Vcc.Nolvus.Recovery.Tests\Vcc.Nolvus.Recovery.Tests.csproj", "{44737AB6-C399-4269-91A6-D91C8A82786F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74567358-BEF1-469E-A75F-9C9CD5619316}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74567358-BEF1-469E-A75F-9C9CD5619316}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74567358-BEF1-469E-A75F-9C9CD5619316}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74567358-BEF1-469E-A75F-9C9CD5619316}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87480F12-A0A1-4220-AE4A-F743AC89B774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87480F12-A0A1-4220-AE4A-F743AC89B774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87480F12-A0A1-4220-AE4A-F743AC89B774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87480F12-A0A1-4220-AE4A-F743AC89B774}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44737AB6-C399-4269-91A6-D91C8A82786F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44737AB6-C399-4269-91A6-D91C8A82786F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44737AB6-C399-4269-91A6-D91C8A82786F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44737AB6-C399-4269-91A6-D91C8A82786F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -395,8 +395,7 @@ namespace Vcc.Nolvus.Package.Services
 
         private void SaveInstance(InstallableElement Mod)
         {
-            ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Add(Mod.Name);
-            ServiceSingleton.Instances.Save();
+            ServiceSingleton.Instances.RecordInstalledMod(Mod.Name);
         }
 
         public async Task InstallModList(List<IInstallableElement> Mods, ModInstallSettings Settings)

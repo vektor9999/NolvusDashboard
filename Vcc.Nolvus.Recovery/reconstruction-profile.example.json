@@ -1,0 +1,73 @@
+{
+  "profileVersion": 2,
+  "confirmed": false,
+  "packageVersion": "",
+  "evidence": {
+    "logSha256": "",
+    "sessionStartLine": 0,
+    "sessionEndLine": 0,
+    "packageModNames": []
+  },
+  "ledgerSafety": {
+    "singleInstanceOnlyConfirmed": false,
+    "expectedInstanceIds": []
+  },
+  "instance": {
+    "id": "",
+    "name": "",
+    "tag": "",
+    "description": "",
+    "version": "",
+    "installPath": "",
+    "archivePath": "",
+    "stockGame": ""
+  },
+  "settings": {
+    "ratio": "",
+    "height": "",
+    "width": "",
+    "enableArchiving": false,
+    "cdn": "",
+    "lgCode": "",
+    "lgName": ""
+  },
+  "performance": {
+    "advancedPhysics": "",
+    "downScaling": "",
+    "downHeight": "",
+    "downWidth": "",
+    "iniSettings": "",
+    "antiAliasing": "",
+    "variant": "",
+    "lods": "",
+    "rayTracing": "",
+    "fpsStabilizer": "",
+    "srex": "",
+    "frameGeneration": ""
+  },
+  "options": {
+    "nudity": "",
+    "alternateEnb": "",
+    "fantasyMode": "",
+    "hardcoreMode": "",
+    "alternateLeveling": "",
+    "skinType": "",
+    "alternateStart": "",
+    "combatAnimation": "",
+    "stancesPerksTree": "",
+    "deleveledEnemies": "",
+    "exhaustion": "",
+    "nerfPa": "",
+    "enemiesResistance": "",
+    "boss": "",
+    "poise": "",
+    "gore": "",
+    "combatScaling": "",
+    "controller": "",
+    "ui": ""
+  },
+  "status": {
+    "totalMods": 0,
+    "fields": []
+  }
+}
