@@ -33,9 +33,13 @@ namespace Vcc.Nolvus.Api.Installer.Controllers
             return await this._Service.GetPolyMorphic<List<NolvusVersionDTO>>($"{_Api}/getnolvusversions");
         }
 
-        public async Task<IEnumerable<INolvusVariantDTO>> GetNolvusVariants()
+        public async Task<IEnumerable<INolvusVariantDTO>> GetNolvusVariants(string GuideId)
         {
-            return await this._Service.GetPolyMorphic<List<NolvusVariantDTO>>($"{_Api}/getnolvusvariants");
+            Dictionary<string, object> Params = new Dictionary<string, object>();
+
+            Params.Add("GuideId", GuideId);
+
+            return await this._Service.GetPolyMorphic<List<NolvusVariantDTO>>($"{_Api}/getnolvusvariants", Params);
         }
 
         public async Task<IEnumerable<INolvusGPUDTO>> GetGPUs()

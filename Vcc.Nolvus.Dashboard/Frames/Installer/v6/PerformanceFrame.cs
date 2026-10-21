@@ -222,7 +222,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
                 #region Variants
 
-                var Variants = await ApiManager.Service.Installer.GetNolvusVariants();                
+                var Variants = await ApiManager.Service.Installer.GetNolvusVariants(Instance.Id);                
 
                 DrpDwnLstVariant.DataSource = Variants;
                 DrpDwnLstVariant.DisplayMember = "FullName";
