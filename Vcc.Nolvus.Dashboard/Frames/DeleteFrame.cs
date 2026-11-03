@@ -75,8 +75,8 @@ namespace Vcc.Nolvus.Dashboard.Frames
             {
                 Version = Instance.Version;
             }
-            
-            LblInstance.Text = string.Format("{0} - {1} v{2}{3}", Instance.Name, Instance.Performance.Variant, Version, Instance.Tag != string.Empty ? string.Format(" - ({0})", Instance.Tag) : string.Empty);
+
+            LblInstance.Text = Instance.FullName;
         }        
 
         private async Task DeleteInstance()
@@ -85,7 +85,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
             {
                 int Counter = 0;
 
-                var Files = ServiceSingleton.Files.GetFiles(Instance.InstallDir);
+                var Files = ServiceSingleton.Files.GetFiles(Instance.SettingsManager.InstallDir);
 
                 foreach (var _File in Files)
                 {
@@ -99,7 +99,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                     ServiceSingleton.Dashboard.Info(string.Format("Deleting instance ({0}%)", PercentDone));
                 }
 
-                ServiceSingleton.Files.RemoveDirectory(Instance.InstallDir, true);
+                ServiceSingleton.Files.RemoveDirectory(Instance.SettingsManager.InstallDir, true);
             });
 
             await Tsk;
@@ -111,7 +111,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
 
             if (Action == InstanceAction.Delete)
             {
-                Message = string.Format("Are you sure you want to delete {0} and everything inside {1}?", Instance.Name, Instance.InstallDir);
+                Message = string.Format("Are you sure you want to delete {0} and everything inside {1}?", Instance.Name, Instance.SettingsManager.InstallDir);
             }            
             else
             {
@@ -125,6 +125,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
                     try
                     {
                         DisableButtons();
+
                         ServiceSingleton.Dashboard.DisableSettings();
 
                         await DeleteInstance();

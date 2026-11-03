@@ -35,9 +35,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
         private int DownloadLocationIndex(List<string> Locations)
         {
-            if (ServiceSingleton.Instances.WorkingInstance.Settings.CDN != string.Empty)
+            if (ServiceSingleton.Instances.WorkingInstance.SettingsManager.CDN != string.Empty)
             {
-                var Index = Locations.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Settings.CDN);
+                var Index = Locations.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.SettingsManager.CDN);
 
                 return Index == -1 ? 0 : Index;
             }
@@ -55,20 +55,12 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                 
         private void DrpDwnLstDownLoc_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ServiceSingleton.Instances.WorkingInstance.Settings.CDN = DrpDwnLstDownLoc.SelectedItem.ToString();                                   
+            ServiceSingleton.Instances.WorkingInstance.SettingsManager.CDN = DrpDwnLstDownLoc.SelectedItem.ToString();                                   
         }
 
         private void BtnContinue_Click(object sender, EventArgs e)
         {
-            switch (ServiceSingleton.Instances.WorkingInstance.Name)
-            {
-                case Strings.NolvusAscension:
-                    ServiceSingleton.Dashboard.LoadFrame<v5.SummaryFrame>();
-                    break;
-                case Strings.NolvusAwakening:
-                    ServiceSingleton.Dashboard.LoadFrame<v6.SummaryFrame>();
-                    break;
-            }            
+            ServiceSingleton.Dashboard.LoadFrame<SummaryFrame>();
         }
 
         private void BtnPrevious_Click(object sender, EventArgs e)

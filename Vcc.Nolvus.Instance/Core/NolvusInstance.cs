@@ -9,16 +9,28 @@ using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Api.Installer.Services;
 using Vcc.Nolvus.Api.Installer.Library;
+using Vcc.Nolvus.Instance.Settings;
+using Vcc.Nolvus.Instance.Options;
+using Vcc.Nolvus.Instance.Status;
+
 
 namespace Vcc.Nolvus.Instance.Core
 {    
     public class NolvusInstance : INolvusInstance
     {
-        #region Properties
-        private string _Tag = string.Empty;
-        public string Id { get; set; } = string.Empty;
-        public string Code { get; set; } = string.Empty;
+        #region Fields
+
+        NolvusOptionsManager _OptionsManager;
+        NolvusSettingsManager _SettingsManager;
+        NolvusStatusManager _StatusManager;
+
+        #endregion
+
+        #region Properties  
+              
+        public string Id { get; set; } = string.Empty;        
         public string Name { get; set; } = string.Empty;
+        private string _Tag = string.Empty;
         public string Tag
         {
             get
@@ -30,70 +42,92 @@ namespace Vcc.Nolvus.Instance.Core
             {
                 _Tag = value;
 
-                InstallDir = Path.Combine(ServiceSingleton.Instances.InstancesDirectory, string.Format("{0} - {1}", Name, _Tag));
-                StockGame = Path.Combine(ServiceSingleton.Instances.InstancesDirectory, string.Format("{0} - {1}", Name, _Tag), "STOCK GAME");
+                SettingsManager.InstallDir = Path.Combine(ServiceSingleton.Instances.InstancesDirectory, string.Format("{0} - {1}", Name, _Tag));
+                SettingsManager.StockGame = Path.Combine(ServiceSingleton.Instances.InstancesDirectory, string.Format("{0} - {1}", Name, _Tag), "STOCK GAME");
             }
         }
-        public string Description { get; set; }        
-        public string Version { get; set; } = string.Empty;        
-        public string InstallDir { get; set; } = string.Empty;
-        public string ArchiveDir { get; set; } = string.Empty;        
-        public string StockGame { get; set; } = string.Empty;                                  
-        public DateTime LastUpdate { get; set; }                                      
-        public IInstanceSettings Settings { get; }
-        public IInstancePerformance Performance { get; }
-        public IInstanceOptions Options { get; }
-        public IInstanceStatus Status { get; } 
-        public string InstanceVersion
-        {
-            get
-            {
-                return string.Format("{0} v{1}", Performance.Variant, ServiceSingleton.Packages.LoadedVersion);
-            }
-        }       
-
+        public string Version { get; set; } = string.Empty;
+        public string Description { get; set; }                                                              
+        public DateTime LastUpdate { get; set; }                                   
         public string Overwrite
         {
             get
             {
-                return Path.Combine(InstallDir, "MODS", "overwrite");
+                return Path.Combine(SettingsManager.InstallDir, "MODS", "overwrite");
             }
         }
-
         public string OverwriteSl
         {
             get
             {
                 return Overwrite + "\\";
             }
-        }      
+        }
+        public string InstanceVersion
+        {
+            get
+            {
+                return string.Format("{0} v{1}", SettingsManager.Variant, ServiceSingleton.Packages.LoadedVersion);
+            }
+        }
+
+        public string FullName
+        {
+            get
+            {
+                return string.Format("{0} - {1} v{2}{3}", Name, SettingsManager.Variant, Version, Tag != string.Empty ? string.Format(" - ({0})", Tag) : string.Empty);
+            }
+        }
+
+        public INolvusSettingsManager SettingsManager
+        {
+            get { return _SettingsManager; }
+        }
+        public INolvusOptionsManager OptionsManager
+        {
+            get { return _OptionsManager; }
+        }
+        public INolvusStatusManager StatusManager
+        {
+            get { return _StatusManager; }
+        }
 
         #endregion
 
         public NolvusInstance()
         {
-            Settings = new InstanceSettings();            
-            Performance = new InstancePerformance();
-            Options = new InstanceOptions();
-            Status = new InstanceStatus();            
+            _SettingsManager = new NolvusSettingsManager();                        
+            _OptionsManager = new NolvusOptionsManager();
+            _StatusManager = new NolvusStatusManager();
         }
-        public NolvusInstance(INolvusVersionDTO DTO)
+
+        #region Methods
+
+        public static async Task<NolvusInstance> CreateFromDTO(INolvusVersionDTO DTO)
         {
-            Id = DTO.Id;
-            Code = DTO.Code;                   
-            Name = DTO.Name;
-            Description = DTO.Description;
+            var Instance = new NolvusInstance
+            {
+                Id = DTO.Id,                
+                Name = DTO.Name,
+                Description = DTO.Description                
+            };
 
-            Settings = new InstanceSettings();
-            Performance = new InstancePerformance();
-            Options = new InstanceOptions();
-            Status = new InstanceStatus();
+            Instance.SettingsManager.InstallDir = Path.Combine(ServiceSingleton.Instances.InstancesDirectory, DTO.Name);
+            Instance.SettingsManager.ArchiveDir = ServiceSingleton.Instances.ArchivesDirectory;
+            Instance.SettingsManager.StockGame = Path.Combine(ServiceSingleton.Instances.InstancesDirectory, DTO.Name, "STOCK GAME");
 
-            InstallDir = Path.Combine(ServiceSingleton.Instances.InstancesDirectory, Name);
-            ArchiveDir = ServiceSingleton.Instances.ArchivesDirectory;
-            StockGame = Path.Combine(ServiceSingleton.Instances.InstancesDirectory, Name, "STOCK GAME");            
-        }            
-           
+            await Instance.OptionsManager.LoadFromServer(Instance);            
+
+            return Instance;
+        }
+
+        public async Task<bool> IsBeta()
+        {
+            var Package = await ApiManager.Service.Installer.GetPackage(Id, Version);
+
+            return Package.IsBeta;
+        }
+
         public async Task<string> GetState()
         {           
             var Package = await ApiManager.Service.Installer.GetLatestPackage(Id);            
@@ -112,12 +146,7 @@ namespace Vcc.Nolvus.Instance.Core
                 return "New version available (" + Package.Version + ")";
             }
         }
-        public async Task<bool> IsBeta()
-        {
-            var Package = await ApiManager.Service.Installer.GetPackage(Id, Version);
-
-            return Package.IsBeta;
-        }
+        
         public async Task<string> GetLatestVersion()
         {
             var Package = await ApiManager.Service.Installer.GetLatestPackage(Id);
@@ -140,71 +169,38 @@ namespace Vcc.Nolvus.Instance.Core
             return await ApiManager.Service.Installer.LatestPackageRequireReInstall(Id, Version);
         }
 
-        public string GetSelectedResolution()
-        {
-            return string.Format("{0}x{1}", GetSelectedWidth(), GetSelectedHeight());
-        }
-
-        public string GetSelectedHeight()
-        {
-            if (Performance.DownScaling == "TRUE")
-            {
-                return Performance.DownHeight;
-            }
-            else
-            {
-                return Settings.Height;
-            }
-        }
-
-        public string GetSelectedWidth()
-        {
-            if (Performance.DownScaling == "TRUE")
-            {
-                return Performance.DownWidth;
-            }
-            else
-            {
-                return Settings.Width;
-            }
-        }
-
         public InstanceCheckStatus Check()
         {
             if (Version == string.Empty)
             {
                 return InstanceCheckStatus.VersionError;
             }
-            else if ( Id == string.Empty)
+            else if (Id == string.Empty)
             {
                 return InstanceCheckStatus.NoId;
             }
 
             return InstanceCheckStatus.OK;
         }
-        public void Load(XmlNode Node)
+
+        public async Task Load(XmlNode Node)
         {
-            Id = Node["Id"].InnerText.Trim();            
+            Id = Node["Id"].InnerText.Trim();
             Name = Node["Name"].InnerText.Trim();
-                        
             Tag = Node["Tag"] != null ? Node["Tag"].InnerText.Trim() : string.Empty;
-
+            Version = Node["Version"].InnerText.Trim();
             Description = Node["Description"].InnerText.Trim();
-            Version = Node["Version"].InnerText.Trim();            
-            InstallDir = Node["InstallPath"].InnerText.Trim();
-            ArchiveDir = Node["ArchivePath"].InnerText.Trim();
-            StockGame = Node["StockGame"].InnerText.Trim();
 
-            ServiceSingleton.Logger.Log(string.Format("Instance name : {0}", Name));
-            ServiceSingleton.Logger.Log(string.Format("Instance version : {0}", Version));
-            ServiceSingleton.Logger.Log(string.Format("Instance install directory : {0}", InstallDir));
-            ServiceSingleton.Logger.Log(string.Format("Instance archive directory : {0}", ArchiveDir));
 
-            (Settings as InstanceSettings).Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Settings").FirstOrDefault());
-            (Performance as InstancePerformance).Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Performance").FirstOrDefault());
-            (Options as InstanceOptions).Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Options").FirstOrDefault());                                                                                   
-            (Status as InstanceStatus).Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Status").FirstOrDefault());                        
-        }       
+            ServiceSingleton.Logger.Log(string.Format("Instance Name : {0}", Name));
+            ServiceSingleton.Logger.Log(string.Format("Instance Tag : {0}", Tag));
+            ServiceSingleton.Logger.Log(string.Format("Instance Version : {0}", Version));
+
+
+            _SettingsManager.Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Settings").FirstOrDefault());
+            await _OptionsManager.Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Options").FirstOrDefault(), this);
+            _StatusManager.Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Status").FirstOrDefault());
+        }
 
         public void Save(XmlWriter XMLWriter)
         {            
@@ -222,34 +218,48 @@ namespace Vcc.Nolvus.Instance.Core
             XMLWriter.WriteString(Tag.Trim());
             XMLWriter.WriteEndElement();
 
-            XMLWriter.WriteStartElement("Description");
-            XMLWriter.WriteString(Description.Trim());
-            XMLWriter.WriteEndElement();
-
             XMLWriter.WriteStartElement("Version");
             XMLWriter.WriteString(Version.Trim());
             XMLWriter.WriteEndElement();
 
-            XMLWriter.WriteStartElement("InstallPath");
-            XMLWriter.WriteString(InstallDir.Trim());
-            XMLWriter.WriteEndElement();
+            XMLWriter.WriteStartElement("Description");
+            XMLWriter.WriteString(Description.Trim());
+            XMLWriter.WriteEndElement();            
 
-            XMLWriter.WriteStartElement("ArchivePath");
-            XMLWriter.WriteString(ArchiveDir.Trim());
-            XMLWriter.WriteEndElement();
-
-            XMLWriter.WriteStartElement("StockGame");
-            XMLWriter.WriteString(StockGame.Trim());
-            XMLWriter.WriteEndElement();
-
-            (Settings as InstanceSettings).Save(XMLWriter);
-            (Performance as InstancePerformance).Save(XMLWriter);
-            (Options as InstanceOptions).Save(XMLWriter);
-            (Status as InstanceStatus).Save(XMLWriter);            
-
+            _SettingsManager.Save(XMLWriter);
+            _OptionsManager.Save(XMLWriter);
+            _StatusManager.Save(XMLWriter);                                  
 
             XMLWriter.WriteEndElement();
-        }        
+        }
+
+        public async Task DeleteGameSaveFiles()
+        {
+            await Task.Run(() =>
+            {
+                var SaveFilesDir = Path.Combine(SettingsManager.InstallDir, "MODS", "profiles", Name, "saves");
+
+                ServiceSingleton.Files.RemoveDirectory(SaveFilesDir, false);
+            });
+        }
+
+        public async Task BackupGameSaveFiles()
+        {
+            await Task.Run(() =>
+            {
+                var BackupDirName = string.Format("backup-saves-{0}", DateTime.Now.ToString("yyyyddMHHmmss"));
+
+                var SaveDir = Path.Combine(SettingsManager.InstallDir, "MODS", "profiles", Name, "saves");
+                var BackupDir = Path.Combine(SettingsManager.InstallDir, "MODS", "profiles", Name, "saves", BackupDirName);
+
+                if (!ServiceSingleton.Files.IsDirectoryEmpty(SaveDir, SearchOption.TopDirectoryOnly))
+                {
+                    ServiceSingleton.Files.MoveFiles(SaveDir, BackupDir, SearchOption.TopDirectoryOnly);                    
+                }                                
+            });
+        }
+
+        #endregion
     }
 }
 

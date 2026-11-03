@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label35 = new System.Windows.Forms.Label();
             this.BtnCancel = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnInstall = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.label4 = new System.Windows.Forms.Label();
@@ -48,6 +49,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label35);
             this.panel1.Controls.Add(this.BtnCancel);
             this.panel1.Controls.Add(this.BtnInstall);
             this.panel1.Controls.Add(this.label4);
@@ -56,13 +58,24 @@
             this.panel1.Size = new System.Drawing.Size(310, 698);
             this.panel1.TabIndex = 18;
             // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.ForeColor = System.Drawing.Color.Orange;
+            this.label35.Location = new System.Drawing.Point(5, 5);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(41, 21);
+            this.label35.TabIndex = 6;
+            this.label35.Text = "Info";
+            // 
             // BtnCancel
             // 
             this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnCancel.BorderColor = System.Drawing.Color.White;
-            this.BtnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnCancel.BorderColor = System.Drawing.Color.Gray;
             this.BtnCancel.ForeColor = System.Drawing.Color.White;
+            this.BtnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnCancel.Location = new System.Drawing.Point(114, 642);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -76,9 +89,9 @@
             // 
             this.BtnInstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnInstall.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnInstall.BorderColor = System.Drawing.Color.White;
-            this.BtnInstall.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnInstall.BorderColor = System.Drawing.Color.Gray;
             this.BtnInstall.ForeColor = System.Drawing.Color.White;
+            this.BtnInstall.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnInstall.Location = new System.Drawing.Point(208, 642);
             this.BtnInstall.Name = "BtnInstall";
             this.BtnInstall.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -92,7 +105,7 @@
             // 
             this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(3, 10);
+            this.label4.Location = new System.Drawing.Point(10, 45);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(293, 54);
             this.label4.TabIndex = 0;
@@ -176,6 +189,7 @@
             this.Name = "ENBManagerFrame";
             this.Size = new System.Drawing.Size(1026, 733);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PicLoading)).EndInit();
@@ -194,5 +208,6 @@
         private System.Windows.Forms.PictureBox PicLoading;
         private Components.Controls.FlatButton BtnCancel;
         private Components.Controls.FlatButton BtnInstall;
+        private System.Windows.Forms.Label label35;
     }
 }

@@ -101,6 +101,22 @@ namespace Vcc.Nolvus.Services.Files
                 ZlpFileInfo FileDest = new ZlpFileInfo(NewPath.FullName.Replace(SourcePath, TargetPath));
                 FileSource.CopyTo(FileDest.FullName, true);
             }
+        }       
+
+        public void MoveFiles(string SourcePath, string TargetPath, SearchOption SearchOption = SearchOption.AllDirectories)
+        {
+            if (SearchOption == SearchOption.AllDirectories)
+            {
+                foreach (var DirPath in ZlpIOHelper.GetDirectories(SourcePath, "*", SearchOption.AllDirectories))
+                {
+                    ZlpIOHelper.CreateDirectory(DirPath.FullName.Replace(SourcePath, TargetPath));
+                }
+            }            
+
+            foreach (var SourceFile in ZlpIOHelper.GetFiles(SourcePath, "*.*", SearchOption))
+            {
+                MoveFile(SourceFile.FullName, SourceFile.FullName.Replace(SourcePath, TargetPath));
+            }
         }
 
         public void MoveFile(string SourceFilePath, string TargetFilePath)
@@ -245,9 +261,9 @@ namespace Vcc.Nolvus.Services.Files
             }
         }
 
-        public bool IsDirectoryEmpty(string Dir)
+        public bool IsDirectoryEmpty(string Dir, SearchOption SearchOption = SearchOption.AllDirectories)
         {
-            return ZlpIOHelper.GetFiles(Dir, "*.*", SearchOption.AllDirectories).Length == 0;            
+            return ZlpIOHelper.GetFiles(Dir, "*.*", SearchOption).Length == 0;            
         }        
     }
 }

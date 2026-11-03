@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn6 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn7 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn8 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn9 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn10 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn1 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn2 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn3 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn4 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn5 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstanceDetailFrame));
             this.ModsGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.BtnBack = new Vcc.Nolvus.Components.Controls.FlatButton();
@@ -49,8 +48,6 @@
             this.BtnSettings = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnLoadOrder = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnReport = new Vcc.Nolvus.Components.Controls.FlatButton();
-            this.popupMenusManager1 = new Syncfusion.Windows.Forms.Tools.XPMenus.PopupMenusManager(this.components);
-            this.popupMenu1 = new Syncfusion.Windows.Forms.Tools.XPMenus.PopupMenu(this.components);
             this.parentBarItem1 = new Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem();
             this.BrItmClipboardReport = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.BrItmPDFReport = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
@@ -70,35 +67,35 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ModsGrid.AutoGenerateColumns = false;
-            gridTextColumn6.AllowEditing = false;
-            gridTextColumn6.AllowResizing = true;
-            gridTextColumn6.HeaderText = "Priority";
-            gridTextColumn6.MappingName = "Priority";
-            gridTextColumn6.Width = 75D;
-            gridTextColumn7.AllowEditing = false;
-            gridTextColumn7.AllowResizing = true;
-            gridTextColumn7.HeaderText = "Mod";
-            gridTextColumn7.MappingName = "Name";
-            gridTextColumn7.Width = 400D;
-            gridTextColumn8.AllowEditing = false;
-            gridTextColumn8.AllowResizing = true;
-            gridTextColumn8.HeaderText = "Version";
-            gridTextColumn8.MappingName = "Version";
-            gridTextColumn9.AllowEditing = false;
-            gridTextColumn9.AllowResizing = true;
-            gridTextColumn9.HeaderText = "Category";
-            gridTextColumn9.MappingName = "Category";
-            gridTextColumn9.Visible = false;
-            gridTextColumn10.AllowEditing = false;
-            gridTextColumn10.AllowResizing = true;
-            gridTextColumn10.HeaderText = "Status";
-            gridTextColumn10.MappingName = "StatusText";
-            gridTextColumn10.Width = 200D;
-            this.ModsGrid.Columns.Add(gridTextColumn6);
-            this.ModsGrid.Columns.Add(gridTextColumn7);
-            this.ModsGrid.Columns.Add(gridTextColumn8);
-            this.ModsGrid.Columns.Add(gridTextColumn9);
-            this.ModsGrid.Columns.Add(gridTextColumn10);
+            gridTextColumn1.AllowEditing = false;
+            gridTextColumn1.AllowResizing = true;
+            gridTextColumn1.HeaderText = "Priority";
+            gridTextColumn1.MappingName = "Priority";
+            gridTextColumn1.Width = 75D;
+            gridTextColumn2.AllowEditing = false;
+            gridTextColumn2.AllowResizing = true;
+            gridTextColumn2.HeaderText = "Mod";
+            gridTextColumn2.MappingName = "Name";
+            gridTextColumn2.Width = 400D;
+            gridTextColumn3.AllowEditing = false;
+            gridTextColumn3.AllowResizing = true;
+            gridTextColumn3.HeaderText = "Version";
+            gridTextColumn3.MappingName = "Version";
+            gridTextColumn4.AllowEditing = false;
+            gridTextColumn4.AllowResizing = true;
+            gridTextColumn4.HeaderText = "Category";
+            gridTextColumn4.MappingName = "Category";
+            gridTextColumn4.Visible = false;
+            gridTextColumn5.AllowEditing = false;
+            gridTextColumn5.AllowResizing = true;
+            gridTextColumn5.HeaderText = "Status";
+            gridTextColumn5.MappingName = "StatusText";
+            gridTextColumn5.Width = 200D;
+            this.ModsGrid.Columns.Add(gridTextColumn1);
+            this.ModsGrid.Columns.Add(gridTextColumn2);
+            this.ModsGrid.Columns.Add(gridTextColumn3);
+            this.ModsGrid.Columns.Add(gridTextColumn4);
+            this.ModsGrid.Columns.Add(gridTextColumn5);
             this.ModsGrid.Location = new System.Drawing.Point(7, 76);
             this.ModsGrid.Name = "ModsGrid";
             this.ModsGrid.Size = new System.Drawing.Size(889, 347);
@@ -295,11 +292,6 @@
             this.BtnReport.UseVisualStyleBackColor = false;
             this.BtnReport.Click += new System.EventHandler(this.BtnReport_Click);
             // 
-            // popupMenu1
-            // 
-            this.popupMenu1.ParentBarItem = this.parentBarItem1;
-            this.popupMenu1.ThemeName = "Office2016Black";
-            // 
             // parentBarItem1
             // 
             this.parentBarItem1.BarName = "parentBarItem1";
@@ -318,8 +310,7 @@
             this.BrItmClipboardReport.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmClipboardReport.Image")));
             this.BrItmClipboardReport.ShowToolTipInPopUp = false;
             this.BrItmClipboardReport.SizeToFit = true;
-            this.BrItmClipboardReport.Text = "Report to Clipboard";
-            this.BrItmClipboardReport.Click += new System.EventHandler(this.BrItmClipboardReport_Click);
+            this.BrItmClipboardReport.Text = "Report to Clipboard";            
             // 
             // BrItmPDFReport
             // 
@@ -328,8 +319,7 @@
             this.BrItmPDFReport.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmPDFReport.Image")));
             this.BrItmPDFReport.ShowToolTipInPopUp = false;
             this.BrItmPDFReport.SizeToFit = true;
-            this.BrItmPDFReport.Text = "Report to PDF";
-            this.BrItmPDFReport.Click += new System.EventHandler(this.BrItmPDFReport_Click);
+            this.BrItmPDFReport.Text = "Report to PDF";            
             // 
             // InstanceDetailFrame
             // 
@@ -372,8 +362,6 @@
         private Components.Controls.FlatButton BtnSettings;
         private Components.Controls.FlatButton BtnLoadOrder;
         private Components.Controls.FlatButton BtnReport;
-        private Syncfusion.Windows.Forms.Tools.XPMenus.PopupMenusManager popupMenusManager1;
-        private Syncfusion.Windows.Forms.Tools.XPMenus.PopupMenu popupMenu1;
         private Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem parentBarItem1;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmClipboardReport;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmPDFReport;

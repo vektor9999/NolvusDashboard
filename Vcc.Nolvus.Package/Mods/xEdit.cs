@@ -24,7 +24,7 @@ namespace Vcc.Nolvus.Package.Mods
                     {
                         var Instance = ServiceSingleton.Instances.WorkingInstance;
 
-                        var InstallDirectory = Path.Combine(Instance.InstallDir, "TOOLS", Name);
+                        var InstallDirectory = Path.Combine(Instance.SettingsManager.InstallDir, "TOOLS", Name);
                         var CacheDir = Path.Combine(InstallDirectory, "Cache");                        
 
                         Directory.CreateDirectory(InstallDirectory);
@@ -37,7 +37,7 @@ namespace Vcc.Nolvus.Package.Mods
 
                         foreach (var Rule in Rules)
                         {
-                            Rule.Execute(Instance.StockGame, Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), Instance.InstallDir, Instance.InstallDir);
+                            Rule.Execute(Instance.SettingsManager.StockGame, Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), Instance.SettingsManager.InstallDir, Instance.SettingsManager.InstallDir);
                             CopyingProgress(++Counter, Rules.Count);
                         }                        
                     }

@@ -54,24 +54,26 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             INolvusVariantRequirementDTO VariantRequirement = Parameters["VariantRequirement"] as INolvusVariantRequirementDTO;
             INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
-            LblVariant.Text = Instance.Performance.Variant;
-            LblResolution.Text = Instance.GetSelectedResolution();
-            LblSREX.Text = Instance.Performance.SREX == "TRUE" ? "Yes" : "No";
+            LblVariant.Text = Instance.SettingsManager.Variant;
+            LblResolution.Text = Instance.SettingsManager.GetSelectedResolution();
+            LblSREX.Text = Instance.OptionsManager.GetOptionValue("SREX") == "TRUE" ? "Yes" : "No";
 
-            var GPUs = await ApiManager.Service.Installer.GetGPUs();           
+            var GPUs = await ApiManager.Service.Installer.GetGPUs();
 
-            GPUsGrid.DataSource = GPUs.Select(x => {
+            GPUsGrid.DataSource = GPUs.Select(x =>
+            {
 
-                return new GPUObject(){
+                return new GPUObject()
+                {
                     VRAM = x.VRAM.ToString(),
                     GPU = string.Format("{0} {1}", x.Vendor, x.Name),
                     Supported = x.VRAM >= VariantRequirement.VRAM ? true : false,
                     Image = x.VRAM >= VariantRequirement.VRAM ? ServiceSingleton.Lib.ImageToByteArray(Properties.Resources.Check_01_24) : ServiceSingleton.Lib.ImageToByteArray(Properties.Resources.Cross_Close_24)
                 };
-                                
-            }).ToList();
 
-            ServiceSingleton.Dashboard.Info("Supported GPUS");
+            }).OrderBy(x => x.GPU).ToList();
+
+            ServiceSingleton.Dashboard.Info("Supported GPUs");
         }               
               
         private void BtnBack_Click(object sender, EventArgs e)

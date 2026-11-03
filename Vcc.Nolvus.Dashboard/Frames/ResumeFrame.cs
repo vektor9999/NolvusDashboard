@@ -37,9 +37,9 @@ namespace Vcc.Nolvus.Dashboard.Frames
 
         private int DownloadLocationIndex(List<string> Locations)
         {            
-            if (ServiceSingleton.Instances.WorkingInstance.Settings.CDN != string.Empty)
+            if (ServiceSingleton.Instances.WorkingInstance.SettingsManager.CDN != string.Empty)
             {                
-                var Index = Locations.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Settings.CDN);
+                var Index = Locations.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.SettingsManager.CDN);
 
                 return Index == -1 ? 0 : Index;                    
             }
@@ -117,7 +117,7 @@ namespace Vcc.Nolvus.Dashboard.Frames
         {
             var Instance = DrpDwnLstInstances.SelectedItem as INolvusInstance;
 
-            Instance.Settings.CDN = DrpDwnLstDownLoc.SelectedItem.ToString();
+            Instance.SettingsManager.CDN = DrpDwnLstDownLoc.SelectedItem.ToString();
 
             ServiceSingleton.Instances.Save();            
         }               

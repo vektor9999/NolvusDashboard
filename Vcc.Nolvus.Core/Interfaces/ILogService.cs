@@ -10,6 +10,7 @@ namespace Vcc.Nolvus.Core.Interfaces
     {
         void Log(string Message);
         void LineBreak();
-        void ClearLog();
+        void InitializeLog();
+        void ClearLogs();
     }
 }

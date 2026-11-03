@@ -33,10 +33,11 @@
             this.BtnContinue = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.DrpDwnLstDownLoc = new Syncfusion.WinForms.ListView.SfComboBox();
             this.LblDownLoc = new System.Windows.Forms.Label();
             this.LblStepText = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstDownLoc)).BeginInit();
@@ -47,22 +48,23 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label20);
             this.panel1.Controls.Add(this.BtnPrevious);
             this.panel1.Controls.Add(this.BtnContinue);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Location = new System.Drawing.Point(497, 30);
+            this.panel1.Location = new System.Drawing.Point(788, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(310, 374);
+            this.panel1.Size = new System.Drawing.Size(309, 802);
             this.panel1.TabIndex = 18;
             // 
             // BtnPrevious
             // 
             this.BtnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnPrevious.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnPrevious.BorderColor = System.Drawing.Color.White;
-            this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnPrevious.BorderColor = System.Drawing.Color.Gray;
             this.BtnPrevious.ForeColor = System.Drawing.Color.White;
-            this.BtnPrevious.Location = new System.Drawing.Point(114, 319);
+            this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnPrevious.Location = new System.Drawing.Point(113, 747);
             this.BtnPrevious.Name = "BtnPrevious";
             this.BtnPrevious.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnPrevious.Size = new System.Drawing.Size(88, 40);
@@ -75,10 +77,10 @@
             // 
             this.BtnContinue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnContinue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnContinue.BorderColor = System.Drawing.Color.White;
-            this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnContinue.BorderColor = System.Drawing.Color.Gray;
             this.BtnContinue.ForeColor = System.Drawing.Color.White;
-            this.BtnContinue.Location = new System.Drawing.Point(208, 319);
+            this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnContinue.Location = new System.Drawing.Point(207, 747);
             this.BtnContinue.Name = "BtnContinue";
             this.BtnContinue.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnContinue.Size = new System.Drawing.Size(88, 40);
@@ -91,7 +93,7 @@
             // 
             this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(3, 10);
+            this.label4.Location = new System.Drawing.Point(5, 40);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(293, 35);
             this.label4.TabIndex = 0;
@@ -108,8 +110,18 @@
             this.panel2.Controls.Add(this.LblDownLoc);
             this.panel2.Location = new System.Drawing.Point(7, 30);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(484, 374);
+            this.panel2.Size = new System.Drawing.Size(775, 802);
             this.panel2.TabIndex = 17;
+            // 
+            // label5
+            // 
+            this.label5.ForeColor = System.Drawing.Color.Orange;
+            this.label5.Location = new System.Drawing.Point(4, 55);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(431, 31);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "Only work for nexus mods and not for other file hosting web sites Nolvus connects" +
+    " onto";
             // 
             // DrpDwnLstDownLoc
             // 
@@ -142,20 +154,21 @@
             this.LblStepText.ForeColor = System.Drawing.Color.White;
             this.LblStepText.Location = new System.Drawing.Point(3, 0);
             this.LblStepText.Name = "LblStepText";
-            this.LblStepText.Size = new System.Drawing.Size(804, 20);
+            this.LblStepText.Size = new System.Drawing.Size(1101, 20);
             this.LblStepText.TabIndex = 16;
             this.LblStepText.Text = "CDN Location";
             this.LblStepText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label5
+            // label20
             // 
-            this.label5.ForeColor = System.Drawing.Color.Orange;
-            this.label5.Location = new System.Drawing.Point(4, 55);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(431, 31);
-            this.label5.TabIndex = 34;
-            this.label5.Text = "Only work for nexus mods and not for other file hosting web sites Nolvus connects" +
-    " onto";
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.Orange;
+            this.label20.Location = new System.Drawing.Point(5, 5);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(41, 21);
+            this.label20.TabIndex = 74;
+            this.label20.Text = "Info";
             // 
             // CDNFrame
             // 
@@ -166,8 +179,9 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.LblStepText);
             this.Name = "CDNFrame";
-            this.Size = new System.Drawing.Size(810, 409);
+            this.Size = new System.Drawing.Size(1107, 837);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstDownLoc)).EndInit();
@@ -186,5 +200,6 @@
         private Syncfusion.WinForms.ListView.SfComboBox DrpDwnLstDownLoc;
         private System.Windows.Forms.Label LblDownLoc;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label20;
     }
 }

@@ -57,9 +57,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
         private void GlobalProgress()
         {
-            ServiceSingleton.Dashboard.Info(string.Format("Installing mods ({0}%)",ServiceSingleton.Packages.InstallProgression));
-            
-            ServiceSingleton.Dashboard.AdditionalInfo(string.Format("Mods {0}/{1}", ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Count, ModsToInstall == null ? ServiceSingleton.Packages.ModsCount : ModsToInstall.Count));            
+            ServiceSingleton.Dashboard.Info(string.Format("Installing mods ({0}%)",ServiceSingleton.Packages.InstallProgression));            
+
+            ServiceSingleton.Dashboard.AdditionalInfo(string.Format("Mods {0}/{1}", ServiceSingleton.Instances.WorkingInstance.StatusManager.InstalledMods.Count, ServiceSingleton.Packages.ModsCount));            
         }
 
         private void RefreshBox()
@@ -101,17 +101,20 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                     var Instance = ServiceSingleton.Instances.WorkingInstance;
 
                     ServiceSingleton.Dashboard.Title("Nolvus Dashboard - [Instance Auto Installer]");                    
-                    ServiceSingleton.Dashboard.Status(string.Format("{0} {1} - {2} (v{3})", Instance.Status.InstallStatus == InstanceInstallStatus.Installing ? "Installing" : "Updating", Instance.Name, Instance.Performance.Variant, ServiceSingleton.Packages.LoadedVersion));
-                    ServiceSingleton.Dashboard.AdditionalSecondaryInfo("Error(s) : 0");                    
-
-                    GlobalProgress();
+                    ServiceSingleton.Dashboard.Status(string.Format("{0} {1} - {2} (v{3})", Instance.StatusManager.InstallStatus == InstanceInstallStatus.Installing ? "Installing" : "Updating", Instance.Name, Instance.SettingsManager.Variant, ServiceSingleton.Packages.LoadedVersion));
+                    ServiceSingleton.Dashboard.Info("Installing mods (0%)");
+                    ServiceSingleton.Dashboard.AdditionalInfo("Mods {0}/0");
+                    ServiceSingleton.Dashboard.AdditionalSecondaryInfo("Error(s) : 0");                                        
 
                     ServiceSingleton.Files.RemoveDirectory(ServiceSingleton.Folders.NexusCacheDirectory, false);
+
+
 
                     await ServiceSingleton.Packages.InstallModList(ModsToInstall, new ModInstallSettings()
                     {
                         OnStartInstalling = () =>
                         {
+                            GlobalProgress();
                             Refresh(ServiceSingleton.Settings.RefreshInterval);
                         },                         
                         OnModInstalled = (Mod) =>

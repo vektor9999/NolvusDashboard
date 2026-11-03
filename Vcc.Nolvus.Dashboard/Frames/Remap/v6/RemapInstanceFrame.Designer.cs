@@ -31,22 +31,23 @@
             this.LblStepText = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.LblInstance = new System.Windows.Forms.Label();
             this.BtnBrowseInstancePath = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.TxtBxInstancePath = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.LblCurrentInstallPath = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.LblInstance = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.PnlMessage = new System.Windows.Forms.Panel();
             this.LblMessage = new System.Windows.Forms.Label();
             this.PicBox = new System.Windows.Forms.PictureBox();
             this.BtnCancel = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnRemap = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.panel3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.PnlMessage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
             this.SuspendLayout();
@@ -71,9 +72,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.panel1);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.PnlMessage);
             this.panel3.Controls.Add(this.BtnCancel);
             this.panel3.Controls.Add(this.BtnRemap);
@@ -81,6 +82,103 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1013, 632);
             this.panel3.TabIndex = 17;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.LblInstance);
+            this.panel1.Controls.Add(this.BtnBrowseInstancePath);
+            this.panel1.Controls.Add(this.TxtBxInstancePath);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.LblCurrentInstallPath);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Location = new System.Drawing.Point(13, 84);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(982, 217);
+            this.panel1.TabIndex = 32;
+            // 
+            // LblInstance
+            // 
+            this.LblInstance.AutoSize = true;
+            this.LblInstance.ForeColor = System.Drawing.Color.White;
+            this.LblInstance.Location = new System.Drawing.Point(10, 45);
+            this.LblInstance.Name = "LblInstance";
+            this.LblInstance.Size = new System.Drawing.Size(72, 13);
+            this.LblInstance.TabIndex = 41;
+            this.LblInstance.Text = "[InstanceInfo]";
+            // 
+            // BtnBrowseInstancePath
+            // 
+            this.BtnBrowseInstancePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnBrowseInstancePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.BtnBrowseInstancePath.BorderColor = System.Drawing.Color.Gray;
+            this.BtnBrowseInstancePath.ForeColor = System.Drawing.Color.White;
+            this.BtnBrowseInstancePath.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnBrowseInstancePath.Location = new System.Drawing.Point(920, 162);
+            this.BtnBrowseInstancePath.Name = "BtnBrowseInstancePath";
+            this.BtnBrowseInstancePath.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
+            this.BtnBrowseInstancePath.Size = new System.Drawing.Size(20, 20);
+            this.BtnBrowseInstancePath.TabIndex = 40;
+            this.BtnBrowseInstancePath.Text = "...";
+            this.BtnBrowseInstancePath.UseVisualStyleBackColor = false;
+            this.BtnBrowseInstancePath.Click += new System.EventHandler(this.BtnBrowseInstancePath_Click);
+            // 
+            // TxtBxInstancePath
+            // 
+            this.TxtBxInstancePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtBxInstancePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.TxtBxInstancePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtBxInstancePath.ForeColor = System.Drawing.Color.White;
+            this.TxtBxInstancePath.Location = new System.Drawing.Point(9, 162);
+            this.TxtBxInstancePath.Name = "TxtBxInstancePath";
+            this.TxtBxInstancePath.ReadOnly = true;
+            this.TxtBxInstancePath.Size = new System.Drawing.Size(905, 20);
+            this.TxtBxInstancePath.TabIndex = 39;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(10, 129);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(231, 13);
+            this.label2.TabIndex = 38;
+            this.label2.Text = "New installation path (select an empty directory)";
+            // 
+            // LblCurrentInstallPath
+            // 
+            this.LblCurrentInstallPath.AutoSize = true;
+            this.LblCurrentInstallPath.ForeColor = System.Drawing.Color.Orange;
+            this.LblCurrentInstallPath.Location = new System.Drawing.Point(135, 90);
+            this.LblCurrentInstallPath.Name = "LblCurrentInstallPath";
+            this.LblCurrentInstallPath.Size = new System.Drawing.Size(35, 13);
+            this.LblCurrentInstallPath.TabIndex = 37;
+            this.LblCurrentInstallPath.Text = "[Path]";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(10, 90);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 13);
+            this.label1.TabIndex = 36;
+            this.label1.Text = "Current Installation Path";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Orange;
+            this.label6.Location = new System.Drawing.Point(5, 5);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(109, 21);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Instance Info";
             // 
             // label4
             // 
@@ -105,96 +203,6 @@
     "n the same drive). Usefull if you want to shorten your install path or move your" +
     " instance elsewhere.";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.BtnBrowseInstancePath);
-            this.groupBox1.Controls.Add(this.TxtBxInstancePath);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.LblCurrentInstallPath);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.LblInstance);
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(13, 95);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(982, 195);
-            this.groupBox1.TabIndex = 29;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Instance Info";
-            // 
-            // BtnBrowseInstancePath
-            // 
-            this.BtnBrowseInstancePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnBrowseInstancePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnBrowseInstancePath.BorderColor = System.Drawing.Color.White;
-            this.BtnBrowseInstancePath.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.BtnBrowseInstancePath.Location = new System.Drawing.Point(929, 145);
-            this.BtnBrowseInstancePath.Name = "BtnBrowseInstancePath";
-            this.BtnBrowseInstancePath.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
-            this.BtnBrowseInstancePath.Size = new System.Drawing.Size(20, 20);
-            this.BtnBrowseInstancePath.TabIndex = 34;
-            this.BtnBrowseInstancePath.Text = "...";
-            this.BtnBrowseInstancePath.UseVisualStyleBackColor = false;
-            this.BtnBrowseInstancePath.Click += new System.EventHandler(this.BtnBrowseInstancePath_Click);
-            // 
-            // TxtBxInstancePath
-            // 
-            this.TxtBxInstancePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtBxInstancePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.TxtBxInstancePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtBxInstancePath.ForeColor = System.Drawing.Color.White;
-            this.TxtBxInstancePath.Location = new System.Drawing.Point(19, 145);
-            this.TxtBxInstancePath.Name = "TxtBxInstancePath";
-            this.TxtBxInstancePath.ReadOnly = true;
-            this.TxtBxInstancePath.Size = new System.Drawing.Size(904, 20);
-            this.TxtBxInstancePath.TabIndex = 33;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(16, 113);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(231, 13);
-            this.label2.TabIndex = 32;
-            this.label2.Text = "New installation path (select an empty directory)";
-            // 
-            // LblCurrentInstallPath
-            // 
-            this.LblCurrentInstallPath.AutoSize = true;
-            this.LblCurrentInstallPath.ForeColor = System.Drawing.Color.Orange;
-            this.LblCurrentInstallPath.Location = new System.Drawing.Point(151, 72);
-            this.LblCurrentInstallPath.Name = "LblCurrentInstallPath";
-            this.LblCurrentInstallPath.Size = new System.Drawing.Size(35, 13);
-            this.LblCurrentInstallPath.TabIndex = 31;
-            this.LblCurrentInstallPath.Text = "[Path]";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(16, 72);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 13);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "Current Installation Path";
-            // 
-            // LblInstance
-            // 
-            this.LblInstance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblInstance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.LblInstance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblInstance.ForeColor = System.Drawing.Color.White;
-            this.LblInstance.Location = new System.Drawing.Point(15, 26);
-            this.LblInstance.Name = "LblInstance";
-            this.LblInstance.Size = new System.Drawing.Size(941, 24);
-            this.LblInstance.TabIndex = 29;
-            this.LblInstance.Text = "Instance Paths";
-            this.LblInstance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // PnlMessage
             // 
             this.PnlMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -203,7 +211,7 @@
             this.PnlMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PnlMessage.Controls.Add(this.LblMessage);
             this.PnlMessage.Controls.Add(this.PicBox);
-            this.PnlMessage.Location = new System.Drawing.Point(13, 319);
+            this.PnlMessage.Location = new System.Drawing.Point(13, 320);
             this.PnlMessage.Name = "PnlMessage";
             this.PnlMessage.Size = new System.Drawing.Size(982, 75);
             this.PnlMessage.TabIndex = 22;
@@ -236,7 +244,7 @@
             // 
             this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnCancel.BorderColor = System.Drawing.Color.White;
+            this.BtnCancel.BorderColor = System.Drawing.Color.Gray;
             this.BtnCancel.ForeColor = System.Drawing.Color.White;
             this.BtnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnCancel.Location = new System.Drawing.Point(823, 587);
@@ -252,7 +260,7 @@
             // 
             this.BtnRemap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnRemap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnRemap.BorderColor = System.Drawing.Color.White;
+            this.BtnRemap.BorderColor = System.Drawing.Color.Gray;
             this.BtnRemap.ForeColor = System.Drawing.Color.White;
             this.BtnRemap.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnRemap.Location = new System.Drawing.Point(917, 587);
@@ -275,8 +283,8 @@
             this.Size = new System.Drawing.Size(1026, 667);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.PnlMessage.ResumeLayout(false);
             this.PnlMessage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).EndInit();
@@ -293,14 +301,15 @@
         private System.Windows.Forms.Panel PnlMessage;
         private System.Windows.Forms.Label LblMessage;
         private System.Windows.Forms.PictureBox PicBox;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label LblInstance;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label LblCurrentInstallPath;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtBxInstancePath;
         private Components.Controls.FlatButton BtnBrowseInstancePath;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label LblInstance;
     }
 }

@@ -26,6 +26,11 @@ namespace Vcc.Nolvus.Package.Mods
             return true;
         }
 
+        public override bool IsInstallable(string Data, string Value)
+        {
+            return true;
+        }
+
         public override void Load(XmlNode Node, List<InstallableElement> Elements)
         {
             base.Load(Node, Elements);
@@ -57,7 +62,7 @@ namespace Vcc.Nolvus.Package.Mods
         {
             get
             {
-                return ServiceSingleton.Instances.WorkingInstance.ArchiveDir;
+                return ServiceSingleton.Instances.WorkingInstance.SettingsManager.ArchiveDir;
             }
         }
 

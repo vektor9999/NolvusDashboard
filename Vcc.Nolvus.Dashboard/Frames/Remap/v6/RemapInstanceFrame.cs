@@ -14,12 +14,12 @@ using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Core.Enums;
 using Vcc.Nolvus.Core.Misc;
 using Vcc.Nolvus.Core.Services;
+using Vcc.Nolvus.Package.Mods;
 using Vcc.Nolvus.Instance.Core;
 using Vcc.Nolvus.Dashboard.Core;
 using Vcc.Nolvus.Dashboard.Forms;
 using Vcc.Nolvus.Dashboard.Frames.Instance;
 using Vcc.Nolvus.Dashboard.Frames.Installer;
-using Vcc.Nolvus.Package.Mods;
 using Syncfusion.Windows.Forms.Tools;
 using ZetaLongPaths;
 
@@ -43,8 +43,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Remap.v6
 
         protected override void OnLoaded()
         {
-            LblInstance.Text  = string.Format("{0} - {1} v{2}{3}", ServiceSingleton.Instances.WorkingInstance.Name, ServiceSingleton.Instances.WorkingInstance.Performance.Variant, ServiceSingleton.Instances.WorkingInstance.Version, ServiceSingleton.Instances.WorkingInstance.Tag != string.Empty ? string.Format(" - ({0})", ServiceSingleton.Instances.WorkingInstance.Tag) : string.Empty);
-            LblCurrentInstallPath.Text = ServiceSingleton.Instances.WorkingInstance.InstallDir;            
+            LblInstance.Text = ServiceSingleton.Instances.WorkingInstance.FullName;
+            LblCurrentInstallPath.Text = ServiceSingleton.Instances.WorkingInstance.SettingsManager.InstallDir;            
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
@@ -57,39 +57,39 @@ namespace Vcc.Nolvus.Dashboard.Frames.Remap.v6
         {
             ServiceSingleton.Dashboard.Status("Checking Mod Organizer 2 shortcuts...");
 
-            if (!ModOrganizer.CheckIfExecutableExists("Nolvus", ServiceSingleton.Instances.WorkingInstance.InstallDir))
+            if (!ModOrganizer.CheckIfExecutableExists("Nolvus", ServiceSingleton.Instances.WorkingInstance.SettingsManager.InstallDir))
             {
                 throw new Exception("The Mod Organizer 2 Nolvus shortcut doesn't exist!");
             }
-            else if (!ModOrganizer.CheckIfExecutableExists("SKSE", ServiceSingleton.Instances.WorkingInstance.InstallDir))
+            else if (!ModOrganizer.CheckIfExecutableExists("SKSE", ServiceSingleton.Instances.WorkingInstance.SettingsManager.InstallDir))
             {
                 throw new Exception("The Mod Organizer 2 SKSE shortcut doesn't exist!");
             }
-            else if (!ModOrganizer.CheckIfExecutableExists("Skyrim Special Edition", ServiceSingleton.Instances.WorkingInstance.InstallDir))
+            else if (!ModOrganizer.CheckIfExecutableExists("Skyrim Special Edition", ServiceSingleton.Instances.WorkingInstance.SettingsManager.InstallDir))
             {
                 throw new Exception("The Mod Organizer 2 Skyrim Special Edition shortcut doesn't exist!");
             }
-            else if (!ModOrganizer.CheckIfExecutableExists("Skyrim Special Edition Launcher", ServiceSingleton.Instances.WorkingInstance.InstallDir))
+            else if (!ModOrganizer.CheckIfExecutableExists("Skyrim Special Edition Launcher", ServiceSingleton.Instances.WorkingInstance.SettingsManager.InstallDir))
             {
                 throw new Exception("The Mod Organizer 2 Skyrim Special Edition Launcher shortcut doesn't exist!");
             }
-            else if (!ModOrganizer.CheckIfExecutableExists("Explore Virtual Folder", ServiceSingleton.Instances.WorkingInstance.InstallDir))
+            else if (!ModOrganizer.CheckIfExecutableExists("Explore Virtual Folder", ServiceSingleton.Instances.WorkingInstance.SettingsManager.InstallDir))
             {
                 throw new Exception("The Mod Organizer 2 Explore Virtual Folder shortcut doesn't exist!");
             }
-            else if (!ModOrganizer.CheckIfExecutableExists("Nemesis Unlimited Behavior Engine", ServiceSingleton.Instances.WorkingInstance.InstallDir))
+            else if (!ModOrganizer.CheckIfExecutableExists("Nemesis Unlimited Behavior Engine", ServiceSingleton.Instances.WorkingInstance.SettingsManager.InstallDir))
             {
                 throw new Exception("The Mod Organizer 2 Nemesis Unlimited Behavior Engine shortcut doesn't exist!");
             }
-            else if (!ModOrganizer.CheckIfExecutableExists("xEdit", ServiceSingleton.Instances.WorkingInstance.InstallDir))
+            else if (!ModOrganizer.CheckIfExecutableExists("xEdit", ServiceSingleton.Instances.WorkingInstance.SettingsManager.InstallDir))
             {
                 throw new Exception("The Mod Organizer 2 xEdit shortcut doesn't exist!");
             }
-            else if (!ModOrganizer.CheckIfExecutableExists("xEdit Cleaning", ServiceSingleton.Instances.WorkingInstance.InstallDir))
+            else if (!ModOrganizer.CheckIfExecutableExists("xEdit Cleaning", ServiceSingleton.Instances.WorkingInstance.SettingsManager.InstallDir))
             {
                 throw new Exception("The Mod Organizer 2 xEdit Cleaning shortcut doesn't exist!");
             }
-            else if (!ModOrganizer.CheckIfExecutableExists("Body Slide", ServiceSingleton.Instances.WorkingInstance.InstallDir))
+            else if (!ModOrganizer.CheckIfExecutableExists("Body Slide", ServiceSingleton.Instances.WorkingInstance.SettingsManager.InstallDir))
             {
                 throw new Exception("The Mod Organizer 2 Body Slide shortcut doesn't exist!");
             }
@@ -140,7 +140,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Remap.v6
             {                                                                               
                 CheckMO2Executables();
 
-                var CurrentInstallPath = ServiceSingleton.Instances.WorkingInstance.InstallDir;
+                var CurrentInstallPath = ServiceSingleton.Instances.WorkingInstance.SettingsManager.InstallDir;
                 var NewInstallPath = TxtBxInstancePath.Text;
                 var StockGamePath = ZlpPathHelper.Combine(NewInstallPath, "STOCK GAME");
 
@@ -166,8 +166,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Remap.v6
 
                 ModifyMO2Executables(NewInstallPath, StockGamePath);
 
-                ServiceSingleton.Instances.WorkingInstance.InstallDir = NewInstallPath;
-                ServiceSingleton.Instances.WorkingInstance.StockGame = StockGamePath;
+                ServiceSingleton.Instances.WorkingInstance.SettingsManager.InstallDir = NewInstallPath;
+                ServiceSingleton.Instances.WorkingInstance.SettingsManager.StockGame = StockGamePath;
 
                 ServiceSingleton.Instances.Save();
 
@@ -180,38 +180,46 @@ namespace Vcc.Nolvus.Dashboard.Frames.Remap.v6
 
         private async void BtnRemap_Click(object sender, EventArgs e)
         {
-            if (TxtBxInstancePath.Text.Trim() != string.Empty)
+            if (!ModOrganizer.IsRunning)
             {
-                try
+                if (TxtBxInstancePath.Text.Trim() != string.Empty)
                 {
                     try
                     {
-                        DisableButtons();
-                        ServiceSingleton.Dashboard.DisableSettings();
+                        try
+                        {
+                            DisableButtons();
 
-                        await Remap();                        
+                            ServiceSingleton.Dashboard.DisableSettings();
 
-                        ServiceSingleton.Instances.UnloadWorkingIntance();
-                        ServiceSingleton.Dashboard.LoadFrame<InstancesFrame>();
+                            await Remap();
+
+                            ServiceSingleton.Instances.UnloadWorkingIntance();
+                            ServiceSingleton.Dashboard.LoadFrame<InstancesFrame>();
+                        }
+                        finally
+                        {
+                            ServiceSingleton.Dashboard.EnableSettings();
+                            ServiceSingleton.Dashboard.NoStatus();
+                            ServiceSingleton.Dashboard.ProgressCompleted();
+                            ServiceSingleton.Dashboard.ClearInfo();
+                        }
                     }
-                    finally
+                    catch (Exception ex)
                     {
-                        ServiceSingleton.Dashboard.EnableSettings();
-                        ServiceSingleton.Dashboard.NoStatus();
-                        ServiceSingleton.Dashboard.ProgressCompleted();
-                        ServiceSingleton.Dashboard.ClearInfo();
+                        EnableButtons();
+
+                        NolvusMessageBox.ShowMessage("Error", string.Format("Error occured with message : {0}", ex.Message), MessageBoxType.Error);
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    EnableButtons();
-
-                    NolvusMessageBox.ShowMessage("Error", string.Format("Error occured with message : {0}", ex.Message), MessageBoxType.Error);
-                }            
+                    NolvusMessageBox.ShowMessage("Invalid Installation Directory.", "The new installation path must not be empty!", MessageBoxType.Error);
+                }
             }
             else
             {
-                NolvusMessageBox.ShowMessage("Invalid Installation Directory.", "The new installation path must not be empty!", MessageBoxType.Error);
+                NolvusMessageBox.ShowMessage("Mod Organizer 2", "An instance of Mod Organizer 2 is running! Please close it first.", MessageBoxType.Error);
             }
             
         }

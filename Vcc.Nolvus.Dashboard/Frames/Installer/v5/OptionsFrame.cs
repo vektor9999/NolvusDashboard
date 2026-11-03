@@ -12,6 +12,8 @@ using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Core.Enums;
 using Vcc.Nolvus.Core.Services;
+using Vcc.Nolvus.Api.Installer.Services;
+using Vcc.Nolvus.Api.Installer.Library;
 using Vcc.Nolvus.Instance.Core;
 using Vcc.Nolvus.Dashboard.Core;
 using Vcc.Nolvus.Dashboard.Forms;
@@ -92,61 +94,62 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
             this.TglBtnFantasyMode.InactiveState.HoverColor = Color.White;
         }
 
-        private int SkinTypeIndex(List<string> SkinTypes)
+        private int SkinTypeIndex(IEnumerable<INolvusOptionChoiceDTO> SkinTypes)
         {            
-            var Index = SkinTypes.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Options.SkinType);
+            var Index = SkinTypes.ToList().FindIndex(x => x.Value == ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("SkinType"));
 
             return Index == -1 ? 0 : Index;                            
         }
 
-        protected override void OnLoad()
+        protected override async Task OnLoadAsync()
         {
             var Instance = ServiceSingleton.Instances.WorkingInstance;
 
             this.TglBtnNudity.ToggleState = ToggleButtonState.Inactive;
 
-            if (Instance.Options.Nudity == "TRUE")
+            if (Instance.OptionsManager.GetOptionValue("Nudity") == "TRUE")
             {
                 this.TglBtnNudity.ToggleState = ToggleButtonState.Active;
             }
 
             this.TglBtnHardcore.ToggleState = ToggleButtonState.Inactive;
 
-            if (Instance.Options.HardcoreMode == "TRUE")
+            if (Instance.OptionsManager.GetOptionValue("HardcoreMode") == "TRUE")
             {
                 this.TglBtnHardcore.ToggleState = ToggleButtonState.Active;
             }
 
             this.TglBtnLeveling.ToggleState = ToggleButtonState.Inactive;
 
-            if (Instance.Options.AlternateLeveling == "TRUE")
+            if (Instance.OptionsManager.GetOptionValue("AlternateLeveling") == "TRUE")
             {
                 this.TglBtnLeveling.ToggleState = ToggleButtonState.Active;
             }
 
             this.TglBtnAltStart.ToggleState = ToggleButtonState.Inactive;
 
-            if (Instance.Options.AlternateStart == "TRUE")
+            if (Instance.OptionsManager.GetOptionValue("AlternateStart") == "TRUE")
             {
                 this.TglBtnAltStart.ToggleState = ToggleButtonState.Active;
             }
 
             this.TglBtnFantasyMode.ToggleState = ToggleButtonState.Inactive;
 
-            if (Instance.Options.FantasyMode == "TRUE")
+            if (Instance.OptionsManager.GetOptionValue("FantasyMode") == "TRUE")
             {
                 this.TglBtnFantasyMode.ToggleState = ToggleButtonState.Active;
-            }
+            }            
 
-            List<string> SkinTypes = new List<string>();
-
-            SkinTypes.Add("Smooth");
-            SkinTypes.Add("Muscular");
+            var SkinTypes = await ApiManager.Service.Installer.GetOptionChoices("SkinType", Instance.SettingsManager.Variant, Instance.Id);
 
             DrpDwnLstSkin.DataSource = SkinTypes;
+            DrpDwnLstSkin.DisplayMember = "Value";
+            DrpDwnLstSkin.ValueMember = "Id";
 
             DrpDwnLstSkin.SelectedIndex = SkinTypeIndex(SkinTypes);
-            
+
+
+
             ServiceSingleton.Dashboard.Info("Additional Options");
         }
         
@@ -167,11 +170,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
         {
             if (e.ToggleState == ToggleButtonState.Active)
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.Nudity = "TRUE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("Nudity").Value = "TRUE";
             }
             else
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.Nudity = "FALSE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("Nudity").Value = "FALSE";
             }
         }
 
@@ -179,11 +182,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
         {
             if (e.ToggleState == ToggleButtonState.Active)
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.FantasyMode = "TRUE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("FantasyMode").Value = "TRUE";
             }
             else
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.FantasyMode = "FALSE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("FantasyMode").Value = "FALSE";
             }
         }
 
@@ -191,11 +194,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
         {
             if (e.ToggleState == ToggleButtonState.Active)
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.HardcoreMode = "TRUE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("HardcoreMode").Value = "TRUE";
             }
             else
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.HardcoreMode = "FALSE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("HardcoreMode").Value = "FALSE";
             }
         }
 
@@ -203,28 +206,28 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
         {
             if (e.ToggleState == ToggleButtonState.Active)
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.AlternateLeveling = "TRUE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("AlternateLeveling").Value = "TRUE";
             }
             else
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.AlternateLeveling = "FALSE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("AlternateLeveling").Value = "FALSE";
             }
         }
 
         private void DrpDwnLstSkin_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ServiceSingleton.Instances.WorkingInstance.Options.SkinType = DrpDwnLstSkin.SelectedValue.ToString();
+            ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("SkinType").Value = (DrpDwnLstSkin.SelectedItem as INolvusOptionChoiceDTO).Value;
         }
 
         private void TglBtnAltStart_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
         {
             if (e.ToggleState == ToggleButtonState.Active)
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.AlternateStart = "TRUE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("AlternateStart").Value = "TRUE";
             }
             else
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.AlternateStart = "FALSE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("AlternateStart").Value = "FALSE";
             }
         }
 
@@ -232,11 +235,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
         {
             if (e.ToggleState == ToggleButtonState.Active)
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.FantasyMode = "TRUE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("FantasyMode").Value = "TRUE";
             }
             else
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.FantasyMode = "FALSE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("FantasyMode").Value = "FALSE";
             }
         }
     }

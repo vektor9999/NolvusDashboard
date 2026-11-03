@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Enums;
 using Vcc.Nolvus.Core.Interfaces;
 
-namespace Vcc.Nolvus.Instance.Core
+namespace Vcc.Nolvus.Instance.Status
 {
-    public class InstanceStatus : IInstanceStatus
+    public class NolvusStatusManager : INolvusStatusManager
     {
         #region Properties
 
@@ -20,6 +20,8 @@ namespace Vcc.Nolvus.Instance.Core
         public List<IInstanceStatusField> Fields { get; set; } = new List<IInstanceStatusField>();
 
         #endregion
+
+        #region Methods
 
         public void Load(XmlNode Node)
         {
@@ -104,5 +106,7 @@ namespace Vcc.Nolvus.Instance.Core
         {
             return Fields.Where(x => x.Key == Key).FirstOrDefault();
         }
+
+        #endregion
     }
 }

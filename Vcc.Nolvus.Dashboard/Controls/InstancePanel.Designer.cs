@@ -51,22 +51,26 @@
             this.BrItmManual = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.barItem4 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.BrItmENBManager = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.BrItmOptionManager = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.barItem6 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
-            this.BrItmDelete = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
-            this.LblImageLoading = new System.Windows.Forms.Label();
             this.BrItmRemap = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.barItem5 = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.BrItmDelete = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.LblImageLoading = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.PicInstanceImage)).BeginInit();
             this.SuspendLayout();
             // 
             // LblInstanceName
             // 
+            this.LblInstanceName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LblInstanceName.BackColor = System.Drawing.Color.Transparent;
             this.LblInstanceName.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblInstanceName.ForeColor = System.Drawing.Color.White;
-            this.LblInstanceName.Location = new System.Drawing.Point(258, 12);
+            this.LblInstanceName.Location = new System.Drawing.Point(261, 4);
             this.LblInstanceName.Name = "LblInstanceName";
-            this.LblInstanceName.Size = new System.Drawing.Size(353, 28);
+            this.LblInstanceName.Size = new System.Drawing.Size(538, 28);
             this.LblInstanceName.TabIndex = 1;
             this.LblInstanceName.Text = "Nolvus Regular";
             // 
@@ -75,7 +79,7 @@
             this.LblVersion.AutoSize = true;
             this.LblVersion.BackColor = System.Drawing.Color.Transparent;
             this.LblVersion.ForeColor = System.Drawing.Color.White;
-            this.LblVersion.Location = new System.Drawing.Point(260, 75);
+            this.LblVersion.Location = new System.Drawing.Point(263, 103);
             this.LblVersion.Name = "LblVersion";
             this.LblVersion.Size = new System.Drawing.Size(31, 13);
             this.LblVersion.TabIndex = 2;
@@ -88,9 +92,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LblStatus.BackColor = System.Drawing.Color.Transparent;
             this.LblStatus.ForeColor = System.Drawing.Color.White;
-            this.LblStatus.Location = new System.Drawing.Point(260, 92);
+            this.LblStatus.Location = new System.Drawing.Point(263, 120);
             this.LblStatus.Name = "LblStatus";
-            this.LblStatus.Size = new System.Drawing.Size(257, 14);
+            this.LblStatus.Size = new System.Drawing.Size(536, 19);
             this.LblStatus.TabIndex = 3;
             this.LblStatus.Text = "Loading status...";
             this.LblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -99,10 +103,10 @@
             // 
             this.BtnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnUpdate.BackColor = System.Drawing.Color.Black;
-            this.BtnUpdate.BorderColor = System.Drawing.Color.White;
-            this.BtnUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnUpdate.BorderColor = System.Drawing.Color.Gray;
             this.BtnUpdate.ForeColor = System.Drawing.Color.White;
-            this.BtnUpdate.Location = new System.Drawing.Point(319, 115);
+            this.BtnUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnUpdate.Location = new System.Drawing.Point(511, 157);
             this.BtnUpdate.Name = "BtnUpdate";
             this.BtnUpdate.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnUpdate.Size = new System.Drawing.Size(92, 35);
@@ -116,10 +120,10 @@
             // 
             this.BtnPlay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnPlay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnPlay.BorderColor = System.Drawing.Color.White;
-            this.BtnPlay.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnPlay.BorderColor = System.Drawing.Color.Gray;
             this.BtnPlay.ForeColor = System.Drawing.Color.White;
-            this.BtnPlay.Location = new System.Drawing.Point(515, 115);
+            this.BtnPlay.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnPlay.Location = new System.Drawing.Point(707, 157);
             this.BtnPlay.Name = "BtnPlay";
             this.BtnPlay.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnPlay.Size = new System.Drawing.Size(92, 35);
@@ -132,21 +136,23 @@
             // 
             this.PicInstanceImage.BackColor = System.Drawing.Color.Black;
             this.PicInstanceImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PicInstanceImage.Location = new System.Drawing.Point(46, 20);
+            this.PicInstanceImage.Location = new System.Drawing.Point(16, 12);
             this.PicInstanceImage.Name = "PicInstanceImage";
-            this.PicInstanceImage.Size = new System.Drawing.Size(206, 128);
+            this.PicInstanceImage.Size = new System.Drawing.Size(241, 180);
             this.PicInstanceImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicInstanceImage.TabIndex = 0;
             this.PicInstanceImage.TabStop = false;
             // 
             // LblDesc
             // 
+            this.LblDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LblDesc.AutoEllipsis = true;
             this.LblDesc.BackColor = System.Drawing.Color.Transparent;
             this.LblDesc.ForeColor = System.Drawing.Color.White;
-            this.LblDesc.Location = new System.Drawing.Point(261, 42);
+            this.LblDesc.Location = new System.Drawing.Point(263, 40);
             this.LblDesc.Name = "LblDesc";
-            this.LblDesc.Size = new System.Drawing.Size(368, 31);
+            this.LblDesc.Size = new System.Drawing.Size(536, 56);
             this.LblDesc.TabIndex = 6;
             this.LblDesc.Text = "[Description]";
             // 
@@ -154,10 +160,10 @@
             // 
             this.BtnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnView.BorderColor = System.Drawing.Color.White;
-            this.BtnView.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnView.BorderColor = System.Drawing.Color.Gray;
             this.BtnView.ForeColor = System.Drawing.Color.White;
-            this.BtnView.Location = new System.Drawing.Point(417, 115);
+            this.BtnView.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnView.Location = new System.Drawing.Point(609, 157);
             this.BtnView.Name = "BtnView";
             this.BtnView.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnView.Size = new System.Drawing.Size(92, 35);
@@ -186,6 +192,7 @@
             this.BrItmManual,
             this.barItem4,
             this.BrItmENBManager,
+            this.BrItmOptionManager,
             this.barItem6,
             this.BrItmRemap,
             this.barItem5,
@@ -289,6 +296,16 @@
             this.BrItmENBManager.Text = "ENB Manager";
             this.BrItmENBManager.Click += new System.EventHandler(this.BrItmENBManager_Click);
             // 
+            // BrItmOptionManager
+            // 
+            this.BrItmOptionManager.BarName = "BrItmOptionManager";
+            this.BrItmOptionManager.ID = "Options Manager";
+            this.BrItmOptionManager.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmOptionManager.Image")));
+            this.BrItmOptionManager.ShowToolTipInPopUp = false;
+            this.BrItmOptionManager.SizeToFit = true;
+            this.BrItmOptionManager.Text = "Options Manager";
+            this.BrItmOptionManager.Click += new System.EventHandler(this.BrItmOptionManager_Click);
+            // 
             // barItem6
             // 
             this.barItem6.BarName = "barItem6";
@@ -296,28 +313,6 @@
             this.barItem6.ShowToolTipInPopUp = false;
             this.barItem6.SizeToFit = true;
             this.barItem6.Text = "-";
-            // 
-            // BrItmDelete
-            // 
-            this.BrItmDelete.BarName = "BrItmDelete";
-            this.BrItmDelete.ID = "Delete Instance";
-            this.BrItmDelete.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmDelete.Image")));
-            this.BrItmDelete.ShowToolTipInPopUp = false;
-            this.BrItmDelete.SizeToFit = true;
-            this.BrItmDelete.Text = "Delete Instance";
-            this.BrItmDelete.Click += new System.EventHandler(this.BrItmDelete_Click);
-            // 
-            // LblImageLoading
-            // 
-            this.LblImageLoading.BackColor = System.Drawing.Color.Black;
-            this.LblImageLoading.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LblImageLoading.ForeColor = System.Drawing.Color.White;
-            this.LblImageLoading.Location = new System.Drawing.Point(43, 20);
-            this.LblImageLoading.Name = "LblImageLoading";
-            this.LblImageLoading.Size = new System.Drawing.Size(209, 130);
-            this.LblImageLoading.TabIndex = 8;
-            this.LblImageLoading.Text = "Loading...";
-            this.LblImageLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BrItmRemap
             // 
@@ -337,13 +332,46 @@
             this.barItem5.SizeToFit = true;
             this.barItem5.Text = "-";
             // 
+            // BrItmDelete
+            // 
+            this.BrItmDelete.BarName = "BrItmDelete";
+            this.BrItmDelete.ID = "Delete Instance";
+            this.BrItmDelete.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmDelete.Image")));
+            this.BrItmDelete.ShowToolTipInPopUp = false;
+            this.BrItmDelete.SizeToFit = true;
+            this.BrItmDelete.Text = "Delete Instance";
+            this.BrItmDelete.Click += new System.EventHandler(this.BrItmDelete_Click);
+            // 
+            // LblImageLoading
+            // 
+            this.LblImageLoading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.LblImageLoading.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LblImageLoading.ForeColor = System.Drawing.Color.White;
+            this.LblImageLoading.Location = new System.Drawing.Point(16, 12);
+            this.LblImageLoading.Name = "LblImageLoading";
+            this.LblImageLoading.Size = new System.Drawing.Size(241, 180);
+            this.LblImageLoading.TabIndex = 8;
+            this.LblImageLoading.Text = "Loading...";
+            this.LblImageLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.BackColor = System.Drawing.Color.Orange;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(6, 205);
+            this.panel1.TabIndex = 9;
+            // 
             // InstancePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BackgroundImage = global::Vcc.Nolvus.Dashboard.Properties.Resources.InstanceBoard;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.LblImageLoading);
             this.Controls.Add(this.BtnView);
             this.Controls.Add(this.LblDesc);
@@ -355,7 +383,7 @@
             this.Controls.Add(this.PicInstanceImage);
             this.DoubleBuffered = true;
             this.Name = "InstancePanel";
-            this.Size = new System.Drawing.Size(659, 171);
+            this.Size = new System.Drawing.Size(814, 206);
             ((System.ComponentModel.ISupportInitialize)(this.PicInstanceImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -390,5 +418,7 @@
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem barItem6;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmRemap;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem barItem5;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmOptionManager;
+        private System.Windows.Forms.Panel panel1;
     }
 }

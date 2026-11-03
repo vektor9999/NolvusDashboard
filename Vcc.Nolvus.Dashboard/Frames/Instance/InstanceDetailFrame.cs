@@ -48,11 +48,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
             PnlHeader.BackColor = Color.FromArgb(92, 184, 92);
             PnlHeader.Paint += PnlHeader_Paint;            
 
-            ModsGrid.ThemeName = "Office2016Black";
-            ModsGrid.ShowRowHeader = true;
-            ModsGrid.Style.RowHeaderStyle.SelectionMarkerThickness = 100;
-            ModsGrid.Style.RowHeaderStyle.SelectionMarkerColor = Color.Orange;
-            ModsGrid.Style.RowHeaderStyle.SelectionBackColor = Color.FromArgb(68, 68, 68);
+            ModsGrid.ThemeName = "Office2016Black";            
 
             ModsGrid.Style.CurrentCellStyle.BackColor = Color.Orange;
             ModsGrid.Style.CurrentCellStyle.TextColor = Color.White;
@@ -76,25 +72,32 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
         }
 
         protected override async Task OnLoadedAsync()
-        {            
-            INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
-            
-            LblHeader.Text = string.Format("{0} - {1} v{2}{3}", Instance.Name, Instance.Performance.Variant, Instance.Version, Instance.Tag != string.Empty ? string.Format(" - ({0})", Instance.Tag) : string.Empty);
-            ServiceSingleton.Dashboard.Info("Instance mods for " + Instance.Name + " v" + Instance.Version);
+        {
+            try
+            {
+                INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
-            DrpDwnLstProfiles.Visible = false;
-            LblMO2Profile.Visible = false;
-            DrpDwnLstProfiles.DataSource = await ServiceSingleton.Packages.ModOrganizer2.GetProfilesAsync();
-            DrpDwnLstProfiles.SelectedIndex = 0;                
+                LblHeader.Text = Instance.FullName;
+                ServiceSingleton.Dashboard.Info(string.Format("Instance mods for {0}", Instance.FullName));
+
+                DrpDwnLstProfiles.Visible = false;
+                LblMO2Profile.Visible = false;
+                DrpDwnLstProfiles.DataSource = await ServiceSingleton.Packages.ModOrganizer2.GetProfilesAsync();
+                DrpDwnLstProfiles.SelectedIndex = 0;
+            }
+            catch(Exception ex)
+            {
+                await ServiceSingleton.Dashboard.Error("Error during instance detail loading", ex.Message);
+            }
         }
 
         private void PnlHeader_Paint(object sender, PaintEventArgs e)
         {
             ControlPaint.DrawBorder(e.Graphics, PnlHeader.ClientRectangle,
-              Color.White, 3, ButtonBorderStyle.Solid, // left
-              Color.White, 3, ButtonBorderStyle.Solid, // top
-              Color.White, 3, ButtonBorderStyle.Solid, // right
-              Color.White, 3, ButtonBorderStyle.Solid);// bottom
+              Color.White, 1, ButtonBorderStyle.Solid, // left
+              Color.White, 1, ButtonBorderStyle.Solid, // top
+              Color.White, 1, ButtonBorderStyle.Solid, // right
+              Color.White, 1, ButtonBorderStyle.Solid);// bottom
         }
 
         private void LoadGrids(ModObjectList Mods)
@@ -279,7 +282,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
         {
             if (!ModOrganizer.IsRunning)
             {
-                Process MO2 = ModOrganizer.Start(ServiceSingleton.Instances.WorkingInstance.InstallDir);
+                Process MO2 = ModOrganizer.Start(ServiceSingleton.Instances.WorkingInstance.SettingsManager.InstallDir);
 
                 this.BtnPlay.Text = "Running...";
                 this.BtnPlay.Enabled = false;
@@ -302,15 +305,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
         private async void BtnSettings_Click(object sender, EventArgs e)
         {
-            switch (ServiceSingleton.Instances.WorkingInstance.Name)
-            {
-                case Strings.NolvusAscension:
-                    await ServiceSingleton.Dashboard.LoadFrameAsync<v5.InstanceSettingsFrame>();
-                    break;
-                case Strings.NolvusAwakening:
-                    await ServiceSingleton.Dashboard.LoadFrameAsync<v6.InstanceSettingsFrame>();
-                    break;
-            }            
+            await ServiceSingleton.Dashboard.LoadFrameAsync<InstanceSettingsFrame>();
         }
 
         private async void BtnLoadOrder_Click(object sender, EventArgs e)
@@ -318,12 +313,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
             await ServiceSingleton.Dashboard.LoadFrameAsync<LoadOrderFrame>();
         }
 
-        private void BtnReport_Click(object sender, EventArgs e)
-        {
-            popupMenu1.Show(BtnReport, new Point(0, BtnReport.Height));                        
-        }
-
-        private async void BrItmClipboardReport_Click(object sender, EventArgs e)
+        private async void BtnReport_Click(object sender, EventArgs e)
         {
             ShowLoading();
 
@@ -331,38 +321,6 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
             {
                 try
                 {
-                    Clipboard.SetText(await ServiceSingleton.Report.GenerateReportToClipBoard(ModListStatus, (s,p)=> {
-                        ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
-                        ServiceSingleton.Dashboard.Progress(p);
-                    }));
-
-                    HideLoading();
-                    ServiceSingleton.Dashboard.NoStatus();
-                    ServiceSingleton.Dashboard.ProgressCompleted();
-
-                    NolvusMessageBox.ShowMessage("Information", "Configuration has been copied to the clipboard", MessageBoxType.Info);                                
-                }
-                catch (Exception ex)
-                {
-                    HideLoading();
-                    ServiceSingleton.Dashboard.NoStatus();
-                    ServiceSingleton.Dashboard.ProgressCompleted();
-                    NolvusMessageBox.ShowMessage("Error during report generation", ex.Message, MessageBoxType.Error);
-                }
-            }
-            finally
-            {                                
-            }
-        }
-
-        private async void BrItmPDFReport_Click(object sender, EventArgs e)
-        {
-            ShowLoading();
-
-            try
-            {
-                try
-                {                                   
                     await ServiceSingleton.Report.GenerateReportToPdf(ModListStatus, Properties.Resources.background_nolvus, (s, p) =>
                     {
                         ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
@@ -386,9 +344,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                 }
             }
             finally
-            {                                
+            {
             }
-        }
+        }        
 
         private async void DrpDwnLstProfiles_SelectedIndexChanged(object sender, EventArgs e)
         {

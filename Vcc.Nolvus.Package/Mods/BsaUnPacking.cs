@@ -31,7 +31,7 @@ namespace Vcc.Nolvus.Package.Mods
             var Tsk = Task.Run(() => 
             {
                 Process UnPackingProcess = new Process();
-                var BSArchDir = Path.Combine(ServiceSingleton.Instances.WorkingInstance.InstallDir, "TOOLS", "BSArch");
+                var BSArchDir = Path.Combine(ServiceSingleton.Instances.WorkingInstance.SettingsManager.InstallDir, "TOOLS", "BSArch");
                 var BSAFile = GetBsaToUnpack(ExtractDir);
 
                 if (BSAFile != null)

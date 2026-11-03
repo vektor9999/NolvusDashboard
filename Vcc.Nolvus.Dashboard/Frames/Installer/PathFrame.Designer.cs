@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection1 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection1 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection1 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
+            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection4 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection4 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection4 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PathFrame));
             this.LblStepText = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -49,6 +49,7 @@
             this.BtnContinue = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.label4 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.label20 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnEnableArchive)).BeginInit();
             this.panel1.SuspendLayout();
@@ -63,7 +64,7 @@
             this.LblStepText.ForeColor = System.Drawing.Color.White;
             this.LblStepText.Location = new System.Drawing.Point(3, 0);
             this.LblStepText.Name = "LblStepText";
-            this.LblStepText.Size = new System.Drawing.Size(804, 20);
+            this.LblStepText.Size = new System.Drawing.Size(1101, 20);
             this.LblStepText.TabIndex = 8;
             this.LblStepText.Text = "Instance Paths";
             this.LblStepText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -84,14 +85,14 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(7, 30);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(484, 374);
+            this.panel2.Size = new System.Drawing.Size(775, 802);
             this.panel2.TabIndex = 14;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(13, 104);
+            this.label3.Location = new System.Drawing.Point(9, 96);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(87, 13);
             this.label3.TabIndex = 28;
@@ -99,28 +100,28 @@
             // 
             // TglBtnEnableArchive
             // 
-            activeStateCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            activeStateCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
-            this.TglBtnEnableArchive.ActiveState = activeStateCollection1;
+            activeStateCollection4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            activeStateCollection4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
+            this.TglBtnEnableArchive.ActiveState = activeStateCollection4;
             this.TglBtnEnableArchive.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.TglBtnEnableArchive.ForeColor = System.Drawing.Color.Black;
-            inactiveStateCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            inactiveStateCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            inactiveStateCollection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            inactiveStateCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.TglBtnEnableArchive.InactiveState = inactiveStateCollection1;
-            this.TglBtnEnableArchive.Location = new System.Drawing.Point(128, 99);
+            inactiveStateCollection4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            inactiveStateCollection4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            inactiveStateCollection4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            inactiveStateCollection4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.TglBtnEnableArchive.InactiveState = inactiveStateCollection4;
+            this.TglBtnEnableArchive.Location = new System.Drawing.Point(124, 91);
             this.TglBtnEnableArchive.MinimumSize = new System.Drawing.Size(52, 20);
             this.TglBtnEnableArchive.Name = "TglBtnEnableArchive";
             this.TglBtnEnableArchive.Size = new System.Drawing.Size(63, 24);
-            sliderCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            sliderCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection1.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            sliderCollection1.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.TglBtnEnableArchive.Slider = sliderCollection1;
+            sliderCollection4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            sliderCollection4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection4.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            sliderCollection4.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.TglBtnEnableArchive.Slider = sliderCollection4;
             this.TglBtnEnableArchive.TabIndex = 27;
             this.TglBtnEnableArchive.Text = "toggleButton1";
             this.TglBtnEnableArchive.ThemeName = "Office2016Black";
@@ -130,10 +131,10 @@
             // 
             this.BtnBrowseArchivePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnBrowseArchivePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnBrowseArchivePath.BorderColor = System.Drawing.Color.White;
+            this.BtnBrowseArchivePath.BorderColor = System.Drawing.Color.Gray;
+            this.BtnBrowseArchivePath.ForeColor = System.Drawing.Color.White;
             this.BtnBrowseArchivePath.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.BtnBrowseArchivePath.ForeColor = System.Drawing.Color.Orange;
-            this.BtnBrowseArchivePath.Location = new System.Drawing.Point(435, 63);
+            this.BtnBrowseArchivePath.Location = new System.Drawing.Point(722, 55);
             this.BtnBrowseArchivePath.Name = "BtnBrowseArchivePath";
             this.BtnBrowseArchivePath.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnBrowseArchivePath.Size = new System.Drawing.Size(20, 20);
@@ -146,10 +147,10 @@
             // 
             this.BtnBrowseInstancePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnBrowseInstancePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnBrowseInstancePath.BorderColor = System.Drawing.Color.White;
+            this.BtnBrowseInstancePath.BorderColor = System.Drawing.Color.Gray;
+            this.BtnBrowseInstancePath.ForeColor = System.Drawing.Color.White;
             this.BtnBrowseInstancePath.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.BtnBrowseInstancePath.ForeColor = System.Drawing.Color.Orange;
-            this.BtnBrowseInstancePath.Location = new System.Drawing.Point(435, 21);
+            this.BtnBrowseInstancePath.Location = new System.Drawing.Point(722, 13);
             this.BtnBrowseInstancePath.Name = "BtnBrowseInstancePath";
             this.BtnBrowseInstancePath.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnBrowseInstancePath.Size = new System.Drawing.Size(20, 20);
@@ -165,10 +166,10 @@
             this.TxtBxArchivePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.TxtBxArchivePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtBxArchivePath.ForeColor = System.Drawing.Color.White;
-            this.TxtBxArchivePath.Location = new System.Drawing.Point(128, 63);
+            this.TxtBxArchivePath.Location = new System.Drawing.Point(124, 55);
             this.TxtBxArchivePath.Name = "TxtBxArchivePath";
             this.TxtBxArchivePath.ReadOnly = true;
-            this.TxtBxArchivePath.Size = new System.Drawing.Size(301, 20);
+            this.TxtBxArchivePath.Size = new System.Drawing.Size(592, 20);
             this.TxtBxArchivePath.TabIndex = 24;
             // 
             // TxtBxInstancePath
@@ -178,17 +179,17 @@
             this.TxtBxInstancePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.TxtBxInstancePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtBxInstancePath.ForeColor = System.Drawing.Color.White;
-            this.TxtBxInstancePath.Location = new System.Drawing.Point(128, 21);
+            this.TxtBxInstancePath.Location = new System.Drawing.Point(124, 13);
             this.TxtBxInstancePath.Name = "TxtBxInstancePath";
             this.TxtBxInstancePath.ReadOnly = true;
-            this.TxtBxInstancePath.Size = new System.Drawing.Size(301, 20);
+            this.TxtBxInstancePath.Size = new System.Drawing.Size(592, 20);
             this.TxtBxInstancePath.TabIndex = 23;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(13, 65);
+            this.label2.Location = new System.Drawing.Point(9, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(88, 13);
             this.label2.TabIndex = 22;
@@ -198,7 +199,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(13, 24);
+            this.label1.Location = new System.Drawing.Point(9, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(93, 13);
             this.label1.TabIndex = 21;
@@ -209,21 +210,22 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label20);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.BtnPrevious);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.BtnContinue);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Location = new System.Drawing.Point(497, 30);
+            this.panel1.Location = new System.Drawing.Point(788, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(310, 374);
+            this.panel1.Size = new System.Drawing.Size(309, 802);
             this.panel1.TabIndex = 15;
             // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(3, 160);
+            this.label5.Location = new System.Drawing.Point(6, 199);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(293, 80);
             this.label5.TabIndex = 5;
@@ -233,10 +235,10 @@
             // 
             this.BtnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnPrevious.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnPrevious.BorderColor = System.Drawing.Color.White;
-            this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnPrevious.BorderColor = System.Drawing.Color.Gray;
             this.BtnPrevious.ForeColor = System.Drawing.Color.White;
-            this.BtnPrevious.Location = new System.Drawing.Point(114, 319);
+            this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnPrevious.Location = new System.Drawing.Point(113, 747);
             this.BtnPrevious.Name = "BtnPrevious";
             this.BtnPrevious.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnPrevious.Size = new System.Drawing.Size(88, 40);
@@ -249,7 +251,7 @@
             // 
             this.label6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(3, 87);
+            this.label6.Location = new System.Drawing.Point(6, 127);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(293, 55);
             this.label6.TabIndex = 2;
@@ -261,10 +263,10 @@
             // 
             this.BtnContinue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnContinue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnContinue.BorderColor = System.Drawing.Color.White;
-            this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnContinue.BorderColor = System.Drawing.Color.Gray;
             this.BtnContinue.ForeColor = System.Drawing.Color.White;
-            this.BtnContinue.Location = new System.Drawing.Point(208, 319);
+            this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnContinue.Location = new System.Drawing.Point(207, 747);
             this.BtnContinue.Name = "BtnContinue";
             this.BtnContinue.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnContinue.Size = new System.Drawing.Size(88, 40);
@@ -277,11 +279,22 @@
             // 
             this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(3, 6);
+            this.label4.Location = new System.Drawing.Point(5, 40);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(293, 66);
             this.label4.TabIndex = 0;
             this.label4.Text = resources.GetString("label4.Text");
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.Orange;
+            this.label20.Location = new System.Drawing.Point(5, 5);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(41, 21);
+            this.label20.TabIndex = 71;
+            this.label20.Text = "Info";
             // 
             // PathFrame
             // 
@@ -292,11 +305,12 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.LblStepText);
             this.Name = "PathFrame";
-            this.Size = new System.Drawing.Size(810, 409);
+            this.Size = new System.Drawing.Size(1107, 837);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnEnableArchive)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -320,5 +334,6 @@
         private System.Windows.Forms.Label label6;
         private Components.Controls.FlatButton BtnPrevious;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label20;
     }
 }

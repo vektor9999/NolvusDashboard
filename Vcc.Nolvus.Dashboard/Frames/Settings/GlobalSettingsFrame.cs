@@ -51,7 +51,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Settings
 
             return Index == -1 ? 0 : Index;
         }
-
+        
         protected List<int> GetProcessorCores()
         {
             List<int> Result = new List<int>();
@@ -172,18 +172,39 @@ namespace Vcc.Nolvus.Dashboard.Frames.Settings
         }
 
         private void TglBtnAnonymous_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
-        {            
+        {                        
             TxtBxUserName.Enabled = e.ToggleState == ToggleButtonState.Inactive;
             TxtBxPassword.Enabled = e.ToggleState == ToggleButtonState.Inactive;
-            label3.Enabled = e.ToggleState == ToggleButtonState.Inactive;
-            label4.Enabled = e.ToggleState == ToggleButtonState.Inactive;            
-            label5.Enabled = e.ToggleState == ToggleButtonState.Inactive;
-            PnlMessage.Enabled = e.ToggleState == ToggleButtonState.Inactive;                                                
+
+            if (e.ToggleState == ToggleButtonState.Active)
+            {
+                LblMegaMessage.ForeColor = Color.Gray;
+                LblEmail.ForeColor = Color.Gray;
+                LblPassword.ForeColor = Color.Gray;
+            }
+            else
+            {
+                LblMegaMessage.ForeColor = Color.White;
+                LblEmail.ForeColor = Color.White;
+                LblPassword.ForeColor = Color.White;
+            }                                                                                  
         }
 
         private void DrpDwnLstProcessCount_SelectedIndexChanged(object sender, EventArgs e)
         {            
             ServiceSingleton.Settings.ProcessCount = (int)DrpDwnLstProcessCount.SelectedItem;
+        }
+
+        private void BtnCLearLogs_Click(object sender, EventArgs e)
+        {
+            ServiceSingleton.Logger.ClearLogs();
+            NolvusMessageBox.ShowMessage("Logs", "Logs have been cleaned", MessageBoxType.Info);
+        }
+
+        private void BtnClearCache_Click(object sender, EventArgs e)
+        {
+            ServiceSingleton.Folders.ClearCache();
+            NolvusMessageBox.ShowMessage("Cache", "Cache has been cleaned", MessageBoxType.Info);
         }
     }
 }

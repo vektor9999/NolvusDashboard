@@ -50,5 +50,15 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
         {
             System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/player-guide/keybinds/keyboard");
         }
+
+        private void LnkLblFullGuide_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            
+        }
+
+        private void LnkLblFullGuide_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/player-guide/keybinds/keyboard");
+        }
     }
 }

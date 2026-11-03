@@ -41,6 +41,7 @@
             this.NolvusListBox = new Vcc.Nolvus.Components.Controls.NolvusListBox();
             this.DrpDwnLg = new Syncfusion.WinForms.ListView.SfComboBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -57,7 +58,7 @@
             this.LblStepText.ForeColor = System.Drawing.Color.White;
             this.LblStepText.Location = new System.Drawing.Point(3, 0);
             this.LblStepText.Name = "LblStepText";
-            this.LblStepText.Size = new System.Drawing.Size(965, 20);
+            this.LblStepText.Size = new System.Drawing.Size(971, 20);
             this.LblStepText.TabIndex = 7;
             this.LblStepText.Text = "Instance Prerequisites";
             this.LblStepText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -67,6 +68,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label20);
             this.panel1.Controls.Add(this.BtnCancel);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label5);
@@ -81,9 +83,9 @@
             // 
             this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnCancel.BorderColor = System.Drawing.Color.White;
-            this.BtnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnCancel.BorderColor = System.Drawing.Color.Gray;
             this.BtnCancel.ForeColor = System.Drawing.Color.White;
+            this.BtnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnCancel.Location = new System.Drawing.Point(114, 631);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -98,7 +100,7 @@
             // 
             this.label11.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(3, 89);
+            this.label11.Location = new System.Drawing.Point(5, 100);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(293, 49);
             this.label11.TabIndex = 3;
@@ -109,7 +111,7 @@
             // 
             this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(3, 37);
+            this.label5.Location = new System.Drawing.Point(5, 71);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(293, 27);
             this.label5.TabIndex = 2;
@@ -119,9 +121,9 @@
             // 
             this.BtnContinue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnContinue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnContinue.BorderColor = System.Drawing.Color.White;
-            this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnContinue.BorderColor = System.Drawing.Color.Gray;
             this.BtnContinue.ForeColor = System.Drawing.Color.White;
+            this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnContinue.Location = new System.Drawing.Point(208, 631);
             this.BtnContinue.Name = "BtnContinue";
             this.BtnContinue.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -135,7 +137,7 @@
             // 
             this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(3, 10);
+            this.label4.Location = new System.Drawing.Point(5, 40);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(293, 27);
             this.label4.TabIndex = 0;
@@ -163,9 +165,9 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.PicLoading);
             this.panel3.Controls.Add(this.NolvusListBox);
-            this.panel3.Location = new System.Drawing.Point(11, 65);
+            this.panel3.Location = new System.Drawing.Point(5, 71);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(611, 606);
+            this.panel3.Size = new System.Drawing.Size(629, 608);
             this.panel3.TabIndex = 31;
             // 
             // PicLoading
@@ -176,7 +178,7 @@
             this.PicLoading.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.cog_loader_alpha;
             this.PicLoading.Location = new System.Drawing.Point(3, 0);
             this.PicLoading.Name = "PicLoading";
-            this.PicLoading.Size = new System.Drawing.Size(603, 598);
+            this.PicLoading.Size = new System.Drawing.Size(621, 600);
             this.PicLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.PicLoading.TabIndex = 32;
             this.PicLoading.TabStop = false;
@@ -192,7 +194,7 @@
             this.NolvusListBox.Location = new System.Drawing.Point(0, 0);
             this.NolvusListBox.Name = "NolvusListBox";
             this.NolvusListBox.ScalingFactor = 1D;
-            this.NolvusListBox.Size = new System.Drawing.Size(609, 604);
+            this.NolvusListBox.Size = new System.Drawing.Size(627, 606);
             this.NolvusListBox.TabIndex = 31;
             this.NolvusListBox.Visible = false;
             // 
@@ -200,7 +202,7 @@
             // 
             this.DrpDwnLg.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.DrpDwnLg.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
-            this.DrpDwnLg.Location = new System.Drawing.Point(109, 10);
+            this.DrpDwnLg.Location = new System.Drawing.Point(78, 19);
             this.DrpDwnLg.Name = "DrpDwnLg";
             this.DrpDwnLg.Size = new System.Drawing.Size(261, 28);
             this.DrpDwnLg.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
@@ -213,11 +215,22 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(8, 16);
+            this.label10.Location = new System.Drawing.Point(5, 25);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(55, 13);
             this.label10.TabIndex = 28;
             this.label10.Text = "Language";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.Orange;
+            this.label20.Location = new System.Drawing.Point(5, 5);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(41, 21);
+            this.label20.TabIndex = 70;
+            this.label20.Text = "Info";
             // 
             // SelectInstanceFrame
             // 
@@ -228,8 +241,9 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.LblStepText);
             this.Name = "SelectInstanceFrame";
-            this.Size = new System.Drawing.Size(968, 721);
+            this.Size = new System.Drawing.Size(974, 721);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -253,5 +267,6 @@
         private System.Windows.Forms.Panel panel3;
         private Components.Controls.NolvusListBox NolvusListBox;
         private System.Windows.Forms.PictureBox PicLoading;
+        private System.Windows.Forms.Label label20;
     }
 }

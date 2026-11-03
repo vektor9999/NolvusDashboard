@@ -24,6 +24,7 @@ using Vcc.Nolvus.Services.Files;
 using Vcc.Nolvus.Services.Report;
 using Vcc.Nolvus.Services.Checker;
 using Vcc.Nolvus.Services.ENB;
+using Vcc.Nolvus.Services.Options;
 using Vcc.Nolvus.Instance.Services;
 using Vcc.Nolvus.Package.Services;
 using Vcc.Nolvus.Dashboard.Forms;
@@ -37,8 +38,12 @@ namespace Vcc.Nolvus.Dashboard
         /// </summary>
         [STAThread]
         static void Main()
-        {            
+        {
+            ServiceSingleton.RegisterService<IFolderService>(new FolderService());
             ServiceSingleton.RegisterService<ILogService>(new LogService());
+
+            ServiceSingleton.Logger.InitializeLog();
+
             ServiceSingleton.Logger.LineBreak();
             ServiceSingleton.Logger.Log("***Nolvus Dashboard Initialization***");
             ServiceSingleton.Logger.Log("Starting new session : " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString());
@@ -49,8 +54,7 @@ namespace Vcc.Nolvus.Dashboard
             var PackageService = new PackageService();
 
             ServiceSingleton.RegisterService<IGlobalsService>(new GlobalsService());
-            ServiceSingleton.RegisterService<ISettingsService>(new SettingsService());
-            ServiceSingleton.RegisterService<IFolderService>(new FolderService());            
+            ServiceSingleton.RegisterService<ISettingsService>(new SettingsService());                       
             ServiceSingleton.RegisterService<IInstanceService>(new InstanceService());
             ServiceSingleton.RegisterService<IUpdaterService>(new UpdaterService());
             ServiceSingleton.RegisterService<IPackageService>(PackageService);            
@@ -60,7 +64,8 @@ namespace Vcc.Nolvus.Dashboard
             ServiceSingleton.RegisterService<ISoftwareProvider>(PackageService);
             ServiceSingleton.RegisterService<IReportService>(new ReportService());
             ServiceSingleton.RegisterService<ICheckerService>(new CheckerService());
-            ServiceSingleton.RegisterService<IENBService>(new ENBService());            
+            ServiceSingleton.RegisterService<IENBService>(new ENBService());
+            ServiceSingleton.RegisterService<IOptionService>(new OptionService());            
 
             AppDomain.CurrentDomain.AssemblyResolve += Resolver;
             AppDomain.CurrentDomain.AssemblyLoad += Loader;

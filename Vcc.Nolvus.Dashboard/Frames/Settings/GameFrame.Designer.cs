@@ -57,9 +57,9 @@
             // BtnDetect
             // 
             this.BtnDetect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnDetect.BorderColor = System.Drawing.Color.White;
-            this.BtnDetect.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnDetect.BorderColor = System.Drawing.Color.Gray;
             this.BtnDetect.ForeColor = System.Drawing.Color.White;
+            this.BtnDetect.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnDetect.Location = new System.Drawing.Point(16, 90);
             this.BtnDetect.Name = "BtnDetect";
             this.BtnDetect.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -73,9 +73,9 @@
             // BtnBrowse
             // 
             this.BtnBrowse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnBrowse.BorderColor = System.Drawing.Color.White;
-            this.BtnBrowse.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnBrowse.BorderColor = System.Drawing.Color.Gray;
             this.BtnBrowse.ForeColor = System.Drawing.Color.White;
+            this.BtnBrowse.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnBrowse.Location = new System.Drawing.Point(486, 47);
             this.BtnBrowse.Name = "BtnBrowse";
             this.BtnBrowse.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -109,9 +109,9 @@
             // 
             this.BtnContinue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnContinue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnContinue.BorderColor = System.Drawing.Color.White;
-            this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnContinue.BorderColor = System.Drawing.Color.Gray;
             this.BtnContinue.ForeColor = System.Drawing.Color.White;
+            this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnContinue.Location = new System.Drawing.Point(817, 428);
             this.BtnContinue.Name = "BtnContinue";
             this.BtnContinue.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));

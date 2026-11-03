@@ -60,5 +60,24 @@ namespace Vcc.Nolvus.Package.Conditions
 
             return Valid;
         }
+
+        public override bool IsValid(string Data, string Value)
+        {
+            bool Valid = false;
+
+            switch (this.Operator)
+            {
+                case 0:
+                    Valid = Data == DataToCompare && Value == ValueToCompare;
+
+                    break;
+                case 1:
+                    Valid = Data == DataToCompare && Value != ValueToCompare;
+
+                    break;
+            }
+
+            return Valid;
+        }
     }
 }

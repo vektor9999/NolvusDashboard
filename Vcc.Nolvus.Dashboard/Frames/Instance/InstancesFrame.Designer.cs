@@ -62,9 +62,9 @@
             // 
             this.BtnNewInstance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnNewInstance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnNewInstance.BorderColor = System.Drawing.Color.White;
-            this.BtnNewInstance.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnNewInstance.BorderColor = System.Drawing.Color.Gray;
             this.BtnNewInstance.ForeColor = System.Drawing.Color.White;
+            this.BtnNewInstance.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnNewInstance.Location = new System.Drawing.Point(585, 349);
             this.BtnNewInstance.Name = "BtnNewInstance";
             this.BtnNewInstance.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -78,9 +78,9 @@
             // 
             this.BtnDiscord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnDiscord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnDiscord.BorderColor = System.Drawing.Color.White;
-            this.BtnDiscord.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnDiscord.BorderColor = System.Drawing.Color.Gray;
             this.BtnDiscord.ForeColor = System.Drawing.Color.White;
+            this.BtnDiscord.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnDiscord.Location = new System.Drawing.Point(489, 349);
             this.BtnDiscord.Name = "BtnDiscord";
             this.BtnDiscord.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -94,9 +94,9 @@
             // 
             this.BtnDonate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnDonate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnDonate.BorderColor = System.Drawing.Color.White;
-            this.BtnDonate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnDonate.BorderColor = System.Drawing.Color.Gray;
             this.BtnDonate.ForeColor = System.Drawing.Color.White;
+            this.BtnDonate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnDonate.Location = new System.Drawing.Point(393, 349);
             this.BtnDonate.Name = "BtnDonate";
             this.BtnDonate.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -110,9 +110,9 @@
             // 
             this.BtnPatreon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnPatreon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnPatreon.BorderColor = System.Drawing.Color.White;
-            this.BtnPatreon.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnPatreon.BorderColor = System.Drawing.Color.Gray;
             this.BtnPatreon.ForeColor = System.Drawing.Color.White;
+            this.BtnPatreon.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPatreon.Location = new System.Drawing.Point(297, 349);
             this.BtnPatreon.Name = "BtnPatreon";
             this.BtnPatreon.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));

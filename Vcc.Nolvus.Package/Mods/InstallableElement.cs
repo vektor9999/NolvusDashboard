@@ -211,6 +211,7 @@ namespace Vcc.Nolvus.Package.Mods
 
         public abstract bool IsInstallable();
         public abstract bool IsInstallable(string Value);
+        public abstract bool IsInstallable(string Data, string Value);
         protected virtual async Task DoDownload(Func<IBrowserInstance> Browser)
         {
             var Tsk = Task.Run(async () =>
@@ -261,7 +262,7 @@ namespace Vcc.Nolvus.Package.Mods
             {
                 try
                 {
-                    if (ServiceSingleton.Instances.WorkingInstance.Settings.EnableArchiving)
+                    if (ServiceSingleton.Instances.WorkingInstance.SettingsManager.EnableArchiving)
                     {
                         foreach (var File in Files)
                         {

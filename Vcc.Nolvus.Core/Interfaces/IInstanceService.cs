@@ -10,7 +10,7 @@ namespace Vcc.Nolvus.Core.Interfaces
     {
         INolvusInstance WorkingInstance { get; set; }
         IInstanceOptions Options { get; set; }        
-        void Load();
+        Task Load();
         void Save();
         bool Empty { get; }
         bool CheckInstances(out string Status);
@@ -24,11 +24,10 @@ namespace Vcc.Nolvus.Core.Interfaces
         void PrepareInstanceForInstall();
         void PrepareInstanceForUpdate();
         void PrepareInstanceForEnb();
+        void PrepareInstanceForOption();
         void FinalizeInstance();
         string GetValueFromKey(string Key);
         bool WorkingOnInstance { get; }
-        void UnloadWorkingIntance();
-        //void SetCurrenTask(string Key, string Value);
-        //void ClearCurrenTask();
+        void UnloadWorkingIntance();        
     }
 }

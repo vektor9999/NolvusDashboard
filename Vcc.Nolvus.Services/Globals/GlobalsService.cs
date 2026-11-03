@@ -63,7 +63,7 @@ namespace Vcc.Nolvus.Services.Globals
         public const string UserName = "UserName";
         public const string Password = "Password";
         public const string Version = "Version";
-        public const string NolvusApi = "https://www.nolvus.net/rest/";                
+        public const string NolvusApi = "https://www.nolvus.net/rest/";               
         public const string NexusSection = "Nexus";
         public const string ApiKey = "ApiKey";
         public const string UserAgent = "UserAgent";

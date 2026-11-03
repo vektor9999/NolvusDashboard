@@ -9,8 +9,12 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Syncfusion.WinForms.Controls;
+using Syncfusion.Data;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Tools;
+using Syncfusion.WinForms.ListView.Enums;
+using Syncfusion.WinForms.DataGrid;
+using Syncfusion.WinForms.DataGrid.Enums;
 using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Frames;
 using Vcc.Nolvus.Core.Enums;
@@ -21,7 +25,7 @@ using Vcc.Nolvus.Dashboard.Core;
 using Vcc.Nolvus.Dashboard.Forms;
 using Vcc.Nolvus.NexusApi;
 
-namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
+namespace Vcc.Nolvus.Dashboard.Frames.Installer
 {
     public partial class SummaryFrame : DashboardFrame
     {
@@ -33,7 +37,15 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         public SummaryFrame(IDashboard Dashboard, FrameParameters Params) 
             : base(Dashboard, Params)            
         {
-            InitializeComponent();            
+            InitializeComponent();
+
+            OptionsGrid.ThemeName = "Office2016Black";            
+
+            OptionsGrid.Style.CurrentCellStyle.BackColor = Color.Orange;
+            OptionsGrid.Style.CurrentCellStyle.TextColor = Color.White;
+            OptionsGrid.Style.CurrentCellStyle.BorderColor = Color.Orange;            
+
+            OptionsGrid.GroupColumnDescriptions.Add(new GroupColumnDescription() { ColumnName = "Category", SortGroupRecords = false });
         }
 
         protected override async void OnLoad()
@@ -43,18 +55,19 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
                 LblName.Text = Instance.Name;
-                LblResolution.Text = Instance.Settings.Width + "x" + Instance.Settings.Height;
-                LblRatio.Text = Instance.Settings.Ratio;
-                LblInstallDir.Text = Instance.InstallDir;
-                LblArchiveDir.Text = Instance.ArchiveDir;
+                LblResolution.Text = Instance.SettingsManager.Width + "x" + Instance.SettingsManager.Height;                
+                LblInstallDir.Text = Instance.SettingsManager.InstallDir;
+                LblArchiveDir.Text = Instance.SettingsManager.ArchiveDir;
 
-                LblEnableArchiving.Text = Instance.Settings.EnableArchiving ? "Yes" : "No";
+                LblEnableArchiving.Text = Instance.SettingsManager.EnableArchiving ? "Yes" : "No";
 
-                LblDownscaling.Text = Instance.Performance.DownScaling == "TRUE" ? "Yes (" + Instance.Performance.DownScaledResolution + ")" : "No";
-                LblVariant.Text = Instance.Performance.Variant;
-                LblAA.Text = Instance.Performance.AntiAliasing;
+                LblDownscaling.Text = Instance.SettingsManager.DownScaling == "TRUE" ? "Yes (" + Instance.SettingsManager.DownScaledResolution + ")" : "No";
+                
+                LblVariant.Text = Instance.SettingsManager.Variant;                
+                LblCDN.Text = Instance.SettingsManager.CDN;
+                LblLanguage.Text = Instance.SettingsManager.LgName;
 
-                switch (Instance.Performance.IniSettings)
+                switch (Instance.SettingsManager.IniSettings)
                 {
                     case "0": LblIni.Text = "Low";
                         break;
@@ -66,37 +79,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                         break;
                 }
 
-                LblSREX.Text = Instance.Performance.SREX == "TRUE" ? "Yes" : "No";
-                LblLODs.Text = Instance.Performance.LODs;
-                LblFrameGen.Text = Instance.Performance.FrameGeneration == "TRUE" ? "Yes" : "No";
+                OptionsGrid.DataSource = Instance.OptionsManager.GetOptions();
 
-
-                LblNudity.Text = Instance.Options.Nudity == "TRUE" ? "Yes" : "No";
-                LblCombatAnims.Text = string.Format("{0} {1}", Instance.Options.CombatAnimation, Instance.Performance.Variant == Strings.GO ? " (Not used)" : string.Empty);                
-
-                LblLeveling.Text = string.Format("{0} {1}", Instance.Options.AlternateLeveling == "TRUE" ? "Yes" : "No", Instance.Performance.Variant == Strings.GO ? " (Not used)" : string.Empty);
-
-                LblGore.Text = string.Format("{0} {1}", Instance.Options.Gore == "TRUE" ? "Yes" : "No", Instance.Performance.Variant == Strings.GO ? " (Not used)" : string.Empty);
-
-                LblENB.Text = ENBs.GetENBByCode(Instance.Options.AlternateENB);
-
-                LblCombatScaling.Text = string.Format("{0} {1}", Instance.Options.CombatScaling, Instance.Performance.Variant == Strings.GO ? " (Not used)" : string.Empty);
-                LblExhaustion.Text = string.Format("{0} {1}", Instance.Options.Exhaustion == "TRUE" ? "Yes" : "No", Instance.Performance.Variant == Strings.GO ? " (Not used)" : string.Empty);
-                LblNerfPA.Text = string.Format("{0} {1}", Instance.Options.NerfPA, Instance.Performance.Variant == Strings.GO ? " (Not used)" : string.Empty);
-                LblBoss.Text = string.Format("{0} {1}", Instance.Options.Boss == "TRUE" ? "Yes" : "No", Instance.Performance.Variant == Strings.GO ? " (Not used)" : string.Empty);
-                LblZoneLevelIndicator.Text = string.Format("{0} {1}", Instance.Options.ZoneLevelIndicator == "TRUE" ? "Yes" : "No", Instance.Performance.Variant == Strings.GO ? " (Not used)" : string.Empty);
-                LblController.Text = string.Format("{0} {1}", Instance.Options.Controller == "TRUE" ? "Yes" : "No", Instance.Performance.Variant == Strings.GO ? " (Not used)" : string.Empty);
-                LblUI.Text = Instance.Options.UI;
-
-                LblCombatAnims.ForeColor = Instance.Performance.Variant == Strings.GO ? Color.Silver : Color.Orange;
-                LblLeveling.ForeColor = Instance.Performance.Variant == Strings.GO ? Color.Silver : Color.Orange;
-                LblGore.ForeColor = Instance.Performance.Variant == Strings.GO ? Color.Silver : Color.Orange;
-                LblCombatScaling.ForeColor = Instance.Performance.Variant == Strings.GO ? Color.Silver : Color.Orange;
-                LblExhaustion.ForeColor = Instance.Performance.Variant == Strings.GO ? Color.Silver : Color.Orange;
-                LblNerfPA.ForeColor = Instance.Performance.Variant == Strings.GO ? Color.Silver : Color.Orange;
-                LblBoss.ForeColor = Instance.Performance.Variant == Strings.GO ? Color.Silver : Color.Orange;
-                LblZoneLevelIndicator.ForeColor = Instance.Performance.Variant == Strings.GO ? Color.Silver : Color.Orange;
-                LblController.ForeColor = Instance.Performance.Variant == Strings.GO ? Color.Silver : Color.Orange;                
+                OptionsGrid.ExpandAllGroup();                          
 
                 if (!ApiManager.AccountInfo.IsPremium)
                 {
@@ -116,17 +101,17 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 if (ServiceSingleton.Settings.ErrorsThreshold == 1 || !NexusApi.ApiManager.AccountInfo.IsPremium)
                 {
                     RdBtnOneError.Checked = true;
-                    RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages (max errors can be set up in the Nolvus Dashboard.ini file)", 50);
+                    RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages.", 50);
                 }
                 else if (ServiceSingleton.Settings.ErrorsThreshold == 0)
                 {
                     RdBtnNoThreshold.Checked = true;
-                    RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages (max errors can be set up in the Nolvus Dashboard.ini file)", 50);
+                    RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages.", 50);
                 }
                 else
                 {
                     RdBtnThreshold.Checked = true;
-                    RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages (max errors can be set up in the Nolvus Dashboard.ini file)", ServiceSingleton.Settings.ErrorsThreshold);
+                    RdBtnThreshold.Text = string.Format("Stop the installation when {0} errors occured and display the error messages.", ServiceSingleton.Settings.ErrorsThreshold);
                 }
 
                 ServiceSingleton.Dashboard.Info("Review your selections");
@@ -140,10 +125,10 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         private void PnlMessage_Paint(object sender, PaintEventArgs e)
         {            
             ControlPaint.DrawBorder(e.Graphics, PnlMessage.ClientRectangle,
-              Color.White, 3, ButtonBorderStyle.Solid, // left
-              Color.White, 3, ButtonBorderStyle.Solid, // top
-              Color.White, 3, ButtonBorderStyle.Solid, // right
-              Color.White, 3, ButtonBorderStyle.Solid);// bottom
+              Color.White, 1, ButtonBorderStyle.Solid, // left
+              Color.White, 1, ButtonBorderStyle.Solid, // top
+              Color.White, 1, ButtonBorderStyle.Solid, // right
+              Color.White, 1, ButtonBorderStyle.Solid);// bottom
         }
 
         private void BtnStart_Click(object sender, EventArgs e)
@@ -186,6 +171,54 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             {
                 ServiceSingleton.Dashboard.LoadFrame<PageFileFrame>();
             }
-        }        
+        }
+
+        private void OptionsGrid_DrawCell(object sender, Syncfusion.WinForms.DataGrid.Events.DrawCellEventArgs e)
+        {
+            if (e.DataRow.RowType == RowType.CaptionCoveredRow && !string.IsNullOrEmpty(e.DisplayText))
+            {
+                var displayText = string.Empty;
+                var group = (e.DataRow.RowData as Syncfusion.Data.Group);
+
+                if (group != null)
+                {
+                    if (group.Groups != null)
+                    {
+                        int Options = 0;
+                        Options = GetTotalRecordsCount(group);
+                        displayText = group.Key.ToString() + " ( " + Options + " Options (" + group.Groups.Count + " Sub Categories)";
+                    }
+                    else if (group.Records != null)
+                    {
+                        displayText = group.Key.ToString() + " ( " + group.Records.Count + " Options )";                        
+                    }
+
+                    e.DisplayText = displayText;
+                }
+            }
+        }
+
+        private int GetTotalRecordsCount(Group group)
+        {
+            int count = 0;
+
+            if (group.Groups != null)
+            {
+                foreach (var g in group.Groups)
+                {
+                    if (g.Groups != null)
+                        foreach (var g1 in g.Groups)
+                            count += GetTotalRecordsCount(g1);
+
+                    if (g.Records != null)
+                        count += g.Records.Count;
+                }
+            }
+            else
+                if (group.Records != null)
+                count += group.Records.Count;
+
+            return count;
+        }
     }
 }

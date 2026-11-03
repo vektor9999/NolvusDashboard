@@ -12,7 +12,7 @@ namespace Vcc.Nolvus.Package.Mods
     {
         #region Fields
 
-        private string RootDir = Path.Combine(ServiceSingleton.Instances.WorkingInstance.InstallDir, "MODS", "mods");
+        private string RootDir = Path.Combine(ServiceSingleton.Instances.WorkingInstance.SettingsManager.InstallDir, "MODS", "mods");
 
         protected const string MetaIni = @"[General]
 modid={0}

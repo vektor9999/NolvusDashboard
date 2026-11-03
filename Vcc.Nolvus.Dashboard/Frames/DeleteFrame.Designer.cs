@@ -37,6 +37,7 @@
             this.LblInstance = new System.Windows.Forms.Label();
             this.LblInstanceInfo = new System.Windows.Forms.Label();
             this.LblStepText = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +55,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label35);
             this.panel1.Controls.Add(this.BtnBack);
             this.panel1.Controls.Add(this.LblInfo);
             this.panel1.Controls.Add(this.BtnAction);
@@ -66,9 +68,9 @@
             // 
             this.BtnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnBack.BorderColor = System.Drawing.Color.White;
-            this.BtnBack.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnBack.BorderColor = System.Drawing.Color.Gray;
             this.BtnBack.ForeColor = System.Drawing.Color.White;
+            this.BtnBack.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnBack.Location = new System.Drawing.Point(148, 257);
             this.BtnBack.Name = "BtnBack";
             this.BtnBack.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -82,7 +84,7 @@
             // 
             this.LblInfo.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblInfo.ForeColor = System.Drawing.Color.White;
-            this.LblInfo.Location = new System.Drawing.Point(3, 2);
+            this.LblInfo.Location = new System.Drawing.Point(10, 45);
             this.LblInfo.Name = "LblInfo";
             this.LblInfo.Size = new System.Drawing.Size(336, 35);
             this.LblInfo.TabIndex = 2;
@@ -93,9 +95,9 @@
             // 
             this.BtnAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnAction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnAction.BorderColor = System.Drawing.Color.White;
-            this.BtnAction.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnAction.BorderColor = System.Drawing.Color.Gray;
             this.BtnAction.ForeColor = System.Drawing.Color.White;
+            this.BtnAction.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnAction.Location = new System.Drawing.Point(242, 257);
             this.BtnAction.Name = "BtnAction";
             this.BtnAction.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -152,6 +154,17 @@
             this.LblStepText.Text = "Delete Nolvus Instance";
             this.LblStepText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.ForeColor = System.Drawing.Color.Orange;
+            this.label35.Location = new System.Drawing.Point(5, 5);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(41, 21);
+            this.label35.TabIndex = 4;
+            this.label35.Text = "Info";
+            // 
             // DeleteFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -163,6 +176,7 @@
             this.Name = "DeleteFrame";
             this.Size = new System.Drawing.Size(799, 350);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -179,5 +193,6 @@
         private System.Windows.Forms.Label LblInstance;
         private System.Windows.Forms.Label LblInstanceInfo;
         private Components.Controls.FlatButton BtnBack;
+        private System.Windows.Forms.Label label35;
     }
 }

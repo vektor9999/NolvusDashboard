@@ -22,6 +22,7 @@ using Vcc.Nolvus.Dashboard.Frames;
 using Vcc.Nolvus.Dashboard.Frames.Installer;
 using Vcc.Nolvus.Dashboard.Frames.Instance;
 using Vcc.Nolvus.Dashboard.Frames.Remap.v6;
+using Vcc.Nolvus.Dashboard.Frames.Manager.Options;
 using Vcc.Nolvus.Package.Mods;
 using Vcc.Nolvus.Api.Installer.Services;
 
@@ -79,7 +80,7 @@ namespace Vcc.Nolvus.Dashboard.Controls
             _Instance = Instance;
 
             LblInstanceName.Text = _Instance.Tag == string.Empty ? _Instance.Name : string.Format("{0} - {1}", _Instance.Name, _Instance.Tag);
-            LblVersion.Text = string.Format("{0} v{1}", _Instance.Performance.Variant, _Instance.Version);
+            LblVersion.Text = string.Format("{0} v{1}", _Instance.SettingsManager.Variant, _Instance.Version);
             LblDesc.Text = _Instance.Description;            
 
             if (await _Instance.IsBeta())
@@ -115,7 +116,7 @@ namespace Vcc.Nolvus.Dashboard.Controls
 
             if (!ModOrganizer.IsRunning)
             {
-                Process MO2 = ModOrganizer.Start(_Instance.InstallDir);
+                Process MO2 = ModOrganizer.Start(_Instance.SettingsManager.InstallDir);
 
                 this.BtnPlay.Text = "Running...";
                 this.BtnPlay.Enabled = false;
@@ -256,7 +257,7 @@ namespace Vcc.Nolvus.Dashboard.Controls
                 IShellLink Link = (IShellLink)new ShellLink();
 
                 Link.SetDescription(string.Format("Desktop shortcut for your {0} instance.", _Instance.Name));
-                Link.SetPath(Path.Combine(_Instance.InstallDir, "MO2", "ModOrganizer.exe"));
+                Link.SetPath(Path.Combine(_Instance.SettingsManager.InstallDir, "MO2", "ModOrganizer.exe"));
 
                 var IconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "nolvus-ico.ico");
 
@@ -310,6 +311,28 @@ namespace Vcc.Nolvus.Dashboard.Controls
             }
         }
 
+        private async void BrItmOptionManager_Click(object sender, EventArgs e)
+        {
+            if (!ModOrganizer.IsRunning)
+            {
+                switch (_Instance.Name)
+                {
+                    case Strings.NolvusAscension:
+                        NolvusMessageBox.ShowMessage("Options Manager", string.Format("This feature is not available for {0}.", _Instance.Name), MessageBoxType.Info);
+                        break;
+
+                    case Strings.NolvusAwakening:
+                        ServiceSingleton.Instances.WorkingInstance = _Instance;     
+                             await ServiceSingleton.Dashboard.LoadFrameAsync<PackageFrame>(new FrameParameters(new FrameParameter() { Key = "Mode", Value = InstanceMode.Options }));
+                        break;
+                }
+            }
+            else
+            {
+                NolvusMessageBox.ShowMessage("Mod Organizer 2", "An instance of Mod Organizer 2 is running! Close it first.", MessageBoxType.Error);
+            }
+        }
+
         private void BrItmRemap_Click(object sender, EventArgs e)
         {
             if (!ModOrganizer.IsRunning)
@@ -330,6 +353,6 @@ namespace Vcc.Nolvus.Dashboard.Controls
             {
                 NolvusMessageBox.ShowMessage("Mod Organizer 2", "An instance of Mod Organizer 2 is running! Close it first.", MessageBoxType.Error);
             }
-        }
+        }        
     }
 }

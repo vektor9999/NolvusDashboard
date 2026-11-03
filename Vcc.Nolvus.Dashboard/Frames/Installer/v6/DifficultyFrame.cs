@@ -16,6 +16,8 @@ using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Instance.Core;
 using Vcc.Nolvus.Dashboard.Core;
 using Vcc.Nolvus.Dashboard.Forms;
+using Vcc.Nolvus.Api.Installer.Services;
+using Vcc.Nolvus.Api.Installer.Library;
 using Syncfusion.Windows.Forms.Tools;
 
 
@@ -73,16 +75,16 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             #endregion
         }
 
-        private int ScalingsIndex(List<string> Scalings)
+        private int ScalingsIndex(IEnumerable<INolvusOptionChoiceDTO> Scalings)
         {            
-            var Index = Scalings.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling);
+            var Index = Scalings.ToList().FindIndex(x => x.Value == ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("CombatScaling"));
 
             return Index == -1 ? 0 : Index;                            
         }
 
-        private int NerfPAIndex(List<string> NerfPAs)
+        private int NerfPAIndex(IEnumerable<INolvusOptionChoiceDTO> NerfPAs)
         {
-            var Index = NerfPAs.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Options.NerfPA);
+            var Index = NerfPAs.ToList().FindIndex(x => x.Value == ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("NerfPA"));
 
             return Index == -1 ? 0 : Index;
         }
@@ -90,10 +92,10 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
         private bool CheckIfPrepareToDie()
         {            
-            if (ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling == "Hard" &&
-                ServiceSingleton.Instances.WorkingInstance.Options.Exhaustion == "TRUE" &&
-                ServiceSingleton.Instances.WorkingInstance.Options.NerfPA == "Player Only" &&                
-                ServiceSingleton.Instances.WorkingInstance.Options.Boss == "TRUE")                
+            if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("CombatScaling") == "Hard" &&
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("Exhaustion") == "TRUE" &&
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("NerfPA") == "Player Only" &&                
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("Boss") == "TRUE")                
             {
 
                 return true;
@@ -104,10 +106,10 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
         private bool CheckIfHackAndSash()
         {
-            if (ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling == "Easy" &&
-                ServiceSingleton.Instances.WorkingInstance.Options.Exhaustion == "FALSE" &&
-                ServiceSingleton.Instances.WorkingInstance.Options.NerfPA == "NPCs Only" &&                
-                ServiceSingleton.Instances.WorkingInstance.Options.Boss == "FALSE")                
+            if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("CombatScaling") == "Easy" &&
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("Exhaustion") == "FALSE" &&
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("NerfPA") == "NPCs Only" &&                
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("Boss") == "FALSE")                
             {
 
                 return true;
@@ -118,10 +120,10 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
         private bool CheckIfHMilkDrinker()
         {
-            if (ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling == "Very Easy" &&
-                ServiceSingleton.Instances.WorkingInstance.Options.Exhaustion == "FALSE" &&
-                ServiceSingleton.Instances.WorkingInstance.Options.NerfPA == "NPCs Only" &&                
-                ServiceSingleton.Instances.WorkingInstance.Options.Boss == "FALSE")                
+            if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("CombatScaling") == "Very Easy" &&
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("Exhaustion") == "FALSE" &&
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("NerfPA") == "NPCs Only" &&                
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("Boss") == "FALSE")                
             {
 
                 return true;
@@ -133,10 +135,10 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         private bool CheckIfTrueNord()
         {
 
-            if (ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling == "Medium" &&
-                ServiceSingleton.Instances.WorkingInstance.Options.Exhaustion == "TRUE" &&
-                ServiceSingleton.Instances.WorkingInstance.Options.NerfPA == "Both" &&                
-                ServiceSingleton.Instances.WorkingInstance.Options.Boss == "TRUE")                              
+            if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("CombatScaling") == "Medium" &&
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("Exhaustion") == "TRUE" &&
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("NerfPA") == "Both" &&                
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("Boss") == "TRUE")                              
             {
 
                 return true;
@@ -145,35 +147,37 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             return false;
         }
 
-        protected override void OnLoad()
+        protected override async Task OnLoadAsync()
         {
             var Instance = ServiceSingleton.Instances.WorkingInstance;
-
-            LblGOWarning.Visible = Instance.Performance.Variant == Strings.GO;
-
+                        
+            TglBtnBoss.ToggleState = ToggleButtonState.Inactive;
+            TglBtnExhaustion.ToggleState = ToggleButtonState.Inactive;
+            TglBtnZoneLevel.ToggleState = ToggleButtonState.Inactive;
+                               
             List<string> Presets = new List<string>();
 
             Presets.Add("Milk Drinker");
             Presets.Add("Hack and Slash");
             Presets.Add("True Nord");
-            Presets.Add("Prepare to Die");            
+            Presets.Add("Prepare to Die");
 
             DrpDwnLstPreset.SelectedIndexChanged -= DrpDwnLstPreset_SelectedIndexChanged;
-            
+
             if (CheckIfPrepareToDie())
             {
                 DrpDwnLstPreset.DataSource = Presets;
-                DrpDwnLstPreset.SelectedIndex = 3;                
+                DrpDwnLstPreset.SelectedIndex = 3;
             }
             else if (CheckIfTrueNord())
             {
                 DrpDwnLstPreset.DataSource = Presets;
-                DrpDwnLstPreset.SelectedIndex = 2;                
+                DrpDwnLstPreset.SelectedIndex = 2;
             }
             else if (CheckIfHackAndSash())
             {
                 DrpDwnLstPreset.DataSource = Presets;
-                DrpDwnLstPreset.SelectedIndex = 1;                
+                DrpDwnLstPreset.SelectedIndex = 1;
             }
             else if (CheckIfHMilkDrinker())
             {
@@ -186,78 +190,51 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 DrpDwnLstPreset.DataSource = Presets;
                 DrpDwnLstPreset.SelectedIndex = 4;
             }
-            
+
             DrpDwnLstPreset.SelectedIndexChanged += DrpDwnLstPreset_SelectedIndexChanged;
 
-            DrpDwnLstPreset.Enabled = Instance.Performance.Variant != Strings.GO;
-
-            List<string> CombatScalings = new List<string>();
-
-            CombatScalings.Add("Very Easy");
-            CombatScalings.Add("Easy");
-            CombatScalings.Add("Medium");
-            CombatScalings.Add("Hard");
+            var CombatScalings = await ApiManager.Service.Installer.GetOptionChoices("CombatScaling", Instance.SettingsManager.Variant, Instance.Id);
 
             DrpDwnLstCombatScaling.DataSource = CombatScalings;
+            DrpDwnLstCombatScaling.DisplayMember = "Value";
+            DrpDwnLstCombatScaling.ValueMember = "Id";
 
             DrpDwnLstCombatScaling.SelectedIndex = ScalingsIndex(CombatScalings);
 
-            DrpDwnLstCombatScaling.Enabled = Instance.Performance.Variant != Strings.GO; ;
-
-            TglBtnExhaustion.ToggleState = ToggleButtonState.Inactive;
-
-            if (Instance.Options.Exhaustion == "TRUE")
-            {
-                TglBtnExhaustion.ToggleState = ToggleButtonState.Active;
-            }      
-
-            TglBtnExhaustion.Enabled = Instance.Performance.Variant != Strings.GO;
-
-            List<string> NerfPAs = new List<string>();
-
-            NerfPAs.Add("None");
-            NerfPAs.Add("Player Only");
-            NerfPAs.Add("NPCs Only");
-            NerfPAs.Add("Both");
+            var NerfPAs = await ApiManager.Service.Installer.GetOptionChoices("NerfPA", Instance.SettingsManager.Variant, Instance.Id);
 
             DrpDwnLstNerfPA.DataSource = NerfPAs;
+            DrpDwnLstNerfPA.DisplayMember = "Value";
+            DrpDwnLstNerfPA.ValueMember = "Id";
 
             DrpDwnLstNerfPA.SelectedIndex = NerfPAIndex(NerfPAs);
 
-            DrpDwnLstNerfPA.Enabled = Instance.Performance.Variant != Strings.GO;
-
-            TglBtnBoss.ToggleState = ToggleButtonState.Inactive;
-
-            if (Instance.Options.Boss == "TRUE")
+            if (Instance.OptionsManager.GetOptionValue("Boss") == "TRUE")
             {
                 TglBtnBoss.ToggleState = ToggleButtonState.Active;
             }
 
-            TglBtnBoss.Enabled = Instance.Performance.Variant != Strings.GO;
-
-            TglBtnZoneLevel.ToggleState = ToggleButtonState.Inactive;
-
-            if (Instance.Options.ZoneLevelIndicator == "TRUE")
+            if (Instance.OptionsManager.GetOptionValue("Exhaustion") == "TRUE")
             {
-                TglBtnZoneLevel.ToggleState = ToggleButtonState.Active;
+                TglBtnExhaustion.ToggleState = ToggleButtonState.Active;
             }
 
-            TglBtnZoneLevel.Enabled = Instance.Performance.Variant != Strings.GO;
+            if (Instance.OptionsManager.GetOptionValue("ZoneLevelIndicator") == "TRUE")
+            {
+                TglBtnZoneLevel.ToggleState = ToggleButtonState.Active;
+            }            
 
             ServiceSingleton.Dashboard.Info("Difficulty options");
         }
         
         private void BtnPrevious_Click(object sender, EventArgs e)
         {
-            ServiceSingleton.Dashboard.LoadFrame<v6.OptionsFrame>();
+            ServiceSingleton.Dashboard.LoadFrameAsync<v6.OptionsFrame>();
         }
 
         private void BtnContinue_Click(object sender, EventArgs e)
         {
-            if (NolvusMessageBox.ShowConfirmation("Confirmation", "The options you selected can not be changed after installation. Are you sure you want to continue?") == DialogResult.Yes)
-            {
-                ServiceSingleton.Dashboard.LoadFrame<v6.ENBFrame>();
-            }
+            ServiceSingleton.Dashboard.LoadFrame<v6.ENBFrame>();            
         }       
 
         private void DrpDwnLstPreset_SelectedIndexChanged(object sender, EventArgs e)
@@ -266,6 +243,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
             if (DrpDwnLstPreset.SelectedIndex == 3)
             {                
+                //P2D
                 DrpDwnLstCombatScaling.SelectedIndex = 3;
                 TglBtnExhaustion.ToggleState = ToggleButtonState.Active;                
                 DrpDwnLstNerfPA.SelectedIndex = 1;                
@@ -273,6 +251,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             }
             else if (DrpDwnLstPreset.SelectedIndex == 2)
             {
+                //True Nord
                 DrpDwnLstCombatScaling.SelectedIndex = 2;
                 TglBtnExhaustion.ToggleState = ToggleButtonState.Active;                
                 DrpDwnLstNerfPA.SelectedIndex = 3;                
@@ -280,6 +259,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             }
             else if (DrpDwnLstPreset.SelectedIndex == 1)
             {
+                //Hack & Slash
                 DrpDwnLstCombatScaling.SelectedIndex = 1;
                 TglBtnExhaustion.ToggleState = ToggleButtonState.Inactive;                
                 DrpDwnLstNerfPA.SelectedIndex = 2;                
@@ -287,6 +267,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             }
             else
             {
+                //Milk Drinker
                 DrpDwnLstCombatScaling.SelectedIndex = 0;
                 TglBtnExhaustion.ToggleState = ToggleButtonState.Inactive;
                 DrpDwnLstNerfPA.SelectedIndex = 2;                
@@ -294,30 +275,41 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 TglBtnBoss.Enabled = false;              
             }
 
-        }        
-
-        private void TglBtnExhaustion_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
-        {
-            if (e.ToggleState == ToggleButtonState.Active)
-            {
-                ServiceSingleton.Instances.WorkingInstance.Options.Exhaustion = "TRUE";
-            }
-            else
-            {
-                ServiceSingleton.Instances.WorkingInstance.Options.Exhaustion = "FALSE";
-            }
         }
-        
 
         private void TglBtnBoss_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
         {
             if (e.ToggleState == ToggleButtonState.Active)
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.Boss = "TRUE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("Boss").Value = "TRUE";
             }
             else
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.Boss = "FALSE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("Boss").Value = "FALSE";
+            }
+        }
+
+        private void TglBtnExhaustion_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
+        {
+            if (e.ToggleState == ToggleButtonState.Active)
+            {
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("Exhaustion").Value = "TRUE";
+            }
+            else
+            {
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("Exhaustion").Value = "FALSE";
+            }
+        }
+
+        private void TglBtnZoneLevel_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
+        {
+            if (e.ToggleState == ToggleButtonState.Active)
+            {
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("ZoneLevelIndicator").Value = "TRUE";
+            }
+            else
+            {
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("ZoneLevelIndicator").Value = "FALSE";
             }
         }
 
@@ -335,12 +327,12 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
         private void DrpDwnLstCombatScaling_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ServiceSingleton.Instances.WorkingInstance.Options.CombatScaling = DrpDwnLstCombatScaling.SelectedValue.ToString();
+            ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("CombatScaling").Value = (DrpDwnLstCombatScaling.SelectedItem as INolvusOptionChoiceDTO).Value;
         }
 
         private void DrpDwnLstNerfPA_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ServiceSingleton.Instances.WorkingInstance.Options.NerfPA = DrpDwnLstNerfPA.SelectedValue.ToString();
+            ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("NerfPA").Value = (DrpDwnLstNerfPA.SelectedItem as INolvusOptionChoiceDTO).Value;
         }
 
         private void BtnPresetsExplained_Click(object sender, EventArgs e)
@@ -357,17 +349,6 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         {
             System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/player-guide/combat/scaling");
         }
-
-        private void TglBtnZoneLevel_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
-        {
-            if (e.ToggleState == ToggleButtonState.Active)
-            {
-                ServiceSingleton.Instances.WorkingInstance.Options.ZoneLevelIndicator = "TRUE";
-            }
-            else
-            {
-                ServiceSingleton.Instances.WorkingInstance.Options.ZoneLevelIndicator = "FALSE";
-            }
-        }
+        
     }
 }

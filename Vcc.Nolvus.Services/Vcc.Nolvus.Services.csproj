@@ -94,6 +94,7 @@
     <Compile Include="Game\GameService.cs" />
     <Compile Include="Globals\GlobalsService.cs" />
     <Compile Include="Logger\LogService.cs" />
+    <Compile Include="Options\OptionService.cs" />
     <Compile Include="Report\ReportService.cs" />
     <Compile Include="Settings\SettingsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

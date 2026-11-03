@@ -16,491 +16,7 @@ using Vcc.Nolvus.Core.Services;
 namespace Vcc.Nolvus.Services.Report
 {
     public class ReportService : IReportService
-    {
-        public Task<string> GenerateReportToClipBoard(ModObjectList ModObjects, Action<string, int> Progress)
-        {
-            return Task.Run(async () =>
-            {                
-                var Instance = ServiceSingleton.Instances.WorkingInstance;
-
-                Progress("Generating report", 10);
-
-                #region Hardware
-
-                var Result = "HARDWARE";
-                Result += Environment.NewLine;
-                Result += Environment.NewLine;
-
-                Result += "CPU : " + await ServiceSingleton.Globals.GetCPUInfo();
-                Result += Environment.NewLine;
-                Result += "GPU : " + string.Join(Environment.NewLine, ServiceSingleton.Globals.GetVideoAdapters().ToArray());
-                Result += Environment.NewLine;
-
-                var Ram = await ServiceSingleton.Globals.GetRamCount();
-
-                if (Ram != "RAM count not found")
-                {
-                    Result += "RAM : " + Ram + " GB";
-                }
-                else
-                {
-                    Result += Ram;
-                }
-                
-                Result += Environment.NewLine;
-                Result += Environment.NewLine;
-
-                #endregion
-
-                Progress("Generating report", 20);
-                #region Instance
-
-                Result += "INSTANCE CONFIGURATION";
-                Result += Environment.NewLine;
-                Result += Environment.NewLine;
-
-                Result += string.Format("Name : {0}, selected profile : {1}", Instance.Name, ModObjects.Profile);
-                Result += Environment.NewLine;
-                Result += string.Format("Version : {0}", Instance.Version);
-                Result += Environment.NewLine;
-                Result += string.Format("Install directory : {0}", Instance.InstallDir);
-                Result += Environment.NewLine;
-                Result += string.Format("Archive directory : {0}", Instance.ArchiveDir);
-                Result += Environment.NewLine;
-
-                if (Instance.Settings.EnableArchiving)
-                {
-                    Result += "Enable archiving : Yes";
-                }
-                else
-                {
-                    Result += "Enable archiving : No";
-                }
-
-                Result += Environment.NewLine;
-                Result += Environment.NewLine;
-
-                #endregion
-
-                Progress("Generating report", 30);
-
-                #region Instance Settings
-
-                Result += "INSTANCE SETTINGS";
-                Result += Environment.NewLine;
-                Result += Environment.NewLine;
-
-                Result += string.Format("Resolution : {0}", Instance.Settings.Width + "x" + Instance.Settings.Height);
-                Result += Environment.NewLine;
-                Result += string.Format("Screen ratio : {0}", Instance.Settings.Ratio);
-                Result += Environment.NewLine;                
-                Result += string.Format("CDN : {0}", Instance.Settings.CDN);
-                Result += Environment.NewLine;
-                Result += string.Format("Language : {0}", Instance.Settings.LgName);
-                Result += Environment.NewLine;
-                Result += Environment.NewLine;
-
-
-                #endregion
-
-                Progress("Generating report", 40);
-
-                #region Performance
-
-                if (Instance.Name == Strings.NolvusAscension)
-                {
-                    #region V5
-
-                    Result += "PERFORMANCE SETTINGS";
-                    Result += Environment.NewLine;
-                    Result += Environment.NewLine;
-
-                    Result += string.Format("Variant : {0}", Instance.Performance.Variant);
-                    Result += Environment.NewLine;
-
-                    Result += string.Format("Anti aliasing : {0}", Instance.Performance.AntiAliasing);
-                    Result += Environment.NewLine;
-
-                    if (Instance.Performance.Variant == "Redux")
-                    {
-                        Result += "Lods : Redux";
-                    }
-                    else
-                    {
-                        Result += "Lods : " + Instance.Performance.LODs;
-                    }
-
-                    Result += Environment.NewLine;
-
-                    switch (Instance.Performance.IniSettings)
-                    {
-                        case "0":
-                            Result += "Ini level : Low";
-                            break;
-                        case "1":
-                            Result += "Ini level : Medium";
-                            break;
-                        case "2":
-                            Result += "Ini level : High";
-                            break;
-                    }
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Performance.AdvancedPhysics == "TRUE")
-                    {
-                        Result += "Advanced Physics : Yes";
-                    }
-                    else
-                    {
-                        Result += "Advanced Physics : No";
-                    }
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Performance.RayTracing == "TRUE")
-                    {
-                        Result += "Ray tracing : Yes";
-                    }
-                    else
-                    {
-                        Result += "Ray tracing : No";
-                    }
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Performance.FPSStabilizer == "TRUE")
-                    {
-                        Result += "FPS Stabilizer : Yes";
-                    }
-                    else
-                    {
-                        Result += "FPS Stabilizer : No";
-                    }
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Performance.DownScaling == "TRUE")
-                    {
-                        Result += "Downscaling : Yes";
-                        Result += Environment.NewLine;
-                        Result += "Downscaling resolution : " + Instance.Performance.DownWidth + "x" + Instance.Performance.DownHeight;
-                    }
-                    else
-                    {
-                        Result += "Downscaling : No";
-                    }
-
-                    #endregion
-                }
-                else if ( Instance.Name == Strings.NolvusAwakening)
-                {
-                    #region V6
-
-                    Result += "PERFORMANCE SETTINGS";
-                    Result += Environment.NewLine;
-                    Result += Environment.NewLine;
-
-                    Result += string.Format("Variant : {0}", Instance.Performance.Variant);
-                    Result += Environment.NewLine;
-
-                    Result += string.Format("Anti aliasing : {0}", Instance.Performance.AntiAliasing);
-                    Result += Environment.NewLine;
-
-                    if (Instance.Performance.Variant == "Redux")
-                    {
-                        Result += "Lods : Redux";
-                    }
-                    else if (Instance.Performance.Variant == "Ultimate")
-                    {
-                        Result += "Lods : Ultimate";
-                    }
-                    else
-                    {
-                        Result += "Lods : " + Instance.Performance.LODs;
-                    }
-
-                    Result += Environment.NewLine;
-
-                    switch (Instance.Performance.IniSettings)
-                    {
-                        case "0":
-                            Result += "Ini level : Low";
-                            break;
-                        case "1":
-                            Result += "Ini level : Medium";
-                            break;
-                        case "2":
-                            Result += "Ini level : High";
-                            break;
-                    }
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Performance.FrameGeneration == "TRUE")
-                    {
-                        Result += "Frame Generation : Yes";
-                    }
-                    else
-                    {
-                        Result += "Frame Generation : No";
-                    }
-
-                    Result += Environment.NewLine;                    
-
-                    if (Instance.Performance.SREX == "TRUE")
-                    {
-                        Result += "SR Exterior Cities : Yes";
-                    }
-                    else
-                    {
-                        Result += "SR Exterior Cities : No";
-                    }                   
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Performance.DownScaling == "TRUE")
-                    {
-                        Result += "Downscaling : Yes";
-                        Result += Environment.NewLine;
-                        Result += "Downscaling resolution : " + Instance.Performance.DownWidth + "x" + Instance.Performance.DownHeight;
-                    }
-                    else
-                    {
-                        Result += "Downscaling : No";
-                    }
-
-                    #endregion
-                }
-
-                Result += Environment.NewLine;
-                Result += Environment.NewLine;
-
-                #endregion
-
-                Progress("Generating report", 50);
-
-                #region ENB
-
-                Result += "ENB SETTINGS";
-                Result += Environment.NewLine;
-                Result += Environment.NewLine;
-
-                Result += "ENB Preset :"  + ENBs.GetENBByCode(Instance.Options.AlternateENB);
-
-                Result += Environment.NewLine;
-                Result += Environment.NewLine;
-
-                #endregion
-
-                Progress("Generating report", 60);
-
-                #region Options
-
-                if (Instance.Name == Strings.NolvusAscension)
-                {
-                    #region V5
-
-                    Result += "INSTANCE OPTIONS";
-                    Result += Environment.NewLine;
-                    Result += Environment.NewLine;
-
-                    if (Instance.Options.HardcoreMode == "TRUE")
-                    {
-                        Result += "Hardcore mode : Yes";
-                    }
-                    else
-                    {
-                        Result += "Hardcore mode : No";
-                    }
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Options.AlternateLeveling == "TRUE")
-                    {
-                        Result += "Alternate leveling : Yes";
-                    }
-                    else
-                    {
-                        Result += "Alternate leveling : No";
-                    }
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Options.AlternateStart == "TRUE")
-                    {
-                        Result += "Alternate start : Yes";
-                    }
-                    else
-                    {
-                        Result += "Alternate start : No";
-                    }
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Options.FantasyMode == "TRUE")
-                    {
-                        Result += "Fantasy mode : Yes";
-                    }
-                    else
-                    {
-                        Result += "Fantasy mode : No";
-                    }
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Options.Nudity == "TRUE")
-                    {
-                        Result += "Nudity : Yes";
-                    }
-                    else
-                    {
-                        Result += "Nudity : No";
-                    }
-
-                    Result += Environment.NewLine;
-
-                    Result += string.Format("Skin type : {0}", Instance.Options.SkinType);
-
-                    #endregion
-                }
-                else if ( Instance.Name == Strings.NolvusAwakening)
-                {
-                    #region V6
-
-                    Result += "INSTANCE OPTIONS";
-                    Result += Environment.NewLine;
-                    Result += Environment.NewLine;
-
-                    Result += "Combat Animations : " + Instance.Options.CombatAnimation;
-                    
-                    Result += Environment.NewLine;
-
-                    if (Instance.Options.AlternateLeveling == "TRUE")
-                    {
-                        Result += "Alternate leveling : Yes";
-                    }
-                    else
-                    {
-                        Result += "Alternate leveling : No";
-                    }                                        
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Options.Nudity == "TRUE")
-                    {
-                        Result += "Nudity : Yes";
-                    }
-                    else
-                    {
-                        Result += "Nudity : No";
-                    }
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Options.Gore == "TRUE")
-                    {
-                        Result += "Gore : Yes";
-                    }
-                    else
-                    {
-                        Result += "Gore : No";
-                    }
-
-                    Result += Environment.NewLine;
-
-                    Result += "Combat Scaling : " + Instance.Options.CombatScaling;                    
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Options.Exhaustion == "TRUE")
-                    {
-                        Result += "Exhaustion : Yes";
-                    }
-                    else
-                    {
-                        Result += "Exhaustion : No";
-                    }
-
-                    Result += Environment.NewLine;
-
-                    Result += "Nerf Power Attacks : " + Instance.Options.NerfPA;
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Options.Boss == "TRUE")
-                    {
-                        Result += "Boss : Yes";
-                    }
-                    else
-                    {
-                        Result += "Boss : No";
-                    }
-
-                    Result += Environment.NewLine;
-
-                    Result += "Zone Level Indicator : " + Instance.Options.ZoneLevelIndicator;
-
-                    Result += Environment.NewLine;
-
-                    if (Instance.Options.ZoneLevelIndicator == "TRUE")
-                    {
-                        Result += "Zone Level Indicator : Yes";
-                    }
-                    else
-                    {
-                        Result += "Zone Level Indicator : No";
-                    }
-
-                    Result += Environment.NewLine;
-
-                    #endregion
-                }
-
-
-                Result += Environment.NewLine;
-                Result += Environment.NewLine;
-
-                #endregion
-
-                Progress("Generating report", 70);
-
-                #region Status
-
-                Result += "INSTANCE STATUS";
-                Result += Environment.NewLine;
-                Result += Environment.NewLine;
-
-                var AddedMods = ModObjects.AddedModsCount;
-                var RemovedMods = ModObjects.RemovedModsCount;
-                var VersionMismatch = ModObjects.VersionMismatchCount;
-
-                if ( AddedMods > 0 || RemovedMods > 0)
-                {
-                    Result += "List has been modified";
-                }
-                else
-                {
-                    Result += "Vanilla Nolvus";
-                }
-
-                Result += Environment.NewLine;
-                Result += Environment.NewLine;
-
-                Result += string.Format("Added mods : {0}", AddedMods);
-                Result += Environment.NewLine;
-                Result += string.Format("Removed mods : {0}", RemovedMods);
-                Result += Environment.NewLine;
-                Result += string.Format("Version changed : {0}", VersionMismatch);
-
-                #endregion
-
-                Progress("Generating report", 100);
-
-                return Result;
-            });           
-        }
-
+    {        
         protected PdfPage PageBreak(PdfDocument Report, ref float Line)
         {
             Line = 10;
@@ -610,12 +126,16 @@ namespace Vcc.Nolvus.Services.Report
 
                 CurrentLine += DrawString("Version : ", Instance.Version, Graphics, Report.PageSettings, CurrentLine);
 
-                CurrentLine += DrawString("Install directory : ", Instance.InstallDir, Graphics, Report.PageSettings, CurrentLine);
+                CurrentLine += DrawString("Variant : ", Instance.SettingsManager.Variant, Graphics, Report.PageSettings, CurrentLine);
 
-                CurrentLine += DrawString("Archive directory : ", Instance.ArchiveDir, Graphics, Report.PageSettings, CurrentLine);
+                CurrentLine += DrawString("Tag : ", Instance.Tag == string.Empty ? "-" : Instance.Tag, Graphics, Report.PageSettings, CurrentLine);
+
+                CurrentLine += DrawString("Install directory : ", Instance.SettingsManager.InstallDir, Graphics, Report.PageSettings, CurrentLine);
+
+                CurrentLine += DrawString("Archive directory : ", Instance.SettingsManager.ArchiveDir, Graphics, Report.PageSettings, CurrentLine);
 
 
-                if (Instance.Settings.EnableArchiving)
+                if (Instance.SettingsManager.EnableArchiving)
                 {
                     CurrentLine += DrawString("Enable archiving : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
                 }
@@ -623,332 +143,67 @@ namespace Vcc.Nolvus.Services.Report
                 {
                     CurrentLine += DrawString("Enable archiving : ", "No", Graphics, Report.PageSettings, CurrentLine);
                 }
+                
+                CurrentLine += DrawString("Resolution : ", string.Format("{0}x{1}", Instance.SettingsManager.Width, Instance.SettingsManager.Height), Graphics, Report.PageSettings, CurrentLine);
+                
+                CurrentLine += DrawString("Downscaling : ", Instance.SettingsManager.DownScaling == "TRUE" ? "Yes" : "No", Graphics, Report.PageSettings, CurrentLine);
+                CurrentLine += DrawString("Resolution : ", Instance.SettingsManager.DownScaling == "TRUE" ? Instance.SettingsManager.DownScaledResolution : "-", Graphics, Report.PageSettings, CurrentLine);
 
-                CurrentLine += DrawString("Resolution : ", string.Format("{0}x{1}", Instance.Settings.Width, Instance.Settings.Height), Graphics, Report.PageSettings, CurrentLine);
-                CurrentLine += DrawString("Screen ratio : ", Instance.Settings.Ratio, Graphics, Report.PageSettings, CurrentLine);
-                CurrentLine += DrawString("CDN : ", Instance.Settings.CDN, Graphics, Report.PageSettings, CurrentLine);
-                CurrentLine += DrawString("Language : ", Instance.Settings.LgName, Graphics, Report.PageSettings, CurrentLine);
+                switch (Instance.SettingsManager.IniSettings)
+                {
+                    case "0":
+                        CurrentLine += DrawString("Ini level : ", "Low", Graphics, Report.PageSettings, CurrentLine);
+                        break;
+                    case "1":
+                        CurrentLine += DrawString("Ini level : ", "Medium", Graphics, Report.PageSettings, CurrentLine);
+                        break;
+                    case "2":
+                        CurrentLine += DrawString("Ini level : ", "High", Graphics, Report.PageSettings, CurrentLine);
+                        break;
+                }
+
+                CurrentLine += DrawString("CDN : ", Instance.SettingsManager.CDN, Graphics, Report.PageSettings, CurrentLine);
+                CurrentLine += DrawString("Language : ", Instance.SettingsManager.LgName, Graphics, Report.PageSettings, CurrentLine);                
 
                 #endregion
 
                 Progress("Generating report", 30);
 
-                Graphics = PageBreak(Report, ref CurrentLine).Graphics;
-
-                #region Performance
-
-                if (Instance.Name == Strings.NolvusAscension)
-                {
-                    #region V5
-
-                    CurrentLine += 20;
-
-                    CurrentLine += DrawHeader("PERFORMANCE SETTINGS", Graphics, Report.PageSettings, CurrentLine);
-
-                    CurrentLine += DrawString("Variant : ", Instance.Performance.Variant, Graphics, Report.PageSettings, CurrentLine);
-
-                    Graphics = PageBreak(Report, ref CurrentLine).Graphics;
-
-                    CurrentLine += DrawString("Anti aliasing : ", Instance.Performance.AntiAliasing, Graphics, Report.PageSettings, CurrentLine);
-
-                    if (Instance.Performance.Variant == "Redux")
-                    {
-                        CurrentLine += DrawString("Lods : ", "Redux", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Lods : ", Instance.Performance.LODs, Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-                    switch (Instance.Performance.IniSettings)
-                    {
-                        case "0":
-                            CurrentLine += DrawString("Ini level : ", "Low", Graphics, Report.PageSettings, CurrentLine);
-                            break;
-                        case "1":
-                            CurrentLine += DrawString("Ini level : ", "Medium", Graphics, Report.PageSettings, CurrentLine);
-                            break;
-                        case "2":
-                            CurrentLine += DrawString("Ini level : ", "High", Graphics, Report.PageSettings, CurrentLine);
-                            break;
-                    }
-
-
-                    if (Instance.Performance.AdvancedPhysics == "TRUE")
-                    {
-                        CurrentLine += DrawString("Advanced Physics : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Advanced Physics : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-
-                    if (Instance.Performance.RayTracing == "TRUE")
-                    {
-                        CurrentLine += DrawString("Ray tracing : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Ray tracing : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-                    if (Instance.Performance.FPSStabilizer == "TRUE")
-                    {
-                        CurrentLine += DrawString("FPS Stabilizer : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("FPS Stabilizer : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-
-                    if (Instance.Performance.DownScaling == "TRUE")
-                    {
-                        CurrentLine += DrawString("Downscaling : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                        CurrentLine += DrawString("Downscaling resolution : ", string.Format("{0}x{1}", Instance.Performance.DownWidth, Instance.Performance.DownHeight), Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Downscaling : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-                    #endregion
-                }
-                else if (Instance.Name == Strings.NolvusAwakening)
-                {
-                    #region V6
-
-                    CurrentLine += 20;                    
-
-                    CurrentLine += DrawHeader("PERFORMANCE SETTINGS", Graphics, Report.PageSettings, CurrentLine);                    
-
-                    CurrentLine += DrawString("Variant : ", Instance.Performance.Variant, Graphics, Report.PageSettings, CurrentLine);                    
-
-                    CurrentLine += DrawString("Anti aliasing : ", Instance.Performance.AntiAliasing, Graphics, Report.PageSettings, CurrentLine);
-
-                    if (Instance.Performance.Variant == "Redux")
-                    {
-                        CurrentLine += DrawString("Lods : ", "Redux", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Lods : ", Instance.Performance.LODs, Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-                    switch (Instance.Performance.IniSettings)
-                    {
-                        case "0":
-                            CurrentLine += DrawString("Ini level : ", "Low", Graphics, Report.PageSettings, CurrentLine);
-                            break;
-                        case "1":
-                            CurrentLine += DrawString("Ini level : ", "Medium", Graphics, Report.PageSettings, CurrentLine);
-                            break;
-                        case "2":
-                            CurrentLine += DrawString("Ini level : ", "High", Graphics, Report.PageSettings, CurrentLine);
-                            break;
-                    }
-
-                    if (Instance.Performance.FrameGeneration == "TRUE")
-                    {
-                        CurrentLine += DrawString("Frame Generation : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Frame Generation : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-
-                    if (Instance.Performance.SREX == "TRUE")
-                    {
-                        CurrentLine += DrawString("SR Exterior Cities : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("SR Exterior Cities : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }                   
-
-
-                    if (Instance.Performance.DownScaling == "TRUE")
-                    {
-                        CurrentLine += DrawString("Downscaling : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                        CurrentLine += DrawString("Downscaling resolution : ", string.Format("{0}x{1}", Instance.Performance.DownWidth, Instance.Performance.DownHeight), Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Downscaling : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-                    #endregion
-                }
-
-                #endregion
-
-                Progress("Generating report", 40);
-
-                #region ENB
-
-                CurrentLine += 20;
-
-                CurrentLine += DrawHeader("ENB SETTINGS", Graphics, Report.PageSettings, CurrentLine);
-
-                CurrentLine += DrawString("ENB Preset : ", ENBs.GetENBByCode(Instance.Options.AlternateENB), Graphics, Report.PageSettings, CurrentLine);
-
-                #endregion
-
-                Progress("Generating report", 50);
-
                 #region Options
 
-                if (Instance.Name == Strings.NolvusAscension)
-                {
-                    #region V5
+                Graphics = PageBreak(Report, ref CurrentLine).Graphics;
 
+                var Categories = Instance.OptionsManager.GetOptionCategories();
+
+                foreach(var Category in Categories)
+                {
                     CurrentLine += 20;
 
-                    CurrentLine += DrawHeader("INSTANCE OPTIONS", Graphics, Report.PageSettings, CurrentLine);
-
-                    if (Instance.Options.HardcoreMode == "TRUE")
+                    if (CurrentLine + 100 > Page.Graphics.ClientSize.Height)
                     {
-                        CurrentLine += DrawString("Hardcore mode : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Hardcore mode : ", "No", Graphics, Report.PageSettings, CurrentLine);
+                        Graphics = PageBreak(Report, ref CurrentLine).Graphics;
                     }
 
-                    if (Instance.Options.AlternateLeveling == "TRUE")
-                    {
-                        CurrentLine += DrawString("Alternate leveling : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Alternate leveling : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
+                    CurrentLine += DrawHeader(string.Format("{0} Options", Category), Graphics, Report.PageSettings, CurrentLine);
 
-                    if (Instance.Options.AlternateStart == "TRUE")
-                    {
-                        CurrentLine += DrawString("Alternate start : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Alternate start : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
+                    var Options = Instance.OptionsManager.GetOptionsByCategory(Category);                    
 
-                    if (Instance.Options.FantasyMode == "TRUE")
+                    foreach (var Option in Options)
                     {
-                        CurrentLine += DrawString("Fantasy mode : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Fantasy mode : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
+                        if (CurrentLine + 20 > Page.Graphics.ClientSize.Height)
+                        {
+                            Graphics = PageBreak(Report, ref CurrentLine).Graphics;
+                        }
 
-                    if (Instance.Options.Nudity == "TRUE")
-                    {
-                        CurrentLine += DrawString("Nudity : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Nudity : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-                    CurrentLine += DrawString("Skin type : ", Instance.Options.SkinType, Graphics, Report.PageSettings, CurrentLine);
-
-                    #endregion
-                }
-                else if (Instance.Name == Strings.NolvusAwakening)
-                {
-                    #region V6
-
-                    CurrentLine += 20;
-
-                    CurrentLine += DrawHeader("INSTANCE OPTIONS", Graphics, Report.PageSettings, CurrentLine);
-                   
-                    if (Instance.Options.AlternateLeveling == "TRUE")
-                    {
-                        CurrentLine += DrawString("Alternate leveling : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Alternate leveling : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }                   
-
-                    
-                    CurrentLine += DrawString("Combat animations : ", Instance.Options.CombatAnimation, Graphics, Report.PageSettings, CurrentLine);
-                    
-
-                    if (Instance.Options.Nudity == "TRUE")
-                    {
-                        CurrentLine += DrawString("Nudity : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Nudity : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-                    if (Instance.Options.Gore == "TRUE")
-                    {
-                        CurrentLine += DrawString("Gore : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Gore : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-                    CurrentLine += DrawString("Combat Scaling : ", Instance.Options.CombatScaling, Graphics, Report.PageSettings, CurrentLine);
-
-                    if (Instance.Options.Exhaustion == "TRUE")
-                    {
-                        CurrentLine += DrawString("Exhaustion : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Exhaustion : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-                    CurrentLine += DrawString("Nerf power attacks : ", Instance.Options.NerfPA, Graphics, Report.PageSettings, CurrentLine);
-
-                    if (Instance.Options.Boss == "TRUE")
-                    {
-                        CurrentLine += DrawString("Boss : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Boss : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-                    if (Instance.Options.Controller == "TRUE")
-                    {
-                        CurrentLine += DrawString("Controller : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Controller : ", "No", Graphics, Report.PageSettings, CurrentLine);
-                    }
-
-                    CurrentLine += DrawString("User Interface : ", Instance.Options.UI, Graphics, Report.PageSettings, CurrentLine);
-                    
-
-                    if (Instance.Options.ZoneLevelIndicator == "TRUE")
-                    {
-                        CurrentLine += DrawString("Zone Level Indicator : ", "Yes", Graphics, Report.PageSettings, CurrentLine);
-                    }
-                    else
-                    {
-                        CurrentLine += DrawString("Zone Level Indicator : ", "No", Graphics, Report.PageSettings, CurrentLine);
+                        CurrentLine += DrawString(string.Format("{0} : ", Option.FriendlyName), Option.FormattedValue, Graphics, Report.PageSettings, CurrentLine);
                     }                    
-
-                    #endregion
                 }
 
                 #endregion
 
-                Progress("Generating report", 60);
+                Progress("Generating report", 60);                
 
-                #region Status
-
-                Graphics = PageBreak(Report, ref CurrentLine).Graphics;
+                #region Status                
 
                 CurrentLine += 20;
 
@@ -974,8 +229,6 @@ namespace Vcc.Nolvus.Services.Report
                 {
                     CurrentLine += DrawString("List status : ", "Vanilla Nolvus", Graphics, Report.PageSettings, CurrentLine);
                 }
-
-
 
                 CurrentLine += DrawString("Added mods : ", AddedMods.ToString(), Graphics, Report.PageSettings, CurrentLine);
                 CurrentLine += DrawString("Removed mods : ", RemovedMods.ToString(), Graphics, Report.PageSettings, CurrentLine);

@@ -128,7 +128,17 @@ namespace Vcc.Nolvus.Services.Folders
         {
             get { return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "reports");}
         }
-               
+
+        public string LogsDirectory
+        {
+            get { return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs"); }
+        }
+
+        public void ClearCache()
+        {
+            ServiceSingleton.Files.RemoveDirectory(DownloadDirectory, false);
+            ServiceSingleton.Files.RemoveDirectory(ExtractDirectory, false);
+        }
         public FolderService()
         {            
             Directory.CreateDirectory(CacheDirectory);
@@ -139,6 +149,7 @@ namespace Vcc.Nolvus.Services.Folders
             Directory.CreateDirectory(InstancesDirectory);
             Directory.CreateDirectory(ReportDirectory);
             Directory.CreateDirectory(BinPatchDirectory);
+            Directory.CreateDirectory(LogsDirectory);
         }        
     }
 }

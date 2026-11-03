@@ -53,10 +53,10 @@
             // 
             this.BtnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnOK.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.BtnOK.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnOK.BorderColor = System.Drawing.Color.Gray;
             this.BtnOK.ForeColor = System.Drawing.Color.White;
-            this.BtnOK.Location = new System.Drawing.Point(373, 181);
+            this.BtnOK.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnOK.Location = new System.Drawing.Point(369, 177);
             this.BtnOK.Name = "BtnOK";
             this.BtnOK.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnOK.Size = new System.Drawing.Size(75, 39);
@@ -79,10 +79,10 @@
             // 
             this.BtnYes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnYes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnYes.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.BtnYes.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnYes.BorderColor = System.Drawing.Color.Gray;
             this.BtnYes.ForeColor = System.Drawing.Color.White;
-            this.BtnYes.Location = new System.Drawing.Point(292, 181);
+            this.BtnYes.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnYes.Location = new System.Drawing.Point(288, 177);
             this.BtnYes.Name = "BtnYes";
             this.BtnYes.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnYes.Size = new System.Drawing.Size(75, 39);
@@ -95,10 +95,10 @@
             // 
             this.BtnNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnNo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnNo.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.BtnNo.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnNo.BorderColor = System.Drawing.Color.Gray;
             this.BtnNo.ForeColor = System.Drawing.Color.White;
-            this.BtnNo.Location = new System.Drawing.Point(373, 181);
+            this.BtnNo.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnNo.Location = new System.Drawing.Point(369, 177);
             this.BtnNo.Name = "BtnNo";
             this.BtnNo.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnNo.Size = new System.Drawing.Size(75, 39);

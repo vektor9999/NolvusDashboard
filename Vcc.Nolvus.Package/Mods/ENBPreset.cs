@@ -23,7 +23,7 @@ namespace Vcc.Nolvus.Package.Mods
         {
             get
             {
-                return GetFieldValueByKey("EnbCode") == ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB;
+                return GetFieldValueByKey("EnbCode") == ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("AlternateENB");
             }
         }
 

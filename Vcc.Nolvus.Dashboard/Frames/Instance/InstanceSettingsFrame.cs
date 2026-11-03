@@ -28,8 +28,10 @@ using Vcc.Nolvus.Dashboard.Core;
 using Vcc.Nolvus.Dashboard.Controls;
 using Vcc.Nolvus.Dashboard.Forms;
 using Vcc.Nolvus.Dashboard.Frames.Installer;
+using Vcc.Nolvus.Dashboard.Frames.Manager.Options.v6;
+using Vcc.Nolvus.Dashboard.Frames.Remap.v6;
 
-namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
+namespace Vcc.Nolvus.Dashboard.Frames.Instance
 {
     public partial class InstanceSettingsFrame : DashboardFrame
     {
@@ -43,9 +45,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 
             bool Found = false;
 
-            string Resolution = ServiceSingleton.Instances.WorkingInstance.Settings.Width + "x" + ServiceSingleton.Instances.WorkingInstance.Settings.Height;
+            string Resolution = ServiceSingleton.Instances.WorkingInstance.SettingsManager.Width + "x" + ServiceSingleton.Instances.WorkingInstance.SettingsManager.Height;
 
-            if (ServiceSingleton.Instances.WorkingInstance.Settings.Height != string.Empty && ServiceSingleton.Instances.WorkingInstance.Settings.Width != string.Empty)
+            if (ServiceSingleton.Instances.WorkingInstance.SettingsManager.Height != string.Empty && ServiceSingleton.Instances.WorkingInstance.SettingsManager.Width != string.Empty)
             {
                 Index = 0;
 
@@ -82,12 +84,12 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 
             bool Found = false;
 
-            if (ServiceSingleton.Instances.WorkingInstance.Performance.DownWidth != string.Empty && ServiceSingleton.Instances.WorkingInstance.Performance.DownHeight != string.Empty)
+            if (ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownWidth != string.Empty && ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownHeight != string.Empty)
             {
 
-                string Resolution = ServiceSingleton.Instances.WorkingInstance.Performance.DownWidth + "x" + ServiceSingleton.Instances.WorkingInstance.Performance.DownHeight;
+                string Resolution = ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownWidth + "x" + ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownHeight;
 
-                if (ServiceSingleton.Instances.WorkingInstance.Performance.DownHeight != string.Empty && ServiceSingleton.Instances.WorkingInstance.Performance.DownWidth != string.Empty)
+                if (ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownHeight != string.Empty && ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownWidth != string.Empty)
                 {
                     Index = 0;
 
@@ -123,14 +125,14 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 
         private int DownloadLocationIndex(List<string> Locations)
         {
-            var Index = Locations.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Settings.CDN);
+            var Index = Locations.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.SettingsManager.CDN);
 
             return Index == -1 ? 0 : Index;            
         }
 
         private int AntiAliasingIndex(List<string> AntiAliasing)
         {
-            var Index = AntiAliasing.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Performance.AntiAliasing);
+            var Index = AntiAliasing.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("AntiAliasing"));
             return Index == -1 ? 0 : Index;            
         }
 
@@ -173,6 +175,16 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 
             PicBox.Location = new Point((int)Math.Round(PicBox.Location.X * ServiceSingleton.Dashboard.ScalingFactor), (int)Math.Round(PicBox.Location.Y * ServiceSingleton.Dashboard.ScalingFactor));
             PicBox.Size = new Size((int)Math.Round(PicBox.Size.Width * ServiceSingleton.Dashboard.ScalingFactor), (int)Math.Round(PicBox.Size.Height * ServiceSingleton.Dashboard.ScalingFactor));
+
+            OptionsGrid.ThemeName = "Office2016Black";                        
+
+            OptionsGrid.Style.CurrentCellStyle.BackColor = Color.Orange;
+            OptionsGrid.Style.CurrentCellStyle.TextColor = Color.White;
+            OptionsGrid.Style.CurrentCellStyle.BorderColor = Color.Orange;            
+
+            OptionsGrid.GroupColumnDescriptions.Add(new GroupColumnDescription() { ColumnName = "Category", SortGroupRecords = false });
+
+            OptionsGrid.AllowSorting = false;
         }
       
         protected override async Task OnLoadAsync()
@@ -183,9 +195,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 
                 INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
-                LblHeader.Text = "Settings for " + string.Format("{0} - {1} v{2}{3}", Instance.Name, Instance.Performance.Variant, Instance.Version, Instance.Tag != string.Empty ? string.Format(" - ({0})", Instance.Tag) : string.Empty);
+                LblHeader.Text = string.Format("Settings for {0}", Instance.FullName);
 
-                ServiceSingleton.Dashboard.Info("Instance settings for " + Instance.Name + " v" + Instance.Version);
+                ServiceSingleton.Dashboard.Info(string.Format("Instance settings for {0}", Instance.FullName));
 
                 List<string> Resolutions = ServiceSingleton.Globals.WindowsResolutions;
                 DrpDwnLstScreenRes.DataSource = Resolutions;
@@ -194,9 +206,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
                 if (ResError)
                 {
                     ApplyResolution();
-                }                
+                }
 
-                LblRatio.Text = ServiceSingleton.Instances.WorkingInstance.Settings.Ratio;
+                LblLanguage.Text = string.Format("{0} - ({1})", Instance.SettingsManager.LgName, Instance.SettingsManager.LgCode);
 
                 DrpDwnLstDownRes.DataSource = Resolutions;
                 DrpDwnLstDownRes.SelectedIndex = DownScaledResolutionIndex(Resolutions, out ResError);
@@ -206,19 +218,19 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
                     ApplyDowncalingResolution();
                 }
 
-                this.TxtBxInstancePath.Text = Instance.InstallDir;
-                this.TxtBxArchivePath.Text = Instance.ArchiveDir;
+                LblInstallDir.Text = Instance.SettingsManager.InstallDir;
+                LblArchiveDir.Text = Instance.SettingsManager.ArchiveDir;
 
                 this.TglBtnEnableArchive.ToggleState = ToggleButtonState.Inactive;
 
-                if (Instance.Settings.EnableArchiving)
+                if (Instance.SettingsManager.EnableArchiving)
                 {
                     this.TglBtnEnableArchive.ToggleState = ToggleButtonState.Active;
                 }                
 
                 this.TglBtnDownScale.ToggleState = ToggleButtonState.Inactive;
 
-                if (Instance.Performance.DownScaling == "TRUE")
+                if (Instance.SettingsManager.DownScaling == "TRUE")
                 {
                     this.TglBtnDownScale.ToggleState = ToggleButtonState.Active;
                     DrpDwnLstDownRes.Enabled = this.TglBtnDownScale.ToggleState == ToggleButtonState.Active;
@@ -230,38 +242,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
                 BtnApplyRes.Enabled = false;
                 BtnApplyDownScaling.Enabled = false;
 
-                LblVariant.Text = Instance.Performance.Variant;
-                LblAntiAliasing.Text = Instance.Performance.AntiAliasing;
-
-                if (Instance.Performance.Variant == "Redux")
-                {
-                    LblLODs.Text = "Redux";
-                }
-                else
-                {
-                    LblLODs.Text = Instance.Performance.LODs;
-                }
-
-                LblSREX.Text = Instance.Performance.SREX == "TRUE" ? "Yes" : "No";
-                LblFrameGen.Text = Instance.Performance.FrameGeneration == "TRUE" ? "Yes" : "No";
-                LblCombatAnims.Text = Instance.Options.CombatAnimation;
-
                 
-                LblLeveling.Text = Instance.Options.AlternateLeveling == "TRUE" ? "Yes" : "No";
-                LblNude.Text = Instance.Options.Nudity == "TRUE" ? "Yes" : "No";
-                LblGore.Text = Instance.Options.Gore == "TRUE" ? "Yes" : "No";                
 
-                LblENB.Text = ENBs.GetENBByCode(Instance.Options.AlternateENB);
-
-                LblCombatScaling.Text = Instance.Options.CombatScaling;
-                LblExhaustion.Text = Instance.Options.Exhaustion == "TRUE" ? "Yes" : "No";
-                LblNerfPA.Text = Instance.Options.NerfPA;                
-                LblBoss.Text = Instance.Options.Boss == "TRUE" ? "Yes" : "No";   
-                LblZoneLevelIndicator.Text = Instance.Options.ZoneLevelIndicator == "TRUE" ? "Yes" : "No";
-                LblController.Text = Instance.Options.Controller == "TRUE" ? "Yes" : "No";
-                LblUI.Text = Instance.Options.UI;
-
-                List<string> IniSettings = new List<string>();
+                List <string> IniSettings = new List<string>();
 
                 IniSettings.Add("Low");
                 IniSettings.Add("Medium");
@@ -269,13 +252,21 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 
                 DrpDwnLstIni.DataSource = IniSettings;
 
-                DrpDwnLstIni.SelectedIndex = System.Convert.ToInt16(Instance.Performance.IniSettings);
+                DrpDwnLstIni.SelectedIndex = System.Convert.ToInt16(Instance.SettingsManager.IniSettings);
 
-                GrpBxDownscaling.Enabled = Instance.Performance.AntiAliasing != "DLAA" && Instance.Performance.AntiAliasing != "FSR";
+                OptionsGrid.DataSource = Instance.OptionsManager.GetOptions();
 
-                if (!GrpBxDownscaling.Enabled)
+                OptionsGrid.ExpandAllGroup();
+
+                TglBtnDownScale.Enabled = Instance.OptionsManager.GetOptionValue("AntiAliasing") != "DLAA" && Instance.OptionsManager.GetOptionValue("AntiAliasing") != "FSR";
+
+                if (!TglBtnDownScale.Enabled)
                 {
-                    GrpBxDownscaling.Text += " (Disabled when using DLAA or FSR)";
+                    LblDownscalingInfo.Text = " (Disabled when using DLAA/FSR/Frame Generation)";
+                }
+                else
+                {
+                    LblDownscalingInfo.Text = string.Empty;
                 }
 
                 Initializing = false;                
@@ -288,15 +279,15 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
         private void PnlHeader_Paint(object sender, PaintEventArgs e)
         {
             ControlPaint.DrawBorder(e.Graphics, PnlHeader.ClientRectangle,
-              Color.White, 3, ButtonBorderStyle.Solid, // left
-              Color.White, 3, ButtonBorderStyle.Solid, // top
-              Color.White, 3, ButtonBorderStyle.Solid, // right
-              Color.White, 3, ButtonBorderStyle.Solid);// bottom
+              Color.White, 1, ButtonBorderStyle.Solid, // left
+              Color.White, 1, ButtonBorderStyle.Solid, // top
+              Color.White, 1, ButtonBorderStyle.Solid, // right
+              Color.White, 1, ButtonBorderStyle.Solid);// bottom
         }
 
         private void TglBtnEnableArchive_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
         {
-            ServiceSingleton.Instances.WorkingInstance.Settings.EnableArchiving = e.ToggleState == ToggleButtonState.Active;
+            ServiceSingleton.Instances.WorkingInstance.SettingsManager.EnableArchiving = e.ToggleState == ToggleButtonState.Active;
 
             ServiceSingleton.Instances.Save();
         }      
@@ -320,15 +311,12 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 
         private void DrpDwnLstDownRes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!Initializing)
-            {
-                BtnApplyDownScaling.Enabled = true;
-            }
-        }        
+
+        }
 
         private void DrpDwnLstDownLoc_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ServiceSingleton.Instances.WorkingInstance.Settings.CDN = DrpDwnLstDownLoc.SelectedItem.ToString();
+            ServiceSingleton.Instances.WorkingInstance.SettingsManager.CDN = DrpDwnLstDownLoc.SelectedItem.ToString();
 
             ServiceSingleton.Instances.Save();
         }
@@ -341,10 +329,10 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
                 {
                     INolvusInstance Instance = ServiceSingleton.Instances.WorkingInstance;
 
-                    Instance.Performance.IniSettings = DrpDwnLstIni.SelectedIndex.ToString();
+                    Instance.SettingsManager.IniSettings = DrpDwnLstIni.SelectedIndex.ToString();
 
-                    File.WriteAllText(Path.Combine(Instance.InstallDir, "MODS", "profiles", Instance.Name, "Skyrim.ini"), ModOrganizer.GetIni(false, (IniLevel)System.Convert.ToInt16(Instance.Performance.IniSettings), Instance));
-                    File.WriteAllText(Path.Combine(Instance.InstallDir, "MODS", "profiles", Instance.Name, "SkyrimPrefs.ini"), ModOrganizer.GetIni(true, (IniLevel)System.Convert.ToInt16(Instance.Performance.IniSettings), Instance));
+                    File.WriteAllText(Path.Combine(Instance.SettingsManager.InstallDir, "MODS", "profiles", Instance.Name, "Skyrim.ini"), ModOrganizer.GetIni(false, (IniLevel)System.Convert.ToInt16(Instance.SettingsManager.IniSettings), Instance));
+                    File.WriteAllText(Path.Combine(Instance.SettingsManager.InstallDir, "MODS", "profiles", Instance.Name, "SkyrimPrefs.ini"), ModOrganizer.GetIni(true, (IniLevel)System.Convert.ToInt16(Instance.SettingsManager.IniSettings), Instance));
 
                     ServiceSingleton.Instances.Save();
                 }
@@ -370,15 +358,15 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 
                 string[] Reso = Resolution.Split(new char[] { 'x' });
 
-                Instance.Settings.Width = Reso[0];
-                Instance.Settings.Height = Reso[1];
+                Instance.SettingsManager.Width = Reso[0];
+                Instance.SettingsManager.Height = Reso[1];
 
                 ServiceSingleton.Instances.Save();
 
-                string FileName = Path.Combine(Instance.InstallDir, "MODS", "profiles", Instance.Name, "SkyrimPrefs.ini");
+                string FileName = Path.Combine(Instance.SettingsManager.InstallDir, "MODS", "profiles", Instance.Name, "SkyrimPrefs.ini");
 
-                ServiceSingleton.Settings.StoreIniValue(FileName, "Display", "iSize W", Instance.Settings.Width);
-                ServiceSingleton.Settings.StoreIniValue(FileName, "Display", "iSize H", Instance.Settings.Height);
+                ServiceSingleton.Settings.StoreIniValue(FileName, "Display", "iSize W", Instance.SettingsManager.Width);
+                ServiceSingleton.Settings.StoreIniValue(FileName, "Display", "iSize H", Instance.SettingsManager.Height);
 
                 BtnApplyRes.Enabled = false;
             }
@@ -405,21 +393,21 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 
                 if (TglBtnDownScale.ToggleState == ToggleButtonState.Active)
                 {
-                    Instance.Performance.DownScaling = "TRUE";
+                    Instance.SettingsManager.DownScaling = "TRUE";
                 }
                 else
                 {
-                    Instance.Performance.DownScaling = "FALSE";
+                    Instance.SettingsManager.DownScaling = "FALSE";
                 }
 
-                Instance.Performance.DownWidth = Reso[0];
-                Instance.Performance.DownHeight = Reso[1];
+                Instance.SettingsManager.DownWidth = Reso[0];
+                Instance.SettingsManager.DownHeight = Reso[1];
 
                 ServiceSingleton.Instances.Save();
 
                 #region Apply Settings
 
-                string SettingsFile = Path.Combine(Instance.InstallDir, "MODS", "Mods", "SSE Display Tweaks", "SKSE", "Plugins", "SSEDisplayTweaks.ini");
+                string SettingsFile = Path.Combine(Instance.SettingsManager.InstallDir, "MODS", "Mods", "SSE Display Tweaks", "SKSE", "Plugins", "SSEDisplayTweaks.ini");
 
                 if (File.Exists(SettingsFile))
                 {
@@ -436,20 +424,20 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 
                         if (Line.Contains("Resolution") && Line.Substring(0, 1) != "# " && !FoundResolution)
                         {
-                            if (Instance.Performance.DownScaling == "TRUE")
+                            if (Instance.SettingsManager.DownScaling == "TRUE")
                             {
-                                _Line = "Resolution" + "=" + Instance.Performance.DownScaledResolution;
+                                _Line = "Resolution" + "=" + Instance.SettingsManager.DownScaledResolution;
                             }
                             else
                             {
-                                _Line = "#Resolution" + "=" + Instance.Performance.DownScaledResolution;
+                                _Line = "#Resolution" + "=" + Instance.SettingsManager.DownScaledResolution;
                             }
 
                             FoundResolution = true;
                         }
                         else if (Line.Contains("BorderlessUpscale") && Line.Substring(0, 1) != "# " && !FoundUpscale)
                         {
-                            if (Instance.Performance.DownScaling == "TRUE")
+                            if (Instance.SettingsManager.DownScaling == "TRUE")
                             {
                                 _Line = "BorderlessUpscale" + "=true";
                             }
@@ -486,6 +474,62 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
             ApplyDowncalingResolution();
         }
 
-        
+        private int GetTotalRecordsCount(Group group)
+        {
+            int count = 0;
+
+            if (group.Groups != null)
+            {
+                foreach (var g in group.Groups)
+                {
+                    if (g.Groups != null)
+                        foreach (var g1 in g.Groups)
+                            count += GetTotalRecordsCount(g1);
+
+                    if (g.Records != null)
+                        count += g.Records.Count;
+                }
+            }
+            else
+                if (group.Records != null)
+                count += group.Records.Count;
+
+            return count;
+        }
+
+        private void OptionsGrid_DrawCell(object sender, Syncfusion.WinForms.DataGrid.Events.DrawCellEventArgs e)
+        {
+            if (e.DataRow.RowType == RowType.CaptionCoveredRow && !string.IsNullOrEmpty(e.DisplayText))
+            {
+                var displayText = string.Empty;
+                var group = (e.DataRow.RowData as Syncfusion.Data.Group);
+
+                if (group != null)
+                {
+                    if (group.Groups != null)
+                    {
+                        int Options = 0;
+                        Options = GetTotalRecordsCount(group);
+                        displayText = group.Key.ToString() + " ( " + Options + " Options (" + group.Groups.Count + " Sub Categories)";
+                    }
+                    else if (group.Records != null)
+                    {
+                        displayText = group.Key.ToString() + " ( " + group.Records.Count + " Options )";                        
+                    }
+
+                    e.DisplayText = displayText;
+                }
+            }
+        }
+
+        private async void LnkLblOptionsManager_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            await ServiceSingleton.Dashboard.LoadFrameAsync<OptionsManagerFrame>();
+        }
+
+        private void LnkLblRemap_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ServiceSingleton.Dashboard.LoadFrame<RemapInstanceFrame>();
+        }
     }
 }

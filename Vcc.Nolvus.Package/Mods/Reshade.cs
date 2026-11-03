@@ -200,9 +200,9 @@ WindowRounding=0.000000";
         {
             var Tsk = Task.Run(() =>
             {
-                string ReshadeFolder = Path.Combine(ServiceSingleton.Instances.WorkingInstance.StockGame, "reshade-shaders");
-                string ReshadeBinaryFile  = Path.Combine(ServiceSingleton.Instances.WorkingInstance.StockGame, "dxgi.dll");
-                string ReshadeIniFile = Path.Combine(ServiceSingleton.Instances.WorkingInstance.StockGame, "ReShade.ini");
+                string ReshadeFolder = Path.Combine(ServiceSingleton.Instances.WorkingInstance.SettingsManager.StockGame, "reshade-shaders");
+                string ReshadeBinaryFile  = Path.Combine(ServiceSingleton.Instances.WorkingInstance.SettingsManager.StockGame, "dxgi.dll");
+                string ReshadeIniFile = Path.Combine(ServiceSingleton.Instances.WorkingInstance.SettingsManager.StockGame, "ReShade.ini");
 
                 if (ZlpIOHelper.DirectoryExists(ReshadeFolder))
                 {
@@ -236,13 +236,13 @@ WindowRounding=0.000000";
 
                         await PrepareDirectrory();
 
-                        var ShadersDir = Path.Combine(Instance.StockGame, "reshade-shaders");
+                        var ShadersDir = Path.Combine(Instance.SettingsManager.StockGame, "reshade-shaders");
 
                         Directory.CreateDirectory(ShadersDir);
 
                         ServiceSingleton.Logger.Log("Installing reshade binaries");
 
-                        File.Copy(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, Name, "ReShade64.dll"), Path.Combine(Instance.StockGame, "dxgi.dll"), true);
+                        File.Copy(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, Name, "ReShade64.dll"), Path.Combine(Instance.SettingsManager.StockGame, "dxgi.dll"), true);
 
                         ServiceSingleton.Logger.Log("Reshade binaries installed");
 
@@ -273,26 +273,26 @@ WindowRounding=0.000000";
                         ServiceSingleton.Files.CopyFiles(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, "Prod80", "prod80-ReShade-Repository-master", "Textures"), Path.Combine(ShadersDir, "Textures"), true);
                         CopyingProgress(5, 5);
 
-                        string ShotsDir = Path.Combine(Instance.InstallDir, "SHOTS");
+                        string ShotsDir = Path.Combine(Instance.SettingsManager.InstallDir, "SHOTS");
 
                         Directory.CreateDirectory(ShotsDir);
 
                         string ReshadePreset = "Nolvus Reshade.ini";
 
-                        if (ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB == "BJREG")
+                        if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("AlternateENB") == "BJREG")
                         {
                             ReshadePreset = "Bjorn Reshade.ini";
                         }
-                        else if (ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB == "BJAGE" || ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB == "BJWOL")
+                        else if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("AlternateENB") == "BJAGE" || ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("AlternateENB") == "BJWOL")
                         {
                             ReshadePreset = "Bjorn Dark Ages.ini";
                         }                        
-                        if (ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB == "KAUZ")
+                        if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("AlternateENB") == "KAUZ")
                         {
                             ReshadePreset = string.Empty;
                         }
 
-                        File.WriteAllText(Path.Combine(Instance.StockGame, "ReShade.ini"), string.Format(ReshadeIni, Path.GetTempPath(), ReshadePreset, ShotsDir));
+                        File.WriteAllText(Path.Combine(Instance.SettingsManager.StockGame, "ReShade.ini"), string.Format(ReshadeIni, Path.GetTempPath(), ReshadePreset, ShotsDir));
 
                     }
                     catch (Exception ex)

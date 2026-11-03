@@ -104,9 +104,9 @@
             // 
             this.BtnRetry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnRetry.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnRetry.BorderColor = System.Drawing.Color.White;
-            this.BtnRetry.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnRetry.BorderColor = System.Drawing.Color.Gray;
             this.BtnRetry.ForeColor = System.Drawing.Color.White;
+            this.BtnRetry.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnRetry.Location = new System.Drawing.Point(714, 436);
             this.BtnRetry.Name = "BtnRetry";
             this.BtnRetry.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
@@ -120,9 +120,9 @@
             // 
             this.BtnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnHelp.BorderColor = System.Drawing.Color.White;
-            this.BtnHelp.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnHelp.BorderColor = System.Drawing.Color.Gray;
             this.BtnHelp.ForeColor = System.Drawing.Color.White;
+            this.BtnHelp.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnHelp.Location = new System.Drawing.Point(595, 436);
             this.BtnHelp.Name = "BtnHelp";
             this.BtnHelp.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));

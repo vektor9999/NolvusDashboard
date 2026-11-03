@@ -14,6 +14,7 @@ namespace Vcc.Nolvus.Package.Conditions
 
         public abstract bool IsValid();
         public abstract bool IsValid(string Value);
+        public abstract bool IsValid(string Data, string Value);
 
         public virtual void Load(XmlNode Node)
         {

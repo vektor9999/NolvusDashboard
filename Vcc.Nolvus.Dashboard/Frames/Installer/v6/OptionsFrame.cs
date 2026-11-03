@@ -16,6 +16,8 @@ using Vcc.Nolvus.Core.Services;
 using Vcc.Nolvus.Instance.Core;
 using Vcc.Nolvus.Dashboard.Core;
 using Vcc.Nolvus.Dashboard.Forms;
+using Vcc.Nolvus.Api.Installer.Services;
+using Vcc.Nolvus.Api.Installer.Library;
 using Syncfusion.Windows.Forms.Tools;
 
 
@@ -85,86 +87,88 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             #endregion
         }
 
-        private int AnimsIndex(List<string> Anims)
+        private int AnimsIndex(IEnumerable<INolvusOptionChoiceDTO> Anims)
         {            
-            var Index = Anims.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Options.CombatAnimation);
+            var Index = Anims.ToList().FindIndex(x => x.Value == ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("CombatAnimation"));
 
             return Index == -1 ? 0 : Index;                            
         }
 
-        private int UIsIndex(List<string> UIs)
+        private int UIsIndex(IEnumerable<INolvusOptionChoiceDTO> UIs)
         {
-            var Index = UIs.FindIndex(x => x == ServiceSingleton.Instances.WorkingInstance.Options.UI);
+            var Index = UIs.ToList().FindIndex(x => x.Value == ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("UI"));
 
             return Index == -1 ? 0 : Index;
         }
 
-        protected override void OnLoad()
+        protected override async Task OnLoadAsync()
         {
             var Instance = ServiceSingleton.Instances.WorkingInstance;
 
-            LblGOWarning.Visible = Instance.Performance.Variant == Strings.GO;
+            LblGOWarning.Visible = Instance.SettingsManager.Variant == Strings.GO;
 
             TglBtnNudity.ToggleState = ToggleButtonState.Inactive;
 
-            if (Instance.Options.Nudity == "TRUE")
-            {
-                TglBtnNudity.ToggleState = ToggleButtonState.Active;
-            }           
-
             TglBtnLeveling.ToggleState = ToggleButtonState.Inactive;
-
-            if (Instance.Options.AlternateLeveling == "TRUE")
-            {
-                TglBtnLeveling.ToggleState = ToggleButtonState.Active;
-            }
-
-            TglBtnLeveling.Enabled = Instance.Performance.Variant != Strings.GO;                       
-
             TglBtnGore.ToggleState = ToggleButtonState.Inactive;
+            TglBtnController.ToggleState = ToggleButtonState.Inactive;
 
-            if (Instance.Options.Gore == "TRUE")
+            TglBtnLeveling.Enabled = Instance.SettingsManager.Variant != Strings.GO;
+            TglBtnGore.Enabled = Instance.SettingsManager.Variant != Strings.GO;
+            TglBtnController.Enabled = Instance.SettingsManager.Variant != Strings.GO;
+
+            LblALNotUsed.Visible = Instance.SettingsManager.Variant == Strings.GO;
+            LblCANotUsed.Visible = Instance.SettingsManager.Variant == Strings.GO;
+            LblGoreNotUsed.Visible = Instance.SettingsManager.Variant == Strings.GO;
+            LblCSNotUsed.Visible = Instance.SettingsManager.Variant == Strings.GO;
+
+            DrpDwnLstCombatAnims.Enabled = Instance.SettingsManager.Variant != Strings.GO;
+
+            if (Instance.OptionsManager.GetOptionValue("Nudity") == "TRUE")
             {
-                TglBtnGore.ToggleState = ToggleButtonState.Active;
+                TglBtnNudity.ToggleState = ToggleButtonState.Active;                
+            }            
+
+            if (Instance.SettingsManager.Variant != Strings.GO)
+            {
+                if (Instance.OptionsManager.GetOptionValue("AlternateLeveling") == "TRUE")
+                {
+                    TglBtnLeveling.ToggleState = ToggleButtonState.Active;
+                }
+
+                if (Instance.OptionsManager.GetOptionValue("Gore") == "TRUE")
+                {
+                    TglBtnGore.ToggleState = ToggleButtonState.Active;
+                }
+
+                if (Instance.OptionsManager.GetOptionValue("Controller") == "TRUE")
+                {
+                    TglBtnController.ToggleState = ToggleButtonState.Active;
+                }
+
+                var CombatAnims = await ApiManager.Service.Installer.GetOptionChoices("CombatAnimation", Instance.SettingsManager.Variant, Instance.Id);
+
+                DrpDwnLstCombatAnims.DataSource = CombatAnims;
+                DrpDwnLstCombatAnims.DisplayMember = "Value";
+                DrpDwnLstCombatAnims.ValueMember = "Id";
+
+                DrpDwnLstCombatAnims.SelectedIndex = AnimsIndex(CombatAnims);                
+            }
+            else
+            {
+                var GOCombatAnims = new List<string>();
+                GOCombatAnims.Add("Not used");
+                DrpDwnLstCombatAnims.DataSource = GOCombatAnims;
+                DrpDwnLstCombatAnims.SelectedIndex = 0;
             }
 
-            TglBtnGore.Enabled = Instance.Performance.Variant != Strings.GO;
-
-            if (Instance.Options.Controller == "TRUE")
-            {
-                TglBtnController.ToggleState = ToggleButtonState.Active;
-            }
-
-            TglBtnController.Enabled = Instance.Performance.Variant != Strings.GO;
-
-            List<string> CombatAnims = new List<string>();
-
-            CombatAnims.Add("Conventional");
-            CombatAnims.Add("Fantasy");
-
-            DrpDwnLstCombatAnims.DataSource = CombatAnims;
-
-            DrpDwnLstCombatAnims.SelectedIndex = AnimsIndex(CombatAnims);
-
-            DrpDwnLstCombatAnims.Enabled = Instance.Performance.Variant != Strings.GO;
-
-            List<string> UIs = new List<string>();
-
-            UIs.Add("Untarnished UI");
-            UIs.Add("Edge UI");
-            UIs.Add("Oathvein UI");
-            UIs.Add("Norden UI");
-            UIs.Add("Vel'dun UI");
+            var UIs = await ApiManager.Service.Installer.GetOptionChoices("UI", Instance.SettingsManager.Variant, Instance.Id);
 
             DrpDwnLstUI.DataSource = UIs;
+            DrpDwnLstUI.DisplayMember = "Value";
+            DrpDwnLstUI.ValueMember = "Id";
 
             DrpDwnLstUI.SelectedIndex = UIsIndex(UIs);
-
-            LblALNotUsed.Visible = Instance.Performance.Variant == Strings.GO;
-            LblCANotUsed.Visible = Instance.Performance.Variant == Strings.GO;
-            LblGoreNotUsed.Visible = Instance.Performance.Variant == Strings.GO;
-            LblCSNotUsed.Visible = Instance.Performance.Variant == Strings.GO;
-
 
             ServiceSingleton.Dashboard.Info("Options");
         }
@@ -176,21 +180,25 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
         private void BtnContinue_Click(object sender, EventArgs e)
         {
-            if (NolvusMessageBox.ShowConfirmation("Confirmation", "The options you selected can not be changed after installation. Are you sure you want to continue?") == DialogResult.Yes)
-            {                                
-                ServiceSingleton.Dashboard.LoadFrame<v6.DifficultyFrame>();
+            if (ServiceSingleton.Instances.WorkingInstance.SettingsManager.Variant != Strings.GO)
+            {
+                ServiceSingleton.Dashboard.LoadFrameAsync<v6.DifficultyFrame>();
             }
+            else
+            {
+                ServiceSingleton.Dashboard.LoadFrame<v6.ENBFrame>();
+            }                      
         }
 
         private void TglBtnNudity_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
         {
             if (e.ToggleState == ToggleButtonState.Active)
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.Nudity = "TRUE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("Nudity").Value = "TRUE";
             }
             else
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.Nudity = "FALSE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("Nudity").Value = "FALSE";
             }
         }       
 
@@ -199,11 +207,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         {
             if (e.ToggleState == ToggleButtonState.Active)
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.AlternateLeveling = "TRUE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("AlternateLeveling").Value = "TRUE";
             }
             else
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.AlternateLeveling = "FALSE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("AlternateLeveling").Value = "FALSE";
             }
         }       
 
@@ -211,34 +219,37 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         {
             if (e.ToggleState == ToggleButtonState.Active)
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.Gore = "TRUE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("Gore").Value = "TRUE";
             }
             else
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.Gore = "FALSE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("Gore").Value = "FALSE";
             }
         }
 
         private void DrpDwnLstCombatAnims_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ServiceSingleton.Instances.WorkingInstance.Options.CombatAnimation = DrpDwnLstCombatAnims.SelectedValue.ToString();
+            if (ServiceSingleton.Instances.WorkingInstance.SettingsManager.Variant != Strings.GO)
+            {
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("CombatAnimation").Value = (DrpDwnLstCombatAnims.SelectedItem as INolvusOptionChoiceDTO).Value;
+            }                    
         }
 
         private void TglBtnController_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
         {
             if (e.ToggleState == ToggleButtonState.Active)
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.Controller = "TRUE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("Controller").Value = "TRUE";
             }
             else
             {
-                ServiceSingleton.Instances.WorkingInstance.Options.Controller = "FALSE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("Controller").Value = "FALSE";
             }
         }
 
         private void DrpDwnLstUI_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ServiceSingleton.Instances.WorkingInstance.Options.UI = DrpDwnLstUI.SelectedValue.ToString();
+            ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("UI").Value = (DrpDwnLstUI.SelectedItem as INolvusOptionChoiceDTO).Value;
         }
 
         private void BtnShowUI_Click(object sender, EventArgs e)
@@ -249,6 +260,16 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
         private void BtnShowAlternateLeveling_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/player-guide/game/leveling");
+        }
+
+        private void BtnShowGore_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/player-guide/combat/gore");
+        }
+
+        private void BtnShowController_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/player-guide/keybinds/controller");
         }
     }
 }

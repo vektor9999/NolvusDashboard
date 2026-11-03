@@ -49,14 +49,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\InstancePerformance.cs" />
-    <Compile Include="Core\InstanceSettings.cs" />
-    <Compile Include="Core\InstanceStatus.cs" />
-    <Compile Include="Core\InstanceStatusField.cs" />
     <Compile Include="Core\NolvusInstance.cs" />
-    <Compile Include="Core\InstanceOptions.cs" />
+    <Compile Include="Options\NolvusOption.cs" />
+    <Compile Include="Options\NolvusOptionsManager.cs" />
     <Compile Include="Services\InstanceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\NolvusSettingsManager.cs" />
+    <Compile Include="Status\NolvusStatusManager.cs" />
+    <Compile Include="Status\InstanceStatusField.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,7 +21,7 @@ namespace Vcc.Nolvus.Package.Services
 {   
     public class PackageService : IPackageService
     {
-        private const string SoftWareKey = "InstallationManifest/Softwares/Soft";        
+        private const string SoftWareKey = "InstallationManifest/Softwares/Soft";                
         private const string CategoryKey = "InstallationManifest/Categories/Category";        
         private const string VersionKey = "InstallationManifest/Settings/Guide/Version";
         private const string LoadOrderKey = "InstallationManifest/LoadOrder/Esp";
@@ -137,7 +137,7 @@ namespace Vcc.Nolvus.Package.Services
             {
                 if (ModsCount != 0)
                 {
-                    return Math.Floor(((double)ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Count / ModsCount) * 100);
+                    return Math.Floor(((double)ServiceSingleton.Instances.WorkingInstance.StatusManager.InstalledMods.Count / ModsCount) * 100);
                 }
                 else
                 {
@@ -395,7 +395,7 @@ namespace Vcc.Nolvus.Package.Services
 
         private void SaveInstance(InstallableElement Mod)
         {
-            ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Add(Mod.Name);
+            ServiceSingleton.Instances.WorkingInstance.StatusManager.InstalledMods.Add(Mod.Name);
             ServiceSingleton.Instances.Save();
         }
 
@@ -419,18 +419,18 @@ namespace Vcc.Nolvus.Package.Services
                 foreach (var Category in CategoriesToInstall)
                 {
                     await Category.Install(_ErrorHandler.Token);
-                }
-
-                Settings.OnStartInstalling();
+                }                
 
                 ModsToProcess = ModsToInstall;
 
                 if (Mods != null)
                 {
                     ModsToProcess = Mods.Cast<InstallableElement>().ToList();
-                }                
+                }
 
-                var Tasks = ModsToProcess.Where(x => !ServiceSingleton.Instances.WorkingInstance.Status.InstalledMods.Any(y => y == x.Name)).OrderBy(i => i.Index).ToList().Select(async Mod =>
+                Settings.OnStartInstalling();
+
+                var Tasks = ModsToProcess.Where(x => !ServiceSingleton.Instances.WorkingInstance.StatusManager.InstalledMods.Any(y => y == x.Name)).OrderBy(i => i.Index).ToList().Select(async Mod =>
                 {
                     await SemaphoreSlim.WaitAsync();
 

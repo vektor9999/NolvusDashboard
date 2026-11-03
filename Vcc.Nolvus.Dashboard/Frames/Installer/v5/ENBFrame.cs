@@ -57,7 +57,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
 
         private void DrpDwnLstENB_SelectedIndexChanged(object sender, EventArgs e)
         {        
-            ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB = DrpDwnLstENB.SelectedValue.ToString();
+            ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("AlternateENB").Value = DrpDwnLstENB.SelectedValue.ToString();
         }
 
         private void LnkLblENB_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

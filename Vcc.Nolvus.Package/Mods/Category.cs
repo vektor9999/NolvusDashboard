@@ -63,6 +63,11 @@ namespace Vcc.Nolvus.Package.Mods
             return true;
         }
 
+        public override bool IsInstallable(string Data, string Value)
+        {
+            return true;
+        }
+
         protected override void CreateElementIni()
         {
             File.WriteAllText(Path.Combine(MoDirectoryFullName, "meta.ini"), string.Format(MetaIni, "0", Version, string.Empty, "0"));
@@ -93,7 +98,7 @@ namespace Vcc.Nolvus.Package.Mods
 
                     this.CreateElementIni();
 
-                    if (ServiceSingleton.Instances.WorkingInstance.Settings.EnableArchiving) Directory.CreateDirectory(Path.Combine(ServiceSingleton.Instances.WorkingInstance.ArchiveDir, Name));                    
+                    if (ServiceSingleton.Instances.WorkingInstance.SettingsManager.EnableArchiving) Directory.CreateDirectory(Path.Combine(ServiceSingleton.Instances.WorkingInstance.SettingsManager.ArchiveDir, Name));                    
                 }
             });
 

@@ -365,6 +365,12 @@
     <Compile Include="Frames\Installer\CDNFrame.Designer.cs">
       <DependentUpon>CDNFrame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frames\Installer\SummaryFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Installer\SummaryFrame.Designer.cs">
+      <DependentUpon>SummaryFrame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frames\Installer\v5\ENBFrame.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -388,12 +394,6 @@
     </Compile>
     <Compile Include="Frames\Installer\StockGameFrame.Designer.cs">
       <DependentUpon>StockGameFrame.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Frames\Installer\v5\SummaryFrame.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Frames\Installer\v5\SummaryFrame.Designer.cs">
-      <DependentUpon>SummaryFrame.cs</DependentUpon>
     </Compile>
     <Compile Include="Frames\Installer\v5\OptionsFrame.cs">
       <SubType>UserControl</SubType>
@@ -443,16 +443,10 @@
     <Compile Include="Frames\Installer\v6\PerformanceFrame.Designer.cs">
       <DependentUpon>PerformanceFrame.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frames\Installer\v6\SummaryFrame.cs">
+    <Compile Include="Frames\Instance\InstanceSettingsFrame.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Frames\Installer\v6\SummaryFrame.Designer.cs">
-      <DependentUpon>SummaryFrame.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Frames\Instance\v5\InstanceSettingsFrame.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Frames\Instance\v5\InstanceSettingsFrame.Designer.cs">
+    <Compile Include="Frames\Instance\InstanceSettingsFrame.Designer.cs">
       <DependentUpon>InstanceSettingsFrame.cs</DependentUpon>
     </Compile>
     <Compile Include="Frames\Instance\v5\KeysBindingFrame.cs">
@@ -473,12 +467,6 @@
     <Compile Include="Frames\Instance\InstanceDetailFrame.Designer.cs">
       <DependentUpon>InstanceDetailFrame.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frames\Instance\v6\InstanceSettingsFrame.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Frames\Instance\v6\InstanceSettingsFrame.Designer.cs">
-      <DependentUpon>InstanceSettingsFrame.cs</DependentUpon>
-    </Compile>
     <Compile Include="Frames\Instance\v6\ControllerBindingFrame.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -496,6 +484,12 @@
     </Compile>
     <Compile Include="Frames\Manager\ENB\v6\ENBManagerFrame.Designer.cs">
       <DependentUpon>ENBManagerFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\Manager\Options\v6\OptionsManagerFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Manager\Options\v6\OptionsManagerFrame.Designer.cs">
+      <DependentUpon>OptionsManagerFrame.cs</DependentUpon>
     </Compile>
     <Compile Include="Frames\PackageFrame.cs">
       <SubType>UserControl</SubType>
@@ -595,6 +589,9 @@
     <EmbeddedResource Include="Frames\Installer\CDNFrame.resx">
       <DependentUpon>CDNFrame.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Installer\SummaryFrame.resx">
+      <DependentUpon>SummaryFrame.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frames\Installer\v5\ENBFrame.resx">
       <DependentUpon>ENBFrame.cs</DependentUpon>
     </EmbeddedResource>
@@ -606,9 +603,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\Installer\StockGameFrame.resx">
       <DependentUpon>StockGameFrame.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Frames\Installer\v5\SummaryFrame.resx">
-      <DependentUpon>SummaryFrame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\Installer\v5\OptionsFrame.resx">
       <DependentUpon>OptionsFrame.cs</DependentUpon>
@@ -638,10 +632,7 @@
     <EmbeddedResource Include="Frames\Installer\v6\PerformanceFrame.resx">
       <DependentUpon>PerformanceFrame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frames\Installer\v6\SummaryFrame.resx">
-      <DependentUpon>SummaryFrame.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Frames\Instance\v5\InstanceSettingsFrame.resx">
+    <EmbeddedResource Include="Frames\Instance\InstanceSettingsFrame.resx">
       <DependentUpon>InstanceSettingsFrame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\Instance\v5\KeysBindingFrame.resx">
@@ -653,9 +644,6 @@
     <EmbeddedResource Include="Frames\Instance\InstanceDetailFrame.resx">
       <DependentUpon>InstanceDetailFrame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frames\Instance\v6\InstanceSettingsFrame.resx">
-      <DependentUpon>InstanceSettingsFrame.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Frames\Instance\v6\ControllerBindingFrame.resx">
       <DependentUpon>ControllerBindingFrame.cs</DependentUpon>
     </EmbeddedResource>
@@ -664,6 +652,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\Manager\ENB\v6\ENBManagerFrame.resx">
       <DependentUpon>ENBManagerFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Manager\Options\v6\OptionsManagerFrame.resx">
+      <DependentUpon>OptionsManagerFrame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\PackageFrame.resx">
       <DependentUpon>PackageFrame.cs</DependentUpon>

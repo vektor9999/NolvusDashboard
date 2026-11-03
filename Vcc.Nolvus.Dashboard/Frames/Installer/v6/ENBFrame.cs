@@ -47,7 +47,14 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                
         private void BtnPrevious_Click(object sender, EventArgs e)
         {
-            ServiceSingleton.Dashboard.LoadFrame<v6.DifficultyFrame>();
+            if (ServiceSingleton.Instances.WorkingInstance.SettingsManager.Variant != Strings.GO)
+            {
+                ServiceSingleton.Dashboard.LoadFrameAsync<v6.DifficultyFrame>();
+            }
+            else
+            {
+                ServiceSingleton.Dashboard.LoadFrameAsync<v6.OptionsFrame>();
+            }                
         }
 
         private void BtnContinue_Click(object sender, EventArgs e)
@@ -57,7 +64,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
         private void DrpDwnLstENB_SelectedIndexChanged(object sender, EventArgs e)
         {        
-            ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB = DrpDwnLstENB.SelectedValue.ToString();
+            ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("AlternateENB").Value = DrpDwnLstENB.SelectedValue.ToString();
 
             var ENB = ENBs.GetAvailableENBsForV6().Where(x => x.Code == DrpDwnLstENB.SelectedValue.ToString()).FirstOrDefault();
 

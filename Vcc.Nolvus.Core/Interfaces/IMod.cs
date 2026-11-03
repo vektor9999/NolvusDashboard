@@ -11,6 +11,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         ICategory Category { get; }
         bool HasTag(string Tag);
         string GetFieldValueByKey(string Key);
+        bool HasFieldValueByKey(string Key, string Value);
         List<IEnvironmentCondition> Conditions { get; }
     }
 }

@@ -39,7 +39,7 @@ namespace Vcc.Nolvus.Services.ENB
         {
             get
             {
-                return EnbPresets.Where(x => x.GetFieldValueByKey("EnbCode") == ServiceSingleton.Instances.WorkingInstance.Options.AlternateENB && x.Action == ElementAction.Update).Count() > 0;
+                return EnbPresets.Where(x => x.GetFieldValueByKey("EnbCode") == ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("AlternateENB") && x.Action == ElementAction.Update).Count() > 0;
             }
         }
 
@@ -110,10 +110,10 @@ namespace Vcc.Nolvus.Services.ENB
                 {
                     ServiceSingleton.Logger.Log("Deleting current ENB preset...");
 
-                    string EnbCacheFolder = Path.Combine(ServiceSingleton.Instances.WorkingInstance.StockGame, "enbcache");
-                    string EnbSeriesFolder = Path.Combine(ServiceSingleton.Instances.WorkingInstance.StockGame, "enbseries");
-                    string EnbLocalIni = Path.Combine(ServiceSingleton.Instances.WorkingInstance.StockGame, "enblocal.ini");
-                    string EnbSeriesIni = Path.Combine(ServiceSingleton.Instances.WorkingInstance.StockGame, "enbseries.ini");
+                    string EnbCacheFolder = Path.Combine(ServiceSingleton.Instances.WorkingInstance.SettingsManager.StockGame, "enbcache");
+                    string EnbSeriesFolder = Path.Combine(ServiceSingleton.Instances.WorkingInstance.SettingsManager.StockGame, "enbseries");
+                    string EnbLocalIni = Path.Combine(ServiceSingleton.Instances.WorkingInstance.SettingsManager.StockGame, "enblocal.ini");
+                    string EnbSeriesIni = Path.Combine(ServiceSingleton.Instances.WorkingInstance.SettingsManager.StockGame, "enbseries.ini");
 
                     if (ZlpIOHelper.DirectoryExists(EnbCacheFolder))
                     {

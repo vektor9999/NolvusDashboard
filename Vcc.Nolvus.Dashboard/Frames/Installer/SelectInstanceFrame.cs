@@ -50,7 +50,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
             if (Instance != null)
             {
-                var Index = Lgs.FindIndex(x => x.Code == Instance.Settings.LgCode);
+                var Index = Lgs.FindIndex(x => x.Code == Instance.SettingsManager.LgCode);
 
                 return Index == -1 ? 0 : Index;
             }
@@ -83,12 +83,37 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             });
         }
 
-        private void SwitchInstance(INolvusVersionDTO NolvusInstance)
+        private void LoadingData(bool Loading)
         {
-            if (ServiceSingleton.Instances.WorkingInstance == null || ServiceSingleton.Instances.WorkingInstance.Name != NolvusInstance.Name)
+            if (InvokeRequired)
             {
-                ServiceSingleton.Instances.WorkingInstance = new NolvusInstance(NolvusInstance);                
+                Invoke((System.Action<bool>)LoadingData, Loading);
+                return;
             }
+
+            if(Loading)
+            {                
+                BtnContinue.Enabled = false;
+                BtnContinue.Text = "Loading";
+            }
+            else
+            {                
+                BtnContinue.Enabled = true;
+                BtnContinue.Text = "Continue";
+            }
+            
+        }
+
+        private async Task SwitchInstance(INolvusVersionDTO NolvusInstanceDTO)
+        {
+            LoadingData(true);
+
+            if (ServiceSingleton.Instances.WorkingInstance == null || ServiceSingleton.Instances.WorkingInstance.Name != NolvusInstanceDTO.Name)
+            {
+                ServiceSingleton.Instances.WorkingInstance = await NolvusInstance.CreateFromDTO(NolvusInstanceDTO) as INolvusInstance;                                           
+            }
+
+            LoadingData(false);
         }
 
         private void LoadLanguages()
@@ -129,9 +154,13 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
                 LoadLanguages();
 
+                LoadingData(true);
+
                 await LoadAvailableLists(await ApiManager.Service.Installer.GetNolvusVersions());
 
-                SwitchInstance(NolvusListBox.SelectedItem as INolvusVersionDTO);
+                await SwitchInstance(NolvusListBox.SelectedItem as INolvusVersionDTO);
+
+                LoadingData(false);
 
                 NolvusListBox.SelectedIndexChanged += NolvusListBox_SelectedIndexChanged;                
             }
@@ -178,8 +207,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         {
             INolvusInstance WorkingInstance = ServiceSingleton.Instances.WorkingInstance;
 
-            WorkingInstance.Settings.LgCode = (DrpDwnLg.SelectedItem as LgCode).Code;
-            WorkingInstance.Settings.LgName = (DrpDwnLg.SelectedItem as LgCode).Name;
+            WorkingInstance.SettingsManager.LgCode = (DrpDwnLg.SelectedItem as LgCode).Code;
+            WorkingInstance.SettingsManager.LgName = (DrpDwnLg.SelectedItem as LgCode).Name;
 
             ServiceSingleton.Dashboard.LoadFrame<PathFrame>();
         }
@@ -189,9 +218,9 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             ServiceSingleton.Dashboard.LoadFrame<InstancesFrame>();
         }
 
-        private void NolvusListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SwitchInstance(NolvusListBox.SelectedItem as INolvusVersionDTO);            
+        private async void NolvusListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {            
+            await SwitchInstance(NolvusListBox.SelectedItem as INolvusVersionDTO);            
         }       
     }
 }

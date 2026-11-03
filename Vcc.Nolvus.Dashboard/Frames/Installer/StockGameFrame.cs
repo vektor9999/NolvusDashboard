@@ -215,7 +215,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         {
             this.AddItemToList("Error detected, rollbacking changes...");
             ServiceSingleton.Dashboard.Status("Error detected, rollbacking changes, please wait...");
-            ServiceSingleton.Files.RemoveDirectory(ServiceSingleton.Instances.WorkingInstance.InstallDir, true);
+            ServiceSingleton.Files.RemoveDirectory(ServiceSingleton.Instances.WorkingInstance.SettingsManager.InstallDir, true);
         }        
     }
 }

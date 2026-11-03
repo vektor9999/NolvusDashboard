@@ -156,9 +156,9 @@ namespace Vcc.Nolvus.StockGame.Core
             _PatchDir = PatchDir;
             _GameDir = GameDir;
             _GamePackage = GamePackage;
-            _StockGameDir = Instance.StockGame;
-            _Language = Instance.Settings.LgName;
-            _LanguageCode = Instance.Settings.LgCode;
+            _StockGameDir = Instance.SettingsManager.StockGame;
+            _Language = Instance.SettingsManager.LgName;
+            _LanguageCode = Instance.SettingsManager.LgCode;
             _KeepPatches = KeepPatches;
             _Patcher = new PatcherManager(WorkingDir, LibDir, PatchDir);
 

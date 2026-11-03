@@ -27,7 +27,7 @@ namespace Vcc.Nolvus.Package.Mods
 
                         ServiceSingleton.Logger.Log(string.Format("Installing ENB binaries", Name));
 
-                        var ENBCacheDir = Path.Combine(Instance.StockGame, "enbcache");
+                        var ENBCacheDir = Path.Combine(Instance.SettingsManager.StockGame, "enbcache");
 
                         if (Directory.Exists(ENBCacheDir))
                         {
@@ -39,10 +39,10 @@ namespace Vcc.Nolvus.Package.Mods
 
                         foreach (var Rule in Rules)
                         {
-                            Rule.Execute(Instance.StockGame, 
+                            Rule.Execute(Instance.SettingsManager.StockGame, 
                                          Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), 
-                                         Instance.StockGame, 
-                                         Instance.InstallDir);
+                                         Instance.SettingsManager.StockGame, 
+                                         Instance.SettingsManager.InstallDir);
 
                             CopyingProgress(++Counter, Rules.Count);
                         }                        
@@ -69,7 +69,7 @@ namespace Vcc.Nolvus.Package.Mods
                 {
                     if (Patcher != null)
                     {
-                        await Patcher.PatchFiles(ServiceSingleton.Instances.WorkingInstance.StockGame, ServiceSingleton.Instances.WorkingInstance.StockGame, DownloadingProgress, ExtractingProgress, PatchingProgress);
+                        await Patcher.PatchFiles(ServiceSingleton.Instances.WorkingInstance.SettingsManager.StockGame, ServiceSingleton.Instances.WorkingInstance.SettingsManager.StockGame, DownloadingProgress, ExtractingProgress, PatchingProgress);
                     }
                 }
                 catch (Exception ex)

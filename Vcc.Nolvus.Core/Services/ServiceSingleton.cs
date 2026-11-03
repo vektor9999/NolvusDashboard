@@ -143,5 +143,13 @@ namespace Vcc.Nolvus.Core.Services
                 return ServiceSingleton.GetService<IENBService>();
             }
         }
+
+        public static IOptionService OptionManager
+        {
+            get
+            {
+                return ServiceSingleton.GetService<IOptionService>();
+            }
+        }
     }
 }

@@ -23,6 +23,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         string Description { get; set; }
         bool IsInstallable();
         bool IsInstallable(string Value);
+        bool IsInstallable(string Data, string Value);
         ElementAction Action { get; set; }
     }
 }

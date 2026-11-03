@@ -9,31 +9,26 @@ namespace Vcc.Nolvus.Core.Interfaces
 {
     public interface INolvusInstance
     {             
-        string Id { get; set; }
-        string Code { get; set; }
+        string Id { get; set; }        
         string Name { get; set; }
+        string FullName { get; }
         string Tag { get; set; }
         string Version { get; set; }
         string Description { get;}
-        string InstallDir { get; set; }
-        string ArchiveDir { get; set; }
-        string StockGame { get; set; }
+        DateTime LastUpdate { get; set; }
         string Overwrite { get; }        
         string OverwriteSl { get; }
-        DateTime LastUpdate { get; set; }
-        IInstanceSettings Settings { get; }
-        IInstancePerformance Performance { get; }
-        IInstanceOptions Options { get; }
-        IInstanceStatus Status { get; }        
+        string InstanceVersion { get; }
+        INolvusSettingsManager SettingsManager { get; }
+        INolvusOptionsManager OptionsManager { get; }
+        INolvusStatusManager StatusManager { get; }
         Task<bool> IsBeta();
         Task<string> GetState();
         Task<string> GetLatestVersion();
         Task<IInstallPackageDTO> GetLatestPackage();
         Task<bool> LatestPackageRequireNewGame();
         Task<bool> LatestPackageRequireReInstall();
-        string GetSelectedResolution();
-        string GetSelectedHeight();
-        string GetSelectedWidth();
-        string InstanceVersion { get; }
+        Task DeleteGameSaveFiles();
+        Task BackupGameSaveFiles();
     }
 }

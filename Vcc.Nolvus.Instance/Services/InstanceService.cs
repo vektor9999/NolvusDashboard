@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 using Vcc.Nolvus.Core.Enums;
 using Vcc.Nolvus.Core.Interfaces;
 using Vcc.Nolvus.Core.Services;
+using Vcc.Nolvus.Core.Misc;
 using Vcc.Nolvus.Instance.Core;
+using Vcc.Nolvus.Instance.Status;
 
 namespace Vcc.Nolvus.Instance.Services
 {
@@ -107,24 +109,133 @@ namespace Vcc.Nolvus.Instance.Services
             Storage.Load(InstancesDataFile.FullName);
 
             return Storage;
-        }      
+        }
 
-        public void Load()
+        private bool IsFileFromV3()
         {
+            //Check if the InstancesData.xml file is still from Dashboard v3
             lock (SyncRoot)
             {
-                Instances.Clear();
+                XmlDocument Storage = this.InitializeStorage();
 
-                var Storage = InitializeStorage();
+                XmlNodeList InstanceElements = Storage.SelectNodes("Instances/Instance");
 
+                if (InstanceElements.Count > 0)
+                {
+                    return InstanceElements[0]["InstallPath"] != null;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+        }
+
+        private void Loadv3()
+        {   //Temporary method to migrate the InstancesData.xml from v3 to v4 new structure
+            //Not the smoothest but will work until everyone has migrated
+            lock (SyncRoot)
+            {
+                this.Instances.Clear();
+
+                XmlDocument Storage = InitializeStorage();                
+
+                XmlNodeList InstanceElements = Storage.SelectNodes("Instances/Instance");
+                                
+                foreach (XmlNode InstanceNode in InstanceElements)
+                {
+                    NolvusInstance Instance = new NolvusInstance();
+
+                    XmlNode SettingsNode = InstanceNode.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Settings").FirstOrDefault();
+                    XmlNode PerformanceNode = InstanceNode.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Performance").FirstOrDefault();
+                    XmlNode OptionsNode = InstanceNode.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Options").FirstOrDefault();
+                    XmlNode StatusNode = InstanceNode.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Status").FirstOrDefault();
+
+                    Instance.Id = InstanceNode["Id"].InnerText.Trim();
+                    Instance.Name = InstanceNode["Name"].InnerText.Trim();
+                    Instance.Tag = InstanceNode["Tag"].InnerText.Trim();
+                    Instance.Version = InstanceNode["Version"].InnerText.Trim();
+                    Instance.Description = InstanceNode["Description"].InnerText.Trim();
+
+                    Instance.SettingsManager.InstallDir = InstanceNode["InstallPath"].InnerText.Trim();
+                    Instance.SettingsManager.ArchiveDir = InstanceNode["ArchivePath"].InnerText.Trim();
+                    Instance.SettingsManager.StockGame = InstanceNode["StockGame"].InnerText.Trim();                    
+                    Instance.SettingsManager.Variant = PerformanceNode["Variant"].InnerText.Trim();
+                    Instance.SettingsManager.Height = SettingsNode["Height"].InnerText.Trim();
+                    Instance.SettingsManager.Width = SettingsNode["Width"].InnerText.Trim();
+                    Instance.SettingsManager.DownScaling = PerformanceNode["DownScaling"].InnerText.Trim();
+                    Instance.SettingsManager.DownHeight = PerformanceNode["DownHeight"].InnerText.Trim();
+                    Instance.SettingsManager.DownWidth = PerformanceNode["DownWidth"].InnerText.Trim();
+                    Instance.SettingsManager.IniSettings = PerformanceNode["IniSettings"].InnerText.Trim();
+                    Instance.SettingsManager.EnableArchiving = System.Convert.ToBoolean(SettingsNode["EnableArchiving"].InnerText.Trim());
+                    Instance.SettingsManager.CDN = SettingsNode["CDN"].InnerText.Trim();
+                    Instance.SettingsManager.LgCode = SettingsNode["LgCode"].InnerText.Trim();
+                    Instance.SettingsManager.LgName = SettingsNode["LgName"].InnerText.Trim();
+
+                    Instance.OptionsManager.AddOption("AlternateENB", "ENB", "Visual", "string", OptionsNode["AlternateENB"].InnerText.Trim());
+                    Instance.OptionsManager.AddOption("AlternateLeveling", "Alternate Leveling", "Gameplay", "bool", OptionsNode["AlternateLeveling"].InnerText.Trim());
+                    Instance.OptionsManager.AddOption("AntiAliasing", "Anti Aliasing", "Performance", "list", PerformanceNode["AntiAliasing"].InnerText.Trim());
+                    Instance.OptionsManager.AddOption("LODs", "LODs", "Performance", "list", PerformanceNode["LODs"].InnerText.Trim());
+                    Instance.OptionsManager.AddOption("Nudity", "Nudity", "Visual", "bool", OptionsNode["Nudity"].InnerText.Trim());
+                    Instance.OptionsManager.AddOption("Ratio", "Screen Ratio", "User Interface", "list", SettingsNode["Ratio"].InnerText.Trim());
+
+                    switch (Instance.Name)
+                    {
+                        case Strings.NolvusAscension:
+                            Instance.OptionsManager.AddOption("AlternateStart", "Alternate Start", "Gameplay", "bool", OptionsNode["AlternateStart"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("HardcoreMode", "Hardcore Mode", "Difficulty", "bool", OptionsNode["HardcoreMode"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("FantasyMode", "Fantasy Mode", "Gameplay", "bool", OptionsNode["FantasyMode"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("AdvancedPhysics", "Advanced Physics", "Performance", "bool", PerformanceNode["AdvancedPhysics"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("FPSStabilizer", "FPS Stabilizer", "Performance", "bool", PerformanceNode["FPSStabilizer"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("RayTracing", "Ray Tracing", "Performance", "bool", PerformanceNode["RayTracing"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("SkinType", "Skin Type", "Visual", "list", OptionsNode["SkinType"].InnerText.Trim());
+
+                            break;
+
+                        case Strings.NolvusAwakening:
+                            Instance.OptionsManager.AddOption("Boss", "Boss Encounter", "Difficulty", "bool", OptionsNode["Boss"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("CombatAnimation", "Combat Animation", "Gameplay", "list", OptionsNode["CombatAnimation"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("CombatScaling", "Diffulty Preset", "Difficulty", "list", OptionsNode["CombatScaling"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("Controller", "Controller Support", "Gameplay", "bool", OptionsNode["Controller"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("Exhaustion", "Exhaustion", "Difficulty", "bool", OptionsNode["Exhaustion"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("FrameGeneration", "Frame Generation", "Performance", "bool", PerformanceNode["FrameGeneration"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("Gore", "Gore", "Gameplay", "bool", OptionsNode["Gore"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("NerfPA", "Nerf Power Attacks", "Difficulty", "list", OptionsNode["NerfPA"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("SREX", "SR Exterior Cities", "Performance", "bool", PerformanceNode["SREX"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("UI", "User Interface", "User Interface", "list", OptionsNode["UI"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("ZoneLevelIndicator", "Zone Level Indicator", "Difficulty", "bool", OptionsNode["ZoneLevelIndicator"].InnerText.Trim());
+                            break;
+                    }
+
+                    (Instance.StatusManager as NolvusStatusManager).Load(StatusNode);
+
+                    Instances.Add(Instance);
+                }
+            }
+        }
+
+        public async Task Load()
+        {
+            Instances.Clear();
+
+            var Storage = InitializeStorage();
+
+            if (!IsFileFromV3())
+            {
                 foreach (XmlNode InstanceNode in Storage.SelectNodes("Instances/Instance"))
                 {
                     NolvusInstance Instance = new NolvusInstance();
 
-                    Instance.Load(InstanceNode);
+                    await Instance.Load(InstanceNode);
 
                     Instances.Add(Instance);
-                }                                                                                               
+                }
+            }
+            else
+            {
+                Loadv3();
+                Save();
             }
         }
 
@@ -171,7 +282,7 @@ namespace Vcc.Nolvus.Instance.Services
         {
             get
             {
-                return Instances.Where(x => x.Status.InstallStatus != InstanceInstallStatus.Installed).Cast<INolvusInstance>().ToList();
+                return Instances.Where(x => x.StatusManager.InstallStatus != InstanceInstallStatus.Installed).Cast<INolvusInstance>().ToList();
             }            
         }
 
@@ -227,7 +338,7 @@ namespace Vcc.Nolvus.Instance.Services
                     Instances.Add(WorkingInstance as NolvusInstance);
                 }
 
-                WorkingInstance.Status.InstallStatus = InstanceInstallStatus.Installing;
+                WorkingInstance.StatusManager.InstallStatus = InstanceInstallStatus.Installing;
 
                 Save();
             }
@@ -241,7 +352,7 @@ namespace Vcc.Nolvus.Instance.Services
         {
             if (WorkingInstance != null)
             {                
-                WorkingInstance.Status.InstallStatus = InstanceInstallStatus.Updating;
+                WorkingInstance.StatusManager.InstallStatus = InstanceInstallStatus.Updating;
 
                 Save();
             }
@@ -255,7 +366,21 @@ namespace Vcc.Nolvus.Instance.Services
         {
             if (WorkingInstance != null)
             {
-                WorkingInstance.Status.InstallStatus = InstanceInstallStatus.ChangingEnb;
+                WorkingInstance.StatusManager.InstallStatus = InstanceInstallStatus.ChangingEnb;
+
+                Save();
+            }
+            else
+            {
+                throw new Exception("No working instance selected!");
+            }
+        }
+
+        public void PrepareInstanceForOption()
+        {
+            if (WorkingInstance != null)
+            {
+                WorkingInstance.StatusManager.InstallStatus = InstanceInstallStatus.ChangingOption;
 
                 Save();
             }
@@ -269,15 +394,15 @@ namespace Vcc.Nolvus.Instance.Services
         {
             get
             {
-                return WorkingInstance != null && (WorkingInstance.Status.InstallStatus == InstanceInstallStatus.Installing || WorkingInstance.Status.InstallStatus == InstanceInstallStatus.Updating);
+                return WorkingInstance != null && (WorkingInstance.StatusManager.InstallStatus == InstanceInstallStatus.Installing || WorkingInstance.StatusManager.InstallStatus == InstanceInstallStatus.Updating);
             }            
         }
 
         public void FinalizeInstance()
         {
-            WorkingInstance.Status.InstallStatus = InstanceInstallStatus.Installed;
-            WorkingInstance.Status.InstalledMods.Clear();
-            WorkingInstance.Status.Fields.Clear();
+            WorkingInstance.StatusManager.InstallStatus = InstanceInstallStatus.Installed;
+            WorkingInstance.StatusManager.InstalledMods.Clear();
+            WorkingInstance.StatusManager.Fields.Clear();
             WorkingInstance.Version = ServiceSingleton.Packages.LoadedVersion;            
 
             Save();
@@ -305,26 +430,15 @@ namespace Vcc.Nolvus.Instance.Services
 
                 if (PropToCompare == null)
                 {
-                    PropToCompare = typeof(IInstanceSettings).GetProperty(Key);
+                    PropToCompare = typeof(INolvusSettingsManager).GetProperty(Key);
 
                     if (PropToCompare == null)
                     {
-                        PropToCompare = typeof(IInstancePerformance).GetProperty(Key);
-
-                        if (PropToCompare == null)
-                        {
-                            PropToCompare = typeof(IInstanceOptions).GetProperty(Key);
-
-                            EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Options);
-                        }
-                        else
-                        {
-                            EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Performance);
-                        }
+                        EnvValue = ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue(Key);
                     }
                     else
                     {
-                        EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.Settings);
+                        EnvValue = (string)PropToCompare.GetValue(ServiceSingleton.Instances.WorkingInstance.SettingsManager);
                     }
                 }
                 else

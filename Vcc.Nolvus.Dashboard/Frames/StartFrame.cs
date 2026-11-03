@@ -136,14 +136,14 @@ namespace Vcc.Nolvus.Dashboard.Frames
         }
         private async Task<InstanceCheck> CheckInstances()
         {
-            var Tsk = Task.Run(() => 
+            var Tsk = Task.Run(async () => 
             {
                 try
                 {
                     ServiceSingleton.Dashboard.Status("Checking instances...");
                     ServiceSingleton.Logger.Log("Checking instances...");
 
-                    ServiceSingleton.Instances.Load();
+                    await ServiceSingleton.Instances.Load();
 
                     if (!ServiceSingleton.Instances.Empty)
                     {                        

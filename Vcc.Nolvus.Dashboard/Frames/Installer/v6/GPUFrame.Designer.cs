@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GPUFrame));
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn1 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn2 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridImageColumn gridImageColumn1 = new Syncfusion.WinForms.DataGrid.GridImageColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn3 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn4 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridImageColumn gridImageColumn2 = new Syncfusion.WinForms.DataGrid.GridImageColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -43,10 +43,10 @@
             this.LblResolution = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnBack = new Vcc.Nolvus.Components.Controls.FlatButton();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.GPUsGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.LblStepText = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -58,6 +58,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label20);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
@@ -68,10 +69,9 @@
             this.panel1.Controls.Add(this.LblResolution);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.BtnBack);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Location = new System.Drawing.Point(654, 30);
+            this.panel1.Location = new System.Drawing.Point(788, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(310, 531);
+            this.panel1.Size = new System.Drawing.Size(309, 802);
             this.panel1.TabIndex = 18;
             // 
             // pictureBox1
@@ -168,10 +168,10 @@
             // 
             this.BtnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnBack.BorderColor = System.Drawing.Color.White;
-            this.BtnBack.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnBack.BorderColor = System.Drawing.Color.Gray;
             this.BtnBack.ForeColor = System.Drawing.Color.White;
-            this.BtnBack.Location = new System.Drawing.Point(208, 476);
+            this.BtnBack.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnBack.Location = new System.Drawing.Point(207, 747);
             this.BtnBack.Name = "BtnBack";
             this.BtnBack.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnBack.Size = new System.Drawing.Size(88, 40);
@@ -179,16 +179,6 @@
             this.BtnBack.Text = "Back";
             this.BtnBack.UseVisualStyleBackColor = false;
             this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(3, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(293, 30);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "List of supported GPUs";
             // 
             // panel2
             // 
@@ -199,7 +189,7 @@
             this.panel2.Controls.Add(this.GPUsGrid);
             this.panel2.Location = new System.Drawing.Point(7, 30);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(641, 531);
+            this.panel2.Size = new System.Drawing.Size(775, 802);
             this.panel2.TabIndex = 17;
             // 
             // GPUsGrid
@@ -211,31 +201,31 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GPUsGrid.AutoGenerateColumns = false;
-            gridTextColumn1.AllowEditing = false;
-            gridTextColumn1.AllowResizing = true;
-            gridTextColumn1.HeaderText = "GPU";
-            gridTextColumn1.MappingName = "GPU";
-            gridTextColumn1.Width = 200D;
-            gridTextColumn2.AllowEditing = false;
-            gridTextColumn2.AllowResizing = true;
-            gridTextColumn2.CellStyle.HorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Center;
-            gridTextColumn2.HeaderText = "VRAM";
-            gridTextColumn2.MappingName = "VRAM";
-            gridTextColumn2.Width = 75D;
-            gridImageColumn1.AllowEditing = false;
-            gridImageColumn1.AllowGrouping = false;
-            gridImageColumn1.AllowResizing = true;
-            gridImageColumn1.AllowSorting = false;
-            gridImageColumn1.HeaderText = "Supported";
-            gridImageColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
-            gridImageColumn1.MappingName = "Image";
-            gridImageColumn1.Width = 75D;
-            this.GPUsGrid.Columns.Add(gridTextColumn1);
-            this.GPUsGrid.Columns.Add(gridTextColumn2);
-            this.GPUsGrid.Columns.Add(gridImageColumn1);
+            gridTextColumn3.AllowEditing = false;
+            gridTextColumn3.AllowResizing = true;
+            gridTextColumn3.HeaderText = "GPU";
+            gridTextColumn3.MappingName = "GPU";
+            gridTextColumn3.Width = 200D;
+            gridTextColumn4.AllowEditing = false;
+            gridTextColumn4.AllowResizing = true;
+            gridTextColumn4.CellStyle.HorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            gridTextColumn4.HeaderText = "VRAM";
+            gridTextColumn4.MappingName = "VRAM";
+            gridTextColumn4.Width = 75D;
+            gridImageColumn2.AllowEditing = false;
+            gridImageColumn2.AllowGrouping = false;
+            gridImageColumn2.AllowResizing = true;
+            gridImageColumn2.AllowSorting = false;
+            gridImageColumn2.HeaderText = "Supported";
+            gridImageColumn2.ImageLayout = System.Windows.Forms.ImageLayout.Center;
+            gridImageColumn2.MappingName = "Image";
+            gridImageColumn2.Width = 75D;
+            this.GPUsGrid.Columns.Add(gridTextColumn3);
+            this.GPUsGrid.Columns.Add(gridTextColumn4);
+            this.GPUsGrid.Columns.Add(gridImageColumn2);
             this.GPUsGrid.Location = new System.Drawing.Point(13, 10);
             this.GPUsGrid.Name = "GPUsGrid";
-            this.GPUsGrid.Size = new System.Drawing.Size(615, 506);
+            this.GPUsGrid.Size = new System.Drawing.Size(749, 777);
             this.GPUsGrid.TabIndex = 1;
             this.GPUsGrid.Text = "sfDataGrid1";
             this.GPUsGrid.QueryCellStyle += new Syncfusion.WinForms.DataGrid.Events.QueryCellStyleEventHandler(this.GPUsGrid_QueryCellStyle);
@@ -249,10 +239,21 @@
             this.LblStepText.ForeColor = System.Drawing.Color.White;
             this.LblStepText.Location = new System.Drawing.Point(3, 0);
             this.LblStepText.Name = "LblStepText";
-            this.LblStepText.Size = new System.Drawing.Size(961, 20);
+            this.LblStepText.Size = new System.Drawing.Size(1101, 20);
             this.LblStepText.TabIndex = 16;
             this.LblStepText.Text = "Supported GPUs";
             this.LblStepText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.Orange;
+            this.label20.Location = new System.Drawing.Point(5, 5);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(182, 21);
+            this.label20.TabIndex = 72;
+            this.label20.Text = "List of supported GPUs";
             // 
             // GPUFrame
             // 
@@ -263,7 +264,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.LblStepText);
             this.Name = "GPUFrame";
-            this.Size = new System.Drawing.Size(967, 566);
+            this.Size = new System.Drawing.Size(1107, 837);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -277,7 +278,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private Components.Controls.FlatButton BtnBack;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label LblStepText;
         private Syncfusion.WinForms.DataGrid.SfDataGrid GPUsGrid;
@@ -290,5 +290,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label20;
     }
 }

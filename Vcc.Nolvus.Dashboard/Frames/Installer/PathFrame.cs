@@ -48,12 +48,12 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
         {
             var Instance = ServiceSingleton.Instances.WorkingInstance;
 
-            this.TxtBxInstancePath.Text = Instance.InstallDir;
-            this.TxtBxArchivePath.Text = Instance.ArchiveDir;
+            this.TxtBxInstancePath.Text = Instance.SettingsManager.InstallDir;
+            this.TxtBxArchivePath.Text = Instance.SettingsManager.ArchiveDir;
 
             this.TglBtnEnableArchive.ToggleState = ToggleButtonState.Inactive;
 
-            if (Instance.Settings.EnableArchiving)
+            if (Instance.SettingsManager.EnableArchiving)
             {
                 this.TglBtnEnableArchive.ToggleState = ToggleButtonState.Active;
             }
@@ -75,8 +75,8 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
                     var Instance = ServiceSingleton.Instances.WorkingInstance;
 
-                    Instance.InstallDir = this.TxtBxInstancePath.Text;
-                    Instance.StockGame = Path.Combine(Instance.InstallDir, "STOCK GAME");
+                    Instance.SettingsManager.InstallDir = this.TxtBxInstancePath.Text;
+                    Instance.SettingsManager.StockGame = Path.Combine(Instance.SettingsManager.InstallDir, "STOCK GAME");
                 }
                 else
                 {
@@ -94,7 +94,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
             {
                 TxtBxArchivePath.Text = folderBrowserDialog1.SelectedPath;
 
-                ServiceSingleton.Instances.WorkingInstance.ArchiveDir = this.TxtBxArchivePath.Text;
+                ServiceSingleton.Instances.WorkingInstance.SettingsManager.ArchiveDir = this.TxtBxArchivePath.Text;
             }
         }
 
@@ -119,7 +119,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
         private void TglBtnEnableArchive_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
         {
-            ServiceSingleton.Instances.WorkingInstance.Settings.EnableArchiving = this.TglBtnEnableArchive.ToggleState == ToggleButtonState.Active;
+            ServiceSingleton.Instances.WorkingInstance.SettingsManager.EnableArchiving = this.TglBtnEnableArchive.ToggleState == ToggleButtonState.Active;
         }              
     }
 }

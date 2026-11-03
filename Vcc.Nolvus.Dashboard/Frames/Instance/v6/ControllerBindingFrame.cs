@@ -48,6 +48,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance.v6
 
         private void BtnFullGuide_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void LnkLblFullGuide_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
             System.Diagnostics.Process.Start("https://www.nolvus.net/guide/awake/appendix/player-guide/keybinds/controller");
         }
     }

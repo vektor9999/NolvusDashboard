@@ -53,7 +53,7 @@ namespace Vcc.Nolvus.Package.Files
             {   
                 var Links = await ApiManager.GetDownloadLinks(GetDomain(), System.Convert.ToInt32(NexusId), System.Convert.ToInt32(FileId));
 
-                NexusApi.Responses.ModFileDownloadLink NexusLink = Links.Where(x => x.ShortName == ServiceSingleton.Instances.WorkingInstance.Settings.CDN).FirstOrDefault();
+                NexusApi.Responses.ModFileDownloadLink NexusLink = Links.Where(x => x.ShortName == ServiceSingleton.Instances.WorkingInstance.SettingsManager.CDN).FirstOrDefault();
 
                 return NexusLink.Uri.ToString();
             }

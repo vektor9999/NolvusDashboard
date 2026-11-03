@@ -63,6 +63,7 @@
     <Compile Include="Library\InstalledInstanceObject.cs" />
     <Compile Include="Library\DashBoardObject.cs" />
     <Compile Include="Library\NolvusOptionChoiceObject.cs" />
+    <Compile Include="Library\NolvusOptionCategoryObject.cs" />
     <Compile Include="Library\NolvusVariantRequirementObject.cs" />
     <Compile Include="Library\NolvusVariantObject.cs" />
     <Compile Include="Library\NolvusGPUObject.cs" />

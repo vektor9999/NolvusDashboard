@@ -13,17 +13,18 @@ namespace Vcc.Nolvus.Core.Interfaces
     {
         Task DownloadFile(string UrlAddress, string Location, DownloadProgressChangedHandler OnProgress);
         Task ExtractFile(string File, string Output, ExtractProgressChangedHandler OnProgress);
-        void CopyFiles(string SourcePath, string TargetPath, bool IncludeRoot);
+        void CopyFiles(string SourcePath, string TargetPath, bool IncludeRoot);              
         void MoveFile(string SourceFilePath, string TargetFilePath);
+        void MoveFiles(string SourcePath, string TargetPath, SearchOption SearchOption = SearchOption.AllDirectories);
         List<ZlpFileInfo> GetFiles(string Directory);
         List<string> GetFilesPath(string Directory);
-        void RemoveDirectory(string DirectoryPath, bool RemoveDirectory);
+        void RemoveDirectory(string DirectoryPath, bool RemoveDirectory);        
         Task<string> GetCRC32(ZlpFileInfo File, Action<string, int> Progress);
         ZlpFileInfo GetFileFromDirectory(string Directory, string FileName);
         bool FileExists(string Directory, string FileName);
         bool FileExists(string Directory, string FileName, out string FullPath);
         string GetHash(string FileName);
-        bool IsDirectoryEmpty(string Dir);
+        bool IsDirectoryEmpty(string Dir, SearchOption SearchOption = SearchOption.AllDirectories);
         Task AuthenticateToMegaApi(string Username, string password);
     }
 }
