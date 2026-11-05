@@ -32,6 +32,7 @@
             Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection1 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
             Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection1 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.BtnCancel = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.BtnChange = new Vcc.Nolvus.Components.Controls.FlatButton();
@@ -44,6 +45,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.PnlLock = new System.Windows.Forms.Panel();
+            this.LblReInit = new System.Windows.Forms.Label();
+            this.LnkLblReInit = new System.Windows.Forms.LinkLabel();
+            this.LblClick = new System.Windows.Forms.Label();
+            this.LblLockMessage = new System.Windows.Forms.Label();
             this.TglBtnNewValue = new Syncfusion.Windows.Forms.Tools.ToggleButton();
             this.DrpDwnLstNewValue = new Syncfusion.WinForms.ListView.SfComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -55,6 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstOption)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstCategory)).BeginInit();
             this.panel2.SuspendLayout();
+            this.PnlLock.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnNewValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstNewValue)).BeginInit();
             this.SuspendLayout();
@@ -64,6 +71,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label35);
             this.panel1.Controls.Add(this.BtnCancel);
             this.panel1.Controls.Add(this.BtnChange);
@@ -72,6 +80,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(310, 698);
             this.panel1.TabIndex = 18;
+            // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(10, 99);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(293, 54);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Warning! You can only change one option at a time.";
             // 
             // label35
             // 
@@ -106,6 +124,7 @@
             this.BtnChange.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnChange.BorderColor = System.Drawing.Color.Gray;
             this.BtnChange.ForeColor = System.Drawing.Color.White;
+            this.BtnChange.Enabled = false;
             this.BtnChange.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnChange.Location = new System.Drawing.Point(208, 642);
             this.BtnChange.Name = "BtnChange";
@@ -124,8 +143,8 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(293, 54);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Select the option you want to change and click on Change. To cancel, click on Can" +
-    "cel";
+            this.label4.Text = "Select the option you want to change, set a new value for your option and click o" +
+    "n Change. To cancel, click on Cancel";
             // 
             // LblStepText
             // 
@@ -169,6 +188,8 @@
             this.DrpDwnLstOption.TabIndex = 64;
             this.DrpDwnLstOption.ThemeName = "Office2016Black";
             this.DrpDwnLstOption.SelectedIndexChanged += new System.EventHandler(this.DrpDwnLstOption_SelectedIndexChanged);
+            this.DrpDwnLstOption.DropDownOpening += new System.EventHandler<Syncfusion.WinForms.ListView.Events.DropDownOpeningEventArgs>(this.DrpDwnLstOption_DropDownOpening);
+            this.DrpDwnLstOption.DropDownOpened += new System.EventHandler(this.DrpDwnLstOption_DropDownOpened);
             // 
             // DrpDwnLstCategory
             // 
@@ -183,6 +204,8 @@
             this.DrpDwnLstCategory.TabIndex = 63;
             this.DrpDwnLstCategory.ThemeName = "Office2016Black";
             this.DrpDwnLstCategory.SelectedIndexChanged += new System.EventHandler(this.DrpDwnLstCategory_SelectedIndexChanged);
+            this.DrpDwnLstCategory.DropDownOpening += new System.EventHandler<Syncfusion.WinForms.ListView.Events.DropDownOpeningEventArgs>(this.DrpDwnLstCategory_DropDownOpening);
+            this.DrpDwnLstCategory.DropDownOpened += new System.EventHandler(this.DrpDwnLstCategory_DropDownOpened);
             // 
             // label2
             // 
@@ -221,6 +244,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.PnlLock);
             this.panel2.Controls.Add(this.TglBtnNewValue);
             this.panel2.Controls.Add(this.DrpDwnLstNewValue);
             this.panel2.Controls.Add(this.label5);
@@ -231,6 +255,63 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(700, 543);
             this.panel2.TabIndex = 72;
+            // 
+            // PnlLock
+            // 
+            this.PnlLock.Controls.Add(this.LblReInit);
+            this.PnlLock.Controls.Add(this.LnkLblReInit);
+            this.PnlLock.Controls.Add(this.LblClick);
+            this.PnlLock.Controls.Add(this.LblLockMessage);
+            this.PnlLock.Location = new System.Drawing.Point(102, 122);
+            this.PnlLock.Name = "PnlLock";
+            this.PnlLock.Size = new System.Drawing.Size(548, 71);
+            this.PnlLock.TabIndex = 87;
+            this.PnlLock.Visible = false;
+            // 
+            // LblReInit
+            // 
+            this.LblReInit.AutoSize = true;
+            this.LblReInit.ForeColor = System.Drawing.Color.White;
+            this.LblReInit.Location = new System.Drawing.Point(163, 38);
+            this.LblReInit.Name = "LblReInit";
+            this.LblReInit.Size = new System.Drawing.Size(135, 13);
+            this.LblReInit.TabIndex = 90;
+            this.LblReInit.Text = "to reinitialize your selection.";
+            // 
+            // LnkLblReInit
+            // 
+            this.LnkLblReInit.AutoSize = true;
+            this.LnkLblReInit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LnkLblReInit.ForeColor = System.Drawing.Color.Orange;
+            this.LnkLblReInit.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.LnkLblReInit.LinkColor = System.Drawing.Color.Orange;
+            this.LnkLblReInit.Location = new System.Drawing.Point(137, 38);
+            this.LnkLblReInit.Name = "LnkLblReInit";
+            this.LnkLblReInit.Size = new System.Drawing.Size(28, 13);
+            this.LnkLblReInit.TabIndex = 89;
+            this.LnkLblReInit.TabStop = true;
+            this.LnkLblReInit.Text = "here";
+            this.LnkLblReInit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LnkLblReInit_LinkClicked);
+            // 
+            // LblClick
+            // 
+            this.LblClick.AutoSize = true;
+            this.LblClick.ForeColor = System.Drawing.Color.White;
+            this.LblClick.Location = new System.Drawing.Point(3, 38);
+            this.LblClick.Name = "LblClick";
+            this.LblClick.Size = new System.Drawing.Size(136, 13);
+            this.LblClick.TabIndex = 88;
+            this.LblClick.Text = "Click on change to apply or";
+            // 
+            // LblLockMessage
+            // 
+            this.LblLockMessage.AutoSize = true;
+            this.LblLockMessage.ForeColor = System.Drawing.Color.White;
+            this.LblLockMessage.Location = new System.Drawing.Point(3, 10);
+            this.LblLockMessage.Name = "LblLockMessage";
+            this.LblLockMessage.Size = new System.Drawing.Size(339, 13);
+            this.LblLockMessage.TabIndex = 87;
+            this.LblLockMessage.Text = "You can only change one option at a time, controls have been locked.";
             // 
             // TglBtnNewValue
             // 
@@ -259,6 +340,7 @@
             this.TglBtnNewValue.TabIndex = 76;
             this.TglBtnNewValue.Text = "toggleButton1";
             this.TglBtnNewValue.ThemeName = "Office2016Black";
+            this.TglBtnNewValue.ToggleStateChanged += new Syncfusion.Windows.Forms.Tools.ToggleStateChangedEventHandler(this.TglBtnNewValue_ToggleStateChanged);
             // 
             // DrpDwnLstNewValue
             // 
@@ -272,6 +354,7 @@
             this.DrpDwnLstNewValue.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.DrpDwnLstNewValue.TabIndex = 75;
             this.DrpDwnLstNewValue.ThemeName = "Office2016Black";
+            this.DrpDwnLstNewValue.SelectedIndexChanged += new System.EventHandler(this.DrpDwnLstNewValue_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -334,6 +417,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstCategory)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.PnlLock.ResumeLayout(false);
+            this.PnlLock.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TglBtnNewValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DrpDwnLstNewValue)).EndInit();
             this.ResumeLayout(false);
@@ -361,5 +446,11 @@
         private System.Windows.Forms.Label label5;
         private Syncfusion.WinForms.ListView.SfComboBox DrpDwnLstNewValue;
         private Syncfusion.Windows.Forms.Tools.ToggleButton TglBtnNewValue;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel PnlLock;
+        private System.Windows.Forms.Label LblLockMessage;
+        private System.Windows.Forms.Label LblClick;
+        private System.Windows.Forms.LinkLabel LnkLblReInit;
+        private System.Windows.Forms.Label LblReInit;
     }
 }

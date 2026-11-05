@@ -68,9 +68,9 @@
             this.LblInstanceName.BackColor = System.Drawing.Color.Transparent;
             this.LblInstanceName.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblInstanceName.ForeColor = System.Drawing.Color.White;
-            this.LblInstanceName.Location = new System.Drawing.Point(261, 4);
+            this.LblInstanceName.Location = new System.Drawing.Point(292, 4);
             this.LblInstanceName.Name = "LblInstanceName";
-            this.LblInstanceName.Size = new System.Drawing.Size(538, 28);
+            this.LblInstanceName.Size = new System.Drawing.Size(572, 28);
             this.LblInstanceName.TabIndex = 1;
             this.LblInstanceName.Text = "Nolvus Regular";
             // 
@@ -79,7 +79,7 @@
             this.LblVersion.AutoSize = true;
             this.LblVersion.BackColor = System.Drawing.Color.Transparent;
             this.LblVersion.ForeColor = System.Drawing.Color.White;
-            this.LblVersion.Location = new System.Drawing.Point(263, 103);
+            this.LblVersion.Location = new System.Drawing.Point(295, 96);
             this.LblVersion.Name = "LblVersion";
             this.LblVersion.Size = new System.Drawing.Size(31, 13);
             this.LblVersion.TabIndex = 2;
@@ -92,9 +92,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LblStatus.BackColor = System.Drawing.Color.Transparent;
             this.LblStatus.ForeColor = System.Drawing.Color.White;
-            this.LblStatus.Location = new System.Drawing.Point(263, 120);
+            this.LblStatus.Location = new System.Drawing.Point(295, 113);
             this.LblStatus.Name = "LblStatus";
-            this.LblStatus.Size = new System.Drawing.Size(536, 19);
+            this.LblStatus.Size = new System.Drawing.Size(574, 19);
             this.LblStatus.TabIndex = 3;
             this.LblStatus.Text = "Loading status...";
             this.LblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -106,7 +106,7 @@
             this.BtnUpdate.BorderColor = System.Drawing.Color.Gray;
             this.BtnUpdate.ForeColor = System.Drawing.Color.White;
             this.BtnUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.BtnUpdate.Location = new System.Drawing.Point(511, 157);
+            this.BtnUpdate.Location = new System.Drawing.Point(581, 157);
             this.BtnUpdate.Name = "BtnUpdate";
             this.BtnUpdate.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnUpdate.Size = new System.Drawing.Size(92, 35);
@@ -123,7 +123,7 @@
             this.BtnPlay.BorderColor = System.Drawing.Color.Gray;
             this.BtnPlay.ForeColor = System.Drawing.Color.White;
             this.BtnPlay.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.BtnPlay.Location = new System.Drawing.Point(707, 157);
+            this.BtnPlay.Location = new System.Drawing.Point(777, 157);
             this.BtnPlay.Name = "BtnPlay";
             this.BtnPlay.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnPlay.Size = new System.Drawing.Size(92, 35);
@@ -138,7 +138,7 @@
             this.PicInstanceImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PicInstanceImage.Location = new System.Drawing.Point(16, 12);
             this.PicInstanceImage.Name = "PicInstanceImage";
-            this.PicInstanceImage.Size = new System.Drawing.Size(241, 180);
+            this.PicInstanceImage.Size = new System.Drawing.Size(273, 180);
             this.PicInstanceImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicInstanceImage.TabIndex = 0;
             this.PicInstanceImage.TabStop = false;
@@ -150,9 +150,9 @@
             this.LblDesc.AutoEllipsis = true;
             this.LblDesc.BackColor = System.Drawing.Color.Transparent;
             this.LblDesc.ForeColor = System.Drawing.Color.White;
-            this.LblDesc.Location = new System.Drawing.Point(263, 40);
+            this.LblDesc.Location = new System.Drawing.Point(295, 40);
             this.LblDesc.Name = "LblDesc";
-            this.LblDesc.Size = new System.Drawing.Size(536, 56);
+            this.LblDesc.Size = new System.Drawing.Size(574, 56);
             this.LblDesc.TabIndex = 6;
             this.LblDesc.Text = "[Description]";
             // 
@@ -163,7 +163,7 @@
             this.BtnView.BorderColor = System.Drawing.Color.Gray;
             this.BtnView.ForeColor = System.Drawing.Color.White;
             this.BtnView.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.BtnView.Location = new System.Drawing.Point(609, 157);
+            this.BtnView.Location = new System.Drawing.Point(679, 157);
             this.BtnView.Name = "BtnView";
             this.BtnView.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
             this.BtnView.Size = new System.Drawing.Size(92, 35);
@@ -349,7 +349,7 @@
             this.LblImageLoading.ForeColor = System.Drawing.Color.White;
             this.LblImageLoading.Location = new System.Drawing.Point(16, 12);
             this.LblImageLoading.Name = "LblImageLoading";
-            this.LblImageLoading.Size = new System.Drawing.Size(241, 180);
+            this.LblImageLoading.Size = new System.Drawing.Size(273, 180);
             this.LblImageLoading.TabIndex = 8;
             this.LblImageLoading.Text = "Loading...";
             this.LblImageLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -383,7 +383,7 @@
             this.Controls.Add(this.PicInstanceImage);
             this.DoubleBuffered = true;
             this.Name = "InstancePanel";
-            this.Size = new System.Drawing.Size(814, 206);
+            this.Size = new System.Drawing.Size(884, 206);
             ((System.ComponentModel.ISupportInitialize)(this.PicInstanceImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

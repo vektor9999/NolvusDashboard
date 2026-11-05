@@ -19,7 +19,22 @@ using Syncfusion.Windows.Forms.Tools;
 namespace Vcc.Nolvus.Dashboard.Frames.Manager.Options.v6
 {
     public partial class OptionsManagerFrame : DashboardFrame
-    {
+    {     
+        private INolvusOptionDTO SelectedOption
+        {
+            get
+            {
+                return (DrpDwnLstOption.SelectedItem as INolvusOptionDTO);
+            }
+        }
+        
+        private INolvusOption CurrentOption
+        {
+            get
+            {
+                return ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption(SelectedOption.Name);
+            }
+        }   
         public OptionsManagerFrame()
         {
             InitializeComponent();
@@ -56,10 +71,30 @@ namespace Vcc.Nolvus.Dashboard.Frames.Manager.Options.v6
             return Index == -1 ? 0 : Index;
         }
 
-        private string GetNewValue()
-        {            
-            var SelectedOption = (DrpDwnLstOption.SelectedItem as INolvusOptionDTO);            
+        private void UnlinkEvents()
+        {
+            DrpDwnLstNewValue.SelectedIndexChanged -= DrpDwnLstNewValue_SelectedIndexChanged;
+            TglBtnNewValue.ToggleStateChanged -= TglBtnNewValue_ToggleStateChanged;
+        }
 
+        private void LinkEvents()
+        {
+            DrpDwnLstNewValue.SelectedIndexChanged += DrpDwnLstNewValue_SelectedIndexChanged;
+            TglBtnNewValue.ToggleStateChanged += TglBtnNewValue_ToggleStateChanged;
+        }
+
+        private void LockMessage(bool Lock)
+        {
+            DrpDwnLstCategory.Enabled = !Lock;
+            DrpDwnLstOption.Enabled = !Lock;
+
+            PnlLock.Visible = Lock;
+
+            BtnChange.Enabled = Lock;
+        }
+
+        private string GetNewValue()
+        {                        
             if (SelectedOption.DataType == "bool")
             {                
                 return TglBtnNewValue.ToggleState == ToggleButtonState.Active ? "TRUE" : "FALSE";
@@ -72,13 +107,32 @@ namespace Vcc.Nolvus.Dashboard.Frames.Manager.Options.v6
             return string.Empty;
         }
 
-        private string GetFormatedValue(bool Current)
+        private void InitNewValue()
+        {            
+            if (SelectedOption.DataType == "bool")
+            {
+                TglBtnNewValue.ToggleState = CurrentOption.Value == "TRUE" ? ToggleButtonState.Active : ToggleButtonState.Inactive;
+            }
+            else if (SelectedOption.DataType == "list")
+            {
+                DrpDwnLstNewValue.SelectedIndex = ValueIndex(DrpDwnLstNewValue.DataSource as IEnumerable<INolvusOptionChoiceDTO>, CurrentOption.Name);
+            }            
+        }
+
+        private async Task LoadOptionChoices()
         {
             var Instance = ServiceSingleton.Instances.WorkingInstance;
 
-            var SelectedOption = (DrpDwnLstOption.SelectedItem as INolvusOptionDTO);
-            var CurrentOption = Instance.OptionsManager.GetOption(SelectedOption.Name);
+            var Values = await ApiManager.Service.Installer.GetOptionChoices(SelectedOption.Name, Instance.SettingsManager.Variant, Instance.Id);
 
+            DrpDwnLstNewValue.DataSource = null;
+            DrpDwnLstNewValue.DataSource = Values;
+            DrpDwnLstNewValue.DisplayMember = "Value";
+            DrpDwnLstNewValue.ValueMember = "Value";                      
+        }
+
+        private string GetFormatedValue(bool Current)
+        {            
             if (SelectedOption.DataType == "bool")
             {
                 if (Current)
@@ -113,15 +167,20 @@ namespace Vcc.Nolvus.Dashboard.Frames.Manager.Options.v6
             DrpDwnLstCategory.DisplayMember = "Name";
             DrpDwnLstCategory.ValueMember = "Id";
 
-            DrpDwnLstCategory.SelectedIndex = 0;
-        }
-
-        private void BtnCancel_Click(object sender, EventArgs e)
-        {
-            ServiceSingleton.Instances.UnloadWorkingIntance();
-            ServiceSingleton.Dashboard.LoadFrame<InstancesFrame>();
+            DrpDwnLstCategory.SelectedIndex = 0;            
         }        
 
+        private void DrpDwnLstCategory_DropDownOpening(object sender, Syncfusion.WinForms.ListView.Events.DropDownOpeningEventArgs e)
+        {
+            DrpDwnLstCategory.SelectedIndexChanged -= DrpDwnLstCategory_SelectedIndexChanged;
+        }
+        private void DrpDwnLstCategory_DropDownOpened(object sender, EventArgs e)
+        {
+            Task.Delay(500).ContinueWith(t =>
+            {
+                DrpDwnLstCategory.SelectedIndexChanged += DrpDwnLstCategory_SelectedIndexChanged;
+            });
+        }
         private async void DrpDwnLstCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             var Instance = ServiceSingleton.Instances.WorkingInstance;
@@ -136,59 +195,69 @@ namespace Vcc.Nolvus.Dashboard.Frames.Manager.Options.v6
             DrpDwnLstOption.SelectedIndex = 0;
         }
 
+        private void DrpDwnLstOption_DropDownOpening(object sender, Syncfusion.WinForms.ListView.Events.DropDownOpeningEventArgs e)
+        {
+            DrpDwnLstOption.SelectedIndexChanged -= DrpDwnLstOption_SelectedIndexChanged;
+        }
+        private void DrpDwnLstOption_DropDownOpened(object sender, EventArgs e)
+        {
+            Task.Delay(500).ContinueWith(t =>
+            {
+                DrpDwnLstOption.SelectedIndexChanged += DrpDwnLstOption_SelectedIndexChanged;
+            });
+        }
         private async void DrpDwnLstOption_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var Instance = ServiceSingleton.Instances.WorkingInstance;
-
-            var SelectedOption = (DrpDwnLstOption.SelectedItem as INolvusOptionDTO);
-            var CurrentOption = Instance.OptionsManager.GetOption(SelectedOption.Name);
-
-            string CurrentValue = string.Empty;
-
             TglBtnNewValue.Visible = false;
             DrpDwnLstNewValue.Visible = false;
+
+            UnlinkEvents();            
+
+            LblCurrentValue.Text = CurrentOption.FormattedValue;            
 
             if (SelectedOption.DataType == "bool")
             {
                 TglBtnNewValue.Visible = true;
-
-                TglBtnNewValue.ToggleState = ToggleButtonState.Inactive;
-
-                if (CurrentOption.Value == "TRUE")
-                {
-                    TglBtnNewValue.ToggleState = ToggleButtonState.Active;
-                }
-
-                CurrentValue = CurrentOption.Value == "TRUE" ? "Yes" : "No";
-            }
-            else if (SelectedOption.DataType == "list")
-            {
-                DrpDwnLstNewValue.Visible = true;
-
-                var Values = await ApiManager.Service.Installer.GetOptionChoices(SelectedOption.Name, Instance.SettingsManager.Variant, Instance.Id);
-
-                DrpDwnLstNewValue.DataSource = null;
-                DrpDwnLstNewValue.DataSource = Values;
-                DrpDwnLstNewValue.DisplayMember = "Value";
-                DrpDwnLstNewValue.ValueMember = "Value";
-
-                DrpDwnLstNewValue.SelectedIndex = ValueIndex(Values, SelectedOption.Name);
-
-                CurrentValue = CurrentOption.Value;
             }
             else
             {
-                CurrentValue = CurrentOption.Value;
+                DrpDwnLstNewValue.Visible = true;
+                await LoadOptionChoices();
             }
 
-            LblCurrentValue.Text = CurrentValue;
+            InitNewValue();
+
+            LinkEvents();
+        }
+
+        private void TglBtnNewValue_ToggleStateChanged(object sender, ToggleStateChangedEventArgs e)
+        {
+            if (CurrentOption.Value != GetNewValue())
+            {
+                LockMessage(true);
+            }
+            else
+            {
+                LockMessage(false);
+            }
+        }
+        private void DrpDwnLstNewValue_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CurrentOption.Value != GetNewValue())
+            {
+                LockMessage(true);
+            }
+            else
+            {
+                LockMessage(false);
+            }
         }
 
         private async void DoChangeOption(INolvusOption CurrentOption, string NewValue, bool BackupSaveFiles)
         {            
             try
             {
-                var Instance = ServiceSingleton.Instances.WorkingInstance;                        
+                var Instance = ServiceSingleton.Instances.WorkingInstance;
 
                 var ModsToUpdate = await ServiceSingleton.OptionManager.PrepareModsToUpdate(CurrentOption.Name, CurrentOption.Value, GetNewValue());
 
@@ -202,16 +271,17 @@ namespace Vcc.Nolvus.Dashboard.Frames.Manager.Options.v6
 
                     if (BackupSaveFiles)
                     {
+                        ServiceSingleton.Logger.Log("New game required, about to backup game save files");
                         await Instance.BackupGameSaveFiles();
                     }
 
                     ServiceSingleton.Instances.PrepareInstanceForOption();
-                    
+
                     await ServiceSingleton.Dashboard.LoadFrameAsync<InstallFrame>(new FrameParameters(new FrameParameter() { Key = "ModsToInstall", Value = ModsToUpdate.Cast<IInstallableElement>().ToList() }));
                 }
                 else
                 {
-                    NolvusMessageBox.ShowMessage("Info", string.Format("{0} doesn't have any mod associated with it for {1}!\n\nThis Option Could be linked to an older or new Nolvus version.\n\nCheck for Nolvus list update.", CurrentOption.Name, Instance.FullName), MessageBoxType.Error);
+                    NolvusMessageBox.ShowMessage("Info", string.Format("{0} doesn't have any mod associated with it for {1}!\n\nThis Option Could be linked to an older or newer Nolvus version.\n\nCheck for Nolvus list update.", CurrentOption.Name, Instance.FullName), MessageBoxType.Error);
                 }
             }
             catch (Exception ex)
@@ -220,15 +290,15 @@ namespace Vcc.Nolvus.Dashboard.Frames.Manager.Options.v6
             }                      
         }
 
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            ServiceSingleton.Instances.UnloadWorkingIntance();
+            ServiceSingleton.Dashboard.LoadFrame<InstancesFrame>();
+        }
         private void BtnChange_Click(object sender, EventArgs e)
         {
             if (!ModOrganizer.IsRunning)
-            {
-                var Instance = ServiceSingleton.Instances.WorkingInstance;
-
-                var SelectedOption = (DrpDwnLstOption.SelectedItem as INolvusOptionDTO);
-                var CurrentOption = Instance.OptionsManager.GetOption(SelectedOption.Name);
-
+            {                
                 if (GetNewValue() == CurrentOption.Value)
                 {
                     NolvusMessageBox.ShowMessage("Error", string.Format("New value ({0}) for {1} didn't change!", CurrentOption.Value, CurrentOption.Name), MessageBoxType.Error);
@@ -239,24 +309,19 @@ namespace Vcc.Nolvus.Dashboard.Frames.Manager.Options.v6
                     {
                         if (NolvusMessageBox.ShowConfirmation("Confirmation", string.Format("You are about to change {0} from {1} to {2}.\n\nWarning!!!\n\nIf you customized the list, all added mods will be placed at the end of the loadorder and left unchecked.\n\nAre you sure you want to continue?", CurrentOption.FriendlyName, GetFormatedValue(true), GetFormatedValue(false))) == DialogResult.Yes)
                         {
-                            if (!SelectedOption.NewGameRequired)
+
+                            if(!SelectedOption.NewGameRequired || (SelectedOption.NewGameRequired && NolvusMessageBox.ShowConfirmation("Confirmation", string.Format("Changing {0} will require a new game!\n\nTo prevent issues, your save files will be removed from the saves directory and will be backed up!\n\nAre you sure you want to continue?", CurrentOption.FriendlyName)) == DialogResult.Yes))
                             {
                                 DisableButtons();
                                 ServiceSingleton.Dashboard.DisableSettings();
 
-                                DoChangeOption(CurrentOption, GetNewValue(), false);
-                            }
-                            else if (NolvusMessageBox.ShowConfirmation("Confirmation", string.Format("Changing {0} will require a new game!\n\nTo prevent issues, your save files will be removed from the saves directory and will be backed up!\n\nAre you sure you want to continue?", CurrentOption.FriendlyName)) == DialogResult.Yes)
-                            {
-                                DisableButtons();
-                                ServiceSingleton.Dashboard.DisableSettings();
-
-                                DoChangeOption(CurrentOption, GetNewValue(), true);
-                            }
+                                DoChangeOption(CurrentOption, GetNewValue(), SelectedOption.NewGameRequired);
+                            }                            
                         }
                     }
                     finally
                     {
+                        EnableButtons();
                         ServiceSingleton.Dashboard.EnableSettings();
                     }
                 }
@@ -265,6 +330,16 @@ namespace Vcc.Nolvus.Dashboard.Frames.Manager.Options.v6
             {
                 NolvusMessageBox.ShowMessage("Mod Organizer 2", "An instance of Mod Organizer 2 is running! Please close it first.", MessageBoxType.Error);
             }
-        }        
+        }                
+
+        private void LnkLblReInit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LockMessage(false);
+            UnlinkEvents();
+            InitNewValue();
+            LinkEvents();
+        }       
+
+        
     }
 }
