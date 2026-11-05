@@ -252,7 +252,7 @@ namespace Vcc.Nolvus.Instance.Core
                 }
                 else
                 {
-                    ServiceSingleton.Logger.Log(string.Format("No game save files to backup in {0}", SaveDir));
+                    ServiceSingleton.Logger.Log(string.Format("No game save file to backup in {0}", SaveDir));
                 }                
             });
         }
