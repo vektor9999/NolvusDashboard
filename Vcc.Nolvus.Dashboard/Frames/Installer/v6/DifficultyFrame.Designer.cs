@@ -108,6 +108,7 @@
             this.BtnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnPrevious.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnPrevious.BorderColor = System.Drawing.Color.Gray;
+            this.BtnPrevious.ForeColor = System.Drawing.Color.White;
             this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPrevious.Location = new System.Drawing.Point(113, 747);
             this.BtnPrevious.Name = "BtnPrevious";
@@ -123,6 +124,7 @@
             this.BtnContinue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnContinue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnContinue.BorderColor = System.Drawing.Color.Gray;
+            this.BtnContinue.ForeColor = System.Drawing.Color.White;
             this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnContinue.Location = new System.Drawing.Point(207, 747);
             this.BtnContinue.Name = "BtnContinue";
@@ -192,6 +194,7 @@
             // 
             this.BtnZoneLevelExplained.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnZoneLevelExplained.BorderColor = System.Drawing.Color.Gray;
+            this.BtnZoneLevelExplained.ForeColor = System.Drawing.Color.White;
             this.BtnZoneLevelExplained.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnZoneLevelExplained.Location = new System.Drawing.Point(193, 405);
             this.BtnZoneLevelExplained.Name = "BtnZoneLevelExplained";
@@ -408,6 +411,7 @@
             // 
             this.BtnScalingExplained.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnScalingExplained.BorderColor = System.Drawing.Color.Gray;
+            this.BtnScalingExplained.ForeColor = System.Drawing.Color.White;
             this.BtnScalingExplained.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnScalingExplained.Location = new System.Drawing.Point(246, 35);
             this.BtnScalingExplained.Name = "BtnScalingExplained";
@@ -456,6 +460,7 @@
             // 
             this.BtnPresetsExplained.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnPresetsExplained.BorderColor = System.Drawing.Color.Gray;
+            this.BtnPresetsExplained.ForeColor = System.Drawing.Color.White;
             this.BtnPresetsExplained.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPresetsExplained.Location = new System.Drawing.Point(305, 12);
             this.BtnPresetsExplained.Name = "BtnPresetsExplained";
