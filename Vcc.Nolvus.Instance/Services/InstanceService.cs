@@ -204,7 +204,12 @@ namespace Vcc.Nolvus.Instance.Services
                             Instance.OptionsManager.AddOption("NerfPA", "Nerf Power Attacks", "Difficulty", "list", OptionsNode["NerfPA"].InnerText.Trim());
                             Instance.OptionsManager.AddOption("SREX", "SR Exterior Cities", "Performance", "bool", PerformanceNode["SREX"].InnerText.Trim());
                             Instance.OptionsManager.AddOption("UI", "User Interface", "User Interface", "list", OptionsNode["UI"].InnerText.Trim());
-                            Instance.OptionsManager.AddOption("ZoneLevelIndicator", "Zone Level Indicator", "Difficulty", "bool", OptionsNode["ZoneLevelIndicator"].InnerText.Trim());
+
+                            if (OptionsNode["ZoneLevelIndicator"] != null)
+                            {
+                                Instance.OptionsManager.AddOption("ZoneLevelIndicator", "Zone Level Indicator", "Difficulty", "bool", OptionsNode["ZoneLevelIndicator"].InnerText.Trim());
+                            }
+                            
                             break;
                     }
 
