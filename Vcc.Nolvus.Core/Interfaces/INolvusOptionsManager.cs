@@ -12,6 +12,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         void AddOption(string Name, string FriendlyName, string Category, string DataType, string Value);
         string GetOptionValue(string Name);
         void SetOptionValue(string Name, string Value);
+        bool OptionExists(string Name);
         INolvusOption GetOption(string Name);
         Task LoadFromServer(INolvusInstance Instance);
         Task SynchronizeOptions(INolvusInstance Instance);

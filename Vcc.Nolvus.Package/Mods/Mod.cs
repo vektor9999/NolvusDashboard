@@ -226,9 +226,15 @@ namespace Vcc.Nolvus.Package.Mods
                 File.WriteAllText(Path.Combine(MoDirectoryFullName, "meta.ini"), string.Format(MetaIni, "0", Version, GetInstallFileName().Replace("\\", "/"), "0"));
             }            
         }
+
+        private List<InstallCondition> GetConditions()
+        {
+            return InstallConditions.Where(x => x.IsApplicable()).ToList();
+        }
+
         public override bool IsInstallable()
         {
-            foreach (var Condition in InstallConditions)
+            foreach (var Condition in GetConditions())
             {
                 if (!Condition.IsValid())
                 {                    

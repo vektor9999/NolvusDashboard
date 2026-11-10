@@ -154,7 +154,12 @@ namespace Vcc.Nolvus.Instance.Services
 
                     Instance.Id = InstanceNode["Id"].InnerText.Trim();
                     Instance.Name = InstanceNode["Name"].InnerText.Trim();
-                    Instance.Tag = InstanceNode["Tag"].InnerText.Trim();
+
+                    if (InstanceNode["Tag"] != null)
+                    {
+                        Instance.Tag = InstanceNode["Tag"].InnerText.Trim();
+                    }
+                    
                     Instance.Version = InstanceNode["Version"].InnerText.Trim();
                     Instance.Description = InstanceNode["Description"].InnerText.Trim();
 
@@ -395,14 +400,6 @@ namespace Vcc.Nolvus.Instance.Services
             }
         }
 
-        public bool WorkingOnInstance
-        {
-            get
-            {
-                return WorkingInstance != null && (WorkingInstance.StatusManager.InstallStatus == InstanceInstallStatus.Installing || WorkingInstance.StatusManager.InstallStatus == InstanceInstallStatus.Updating);
-            }            
-        }
-
         public void FinalizeInstance()
         {
             WorkingInstance.StatusManager.InstallStatus = InstanceInstallStatus.Installed;
@@ -423,7 +420,16 @@ namespace Vcc.Nolvus.Instance.Services
         public bool Empty
         {
             get { return Instances.Count == 0; }
-        }             
+        }                     
+
+        public bool PropertyExists(string Name)
+        {
+            var PropInInstance = typeof(INolvusInstance).GetProperty(Name) != null;
+            var PropInSettings = typeof(INolvusSettingsManager).GetProperty(Name) != null;
+            var PropInOptions = ServiceSingleton.Instances.WorkingInstance.OptionsManager.OptionExists(Name);
+
+            return PropInInstance || PropInSettings || PropInOptions;
+        }
 
         public string GetValueFromKey(string Key)
         {

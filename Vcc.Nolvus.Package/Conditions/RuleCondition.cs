@@ -10,6 +10,7 @@ namespace Vcc.Nolvus.Package.Conditions
     public abstract class RuleCondition
     {
         public abstract bool IsValid(string GamePath, string InstallDir);
+        public abstract bool IsApplicable();
 
         public abstract void Load(XmlNode Node);
     }

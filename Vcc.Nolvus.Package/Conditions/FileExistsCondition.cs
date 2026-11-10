@@ -9,6 +9,10 @@ namespace Vcc.Nolvus.Package.Conditions
 {
     public class FileExistsCondition : CompareCondition
     {
+        public override bool IsApplicable()
+        {
+            return true;
+        }
         public override bool IsValid(string GamePath, string InstallDir)
         {
             throw new NotImplementedException();

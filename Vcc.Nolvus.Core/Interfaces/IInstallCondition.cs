@@ -12,5 +12,6 @@ namespace Vcc.Nolvus.Core.Interfaces
         bool IsValid();
         bool IsValid(string Value);
         bool IsValid(string Data, string Value);
+        bool IsApplicable();
     }
 }

@@ -43,9 +43,14 @@ namespace Vcc.Nolvus.Package.Rules
 
         public abstract void Execute(string GamePath, string ExtractDir, string ModDir, string InstanceDir);        
 
+        private List<RuleCondition> GetConditions()
+        {
+            return Conditions.Where(x => x.IsApplicable()).ToList();
+        }
+
         protected virtual bool CanExecute(string GamePath, string InstallDir)
         {
-            foreach(var Condition in Conditions)
+            foreach(var Condition in GetConditions())
             {
                 if (!Condition.IsValid(GamePath, InstallDir))
                 {

@@ -249,9 +249,13 @@ namespace Vcc.Nolvus.Api.Installer.Controllers
             return await this._Service.GetPolyMorphic<List<NolvusOptionChoiceDTO>>($"{_Api}/getoptionchoices", Params);
         }        
 
-        public async Task<IEnumerable<INolvusOptionCategoryDTO>> GetOptionCategories()
-        {            
-            return await this._Service.GetPolyMorphic<List<NolvusOptionCategoryDTO>>($"{_Api}/getoptioncategories");
+        public async Task<IEnumerable<INolvusOptionCategoryDTO>> GetOptionCategories(string Variant, string NolvusVersionId)
+        {
+            Dictionary<string, object> Params = new Dictionary<string, object>();
+            Params.Add("Variant", Variant);            
+            Params.Add("NolvusVersionId", NolvusVersionId);
+
+            return await this._Service.GetPolyMorphic<List<NolvusOptionCategoryDTO>>($"{_Api}/getoptioncategories", Params);
         }
 
         public async Task<IEnumerable<INolvusOptionDTO>> GetOptionsByCategory(string Variant, string Category, string NolvusVersionId)

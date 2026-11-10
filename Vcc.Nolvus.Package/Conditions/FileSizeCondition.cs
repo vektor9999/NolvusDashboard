@@ -18,6 +18,11 @@ namespace Vcc.Nolvus.Package.Conditions
             Source = System.Convert.ToInt16(Node["Source"].InnerText);
         }
 
+        public override bool IsApplicable()
+        {
+            return true;
+        }
+
         public override bool IsValid(string GamePath, string InstallDir)
         {
             bool Valid = false;

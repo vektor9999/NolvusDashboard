@@ -21,6 +21,11 @@ namespace Vcc.Nolvus.Package.Conditions
             ValueToCompare = Node["ValueToCompare"].InnerText;
         }
 
+        public override bool IsApplicable()
+        {
+            return ServiceSingleton.Instances.PropertyExists(DataToCompare);
+        }
+
         public override bool IsValid()
         {            
             string Value = ServiceSingleton.Instances.GetValueFromKey(DataToCompare);              
