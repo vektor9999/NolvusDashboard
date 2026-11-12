@@ -524,7 +524,17 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
         private async void LnkLblOptionsManager_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            await ServiceSingleton.Dashboard.LoadFrameAsync<OptionsManagerFrame>();
+            var Instance = ServiceSingleton.Instances.WorkingInstance;
+
+            if (Instance.Name == Strings.NolvusAwakening)
+            {
+                await ServiceSingleton.Dashboard.LoadFrameAsync<OptionsManagerFrame>();
+            }
+            else
+            {
+                NolvusMessageBox.ShowMessage("Options Manager", string.Format("This feature is not available for {0}.", Instance.Name), MessageBoxType.Info);
+            }
+            
         }
 
         private void LnkLblRemap_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

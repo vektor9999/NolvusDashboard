@@ -80,6 +80,14 @@ namespace Vcc.Nolvus.Core.Events
         }
     }
 
+    public class DeleteProgress : BaseProgress
+    {        
+    }
+
+    public class CleaningProgress : BaseProgress
+    {
+    }
+
     public class UnPackProgress : CopyProgress
     {
 

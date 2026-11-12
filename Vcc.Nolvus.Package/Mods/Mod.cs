@@ -24,11 +24,13 @@ namespace Vcc.Nolvus.Package.Mods
         public List<Rule> Rules = new List<Rule>();
         public List<BsaUnPacking> Bsas = new List<BsaUnPacking>();
         public List<Esp> Esps = new List<Esp>();
-        public List<CustomField> Fields = new List<CustomField>();
+        public List<CustomField> Fields = new List<CustomField>();        
 
         #endregion
 
         #region Properties              
+
+        public InstallConditionType InstallConditionType { get; set; } = InstallConditionType.AND;        
 
         public ICategory Category { get; set; }        
 
@@ -86,6 +88,11 @@ namespace Vcc.Nolvus.Package.Mods
             {
                 Tag = Node["Tag"].InnerText;
             }            
+
+            if (Node["InstallConditionType"] != null)
+            {
+                InstallConditionType = (InstallConditionType)System.Convert.ToInt16(Node["InstallConditionType"].InnerText);
+            }
 
             #region Rules
 
@@ -234,19 +241,34 @@ namespace Vcc.Nolvus.Package.Mods
 
         public override bool IsInstallable()
         {
-            foreach (var Condition in GetConditions())
+            if (InstallConditionType == InstallConditionType.AND)
             {
-                if (!Condition.IsValid())
-                {                    
-                    return false;
+                foreach (var Condition in GetConditions())
+                {
+                    if (!Condition.IsValid())
+                    {
+                        return false;
+                    }
                 }
-            }            
 
-            return true;
+                return true;
+            }
+            else
+            {
+                foreach (var Condition in GetConditions())
+                {
+                    if (Condition.IsValid())
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }            
         }
 
         public override bool IsInstallable(string Value)
-        {
+        {            
             foreach (var Condition in InstallConditions)
             {
                 if (!Condition.IsValid(Value))
@@ -265,13 +287,13 @@ namespace Vcc.Nolvus.Package.Mods
 
         protected virtual async Task PrepareDirectrory()
         {
-            var Tsk = Task.Run(() => {
+            var Tsk = Task.Run(async () => {
 
                 if (Display)
                 {
                     if (ZlpIOHelper.DirectoryExists(MoDirectoryFullName))
-                    {
-                        ServiceSingleton.Files.RemoveDirectory(MoDirectoryFullName, true);
+                    {                        
+                        await ServiceSingleton.Files.RemoveDirectory(MoDirectoryFullName, true, CleaningProgress);
                     }
 
                     ZlpIOHelper.CreateDirectory(MoDirectoryFullName);
@@ -391,8 +413,8 @@ namespace Vcc.Nolvus.Package.Mods
                         CreateElementIni();
                     }
                     finally
-                    {
-                        ServiceSingleton.Files.RemoveDirectory(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), true);
+                    {                                           
+                        await ServiceSingleton.Files.RemoveDirectory(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), true, CleaningProgress);
                     }                                          
                 }
                 catch (Exception ex)
@@ -432,13 +454,14 @@ namespace Vcc.Nolvus.Package.Mods
         }
         public override async Task Remove()
         {
-            var Tsk = Task.Run(() =>
+            var Tsk = Task.Run(async () =>
             {
                 try
                 {
                     if (ZlpIOHelper.DirectoryExists(MoDirectoryFullName))
                     {
-                        ServiceSingleton.Files.RemoveDirectory(MoDirectoryFullName, true);
+                        ServiceSingleton.Logger.Log(string.Format("Deleting mod {0}", Name));                        
+                        await ServiceSingleton.Files.RemoveDirectory(MoDirectoryFullName, true, DeletingProgress);
                     }
                 }
                 catch (Exception ex)

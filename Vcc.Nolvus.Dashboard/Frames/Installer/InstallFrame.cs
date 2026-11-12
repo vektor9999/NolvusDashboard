@@ -103,7 +103,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                     ServiceSingleton.Dashboard.Title("Nolvus Dashboard - [Instance Auto Installer]");                    
                     ServiceSingleton.Dashboard.Status(string.Format("{0} {1} - {2} (v{3})", Instance.StatusManager.InstallStatus == InstanceInstallStatus.Installing ? "Installing" : "Updating", Instance.Name, Instance.SettingsManager.Variant, ServiceSingleton.Packages.LoadedVersion));
                     ServiceSingleton.Dashboard.Info("Installing mods (0%)");
-                    ServiceSingleton.Dashboard.AdditionalInfo("Mods {0}/0");
+                    ServiceSingleton.Dashboard.AdditionalInfo("Mods 0/0");
                     ServiceSingleton.Dashboard.AdditionalSecondaryInfo("Error(s) : 0");                                        
 
                     ServiceSingleton.Files.RemoveDirectory(ServiceSingleton.Folders.NexusCacheDirectory, false);

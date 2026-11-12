@@ -199,21 +199,25 @@ namespace Vcc.Nolvus.Instance.Services
                             break;
 
                         case Strings.NolvusAwakening:
-                            Instance.OptionsManager.AddOption("Boss", "Boss Encounter", "Difficulty", "bool", OptionsNode["Boss"].InnerText.Trim());
-                            Instance.OptionsManager.AddOption("CombatAnimation", "Combat Animation", "Gameplay", "list", OptionsNode["CombatAnimation"].InnerText.Trim());
-                            Instance.OptionsManager.AddOption("CombatScaling", "Diffulty Preset", "Difficulty", "list", OptionsNode["CombatScaling"].InnerText.Trim());
-                            Instance.OptionsManager.AddOption("Controller", "Controller Support", "Gameplay", "bool", OptionsNode["Controller"].InnerText.Trim());
-                            Instance.OptionsManager.AddOption("Exhaustion", "Exhaustion", "Difficulty", "bool", OptionsNode["Exhaustion"].InnerText.Trim());
-                            Instance.OptionsManager.AddOption("FrameGeneration", "Frame Generation", "Performance", "bool", PerformanceNode["FrameGeneration"].InnerText.Trim());
-                            Instance.OptionsManager.AddOption("Gore", "Gore", "Gameplay", "bool", OptionsNode["Gore"].InnerText.Trim());
-                            Instance.OptionsManager.AddOption("NerfPA", "Nerf Power Attacks", "Difficulty", "list", OptionsNode["NerfPA"].InnerText.Trim());
-                            Instance.OptionsManager.AddOption("SREX", "SR Exterior Cities", "Performance", "bool", PerformanceNode["SREX"].InnerText.Trim());
-                            Instance.OptionsManager.AddOption("UI", "User Interface", "User Interface", "list", OptionsNode["UI"].InnerText.Trim());
-
-                            if (OptionsNode["ZoneLevelIndicator"] != null)
+                            if (Instance.SettingsManager.Variant != Strings.GO)
                             {
-                                Instance.OptionsManager.AddOption("ZoneLevelIndicator", "Zone Level Indicator", "Difficulty", "bool", OptionsNode["ZoneLevelIndicator"].InnerText.Trim());
+                                Instance.OptionsManager.AddOption("Boss", "Boss Encounter", "Difficulty", "bool", OptionsNode["Boss"].InnerText.Trim());
+                                Instance.OptionsManager.AddOption("CombatAnimation", "Combat Animation", "Gameplay", "list", OptionsNode["CombatAnimation"].InnerText.Trim());
+                                Instance.OptionsManager.AddOption("CombatScaling", "Diffulty Preset", "Difficulty", "list", OptionsNode["CombatScaling"].InnerText.Trim());
+                                Instance.OptionsManager.AddOption("Controller", "Controller Support", "Gameplay", "bool", OptionsNode["Controller"].InnerText.Trim());
+                                Instance.OptionsManager.AddOption("Exhaustion", "Exhaustion", "Difficulty", "bool", OptionsNode["Exhaustion"].InnerText.Trim());
+                                Instance.OptionsManager.AddOption("Gore", "Gore", "Gameplay", "bool", OptionsNode["Gore"].InnerText.Trim());
+                                Instance.OptionsManager.AddOption("NerfPA", "Nerf Power Attacks", "Difficulty", "list", OptionsNode["NerfPA"].InnerText.Trim());
+
+                                if (OptionsNode["ZoneLevelIndicator"] != null)
+                                {
+                                    Instance.OptionsManager.AddOption("ZoneLevelIndicator", "Zone Level Indicator", "Difficulty", "bool", OptionsNode["ZoneLevelIndicator"].InnerText.Trim());
+                                }
                             }
+                            
+                            Instance.OptionsManager.AddOption("FrameGeneration", "Frame Generation", "Performance", "bool", PerformanceNode["FrameGeneration"].InnerText.Trim());                            
+                            Instance.OptionsManager.AddOption("SREX", "SR Exterior Cities", "Performance", "bool", PerformanceNode["SREX"].InnerText.Trim());
+                            Instance.OptionsManager.AddOption("UI", "User Interface", "User Interface", "list", OptionsNode["UI"].InnerText.Trim());                            
                             
                             break;
                     }

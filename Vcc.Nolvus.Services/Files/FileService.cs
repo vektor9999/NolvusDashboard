@@ -103,7 +103,7 @@ namespace Vcc.Nolvus.Services.Files
             }
         }       
 
-        public void MoveFiles(string SourcePath, string TargetPath, SearchOption SearchOption = SearchOption.AllDirectories)
+        public void MoveFiles(string SourcePath, string TargetPath, Action<int> Progress = null, SearchOption SearchOption = SearchOption.AllDirectories)
         {
             if (SearchOption == SearchOption.AllDirectories)
             {
@@ -111,11 +111,23 @@ namespace Vcc.Nolvus.Services.Files
                 {
                     ZlpIOHelper.CreateDirectory(DirPath.FullName.Replace(SourcePath, TargetPath));
                 }
-            }            
+            }
 
-            foreach (var SourceFile in ZlpIOHelper.GetFiles(SourcePath, "*.*", SearchOption))
+            var Files = ZlpIOHelper.GetFiles(SourcePath, "*.*", SearchOption);
+            var Counter = 0;
+
+            foreach (var SourceFile in Files)
             {
                 MoveFile(SourceFile.FullName, SourceFile.FullName.Replace(SourcePath, TargetPath));
+
+                Counter++;
+
+                if (Progress != null)
+                {
+                    int Percent = System.Convert.ToInt16(Math.Round(((double)Counter / Files.Length * 100)));
+
+                    Progress(Percent);
+                }
             }
         }
 
@@ -153,10 +165,12 @@ namespace Vcc.Nolvus.Services.Files
             ZlpDirectoryInfo _Directory = new ZlpDirectoryInfo(DirectoryPath);
 
             if (_Directory.Exists)
-            {
+            {                
                 SetAttributesNormal(_Directory);
 
-                foreach (ZlpFileInfo File in _Directory.GetFiles())
+                var Files = _Directory.GetFiles("*.*", SearchOption.AllDirectories);             
+
+                foreach (ZlpFileInfo File in Files)
                 {
                     File.Delete();
                 }
@@ -171,6 +185,50 @@ namespace Vcc.Nolvus.Services.Files
                     _Directory.Delete();
                 }
             }            
+        }
+
+        public async Task RemoveDirectory(string DirectoryPath, bool RemoveDirectory, Action<string, int> Progress)
+        {
+            var Tsk = Task.Run(() =>
+            {
+                ZlpDirectoryInfo _Directory = new ZlpDirectoryInfo(DirectoryPath);
+
+                if (_Directory.Exists)
+                {
+                    Progress(string.Empty, 0);
+
+                    SetAttributesNormal(_Directory);
+
+                    var Files = _Directory.GetFiles("*.*", SearchOption.AllDirectories);
+                    var Counter = 0;
+
+                    foreach (ZlpFileInfo File in Files)
+                    {
+                        File.Delete();
+                        
+                        Counter++;
+
+                        if (Progress != null)
+                        {
+                            int Percent = System.Convert.ToInt16(Math.Round(((double)Counter / Files.Length * 100)));
+
+                            Progress(File.Name, Percent);
+                        }
+                    }
+
+                    foreach (ZlpDirectoryInfo Directory in _Directory.GetDirectories())
+                    {
+                        Directory.Delete(true);
+                    }
+
+                    if (RemoveDirectory)
+                    {
+                        _Directory.Delete();
+                    }
+                }
+            });
+
+            await Tsk;            
         }
 
         public async Task<string> GetCRC32(ZlpFileInfo File, Action<string, int> Progress)

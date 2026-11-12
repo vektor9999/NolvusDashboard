@@ -22,6 +22,8 @@ namespace Vcc.Nolvus.Core.Interfaces
         string ReportDirectory { get; }
         string LogsDirectory { get; }
         string UpdaterExe { get; }
-        void ClearCache();   
+        void ClearCache();
+        Task ClearDownloadCache(Action<string, int> Progress);
+        Task ClearExtractCache(Action<string, int> Progress);
     }
 }

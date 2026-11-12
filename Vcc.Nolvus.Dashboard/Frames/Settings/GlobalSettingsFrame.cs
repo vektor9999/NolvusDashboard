@@ -201,10 +201,29 @@ namespace Vcc.Nolvus.Dashboard.Frames.Settings
             NolvusMessageBox.ShowMessage("Logs", "Logs have been cleaned", MessageBoxType.Info);
         }
 
-        private void BtnClearCache_Click(object sender, EventArgs e)
+        private async void BtnClearCache_Click(object sender, EventArgs e)
         {
-            ServiceSingleton.Folders.ClearCache();
-            NolvusMessageBox.ShowMessage("Cache", "Cache has been cleaned", MessageBoxType.Info);
+            try
+            {
+                await ServiceSingleton.Folders.ClearDownloadCache((s, p) =>
+                {
+                    ServiceSingleton.Dashboard.Status(string.Format("Clearing download cache ({0}%)...", p));
+                    ServiceSingleton.Dashboard.Progress(p);
+                });
+
+                await ServiceSingleton.Folders.ClearExtractCache((s, p) =>
+                {
+                    ServiceSingleton.Dashboard.Status(string.Format("Clearing extract cache ({0}%)...", p));
+                    ServiceSingleton.Dashboard.Progress(p);
+                });
+
+                NolvusMessageBox.ShowMessage("Cache", "Cache has been cleaned", MessageBoxType.Info);
+            }
+            finally
+            {
+                ServiceSingleton.Dashboard.NoStatus();
+                ServiceSingleton.Dashboard.ProgressCompleted();
+            }            
         }
     }
 }

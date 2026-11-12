@@ -16,7 +16,7 @@ namespace Vcc.Nolvus.Package.Mods
     {        
         protected override async Task DoCopy()
         {
-            var Tsk = Task.Run(() =>
+            var Tsk = Task.Run(async () =>
             {
                 try
                 {
@@ -43,7 +43,7 @@ namespace Vcc.Nolvus.Package.Mods
                     }
                     finally
                     {
-                        ServiceSingleton.Files.RemoveDirectory(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), true);
+                        await ServiceSingleton.Files.RemoveDirectory(Path.Combine(ServiceSingleton.Folders.ExtractDirectory, ExtractSubDir), true, CleaningProgress);
                     }
                 }
                 catch (Exception ex)

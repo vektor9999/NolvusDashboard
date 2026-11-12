@@ -233,7 +233,7 @@ namespace Vcc.Nolvus.Instance.Core
             XMLWriter.WriteEndElement();
         }
 
-        public async Task BackupGameSaveFiles()
+        public async Task BackupGameSaveFiles(Action<int> Progress)
         {
             await Task.Run(() =>
             {
@@ -246,7 +246,7 @@ namespace Vcc.Nolvus.Instance.Core
                 {
                     ServiceSingleton.Logger.Log(string.Format("Backuping game save files in {0}", BackupDir));
 
-                    ServiceSingleton.Files.MoveFiles(SaveDir, BackupDir, SearchOption.TopDirectoryOnly);
+                    ServiceSingleton.Files.MoveFiles(SaveDir, BackupDir, Progress, SearchOption.TopDirectoryOnly);
 
                     ServiceSingleton.Logger.Log("Backup done");
                 }

@@ -27,7 +27,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         Task<string> GetLatestVersion();
         Task<IInstallPackageDTO> GetLatestPackage();
         Task<bool> LatestPackageRequireNewGame();
-        Task<bool> LatestPackageRequireReInstall();        
-        Task BackupGameSaveFiles();
+        Task<bool> LatestPackageRequireReInstall();
+        Task BackupGameSaveFiles(Action<int> Progress);
     }
 }
