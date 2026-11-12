@@ -1080,6 +1080,7 @@
     <None Include="Resources\se_dlc.jpg" />
     <None Include="Resources\DefaultKeyboardKeys_V6.jpg" />
     <None Include="Resources\DefaultKeyboardKeys_V6.0.21.jpg" />
+    <None Include="Resources\DefaultKeyboardKeys_V6.0.22.jpg" />
     <Content Include="Scripts\HandleENBDev.js" />
     <Content Include="Scripts\IsDownloadAvailable.js" />
     <Content Include="Scripts\IsFileDeleted.js" />

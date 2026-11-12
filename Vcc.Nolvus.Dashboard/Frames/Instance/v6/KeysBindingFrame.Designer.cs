@@ -37,6 +37,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label18 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.LnkLblFullGuide = new System.Windows.Forms.LinkLabel();
+            this.label20 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -55,8 +57,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.LnkLblFullGuide = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -113,7 +113,7 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.DefaultKeyboardKeys_V6_0_21;
+            this.pictureBox1.Image = global::Vcc.Nolvus.Dashboard.Properties.Resources.DefaultKeyboardKeys_V6_0_22;
             this.pictureBox1.Location = new System.Drawing.Point(9, 39);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1093, 341);
@@ -192,6 +192,31 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(734, 327);
             this.panel3.TabIndex = 10;
+            // 
+            // LnkLblFullGuide
+            // 
+            this.LnkLblFullGuide.AutoSize = true;
+            this.LnkLblFullGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LnkLblFullGuide.ForeColor = System.Drawing.Color.Orange;
+            this.LnkLblFullGuide.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.LnkLblFullGuide.LinkColor = System.Drawing.Color.Orange;
+            this.LnkLblFullGuide.Location = new System.Drawing.Point(258, 300);
+            this.LnkLblFullGuide.Name = "LnkLblFullGuide";
+            this.LnkLblFullGuide.Size = new System.Drawing.Size(28, 13);
+            this.LnkLblFullGuide.TabIndex = 85;
+            this.LnkLblFullGuide.TabStop = true;
+            this.LnkLblFullGuide.Text = "here";
+            this.LnkLblFullGuide.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LnkLblFullGuide_LinkClicked_1);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.Color.White;
+            this.label20.Location = new System.Drawing.Point(24, 300);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(238, 13);
+            this.label20.TabIndex = 35;
+            this.label20.Text = "For a complete overview of all key bindings, click";
             // 
             // label15
             // 
@@ -374,31 +399,6 @@
             this.label19.Size = new System.Drawing.Size(72, 21);
             this.label19.TabIndex = 4;
             this.label19.Text = "Settings";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(24, 300);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(238, 13);
-            this.label20.TabIndex = 35;
-            this.label20.Text = "For a complete overview of all key bindings, click";
-            // 
-            // LnkLblFullGuide
-            // 
-            this.LnkLblFullGuide.AutoSize = true;
-            this.LnkLblFullGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LnkLblFullGuide.ForeColor = System.Drawing.Color.Orange;
-            this.LnkLblFullGuide.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.LnkLblFullGuide.LinkColor = System.Drawing.Color.Orange;
-            this.LnkLblFullGuide.Location = new System.Drawing.Point(258, 300);
-            this.LnkLblFullGuide.Name = "LnkLblFullGuide";
-            this.LnkLblFullGuide.Size = new System.Drawing.Size(28, 13);
-            this.LnkLblFullGuide.TabIndex = 85;
-            this.LnkLblFullGuide.TabStop = true;
-            this.LnkLblFullGuide.Text = "here";
-            this.LnkLblFullGuide.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LnkLblFullGuide_LinkClicked_1);
             // 
             // KeysBindingFrame
             // 
