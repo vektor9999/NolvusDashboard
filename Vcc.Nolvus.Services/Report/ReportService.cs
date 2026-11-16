@@ -146,8 +146,8 @@ namespace Vcc.Nolvus.Services.Report
                 
                 CurrentLine += DrawString("Resolution : ", string.Format("{0}x{1}", Instance.SettingsManager.Width, Instance.SettingsManager.Height), Graphics, Report.PageSettings, CurrentLine);
                 
-                CurrentLine += DrawString("Downscaling : ", Instance.SettingsManager.DownScaling == "TRUE" ? "Yes" : "No", Graphics, Report.PageSettings, CurrentLine);
-                CurrentLine += DrawString("Resolution : ", Instance.SettingsManager.DownScaling == "TRUE" ? Instance.SettingsManager.DownScaledResolution : "-", Graphics, Report.PageSettings, CurrentLine);
+                CurrentLine += DrawString("Downscaling : ", Instance.OptionsManager.GetOptionValue("DownScaling") == "TRUE" ? "Yes" : "No", Graphics, Report.PageSettings, CurrentLine);
+                CurrentLine += DrawString("Resolution : ", Instance.OptionsManager.GetOptionValue("DownScaling") == "TRUE" ? Instance.SettingsManager.DownScaledResolution : "-", Graphics, Report.PageSettings, CurrentLine);
 
                 switch (Instance.SettingsManager.IniSettings)
                 {

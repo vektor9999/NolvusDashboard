@@ -183,7 +183,7 @@ namespace Vcc.Nolvus.Instance.Core
             return InstanceCheckStatus.OK;
         }
 
-        public async Task Load(XmlNode Node)
+        public async Task Load(XmlNode Node, bool Synchronize = true)
         {
             Id = Node["Id"].InnerText.Trim();
             Name = Node["Name"].InnerText.Trim();
@@ -198,7 +198,7 @@ namespace Vcc.Nolvus.Instance.Core
 
 
             _SettingsManager.Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Settings").FirstOrDefault());
-            await _OptionsManager.Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Options").FirstOrDefault(), this);
+            await _OptionsManager.Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Options").FirstOrDefault(), this, Synchronize);
             _StatusManager.Load(Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Status").FirstOrDefault());
         }
 

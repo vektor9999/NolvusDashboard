@@ -233,6 +233,7 @@
             // 
             this.BtnSupportedGPUs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnSupportedGPUs.BorderColor = System.Drawing.Color.Gray;
+            this.BtnSupportedGPUs.ForeColor = System.Drawing.Color.White;
             this.BtnSupportedGPUs.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnSupportedGPUs.Location = new System.Drawing.Point(15, 435);
             this.BtnSupportedGPUs.Name = "BtnSupportedGPUs";
@@ -360,6 +361,7 @@
             this.BtnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnPrevious.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnPrevious.BorderColor = System.Drawing.Color.Gray;
+            this.BtnPrevious.ForeColor = System.Drawing.Color.White;
             this.BtnPrevious.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnPrevious.Location = new System.Drawing.Point(113, 747);
             this.BtnPrevious.Name = "BtnPrevious";
@@ -375,6 +377,7 @@
             this.BtnContinue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnContinue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnContinue.BorderColor = System.Drawing.Color.Gray;
+            this.BtnContinue.ForeColor = System.Drawing.Color.White;
             this.BtnContinue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnContinue.Location = new System.Drawing.Point(207, 747);
             this.BtnContinue.Name = "BtnContinue";
@@ -892,6 +895,7 @@
             // 
             this.BtnVariantPreview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
             this.BtnVariantPreview.BorderColor = System.Drawing.Color.Gray;
+            this.BtnVariantPreview.ForeColor = System.Drawing.Color.White;
             this.BtnVariantPreview.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.BtnVariantPreview.Location = new System.Drawing.Point(122, 314);
             this.BtnVariantPreview.Name = "BtnVariantPreview";

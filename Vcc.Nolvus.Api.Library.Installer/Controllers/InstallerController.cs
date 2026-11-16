@@ -276,5 +276,14 @@ namespace Vcc.Nolvus.Api.Installer.Controllers
 
             return await this._Service.GetUnRestricted<int>($"{_Api}/optionscount", Params);
         }
+
+        public async Task<IEnumerable<INolvusOptionCheckerDTO>> GetOptionCheckers(string Option, string Value)
+        {
+            Dictionary<string, object> Params = new Dictionary<string, object>();
+            Params.Add("Option", Option);
+            Params.Add("Value", Value);            
+
+            return await this._Service.GetPolyMorphic<List<NolvusOptionCheckerDTO>>($"{_Api}/getoptioncheckers", Params);
+        }
     }
 }

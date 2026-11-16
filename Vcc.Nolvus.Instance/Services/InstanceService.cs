@@ -116,7 +116,7 @@ namespace Vcc.Nolvus.Instance.Services
             //Check if the InstancesData.xml file is still from Dashboard v3
             lock (SyncRoot)
             {
-                XmlDocument Storage = this.InitializeStorage();
+                XmlDocument Storage = InitializeStorage();
 
                 XmlNodeList InstanceElements = Storage.SelectNodes("Instances/Instance");
 
@@ -168,8 +168,7 @@ namespace Vcc.Nolvus.Instance.Services
                     Instance.SettingsManager.StockGame = InstanceNode["StockGame"].InnerText.Trim();                    
                     Instance.SettingsManager.Variant = PerformanceNode["Variant"].InnerText.Trim();
                     Instance.SettingsManager.Height = SettingsNode["Height"].InnerText.Trim();
-                    Instance.SettingsManager.Width = SettingsNode["Width"].InnerText.Trim();
-                    Instance.SettingsManager.DownScaling = PerformanceNode["DownScaling"].InnerText.Trim();
+                    Instance.SettingsManager.Width = SettingsNode["Width"].InnerText.Trim();                    
                     Instance.SettingsManager.DownHeight = PerformanceNode["DownHeight"].InnerText.Trim();
                     Instance.SettingsManager.DownWidth = PerformanceNode["DownWidth"].InnerText.Trim();
                     Instance.SettingsManager.IniSettings = PerformanceNode["IniSettings"].InnerText.Trim();
@@ -184,6 +183,8 @@ namespace Vcc.Nolvus.Instance.Services
                     Instance.OptionsManager.AddOption("LODs", "LODs", "Performance", "list", PerformanceNode["LODs"].InnerText.Trim());
                     Instance.OptionsManager.AddOption("Nudity", "Nudity", "Visual", "bool", OptionsNode["Nudity"].InnerText.Trim());
                     Instance.OptionsManager.AddOption("Ratio", "Screen Ratio", "User Interface", "list", SettingsNode["Ratio"].InnerText.Trim());
+
+                    Instance.OptionsManager.AddOption("DownScaling", "DownScaling", "Performance", "bool", PerformanceNode["DownScaling"].InnerText.Trim());
 
                     switch (Instance.Name)
                     {
@@ -229,27 +230,71 @@ namespace Vcc.Nolvus.Instance.Services
             }
         }
 
+        private async Task Migrate402To403()
+        {                             
+            XmlDocument Storage = InitializeStorage();
+
+            XmlNodeList InstanceElements = Storage.SelectNodes("Instances/Instance");
+
+            if (InstanceElements.Count > 0)
+            {
+                XmlNode SettingsNode = InstanceElements[0].ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Settings").FirstOrDefault();
+
+                if (SettingsNode["DownScaling"] != null)
+                {                    
+                    foreach (XmlNode InstanceNode in InstanceElements)
+                    {
+                        SettingsNode = InstanceNode.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Settings").FirstOrDefault();
+
+                        NolvusInstance Instance = new NolvusInstance();
+
+                        await Instance.Load(InstanceNode, false);
+
+                        Instance.OptionsManager.AddOption("DownScaling", "DownScaling", "Performance", "bool", SettingsNode["DownScaling"].InnerText.Trim());
+
+                        Instances.Add(Instance);
+                    }
+
+                    Save();
+                    Instances.Clear();                                  
+                }
+            }                                   
+        } 
+
+        private async Task DoLoadInstances()
+        {
+            var Storage = InitializeStorage();
+
+            foreach (XmlNode InstanceNode in Storage.SelectNodes("Instances/Instance"))
+            {
+                NolvusInstance Instance = new NolvusInstance();
+
+                await Instance.Load(InstanceNode);
+
+                Instances.Add(Instance);
+            }
+        }
+
+        private async Task DoLoadV3AndMigrate()
+        {
+            Loadv3();
+            Save();
+            Instances.Clear();
+            await DoLoadInstances();
+        } 
+
         public async Task Load()
         {
-            Instances.Clear();
-
-            var Storage = InitializeStorage();
+            Instances.Clear();            
 
             if (!IsFileFromV3())
             {
-                foreach (XmlNode InstanceNode in Storage.SelectNodes("Instances/Instance"))
-                {
-                    NolvusInstance Instance = new NolvusInstance();
-
-                    await Instance.Load(InstanceNode);
-
-                    Instances.Add(Instance);
-                }
+                await Migrate402To403();
+                await DoLoadInstances();
             }
             else
             {
-                Loadv3();
-                Save();
+                await DoLoadV3AndMigrate();
             }
         }
 

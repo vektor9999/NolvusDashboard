@@ -188,7 +188,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
                 TglBtnDownScale.ToggleState = ToggleButtonState.Inactive;
 
-                if (Instance.SettingsManager.DownScaling == "TRUE")
+                if (Instance.OptionsManager.GetOptionValue("DownScaling") == "TRUE")
                 {
                     TglBtnDownScale.ToggleState = ToggleButtonState.Active;
                 }
@@ -307,7 +307,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
             var Instance = ServiceSingleton.Instances.WorkingInstance;
             var SettingsManager = Instance.SettingsManager;            
 
-            if (SettingsManager.DownScaling == "TRUE" && ((SettingsManager.Height == SettingsManager.DownHeight || System.Convert.ToInt32(SettingsManager.DownHeight) > System.Convert.ToInt32(SettingsManager.Height)) && (SettingsManager.Width == SettingsManager.DownWidth || System.Convert.ToInt32(SettingsManager.DownWidth) > System.Convert.ToInt32(SettingsManager.Width))))
+            if (Instance.OptionsManager.GetOptionValue("DownScaling") == "TRUE" && ((SettingsManager.Height == SettingsManager.DownHeight || System.Convert.ToInt32(SettingsManager.DownHeight) > System.Convert.ToInt32(SettingsManager.Height)) && (SettingsManager.Width == SettingsManager.DownWidth || System.Convert.ToInt32(SettingsManager.DownWidth) > System.Convert.ToInt32(SettingsManager.Width))))
             {
                 NolvusMessageBox.ShowMessage("Invalid Downscaling setting", "If downscaling is enabled, the downscaled resolution must be less than the monitor resolution!", MessageBoxType.Error);
             }
@@ -327,29 +327,37 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 if (e.ToggleState == ToggleButtonState.Active)
                 {
                     DrpDwnLstDownscalingScreenRes.Enabled = e.ToggleState == ToggleButtonState.Active;
-                    ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownScaling = "TRUE";
+                    ServiceSingleton.Instances.WorkingInstance.OptionsManager.SetOptionValue("DownScaling", "TRUE");
                     DrpDwnLstDownscalingScreenRes.SelectedIndex = DownscalingResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);
                 }
                 else
                 {
                     DrpDwnLstDownscalingScreenRes.Enabled = e.ToggleState == ToggleButtonState.Active;
-                    ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownScaling = "FALSE";
+                    ServiceSingleton.Instances.WorkingInstance.OptionsManager.SetOptionValue("DownScaling", "FALSE");
                     DrpDwnLstAntiAliasing.Enabled = true;
                     TglBtnFrameGen.Enabled = true;
                     TglBtnNeuralRendering.Enabled = true;
                 }
             }
             else
-            {                
+            {
+                DrpDwnLstAntiAliasing.SelectedIndexChanged -= DrpDwnLstAntiAliasing_SelectedIndexChanged; 
                 DrpDwnLstAntiAliasing.SelectedIndex = 0;
+                DrpDwnLstAntiAliasing.SelectedIndexChanged += DrpDwnLstAntiAliasing_SelectedIndexChanged;
+
                 DrpDwnLstAntiAliasing.Enabled = false;
+
                 TglBtnFrameGen.ToggleState = ToggleButtonState.Inactive;
                 TglBtnFrameGen.Enabled = false;
+
                 TglBtnNeuralRendering.ToggleState = ToggleButtonState.Inactive;
                 TglBtnNeuralRendering.Enabled = false;
-                NolvusMessageBox.ShowMessage("Antialiasing", "This option is not compatible with DLAA/FSR/DLSS/Neural Rendering/Frame Generation. Antialiasing has been forced to TAA and Frame Generation/Neural Rendering has been disabled.", MessageBoxType.Info);
+
+                NolvusMessageBox.ShowMessage("Downscaling", "This option is not compatible with DLAA/FSR/DLSS/Neural Rendering/Frame Generation. Antialiasing has been forced to TAA and Frame Generation/Neural Rendering has been disabled.", MessageBoxType.Info);
                 DrpDwnLstDownscalingScreenRes.Enabled = true;
-                ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownScaling = "TRUE";
+
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.SetOptionValue("DownScaling", "TRUE");
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.SetOptionValue("AntiAliasing", "TAA");
                 DrpDwnLstDownscalingScreenRes.SelectedIndex = DownscalingResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);
             }
 
@@ -380,7 +388,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
 
         private void TglBtnFrameGen_ToggleStateChanging(object sender, CancelEventArgs e)
         {
-            if (ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownScaling == "TRUE")
+            if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("DownScaling") == "TRUE")
             {
                 NolvusMessageBox.ShowMessage("Frame Generation", "Frame Generation is not compatible with downscaling, Frame Generation has been disabled.", MessageBoxType.Info);
                 e.Cancel = true;
@@ -399,12 +407,19 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                 ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOption("FrameGeneration").Value = "FALSE";
             }
         }
-
+        
         private void TglBtnNeuralRendering_ToggleStateChanging(object sender, CancelEventArgs e)
         {
-            if (ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownScaling == "TRUE")
+            var ev = e as ToggleStateChangingEventArgs;
+
+            if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("DownScaling") == "TRUE")
             {
                 NolvusMessageBox.ShowMessage("Neural Rendering", "Neural Rendering is not compatible with downscaling, Neutal Rendering has been disabled.", MessageBoxType.Info);
+                e.Cancel = true;
+            }
+            else if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("AntiAliasing") == "TAA" && ev.NewValue == ToggleButtonState.Active)
+            {
+                NolvusMessageBox.ShowMessage("Neural Rendering", "Neural Rendering can not enabled with TAA.", MessageBoxType.Info);
                 e.Cancel = true;
             }
         }
@@ -487,7 +502,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                     {
                         ForceTAA("DLAA is only compatible with NVIDIA graphics cards!");                        
                     }
-                    else if (ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownScaling == "TRUE")
+                    else if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("DownScaling") == "TRUE")
                     {
                         ForceTAA("DLAA is not compatible with downscaling");
                     }                  
@@ -498,18 +513,26 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v6
                     {
                         ForceTAA("DLSS is only compatible with NVIDIA graphics cards!");
                     }
-                    else if (ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownScaling == "TRUE")
+                    else if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("DownScaling") == "TRUE")
                     {
                         ForceTAA("DLSS is not compatible with downscaling");
                     }
                 }
                 else if (AAValue == "FSR")
                 {
-                    if (ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownScaling == "TRUE")
+                    if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("DownScaling") == "TRUE")
                     {
                         ForceTAA("FSR is not compatible with downscaling");
                     }                    
-                }                                                
+                }
+                else if (AAValue == "TAA")
+                {
+                    if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("NR") == "TRUE")
+                    {
+                        NolvusMessageBox.ShowMessage("Anti Alisasing", "TAA can not be selected when Neural Rendering is enabled. Neural rendering will be disabled.", MessageBoxType.Error);                        
+                        TglBtnNeuralRendering.ToggleState = ToggleButtonState.Inactive;                        
+                    }
+                }                
             }
         }        
 

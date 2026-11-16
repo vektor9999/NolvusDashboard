@@ -39,7 +39,7 @@ namespace Vcc.Nolvus.Services.Options
 
                     ServiceSingleton.Instances.WorkingInstance.OptionsManager.SetOptionValue(Option, NewValue);
 
-                    var ModsToInstallWithNewValue = GetMods(true, Option);                                      
+                    var ModsToInstallWithNewValue = GetMods(true, Option);
                     var ModsToRemoveWithNewValue = GetMods(false, Option);
 
                     ServiceSingleton.Instances.WorkingInstance.OptionsManager.SetOptionValue(Option, CurrentValue);
@@ -61,19 +61,19 @@ namespace Vcc.Nolvus.Services.Options
                         x.Action = ElementAction.Remove;
                         return x;
                     });
+                    
 
-
-                    var ModsToUpdate = ModsToInstall.Concat(ModsToRemove).Concat(ModsToInstallFromKey).ToList();                  
+                    var ModsToUpdate = ModsToInstall
+                            .Concat(ModsToRemove)
+                            .Concat(ModsToInstallFromKey.Where(x => !ModsToRemove.Any(r => r.Name == x.Name && r.Action == ElementAction.Remove)))
+                            .ToList();
 
                     ServiceSingleton.Logger.Log(string.Format("Mods to update : {0}", ModsToUpdate.Count));
-                    ServiceSingleton.Logger.Log(string.Format("About to list mods to update related to option {0}...", Option));
+                    ServiceSingleton.Logger.Log(string.Format("About to list mods to update related to option {0} = {1}...", Option, NewValue));
 
-                    foreach (var Mod in ModsToUpdate.OrderBy(x=>x.Name).ToList())
-                    {
-                        ServiceSingleton.Logger.Log(string.Format("Mod : {0}, Action : {1}", Mod.Name, Mod.Action == ElementAction.Add ? "Add" : "Remove"));
-                    }
+                    ModsToUpdate.OrderBy(x => x.Name).ToList().ForEach(x => ServiceSingleton.Logger.Log(string.Format("Mod : {0}, Action : {1}", x.Name, x.Action == ElementAction.Add ? "Add" : "Remove")));
 
-                    return ModsToUpdate;                    
+                    return ModsToUpdate;
                 }
                 catch (Exception ex)
                 {

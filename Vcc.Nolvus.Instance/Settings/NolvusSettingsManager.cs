@@ -19,8 +19,7 @@ namespace Vcc.Nolvus.Instance.Settings
         public string StockGame { get; set; } = string.Empty;
         public string Variant { get; set; } = "Ultra";
         public string Height { get; set; } = string.Empty;
-        public string Width { get; set; } = string.Empty;
-        public string DownScaling { get; set; } = "FALSE";
+        public string Width { get; set; } = string.Empty;        
         public string DownHeight { get; set; } = string.Empty;
         public string DownWidth { get; set; } = string.Empty;
         public string IniSettings { get; set; } = "2";
@@ -55,7 +54,7 @@ namespace Vcc.Nolvus.Instance.Settings
         }
         public string GetSelectedHeight()
         {
-            if (DownScaling == "TRUE")
+            if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("DownScaling") == "TRUE")
             {
                 return DownHeight;
             }
@@ -66,7 +65,7 @@ namespace Vcc.Nolvus.Instance.Settings
         }
         public string GetSelectedWidth()
         {
-            if (DownScaling == "TRUE")
+            if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("DownScaling") == "TRUE")
             {
                 return DownWidth;
             }
@@ -92,8 +91,7 @@ namespace Vcc.Nolvus.Instance.Settings
             StockGame = Node["StockGame"].InnerText.Trim();
             Variant = Node["Variant"].InnerText.Trim();
             Height = Node["Height"].InnerText.Trim();
-            Width = Node["Width"].InnerText.Trim();
-            DownScaling = Node["DownScaling"].InnerText.Trim();
+            Width = Node["Width"].InnerText.Trim();            
             DownHeight = Node["DownHeight"].InnerText.Trim();
             DownWidth = Node["DownWidth"].InnerText.Trim();
             IniSettings = Node["IniSettings"].InnerText.Trim();
@@ -107,8 +105,7 @@ namespace Vcc.Nolvus.Instance.Settings
             ServiceSingleton.Logger.Log(string.Format("Instance Stock Game Directory : {0}", StockGame));
             ServiceSingleton.Logger.Log(string.Format("Instance Variant : {0}", Variant));
             ServiceSingleton.Logger.Log(string.Format("Instance Height : {0}", Height));
-            ServiceSingleton.Logger.Log(string.Format("Instance Width : {0}", Width));
-            ServiceSingleton.Logger.Log(string.Format("Instance Downscaling : {0}", DownScaling));
+            ServiceSingleton.Logger.Log(string.Format("Instance Width : {0}", Width));            
             ServiceSingleton.Logger.Log(string.Format("Instance Downscaling Height : {0}", DownHeight));
             ServiceSingleton.Logger.Log(string.Format("Instance Downscaling Width : {0}", DownWidth));
             ServiceSingleton.Logger.Log(string.Format("Instance Ini Settings : {0}", IniSettings));
@@ -144,11 +141,7 @@ namespace Vcc.Nolvus.Instance.Settings
 
             XMLWriter.WriteStartElement("Width");
             XMLWriter.WriteString(Width.Trim());
-            XMLWriter.WriteEndElement();
-
-            XMLWriter.WriteStartElement("DownScaling");
-            XMLWriter.WriteString(DownScaling.Trim());
-            XMLWriter.WriteEndElement();
+            XMLWriter.WriteEndElement();            
 
             XMLWriter.WriteStartElement("DownHeight");
             XMLWriter.WriteString(DownHeight.Trim());

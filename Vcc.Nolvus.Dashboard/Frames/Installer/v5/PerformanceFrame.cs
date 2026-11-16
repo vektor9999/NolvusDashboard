@@ -177,7 +177,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
 
                 TglBtnDownScale.ToggleState = ToggleButtonState.Inactive;
 
-                if (Instance.SettingsManager.DownScaling == "TRUE")
+                if (Instance.OptionsManager.GetOptionValue("DownScaling") == "TRUE")
                 {
                     TglBtnDownScale.ToggleState = ToggleButtonState.Active;
                 }                
@@ -286,7 +286,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
             var SettingsManager = Instance.SettingsManager;
             var OptionsManager = Instance.OptionsManager;          
 
-            if (SettingsManager.DownScaling == "TRUE" && ((SettingsManager.Height == SettingsManager.DownHeight || System.Convert.ToInt32(SettingsManager.DownHeight) > System.Convert.ToInt32(SettingsManager.Height)) && (SettingsManager.Width == SettingsManager.DownWidth || System.Convert.ToInt32(SettingsManager.DownWidth) > System.Convert.ToInt32(SettingsManager.Width))))
+            if (OptionsManager.GetOptionValue("DownScaling") == "TRUE" && ((SettingsManager.Height == SettingsManager.DownHeight || System.Convert.ToInt32(SettingsManager.DownHeight) > System.Convert.ToInt32(SettingsManager.Height)) && (SettingsManager.Width == SettingsManager.DownWidth || System.Convert.ToInt32(SettingsManager.DownWidth) > System.Convert.ToInt32(SettingsManager.Width))))
             {
                 NolvusMessageBox.ShowMessage("Invalid Downscaling setting", "If downscaling is enabled, the downscaled resolution must be less than the monitor resolution!", MessageBoxType.Error);
             }
@@ -316,13 +316,13 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
                 if (e.ToggleState == ToggleButtonState.Active)
                 {
                     DrpDwnLstScreenRes.Enabled = e.ToggleState == ToggleButtonState.Active;
-                    ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownScaling = "TRUE";
+                    ServiceSingleton.Instances.WorkingInstance.OptionsManager.SetOptionValue("DownScaling", "TRUE");
                     DrpDwnLstScreenRes.SelectedIndex = ResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);
                 }
                 else
                 {
                     DrpDwnLstScreenRes.Enabled = e.ToggleState == ToggleButtonState.Active;
-                    ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownScaling = "FALSE";
+                    ServiceSingleton.Instances.WorkingInstance.OptionsManager.SetOptionValue("DownScaling", "FALSE");
                     DrpDwnLstAntiAliasing.Enabled = true;
                 }
             }
@@ -332,7 +332,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
                 DrpDwnLstAntiAliasing.Enabled = false;                
                 NolvusMessageBox.ShowMessage("Antialiasing", "This option is not compatible with DLAA. Antialiasing has been forced to TAA.", MessageBoxType.Info);
                 DrpDwnLstScreenRes.Enabled = true;
-                ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownScaling = "TRUE";
+                ServiceSingleton.Instances.WorkingInstance.OptionsManager.SetOptionValue("DownScaling", "TRUE");
                 DrpDwnLstScreenRes.SelectedIndex = DownResolutionIndex(ServiceSingleton.Globals.WindowsResolutions);
             }
                                                      
@@ -423,7 +423,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer.v5
                     {
                         ForceTAA("DLAA is only compatible with NVIDIA graphics cards!");
                     }
-                    else if (ServiceSingleton.Instances.WorkingInstance.SettingsManager.DownScaling == "TRUE")
+                    else if (ServiceSingleton.Instances.WorkingInstance.OptionsManager.GetOptionValue("DownScaling") == "TRUE")
                     {
                         ForceTAA("DLAA is not compatible with downscaling");
                     }

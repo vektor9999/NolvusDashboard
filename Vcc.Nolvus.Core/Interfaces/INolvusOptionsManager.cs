@@ -19,7 +19,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         List<INolvusOption> GetOptions();
         List<string> GetOptionCategories();
         List<INolvusOption> GetOptionsByCategory(string Category);        
-        Task Load(XmlNode Node, INolvusInstance Instance);
+        Task Load(XmlNode Node, INolvusInstance Instance, bool Synchronize = true);        
         void Save(XmlWriter XMLWriter);
     }
 }

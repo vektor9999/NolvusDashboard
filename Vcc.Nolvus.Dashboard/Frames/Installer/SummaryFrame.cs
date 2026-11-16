@@ -61,7 +61,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
 
                 LblEnableArchiving.Text = Instance.SettingsManager.EnableArchiving ? "Yes" : "No";
 
-                LblDownscaling.Text = Instance.SettingsManager.DownScaling == "TRUE" ? "Yes (" + Instance.SettingsManager.DownScaledResolution + ")" : "No";
+                LblDownscaling.Text = Instance.OptionsManager.GetOptionValue("DownScaling") == "TRUE" ? "Yes (" + Instance.SettingsManager.DownScaledResolution + ")" : "No";
                 
                 LblVariant.Text = Instance.SettingsManager.Variant;                
                 LblCDN.Text = Instance.SettingsManager.CDN;

@@ -487,9 +487,7 @@ namespace Vcc.Nolvus.Package.Mods
 
         public bool HasFieldValueByKey(string Key, string Value)
         {
-            var Field = Fields.Where(x => x.Key == Key && x.Value == Value).FirstOrDefault();
-
-            return Field == null ? false : true;
+            return Fields.Where(x => x.Key == Key && x.Value == Value).FirstOrDefault() == null ? false : true;            
         }
 
         #endregion

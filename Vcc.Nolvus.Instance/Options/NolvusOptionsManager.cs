@@ -146,7 +146,7 @@ namespace Vcc.Nolvus.Instance.Options
             }
         }
 
-        public async Task Load(XmlNode Node, INolvusInstance Instance)
+        public async Task Load(XmlNode Node, INolvusInstance Instance, bool Synchronize = true)
         {
             var Options = Node.ChildNodes.Cast<XmlNode>().Where(x => x.Name == "Option").ToList();
 
@@ -157,7 +157,10 @@ namespace Vcc.Nolvus.Instance.Options
                 AddOption(Option);
             }
 
-            await SynchronizeOptions(Instance);                      
+            if (Synchronize)
+            {
+                await SynchronizeOptions(Instance);
+            }            
         }
 
         public void Save(XmlWriter XMLWriter)

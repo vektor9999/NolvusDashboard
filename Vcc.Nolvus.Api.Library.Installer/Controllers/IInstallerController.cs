@@ -41,5 +41,6 @@ namespace Vcc.Nolvus.Api.Installer.Controllers
         Task<IEnumerable<INolvusOptionCategoryDTO>> GetOptionCategories(string Variant, string NolvusVersionId);
         Task<IEnumerable<INolvusOptionDTO>> GetOptionsByCategory(string Variant, string Category, string NolvusVersionId);
         Task<int> OptionsCount(string Variant, string NolvusVersionId);
+        Task<IEnumerable<INolvusOptionCheckerDTO>> GetOptionCheckers(string Option, string Value);
     }
 }

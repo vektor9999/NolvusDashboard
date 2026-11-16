@@ -119,8 +119,20 @@ namespace Vcc.Nolvus.Dashboard.Frames.Installer
                         },                         
                         OnModInstalled = (Mod) =>
                         {
-                            GlobalProgress();
-                            ServiceSingleton.Logger.Log(string.Format("Mod : {0} installed.", Mod.Name));
+                            GlobalProgress();                            
+
+                            switch (Mod.Action)
+                            {
+                                case ElementAction.Add:
+                                case ElementAction.Update:
+
+                                    ServiceSingleton.Logger.Log(string.Format("Mod : {0} installed.", Mod.Name));
+                                    break;
+
+                                case ElementAction.Remove:
+                                    ServiceSingleton.Logger.Log(string.Format("Mod : {0} removed.", Mod.Name));
+                                    break;
+                            }                                                 
                         },
                         OnModError = (ErrorCount) =>
                         {

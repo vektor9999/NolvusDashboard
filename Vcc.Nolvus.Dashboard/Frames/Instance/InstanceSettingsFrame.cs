@@ -230,7 +230,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
                 this.TglBtnDownScale.ToggleState = ToggleButtonState.Inactive;
 
-                if (Instance.SettingsManager.DownScaling == "TRUE")
+                if (Instance.OptionsManager.GetOptionValue("DownScaling") == "TRUE")
                 {
                     this.TglBtnDownScale.ToggleState = ToggleButtonState.Active;
                     DrpDwnLstDownRes.Enabled = this.TglBtnDownScale.ToggleState == ToggleButtonState.Active;
@@ -258,11 +258,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
                 OptionsGrid.ExpandAllGroup();
 
-                TglBtnDownScale.Enabled = Instance.OptionsManager.GetOptionValue("AntiAliasing") != "DLAA" && Instance.OptionsManager.GetOptionValue("AntiAliasing") != "FSR";
+                TglBtnDownScale.Enabled = Instance.OptionsManager.GetOptionValue("AntiAliasing") != "DLAA" && Instance.OptionsManager.GetOptionValue("AntiAliasing") != "FSR" && Instance.OptionsManager.GetOptionValue("AntiAliasing") != "DLSS" && Instance.OptionsManager.GetOptionValue("FrameGeneration") != "TRUE" && Instance.OptionsManager.GetOptionValue("NR") != "TRUE";
 
                 if (!TglBtnDownScale.Enabled)
                 {
-                    LblDownscalingInfo.Text = " (Disabled when using DLAA/FSR/Frame Generation)";
+                    LblDownscalingInfo.Text = " (Disabled when using DLAA/DLSS/FSR/Frame Generation/Neural Rendering)";
                 }
                 else
                 {
@@ -393,11 +393,11 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
                 if (TglBtnDownScale.ToggleState == ToggleButtonState.Active)
                 {
-                    Instance.SettingsManager.DownScaling = "TRUE";
+                    Instance.OptionsManager.SetOptionValue("DownScaling", "TRUE");
                 }
                 else
                 {
-                    Instance.SettingsManager.DownScaling = "FALSE";
+                    Instance.OptionsManager.SetOptionValue("DownScaling", "FALSE");
                 }
 
                 Instance.SettingsManager.DownWidth = Reso[0];
@@ -424,7 +424,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
 
                         if (Line.Contains("Resolution") && Line.Substring(0, 1) != "# " && !FoundResolution)
                         {
-                            if (Instance.SettingsManager.DownScaling == "TRUE")
+                            if (Instance.OptionsManager.GetOptionValue("DownScaling") == "TRUE")
                             {
                                 _Line = "Resolution" + "=" + Instance.SettingsManager.DownScaledResolution;
                             }
@@ -437,7 +437,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Instance
                         }
                         else if (Line.Contains("BorderlessUpscale") && Line.Substring(0, 1) != "# " && !FoundUpscale)
                         {
-                            if (Instance.SettingsManager.DownScaling == "TRUE")
+                            if (Instance.OptionsManager.GetOptionValue("DownScaling") == "TRUE")
                             {
                                 _Line = "BorderlessUpscale" + "=true";
                             }
