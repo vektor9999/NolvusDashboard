@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection3 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection3 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection3 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
-            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection4 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection4 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
-            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection4 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn4 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn5 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
-            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn6 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection1 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection1 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection1 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
+            Syncfusion.Windows.Forms.Tools.ActiveStateCollection activeStateCollection2 = new Syncfusion.Windows.Forms.Tools.ActiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.InactiveStateCollection inactiveStateCollection2 = new Syncfusion.Windows.Forms.Tools.InactiveStateCollection();
+            Syncfusion.Windows.Forms.Tools.SliderCollection sliderCollection2 = new Syncfusion.Windows.Forms.Tools.SliderCollection();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn1 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn2 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
+            Syncfusion.WinForms.DataGrid.GridTextColumn gridTextColumn3 = new Syncfusion.WinForms.DataGrid.GridTextColumn();
             this.BtnBack = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.PnlHeader = new System.Windows.Forms.Panel();
             this.LblHeader = new System.Windows.Forms.Label();
@@ -65,6 +65,8 @@
             this.LblInstallDir = new System.Windows.Forms.Label();
             this.LblArchiveDir = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.LblLanguage = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.DrpDwnLstIni = new Syncfusion.WinForms.ListView.SfComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.DrpDwnLstDownLoc = new Syncfusion.WinForms.ListView.SfComboBox();
@@ -76,8 +78,6 @@
             this.LnkLblOptionsManager = new System.Windows.Forms.LinkLabel();
             this.label7 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.LblLanguage = new System.Windows.Forms.Label();
             this.PnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
             this.panel1.SuspendLayout();
@@ -220,34 +220,34 @@
             this.label21.ForeColor = System.Drawing.Color.Orange;
             this.label21.Location = new System.Drawing.Point(90, 193);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(246, 13);
+            this.label21.Size = new System.Drawing.Size(367, 13);
             this.label21.TabIndex = 91;
-            this.label21.Text = "Not compatible with DLAA/FSR/Frame Generation";
+            this.label21.Text = "Not compatible with DLAA/DLSS/FSR/Frame Generation/Neural Rendering";
             // 
             // TglBtnDownScale
             // 
-            activeStateCollection3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            activeStateCollection3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
-            this.TglBtnDownScale.ActiveState = activeStateCollection3;
+            activeStateCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            activeStateCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
+            this.TglBtnDownScale.ActiveState = activeStateCollection1;
             this.TglBtnDownScale.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.TglBtnDownScale.ForeColor = System.Drawing.Color.Black;
-            inactiveStateCollection3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            inactiveStateCollection3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            inactiveStateCollection3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            inactiveStateCollection3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.TglBtnDownScale.InactiveState = inactiveStateCollection3;
+            inactiveStateCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            inactiveStateCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            inactiveStateCollection1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            inactiveStateCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.TglBtnDownScale.InactiveState = inactiveStateCollection1;
             this.TglBtnDownScale.Location = new System.Drawing.Point(93, 155);
             this.TglBtnDownScale.MinimumSize = new System.Drawing.Size(52, 20);
             this.TglBtnDownScale.Name = "TglBtnDownScale";
             this.TglBtnDownScale.Size = new System.Drawing.Size(63, 24);
-            sliderCollection3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            sliderCollection3.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection3.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            sliderCollection3.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.TglBtnDownScale.Slider = sliderCollection3;
+            sliderCollection1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            sliderCollection1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection1.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            sliderCollection1.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.TglBtnDownScale.Slider = sliderCollection1;
             this.TglBtnDownScale.TabIndex = 90;
             this.TglBtnDownScale.Text = "toggleButton1";
             this.TglBtnDownScale.ThemeName = "Office2016Black";
@@ -410,28 +410,28 @@
             // 
             // TglBtnEnableArchive
             // 
-            activeStateCollection4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            activeStateCollection4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            activeStateCollection4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
-            this.TglBtnEnableArchive.ActiveState = activeStateCollection4;
+            activeStateCollection2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            activeStateCollection2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            activeStateCollection2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(103)))), ((int)(((byte)(176)))));
+            this.TglBtnEnableArchive.ActiveState = activeStateCollection2;
             this.TglBtnEnableArchive.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.TglBtnEnableArchive.ForeColor = System.Drawing.Color.Black;
-            inactiveStateCollection4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            inactiveStateCollection4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            inactiveStateCollection4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            inactiveStateCollection4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.TglBtnEnableArchive.InactiveState = inactiveStateCollection4;
+            inactiveStateCollection2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            inactiveStateCollection2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            inactiveStateCollection2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            inactiveStateCollection2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.TglBtnEnableArchive.InactiveState = inactiveStateCollection2;
             this.TglBtnEnableArchive.Location = new System.Drawing.Point(114, 130);
             this.TglBtnEnableArchive.MinimumSize = new System.Drawing.Size(52, 20);
             this.TglBtnEnableArchive.Name = "TglBtnEnableArchive";
             this.TglBtnEnableArchive.Size = new System.Drawing.Size(63, 24);
-            sliderCollection4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            sliderCollection4.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            sliderCollection4.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            sliderCollection4.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.TglBtnEnableArchive.Slider = sliderCollection4;
+            sliderCollection2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            sliderCollection2.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            sliderCollection2.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            sliderCollection2.InactiveHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.TglBtnEnableArchive.Slider = sliderCollection2;
             this.TglBtnEnableArchive.TabIndex = 91;
             this.TglBtnEnableArchive.Text = "toggleButton1";
             this.TglBtnEnableArchive.ThemeName = "Office2016Black";
@@ -478,6 +478,28 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(672, 236);
             this.panel3.TabIndex = 40;
+            // 
+            // LblLanguage
+            // 
+            this.LblLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblLanguage.AutoSize = true;
+            this.LblLanguage.ForeColor = System.Drawing.Color.Orange;
+            this.LblLanguage.Location = new System.Drawing.Point(116, 135);
+            this.LblLanguage.Name = "LblLanguage";
+            this.LblLanguage.Size = new System.Drawing.Size(61, 13);
+            this.LblLanguage.TabIndex = 95;
+            this.LblLanguage.Text = "[Language]";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(10, 135);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(55, 13);
+            this.label13.TabIndex = 51;
+            this.label13.Text = "Language";
             // 
             // DrpDwnLstIni
             // 
@@ -561,24 +583,24 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.OptionsGrid.AutoGenerateColumns = false;
             this.OptionsGrid.AutoSizeColumnsMode = Syncfusion.WinForms.DataGrid.Enums.AutoSizeColumnsMode.AllCells;
-            gridTextColumn4.AllowEditing = false;
-            gridTextColumn4.AllowResizing = true;
-            gridTextColumn4.HeaderText = "Name";
-            gridTextColumn4.MappingName = "FriendlyName";
-            gridTextColumn4.Width = 200D;
-            gridTextColumn5.AllowEditing = false;
-            gridTextColumn5.AllowResizing = true;
-            gridTextColumn5.HeaderText = "Category";
-            gridTextColumn5.MappingName = "Category";
-            gridTextColumn5.Visible = false;
-            gridTextColumn6.AllowEditing = false;
-            gridTextColumn6.AllowResizing = true;
-            gridTextColumn6.HeaderText = "Value";
-            gridTextColumn6.MappingName = "FormattedValue";
-            gridTextColumn6.Width = 135D;
-            this.OptionsGrid.Columns.Add(gridTextColumn4);
-            this.OptionsGrid.Columns.Add(gridTextColumn5);
-            this.OptionsGrid.Columns.Add(gridTextColumn6);
+            gridTextColumn1.AllowEditing = false;
+            gridTextColumn1.AllowResizing = true;
+            gridTextColumn1.HeaderText = "Name";
+            gridTextColumn1.MappingName = "FriendlyName";
+            gridTextColumn1.Width = 200D;
+            gridTextColumn2.AllowEditing = false;
+            gridTextColumn2.AllowResizing = true;
+            gridTextColumn2.HeaderText = "Category";
+            gridTextColumn2.MappingName = "Category";
+            gridTextColumn2.Visible = false;
+            gridTextColumn3.AllowEditing = false;
+            gridTextColumn3.AllowResizing = true;
+            gridTextColumn3.HeaderText = "Value";
+            gridTextColumn3.MappingName = "FormattedValue";
+            gridTextColumn3.Width = 135D;
+            this.OptionsGrid.Columns.Add(gridTextColumn1);
+            this.OptionsGrid.Columns.Add(gridTextColumn2);
+            this.OptionsGrid.Columns.Add(gridTextColumn3);
             this.OptionsGrid.HeaderRowHeight = 0;
             this.OptionsGrid.Location = new System.Drawing.Point(12, 81);
             this.OptionsGrid.Name = "OptionsGrid";
@@ -633,28 +655,6 @@
             this.label12.Size = new System.Drawing.Size(70, 21);
             this.label12.TabIndex = 4;
             this.label12.Text = "Options";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(10, 135);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(55, 13);
-            this.label13.TabIndex = 51;
-            this.label13.Text = "Language";
-            // 
-            // LblLanguage
-            // 
-            this.LblLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblLanguage.AutoSize = true;
-            this.LblLanguage.ForeColor = System.Drawing.Color.Orange;
-            this.LblLanguage.Location = new System.Drawing.Point(116, 135);
-            this.LblLanguage.Name = "LblLanguage";
-            this.LblLanguage.Size = new System.Drawing.Size(61, 13);
-            this.LblLanguage.TabIndex = 95;
-            this.LblLanguage.Text = "[Language]";
             // 
             // InstanceSettingsFrame
             // 
