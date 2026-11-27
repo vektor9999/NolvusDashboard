@@ -106,7 +106,7 @@ namespace Vcc.Nolvus.Dashboard.Frames.Manager.Variant.v6
             }
             catch (Exception ex)
             {
-                await ServiceSingleton.Dashboard.Error("Error during option change initialization", ex.Message, ex.StackTrace);
+                await ServiceSingleton.Dashboard.Error("Error during variant change initialization", ex.Message, ex.StackTrace);
             }
         }
 
