@@ -216,7 +216,7 @@
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(293, 29);
             this.label37.TabIndex = 66;
-            this.label37.Text = "The displayed GPU is your integrated GPU and you can\'t select DLAA?";
+            this.label37.Text = "The displayed GPU is your integrated GPU and you can\'t select DLAA/DLSS?";
             // 
             // label33
             // 
@@ -322,7 +322,8 @@
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(293, 29);
             this.label25.TabIndex = 56;
-            this.label25.Text = "DLAA anti aliasing is only available for Nvidia RTX cards.";
+            this.label25.Text = "DLAA anti aliasing, DLSS upscaling and Neural Rendering are only available for Nv" +
+    "idia RTX cards.";
             // 
             // label26
             // 
@@ -1071,9 +1072,9 @@
             this.label21.ForeColor = System.Drawing.Color.Orange;
             this.label21.Location = new System.Drawing.Point(10, 243);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(334, 13);
+            this.label21.Size = new System.Drawing.Size(367, 13);
             this.label21.TabIndex = 48;
-            this.label21.Text = "Not compatible with DLAA/FSR/Neural Rendering/Frame Generation";
+            this.label21.Text = "Not compatible with DLAA/DLSS/FSR/Neural Rendering/Frame Generation";
             // 
             // TglBtnDownScale
             // 
@@ -1130,7 +1131,7 @@
             // 
             this.label14.Location = new System.Drawing.Point(122, 119);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(252, 52);
+            this.label14.Size = new System.Drawing.Size(245, 52);
             this.label14.TabIndex = 44;
             this.label14.Text = "The resolution must match your screen resolution. If you want to play at lower re" +
     "solution, use the downscaling feature below.";

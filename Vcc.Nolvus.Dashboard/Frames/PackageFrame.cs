@@ -17,6 +17,7 @@ using Vcc.Nolvus.Api.Installer.Library;
 using Vcc.Nolvus.Api.Installer.Services;
 using Vcc.Nolvus.Dashboard.Frames.Manager.ENB.v6;
 using Vcc.Nolvus.Dashboard.Frames.Manager.Options.v6;
+using Vcc.Nolvus.Dashboard.Frames.Manager.Variant.v6;
 using Vcc.Nolvus.Dashboard.Frames.Installer;
 using Vcc.Nolvus.Dashboard.Frames.Instance;
 using Vcc.Nolvus.Dashboard.Forms;
@@ -186,6 +187,23 @@ namespace Vcc.Nolvus.Dashboard.Frames
             await ServiceSingleton.Dashboard.LoadFrameAsync<InstallFrame>(new FrameParameters(new FrameParameter() { Key = "ModsToInstall", Value = Mods.Cast<IInstallableElement>().ToList() }));
         }
 
+        protected async Task ChangeVariant(INolvusInstance Instance)
+        {
+            await ServiceSingleton.Packages.Load(await ApiManager.Service.Installer.GetPackage(Instance.Id, Instance.Version), (s, p) =>
+            {
+                ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
+                ServiceSingleton.Dashboard.Progress(p);
+            });
+
+            ServiceSingleton.Logger.Log(string.Format("Changing variant for {0} from {1} to {2}...", Instance.Name, Instance.StatusManager.GetFieldByKey("OldVariant").Value, Instance.StatusManager.GetFieldByKey("NewVariant").Value));
+
+            var Mods = await ServiceSingleton.VariantManager.PrepareModsToUpdate("Variant", Instance.StatusManager.GetFieldByKey("OldVariant").Value, Instance.StatusManager.GetFieldByKey("NewVariant").Value);
+
+            Instance.SettingsManager.Variant =  Instance.StatusManager.GetFieldByKey("NewVariant").Value;
+
+            await ServiceSingleton.Dashboard.LoadFrameAsync<InstallFrame>(new FrameParameters(new FrameParameter() { Key = "ModsToInstall", Value = Mods.Cast<IInstallableElement>().ToList() }));
+        }
+
         protected async Task View(INolvusInstance Instance)
         {
             await ServiceSingleton.Packages.Load(await ApiManager.Service.Installer.GetPackage(Instance.Id, Instance.Version), (s, p) =>
@@ -225,6 +243,19 @@ namespace Vcc.Nolvus.Dashboard.Frames
             await ServiceSingleton.Dashboard.LoadFrameAsync<OptionsManagerFrame>();
         }
 
+        protected async Task LoadVariantManager(INolvusInstance Instance)
+        {
+            await ServiceSingleton.Packages.Load(await ApiManager.Service.Installer.GetPackage(Instance.Id, Instance.Version), (s, p) =>
+            {
+                ServiceSingleton.Dashboard.Status(string.Format("{0} ({1}%)", s, p));
+                ServiceSingleton.Dashboard.Progress(p);
+            });
+
+            ServiceSingleton.Logger.Log(string.Format("Loading Variant Manager for {0} - v {1}...", Instance.Name, Instance.Version));
+
+            await ServiceSingleton.Dashboard.LoadFrameAsync<VariantManagerFrame>();
+        }
+
         protected override async Task OnLoadedAsync()        
         {
             ServiceSingleton.Dashboard.Info("Package loading...");
@@ -256,6 +287,9 @@ namespace Vcc.Nolvus.Dashboard.Frames
                         case InstanceInstallStatus.ChangingOption:
                             await ChangeOption(Instance);
                             break;
+                        case InstanceInstallStatus.ChangingVariant:
+                            await ChangeVariant(Instance);
+                            break;
 
                         default:
                             if (Mode == InstanceMode.View)
@@ -269,6 +303,10 @@ namespace Vcc.Nolvus.Dashboard.Frames
                             else if (Mode == InstanceMode.Options)
                             {
                                 await LoadOptionsManager(Instance);
+                            }
+                            else if (Mode == InstanceMode.Variant)
+                            {
+                                await LoadVariantManager(Instance);
                             }
 
                             break;

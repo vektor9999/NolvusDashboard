@@ -151,5 +151,13 @@ namespace Vcc.Nolvus.Core.Services
                 return ServiceSingleton.GetService<IOptionService>();
             }
         }
+
+        public static IVariantService VariantManager
+        {
+            get
+            {
+                return ServiceSingleton.GetService<IVariantService>();
+            }
+        }
     }
 }

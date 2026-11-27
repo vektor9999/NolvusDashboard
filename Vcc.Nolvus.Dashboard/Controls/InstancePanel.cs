@@ -333,6 +333,28 @@ namespace Vcc.Nolvus.Dashboard.Controls
             }
         }
 
+        private async void BrItmVariantManager_Click(object sender, EventArgs e)
+        {
+            if (!ModOrganizer.IsRunning)
+            {
+                switch (_Instance.Name)
+                {
+                    case Strings.NolvusAscension:
+                        NolvusMessageBox.ShowMessage("Variant Manager", string.Format("This feature is not available for {0}.", _Instance.Name), MessageBoxType.Info);
+                        break;
+
+                    case Strings.NolvusAwakening:
+                        ServiceSingleton.Instances.WorkingInstance = _Instance;
+                        await ServiceSingleton.Dashboard.LoadFrameAsync<PackageFrame>(new FrameParameters(new FrameParameter() { Key = "Mode", Value = InstanceMode.Variant }));
+                        break;
+                }
+            }
+            else
+            {
+                NolvusMessageBox.ShowMessage("Mod Organizer 2", "An instance of Mod Organizer 2 is running! Close it first.", MessageBoxType.Error);
+            }
+        }
+
         private void BrItmRemap_Click(object sender, EventArgs e)
         {
             if (!ModOrganizer.IsRunning)

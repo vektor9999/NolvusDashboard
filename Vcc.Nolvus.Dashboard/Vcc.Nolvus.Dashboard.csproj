@@ -491,6 +491,12 @@
     <Compile Include="Frames\Manager\Options\v6\OptionsManagerFrame.Designer.cs">
       <DependentUpon>OptionsManagerFrame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frames\Manager\Variant\v6\VariantManagerFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\Manager\Variant\v6\VariantManagerFrame.Designer.cs">
+      <DependentUpon>VariantManagerFrame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frames\PackageFrame.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -655,6 +661,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\Manager\Options\v6\OptionsManagerFrame.resx">
       <DependentUpon>OptionsManagerFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\Manager\Variant\v6\VariantManagerFrame.resx">
+      <DependentUpon>VariantManagerFrame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\PackageFrame.resx">
       <DependentUpon>PackageFrame.cs</DependentUpon>

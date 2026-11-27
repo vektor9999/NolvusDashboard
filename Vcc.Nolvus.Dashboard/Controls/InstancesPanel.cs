@@ -34,7 +34,7 @@ namespace Vcc.Nolvus.Dashboard.Controls
                 InstancePanel.Top = Top;
                 InstancePanel.Left = Left;
 
-                Top += 175;
+                Top += 215;
 
                 Controls.Add(InstancePanel);
             }            

@@ -65,7 +65,8 @@ namespace Vcc.Nolvus.Dashboard
             ServiceSingleton.RegisterService<IReportService>(new ReportService());
             ServiceSingleton.RegisterService<ICheckerService>(new CheckerService());
             ServiceSingleton.RegisterService<IENBService>(new ENBService());
-            ServiceSingleton.RegisterService<IOptionService>(new OptionService());            
+            ServiceSingleton.RegisterService<IOptionService>(new OptionService());
+            ServiceSingleton.RegisterService<IVariantService>(new VariantService());
 
             AppDomain.CurrentDomain.AssemblyResolve += Resolver;
             AppDomain.CurrentDomain.AssemblyLoad += Loader;

@@ -53,7 +53,7 @@ namespace Vcc.Nolvus.Instance.Options
             DataType = Node["DataType"].InnerText.Trim();
             Value = Node["Value"].InnerText.Trim();            
 
-            ServiceSingleton.Logger.Log(string.Format("Option {0} : {1}", Name, Value));
+            ServiceSingleton.Logger.Log(string.Format("Option {0} : {1}", FriendlyName, Value));
         }
 
         public void Save(XmlWriter XMLWriter)

@@ -14,10 +14,10 @@ namespace Vcc.Nolvus.Core.Enums
     public enum ModInstallStatus { Downloading, Hashing, Extracting, UnPacking, Installing, Patching, Archiving, Deleting, Cleaning }
     public enum ElementAction { None, Add, Update, Move, Remove };
     public enum InstallConditionType { AND, OR };
-    public enum InstanceInstallStatus { None, Installing, Installed, Updating, ChangingEnb, ChangingOption };
+    public enum InstanceInstallStatus { None, Installing, Installed, Updating, ChangingEnb, ChangingOption, ChangingVariant };
     public enum ModStatus { OK, VersionDiffer, CustomInstalled, Error };
     public enum InstanceCheckStatus { OK, VersionError, NoId }   
     public enum StockGameProcessStep { GameFileInfoLoading, PatchingInfoLoading, GameFilesChecking, GameFilesCopy, GameFilesPatching, PatchGameFile, CheckPatchedGameFile}
-    public enum InstanceMode { None, View, ENB, Options }
+    public enum InstanceMode { None, View, ENB, Options, Variant }
 }
 

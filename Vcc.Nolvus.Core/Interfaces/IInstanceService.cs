@@ -25,6 +25,7 @@ namespace Vcc.Nolvus.Core.Interfaces
         void PrepareInstanceForUpdate();
         void PrepareInstanceForEnb();
         void PrepareInstanceForOption();
+        void PrepareInstanceForVariant();
         void FinalizeInstance();
         bool PropertyExists(string Name);
         string GetValueFromKey(string Key);        

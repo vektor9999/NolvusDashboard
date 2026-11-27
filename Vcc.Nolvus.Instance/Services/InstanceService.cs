@@ -449,6 +449,20 @@ namespace Vcc.Nolvus.Instance.Services
             }
         }
 
+        public void PrepareInstanceForVariant()
+        {
+            if (WorkingInstance != null)
+            {
+                WorkingInstance.StatusManager.InstallStatus = InstanceInstallStatus.ChangingVariant;
+
+                Save();
+            }
+            else
+            {
+                throw new Exception("No working instance selected!");
+            }
+        }
+
         public void FinalizeInstance()
         {
             WorkingInstance.StatusManager.InstallStatus = InstanceInstallStatus.Installed;

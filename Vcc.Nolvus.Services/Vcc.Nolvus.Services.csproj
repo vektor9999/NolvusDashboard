@@ -100,6 +100,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Updater\UpdaterService.cs" />
     <Compile Include="Lib\LibService.cs" />
+    <Compile Include="Variant\VariantService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

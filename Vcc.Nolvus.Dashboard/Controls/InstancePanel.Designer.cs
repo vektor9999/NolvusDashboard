@@ -33,11 +33,8 @@
             this.LblInstanceName = new System.Windows.Forms.Label();
             this.LblVersion = new System.Windows.Forms.Label();
             this.LblStatus = new System.Windows.Forms.Label();
-            this.BtnUpdate = new Vcc.Nolvus.Components.Controls.FlatButton();
-            this.BtnPlay = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.PicInstanceImage = new System.Windows.Forms.PictureBox();
             this.LblDesc = new System.Windows.Forms.Label();
-            this.BtnView = new Vcc.Nolvus.Components.Controls.FlatButton();
             this.popupMenusManager1 = new Syncfusion.Windows.Forms.Tools.XPMenus.PopupMenusManager(this.components);
             this.popupMenu1 = new Syncfusion.Windows.Forms.Tools.XPMenus.PopupMenu(this.components);
             this.parentBarItem1 = new Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem();
@@ -58,6 +55,10 @@
             this.BrItmDelete = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.LblImageLoading = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BrItmVariantManager = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.BtnView = new Vcc.Nolvus.Components.Controls.FlatButton();
+            this.BtnUpdate = new Vcc.Nolvus.Components.Controls.FlatButton();
+            this.BtnPlay = new Vcc.Nolvus.Components.Controls.FlatButton();
             ((System.ComponentModel.ISupportInitialize)(this.PicInstanceImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,39 +100,6 @@
             this.LblStatus.Text = "Loading status...";
             this.LblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // BtnUpdate
-            // 
-            this.BtnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnUpdate.BackColor = System.Drawing.Color.Black;
-            this.BtnUpdate.BorderColor = System.Drawing.Color.Gray;
-            this.BtnUpdate.ForeColor = System.Drawing.Color.White;
-            this.BtnUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.BtnUpdate.Location = new System.Drawing.Point(581, 157);
-            this.BtnUpdate.Name = "BtnUpdate";
-            this.BtnUpdate.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
-            this.BtnUpdate.Size = new System.Drawing.Size(92, 35);
-            this.BtnUpdate.TabIndex = 5;
-            this.BtnUpdate.Text = "Update";
-            this.BtnUpdate.UseVisualStyleBackColor = false;
-            this.BtnUpdate.Visible = false;
-            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
-            // 
-            // BtnPlay
-            // 
-            this.BtnPlay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnPlay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnPlay.BorderColor = System.Drawing.Color.Gray;
-            this.BtnPlay.ForeColor = System.Drawing.Color.White;
-            this.BtnPlay.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.BtnPlay.Location = new System.Drawing.Point(777, 157);
-            this.BtnPlay.Name = "BtnPlay";
-            this.BtnPlay.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
-            this.BtnPlay.Size = new System.Drawing.Size(92, 35);
-            this.BtnPlay.TabIndex = 4;
-            this.BtnPlay.Text = "Play";
-            this.BtnPlay.UseVisualStyleBackColor = false;
-            this.BtnPlay.Click += new System.EventHandler(this.BtnPlay_Click);
-            // 
             // PicInstanceImage
             // 
             this.PicInstanceImage.BackColor = System.Drawing.Color.Black;
@@ -156,22 +124,6 @@
             this.LblDesc.TabIndex = 6;
             this.LblDesc.Text = "[Description]";
             // 
-            // BtnView
-            // 
-            this.BtnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.BtnView.BorderColor = System.Drawing.Color.Gray;
-            this.BtnView.ForeColor = System.Drawing.Color.White;
-            this.BtnView.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.BtnView.Location = new System.Drawing.Point(679, 157);
-            this.BtnView.Name = "BtnView";
-            this.BtnView.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
-            this.BtnView.Size = new System.Drawing.Size(92, 35);
-            this.BtnView.TabIndex = 7;
-            this.BtnView.Text = "Manage";
-            this.BtnView.UseVisualStyleBackColor = false;
-            this.BtnView.Click += new System.EventHandler(this.BtnView_Click);
-            // 
             // popupMenu1
             // 
             this.popupMenu1.ParentBarItem = this.parentBarItem1;
@@ -193,6 +145,7 @@
             this.barItem4,
             this.BrItmENBManager,
             this.BrItmOptionManager,
+            this.BrItmVariantManager,
             this.barItem6,
             this.BrItmRemap,
             this.barItem5,
@@ -364,6 +317,66 @@
             this.panel1.Size = new System.Drawing.Size(6, 205);
             this.panel1.TabIndex = 9;
             // 
+            // BrItmVariantManager
+            // 
+            this.BrItmVariantManager.BarName = "BrItmVariantManager";
+            this.BrItmVariantManager.ID = "Variant Manager";
+            this.BrItmVariantManager.Image = ((Syncfusion.Windows.Forms.Tools.XPMenus.ImageExt)(resources.GetObject("BrItmVariantManager.Image")));
+            this.BrItmVariantManager.ImageSize = new System.Drawing.Size(24, 24);
+            this.BrItmVariantManager.ShowToolTipInPopUp = false;
+            this.BrItmVariantManager.SizeToFit = true;
+            this.BrItmVariantManager.Text = "Variant Manager";
+            this.BrItmVariantManager.Click += new System.EventHandler(this.BrItmVariantManager_Click);
+            // 
+            // BtnView
+            // 
+            this.BtnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.BtnView.BorderColor = System.Drawing.Color.Gray;
+            this.BtnView.ForeColor = System.Drawing.Color.White;
+            this.BtnView.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnView.Location = new System.Drawing.Point(679, 157);
+            this.BtnView.Name = "BtnView";
+            this.BtnView.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
+            this.BtnView.Size = new System.Drawing.Size(92, 35);
+            this.BtnView.TabIndex = 7;
+            this.BtnView.Text = "Manage";
+            this.BtnView.UseVisualStyleBackColor = false;
+            this.BtnView.Click += new System.EventHandler(this.BtnView_Click);
+            // 
+            // BtnUpdate
+            // 
+            this.BtnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnUpdate.BackColor = System.Drawing.Color.Black;
+            this.BtnUpdate.BorderColor = System.Drawing.Color.Gray;
+            this.BtnUpdate.ForeColor = System.Drawing.Color.White;
+            this.BtnUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnUpdate.Location = new System.Drawing.Point(581, 157);
+            this.BtnUpdate.Name = "BtnUpdate";
+            this.BtnUpdate.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
+            this.BtnUpdate.Size = new System.Drawing.Size(92, 35);
+            this.BtnUpdate.TabIndex = 5;
+            this.BtnUpdate.Text = "Update";
+            this.BtnUpdate.UseVisualStyleBackColor = false;
+            this.BtnUpdate.Visible = false;
+            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
+            // 
+            // BtnPlay
+            // 
+            this.BtnPlay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnPlay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.BtnPlay.BorderColor = System.Drawing.Color.Gray;
+            this.BtnPlay.ForeColor = System.Drawing.Color.White;
+            this.BtnPlay.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.BtnPlay.Location = new System.Drawing.Point(777, 157);
+            this.BtnPlay.Name = "BtnPlay";
+            this.BtnPlay.OnHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(83)))), ((int)(((byte)(83)))));
+            this.BtnPlay.Size = new System.Drawing.Size(92, 35);
+            this.BtnPlay.TabIndex = 4;
+            this.BtnPlay.Text = "Play";
+            this.BtnPlay.UseVisualStyleBackColor = false;
+            this.BtnPlay.Click += new System.EventHandler(this.BtnPlay_Click);
+            // 
             // InstancePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -420,5 +433,6 @@
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem barItem5;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmOptionManager;
         private System.Windows.Forms.Panel panel1;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem BrItmVariantManager;
     }
 }
